@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thompson's Lawn Care | Lawn Care in Middletown, PA</title>
+<meta name="description" content="Thompson's Lawn Care provides lawn mowing, trimming and edging, yard cleanup, and leaf removal in Middletown, PA. Call (717) 554-2764.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green-950: #16351f;
+  --green-900: #1d4528;
+  --green-800: #265834;
+  --green-700: #357244;
+  --green-600: #4b8a56;
+  --green-200: #cfe4c8;
+  --green-100: #e5f1df;
+  --green-050: #f3f8ef;
+  --cream: #fbfaf3;
+  --white: #ffffff;
+  --yellow: #f6c842;
+  --yellow-light: #ffe795;
+  --earth: #815f3f;
+  --text: #203528;
+  --muted: #607166;
+  --border: rgba(29, 69, 40, 0.14);
+  --shadow-sm: 0 10px 30px rgba(22, 53, 31, 0.08);
+  --shadow-md: 0 22px 60px rgba(22, 53, 31, 0.14);
+  --radius-sm: 0.75rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 2rem;
+  --radius-pill: 999px;
+  --space-1: 0.375rem;
+  --space-2: 0.625rem;
+  --space-3: 0.875rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 2rem;
+  --space-8: 2.5rem;
+  --space-9: 3rem;
+  --space-10: 4rem;
+  --space-11: 5rem;
+  --space-12: 6rem;
+  --container: 1180px;
+  --nav-height: 72px;
+  --transition: 220ms ease;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + var(--space-4));
+}
+body {
+  min-width: 320px;
+  overflow-x: hidden;
+  background: var(--cream);
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button, input, textarea {
+  font: inherit;
+}
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+section {
+  position: relative;
+}
+.container {
+  width: min(calc(100% - 2rem), var(--container));
+  margin-inline: auto;
+}
+.section {
+  padding: var(--space-11) 0;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  color: var(--green-700);
+  font-size: 0.79rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.eyebrow::before {
+  width: 2rem;
+  height: 3px;
+  background: var(--yellow);
+  border-radius: var(--radius-pill);
+  content: "";
+}
+.section-title {
+  max-width: 760px;
+  color: var(--green-950);
+  font-family: "Fraunces", serif;
+  font-size: clamp(2.1rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+.section-intro {
+  max-width: 640px;
+  margin-top: var(--space-5);
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+.btn {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.8rem 1.35rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  line-height: 1.1;
+  cursor: pointer;
+  transition: transform var(--transition), background-color var(--transition), color var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn:focus-visible, .nav-link:focus-visible, .mobile-menu-button:focus-visible, .mobile-call-close:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+.btn-primary {
+  background: var(--yellow);
+  color: var(--green-950);
+  box-shadow: 0 12px 24px rgba(246, 200, 66, 0.23);
+}
+.btn-primary:hover {
+  background: var(--yellow-light);
+}
+.btn-secondary {
+  border-color: rgba(255, 255, 255, 0.58);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  backdrop-filter: blur(8px);
+}
+.btn-secondary:hover {
+  border-color: var(--white);
+  background: rgba(255, 255, 255, 0.17);
+}
+.site-header {
+  position: sticky;
+  z-index: 1000;
+  top: 0;
+  height: var(--nav-height);
+  border-bottom: 1px solid rgba(29, 69, 40, 0.1);
+  background: rgba(251, 250, 243, 0.94);
+  backdrop-filter: blur(14px);
+}
+.nav-wrap {
+  position: relative;
+  display: flex;
+  height: var(--nav-height);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--green-950);
+  font-family: "Fraunces", serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.brand-mark {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  flex: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--green-800);
+}
+.brand-mark::before, .brand-mark::after {
+  position: absolute;
+  bottom: -8px;
+  width: 20px;
+  height: 34px;
+  border-radius: 100% 0 100% 0;
+  background: var(--yellow);
+  content: "";
+  transform: rotate(-25deg);
+}
+.brand-mark::before {
+  left: 5px;
+}
+.brand-mark::after {
+  right: 1px;
+  bottom: -12px;
+  background: var(--green-100);
+  transform: rotate(18deg);
+}
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: var(--space-6);
+}
+.nav-link {
+  position: relative;
+  color: var(--green-900);
+  font-size: 0.93rem;
+  font-weight: 600;
+}
+.nav-link::after {
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+  left: 0;
+  height: 2px;
+  background: var(--yellow);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+.nav-call {
+  padding: 0.7rem 1rem;
+  background: var(--green-800);
+  color: var(--white);
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.mobile-menu-button {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--green-100);
+  color: var(--green-950);
+  cursor: pointer;
+}
+.menu-icon {
+  position: relative;
+  width: 20px;
+  height: 14px;
+}
+.menu-icon span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: currentColor;
+  transition: transform var(--transition), top var(--transition), opacity var(--transition);
+}
+.menu-icon span:nth-child(1) {
+  top: 0;
+}
+.menu-icon span:nth-child(2) {
+  top: 6px;
+}
+.menu-icon span:nth-child(3) {
+  top: 12px;
+}
+.mobile-menu-button[aria-expanded="true"] .menu-icon span:nth-child(1) {
+  top: 6px;
+  transform: rotate(45deg);
+}
+.mobile-menu-button[aria-expanded="true"] .menu-icon span:nth-child(2) {
+  opacity: 0;
+}
+.mobile-menu-button[aria-expanded="true"] .menu-icon span:nth-child(3) {
+  top: 6px;
+  transform: rotate(-45deg);
+}
+.mobile-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 1rem;
+  left: 1rem;
+  display: none;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  box-shadow: var(--shadow-md);
+}
+.mobile-menu.is-open {
+  display: grid;
+  gap: var(--space-2);
+}
+.mobile-menu a {
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-sm);
+  color: var(--green-950);
+  font-weight: 600;
+}
+.mobile-menu a:hover {
+  background: var(--green-050);
+}
+.mobile-menu .mobile-menu-call {
+  margin-top: var(--space-2);
+  background: var(--yellow);
+  text-align: center;
+}
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: calc(100svh - var(--nav-height));
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  background: var(--green-900);
+  color: var(--white);
+}
+.hero-bg {
+  position: absolute;
+  z-index: -3;
+  inset: 0;
+}
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.hero::before {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(13, 40, 22, 0.86) 0%, rgba(17, 52, 28, 0.7) 50%, rgba(17, 52, 28, 0.22) 100%), linear-gradient(0deg, rgba(15, 45, 24, 0.62) 0%, transparent 55%);
+  content: "";
+}
+.hero::after {
+  position: absolute;
+  z-index: -1;
+  right: -15%;
+  bottom: -120px;
+  left: -15%;
+  height: 180px;
+  border-radius: 50% 0;
+  background: var(--cream);
+  content: "";
+}
+.hero-content {
+  width: min(100%, 760px);
+  padding: var(--space-12) 0 calc(var(--space-12) + 3rem);
+}
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+  padding: 0.45rem 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.09);
+  font-size: 0.77rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+.hero-kicker::before {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--yellow);
+  content: "";
+  box-shadow: 0 0 12px rgba(246, 200, 66, 0.9);
+}
+h1 {
+  max-width: 850px;
+  font-family: "Fraunces", serif;
+  font-size: clamp(3rem, 11vw, 6.5rem);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+.hero-accent {
+  color: var(--yellow);
+}
+.hero-copy {
+  max-width: 600px;
+  margin-top: var(--space-6);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: clamp(1rem, 2vw, 1.22rem);
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}
+.hero-note {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  margin-top: var(--space-7);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.hero-note span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.hero-note span::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--yellow);
+  content: "";
+}
+.services {
+  overflow: hidden;
+}
+.services::before {
+  position: absolute;
+  z-index: -1;
+  top: 12%;
+  right: -90px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: repeating-linear-gradient(120deg, rgba(75, 138, 86, 0.08) 0, rgba(75, 138, 86, 0.08) 3px, transparent 3px, transparent 11px);
+  content: "";
+}
+.services-grid {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-9);
+}
+.service-card {
+  position: relative;
+  min-height: 310px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--green-900);
+  box-shadow: var(--shadow-sm);
+}
+.service-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms ease;
+}
+.service-card::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 45, 24, 0.05) 22%, rgba(15, 45, 24, 0.9) 100%);
+  content: "";
+}
+.service-card:hover img {
+  transform: scale(1.045);
+}
+.service-content {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: var(--space-6);
+  color: var(--white);
+}
+.service-number {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-3);
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--green-950);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+.service-card h3 {
+  font-family: "Fraunces", serif;
+  font-size: 1.6rem;
+  line-height: 1.1;
+}
+.service-card p {
+  margin-top: var(--space-2);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.93rem;
+}
+.about {
+  background: var(--green-050);
+}
+.about-grid {
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+}
+.about-image-wrap {
+  position: relative;
+  max-width: 600px;
+}
+.about-image {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 48% var(--radius-lg) var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.sun-badge {
+  position: absolute;
+  right: -0.3rem;
+  bottom: 1.5rem;
+  display: grid;
+  width: 112px;
+  height: 112px;
+  place-items: center;
+  border: 8px solid var(--green-050);
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--green-950);
+  font-family: "Fraunces", serif;
+  font-size: 0.88rem;
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: center;
+  transform: rotate(5deg);
+}
+.about-copy p {
+  margin-top: var(--space-5);
+  color: var(--muted);
+}
+.about-points {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}
+.about-point {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.6);
+}
+.about-point-icon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--green-100);
+  color: var(--green-800);
+  font-weight: 800;
+}
+.about-point strong {
+  display: block;
+  color: var(--green-950);
+}
+.about-point span {
+  display: block;
+  margin-top: 0.1rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+.location-grid {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+.map-frame {
+  min-height: 390px;
+  overflow: hidden;
+  border: 8px solid var(--white);
+  border-radius: var(--radius-lg);
+  background: var(--green-100);
+  box-shadow: var(--shadow-sm);
+}
+.map-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 390px;
+  border: 0;
+}
+.location-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-7);
+  border-radius: var(--radius-lg);
+  background: var(--green-900);
+  color: var(--white);
+}
+.location-card .eyebrow {
+  color: var(--yellow-light);
+}
+.location-card h3 {
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  line-height: 1.08;
+}
+.location-address {
+  margin-top: var(--space-5);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.05rem;
+  font-style: normal;
+}
+.location-card .btn {
+  align-self: flex-start;
+  margin-top: var(--space-6);
+}
+.hours-contact {
+  overflow: hidden;
+  background: linear-gradient(rgba(243, 248, 239, 0.95), rgba(243, 248, 239, 0.95)), repeating-linear-gradient(90deg, var(--green-100) 0, var(--green-100) 1px, transparent 1px, transparent 28px);
+}
+.hours-contact-grid {
+  display: grid;
+  gap: var(--space-6);
+}
+.hours-panel, .contact-panel {
+  padding: var(--space-7);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+.hours-panel h2, .contact-panel h2 {
+  color: var(--green-950);
+  font-family: "Fraunces", serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.05;
+}
+.hours-callout {
+  margin-top: var(--space-6);
+  padding: var(--space-6);
+  border-radius: var(--radius-md);
+  background: var(--yellow-light);
+  color: var(--green-950);
+}
+.hours-callout strong {
+  display: block;
+  font-family: "Fraunces", serif;
+  font-size: 1.45rem;
+}
+.hours-callout p {
+  margin-top: var(--space-1);
+  color: var(--green-800);
+}
+.phone-block {
+  margin-top: var(--space-6);
+}
+.phone-label {
+  display: block;
+  margin-bottom: var(--space-1);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.phone-link {
+  display: inline-block;
+  color: var(--green-800);
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.8rem, 7vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+.contact-form {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+.form-group {
+  display: grid;
+  gap: var(--space-2);
+}
+.form-group label {
+  color: var(--green-950);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.form-control {
+  width: 100%;
+  min-height: 50px;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid rgba(29, 69, 40, 0.2);
+  border-radius: var(--radius-sm);
+  background: var(--green-050);
+  color: var(--text);
+  transition: border-color var(--transition), background-color var(--transition);
+}
+textarea.form-control {
+  min-height: 125px;
+  resize: vertical;
+}
+.form-control:focus {
+  border-color: var(--green-600);
+  background: var(--white);
+  outline: none;
+}
+.form-submit {
+  justify-self: start;
+  border: 0;
+  background: var(--green-800);
+  color: var(--white);
+}
+.form-note {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+.site-footer {
+  padding: var(--space-10) 0 var(--space-7);
+  background: var(--green-950);
+  color: rgba(255, 255, 255, 0.78);
+}
+.footer-grid {
+  display: grid;
+  gap: var(--space-8);
+}
+.footer-brand .brand {
+  color: var(--white);
+  font-size: 1.25rem;
+}
+.footer-brand p {
+  max-width: 380px;
+  margin-top: var(--space-4);
+  color: rgba(255, 255, 255, 0.65);
+}
+.footer-heading {
+  margin-bottom: var(--space-3);
+  color: var(--yellow-light);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.footer-links {
+  display: grid;
+  gap: var(--space-2);
+}
+.footer-links a:hover {
+  color: var(--white);
+}
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
+  color: rgba(255, 255, 255, 0.53);
+  font-size: 0.85rem;
+}
+.mobile-call-bar {
+  position: fixed;
+  z-index: 1100;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.65rem max(0.75rem, env(safe-area-inset-right)) calc(0.65rem + env(safe-area-inset-bottom)) max(0.75rem, env(safe-area-inset-left));
+  border-top: 1px solid rgba(29, 69, 40, 0.18);
+  background: rgba(251, 250, 243, 0.97);
+  box-shadow: 0 -12px 30px rgba(22, 53, 31, 0.12);
+  backdrop-filter: blur(14px);
+}
+.mobile-call-link {
+  display: flex;
+  min-height: 52px;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  background: var(--yellow);
+  color: var(--green-950);
+  font-weight: 800;
+}
+.mobile-call-close {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 auto;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--green-100);
+  color: var(--green-900);
+  cursor: pointer;
+}
+body.mobile-call-visible {
+  padding-bottom: calc(74px + env(safe-area-inset-bottom));
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 650ms ease, transform 650ms ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal-delay-1 {
+  transition-delay: 90ms;
+}
+.reveal-delay-2 {
+  transition-delay: 180ms;
+}
+.reveal-delay-3 {
+  transition-delay: 270ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (min-width: 640px) {
+  .container {
+    width: min(calc(100% - 3rem), var(--container));
+  }
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .service-card {
+    min-height: 360px;
+  }
+  .hours-panel, .contact-panel, .location-card {
+    padding: var(--space-8);
+  }
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+@media (min-width: 820px) {
+  :root {
+    --nav-height: 82px;
+  }
+  .desktop-nav {
+    display: flex;
+  }
+  .mobile-menu-button, .mobile-menu {
+    display: none !important;
+  }
+  .hero-content {
+    padding-top: var(--space-12);
+    padding-bottom: calc(var(--space-12) + 4rem);
+  }
+  .about-grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: var(--space-12);
+  }
+  .location-grid {
+    grid-template-columns: minmax(0, 1.5fr) minmax(300px, 0.7fr);
+  }
+  .hours-contact-grid {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  }
+  .footer-grid {
+    grid-template-columns: 1.5fr 0.7fr 0.8fr;
+  }
+  .mobile-call-bar {
+    display: none !important;
+  }
+  body.mobile-call-visible {
+    padding-bottom: 0;
+  }
+}
+@media (min-width: 1050px) {
+  .section {
+    padding: var(--space-12) 0;
+  }
+  .services-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .service-card {
+    min-height: 430px;
+  }
+  .service-card:nth-child(2), .service-card:nth-child(4) {
+    transform: translateY(2rem);
+  }
+  .service-content {
+    padding: var(--space-5);
+  }
+}
+</style>
+</head>
+<body class="mobile-call-visible">
+<header class="site-header">
+<div class="container nav-wrap">
+<a class="brand" href="#top" aria-label="Thompson's Lawn Care home">
+<span class="brand-mark" aria-hidden="true"></span>
+<span>Thompson's Lawn Care</span>
+</a>
+<nav class="desktop-nav" aria-label="Primary navigation">
+<a class="nav-link" href="#services">Services</a>
+<a class="nav-link" href="#about">About</a>
+<a class="nav-link" href="#location">Location</a>
+<a class="nav-link" href="#hours">Hours</a>
+<a class="nav-link" href="#contact">Contact</a>
+<a class="nav-call" href="tel:+17175542764">Call (717) 554-2764</a>
+</nav>
+<button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+<span class="menu-icon" aria-hidden="true">
+<span></span>
+<span></span>
+<span></span>
+</span>
+</button>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+<a href="#services">Services</a>
+<a href="#about">About</a>
+<a href="#location">Location</a>
+<a href="#hours">Hours</a>
+<a href="#contact">Contact</a>
+<a class="mobile-menu-call" href="tel:+17175542764">Call (717) 554-2764</a>
+</nav>
+</div>
+</header>
+<main id="top">
+<section class="hero" aria-labelledby="hero-title">
+<div class="hero-bg">
+<img src="../stock/thompsons-lawn-care/hero.jpg" alt="Freshly maintained green lawn in a sunny outdoor setting">
+</div>
+<div class="container">
+<div class="hero-content">
+<p class="hero-kicker">Lawn care in Middletown, PA</p>
+<h1 id="hero-title">A cleaner yard starts <span class="hero-accent">right outside.</span></h1>
+<p class="hero-copy">Thompson's Lawn Care handles the regular work that keeps your property looking neat, from mowing and edging to seasonal cleanup and leaf removal.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="tel:+17175542764">Call Now</a>
+<a class="btn btn-secondary" href="#services">See Services</a>
+</div>
+<div class="hero-note" aria-label="Business details">
+<span>67 Stephania Dr, Middletown</span>
+<span>Call for hours</span>
+</div>
+</div>
+</div>
+</section>
+<section class="section services" id="services" aria-labelledby="services-title">
+<div class="container">
+<div class="reveal">
+<p class="eyebrow">Outdoor care</p>
+<h2 class="section-title" id="services-title">The basics your yard needs to stay cleaned up.</h2>
+<p class="section-intro">Straightforward lawn and yard services for properties in the Middletown area.</p>
+</div>
+<div class="services-grid">
+<article class="service-card reveal">
+<img src="../stock/thompsons-lawn-care/01.jpg" alt="Fresh green lawn being maintained with a lawn mower">
+<div class="service-content">
+<span class="service-number">01</span>
+<h3>Lawn Mowing</h3>
+<p>Regular mowing to keep grass at a clean, manageable height.</p>
+</div>
+</article>
+<article class="service-card reveal reveal-delay-1">
+<img src="../stock/thompsons-lawn-care/02.jpg" alt="Cleanly trimmed grass along the edge of a lawn">
+<div class="service-content">
+<span class="service-number">02</span>
+<h3>Trimming &amp; Edging</h3>
+<p>Detail work around lawn edges, borders, and areas a mower cannot reach.</p>
+</div>
+</article>
+<article class="service-card reveal reveal-delay-2">
+<img src="../stock/thompsons-lawn-care/03.jpg" alt="Outdoor yard area being cleaned and maintained">
+<div class="service-content">
+<span class="service-number">03</span>
+<h3>Yard Cleanup</h3>
+<p>General outdoor cleanup to help get an untidy yard back in order.</p>
+</div>
+</article>
+<article class="service-card reveal reveal-delay-3">
+<img src="../stock/thompsons-lawn-care/04.jpg" alt="Autumn leaves gathered for seasonal yard cleanup">
+<div class="service-content">
+<span class="service-number">04</span>
+<h3>Leaf Removal</h3>
+<p>Seasonal leaf cleanup to clear lawns and outdoor areas.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="section about" id="about" aria-labelledby="about-title">
+<div class="container about-grid">
+<div class="about-image-wrap reveal">
+<div class="about-image">
+<img src="../stock/thompsons-lawn-care/02.jpg" alt="Neatly maintained lawn with crisp trimmed edges">
+</div>
+<div class="sun-badge" aria-hidden="true">Fresh<br>outdoors</div>
+</div>
+<div class="about-copy reveal reveal-delay-1">
+<p class="eyebrow">About</p>
+<h2 class="section-title" id="about-title">Simple lawn care for a yard that looks taken care of.</h2>
+<p>Thompson's Lawn Care provides practical outdoor maintenance from 67 Stephania Dr in Middletown, Pennsylvania. Services include lawn mowing, trimming and edging, yard cleanup, and leaf removal.</p>
+<p>Whether the grass needs cutting or seasonal debris needs cleared, call to discuss the work your property needs and current availability.</p>
+<div class="about-points">
+<div class="about-point">
+<span class="about-point-icon" aria-hidden="true">✓</span>
+<div>
+<strong>Core lawn maintenance</strong>
+<span>Mowing, trimming, and edging for a cleaner finished yard.</span>
+</div>
+</div>
+<div class="about-point">
+<span class="about-point-icon" aria-hidden="true">✓</span>
+<div>
+<strong>Seasonal cleanup</strong>
+<span>Yard cleanup and leaf removal when outdoor mess starts piling up.</span>
+</div>
+</div>
+<div class="about-point">
+<span class="about-point-icon" aria-hidden="true">✓</span>
+<div>
+<strong>Easy to reach</strong>
+<span>Call (717) 554-2764 for hours and service information.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="location" aria-labelledby="location-title">
+<div class="container">
+<div class="reveal">
+<p class="eyebrow">Location</p>
+<h2 class="section-title" id="location-title">Based in Middletown.</h2>
+<p class="section-intro">Thompson's Lawn Care is located at 67 Stephania Dr, Middletown, PA 17057.</p>
+</div>
+<div class="location-grid">
+<div class="map-frame reveal">
+<iframe title="Map showing Thompson's Lawn Care at 67 Stephania Dr, Middletown, PA 17057" src="https://maps.google.com/maps?q=67%20Stephania%20Dr%2C%20Middletown%2C%20PA%2017057&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+</div>
+<aside class="location-card reveal reveal-delay-1">
+<p class="eyebrow">Find us</p>
+<h3>Thompson's Lawn Care</h3>
+<address class="location-address">67 Stephania Dr<br>Middletown, PA 17057</address>
+<a class="btn btn-primary" href="tel:+17175542764">Call (717) 554-2764</a>
+</aside>
+</div>
+</div>
+</section>
+<section class="section hours-contact" aria-label="Hours and contact information">
+<div class="container hours-contact-grid">
+<section class="hours-panel reveal" id="hours" aria-labelledby="hours-title">
+<p class="eyebrow">Hours</p>
+<h2 id="hours-title">Call for hours.</h2>
+<div class="hours-callout">
+<strong>Hours vary.</strong>
+<p>Call Thompson's Lawn Care for current hours and availability.</p>
+</div>
+<div class="phone-block">
+<span class="phone-label">Phone</span>
+<a class="phone-link" href="tel:+17175542764">(717) 554-2764</a>
+</div>
+</section>
+<section class="contact-panel reveal reveal-delay-1" id="contact" aria-labelledby="contact-title">
+<p class="eyebrow">Contact</p>
+<h2 id="contact-title">Tell us what your yard needs.</h2>
+<p class="section-intro">Call directly or use the form below to prepare your message.</p>
+<form class="contact-form" id="contactForm">
+<div class="form-group">
+<label for="name">Name</label>
+<input class="form-control" id="name" name="name" type="text" autocomplete="name" required>
+</div>
+<div class="form-group">
+<label for="phone">Phone</label>
+<input class="form-control" id="phone" name="phone" type="tel" autocomplete="tel" required>
+</div>
+<div class="form-group">
+<label for="message">Message</label>
+<textarea class="form-control" id="message" name="message" placeholder="What lawn or yard work do you need?" required></textarea>
+</div>
+<button class="btn form-submit" type="submit">Prepare Message</button>
+<p class="form-note" id="formNote">Submitting opens your phone's messaging app when supported.</p>
+</form>
+</section>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<a class="brand" href="#top" aria-label="Thompson's Lawn Care home">
+<span class="brand-mark" aria-hidden="true"></span>
+<span>Thompson's Lawn Care</span>
+</a>
+<p>Lawn mowing, trimming and edging, yard cleanup, and leaf removal in Middletown, Pennsylvania.</p>
+</div>
+<div>
+<p class="footer-heading">Quick Links</p>
+<nav class="footer-links" aria-label="Footer navigation">
+<a href="#services">Services</a>
+<a href="#about">About</a>
+<a href="#location">Location</a>
+<a href="#contact">Contact</a>
+</nav>
+</div>
+<div>
+<p class="footer-heading">Hours &amp; Contact</p>
+<div class="footer-links">
+<span>Call for hours</span>
+<a href="tel:+17175542764">(717) 554-2764</a>
+<span>67 Stephania Dr<br>Middletown, PA 17057</span>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<span>&copy; <span id="copyrightYear">2026</span> Thompson's Lawn Care. All rights reserved.</span>
+<a href="#top">Back to top</a>
+</div>
+</div>
+</footer>
+<div class="mobile-call-bar" id="mobileCallBar" aria-label="Quick call">
+<a class="mobile-call-link" href="tel:+17175542764">Call (717) 554-2764</a>
+<button class="mobile-call-close" id="mobileCallClose" type="button" aria-label="Dismiss call bar">×</button>
+</div>
+<script>
+(function () {
+  "use strict";
+  var mobileMenuButton = document.getElementById("mobileMenuButton");
+  var mobileMenu = document.getElementById("mobileMenu");
+  function closeMobileMenu() {
+    if (!mobileMenuButton || !mobileMenu) { return; }
+    mobileMenuButton.setAttribute("aria-expanded", "false");
+    mobileMenuButton.setAttribute("aria-label", "Open menu");
+    mobileMenu.classList.remove("is-open");
+  }
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener("click", function () {
+      var isOpen = mobileMenuButton.getAttribute("aria-expanded") === "true";
+      mobileMenuButton.setAttribute("aria-expanded", String(!isOpen));
+      mobileMenuButton.setAttribute("aria-label", isOpen ? "Open menu" : "Close menu");
+      mobileMenu.classList.toggle("is-open", !isOpen);
+    });
+    var mobileMenuLinks = mobileMenu.querySelectorAll("a");
+    mobileMenuLinks.forEach(function (link) {
+      if (!link) { return; }
+      link.addEventListener("click", closeMobileMenu);
+    });
+    document.addEventListener("click", function (event) {
+      if (!(event.target instanceof Node)) { return; }
+      if (mobileMenu.classList.contains("is-open") && !mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+        closeMobileMenu();
+      }
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth >= 820) { closeMobileMenu(); }
+    });
+  }
+  var mobileCallBar = document.getElementById("mobileCallBar");
+  var mobileCallClose = document.getElementById("mobileCallClose");
+  var callBarDismissed = false;
+  try {
+    callBarDismissed = window.sessionStorage.getItem("thompsonsCallBarDismissed") === "true";
+  } catch (error) {
+    callBarDismissed = false;
+  }
+  if (callBarDismissed) {
+    if (mobileCallBar) { mobileCallBar.style.display = "none"; }
+    document.body.classList.remove("mobile-call-visible");
+  }
+  if (mobileCallClose && mobileCallBar) {
+    mobileCallClose.addEventListener("click", function () {
+      mobileCallBar.style.display = "none";
+      document.body.classList.remove("mobile-call-visible");
+      try {
+        window.sessionStorage.setItem("thompsonsCallBarDismissed", "true");
+      } catch (error) { return; }
+    });
+  }
+  var revealItems = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    var revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: "0px 0px -40px 0px" });
+    revealItems.forEach(function (item) {
+      if (item) { revealObserver.observe(item); }
+    });
+  } else {
+    revealItems.forEach(function (item) {
+      if (item) { item.classList.add("is-visible"); }
+    });
+  }
+  var contactForm = document.getElementById("contactForm");
+  var formNote = document.getElementById("formNote");
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var nameInput = document.getElementById("name");
+      var phoneInput = document.getElementById("phone");
+      var messageInput = document.getElementById("message");
+      if (!nameInput || !phoneInput || !messageInput) {
+        if (formNote) { formNote.textContent = "Please call (717) 554-2764 to get in touch."; }
+        return;
+      }
+      var name = nameInput.value.trim();
+      var phone = phoneInput.value.trim();
+      var message = messageInput.value.trim();
+      if (!name || !phone || !message) {
+        if (formNote) { formNote.textContent = "Please complete your name, phone number, and message."; }
+        return;
+      }
+      var smsBody = "Hi Thompson's Lawn Care, my name is " + name + ". My phone number is " + phone + ". " + message;
+      window.location.href = "sms:+17175542764?body=" + encodeURIComponent(smsBody);
+    });
+  }
+  var copyrightYear = document.getElementById("copyrightYear");
+  if (copyrightYear) { copyrightYear.textContent = String(new Date().getFullYear()); }
+})();
+</script>
+</body>
+</html>

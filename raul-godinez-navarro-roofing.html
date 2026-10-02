@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Raul Godinez Navarro Roofing in Steelton, PA. Roof repairs, roof replacement, shingle installation, and roof inspections. Call (717) 939-2396.">
+<title>Raul Godinez Navarro Roofing | Steelton, PA Roofer</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-ink: #18212a;
+  --color-steel: #354653;
+  --color-slate: #40596b;
+  --color-slate-dark: #273946;
+  --color-blue-gray: #718594;
+  --color-silver: #d4dce1;
+  --color-line: #c4ced4;
+  --color-light: #eef2f4;
+  --color-white: #ffffff;
+  --color-accent: #b5c1c9;
+  --color-overlay: rgba(20, 31, 40, 0.72);
+  --color-shadow: rgba(16, 27, 35, 0.16);
+  --font-display: "Barlow Condensed", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --space-1: 0.375rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+  --space-7: 4rem;
+  --space-8: 5.5rem;
+  --container: 1180px;
+  --nav-height: 72px;
+  --mobile-call-height: 76px;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-height) + var(--space-2)); }
+body { margin: 0; background: var(--color-light); color: var(--color-ink); font-family: var(--font-body); line-height: 1.65; overflow-x: hidden; }
+body.menu-open { overflow: hidden; }
+img { display: block; width: 100%; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, textarea { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+.container { width: min(calc(100% - 2rem), var(--container)); margin-inline: auto; }
+.section { position: relative; padding-block: var(--space-7); }
+.section-label { display: inline-block; margin: 0 0 var(--space-3); padding: 0.35rem 0.75rem; background: var(--color-slate-dark); color: var(--color-white); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.section-title { margin: 0 0 var(--space-4); color: var(--color-ink); font-family: var(--font-display); font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 600; line-height: 1.05; letter-spacing: 0.01em; text-transform: uppercase; }
+.section-intro { max-width: 660px; margin: 0; color: var(--color-steel); font-size: 1.05rem; }
+.btn { display: inline-flex; min-height: 52px; align-items: center; justify-content: center; gap: var(--space-2); padding: 0.85rem 1.4rem; border: 2px solid transparent; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; transition: transform 160ms ease, background-color 160ms ease, color 160ms ease; }
+.btn:hover, .btn:focus-visible { transform: translateY(-2px); }
+.btn-primary { background: var(--color-slate-dark); color: var(--color-white); }
+.btn-primary:hover { background: var(--color-ink); }
+.btn-secondary { border-color: var(--color-white); color: var(--color-white); background: transparent; }
+.btn-secondary:hover { background: rgba(255,255,255,0.12); }
+.site-header { position: sticky; z-index: 1000; top: 0; min-height: var(--nav-height); background: var(--color-ink); color: var(--color-white); border-bottom: 3px solid var(--color-slate); }
+.nav-shell { display: flex; min-height: var(--nav-height); align-items: center; justify-content: space-between; gap: var(--space-3); }
+.brand { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; line-height: 1.1; }
+.nav-links { position: fixed; inset: var(--nav-height) 0 auto 0; display: none; padding: var(--space-4) 1rem; background: var(--color-slate-dark); }
+.nav-links.open { display: grid; gap: var(--space-2); }
+.nav-links a { padding: 0.7rem 0.25rem; color: rgba(255,255,255,0.85); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.9rem; }
+.nav-links a:hover { color: var(--color-white); }
+.desktop-call { display: none; }
+.mobile-menu-toggle { display: inline-grid; width: 46px; height: 46px; place-items: center; border: 2px solid rgba(255,255,255,0.3); background: transparent; color: var(--color-white); cursor: pointer; }
+.hero { position: relative; min-height: 620px; display: grid; align-items: center; isolation: isolate; overflow: hidden; background: var(--color-ink); color: var(--color-white); }
+.hero-image { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.4; }
+.hero::before { position: absolute; z-index: -1; inset: 0; background: linear-gradient(100deg, rgba(24,33,42,0.95) 0%, rgba(24,33,42,0.7) 55%, rgba(64,89,107,0.35) 100%); content: ""; }
+.hero-content { padding-block: var(--space-7); }
+.hero-kicker { display: inline-block; margin-bottom: var(--space-4); padding: 0.4rem 0.75rem; background: var(--color-slate); color: var(--color-white); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.hero h1 { margin: 0 0 var(--space-4); font-family: var(--font-display); font-size: clamp(2.8rem, 9vw, 5.5rem); font-weight: 600; line-height: 0.98; text-transform: uppercase; }
+.hero-copy { max-width: 600px; margin: 0 0 var(--space-5); color: rgba(255,255,255,0.85); font-size: 1.12rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.hero-meta { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-5); color: rgba(255,255,255,0.7); font-size: 0.9rem; font-weight: 600; }
+.services { background: var(--color-white); }
+.service-grid { display: grid; gap: var(--space-4); margin-top: var(--space-5); }
+.service-card { border: 1px solid var(--color-line); background: var(--color-light); overflow: hidden; }
+.service-card img { height: 200px; object-fit: cover; }
+.service-card-body { padding: var(--space-4); }
+.service-card h3 { margin: 0 0 var(--space-2); font-family: var(--font-display); font-size: 1.4rem; text-transform: uppercase; color: var(--color-ink); }
+.service-card p { margin: 0; color: var(--color-steel); }
+.about-grid { display: grid; gap: var(--space-5); align-items: center; }
+.about-photo { border: 1px solid var(--color-line); box-shadow: 0 18px 50px var(--color-shadow); }
+.about-copy p { color: var(--color-steel); }
+.about-list { list-style: none; margin: var(--space-4) 0 0; padding: 0; display: grid; gap: var(--space-3); }
+.about-list li { display: flex; gap: var(--space-3); align-items: flex-start; font-weight: 600; }
+.about-list li::before { content: "▪"; color: var(--color-slate); }
+.location-grid { display: grid; gap: var(--space-4); }
+.map-frame { min-height: 380px; border: 1px solid var(--color-line); }
+.map-frame iframe { display: block; width: 100%; height: 100%; min-height: 380px; border: 0; }
+.info-card { background: var(--color-ink); color: var(--color-white); padding: var(--space-5); }
+.info-card h3 { margin: 0 0 var(--space-3); font-family: var(--font-display); font-size: 1.5rem; text-transform: uppercase; color: var(--color-white); }
+.info-card a { color: var(--color-accent); font-weight: 700; }
+.hours-table { width: 100%; border-collapse: collapse; }
+.hours-table th, .hours-table td { padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.12); text-align: left; }
+.hours-table th { color: var(--color-accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.contact-grid { display: grid; gap: var(--space-5); }
+.contact-phone { display: inline-block; margin-top: var(--space-3); font-family: var(--font-display); font-size: clamp(1.8rem, 6vw, 2.6rem); color: var(--color-slate-dark); }
+.contact-form { background: var(--color-white); border: 1px solid var(--color-line); padding: var(--space-5); }
+.form-field { display: grid; gap: 0.4rem; margin-bottom: var(--space-4); }
+.form-field label { font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.form-field input, .form-field textarea { width: 100%; border: 1px solid var(--color-line); border-radius: 4px; padding: 0.8rem; }
+.form-field input:focus, .form-field textarea:focus { outline: 3px solid var(--color-slate); outline-offset: 2px; }
+.form-field textarea { min-height: 140px; resize: vertical; }
+.site-footer { background: var(--color-ink); color: rgba(255,255,255,0.75); padding: var(--space-6) 0 var(--space-4); }
+.footer-grid { display: grid; gap: var(--space-4); }
+.footer-brand { color: var(--color-white); font-family: var(--font-display); font-size: 1.3rem; text-transform: uppercase; }
+.footer-heading, .footer-title { color: var(--color-accent); font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; margin-bottom: var(--space-2); }
+.footer-links { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; }
+.footer-links a:hover { color: var(--color-white); }
+.footer-bottom { margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid rgba(255,255,255,0.12); font-size: 0.85rem; }
+.mobile-call-bar { position: fixed; z-index: 1200; right: 0; bottom: 0; left: 0; display: flex; min-height: var(--mobile-call-height); align-items: center; gap: var(--space-2); padding: 10px 12px; background: var(--color-ink); border-top: 3px solid var(--color-slate); }
+.mobile-call-link { display: flex; min-height: 54px; flex: 1; align-items: center; justify-content: center; background: var(--color-slate-dark); color: var(--color-white); font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
+.mobile-call-close { display: grid; width: 44px; height: 44px; place-items: center; border: 2px solid rgba(255,255,255,0.3); background: transparent; color: var(--color-white); cursor: pointer; font-size: 1.2rem; }
+.mobile-call-bar.hidden { display: none; }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 600ms ease, transform 600ms ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (max-width: 859px) { body { padding-bottom: var(--mobile-call-height); } }
+@media (min-width: 600px) { .service-grid { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
+@media (min-width: 860px) { .mobile-call-bar { display: none; } body { padding-bottom: 0; } .mobile-menu-toggle { display: none; } .nav-links { position: static; display: flex; align-items: center; gap: 1.5rem; padding: 0; background: transparent; } .desktop-call { display: inline-flex; align-items: center; padding: 0.6rem 1rem; background: var(--color-slate-dark); color: var(--color-white); font-weight: 700; } .about-grid { grid-template-columns: 1fr 1fr; } .location-grid { grid-template-columns: 1.4fr 1fr; } .contact-grid { grid-template-columns: 1fr 1.2fr; } .service-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } .reveal { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<header class="site-header">
+<div class="container nav-shell">
+<a class="brand" href="#top" aria-label="Raul Godinez Navarro Roofing home">Raul Godinez Navarro Roofing</a>
+<nav class="nav-links" id="navLinks" aria-label="Main navigation">
+<a href="#services">Services</a>
+<a href="#about">About</a>
+<a href="#location">Location</a>
+<a href="#hours">Hours</a>
+<a href="#contact">Contact</a>
+</nav>
+<a class="desktop-call" href="tel:+17179392396">(717) 939-2396</a>
+<button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">Menu</button>
+</div>
+</header>
+<main id="top">
+<section class="hero" aria-labelledby="heroTitle">
+<img class="hero-image" src="../stock/raul-godinez-navarro-roofing/hero.jpg" alt="Roofing work on a residential home in Steelton Pennsylvania">
+<div class="container hero-content">
+<div class="hero-kicker">Roofing in Steelton, Pennsylvania</div>
+<h1 id="heroTitle">Solid roofs. Straightforward service.</h1>
+<p class="hero-copy">Raul Godinez Navarro Roofing handles roof repairs, roof replacement, shingle installation, and roof inspections in Steelton, PA.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="tel:+17179392396">Call Now</a>
+<a class="btn btn-secondary" href="#services">See Services</a>
+</div>
+<div class="hero-meta">
+<span>485 State St, Steelton</span>
+<span>Mon–Sat 8:00 AM–6:00 PM</span>
+<span>(717) 939-2396</span>
+</div>
+</div>
+</section>
+<section class="section services" id="services">
+<div class="container">
+<div class="reveal">
+<p class="section-label">Services</p>
+<h2 class="section-title">Roof work done right.</h2>
+<p class="section-intro">Roofing services for Steelton properties, from repairs to full replacement.</p>
+</div>
+<div class="service-grid">
+<article class="service-card reveal">
+<img src="../stock/raul-godinez-navarro-roofing/01.jpg" alt="Roof repair work on shingles in Steelton" loading="lazy">
+<div class="service-card-body">
+<h3>Roof Repairs</h3>
+<p>Fixes for leaks, damaged shingles, and problem areas on your roof.</p>
+</div>
+</article>
+<article class="service-card reveal">
+<img src="../stock/raul-godinez-navarro-roofing/02.jpg" alt="New roof replacement with fresh shingles" loading="lazy">
+<div class="service-card-body">
+<h3>Roof Replacement</h3>
+<p>Full roof replacement when repairs are no longer enough.</p>
+</div>
+</article>
+<article class="service-card reveal">
+<img src="../stock/raul-godinez-navarro-roofing/03.jpg" alt="Shingle installation on a residential roof" loading="lazy">
+<div class="service-card-body">
+<h3>Shingle Installation</h3>
+<p>Shingle installation for new roofs and replacement projects.</p>
+</div>
+</article>
+<article class="service-card reveal">
+<img src="../stock/raul-godinez-navarro-roofing/04.jpg" alt="Roof inspection of shingles and flashing" loading="lazy">
+<div class="service-card-body">
+<h3>Roof Inspections</h3>
+<p>Thorough inspections to check the condition of your roof.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="section" id="about">
+<div class="container about-grid">
+<div class="reveal">
+<img class="about-photo" src="../stock/raul-godinez-navarro-roofing/02.jpg" alt="Completed roofing work by Raul Godinez Navarro Roofing" loading="lazy">
+</div>
+<div class="reveal">
+<p class="section-label">About</p>
+<h2 class="section-title">Dependable roofing, no runaround.</h2>
+<p>Raul Godinez Navarro Roofing provides roof repairs, roof replacement, shingle installation, and roof inspections from 485 State St in Steelton, PA 17113.</p>
+<p>Need a leak fixed or a full roof done? Call to discuss the work and schedule.</p>
+<ul class="about-list">
+<li>Local to Steelton, PA 17113</li>
+<li>Repairs, replacement, shingles, inspections</li>
+<li>Call (717) 939-2396 for hours</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section" id="location">
+<div class="container">
+<div class="reveal">
+<p class="section-label">Find Us</p>
+<h2 class="section-title">Based in Steelton.</h2>
+<p class="section-intro">Raul Godinez Navarro Roofing is located at 485 State St, Steelton, PA 17113.</p>
+</div>
+<div class="location-grid">
+<div class="map-frame reveal">
+<iframe src="https://maps.google.com/maps?q=485%20State%20St%2C%20Steelton%2C%20PA%2017113&amp;output=embed" title="Map showing 485 State St, Steelton, PA 17113" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+</div>
+<div class="info-card reveal" id="hours">
+<h3>Hours &amp; Contact</h3>
+<table class="hours-table">
+<tr><th>Day</th><th>Hours</th></tr>
+<tr><td>Monday</td><td>8:00 AM–6:00 PM</td></tr>
+<tr><td>Tuesday</td><td>8:00 AM–6:00 PM</td></tr>
+<tr><td>Wednesday</td><td>8:00 AM–6:00 PM</td></tr>
+<tr><td>Thursday</td><td>8:00 AM–6:00 PM</td></tr>
+<tr><td>Friday</td><td>8:00 AM–6:00 PM</td></tr>
+<tr><td>Saturday</td><td>8:00 AM–6:00 PM</td></tr>
+<tr><td>Sunday</td><td>Closed</td></tr>
+</table>
+<p style="margin-top:1rem"><a href="tel:+17179392396">(717) 939-2396</a></p>
+<p>485 State St, Steelton, PA 17113</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="contact">
+<div class="container contact-grid">
+<div class="reveal">
+<p class="section-label">Contact</p>
+<h2 class="section-title">Get your roof looked at.</h2>
+<p>Call Raul Godinez Navarro Roofing about roof repairs, roof replacement, shingle installation, roof inspections, or current hours.</p>
+<a class="contact-phone" href="tel:+17179392396">(717) 939-2396</a>
+</div>
+<form class="contact-form reveal" id="contactForm" action="#" method="post">
+<div class="form-field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+<div class="form-field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
+<div class="form-field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
+<button class="btn btn-primary" type="submit">Send Message</button>
+<p id="formNote"></p>
+</form>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div>
+<div class="footer-brand">Raul Godinez Navarro Roofing</div>
+<p>485 State St<br>Steelton, PA 17113</p>
+<p><a href="tel:+17179392396">(717) 939-2396</a></p>
+</div>
+<div>
+<div class="footer-heading">Quick Links</div>
+<ul class="footer-links">
+<li><a href="#services">Services</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#location">Location</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+<div>
+<div class="footer-heading">Hours</div>
+<p>Mon–Sat: 8:00 AM–6:00 PM<br>Sunday: Closed</p>
+</div>
+</div>
+<div class="footer-bottom">&copy; <span id="copyrightYear">2026</span> Raul Godinez Navarro Roofing. All rights reserved.</div>
+</div>
+</footer>
+<div class="mobile-call-bar" id="mobileCallBar">
+<a class="mobile-call-link" href="tel:+17179392396">Call Now: (717) 939-2396</a>
+<button class="mobile-call-close" id="mobileCallClose" type="button" aria-label="Dismiss call bar">&times;</button>
+</div>
+<script>
+(function () {
+  "use strict";
+  const menuToggle = document.getElementById("mobileMenuToggle");
+  const navLinks = document.getElementById("navLinks");
+  const mobileCallBar = document.getElementById("mobileCallBar");
+  const mobileCallClose = document.getElementById("mobileCallClose");
+  const copyrightYear = document.getElementById("copyrightYear");
+  const contactForm = document.getElementById("contactForm");
+  const formNote = document.getElementById("formNote");
+  function closeMenu() {
+    if (!menuToggle || !navLinks) { return; }
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation menu");
+    navLinks.classList.remove("open");
+    document.body.classList.remove("menu-open");
+  }
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", function () {
+      const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", String(!expanded));
+      menuToggle.setAttribute("aria-label", expanded ? "Open navigation menu" : "Close navigation menu");
+      navLinks.classList.toggle("open", !expanded);
+      document.body.classList.toggle("menu-open", !expanded);
+    });
+    const menuAnchors = navLinks.querySelectorAll("a");
+    menuAnchors.forEach(function (anchor) {
+      anchor.addEventListener("click", function () { closeMenu(); });
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth >= 860) { closeMenu(); }
+    });
+  }
+  if (mobileCallBar && mobileCallClose) {
+    let dismissed = false;
+    try { dismissed = sessionStorage.getItem("RoofingCallBarDismissed") === "true"; } catch (e) { dismissed = false; }
+    if (dismissed) { mobileCallBar.classList.add("hidden"); document.body.style.paddingBottom = "0"; }
+    mobileCallClose.addEventListener("click", function () {
+      mobileCallBar.classList.add("hidden");
+      document.body.style.paddingBottom = "0";
+      try { sessionStorage.setItem("RoofingCallBarDismissed", "true"); } catch (e) { return; }
+    });
+  }
+  if (copyrightYear) { copyrightYear.textContent = String(new Date().getFullYear()); }
+  const revealElements = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window && revealElements.length > 0) {
+    const observer = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add("is-visible"); obs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    revealElements.forEach(function (el) { observer.observe(el); });
+  } else {
+    revealElements.forEach(function (el) { el.classList.add("is-visible"); });
+  }
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
+      if (formNote) { formNote.textContent = "Thanks. Please call (717) 939-2396 to reach Raul Godinez Navarro Roofing directly."; }
+    });
+  }
+})();
+</script>
+</body>
+</html>

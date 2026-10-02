@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lisa's Laundry | Laundromat in Elizabethtown, PA</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fascinate+Inline&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-teal-900: #123f40;
+      --color-teal-800: #175456;
+      --color-teal-700: #1d6869;
+      --color-teal-600: #2f8583;
+      --color-teal-300: #8fc9c3;
+      --color-teal-100: #d9ebe6;
+      --color-cream: #f8f1df;
+      --color-cream-dark: #eadfca;
+      --color-paper: #fffaf0;
+      --color-coral: #d9684f;
+      --color-coral-dark: #ad4937;
+      --color-ink: #173435;
+      --color-white: #ffffff;
+      --color-border: rgba(23, 52, 53, 0.14);
+      --color-shadow: rgba(18, 63, 64, 0.15);
+      --font-display: "Fascinate Inline", Georgia, serif;
+      --font-body: "DM Sans", Arial, sans-serif;
+      --space-1: 0.375rem;
+      --space-2: 0.625rem;
+      --space-3: 0.875rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-7: 2rem;
+      --space-8: 2.5rem;
+      --space-9: 3rem;
+      --space-10: 4rem;
+      --space-11: 5rem;
+      --space-12: 6rem;
+      --radius-sm: 0.75rem;
+      --radius-md: 1.25rem;
+      --radius-lg: 2rem;
+      --radius-pill: 999px;
+      --shadow-sm: 0 0.75rem 1.8rem var(--color-shadow);
+      --shadow-lg: 0 1.8rem 4rem rgba(18, 63, 64, 0.2);
+      --container: 74rem;
+      --nav-height: 4.75rem;
+      --mobile-call-height: 5.25rem;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + var(--space-4));
+    }
+
+    body {
+      margin: 0;
+      min-width: 20rem;
+      overflow-x: hidden;
+      background: radial-gradient(circle at 10%, rgba(47, 133, 131, 0.07) 0 0.28rem, transparent 0.3rem), var(--color-cream);
+      background-size: 2rem;
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      line-height: 1.6;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button, input, textarea {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    section {
+      position: relative;
+      padding: var(--space-11) var(--space-5);
+    }
+
+    .container {
+      width: min(100%, var(--container));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin: 0 var(--space-3);
+      color: var(--color-coral-dark);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 1.8rem;
+      height: 0.2rem;
+      border-radius: var(--radius-pill);
+      background: var(--color-coral);
+      content: "";
+    }
+
+    .section-title {
+      max-width: 15ch;
+      margin: 0;
+      color: var(--color-teal-900);
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 8vw, 4.5rem);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 0.01em;
+    }
+
+    .section-intro {
+      max-width: 42rem;
+      margin: var(--space-5) 0;
+      font-size: 1.05rem;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 3.25rem;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: 0.8rem 1.35rem;
+      border: 0.12rem solid transparent;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      font-weight: 800;
+      line-height: 1.15;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .button:hover, .button:focus-visible {
+      transform: translateY(-0.15rem);
+    }
+
+    .button-primary {
+      background: var(--color-coral);
+      color: var(--color-white);
+      box-shadow: 0 0.75rem 1.5rem rgba(173, 73, 55, 0.22);
+    }
+
+    .button-primary:hover, .button-primary:focus-visible {
+      background: var(--color-coral-dark);
+    }
+
+    .button-secondary {
+      border-color: var(--color-teal-800);
+      background: var(--color-paper);
+      color: var(--color-teal-900);
+    }
+
+    .button-secondary:hover, .button-secondary:focus-visible {
+      background: var(--color-teal-900);
+      color: var(--color-white);
+    }
+
+    .site-header {
+      position: sticky;
+      z-index: 1000;
+      top: 0;
+      border-bottom: 1px solid rgba(18, 63, 64, 0.1);
+      background: rgba(248, 241, 223, 0.95);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-wrap {
+      display: flex;
+      min-height: var(--nav-height);
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-2) var(--space-5);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      color: var(--color-teal-900);
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 2.6rem;
+      height: 2.6rem;
+      flex: 0 auto;
+      border: 0.18rem solid var(--color-teal-900);
+      border-radius: 50%;
+      background: var(--color-teal-300);
+      box-shadow: inset 0 0.32rem var(--color-cream);
+    }
+
+    .brand-mark::after {
+      position: absolute;
+      width: 0.5rem;
+      height: 0.5rem;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      background: var(--color-coral);
+      content: "";
+      transform: translate(-50%, -50%);
+    }
+
+    .nav-links {
+      position: fixed;
+      inset: var(--nav-height) 0 auto 0;
+      display: none;
+      max-height: calc(100vh - var(--nav-height));
+      overflow-y: auto;
+      padding: var(--space-6) var(--space-5) var(--space-7);
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-paper);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-links.open {
+      display: block;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 0.7rem 0;
+      color: var(--color-teal-900);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover, .nav-links a:focus-visible {
+      color: var(--color-coral-dark);
+    }
+
+    .nav-call {
+      margin-top: var(--space-3);
+    }
+
+    .menu-toggle {
+      display: inline-grid;
+      width: 2.9rem;
+      height: 2.9rem;
+      place-items: center;
+      border: 0.12rem solid var(--color-teal-900);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--color-teal-900);
+      cursor: pointer;
+    }
+
+    .menu-lines, .menu-lines::before, .menu-lines::after {
+      width: 1.15rem;
+      height: 0.13rem;
+      border-radius: var(--radius-pill);
+      background: currentColor;
+      content: "";
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
+    .menu-lines {
+      position: relative;
+    }
+
+    .menu-lines::before, .menu-lines::after {
+      position: absolute;
+      left: 0;
+    }
+
+    .menu-lines::before {
+      top: -0.38rem;
+    }
+
+    .menu-lines::after {
+      top: 0.38rem;
+    }
+
+    .menu-toggle[aria-expanded="true"] .menu-lines {
+      background: transparent;
+    }
+
+    .menu-toggle[aria-expanded="true"] .menu-lines::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .menu-toggle[aria-expanded="true"] .menu-lines::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
+    .hero {
+      overflow: hidden;
+      padding-top: var(--space-8);
+      background: linear-gradient(135deg, rgba(217, 104, 79, 0.08), transparent 45%), linear-gradient(180deg, var(--color-cream), var(--color-paper));
+    }
+
+    .hero::before, .hero::after {
+      position: absolute;
+      border: 0.18rem solid var(--color-teal-700);
+      border-radius: 50%;
+      content: "";
+      opacity: 0.12;
+    }
+
+    .hero::before {
+      width: 12rem;
+      height: 12rem;
+      top: 5rem;
+      right: -5rem;
+      box-shadow: inset 0 1rem var(--color-cream), inset 0 1.15rem var(--color-teal-700);
+    }
+
+    .hero::after {
+      width: 6rem;
+      height: 6rem;
+      bottom: 2rem;
+      left: -2rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: var(--space-8);
+      align-items: center;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+    }
+
+    .retro-sign {
+      display: inline-block;
+      margin-bottom: var(--space-5);
+      padding: 0.45rem 0.85rem;
+      border: 0.1rem solid var(--color-teal-700);
+      border-radius: var(--radius-pill);
+      background: var(--color-teal-100);
+      color: var(--color-teal-900);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      transform: rotate(-1.5deg);
+    }
+
+    h1 {
+      max-width: 11ch;
+      margin: 0;
+      color: var(--color-teal-900);
+      font-family: var(--font-display);
+      font-size: clamp(3.15rem, 15vw, 7.5rem);
+      font-weight: 400;
+      line-height: 0.88;
+      letter-spacing: -0.025em;
+    }
+
+    .hero-tagline {
+      max-width: 35rem;
+      margin: var(--space-6) 0;
+      font-size: clamp(1.05rem, 3.8vw, 1.3rem);
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-7);
+    }
+
+    .hero-meta {
+      display: grid;
+      gap: var(--space-3);
+      margin-top: var(--space-7);
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .hero-meta-item {
+      display: flex;
+      gap: var(--space-3);
+      align-items: flex-start;
+    }
+
+    .meta-dot {
+      width: 0.75rem;
+      height: 0.75rem;
+      flex: 0 auto;
+      margin-top: 0.4rem;
+      border: 0.14rem solid var(--color-teal-900);
+      border-radius: 50%;
+      background: var(--color-coral);
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      max-width: 34rem;
+      margin-inline: auto;
+      padding: var(--space-3);
+      border: 0.16rem solid var(--color-teal-900);
+      border-radius: 47% var(--radius-lg) var(--radius-lg);
+      background: var(--color-teal-300);
+      box-shadow: var(--shadow-lg);
+      transform: rotate(1deg);
+    }
+
+    .hero-image-wrap::before {
+      position: absolute;
+      z-index: 2;
+      width: 4rem;
+      height: 1.2rem;
+      top: 0.85rem;
+      left: 50%;
+      border-radius: var(--radius-pill);
+      background: var(--color-coral);
+      content: "";
+      transform: translateX(-50%);
+    }
+
+    .hero-image {
+      width: 100%;
+      min-height: 24rem;
+      max-height: 38rem;
+      object-fit: cover;
+      border-radius: calc(47% - 0.35rem) calc(47% - 0.35rem) calc(var(--radius-lg) - 0.35rem) calc(var(--radius-lg) - 0.35rem);
+    }
+
+    .services {
+      background: var(--color-teal-900);
+      color: var(--color-cream);
+    }
+
+    .services .eyebrow {
+      color: #f3a895;
+    }
+
+    .services .section-title {
+      color: var(--color-cream);
+    }
+
+    .services .section-intro {
+      color: var(--color-teal-100);
+    }
+
+    .service-grid {
+      display: grid;
+      gap: var(--space-4);
+      margin-top: var(--space-8);
+    }
+
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      padding: var(--space-6);
+      border: 1px solid rgba(255, 250, 240, 0.16);
+      border-radius: var(--radius-md);
+      background: rgba(255, 250, 240, 0.06);
+      transition: transform 180ms ease, background-color 180ms ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-0.25rem);
+      background: rgba(255, 250, 240, 0.1);
+    }
+
+    .service-number {
+      display: grid;
+      width: 3rem;
+      height: 3rem;
+      place-items: center;
+      margin-bottom: var(--space-5);
+      border: 0.13rem solid var(--color-teal-300);
+      border-radius: 50%;
+      color: var(--color-teal-300);
+      font-weight: 800;
+    }
+
+    .service-card h3 {
+      margin: 0 var(--space-2);
+      color: var(--color-white);
+      font-size: 1.3rem;
+      line-height: 1.2;
+    }
+
+    .service-card p {
+      margin: 0;
+      color: var(--color-teal-100);
+    }
+
+    .service-photo-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+      margin-top: var(--space-7);
+    }
+
+    .service-photo-strip img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border: 0.3rem solid var(--color-cream);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .service-photo-strip img:nth-child(1) {
+      transform: rotate(-1.5deg);
+    }
+
+    .service-photo-strip img:nth-child(2) {
+      transform: rotate(1.5deg);
+    }
+
+    .about {
+      overflow: hidden;
+      background: var(--color-paper);
+    }
+
+    .about-grid {
+      display: grid;
+      gap: var(--space-8);
+      align-items: center;
+    }
+
+    .about-photo-frame {
+      position: relative;
+      padding: var(--space-3);
+      border: 0.14rem solid var(--color-teal-900);
+      border-radius: var(--radius-lg);
+      background: var(--color-cream-dark);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .about-photo-frame::after {
+      position: absolute;
+      right: -0.9rem;
+      bottom: -0.9rem;
+      width: 4.5rem;
+      height: 4.5rem;
+      border: 0.8rem double var(--color-coral);
+      border-radius: 50%;
+      content: "";
+      opacity: 0.9;
+    }
+
+    .about-photo-frame img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: calc(var(--radius-lg) - 0.4rem);
+    }
+
+    .about-copy p {
+      max-width: 38rem;
+    }
+
+    .about-feature {
+      display: grid;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+
+    .about-feature-item {
+      display: flex;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-cream);
+    }
+
+    .feature-icon {
+      display: grid;
+      width: 2.4rem;
+      height: 2.4rem;
+      flex: 0 auto;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--color-teal-800);
+      color: var(--color-white);
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .about-feature-item strong {
+      display: block;
+      margin-bottom: 0.15rem;
+      color: var(--color-teal-900);
+    }
+
+    .about-feature-item span {
+      display: block;
+      font-size: 0.92rem;
+    }
+
+    .location-hours {
+      background: linear-gradient(180deg, var(--color-cream), var(--color-cream-dark));
+    }
+
+    .location-grid {
+      display: grid;
+      gap: var(--space-5);
+      margin-top: var(--space-8);
+    }
+
+    .map-card, .hours-card {
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-paper);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .map-frame {
+      width: 100%;
+      min-height: 22rem;
+      border: 0;
+      display: block;
+    }
+
+    .map-details {
+      padding: var(--space-6);
+    }
+
+    .map-details h3, .hours-card h3 {
+      margin: 0 var(--space-3);
+      color: var(--color-teal-900);
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .map-details address {
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .hours-card {
+      padding: var(--space-6);
+      background: var(--color-teal-800);
+      color: var(--color-white);
+    }
+
+    .hours-card h3 {
+      color: var(--color-cream);
+    }
+
+    .hours-sign {
+      display: flex;
+      min-height: 10rem;
+      align-items: center;
+      justify-content: center;
+      margin: var(--space-5) 0;
+      padding: var(--space-6);
+      border: 0.2rem double var(--color-teal-300);
+      border-radius: var(--radius-md);
+      background: rgba(18, 63, 64, 0.45);
+      text-align: center;
+    }
+
+    .hours-sign strong {
+      display: block;
+      color: var(--color-cream);
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 10vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .hours-card p {
+      margin-bottom: 0;
+      color: var(--color-teal-100);
+    }
+
+    .contact {
+      background: var(--color-paper);
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: var(--space-7);
+      align-items: start;
+      margin-top: var(--space-8);
+    }
+
+    .contact-panel {
+      padding: var(--space-7);
+      border-radius: var(--radius-lg);
+      background: var(--color-teal-100);
+    }
+
+    .contact-panel h3 {
+      margin-top: 0;
+      color: var(--color-teal-900);
+      font-size: 1.5rem;
+    }
+
+    .phone-display {
+      display: inline-block;
+      margin: var(--space-3) 0 var(--space-5);
+      color: var(--color-teal-900);
+      font-size: clamp(1.5rem, 7vw, 2.4rem);
+      font-weight: 800;
+      text-decoration-thickness: 0.12rem;
+      text-underline-offset: 0.25rem;
+    }
+
+    .contact-photo {
+      width: 100%;
+      margin-top: var(--space-5);
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      border: 0.3rem solid var(--color-paper);
+      border-radius: var(--radius-md);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: var(--space-4);
+      padding: var(--space-6);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .field {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .field label {
+      color: var(--color-teal-900);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .field input, .field textarea {
+      width: 100%;
+      border: 0.1rem solid rgba(18, 63, 64, 0.25);
+      border-radius: var(--radius-sm);
+      outline: none;
+      background: var(--color-paper);
+      color: var(--color-ink);
+      padding: 0.9rem 1rem;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .field textarea {
+      min-height: 8rem;
+      resize: vertical;
+    }
+
+    .field input:focus, .field textarea:focus {
+      border-color: var(--color-teal-700);
+      box-shadow: 0 0.22rem rgba(47, 133, 131, 0.14);
+    }
+
+    .form-note {
+      margin: 0;
+      color: rgba(23, 52, 53, 0.7);
+      font-size: 0.82rem;
+    }
+
+    .site-footer {
+      padding: var(--space-9) var(--space-5);
+      background: var(--color-teal-900);
+      color: var(--color-teal-100);
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: var(--space-7);
+    }
+
+    .footer-brand {
+      color: var(--color-cream);
+      font-family: var(--font-display);
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .footer-heading {
+      margin: 0 var(--space-3);
+      color: var(--color-cream);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .footer-links a {
+      width: fit-content;
+      color: var(--color-teal-100);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover, .footer-links a:focus-visible {
+      color: var(--color-white);
+      text-decoration: underline;
+      text-underline-offset: 0.2rem;
+    }
+
+    .footer-bottom {
+      margin-top: var(--space-7);
+      padding-top: var(--space-5);
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 0.82rem;
+    }
+
+    .mobile-call-bar {
+      position: fixed;
+      z-index: 1500;
+      right: var(--space-3);
+      bottom: var(--space-3);
+      left: var(--space-3);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2);
+      border: 0.12rem solid var(--color-teal-900);
+      border-radius: var(--radius-md);
+      background: var(--color-paper);
+      box-shadow: 0 1rem 2.5rem rgba(18, 63, 64, 0.28);
+    }
+
+    .mobile-call-bar[hidden] {
+      display: none;
+    }
+
+    .mobile-call-link {
+      flex: 1;
+      min-height: 3.5rem;
+    }
+
+    .mobile-call-close {
+      display: grid;
+      width: 2.6rem;
+      height: 2.6rem;
+      flex: 0 auto;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      background: var(--color-teal-100);
+      color: var(--color-teal-900);
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(1.25rem);
+      transition: opacity 600ms ease, transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 47.99rem) {
+      body {
+        padding-bottom: calc(var(--mobile-call-height) + var(--space-5));
+      }
+
+      .site-footer {
+        padding-bottom: calc(var(--space-9) + var(--mobile-call-height));
+      }
+    }
+
+    @media (min-width: 48rem) {
+      section {
+        padding: var(--space-12) var(--space-7);
+      }
+
+      .nav-wrap {
+        padding-inline: var(--space-7);
+      }
+
+      .hero-grid, .about-grid, .contact-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+      }
+
+      .hero-grid {
+        gap: var(--space-10);
+      }
+
+      .hero-meta {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .service-photo-strip {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .location-grid {
+        grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.4fr 0.8fr 0.8fr;
+      }
+
+      .mobile-call-bar {
+        display: none;
+      }
+    }
+
+    @media (min-width: 62rem) {
+      .menu-toggle {
+        display: none;
+      }
+
+      .nav-links {
+        position: static;
+        display: flex;
+        max-height: none;
+        align-items: center;
+        gap: var(--space-5);
+        overflow: visible;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .nav-links a {
+        padding: 0.4rem 0;
+      }
+
+      .nav-call {
+        margin: 0 var(--space-2);
+        padding: 0.8rem 1.2rem !important;
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .contact-form {
+        padding: var(--space-7);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-wrap container" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Lisa's Laundry home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Lisa's Laundry</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <span class="menu-lines" aria-hidden="true"></span>
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#location">Location</a>
+        <a href="#contact">Contact</a>
+        <a class="button button-primary nav-call" href="tel:+17173711884">(717) 371-1884</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-grid container">
+        <div class="hero-copy reveal">
+          <span class="retro-sign">Laundry day, handled locally</span>
+          <h1>Fresh clothes. Simple stop.</h1>
+          <p class="hero-tagline">
+            Lisa's Laundry in Elizabethtown offers self-service laundry plus wash and fold, dry cleaning drop-off, and pressing.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="tel:+17173711884">Call Now</a>
+            <a class="button button-secondary" href="#services">See Services</a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="hero-meta-item">
+              <span class="meta-dot" aria-hidden="true"></span>
+              <div>
+                <strong>74 Tower Drive</strong><br>
+                Elizabethtown, PA 17022
+              </div>
+            </div>
+            <div class="hero-meta-item">
+              <span class="meta-dot" aria-hidden="true"></span>
+              <div>
+                <strong>Hours</strong><br>
+                Call for hours
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image-wrap reveal">
+          <img
+            class="hero-image"
+            src="../stock/lisas-laundry/hero.jpg"
+            alt="Laundry machines inside Lisa's Laundry in Elizabethtown"
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="container">
+        <div class="reveal">
+          <p class="eyebrow">What we do</p>
+          <h2 class="section-title">Laundry your way.</h2>
+          <p class="section-intro">
+            Stop in to handle it yourself or ask about services that take more of the work off your plate.
+          </p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card reveal">
+            <div class="service-number" aria-hidden="true">01</div>
+            <h3>Self-Service Washers &amp; Dryers</h3>
+            <p>Bring your laundry in and use the available washers and dryers at your own pace.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-number" aria-hidden="true">02</div>
+            <h3>Wash &amp; Fold</h3>
+            <p>Drop off your laundry for washing and folding when you want to skip the chore.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-number" aria-hidden="true">03</div>
+            <h3>Dry Cleaning Drop-Off</h3>
+            <p>Use Lisa's Laundry as a convenient local drop-off point for dry cleaning.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-number" aria-hidden="true">04</div>
+            <h3>Pressing</h3>
+            <p>Ask about pressing for clothing that needs a cleaner, neater finish.</p>
+          </article>
+        </div>
+
+        <div class="service-photo-strip reveal">
+          <img
+            src="../stock/lisas-laundry/01.jpg"
+            alt="Laundry equipment and self-service washing area"
+          >
+          <img
+            src="../stock/lisas-laundry/02.jpg"
+            alt="Clean laundry ready for folding and pickup"
+          >
+          <img
+            src="../stock/lisas-laundry/03.jpg"
+            alt="Laundry care area used for garment cleaning services"
+          >
+          <img
+            src="../stock/lisas-laundry/04.jpg"
+            alt="Freshly cleaned clothing prepared after laundry service"
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-grid container">
+        <div class="about-photo-frame reveal">
+          <img
+            src="../stock/lisas-laundry/03.jpg"
+            alt="Interior laundry area at Lisa's Laundry"
+          >
+        </div>
+
+        <div class="about-copy reveal">
+          <p class="eyebrow">Lisa's Laundry</p>
+          <h2 class="section-title">A straightforward place to get laundry done.</h2>
+          <p>
+            Laundry does not need to be complicated. Lisa's Laundry gives Elizabethtown customers
+            a local place for everyday washing and drying, along with options when you would rather
+            leave some of the work to someone else.
+          </p>
+          <p>
+            Whether you need self-service machines, wash and fold, a dry cleaning drop-off, or
+            pressing, call ahead if you have questions about the service you need.
+          </p>
+
+          <div class="about-feature">
+            <div class="about-feature-item">
+              <span class="feature-icon" aria-hidden="true">W</span>
+              <div>
+                <strong>Do it yourself</strong>
+                <span>Self-service washers and dryers for your regular laundry routine.</span>
+              </div>
+            </div>
+            <div class="about-feature-item">
+              <span class="feature-icon" aria-hidden="true">D</span>
+              <div>
+                <strong>Drop it off</strong>
+                <span>Wash and fold and dry cleaning drop-off options are available.</span>
+              </div>
+            </div>
+            <div class="about-feature-item">
+              <span class="feature-icon" aria-hidden="true">P</span>
+              <div>
+                <strong>Finish it neatly</strong>
+                <span>Pressing is available for garments that need extra attention.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="location-hours" id="location">
+      <div class="container">
+        <div class="reveal">
+          <p class="eyebrow">Find us</p>
+          <h2 class="section-title">Right here in Elizabethtown.</h2>
+        </div>
+
+        <div class="location-grid">
+          <div class="map-card reveal">
+            <iframe
+              class="map-frame"
+              title="Map showing Lisa's Laundry at 74 Tower Drive, Elizabethtown, PA 17022"
+              src="https://maps.google.com/maps?q=74%20Tower%20Drive%2C%20Elizabethtown%2C%20PA%2017022&amp;output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+            <div class="map-details">
+              <h3>Lisa's Laundry</h3>
+              <address>
+                74 Tower Drive<br>
+                Elizabethtown, PA 17022
+              </address>
+            </div>
+          </div>
+
+          <aside class="hours-card reveal" aria-labelledby="hoursHeading">
+            <h3 id="hoursHeading">Hours</h3>
+            <div class="hours-sign">
+              <strong>Call for hours</strong>
+            </div>
+            <p>
+              Call <a href="tel:+17173711884">(717) 371-1884</a> before your visit for current hours.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="reveal">
+          <p class="eyebrow">Get in touch</p>
+          <h2 class="section-title">Questions about your laundry?</h2>
+          <p class="section-intro">
+            Call Lisa's Laundry directly or use the form below to prepare a message.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-panel reveal">
+            <h3>Call Lisa's Laundry</h3>
+            <p>For current hours or questions about available laundry services, call:</p>
+            <a class="phone-display" href="tel:+17173711884">(717) 371-1884</a>
+            <br>
+            <a class="button button-primary" href="tel:+17173711884">Call Now</a>
+
+            <img
+              class="contact-photo"
+              src="../stock/lisas-laundry/04.jpg"
+              alt="Clean laundry and clothing at Lisa's Laundry"
+            >
+          </div>
+
+          <form class="contact-form reveal" id="contactForm">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+            </div>
+
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+
+            <button class="button button-primary" type="submit">Prepare Message</button>
+            <p class="form-note" id="formNote">
+              This form opens your email app with your message prepared. For the fastest response, call (717) 371-1884.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Lisa's Laundry</div>
+          <p>
+            Self-service laundry, wash and fold, dry cleaning drop-off, and pressing in Elizabethtown, Pennsylvania.
+          </p>
+        </div>
+
+        <div>
+          <p class="footer-heading">Quick Links</p>
+          <div class="footer-links">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#location">Location</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-heading">Hours &amp; Contact</p>
+          <div class="footer-links">
+            <span>Call for hours</span>
+            <a href="tel:+17173711884">(717) 371-1884</a>
+            <span>74 Tower Drive<br>Elizabethtown, PA 17022</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; <span id="copyrightYear">2026</span> Lisa's Laundry. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-call-bar" id="mobileCallBar" aria-label="Quick call">
+    <a class="button button-primary mobile-call-link" href="tel:+17173711884">
+      Call Lisa's Laundry · (717) 371-1884
+    </a>
+    <button class="mobile-call-close" id="mobileCallClose" type="button" aria-label="Close call bar">
+      ×
+    </button>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+      const menuToggle = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+      const closeMenu = () => {
+        if (!menuToggle || !navLinks) {
+          return;
+        }
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        document.body.classList.remove("menu-open");
+      };
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", () => {
+          const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+          if (isOpen) {
+            closeMenu();
+            return;
+          }
+          navLinks.classList.add("open");
+          menuToggle.setAttribute("aria-expanded", "true");
+          menuToggle.setAttribute("aria-label", "Close navigation menu");
+          document.body.classList.add("menu-open");
+        });
+        const menuAnchors = navLinks.querySelectorAll("a[href^='#']");
+        menuAnchors.forEach((anchor) => {
+          if (!anchor) {
+            return;
+          }
+          anchor.addEventListener("click", closeMenu);
+        });
+        window.addEventListener("resize", () => {
+          if (window.innerWidth >= 992) {
+            closeMenu();
+          }
+        });
+      }
+      const revealItems = document.querySelectorAll(".reveal");
+      const prefersReducedMotion = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)").matches : false;
+      if (revealItems.length > 0) {
+        if ("IntersectionObserver" in window && !prefersReducedMotion) {
+          const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
+              entries.forEach((entry) => {
+                if (!entry || !entry.target) {
+                  return;
+                }
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+          );
+          revealItems.forEach((item) => {
+            if (item) {
+              revealObserver.observe(item);
+            }
+          });
+        } else {
+          revealItems.forEach((item) => {
+            if (item) {
+              item.classList.add("visible");
+            }
+          });
+        }
+      }
+      const mobileCallBar = document.getElementById("mobileCallBar");
+      const mobileCallClose = document.getElementById("mobileCallClose");
+      const callBarStorageKey = "lisasLaundryCallBarDismissed";
+      let callBarDismissed = false;
+      try {
+        callBarDismissed = sessionStorage.getItem(callBarStorageKey) === "true";
+      } catch (error) {
+        callBarDismissed = false;
+      }
+      if (mobileCallBar && callBarDismissed) {
+        mobileCallBar.hidden = true;
+      }
+      if (mobileCallBar && mobileCallClose) {
+        mobileCallClose.addEventListener("click", () => {
+          mobileCallBar.hidden = true;
+          try {
+            sessionStorage.setItem(callBarStorageKey, "true");
+          } catch (error) {
+            /* Session storage may be unavailable. The bar remains dismissed until reload. */
+          }
+        });
+      }
+      const contactForm = document.getElementById("contactForm");
+      const formNote = document.getElementById("formNote");
+      if (contactForm) {
+        contactForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const nameInput = document.getElementById("name");
+          const phoneInput = document.getElementById("phone");
+          const messageInput = document.getElementById("message");
+          if (!nameInput || !phoneInput || !messageInput) {
+            return;
+          }
+          const name = nameInput.value.trim();
+          const phone = phoneInput.value.trim();
+          const message = messageInput.value.trim();
+          if (!name || !phone || !message) {
+            if (formNote) {
+              formNote.textContent = "Please complete your name, phone number, and message.";
+            }
+            return;
+          }
+          const subject = encodeURIComponent("Website message for Lisa's Laundry");
+          const body = encodeURIComponent(
+            "Name: " + name + "\nPhone: " + phone + "\n\nMessage:\n" + message
+          );
+          if (formNote) {
+            formNote.textContent = "Opening your email app. You can also call (717) 371-1884.";
+          }
+          window.location.href = "mailto:?subject=" + subject + "&body=" + body;
+        });
+      }
+      const copyrightYear = document.getElementById("copyrightYear");
+      if (copyrightYear) {
+        copyrightYear.textContent = String(new Date().getFullYear());
+      }
+    })();
+  </script>
+</body>
+</html>

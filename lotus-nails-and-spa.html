@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lotus Nails and Spa | Nail Salon in Hummelstown, PA</title>
+  <meta name="description" content="Lotus Nails and Spa in Hummelstown, PA offers manicures, pedicures, acrylic nails, gel nails, and spa treatments. Call (717) 482-8762.">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Italiana&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-cream: #f7f4ec;
+      --color-cream-deep: #eee9de;
+      --color-sage: #a8b5a2;
+      --color-sage-soft: #dbe2d7;
+      --color-sage-pale: #edf0e9;
+      --color-forest: #35463b;
+      --color-forest-soft: #56665a;
+      --color-ink: #283029;
+      --color-muted: #6f776f;
+      --color-white: #ffffff;
+      --color-line: rgba(53, 70, 59, 0.15);
+      --color-shadow: rgba(48, 61, 51, 0.10);
+      --font-display: "Italiana", Georgia, serif;
+      --font-body: "DM Sans", Arial, sans-serif;
+      --space-1: 0.375rem;
+      --space-2: 0.625rem;
+      --space-3: 0.875rem;
+      --space-4: 1.125rem;
+      --space-5: 1.5rem;
+      --space-6: 2rem;
+      --space-7: 2.75rem;
+      --space-8: 3.75rem;
+      --space-9: 5rem;
+      --space-10: 7rem;
+      --radius-sm: 0.75rem;
+      --radius-md: 1.35rem;
+      --radius-lg: 2.25rem;
+      --radius-pill: 999px;
+      --container: 74rem;
+      --nav-height: 4.75rem;
+      --transition: 220ms ease;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + var(--space-4));
+    }
+
+    body {
+      margin: 0;
+      background: var(--color-cream);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--container));
+      margin-inline: auto;
+    }
+
+    .section {
+      position: relative;
+      padding: var(--space-9) 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin: 0 0 var(--space-3);
+      color: var(--color-forest-soft);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 1.8rem;
+      height: 1px;
+      background: var(--color-sage);
+      content: "";
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--color-forest);
+      font-family: var(--font-display);
+      font-weight: 400;
+      line-height: 1.08;
+    }
+
+    h1 {
+      margin-bottom: var(--space-5);
+      font-size: clamp(3.4rem, 14vw, 7.5rem);
+      letter-spacing: -0.045em;
+    }
+
+    h2 {
+      margin-bottom: var(--space-4);
+      font-size: clamp(2.5rem, 9vw, 4.75rem);
+      letter-spacing: -0.035em;
+    }
+
+    h3 {
+      margin-bottom: var(--space-2);
+      font-size: 1.7rem;
+    }
+
+    p {
+      color: var(--color-muted);
+    }
+
+    .section-intro {
+      max-width: 38rem;
+      margin-bottom: var(--space-7);
+    }
+
+    .section-intro p:last-child {
+      margin-bottom: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      min-height: 3.25rem;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: 0.8rem 1.45rem;
+      border: 1px solid transparent;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.045em;
+      text-align: center;
+      transition: background-color var(--transition), color var(--transition), border-color var(--transition), transform var(--transition);
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--color-forest);
+      color: var(--color-white);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background: var(--color-forest-soft);
+    }
+
+    .btn-secondary {
+      border-color: var(--color-forest);
+      background: transparent;
+      color: var(--color-forest);
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible {
+      background: var(--color-sage-pale);
+    }
+
+    .site-header {
+      position: sticky;
+      z-index: 1000;
+      top: 0;
+      border-bottom: 1px solid var(--color-line);
+      background: rgba(247, 244, 236, 0.93);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-shell {
+      min-height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .brand {
+      position: relative;
+      z-index: 1002;
+      max-width: 12rem;
+      color: var(--color-forest);
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      line-height: 1.05;
+    }
+
+    .desktop-nav {
+      display: none;
+    }
+
+    .nav-call {
+      display: none;
+    }
+
+    .menu-toggle {
+      position: relative;
+      z-index: 1002;
+      width: 2.9rem;
+      height: 2.9rem;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 1px solid var(--color-line);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--color-forest);
+      cursor: pointer;
+    }
+
+    .menu-toggle-lines {
+      width: 1.1rem;
+      display: grid;
+      gap: 0.28rem;
+    }
+
+    .menu-toggle-lines span {
+      width: 100%;
+      height: 1px;
+      display: block;
+      background: currentColor;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+
+    .menu-toggle[aria-expanded="true"] .menu-toggle-lines span:first-child {
+      transform: translateY(0.32rem) rotate(45deg);
+    }
+
+    .menu-toggle[aria-expanded="true"] .menu-toggle-lines span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle[aria-expanded="true"] .menu-toggle-lines span:last-child {
+      transform: translateY(-0.32rem) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      position: fixed;
+      z-index: 1001;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6.5rem 2rem 4rem;
+      background: var(--color-cream);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-1rem);
+      transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .mobile-menu.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .mobile-menu a {
+      padding: 0.55rem 0;
+      color: var(--color-forest);
+      font-family: var(--font-display);
+      font-size: clamp(2.3rem, 10vw, 4rem);
+      line-height: 1.1;
+    }
+
+    .mobile-menu .mobile-call-link {
+      width: fit-content;
+      margin-top: var(--space-6);
+      padding: 0.8rem 1.4rem;
+      border: 1px solid var(--color-forest);
+      border-radius: var(--radius-pill);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .hero {
+      position: relative;
+      min-height: calc(100svh - var(--nav-height));
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      padding: var(--space-8) 0;
+    }
+
+    .hero::before {
+      position: absolute;
+      top: -7rem;
+      right: -9rem;
+      width: 24rem;
+      height: 24rem;
+      border-radius: 46% 54% 62% 38% / 36% 43% 57% 64%;
+      background: var(--color-sage-soft);
+      content: "";
+      opacity: 0.8;
+      transform: rotate(-12deg);
+    }
+
+    .hero::after {
+      position: absolute;
+      bottom: -11rem;
+      left: -10rem;
+      width: 26rem;
+      height: 26rem;
+      border: 1px solid rgba(53, 70, 59, 0.14);
+      border-radius: 58% 42% 37% 63% / 48% 65% 35% 52%;
+      content: "";
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: var(--space-7);
+    }
+
+    .hero-copy {
+      max-width: 45rem;
+    }
+
+    .hero-kicker {
+      margin-bottom: var(--space-4);
+      color: var(--color-forest-soft);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+
+    .hero-copy > p:not(.hero-kicker) {
+      max-width: 35rem;
+      margin-bottom: var(--space-6);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    .hero-art {
+      position: relative;
+      min-height: 25rem;
+    }
+
+    .hero-image-wrap {
+      position: absolute;
+      inset: 0 1.5rem 0;
+      overflow: hidden;
+      border-radius: 48% 52% 44% 56% / 40% 46% 54% 60%;
+      box-shadow: 0 1.8rem 4rem var(--color-shadow);
+    }
+
+    .hero-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-image-accent {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 9rem;
+      aspect-ratio: 1;
+      border: 1px solid rgba(53, 70, 59, 0.28);
+      border-radius: 50%;
+    }
+
+    .hero-image-accent::before,
+    .hero-image-accent::after {
+      position: absolute;
+      left: 50%;
+      width: 1px;
+      height: 40%;
+      background: rgba(53, 70, 59, 0.25);
+      content: "";
+      transform-origin: bottom;
+    }
+
+    .hero-image-accent::before {
+      top: 10%;
+      transform: rotate(-36deg);
+    }
+
+    .hero-image-accent::after {
+      top: 12%;
+      transform: rotate(35deg);
+    }
+
+    .services {
+      overflow: hidden;
+      background: var(--color-sage-pale);
+    }
+
+    .services::before {
+      position: absolute;
+      top: -9rem;
+      left: 45%;
+      width: 34rem;
+      height: 18rem;
+      border-radius: 50%;
+      background: var(--color-cream);
+      content: "";
+      filter: blur(1px);
+    }
+
+    .services-grid {
+      position: relative;
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .service-card {
+      min-height: 14rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: var(--space-5);
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.47);
+    }
+
+    .service-number {
+      margin-bottom: var(--space-6);
+      color: var(--color-sage);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+    }
+
+    .service-card p {
+      margin-bottom: 0;
+    }
+
+    .services-feature {
+      position: relative;
+      min-height: 24rem;
+      overflow: hidden;
+      margin-top: var(--space-6);
+      border-radius: var(--radius-lg);
+    }
+
+    .services-feature img {
+      width: 100%;
+      height: 100%;
+      min-height: 24rem;
+      object-fit: cover;
+    }
+
+    .services-feature-overlay {
+      position: absolute;
+      inset: auto var(--space-4) var(--space-4) var(--space-4);
+      padding: var(--space-4);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: var(--radius-md);
+      background: rgba(247, 244, 236, 0.86);
+      backdrop-filter: blur(10px);
+    }
+
+    .services-feature-overlay p {
+      margin: 0;
+      color: var(--color-forest);
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      line-height: 1.35;
+    }
+
+    .about-grid {
+      display: grid;
+      gap: var(--space-7);
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+      padding-bottom: 3rem;
+    }
+
+    .about-main-image {
+      width: 88%;
+      min-height: 30rem;
+      object-fit: cover;
+      border-radius: 10rem var(--radius-lg) var(--radius-lg);
+      box-shadow: 0 1.5rem 3rem var(--color-shadow);
+    }
+
+    .about-small-image {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 44%;
+      aspect-ratio: 0.88;
+      object-fit: cover;
+      border: 0.55rem solid var(--color-cream);
+      border-radius: 50% var(--radius-lg) var(--radius-lg);
+    }
+
+    .about-copy {
+      max-width: 35rem;
+    }
+
+    .about-copy p {
+      margin-bottom: var(--space-4);
+    }
+
+    .about-note {
+      display: grid;
+      gap: var(--space-2);
+      margin-top: var(--space-6);
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--color-line);
+    }
+
+    .about-note strong {
+      color: var(--color-forest);
+      font-weight: 600;
+    }
+
+    .detail-section {
+      background: var(--color-forest);
+      color: var(--color-white);
+    }
+
+    .detail-section .eyebrow,
+    .detail-section h2,
+    .detail-section h3,
+    .detail-section p,
+    .detail-section a {
+      color: var(--color-white);
+    }
+
+    .detail-section .eyebrow::before {
+      background: var(--color-sage);
+    }
+
+    .detail-grid {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    .map-card {
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--color-white);
+    }
+
+    .map-card iframe {
+      width: 100%;
+      min-height: 25rem;
+      display: block;
+      border: 0;
+    }
+
+    .location-copy {
+      padding: var(--space-5);
+    }
+
+    .location-copy p {
+      margin-bottom: 0;
+      color: var(--color-forest);
+    }
+
+    .hours-card {
+      padding: var(--space-6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .hours-list {
+      margin: var(--space-5) 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.94rem;
+    }
+
+    .hours-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .hours-list strong {
+      color: var(--color-white);
+      font-weight: 500;
+    }
+
+    .contact {
+      overflow: hidden;
+    }
+
+    .contact::after {
+      position: absolute;
+      right: -12rem;
+      bottom: -16rem;
+      width: 32rem;
+      height: 32rem;
+      border-radius: 57% 43% 45% 55% / 43% 59% 41% 57%;
+      background: var(--color-sage-soft);
+      content: "";
+      opacity: 0.65;
+    }
+
+    .contact-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: var(--space-7);
+    }
+
+    .contact-copy {
+      max-width: 32rem;
+    }
+
+    .phone-display {
+      display: inline-block;
+      margin-top: var(--space-4);
+      color: var(--color-forest);
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 8vw, 3.25rem);
+      line-height: 1.1;
+    }
+
+    .contact-image {
+      width: 100%;
+      max-height: 19rem;
+      margin-top: var(--space-6);
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: var(--space-4);
+      padding: var(--space-5);
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: 0 1rem 3rem var(--color-shadow);
+    }
+
+    .field {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .field label {
+      color: var(--color-forest);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 0;
+      border-bottom: 1px solid rgba(53, 70, 59, 0.28);
+      border-radius: 0;
+      outline: none;
+      background: transparent;
+      color: var(--color-ink);
+      padding: 0.78rem 0.1rem;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-bottom-color: var(--color-forest);
+    }
+
+    .field textarea {
+      min-height: 8rem;
+      resize: vertical;
+    }
+
+    .form-note {
+      margin: 0;
+      font-size: 0.79rem;
+    }
+
+    .site-footer {
+      background: #27332b;
+      color: rgba(255, 255, 255, 0.76);
+      padding: var(--space-8) 0 var(--space-6);
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    .footer-brand {
+      color: var(--color-white);
+      font-family: var(--font-display);
+      font-size: 2rem;
+    }
+
+    .footer-heading {
+      margin-bottom: var(--space-3);
+      color: var(--color-sage);
+      font-size: 0.73rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus-visible {
+      color: var(--color-white);
+    }
+
+    .footer-copy {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+
+    .footer-bottom {
+      margin-top: var(--space-7);
+      padding-top: var(--space-5);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-bottom p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 0.8rem;
+    }
+
+    .mobile-call-bar {
+      position: fixed;
+      z-index: 1200;
+      right: 0.75rem;
+      bottom: 0.75rem;
+      left: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 0.55rem;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-md);
+      background: rgba(39, 51, 43, 0.96);
+      box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(14px);
+      transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .mobile-call-bar.is-dismissed {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(130%);
+    }
+
+    .mobile-call-bar a {
+      min-height: 3rem;
+      flex: 1;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-sm);
+      background: var(--color-sage-soft);
+      color: var(--color-forest);
+      font-weight: 600;
+    }
+
+    .call-bar-close {
+      width: 2.65rem;
+      height: 2.65rem;
+      flex: 0 auto;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--color-white);
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(1.4rem);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 767px) {
+      body {
+        padding-bottom: 5.3rem;
+      }
+    }
+
+    @media (min-width: 600px) {
+      .container {
+        width: min(calc(100% - 3rem), var(--container));
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.5fr 1fr 1fr;
+      }
+
+      .contact-form {
+        padding: var(--space-6);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding: var(--space-10) 0;
+      }
+
+      .menu-toggle,
+      .mobile-menu,
+      .mobile-call-bar {
+        display: none;
+      }
+
+      .desktop-nav {
+        display: flex;
+        align-items: center;
+        gap: var(--space-5);
+        margin-left: auto;
+      }
+
+      .desktop-nav a {
+        position: relative;
+        color: var(--color-forest-soft);
+        font-size: 0.83rem;
+        font-weight: 500;
+      }
+
+      .desktop-nav a::after {
+        position: absolute;
+        right: 0;
+        bottom: -0.35rem;
+        left: 0;
+        height: 1px;
+        background: var(--color-sage);
+        content: "";
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform var(--transition);
+      }
+
+      .desktop-nav a:hover::after,
+      .desktop-nav a:focus-visible::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      .nav-call {
+        display: inline-flex;
+        margin-left: var(--space-3);
+      }
+
+      .hero {
+        min-height: min(52rem, calc(100svh - var(--nav-height)));
+        padding: var(--space-9) 0;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.02fr) minmax(20rem, 0.98fr);
+        align-items: center;
+        gap: var(--space-7);
+      }
+
+      .hero-art {
+        min-height: 38rem;
+      }
+
+      .hero-image-wrap {
+        inset: 0 2rem 0;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .service-card:nth-child(2),
+      .service-card:nth-child(5) {
+        transform: translateY(var(--space-5));
+      }
+
+      .services-feature {
+        width: 72%;
+        min-height: 31rem;
+        margin-top: var(--space-9);
+        margin-left: auto;
+      }
+
+      .services-feature img {
+        min-height: 31rem;
+      }
+
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+        gap: var(--space-9);
+      }
+
+      .detail-grid {
+        grid-template-columns: minmax(0, 1.4fr) minmax(18rem, 0.6fr);
+        align-items: stretch;
+      }
+
+      .hours-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+        align-items: start;
+        gap: var(--space-9);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .services-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      .service-card {
+        min-height: 17rem;
+      }
+
+      .services-feature-overlay {
+        right: auto;
+        max-width: 23rem;
+      }
+
+      .about-main-image {
+        min-height: 39rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="brand" href="#home" aria-label="Lotus Nails and Spa home">Lotus Nails and Spa</a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#location">Location</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="btn btn-primary nav-call" href="tel:+17174828762">(717) 482-8762</a>
+
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+        <span class="menu-toggle-lines" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#location">Location</a>
+      <a href="#hours">Hours</a>
+      <a href="#contact">Contact</a>
+      <a class="mobile-call-link" href="tel:+17174828762">Call (717) 482-8762</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="hero-kicker">Nail care and spa treatments in Hummelstown</p>
+          <h1>Make time for a quieter kind of care.</h1>
+          <p>
+            Lotus Nails and Spa offers manicures, pedicures, acrylic nails, gel nails, and spa treatments in a calm setting at 755 Middletown Rd.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="tel:+17174828762">Call Now</a>
+            <a class="btn btn-secondary" href="#services">Explore Services</a>
+          </div>
+        </div>
+
+        <div class="hero-art reveal">
+          <div class="hero-image-wrap">
+            <img src="../stock/lotus-nails-and-spa/hero.jpg" alt="Relaxing nail salon setting at Lotus Nails and Spa">
+          </div>
+          <div class="hero-image-accent" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section services" id="services">
+      <div class="container">
+        <div class="section-intro reveal">
+          <p class="eyebrow">Services</p>
+          <h2>Care for hands, feet, and time to yourself.</h2>
+          <p>Choose the nail or spa service that fits your visit.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <span class="service-number">01</span>
+            <div>
+              <h3>Manicures</h3>
+              <p>Focused nail and hand care for a clean, finished look.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-number">02</span>
+            <div>
+              <h3>Pedicures</h3>
+              <p>Foot and nail care designed for a refreshed, polished finish.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-number">03</span>
+            <div>
+              <h3>Acrylic Nails</h3>
+              <p>Acrylic nail services for added length, shape, and structure.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-number">04</span>
+            <div>
+              <h3>Gel Nails</h3>
+              <p>Gel nail services for smooth color and a polished appearance.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-number">05</span>
+            <div>
+              <h3>Spa Treatments</h3>
+              <p>A relaxing addition when you want more time for personal care.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="services-feature reveal">
+          <img src="../stock/lotus-nails-and-spa/01.jpg" alt="Nail care service with carefully finished nails at Lotus Nails and Spa">
+          <div class="services-feature-overlay">
+            <p>A simple appointment can become a quiet reset in the middle of your week.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-visual reveal">
+          <img class="about-main-image" src="../stock/lotus-nails-and-spa/02.jpg" alt="Spa-inspired nail treatment setting at Lotus Nails and Spa">
+          <img class="about-small-image" src="../stock/lotus-nails-and-spa/03.jpg" alt="Close-up of a finished manicure at Lotus Nails and Spa">
+        </div>
+
+        <div class="about-copy reveal">
+          <p class="eyebrow">About Lotus</p>
+          <h2>A calm stop for your regular nail care.</h2>
+          <p>
+            Lotus Nails and Spa serves Hummelstown from 755 Middletown Rd. The service menu covers everyday nail care, acrylic and gel options, plus spa treatments when you want to slow things down.
+          </p>
+          <p>
+            Whether you are stopping in for a manicure, taking time for a pedicure, or choosing a different nail service, the focus stays simple: personal care and time set aside for yourself.
+          </p>
+
+          <div class="about-note">
+            <strong>Lotus Nails and Spa</strong>
+            <span>755 Middletown Rd, Hummelstown, PA 17036</span>
+            <a href="tel:+17174828762">(717) 482-8762</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section detail-section" id="location">
+      <div class="container">
+        <div class="section-intro reveal">
+          <p class="eyebrow">Visit</p>
+          <h2>Find Lotus Nails and Spa in Hummelstown.</h2>
+          <p>Call ahead or stop by during the listed business hours.</p>
+        </div>
+
+        <div class="detail-grid">
+          <div class="map-card reveal">
+            <iframe
+              title="Map showing Lotus Nails and Spa at 755 Middletown Rd, Hummelstown, PA 17036"
+              src="https://maps.google.com/maps?q=755%20Middletown%20Rd%2C%20Hummelstown%2C%20PA%2017036&amp;output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen>
+            </iframe>
+            <div class="location-copy">
+              <p><strong>755 Middletown Rd<br>Hummelstown, PA 17036</strong></p>
+            </div>
+          </div>
+
+          <aside class="hours-card reveal" id="hours">
+            <p class="eyebrow">Hours</p>
+            <h3>Plan your visit</h3>
+            <ul class="hours-list">
+              <li><strong>Monday</strong><span>10am-7pm</span></li>
+              <li><strong>Tuesday</strong><span>Closed</span></li>
+              <li><strong>Wednesday</strong><span>10am-7pm</span></li>
+              <li><strong>Thursday</strong><span>10am-7pm</span></li>
+              <li><strong>Friday</strong><span>10am-7pm</span></li>
+              <li><strong>Saturday</strong><span>10am-6pm</span></li>
+              <li><strong>Sunday</strong><span>10am-5pm</span></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <p class="eyebrow">Contact</p>
+          <h2>Ready to plan your visit?</h2>
+          <p>
+            Call Lotus Nails and Spa directly to ask about services or your next visit.
+          </p>
+          <a class="phone-display" href="tel:+17174828762">(717) 482-8762</a>
+          <img class="contact-image" src="../stock/lotus-nails-and-spa/04.jpg" alt="Finished nail styling from Lotus Nails and Spa">
+        </div>
+
+        <form class="contact-form reveal" id="contactForm" action="#" method="post">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Send Message</button>
+          <p class="form-note">For immediate help, call <a href="tel:+17174828762">(717) 482-8762</a>.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Lotus Nails and Spa</div>
+          <p class="footer-copy">755 Middletown Rd<br>Hummelstown, PA 17036</p>
+          <p class="footer-copy">
+            <a href="tel:+17174828762">(717) 482-8762</a>
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-heading">Quick Links</div>
+          <nav class="footer-links" aria-label="Footer navigation">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#location">Location</a>
+            <a href="#hours">Hours</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+
+        <div>
+          <div class="footer-heading">Hours</div>
+          <p class="footer-copy">
+            Mon 10am-7pm<br>
+            Tue Closed<br>
+            Wed-Fri 10am-7pm<br>
+            Sat 10am-6pm<br>
+            Sun 10am-5pm
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="currentYear">2026</span> Lotus Nails and Spa. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-call-bar" id="mobileCallBar" aria-label="Call Lotus Nails and Spa">
+    <a href="tel:+17174828762">Call (717) 482-8762</a>
+    <button class="call-bar-close" id="callBarClose" type="button" aria-label="Close call bar">×</button>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+      var menuToggle = document.getElementById("menuToggle");
+      var mobileMenu = document.getElementById("mobileMenu");
+      var mobileCallBar = document.getElementById("mobileCallBar");
+      var callBarClose = document.getElementById("callBarClose");
+      var currentYear = document.getElementById("currentYear");
+      var contactForm = document.getElementById("contactForm");
+      var reduceMotion = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)").matches : false;
+
+      function closeMenu() {
+        if (!menuToggle || !mobileMenu) {
+          return;
+        }
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open menu");
+        mobileMenu.classList.remove("is-open");
+        document.body.classList.remove("menu-open");
+      }
+
+      function toggleMenu() {
+        if (!menuToggle || !mobileMenu) {
+          return;
+        }
+        var isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+        menuToggle.setAttribute("aria-expanded", String(!isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Open menu" : "Close menu");
+        mobileMenu.classList.toggle("is-open", !isOpen);
+        document.body.classList.remove("menu-open");
+        document.body.classList.toggle("menu-open", !isOpen);
+      }
+
+      if (menuToggle) {
+        menuToggle.addEventListener("click", toggleMenu);
+      }
+
+      if (mobileMenu) {
+        var mobileLinks = mobileMenu.querySelectorAll("a");
+        mobileLinks.forEach(function (link) {
+          link.addEventListener("click", closeMenu);
+        });
+      }
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closeMenu();
+        }
+      });
+
+      if (currentYear) {
+        currentYear.textContent = String(new Date().getFullYear());
+      }
+
+      if (mobileCallBar && callBarClose) {
+        var callBarDismissed = false;
+        try {
+          callBarDismissed = sessionStorage.getItem("lotusCallBarDismissed") === "true";
+        } catch (error) {
+          callBarDismissed = false;
+        }
+        if (callBarDismissed) {
+          mobileCallBar.classList.add("is-dismissed");
+        }
+        callBarClose.addEventListener("click", function () {
+          if (!mobileCallBar) {
+            return;
+          }
+          mobileCallBar.classList.add("is-dismissed");
+          try {
+            sessionStorage.setItem("lotusCallBarDismissed", "true");
+          } catch (error) {
+            return;
+          }
+        });
+      }
+
+      var revealElements = document.querySelectorAll(".reveal");
+      if (reduceMotion || !("IntersectionObserver" in window)) {
+        revealElements.forEach(function (element) {
+          element.classList.add("is-visible");
+        });
+      } else {
+        var revealObserver = new IntersectionObserver(
+          function (entries, observer) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) {
+                return;
+              }
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.13, rootMargin: "0px 0px -4% 0px" }
+        );
+        revealElements.forEach(function (element) {
+          revealObserver.observe(element);
+        });
+      }
+
+      if (contactForm) {
+        contactForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+          var submitButton = contactForm.querySelector('button[type="submit"]');
+          if (!submitButton) {
+            return;
+          }
+          var originalText = submitButton.textContent;
+          submitButton.textContent = "Please Call Us";
+          submitButton.setAttribute("disabled", "disabled");
+          window.setTimeout(function () {
+            if (!submitButton) {
+              return;
+            }
+            submitButton.textContent = originalText || "Send Message";
+            submitButton.removeAttribute("disabled");
+          }, 2200);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

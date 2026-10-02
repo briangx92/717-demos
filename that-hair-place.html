@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>That Hair Place</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00ffcc;
+            --secondary-color: #1a1a1a;
+            --background-color: #121212;
+            --text-color: #ffffff;
+            --font-display: 'Exo 2', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+            --spacing-small: 1rem;
+            --spacing-medium: 2rem;
+            --spacing-large: 3rem;
+        }
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            background-color: var(--secondary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-small);
+            z-index: 1000;
+        }
+        header nav {
+            display: flex;
+            gap: var(--spacing-medium);
+        }
+        header a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-family: var(--font-display);
+        }
+        header a:hover {
+            text-decoration: underline;
+        }
+        .hero {
+            background: url('../stock/that-hair-place/hero.jpg') no-repeat center center/cover;
+            color: var(--text-color);
+            padding: var(--spacing-large);
+            text-align: center;
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            margin-bottom: var(--spacing-small);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-medium);
+        }
+        .hero button {
+            background-color: var(--primary-color);
+            border: none;
+            padding: var(--spacing-small) var(--spacing-medium);
+            font-family: var(--font-display);
+            color: var(--secondary-color);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .hero button:hover {
+            background-color: #00cc99;
+        }
+        .services, .about, .location, .hours, .contact, footer {
+            padding: var(--spacing-large);
+        }
+        .services h2, .about h2, .location h2, .hours h2, .contact h2 {
+            font-family: var(--font-display);
+            margin-bottom: var(--spacing-medium);
+        }
+        .services ul {
+            list-style: none;
+            padding: 0;
+        }
+        .services li {
+            background-color: var(--secondary-color);
+            padding: var(--spacing-small);
+            margin-bottom: var(--spacing-small);
+            border-radius: 5px;
+        }
+        .about {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-large);
+        }
+        .about img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .about p {
+            flex: 1;
+        }
+        .location iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 10px;
+        }
+        .hours table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--spacing-medium);
+        }
+        .hours th, .hours td {
+            padding: var(--spacing-small);
+            text-align: left;
+            border-bottom: 1px solid var(--text-color);
+        }
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: var(--spacing-medium);
+            text-align: center;
+        }
+        footer a {
+            color: var(--primary-color);
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .mobile-call-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary-color);
+            padding: var(--spacing-small);
+            text-align: center;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+        }
+        .mobile-call-bar a {
+            color: var(--secondary-color);
+            font-family: var(--font-display);
+            text-decoration: none;
+            padding: var(--spacing-small) var(--spacing-medium);
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .mobile-call-bar a:hover {
+            background-color: #00cc99;
+        }
+        .mobile-call-bar button {
+            position: absolute;
+            top: 50%;
+            right: var(--spacing-small);
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            header nav {
+                display: none;
+            }
+            header .menu-toggle {
+                display: block;
+            }
+            .mobile-call-bar {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .services li {
+                font-size: 0.9rem;
+            }
+            .hours th, .hours td {
+                font-size: 0.9rem;
+            }
+        }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#hero">That Hair Place</a>
+        <nav>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#location">Location</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a href="tel:7179480135" class="menu-toggle" style="display: none;">Menu</a>
+        <a href="tel:7179480135" class="cta-button">Call Now</a>
+    </header>
+    <div class="hero" id="hero">
+        <h1>Transform Your Look</h1>
+        <p>Your go-to barbershop for a fresh cut and style.</p>
+        <a href="tel:7179480135" class="cta-button">Call Now</a>
+        <a href="#services" class="cta-button">Learn More</a>
+    </div>
+    <div class="services" id="services">
+        <h2>Our Services</h2>
+        <ul>
+            <li><img src="../stock/that-hair-place/01.jpg" alt="A barber giving a haircut"> Haircuts</li>
+            <li><img src="../stock/that-hair-place/02.jpg" alt="A barber doing a fade"> Fades</li>
+            <li><img src="../stock/that-hair-place/03.jpg" alt="A barber trimming a beard"> Beard Trims</li>
+            <li><img src="../stock/that-hair-place/04.jpg" alt="A barber applying styling products"> Styling</li>
+        </ul>
+    </div>
+    <div class="about" id="about">
+        <h2>About Us</h2>
+        <img src="../stock/that-hair-place/02.jpg" alt="The barbershop interior">
+        <p>At That Hair Place, we pride ourselves on providing top-notch barbershop services in Middletown. Whether you need a quick trim or a complete style overhaul, our experienced barbers are here to make you look and feel your best.</p>
+    </div>
+    <div class="location" id="location">
+        <h2>Location</h2>
+        <iframe src="https://maps.google.com/maps?q=308%20N%20Union%20St%2C%20Middletown%2C%20PA%2017057&output=embed"></iframe>
+        <p>308 N Union St, Middletown, PA 17057</p>
+    </div>
+    <div class="hours" id="hours">
+        <h2>Hours</h2>
+        <table>
+            <tr>
+                <th>Day</th>
+                <th>Hours</th>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td>10am - 6pm</td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td>10am - 6pm</td>
+            </tr>
+            <tr>
+                <td>Thursday</td>
+                <td>10am - 6pm</td>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td>10am - 6pm</td>
+            </tr>
+            <tr>
+                <td>Saturday</td>
+                <td>10am - 2pm</td>
+            </tr>
+            <tr>
+                <td>Sunday</td>
+                <td>Closed</td>
+            </tr>
+        </table>
+    </div>
+    <div class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <form action="#" method="post">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            <label for="phone">Phone:</label><br>
+            <input type="tel" id="phone" name="phone" required><br>
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" required></textarea><br>
+            <a href="tel:7179480135" class="cta-button">Call Now</a>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2023 That Hair Place</p>
+        <p><a href="#services">Services</a> | <a href="#about">About</a> | <a href="#location">Location</a> | <a href="#contact">Contact</a></p>
+        <p>Open: Tue-Fri 10am-6pm, Sat 10am-2pm</p>
+    </footer>
+    <div class="mobile-call-bar">
+        <a href="tel:7179480135">Call Now</a>
+        <button onclick="this.parentElement.style.display='none';">X</button>
+    </div>
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            var nav = document.querySelector('header nav');
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+</html>

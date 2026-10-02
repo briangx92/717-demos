@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&S Tree Service</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #333;
+            --secondary-color: #ffcc00;
+            --font-display: 'Roboto', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+            --spacing-small: 1rem;
+            --spacing-large: 2rem;
+        }
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            color: var(--primary-color);
+            line-height: 1.6;
+            padding-bottom: 5rem;
+        }
+        header {
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-small);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            padding: var(--spacing-small);
+            font-weight: bold;
+        }
+        header nav a:hover {
+            background: var(--secondary-color);
+        }
+        .hero {
+            background-image: url('../stock/d-s-tree-service/hero.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            color: white;
+            padding: var(--spacing-large) 0;
+            position: relative;
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-small);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-large);
+        }
+        .hero .cta {
+            display: inline-block;
+            padding: var(--spacing-small) var(--spacing-large);
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .hero .cta:hover {
+            background: #cc9900;
+        }
+        .mobile-call-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: var(--spacing-small);
+            z-index: 1000;
+        }
+        .mobile-call-bar a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .mobile-call-bar .close-btn {
+            position: absolute;
+            right: var(--spacing-small);
+            top: var(--spacing-small);
+            cursor: pointer;
+        }
+        .services {
+            background: #f9f9f9;
+            padding: var(--spacing-large);
+        }
+        .services h2 {
+            font-family: var(--font-display);
+            margin-bottom: var(--spacing-large);
+        }
+        .services .service-item {
+            margin-bottom: var(--spacing-small);
+        }
+        .services .service-item h3 {
+            font-weight: bold;
+            margin-bottom: var(--spacing-small);
+        }
+        .services .service-item p {
+            margin: 0;
+        }
+        .about {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: var(--spacing-large);
+        }
+        .about img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: var(--spacing-large);
+        }
+        .about .text {
+            flex: 1;
+            padding-right: var(--spacing-large);
+        }
+        .about h2 {
+            font-family: var(--font-display);
+            margin-bottom: var(--spacing-large);
+        }
+        .location {
+            padding: var(--spacing-large);
+        }
+        .location iframe {
+            width: 100%;
+            height: 300px;
+            margin-bottom: var(--spacing-small);
+        }
+        .location h2 {
+            font-family: var(--font-display);
+            margin-bottom: var(--spacing-large);
+        }
+        .hours {
+            background: #f9f9f9;
+            padding: var(--spacing-large);
+        }
+        .hours h2 {
+            font-family: var(--font-display);
+            margin-bottom: var(--spacing-large);
+        }
+        .contact {
+            padding: var(--spacing-large);
+        }
+        .contact h2 {
+            font-family: var(--font-display);
+            margin-bottom: var(--spacing-large);
+        }
+        .contact form {
+            display: flex;
+            flex-direction: column;
+        }
+        .contact form input, .contact form textarea {
+            margin-bottom: var(--spacing-small);
+            padding: var(--spacing-small);
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+        }
+        .contact form button {
+            padding: var(--spacing-small) var(--spacing-large);
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .contact form button:hover {
+            background: #cc9900;
+        }
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: var(--spacing-large);
+            text-align: center;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 var(--spacing-small);
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .about {
+                flex-direction: column;
+            }
+            .about .text {
+                padding-right: 0;
+                margin-bottom: var(--spacing-large);
+            }
+            .mobile-call-bar {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#home">D&S Tree Service</a>
+        <nav>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#location">Location</a>
+            <a href="#contact">Contact</a>
+            <a href="tel:7175662601" class="cta">Call Now</a>
+        </nav>
+    </header>
+    <div class="hero" id="home">
+        <h1>Storm Relief, Tree Care</h1>
+        <p>Keeping Hummelstown beautiful and safe.</p>
+        <a href="tel:7175662601" class="cta">Call Us</a>
+    </div>
+    <div class="mobile-call-bar">
+        <a href="tel:7175662601">Call Us</a>
+        <span class="close-btn">&times;</span>
+    </div>
+    <section class="services" id="services">
+        <h2>Our Services</h2>
+        <div class="service-item">
+            <h3>Storm Damage Repair</h3>
+            <p>Quickly restore your trees after storms.</p>
+        </div>
+        <div class="service-item">
+            <h3>Tree Trimming</h3>
+            <p>Keep your trees healthy and your property tidy.</p>
+        </div>
+        <div class="service-item">
+            <h3>Planting</h3>
+            <p>Add new trees to enhance your landscape.</p>
+        </div>
+    </section>
+    <section class="about" id="about">
+        <img src="../stock/d-s-tree-service/about.jpg" alt="Our Team">
+        <div class="text">
+            <h2>About Us</h2>
+            <p>At D&S Tree Service, we're dedicated to keeping your trees healthy and your landscape beautiful. Our team of experts provides reliable and efficient tree care services, from storm damage repair to routine maintenance. Contact us today to schedule your appointment.</p>
+        </div>
+    </section>
+    <section class="location" id="location">
+        <h2>Our Location</h2>
+        <iframe src="https://maps.google.com/maps?q=260+Quarry+Rd,+Hummelstown,+PA+17036" frameborder="0"></iframe>
+        <p>260 Quarry Rd, Hummelstown, PA 17036</p>
+    </section>
+    <section class="hours" id="hours">
+        <h2>Hours</h2>
+        <p>Call for hours</p>
+    </section>
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="tel" name="phone" placeholder="Your Phone" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2023 D&S Tree Service. All rights reserved.</p>
+        <p><a href="#home">Home</a> <a href="#services">Services</a> <a href="#about">About</a> <a href="#location">Location</a> <a href="#contact">Contact</a></p>
+        <p>Call for hours</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileCallBar = document.getElementById('mobile-call-bar');
+            const closeBtn = document.querySelector('.close-btn');
+
+            function dismissMobileCallBar() {
+                mobileCallBar.style.display = 'none';
+                sessionStorage.setItem('mobileCallBarDismissed', 'true');
+            }
+
+            closeBtn.addEventListener('click', dismissMobileCallBar);
+
+            if (sessionStorage.getItem('mobileCallBarDismissed') === 'true') {
+                mobileCallBar.style.display = 'none';
+            }
+
+            const navToggle = document.getElementById('nav-toggle');
+            const mobileNav = document.getElementById('mobile-nav');
+
+            if (navToggle) {
+                navToggle.addEventListener('click', function() {
+                    mobileNav.style.display = mobileNav.style.display === 'block' ? 'none' : 'block';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mow-Hawk Landscaping provides lawn care, mulch and beds, shrub trimming, and leaf removal in Elizabethtown, PA 17022. Call (717) 944-1681.">
+<title>Mow-Hawk Landscaping | Landscaping in Elizabethtown, PA</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #111111;
+  --black-soft: #1a1a1a;
+  --red: #e10600;
+  --red-dark: #b00500;
+  --offwhite: #f4f1ea;
+  --white: #ffffff;
+  --gray: #6b6b6b;
+  --border: rgba(17, 17, 17, 0.14);
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+  --space-7: 4rem;
+  --space-8: 5.5rem;
+  --radius: 0.35rem;
+  --container: 1180px;
+  --nav-height: 72px;
+  --mobile-call-height: 76px;
+  --font-display: "Anton", "Arial Black", sans-serif;
+  --font-body: "Inter", Arial, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-height) + var(--space-2)); }
+body { margin: 0; background: var(--offwhite); color: var(--black); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; }
+body.menu-open { overflow: hidden; }
+img { display: block; width: 100%; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, textarea { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+.container { width: min(calc(100% - 2rem), var(--container)); margin-inline: auto; }
+.section { position: relative; padding-block: var(--space-7); }
+.section-label { display: inline-block; margin: 0 0 var(--space-3); padding: 0.35rem 0.7rem; background: var(--red); color: var(--white); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; transform: skewX(-8deg); }
+.section-title { margin: 0 0 var(--space-4); font-family: var(--font-display); font-size: clamp(2.2rem, 6vw, 3.8rem); font-weight: 400; line-height: 1.02; letter-spacing: 0.01em; text-transform: uppercase; }
+.section-intro { max-width: 640px; margin: 0; color: var(--gray); font-size: 1.05rem; }
+.btn { display: inline-flex; min-height: 52px; align-items: center; justify-content: center; gap: var(--space-2); padding: 0.85rem 1.4rem; border: 3px solid transparent; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; transition: transform 160ms ease, background-color 160ms ease, color 160ms ease, border-color 160ms ease; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%); }
+.btn:hover, .btn:focus-visible { transform: translateY(-2px); }
+.btn-primary { background: var(--red); color: var(--white); }
+.btn-primary:hover, .btn-primary:focus-visible { background: var(--red-dark); }
+.btn-secondary { border-color: var(--white); color: var(--white); background: transparent; }
+.btn-secondary:hover, .btn-secondary:focus-visible { background: rgba(255,255,255,0.12); }
+.site-header { position: sticky; z-index: 1000; top: 0; min-height: var(--nav-height); background: var(--black); color: var(--white); border-bottom: 3px solid var(--red); }
+.navbar { display: flex; min-height: var(--nav-height); align-items: center; justify-content: space-between; gap: var(--space-3); }
+.brand { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.02em; text-transform: uppercase; }
+.brand-mark { display: grid; width: 38px; height: 38px; place-items: center; background: var(--red); color: var(--white); font-family: var(--font-body); font-weight: 800; font-size: 0.7rem; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); }
+.nav-links { position: fixed; inset: var(--nav-height) 0 auto 0; display: none; padding: var(--space-4) 1rem; background: var(--black-soft); border-bottom: 3px solid var(--red); }
+.nav-links.open { display: grid; gap: var(--space-2); }
+.nav-links a { padding: 0.7rem 0.25rem; color: rgba(255,255,255,0.85); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.9rem; }
+.nav-links a:hover { color: var(--red); }
+.desktop-call { display: none; }
+.menu-toggle { display: inline-grid; width: 46px; height: 46px; place-items: center; border: 2px solid rgba(255,255,255,0.3); background: transparent; color: var(--white); cursor: pointer; }
+.hero { position: relative; min-height: 640px; display: grid; align-items: center; isolation: isolate; overflow: hidden; background: var(--black); color: var(--white); }
+.hero-image { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.45; }
+.hero::before { position: absolute; z-index: -1; inset: 0; background: linear-gradient(100deg, rgba(17,17,17,0.95) 0%, rgba(17,17,17,0.7) 50%, rgba(225,6,0,0.25) 100%); content: ""; }
+.hero-content { padding-block: var(--space-7); }
+.hero-kicker { display: inline-block; margin-bottom: var(--space-4); padding: 0.4rem 0.75rem; background: var(--red); color: var(--white); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; transform: skewX(-8deg); }
+.hero h1 { margin: 0 0 var(--space-4); font-family: var(--font-display); font-size: clamp(3rem, 10vw, 6rem); line-height: 0.95; text-transform: uppercase; }
+.hero h1 .accent { color: var(--red); }
+.hero-copy { max-width: 600px; margin: 0 0 var(--space-5); color: rgba(255,255,255,0.85); font-size: 1.15rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.hero-meta { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-5); color: rgba(255,255,255,0.7); font-size: 0.9rem; font-weight: 600; }
+.services { background: var(--white); }
+.services-intro { margin-bottom: var(--space-5); }
+.service-grid { display: grid; gap: var(--space-4); }
+.service-card { position: relative; border: 2px solid var(--black); background: var(--offwhite); overflow: hidden; }
+.service-card::before { position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--red); content: ""; }
+.service-card img { height: 200px; object-fit: cover; filter: contrast(1.05) saturate(0.9); }
+.service-card-body { padding: var(--space-4); }
+.service-card h3 { margin: 0 0 var(--space-2); font-family: var(--font-display); font-size: 1.4rem; text-transform: uppercase; }
+.service-card p { margin: 0; color: var(--gray); }
+.about-grid { display: grid; gap: var(--space-5); align-items: center; }
+.about-photo { border: 3px solid var(--black); box-shadow: 8px 8px 0 var(--red); }
+.about-copy p { color: var(--gray); }
+.about-list { list-style: none; margin: var(--space-4) 0 0; padding: 0; display: grid; gap: var(--space-3); }
+.about-list li { display: flex; gap: var(--space-3); align-items: flex-start; font-weight: 600; }
+.about-list li::before { content: "▸"; color: var(--red); font-weight: 800; }
+.location-grid { display: grid; gap: var(--space-4); }
+.map-frame { min-height: 380px; border: 3px solid var(--black); }
+.map-frame iframe { display: block; width: 100%; height: 100%; min-height: 380px; border: 0; filter: grayscale(0.3) contrast(1.05); }
+.info-card { background: var(--black); color: var(--white); padding: var(--space-5); border-top: 6px solid var(--red); }
+.info-card h3 { margin: 0 0 var(--space-3); font-family: var(--font-display); font-size: 1.5rem; text-transform: uppercase; }
+.info-card a { color: var(--red); font-weight: 800; }
+.hours-line { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.12); }
+.contact-grid { display: grid; gap: var(--space-5); }
+.contact-phone { display: inline-block; margin-top: var(--space-3); font-family: var(--font-display); font-size: clamp(1.8rem, 6vw, 2.6rem); color: var(--red); }
+.contact-form { background: var(--white); border: 2px solid var(--black); padding: var(--space-5); }
+.field { display: grid; gap: 0.4rem; margin-bottom: var(--space-4); }
+.field label { font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.field input, .field textarea { width: 100%; border: 2px solid var(--black); padding: 0.8rem; background: var(--offwhite); }
+.field input:focus, .field textarea:focus { outline: 3px solid var(--red); outline-offset: 2px; }
+.field textarea { min-height: 140px; resize: vertical; }
+.site-footer { background: var(--black); color: rgba(255,255,255,0.75); padding: var(--space-6) 0 var(--space-4); border-top: 4px solid var(--red); }
+.footer-grid { display: grid; gap: var(--space-4); }
+.footer-brand { color: var(--white); font-family: var(--font-display); font-size: 1.4rem; text-transform: uppercase; }
+.footer-heading { color: var(--red); font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; margin-bottom: var(--space-2); }
+.footer-links { display: grid; gap: 0.4rem; }
+.footer-links a:hover { color: var(--red); }
+.footer-bottom { margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid rgba(255,255,255,0.12); font-size: 0.85rem; }
+.mobile-call-bar { position: fixed; z-index: 1200; right: 0; bottom: 0; left: 0; display: flex; min-height: var(--mobile-call-height); align-items: center; gap: var(--space-2); padding: 10px 12px; background: var(--black); border-top: 3px solid var(--red); }
+.mobile-call-link { display: flex; min-height: 54px; flex: 1; align-items: center; justify-content: center; background: var(--red); color: var(--white); font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
+.mobile-call-close { display: grid; width: 44px; height: 44px; place-items: center; border: 2px solid rgba(255,255,255,0.3); background: transparent; color: var(--white); cursor: pointer; font-size: 1.2rem; }
+.mobile-call-bar.hidden { display: none; }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 600ms ease, transform 600ms ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (max-width: 859px) { body { padding-bottom: var(--mobile-call-height); } }
+@media (min-width: 600px) { .service-grid { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
+@media (min-width: 860px) { .mobile-call-bar { display: none; } body { padding-bottom: 0; } .menu-toggle { display: none; } .nav-links { position: static; display: flex; align-items: center; gap: 1.5rem; padding: 0; background: transparent; border: 0; } .desktop-call { display: inline-flex; align-items: center; padding: 0.6rem 1rem; background: var(--red); color: var(--white); font-weight: 800; } .about-grid { grid-template-columns: 1fr 1fr; } .location-grid { grid-template-columns: 1.4fr 1fr; } .contact-grid { grid-template-columns: 1fr 1.2fr; } .service-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } .reveal { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<header class="site-header">
+<div class="container nav-wrap">
+<a class="brand" href="#top" aria-label="Mow-Hawk Landscaping home">
+<span class="brand-mark" aria-hidden="true">MH</span>
+<span>Mow-Hawk Landscaping</span>
+</a>
+<nav class="nav-links" id="navLinks" aria-label="Main navigation">
+<a href="#services">Services</a>
+<a href="#about">About</a>
+<a href="#location">Location</a>
+<a href="#hours">Hours</a>
+<a href="#contact">Contact</a>
+</nav>
+<a class="desktop-call" href="tel:+17179441681">(717) 944-1681</a>
+<button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+<span aria-hidden="true">☰</span>
+</button>
+</div>
+</header>
+<main id="top">
+<section class="hero" aria-labelledby="hero-title">
+<img class="hero-image" src="../stock/mow-hawk-landscaping/hero.jpg" alt="Bold landscaped yard with sharp clean lines in Elizabethtown">
+<div class="container hero-content">
+<div class="hero-kicker">Elizabethtown, Pennsylvania</div>
+<h1 id="hero-title">Yards with <span class="accent">attitude.</span></h1>
+<p class="hero-copy">Mow-Hawk Landscaping brings sharp, no-nonsense lawn care and landscaping to Elizabethtown. Clean cuts. Crisp edges. Done right.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="tel:+17179441681">Call Now</a>
+<a class="btn btn-secondary" href="#services">See Services</a>
+</div>
+<div class="hero-meta">
+<span>23A Conewago Rd, Elizabethtown</span>
+<span>Call for hours</span>
+<span>(717) 944-1681</span>
+</div>
+</div>
+</section>
+<section class="section services" id="services">
+<div class="container">
+<div class="services-intro reveal">
+<p class="section-label">Services</p>
+<h2 class="section-title">Cut sharp. Look sharp.</h2>
+<p class="section-intro">Landscaping services for Elizabethtown properties. Straightforward work, bold results.</p>
+</div>
+<div class="service-grid">
+<article class="service-card reveal">
+<img src="../stock/mow-hawk-landscaping/01.jpg" alt="Freshly mowed lawn with sharp stripes from Mow-Hawk Landscaping" loading="lazy">
+<div class="service-card-body">
+<h3>Lawn Care</h3>
+<p>Regular mowing and upkeep for a yard that looks dialed in.</p>
+</div>
+</article>
+<article class="service-card reveal">
+<img src="../stock/mow-hawk-landscaping/02.jpg" alt="Fresh mulch beds with clean edges in a landscaped yard" loading="lazy">
+<div class="service-card-body">
+<h3>Mulch &amp; Beds</h3>
+<p>Fresh mulch and defined beds for a sharp finished landscape.</p>
+</div>
+</article>
+<article class="service-card reveal">
+<img src="../stock/mow-hawk-landscaping/03.jpg" alt="Neatly trimmed shrubs showing precise shaping work" loading="lazy">
+<div class="service-card-body">
+<h3>Shrub Trimming</h3>
+<p>Precise trimming to keep shrubs shaped and under control.</p>
+</div>
+</article>
+<article class="service-card reveal">
+<img src="../stock/mow-hawk-landscaping/04.jpg" alt="Yard cleared of autumn leaves after leaf removal service" loading="lazy">
+<div class="service-card-body">
+<h3>Leaf Removal</h3>
+<p>Seasonal leaf clearing to keep the yard clean when fall hits.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="section" id="about">
+<div class="container about-grid">
+<div class="reveal">
+<img class="about-photo" src="../stock/mow-hawk-landscaping/02.jpg" alt="Landscaped beds with fresh mulch by Mow-Hawk Landscaping" loading="lazy">
+</div>
+<div class="reveal">
+<p class="section-label">About</p>
+<h2 class="section-title">No fluff. Just clean yards.</h2>
+<p>Mow-Hawk Landscaping handles lawn care, mulch and beds, shrub trimming, and leaf removal from 23A Conewago Rd in Elizabethtown, PA 17022.</p>
+<p>Short on time or tired of the yard looking rough? Call and get it handled.</p>
+<ul class="about-list">
+<li>Local to Elizabethtown, PA 17022</li>
+<li>Lawn care, mulch, shrubs, leaves</li>
+<li>Call (717) 944-1681 for hours</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section" id="location">
+<div class="container">
+<div class="reveal">
+<p class="section-label">Find Us</p>
+<h2 class="section-title">Based in Elizabethtown.</h2>
+<p class="section-intro">Mow-Hawk Landscaping is located at 23A Conewago Rd, Elizabethtown, PA 17022.</p>
+</div>
+<div class="location-grid">
+<div class="map-frame reveal">
+<iframe src="https://maps.google.com/maps?q=23A%20Conewago%20Rd%2C%20Elizabethtown%2C%20PA%2017022&amp;output=embed" title="Map showing 23A Conewago Rd, Elizabethtown, PA 17022" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+</div>
+<div class="info-card reveal" id="hours">
+<h3>Hours &amp; Contact</h3>
+<div class="hours-line"><span>Hours</span><span>Call for hours</span></div>
+<div class="hours-line"><span>Phone</span><span><a href="tel:+17179441681">(717) 944-1681</a></span></div>
+<div class="hours-line"><span>Address</span><span>23A Conewago Rd, Elizabethtown, PA 17022</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="contact">
+<div class="container contact-grid">
+<div class="reveal">
+<p class="section-label">Contact</p>
+<h2 class="section-title">Get your yard handled.</h2>
+<p>Call Mow-Hawk Landscaping about lawn care, mulch and beds, shrub trimming, leaf removal, or current hours.</p>
+<a class="contact-phone" href="tel:+17179441681">(717) 944-1681</a>
+</div>
+<form class="contact-form reveal" id="contactForm" action="#" method="post">
+<div class="field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+<div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
+<div class="field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
+<button class="btn btn-primary" type="submit">Send Message</button>
+<p id="formNote"></p>
+</form>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div>
+<div class="footer-brand">Mow-Hawk Landscaping</div>
+<p>23A Conewago Rd<br>Elizabethtown, PA 17022</p>
+<p><a href="tel:+17179441681">(717) 944-1681</a></p>
+</div>
+<div>
+<div class="footer-heading">Quick Links</div>
+<nav class="footer-links" aria-label="Footer navigation">
+<a href="#services">Services</a>
+<a href="#about">About</a>
+<a href="#location">Location</a>
+<a href="#contact">Contact</a>
+</nav>
+</div>
+<div>
+<div class="footer-heading">Hours</div>
+<p>Call for hours</p>
+</div>
+</div>
+<div class="footer-bottom">&copy; <span id="copyrightYear">2026</span> Mow-Hawk Landscaping. All rights reserved.</div>
+</div>
+</footer>
+<div class="mobile-call-bar" id="mobileCallBar">
+<a class="mobile-call-link" href="tel:+17179441681">Call Now: (717) 944-1681</a>
+<button class="mobile-call-close" id="mobileCallClose" type="button" aria-label="Dismiss call bar">&times;</button>
+</div>
+<script>
+(function () {
+  "use strict";
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+  const mobileCallBar = document.getElementById("mobileCallBar");
+  const mobileCallClose = document.getElementById("mobileCallClose");
+  const copyrightYear = document.getElementById("copyrightYear");
+  const contactForm = document.getElementById("contactForm");
+  const formNote = document.getElementById("formNote");
+  function closeMenu() {
+    if (!menuToggle || !navLinks) { return; }
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation menu");
+    navLinks.classList.remove("open");
+    document.body.classList.remove("menu-open");
+  }
+  function openMenu() {
+    if (!menuToggle || !navLinks) { return; }
+    menuToggle.setAttribute("aria-expanded", "true");
+    menuToggle.setAttribute("aria-label", "Close navigation menu");
+    navLinks.classList.add("open");
+    document.body.classList.add("menu-open");
+  }
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", function () {
+      const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+      if (expanded) { closeMenu(); } else { openMenu(); }
+    });
+    const menuAnchors = navLinks.querySelectorAll("a");
+    menuAnchors.forEach(function (anchor) {
+      anchor.addEventListener("click", function () { closeMenu(); });
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth >= 860) { closeMenu(); }
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") { closeMenu(); }
+    });
+  }
+  if (mobileCallBar && mobileCallClose) {
+    let callBarDismissed = false;
+    try {
+      callBarDismissed = sessionStorage.getItem("mowHawkCallBarDismissed") === "true";
+    } catch (error) { callBarDismissed = false; }
+    if (callBarDismissed) {
+      mobileCallBar.classList.add("hidden");
+      document.body.classList.add("call-bar-dismissed");
+    }
+    mobileCallClose.addEventListener("click", function () {
+      mobileCallBar.classList.add("hidden");
+      document.body.classList.add("call-bar-dismissed");
+    });
+  }
+  if (copyrightYear) { copyrightYear.textContent = String(new Date().getFullYear()); }
+  const revealElements = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window && revealElements.length > 0) {
+    const revealObserver = new IntersectionObserver(
+      function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) { return; }
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
+    revealElements.forEach(function (element) { revealObserver.observe(element); });
+  } else {
+    revealElements.forEach(function (element) { element.classList.add("is-visible"); });
+  }
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
+      if (formNote) {
+        formNote.textContent = "Thanks. Please call (717) 944-1681 to send your request directly to Mow-Hawk Landscaping.";
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>

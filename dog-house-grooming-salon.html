@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dog House Grooming Salon | Pet Groomer in Middletown, PA</title>
+  <meta name="description" content="Dog House Grooming Salon in Middletown, PA offers bathing, haircuts, ear cleaning, nail trimming, and paw treatments. Call (717) 944-7551.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-cream: #f8f1e5;
+      --color-cream-deep: #ecdfca;
+      --color-paper: #fffaf2;
+      --color-brown: #4c3225;
+      --color-brown-dark: #302019;
+      --color-caramel: #b86f3d;
+      --color-caramel-dark: #92542e;
+      --color-honey: #e9b75d;
+      --color-sage: #7f9270;
+      --color-sage-dark: #5c7050;
+      --color-white: #ffffff;
+      --color-muted: #725f54;
+      --color-border: rgba(76, 50, 37, 0.14);
+      --color-shadow: rgba(48, 32, 25, 0.14);
+      --font-display: "Baloo 2", system-ui, sans-serif;
+      --font-body: "Nunito", system-ui, sans-serif;
+      --space-1: 0.35rem;
+      --space-2: 0.65rem;
+      --space-3: 1rem;
+      --space-4: 1.5rem;
+      --space-5: 2rem;
+      --space-6: 3rem;
+      --space-7: 4.5rem;
+      --space-8: 6rem;
+      --radius-sm: 0.8rem;
+      --radius-md: 1.4rem;
+      --radius-lg: 2.2rem;
+      --radius-xl: 3rem;
+      --radius-pill: 999px;
+      --shadow-soft: 0 16px 50px var(--color-shadow);
+      --shadow-card: 0 10px 30px rgba(48, 32, 25, 0.1);
+      --max-width: 1180px;
+      --nav-height: 76px;
+      --mobile-call-height: 82px;
+      --transition-fast: 180ms ease;
+      --transition-medium: 320ms ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + var(--space-3));
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--color-brown-dark);
+      background: radial-gradient(circle at 12% 8%, rgba(233, 183, 93, 0.16), transparent 24rem), var(--color-cream);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    body.call-bar-visible {
+      padding-bottom: var(--mobile-call-height);
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, textarea {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--color-honey);
+      outline-offset: 3px;
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      line-height: 1.03;
+      color: var(--color-brown);
+    }
+
+    h1 {
+      margin-bottom: var(--space-4);
+      font-size: clamp(3.25rem, 13vw, 6.5rem);
+      letter-spacing: -0.05em;
+    }
+
+    h2 {
+      margin-bottom: var(--space-4);
+      font-size: clamp(2.4rem, 7vw, 4.4rem);
+      letter-spacing: -0.035em;
+    }
+
+    h3 {
+      margin-bottom: var(--space-2);
+      font-size: 1.55rem;
+    }
+
+    p {
+      color: var(--color-muted);
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max-width));
+      margin-inline: auto;
+    }
+
+    .section {
+      position: relative;
+      padding-block: var(--space-7);
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+      color: var(--color-caramel-dark);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .section-label::before {
+      content: "";
+      width: 2.25rem;
+      height: 3px;
+      border-radius: var(--radius-pill);
+      background: var(--color-honey);
+    }
+
+    .section-intro {
+      max-width: 650px;
+      margin-bottom: var(--space-6);
+      font-size: 1.06rem;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: 0.8rem 1.3rem;
+      border: 2px solid transparent;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      font-weight: 800;
+      line-height: 1.2;
+      transition: transform var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--color-caramel);
+      color: var(--color-white);
+      box-shadow: 0 10px 22px rgba(184, 111, 61, 0.24);
+    }
+
+    .button-primary:hover {
+      background: var(--color-caramel-dark);
+    }
+
+    .button-secondary {
+      border-color: rgba(76, 50, 37, 0.26);
+      background: rgba(255, 250, 242, 0.7);
+      color: var(--color-brown);
+    }
+
+    .button-secondary:hover {
+      border-color: var(--color-brown);
+      background: var(--color-paper);
+    }
+
+    .scribble {
+      position: relative;
+      display: inline-block;
+      z-index: 1;
+    }
+
+    .scribble::after {
+      content: "";
+      position: absolute;
+      right: 2%;
+      bottom: 0.05em;
+      left: 1%;
+      height: 0.18em;
+      border-radius: 50%;
+      background: var(--color-honey);
+      opacity: 0.72;
+      transform: rotate(-1.4deg);
+      z-index: -1;
+    }
+
+    .paw-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 2.7rem;
+      height: 2.7rem;
+      border-radius: 48% 52% 45% 55%;
+      background: var(--color-honey);
+      color: var(--color-brown-dark);
+      font-size: 1.25rem;
+      transform: rotate(-8deg);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(76, 50, 37, 0.08);
+      background: rgba(248, 241, 229, 0.93);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+    }
+
+    .nav-shell {
+      display: flex;
+      min-height: var(--nav-height);
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+    }
+
+    .brand {
+      display: flex;
+      min-width: 0;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--color-brown);
+      font-family: var(--font-display);
+      font-size: 1.12rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .brand-text {
+      max-width: 190px;
+    }
+
+    .nav-toggle {
+      display: grid;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border: 1px solid var(--color-border);
+      border-radius: 50%;
+      background: var(--color-paper);
+      color: var(--color-brown);
+      cursor: pointer;
+    }
+
+    .nav-toggle-lines {
+      display: grid;
+      gap: 4px;
+    }
+
+    .nav-toggle-lines span {
+      display: block;
+      width: 19px;
+      height: 2px;
+      border-radius: var(--radius-pill);
+      background: currentColor;
+      transition: transform var(--transition-fast), opacity var(--transition-fast);
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-lines span:first-child {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-lines span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-lines span:last-child {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .nav-links {
+      position: absolute;
+      top: calc(100% + 1px);
+      right: 0;
+      left: 0;
+      display: none;
+      padding: var(--space-3) 1rem var(--space-4);
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-cream);
+      box-shadow: var(--shadow-card);
+    }
+
+    .nav-links.is-open {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .nav-links a {
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-pill);
+      color: var(--color-brown);
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      background: var(--color-cream-deep);
+    }
+
+    .nav-links .nav-call {
+      color: var(--color-white);
+      background: var(--color-caramel);
+      text-align: center;
+    }
+
+    .hero {
+      position: relative;
+      padding: var(--space-5) 0 var(--space-7);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 3rem;
+      right: -7rem;
+      width: 19rem;
+      height: 19rem;
+      border-radius: 42% 58% 62% 38% / 45% 40% 60% 55%;
+      background: rgba(127, 146, 112, 0.14);
+      transform: rotate(20deg);
+    }
+
+    .hero-grid {
+      position: relative;
+      display: grid;
+      gap: var(--space-6);
+      align-items: center;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+      padding: 0.55rem 0.85rem;
+      border: 1px dashed rgba(76, 50, 37, 0.28);
+      border-radius: var(--radius-pill);
+      background: rgba(255, 250, 242, 0.7);
+      color: var(--color-sage-dark);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero-tagline {
+      max-width: 600px;
+      margin-bottom: var(--space-5);
+      font-size: clamp(1.08rem, 3vw, 1.3rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+      width: min(100%, 570px);
+      margin-inline: auto;
+    }
+
+    .hero-photo-frame {
+      position: relative;
+      padding: 0.65rem;
+      border-radius: 44% 56% 48% 52% / 38% 46% 54% 62%;
+      background: var(--color-brown);
+      box-shadow: var(--shadow-soft);
+      transform: rotate(1.2deg);
+    }
+
+    .hero-photo-frame img {
+      min-height: 420px;
+      max-height: 620px;
+      border-radius: inherit;
+      object-fit: cover;
+    }
+
+    .hero-badge {
+      position: absolute;
+      right: -0.25rem;
+      bottom: 1.25rem;
+      max-width: 165px;
+      padding: 1rem;
+      border: 3px solid var(--color-cream);
+      border-radius: 1.6rem 1.6rem 1.6rem 0.45rem;
+      background: var(--color-honey);
+      color: var(--color-brown-dark);
+      box-shadow: var(--shadow-card);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.15;
+      transform: rotate(-3deg);
+    }
+
+    .wood-divider {
+      height: 18px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px) 0 0 / 38px 100%, linear-gradient(90deg, var(--color-caramel-dark), var(--color-caramel), var(--color-caramel-dark));
+      box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    .services {
+      background: var(--color-paper);
+    }
+
+    .service-grid {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .service-card {
+      position: relative;
+      min-height: 220px;
+      padding: var(--space-5);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-cream);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px) rotate(-0.35deg);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .service-number {
+      margin-bottom: var(--space-3);
+      color: var(--color-caramel);
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    .service-card p {
+      margin-bottom: 0;
+    }
+
+    .service-card::after {
+      content: "";
+      position: absolute;
+      right: -2.3rem;
+      bottom: -2.6rem;
+      width: 7rem;
+      height: 7rem;
+      border: 2px dashed rgba(184, 111, 61, 0.16);
+      border-radius: 50%;
+    }
+
+    .service-photo-card {
+      min-height: 280px;
+      padding: 0;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .service-photo-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      object-fit: cover;
+    }
+
+    .about {
+      overflow: hidden;
+    }
+
+    .about-grid {
+      display: grid;
+      gap: var(--space-6);
+      align-items: center;
+    }
+
+    .about-collage {
+      position: relative;
+      min-height: 480px;
+    }
+
+    .about-main-photo {
+      width: 82%;
+      height: 390px;
+      border: 8px solid var(--color-paper);
+      border-radius: var(--radius-xl);
+      object-fit: cover;
+      box-shadow: var(--shadow-soft);
+      transform: rotate(-2deg);
+    }
+
+    .about-small-photo {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 48%;
+      height: 210px;
+      border: 8px solid var(--color-cream);
+      border-radius: 2rem 2rem 0.65rem 2rem;
+      object-fit: cover;
+      box-shadow: var(--shadow-card);
+      transform: rotate(3deg);
+    }
+
+    .about-copy-card {
+      position: relative;
+      padding: var(--space-5);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 250, 242, 0.75);
+    }
+
+    .about-copy-card::before {
+      content: "";
+      position: absolute;
+      top: -14px;
+      left: 2rem;
+      width: 74px;
+      height: 28px;
+      background: rgba(233, 183, 93, 0.62);
+      transform: rotate(-4deg);
+    }
+
+    .about-list {
+      display: grid;
+      gap: var(--space-3);
+      margin: var(--space-5) 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .about-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      color: var(--color-brown);
+      font-weight: 700;
+    }
+
+    .about-list li::before {
+      content: "•";
+      display: grid;
+      flex: 0 0 1.7rem;
+      height: 1.7rem;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--color-honey);
+      color: var(--color-brown-dark);
+      font-weight: 900;
+    }
+
+    .info-section {
+      background: linear-gradient(rgba(48, 32, 25, 0.95), rgba(48, 32, 25, 0.95)), url("../stock/dog-house-grooming-salon/04.jpg") center / cover;
+      color: var(--color-white);
+    }
+
+    .info-section h2, .info-section h3 {
+      color: var(--color-white);
+    }
+
+    .info-section p, .info-section address {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .info-section .section-label {
+      color: var(--color-honey);
+    }
+
+    .location-grid {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .map-frame {
+      min-height: 420px;
+      overflow: hidden;
+      border: 8px solid rgba(255, 250, 242, 0.1);
+      border-radius: var(--radius-xl);
+      background: var(--color-paper);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .map-frame iframe {
+      display: block;
+      width: 100%;
+      min-height: 420px;
+      border: 0;
+    }
+
+    .location-details {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .info-card {
+      padding: var(--space-5);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(5px);
+    }
+
+    address {
+      margin-bottom: var(--space-4);
+      font-style: normal;
+    }
+
+    .hours-list {
+      display: grid;
+      gap: 0;
+      margin: 0;
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding: 0.72rem 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.18);
+    }
+
+    .hours-row:last-child {
+      border-bottom: 0;
+    }
+
+    .hours-row dt {
+      font-weight: 800;
+    }
+
+    .hours-row dd {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.8);
+      text-align: right;
+    }
+
+    .contact {
+      background: var(--color-paper);
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    .contact-callout {
+      padding: var(--space-5);
+      border-radius: var(--radius-xl);
+      background: var(--color-sage);
+      color: var(--color-white);
+      box-shadow: var(--shadow-card);
+    }
+
+    .contact-callout h2, .contact-callout p {
+      color: var(--color-white);
+    }
+
+    .contact-callout p {
+      opacity: 0.9;
+    }
+
+    .phone-display {
+      display: inline-block;
+      margin-top: var(--space-2);
+      color: var(--color-white);
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 7vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .contact-photo {
+      height: 230px;
+      margin-top: var(--space-5);
+      border-radius: var(--radius-lg);
+      object-fit: cover;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: var(--space-4);
+      padding: var(--space-5);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      background: var(--color-cream);
+      box-shadow: var(--shadow-card);
+    }
+
+    .field {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .field label {
+      color: var(--color-brown);
+      font-weight: 800;
+    }
+
+    .field input, .field textarea {
+      width: 100%;
+      border: 1px solid rgba(76, 50, 37, 0.2);
+      border-radius: var(--radius-md);
+      background: var(--color-paper);
+      color: var(--color-brown-dark);
+      padding: 0.9rem 1rem;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .field input:focus, .field textarea:focus {
+      border-color: var(--color-caramel);
+      box-shadow: 0 0 0 4px rgba(184, 111, 61, 0.1);
+      outline: none;
+    }
+
+    .field textarea {
+      min-height: 145px;
+      resize: vertical;
+    }
+
+    .form-note {
+      margin: 0;
+      font-size: 0.86rem;
+    }
+
+    .form-status {
+      display: none;
+      margin: 0;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius-md);
+      background: rgba(127, 146, 112, 0.14);
+      color: var(--color-sage-dark);
+      font-weight: 700;
+    }
+
+    .form-status.is-visible {
+      display: block;
+    }
+
+    .site-footer {
+      padding: var(--space-6) 0;
+      background: #241914;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .footer-brand {
+      color: var(--color-white);
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1.05;
+    }
+
+    .footer-heading {
+      margin-bottom: var(--space-3);
+      color: var(--color-honey);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .footer-links a:hover {
+      color: var(--color-white);
+    }
+
+    .footer-bottom {
+      margin-top: var(--space-5);
+      padding-top: var(--space-4);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.88rem;
+    }
+
+    .mobile-call-bar {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1200;
+      display: flex;
+      min-height: var(--mobile-call-height);
+      align-items: center;
+      gap: var(--space-2);
+      padding: 0.7rem max(0.7rem, env(safe-area-inset-right)) max(0.7rem, env(safe-area-inset-bottom)) max(0.7rem, env(safe-area-inset-left));
+      border-top: 1px solid rgba(76, 50, 37, 0.12);
+      background: rgba(255, 250, 242, 0.97);
+      box-shadow: 0 -10px 30px rgba(48, 32, 25, 0.13);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .mobile-call-bar[hidden] {
+      display: none;
+    }
+
+    .mobile-call-button {
+      display: flex;
+      min-height: 54px;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      border-radius: var(--radius-pill);
+      background: var(--color-caramel);
+      color: var(--color-white);
+      font-weight: 900;
+    }
+
+    .mobile-call-close {
+      display: grid;
+      flex: 0 0 42px;
+      height: 42px;
+      place-items: center;
+      border: 1px solid var(--color-border);
+      border-radius: 50%;
+      background: var(--color-cream);
+      color: var(--color-brown);
+      cursor: pointer;
+      font-size: 1.15rem;
+      line-height: 1;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 650ms ease, transform 650ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (min-width: 640px) {
+      .container {
+        width: min(calc(100% - 3rem), var(--max-width));
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.4fr 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 840px) {
+      body.call-bar-visible {
+        padding-bottom: 0;
+      }
+
+      .mobile-call-bar {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: none;
+      }
+
+      .nav-links {
+        position: static;
+        display: flex;
+        align-items: center;
+        gap: 0.1rem;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .nav-links a {
+        padding: 0.65rem 0.72rem;
+        font-size: 0.9rem;
+      }
+
+      .nav-links .nav-call {
+        margin-left: var(--space-2);
+        padding-inline: 1rem;
+      }
+
+      .hero {
+        padding: var(--space-7) 0 var(--space-8);
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.03fr) minmax(340px, 0.97fr);
+      }
+
+      .hero-copy {
+        padding-right: var(--space-4);
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .service-photo-card {
+        grid-column: span 1;
+      }
+
+      .about-grid {
+        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      }
+
+      .location-grid {
+        grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+        align-items: start;
+      }
+
+      .section {
+        padding-block: var(--space-8);
+      }
+    }
+
+    @media (min-width: 1080px) {
+      .nav-links a {
+        padding-inline: 0.9rem;
+        font-size: 0.95rem;
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .service-photo-card {
+        grid-column: span 1;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero-actions {
+        display: grid;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .hero-photo-frame img {
+        min-height: 340px;
+      }
+
+      .about-collage {
+        min-height: 410px;
+      }
+
+      .about-main-photo {
+        height: 330px;
+      }
+
+      .about-small-photo {
+        height: 170px;
+      }
+    }
+  </style>
+</head>
+<body class="call-bar-visible">
+  <header class="site-header">
+    <nav class="container nav-shell" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Dog House Grooming Salon home">
+        <span class="paw-mark" aria-hidden="true">♥</span>
+        <span class="brand-text">Dog House Grooming Salon</span>
+      </a>
+
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="navLinks"
+        aria-label="Open navigation menu"
+      >
+        <span class="nav-toggle-lines" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#location">Location</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-call" href="tel:+17179447551">Call (717) 944-7551</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="hero-eyebrow">
+            <span aria-hidden="true">●</span>
+            Pet grooming in Middletown, PA
+          </div>
+
+          <h1 id="hero-title">
+            A cleaner, tidier,
+            <span class="scribble">happier pup.</span>
+          </h1>
+
+          <p class="hero-tagline">
+            Bathing, haircuts, nail care, ear cleaning, and paw treatments at Dog House Grooming Salon on Rupp Street.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="tel:+17179447551">
+              Call Now
+              <span aria-hidden="true">→</span>
+            </a>
+            <a class="button button-secondary" href="#services">
+              See Grooming Services
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-photo-wrap reveal">
+          <div class="hero-photo-frame">
+            <img
+              src="../stock/dog-house-grooming-salon/hero.jpg"
+              alt="Dog receiving professional grooming care at Dog House Grooming Salon"
+            >
+          </div>
+          <div class="hero-badge">
+            Fresh coats.<br>
+            Neat paws.<br>
+            Happy dogs.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wood-divider" aria-hidden="true"></div>
+
+    <section class="section services" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-label">The grooming menu</span>
+          <h2 id="services-title">Good grooming from nose to paws.</h2>
+          <p class="section-intro">
+            Choose the care your dog needs, from a fresh bath to a tidy haircut and the small details that help keep paws, nails, and ears in shape.
+          </p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card reveal">
+            <div class="service-number">01 / Bathing</div>
+            <h3>Bathing</h3>
+            <p>A thorough bath to clean the coat and leave your dog feeling fresh.</p>
+          </article>
+
+          <div class="service-photo-card reveal">
+            <img
+              src="../stock/dog-house-grooming-salon/01.jpg"
+              alt="Freshly groomed dog with a clean, brushed coat"
+              loading="lazy"
+            >
+          </div>
+
+          <article class="service-card reveal">
+            <div class="service-number">02 / Haircuts</div>
+            <h3>Haircuts</h3>
+            <p>A clean, practical trim to tidy your dog's coat and overall appearance.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-number">03 / Ear Care</div>
+            <h3>Ear Cleaning</h3>
+            <p>Gentle ear cleaning as part of your dog's regular grooming routine.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-number">04 / Nail Care</div>
+            <h3>Nail Trimming</h3>
+            <p>Neat nail trimming to help keep your dog's paws cared for and maintained.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-number">05 / Paw Care</div>
+            <h3>Paw Treatments</h3>
+            <p>Focused paw care for one of the hardest-working parts of your dog.</p>
+          </article>
+
+          <div class="service-photo-card reveal">
+            <img
+              src="../stock/dog-house-grooming-salon/02.jpg"
+              alt="Dog being cared for during a professional grooming session"
+              loading="lazy"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-collage reveal">
+          <img
+            class="about-main-photo"
+            src="../stock/dog-house-grooming-salon/03.jpg"
+            alt="Dog at a grooming salon during coat care"
+            loading="lazy"
+          >
+          <img
+            class="about-small-photo"
+            src="../stock/dog-house-grooming-salon/04.jpg"
+            alt="Close view of a dog receiving grooming attention"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="about-copy-card reveal">
+          <span class="section-label">Dog House Grooming Salon</span>
+          <h2 id="about-title">A straightforward stop for your dog's grooming.</h2>
+          <p>
+            Dog House Grooming Salon provides everyday grooming services from its shop at 47 Rupp St in Middletown. Bring your dog in for the basics that keep a coat, nails, ears, and paws cared for.
+          </p>
+          <p>
+            Need to talk through the grooming service you're looking for? Call the salon directly at <a href="tel:+17179447551"><strong>(717) 944-7551</strong></a>.
+          </p>
+
+          <ul class="about-list">
+            <li>Bathing and coat care</li>
+            <li>Haircuts and trimming</li>
+            <li>Nails, ears, and paw treatments</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section info-section" id="location" aria-labelledby="location-title">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-label">Find the Dog House</span>
+          <h2 id="location-title">Right here in Middletown.</h2>
+        </div>
+
+        <div class="location-grid">
+          <div class="map-frame reveal">
+            <iframe
+              title="Map showing Dog House Grooming Salon at 47 Rupp St, Middletown, PA 17057"
+              src="https://maps.google.com/maps?q=47%20Rupp%20St%2C%20Middletown%2C%20PA%2017057&amp;output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <div class="location-details">
+            <div class="info-card reveal">
+              <h3>Location</h3>
+              <address>
+                47 Rupp St<br>
+                Middletown, PA 17057
+              </address>
+              <a
+                class="button button-primary"
+                href="https://maps.google.com/maps?q=47%20Rupp%20St%2C%20Middletown%2C%20PA%2017057"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open Map
+              </a>
+            </div>
+
+            <div class="info-card reveal" id="hours">
+              <h3>Hours</h3>
+              <dl class="hours-list">
+                <div class="hours-row">
+                  <dt>Monday</dt>
+                  <dd>8am-5pm</dd>
+                </div>
+                <div class="hours-row">
+                  <dt>Tuesday</dt>
+                  <dd>8am-5pm</dd>
+                </div>
+                <div class="hours-row">
+                  <dt>Wednesday</dt>
+                  <dd>8am-5pm</dd>
+                </div>
+                <div class="hours-row">
+                  <dt>Thursday</dt>
+                  <dd>8am-5pm</dd>
+                </div>
+                <div class="hours-row">
+                  <dt>Friday</dt>
+                  <dd>8am-5pm</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-grid">
+        <div class="contact-callout reveal">
+          <span class="section-label">Get in touch</span>
+          <h2 id="contact-title">Ready for grooming?</h2>
+          <p>
+            Call Dog House Grooming Salon during business hours to ask about bathing, haircuts, nail trimming, ear cleaning, or paw treatments.
+          </p>
+
+          <a class="phone-display" href="tel:+17179447551">
+            (717) 944-7551
+          </a>
+
+          <img
+            class="contact-photo"
+            src="../stock/dog-house-grooming-salon/02.jpg"
+            alt="Well-groomed dog after salon care"
+            loading="lazy"
+          >
+        </div>
+
+        <form class="contact-form reveal" id="contactForm">
+          <div>
+            <span class="section-label">Message form</span>
+            <h3>Send a quick note.</h3>
+            <p>Share your contact information and what you would like to ask about.</p>
+          </div>
+
+          <div class="field">
+            <label for="name">Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+            ></textarea>
+          </div>
+
+          <button class="button button-primary" type="submit">
+            Prepare Message
+          </button>
+
+          <p class="form-note">
+            For direct contact, call <a href="tel:+17179447551"><strong>(717) 944-7551</strong></a>.
+          </p>
+
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Dog House Grooming Salon</div>
+          <p>
+            Pet grooming at 47 Rupp St in Middletown, Pennsylvania.
+          </p>
+          <a href="tel:+17179447551">(717) 944-7551</a>
+        </div>
+
+        <div>
+          <div class="footer-heading">Quick Links</div>
+          <div class="footer-links">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#location">Location</a>
+            <a href="#hours">Hours</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Hours</div>
+          <div>Monday-Friday</div>
+          <div>8am-5pm</div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; <span id="copyrightYear">2026</span> Dog House Grooming Salon. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-call-bar" id="mobileCallBar" aria-label="Quick call">
+    <a class="mobile-call-button" href="tel:+17179447551">
+      Call Now (717) 944-7551
+    </a>
+    <button class="mobile-call-close" id="mobileCallClose" type="button" aria-label="Dismiss call bar">
+      ×
+    </button>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+      const navToggle = document.getElementById("navToggle");
+      const navLinks = document.getElementById("navLinks");
+      if (navToggle && navLinks) {
+        navToggle.addEventListener("click", function () {
+          const isOpen = navLinks.classList.toggle("is-open");
+          navToggle.setAttribute("aria-expanded", String(isOpen));
+          navToggle.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation menu" : "Open navigation menu"
+          );
+        });
+        const navAnchors = navLinks.querySelectorAll("a");
+        if (navAnchors.length > 0) {
+          navAnchors.forEach(function (anchor) {
+            anchor.addEventListener("click", function () {
+              navLinks.classList.remove("is-open");
+              navToggle.setAttribute("aria-expanded", "false");
+              navToggle.setAttribute("aria-label", "Open navigation menu");
+            });
+          });
+        }
+      }
+      const revealElements = document.querySelectorAll(".reveal");
+      if (revealElements.length > 0) {
+        if ("IntersectionObserver" in window) {
+          const revealObserver = new IntersectionObserver(
+            function (entries, observer) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.12, rootMargin: "0px 0px -35px 0px" }
+          );
+          revealElements.forEach(function (element) {
+            revealObserver.observe(element);
+          });
+        } else {
+          revealElements.forEach(function (element) {
+            element.classList.add("is-visible");
+          });
+        }
+      }
+      const mobileCallBar = document.getElementById("mobileCallBar");
+      const mobileCallClose = document.getElementById("mobileCallClose");
+      let callBarDismissed = false;
+      try {
+        callBarDismissed = window.sessionStorage.getItem("dogHouseCallBarDismissed") === "true";
+      } catch (error) {
+        callBarDismissed = false;
+      }
+      if (mobileCallBar) {
+        if (callBarDismissed) {
+          mobileCallBar.hidden = true;
+          document.body.classList.remove("call-bar-visible");
+        } else {
+          mobileCallBar.hidden = false;
+          document.body.classList.add("call-bar-visible");
+        }
+      }
+      if (mobileCallClose && mobileCallBar) {
+        mobileCallClose.addEventListener("click", function () {
+          mobileCallBar.hidden = true;
+          document.body.classList.remove("call-bar-visible");
+          try {
+            window.sessionStorage.setItem("dogHouseCallBarDismissed", "true");
+          } catch (error) {
+            return;
+          }
+        });
+      }
+      const contactForm = document.getElementById("contactForm");
+      const formStatus = document.getElementById("formStatus");
+      if (contactForm) {
+        contactForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+          const nameField = document.getElementById("name");
+          const phoneField = document.getElementById("phone");
+          const messageField = document.getElementById("message");
+          if (!nameField || !phoneField || !messageField) {
+            return;
+          }
+          const name = nameField.value.trim();
+          const phone = phoneField.value.trim();
+          const message = messageField.value.trim();
+          if (!name || !phone || !message) {
+            if (formStatus) {
+              formStatus.textContent = "Please complete your name, phone number, and message.";
+              formStatus.classList.add("is-visible");
+            }
+            return;
+          }
+          if (formStatus) {
+            formStatus.textContent = "Thanks. This demo form does not send online yet. Please call (717) 944-7551 to contact Dog House Grooming Salon.";
+            formStatus.classList.add("is-visible");
+          }
+        });
+      }
+      const copyrightYear = document.getElementById("copyrightYear");
+      if (copyrightYear) {
+        copyrightYear.textContent = String(new Date().getFullYear());
+      }
+    })();
+  </script>
+</body>
+</html>

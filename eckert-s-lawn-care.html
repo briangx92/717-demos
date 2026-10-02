@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Eckert's Lawn Care provides lawn mowing, trimming and edging, yard cleanup, and leaf removal in Middletown, PA 17057. Call (717) 829-4002.">
+<title>Eckert's Lawn Care | Lawn Care in Middletown, PA</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Rye&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green-950: #17271b;
+  --green-900: #203424;
+  --green-800: #2b4730;
+  --green-700: #3d5c3e;
+  --green-500: #718164;
+  --brown-900: #493323;
+  --brown-800: #61452f;
+  --brown-700: #79593d;
+  --brown-500: #a17d57;
+  --tan-300: #d5c2a4;
+  --cream-100: #f4eee2;
+  --cream-50: #faf7f0;
+  --white: #ffffff;
+  --ink: #27271f;
+  --muted: #666458;
+  --border: rgba(73, 51, 35, 0.18);
+  --shadow: 0 18px 50px rgba(37, 35, 26, 0.14);
+  --space-1: 0.4rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+  --space-7: 4rem;
+  --space-8: 5.5rem;
+  --space-9: 7rem;
+  --radius-sm: 0.45rem;
+  --radius-md: 0.85rem;
+  --radius-lg: 1.4rem;
+  --radius-pill: 999px;
+  --container: 1180px;
+  --nav-height: 74px;
+  --mobile-call-height: 76px;
+  --font-display: "Rye", Georgia, serif;
+  --font-body: "DM Sans", Arial, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-height) + var(--space-3)); }
+body { margin: 0; background: var(--cream-50); color: var(--ink); font-family: var(--font-body); line-height: 1.65; overflow-x: hidden; }
+body.menu-open { overflow: hidden; }
+img { display: block; width: 100%; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, textarea { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+.container { width: min(calc(100% - 2rem), var(--container)); margin-inline: auto; }
+.section { position: relative; padding-block: var(--space-8); }
+.section-label { display: inline-flex; align-items: center; gap: var(--space-2); margin: 0 0 var(--space-3); color: var(--brown-700); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+.section-label::before { width: 28px; height: 2px; background: currentColor; content: ""; }
+.section-title { max-width: 760px; margin: 0 0 var(--space-4); color: var(--green-950); font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 400; line-height: 1.15; }
+.section-intro { max-width: 660px; margin: 0; color: var(--muted); font-size: 1.05rem; }
+.wood-texture { background-color: var(--brown-900); background-image: linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px), repeating-linear-gradient(4deg, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 2px, rgba(0,0,0,0.025) 2px, rgba(0,0,0,0.025) 5px); background-size: 50px 100%, auto; }
+.btn { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; gap: var(--space-2); padding: 0.8rem 1.25rem; border: 2px solid transparent; border-radius: var(--radius-sm); cursor: pointer; font-weight: 700; line-height: 1.15; transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease; }
+.btn:hover, .btn:focus-visible { transform: translateY(-2px); }
+.btn-primary { background: var(--cream-100); color: var(--green-950); box-shadow: 0 12px 30px rgba(0,0,0,0.2); }
+.btn-primary:hover, .btn-primary:focus-visible { background: var(--white); }
+.btn-secondary { border-color: rgba(255,255,255,0.55); color: var(--white); }
+.btn-secondary:hover, .btn-secondary:focus-visible { border-color: var(--white); background: rgba(255,255,255,0.1); }
+.btn-dark { background: var(--green-900); color: var(--white); }
+.btn-dark:hover, .btn-dark:focus-visible { background: var(--green-800); }
+.site-header { position: sticky; z-index: 1000; top: 0; min-height: var(--nav-height); border-bottom: 1px solid rgba(255,255,255,0.09); background: rgba(23, 39, 27, 0.97); color: var(--white); backdrop-filter: blur(12px); }
+.navbar { display: flex; min-height: var(--nav-height); align-items: center; justify-content: space-between; gap: var(--space-3); }
+.brand { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-display); font-size: 1rem; line-height: 1.15; }
+.brand-mark { display: grid; width: 34px; height: 34px; flex: 0 0 auto; place-items: center; border: 1px solid rgba(255,255,255,0.25); background: var(--brown-700); color: var(--cream-100); font-family: var(--font-body); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.03em; transform: rotate(-2deg); }
+.nav-links { position: fixed; inset: var(--nav-height) 0 auto 0; display: none; padding: var(--space-4) 1rem var(--space-5); border-top: 1px solid rgba(255,255,255,0.08); background: var(--green-950); box-shadow: var(--shadow); }
+.nav-links.open { display: grid; gap: var(--space-2); }
+.nav-links a { padding: 0.8rem 0.25rem; color: rgba(255,255,255,0.83); font-weight: 600; }
+.nav-links a:hover, .nav-links a:focus-visible { color: var(--white); }
+.desktop-call { display: none; }
+.menu-toggle { display: inline-grid; width: 44px; height: 44px; place-items: center; border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius-sm); background: transparent; color: var(--white); cursor: pointer; }
+.menu-lines, .menu-lines::before, .menu-lines::after { width: 20px; height: 2px; background: currentColor; content: ""; transition: transform 180ms ease, opacity 180ms ease; }
+.menu-lines { position: relative; }
+.menu-lines::before, .menu-lines::after { position: absolute; left: 0; }
+.menu-lines::before { top: -6px; }
+.menu-lines::after { top: 6px; }
+.menu-toggle[aria-expanded="true"] .menu-lines { background: transparent; }
+.menu-toggle[aria-expanded="true"] .menu-lines::before { top: 0; transform: rotate(45deg); }
+.menu-toggle[aria-expanded="true"] .menu-lines::after { top: 0; transform: rotate(-45deg); }
+.hero { position: relative; min-height: 680px; display: grid; align-items: center; isolation: isolate; overflow: hidden; background: var(--green-950); color: var(--white); }
+.hero::before { position: absolute; z-index: -3; inset: 0; background: linear-gradient(90deg, rgba(20,35,23,0.96) 0%, rgba(20,35,23,0.78) 46%, rgba(20,35,23,0.25) 100%), linear-gradient(0deg, rgba(73,51,35,0.4), rgba(73,51,35,0.04)); content: ""; transform: scale(1.015); }
+.hero-photo { position: absolute; z-index: -4; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
+.hero::after { position: absolute; z-index: -2; right: -120px; bottom: -175px; width: 500px; height: 280px; border: 2px solid rgba(244,238,226,0.14); border-radius: 50%; content: ""; transform: rotate(-8deg); }
+.hero-inner { padding-block: var(--space-8); }
+.hero-kicker { display: inline-flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-4); padding: 0.45rem 0.7rem; border: 1px solid rgba(255,255,255,0.25); background: rgba(44,67,47,0.72); color: var(--cream-100); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; }
+.hero-kicker::before { width: 8px; height: 8px; border-radius: 50%; background: var(--tan-300); content: ""; }
+.hero h1 { max-width: 820px; margin: 0 0 var(--space-4); font-family: var(--font-display); font-size: clamp(2.7rem, 9vw, 5.8rem); font-weight: 400; letter-spacing: -0.025em; line-height: 1.03; text-wrap: balance; }
+.hero-copy { max-width: 610px; margin: 0 0 var(--space-5); color: rgba(255,255,255,0.84); font-size: clamp(1.05rem, 2vw, 1.25rem); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.hero-details { display: grid; max-width: 720px; gap: 1px; margin-top: var(--space-6); background: rgba(255,255,255,0.12); }
+.hero-detail { padding: var(--space-3); background: rgba(23,39,27,0.76); }
+.hero-detail strong { display: block; margin-bottom: 0.2rem; color: var(--tan-300); font-size: 0.73rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.hero-detail span, .hero-detail a { color: var(--white); font-weight: 600; }
+.services { background: linear-gradient(rgba(250,247,240,0.97), rgba(250,247,240,0.97)), repeating-linear-gradient(0deg, transparent 0, transparent 34px, rgba(73,51,35,0.04) 35px); }
+.services-header { margin-bottom: var(--space-6); }
+.service-grid { display: grid; gap: var(--space-4); }
+.service-card { position: relative; min-height: 330px; overflow: hidden; border: 1px solid var(--border); background: var(--white); box-shadow: 0 10px 30px rgba(73,51,35,0.07); }
+.service-card img { height: 195px; object-fit: cover; transition: transform 450ms ease; }
+.service-card:hover img { transform: scale(1.035); }
+.service-card-body { padding: var(--space-4); }
+.service-number { margin-bottom: var(--space-2); color: var(--brown-500); font-size: 0.74rem; font-weight: 800; letter-spacing: 0.13em; }
+.service-card h3 { margin: 0 0 var(--space-2); color: var(--green-950); font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; line-height: 1.25; }
+.service-card p { margin: 0; color: var(--muted); }
+.craft-strip { padding: var(--space-5) 0; color: var(--cream-100); }
+.craft-strip-inner { display: flex; flex-direction: column; gap: var(--space-3); align-items: flex-start; justify-content: space-between; }
+.craft-strip strong { font-family: var(--font-display); font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 400; }
+.craft-strip span { color: rgba(255,255,255,0.7); }
+.about-grid { display: grid; gap: var(--space-5); align-items: center; }
+.about-photo-wrap { position: relative; padding: 0 0 var(--space-4) var(--space-3); }
+.about-photo-wrap::before { position: absolute; z-index: -1; top: var(--space-4); right: var(--space-3); bottom: 0; left: 0; border: 1px solid var(--brown-500); background: repeating-linear-gradient(5deg, var(--brown-900) 0, var(--brown-900) 3px, var(--brown-800) 3px, var(--brown-800) 8px); content: ""; }
+.about-photo { aspect-ratio: 4 / 5; object-fit: cover; box-shadow: var(--shadow); }
+.about-copy p { color: var(--muted); font-size: 1.03rem; }
+.about-list { display: grid; gap: var(--space-3); margin: var(--space-5) 0 0; padding: 0; list-style: none; }
+.about-list li { display: grid; grid-template-columns: 34px 1fr; gap: var(--space-3); align-items: start; }
+.check { display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid var(--tan-300); background: var(--cream-100); color: var(--green-800); font-weight: 800; }
+.about-list strong { display: block; margin-bottom: 0.15rem; color: var(--green-950); }
+.about-list span { color: var(--muted); }
+.location-hours { background: var(--green-950); color: var(--white); overflow: hidden; }
+.location-hours .section-label { color: var(--tan-300); }
+.location-hours .section-title { color: var(--white); }
+.location-grid { display: grid; gap: var(--space-5); }
+.map-frame { min-height: 390px; overflow: hidden; border: 7px solid var(--brown-700); box-shadow: var(--shadow); }
+.map-frame iframe { display: block; width: 100%; height: 100%; min-height: 390px; border: 0; filter: sepia(0.15) saturate(0.75) contrast(0.96); }
+.info-stack { display: grid; gap: var(--space-4); }
+.info-card { border: 1px solid rgba(255,255,255,0.13); background: rgba(255,255,255,0.055); padding: var(--space-5); }
+.info-card h3 { margin: 0 0 var(--space-3); color: var(--tan-300); font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; }
+.info-card p { margin: 0; color: rgba(255,255,255,0.78); }
+.info-card a { color: var(--white); font-weight: 700; }
+.hours-line { display: flex; justify-content: space-between; gap: var(--space-3); padding-top: var(--space-3); border-top: 1px solid rgba(255,255,255,0.11); }
+.hours-line:first-of-type { padding-top: 0; border-top: 0; }
+.hours-line span:last-child { color: var(--tan-300); font-weight: 700; }
+.contact { background-color: var(--cream-100); }
+.contact-photo-bg { position: relative; }
+.contact-photo-bg img { width: 100%; height: 100%; min-height: 260px; object-fit: cover; }
+.contact-grid { display: grid; gap: var(--space-6); align-items: start; }
+.contact-phone { display: inline-flex; margin-top: var(--space-3); color: var(--green-800); font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 800; line-height: 1.2; }
+.contact-phone:hover, .contact-phone:focus-visible { text-decoration: underline; text-underline-offset: 5px; }
+.contact-note { max-width: 500px; color: var(--muted); }
+.contact-form { padding: var(--space-5); border: 1px solid var(--border); background: rgba(255,255,255,0.91); box-shadow: var(--shadow); }
+.form-row { display: grid; gap: var(--space-4); }
+.field { display: grid; gap: 0.4rem; margin-bottom: var(--space-4); }
+.field label { color: var(--green-950); font-size: 0.88rem; font-weight: 700; }
+.field input, .field textarea { width: 100%; border: 1px solid rgba(73,51,35,0.25); border-radius: var(--radius-sm); outline: 0; background: var(--cream-50); color: var(--ink); padding: 0.85rem 0.9rem; transition: border-color 180ms ease, box-shadow 180ms ease; }
+.field input:focus, .field textarea:focus { border-color: var(--green-700); box-shadow: 0 0 0 3px rgba(61,92,62,0.12); }
+.field textarea { min-height: 145px; resize: vertical; }
+.site-footer { padding: var(--space-6) 0 var(--space-4); color: rgba(255,255,255,0.76); }
+.footer-grid { display: grid; gap: var(--space-5); }
+.footer-brand { color: var(--white); font-family: var(--font-display); font-size: 1.25rem; }
+.footer-grid h3 { margin: 0 0 var(--space-3); color: var(--tan-300); font-size: 0.78rem; letter-spacing: 0.13em; text-transform: uppercase; }
+.footer-links { display: grid; gap: var(--space-2); }
+.footer-links a:hover, .footer-links a:focus-visible { color: var(--white); }
+.footer-bottom { margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid rgba(255,255,255,0.12); font-size: 0.85rem; }
+.mobile-call-bar { position: fixed; z-index: 1200; right: 0; bottom: 0; left: 0; display: flex; min-height: var(--mobile-call-height); align-items: center; gap: var(--space-2); padding: 10px 12px; border-top: 1px solid rgba(255,255,255,0.16); background: rgba(23,39,27,0.98); box-shadow: 0 -8px 24px rgba(0,0,0,0.2); }
+.mobile-call-link { display: flex; min-height: 54px; flex: 1; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--cream-100); color: var(--green-950); font-weight: 800; }
+.mobile-call-close { display: grid; width: 42px; height: 42px; flex: 0 0 auto; place-items: center; border: 1px solid rgba(255,255,255,0.22); border-radius: 50%; background: transparent; color: var(--white); cursor: pointer; font-size: 1.15rem; }
+.mobile-call-bar.is-hidden { display: none; }
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 650ms ease, transform 650ms ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (max-width: 767px) { body { padding-bottom: var(--mobile-call-height); } body.call-bar-dismissed { padding-bottom: 0; } }
+@media (min-width: 600px) { .hero-details { grid-template-columns: repeat(3, 1fr); } .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .form-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; } }
+@media (min-width: 768px) { .mobile-call-bar { display: none; } body { padding-bottom: 0; } .section { padding-block: var(--space-9); } .about-grid, .contact-grid { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); } .location-grid { grid-template-columns: minmax(0, 1.3fr) minmax(310px, 0.7fr); align-items: stretch; } .craft-strip-inner { flex-direction: row; align-items: center; } }
+@media (min-width: 960px) { .menu-toggle { display: none; } .nav-links { position: static; display: flex; flex: 1; align-items: center; justify-content: center; gap: 1.45rem; padding: 0; border: 0; background: transparent; box-shadow: none; } .nav-links a { padding: 0.4rem 0; font-size: 0.9rem; } .desktop-call { display: inline-flex; min-height: 42px; padding: 0.65rem 0.9rem; background: var(--cream-100); color: var(--green-950); border-radius: var(--radius-sm); font-size: 0.88rem; font-weight: 800; } .hero { min-height: 760px; } .service-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } .service-card:nth-child(2), .service-card:nth-child(4) { transform: translateY(28px); } .about-grid { gap: var(--space-8); } .contact-grid { grid-template-columns: minmax(0, 0.8fr) minmax(500px, 1.2fr); } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; } .reveal { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<header class="site-header">
+<div class="container navbar">
+<a class="brand" href="#top" aria-label="Eckert's Lawn Care home">
+<span class="brand-mark" aria-hidden="true">ELC</span>
+<span>Eckert's Lawn Care</span>
+</a>
+<nav class="nav-links" id="navLinks" aria-label="Main navigation">
+<a href="#services">Services</a>
+<a href="#about">About</a>
+<a href="#location">Location</a>
+<a href="#hours">Hours</a>
+<a href="#contact">Contact</a>
+</nav>
+<a class="desktop-call" href="tel:+17178294002" aria-label="Call Eckert's Lawn Care at 717-829-4002">(717) 829-4002</a>
+<button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">
+<span class="menu-lines" aria-hidden="true"></span>
+</button>
+</div>
+</header>
+<main id="top">
+<section class="hero" aria-labelledby="hero-title">
+<img class="hero-photo" src="../stock/eckerts-lawn-care/hero.jpg" alt="Rustic outdoor landscape cared for by Eckert's Lawn Care in Middletown, PA">
+<div class="container hero-inner">
+<div class="reveal">
+<div class="hero-kicker">Lawn Care • Middletown, Pennsylvania</div>
+<h1 id="hero-title">Straightforward lawn care. Done with care.</h1>
+<p class="hero-copy">Eckert's Lawn Care handles the mowing, trimming, cleanup, and seasonal leaf work that keeps your yard looking cared for.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="tel:+17178294002">Call Now</a>
+<a class="btn btn-secondary" href="#services">View Services</a>
+</div>
+<div class="hero-details" aria-label="Business details">
+<div class="hero-detail"><strong>Serving</strong><span>Middletown, PA 17057</span></div>
+<div class="hero-detail"><strong>Hours</strong><span>Call for hours</span></div>
+<div class="hero-detail"><strong>Phone</strong><a href="tel:+17178294002">(717) 829-4002</a></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section services" id="services">
+<div class="container">
+<header class="services-header reveal">
+<p class="section-label">What We Do</p>
+<h2 class="section-title">The yard work that makes a visible difference.</h2>
+<p class="section-intro">Practical lawn care for Middletown properties, from regular mowing to the cleanup work that comes with changing seasons.</p>
+</header>
+<div class="service-grid">
+<article class="service-card reveal">
+<img src="../stock/eckerts-lawn-care/01.jpg" alt="Freshly maintained lawn representing Eckert's Lawn Care mowing service" loading="lazy">
+<div class="service-card-body">
+<div class="service-number">01 / MOWING</div>
+<h3>Lawn Mowing</h3>
+<p>Routine mowing that keeps grass neat, manageable, and clean across the property.</p>
+</div>
+</article>
+<article class="service-card reveal">
+<img src="../stock/eckerts-lawn-care/02.jpg" alt="Trimmed lawn edge representing trimming and edging service in Middletown" loading="lazy">
+<div class="service-card-body">
+<div class="service-number">02 / EDGING</div>
+<h3>Trimming &amp; Edging</h3>
+<p>Detail work around borders, walkways, and hard-to-reach areas for a finished look.</p>
+</div>
+</article>
+<article class="service-card reveal">
+<img src="../stock/eckerts-lawn-care/03.jpg" alt="Tidy residential yard representing yard cleanup service" loading="lazy">
+<div class="service-card-body">
+<div class="service-number">03 / CLEANUP</div>
+<h3>Yard Cleanup</h3>
+<p>General outdoor cleanup to clear loose debris and bring order back to the yard.</p>
+</div>
+</article>
+<article class="service-card reveal">
+<img src="../stock/eckerts-lawn-care/04.jpg" alt="Autumn yard with fallen leaves representing leaf removal service" loading="lazy">
+<div class="service-card-body">
+<div class="service-number">04 / LEAVES</div>
+<h3>Leaf Removal</h3>
+<p>Seasonal leaf removal to clear lawns and outdoor areas when autumn starts piling up.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<aside class="craft-strip wood-texture" aria-label="Eckert's Lawn Care service message">
+<div class="container craft-strip-inner">
+<strong>Simple work. Clean results.</strong>
+<span>Call Eckert's Lawn Care to discuss the work your yard needs.</span>
+</div>
+</aside>
+<section class="section" id="about">
+<div class="container about-grid">
+<div class="about-photo-wrap reveal">
+<img class="about-photo" src="../stock/eckerts-lawn-care/03.jpg" alt="Well-kept outdoor property illustrating the lawn and yard work provided by Eckert's Lawn Care" loading="lazy">
+</div>
+<div class="about-copy reveal">
+<p class="section-label">About Eckert's</p>
+<h2 class="section-title">Honest lawn care without making it complicated.</h2>
+<p>A cared-for yard starts with the basics done right. Eckert's Lawn Care provides mowing, trimming and edging, yard cleanup, and leaf removal in Middletown, PA 17057.</p>
+<p>Whether the grass needs attention or seasonal debris is taking over, call to discuss what needs to be handled and when service is available.</p>
+<ul class="about-list">
+<li><span class="check" aria-hidden="true">✓</span><div><strong>Local service</strong><span>Serving Middletown, PA 17057.</span></div></li>
+<li><span class="check" aria-hidden="true">✓</span><div><strong>Essential yard work</strong><span>Mowing, edging, cleanup, and leaf removal.</span></div></li>
+<li><span class="check" aria-hidden="true">✓</span><div><strong>Direct contact</strong><span>Call (717) 829-4002 to ask about hours and service.</span></div></li>
+</ul>
+</div>
+</div>
+</section>
+<section class="section location-hours" id="location">
+<div class="container">
+<header class="reveal">
+<p class="section-label">Local &amp; Accessible</p>
+<h2 class="section-title">Based in Middletown, Pennsylvania.</h2>
+</header>
+<div class="location-grid">
+<div class="map-frame reveal">
+<iframe src="https://maps.google.com/maps?q=Middletown%2C%20PA%2017057&amp;output=embed" title="Map showing Middletown, PA 17057" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+</div>
+<div class="info-stack">
+<article class="info-card reveal"><h3>Location</h3><p>Middletown, PA 17057</p></article>
+<article class="info-card reveal" id="hours"><h3>Hours</h3><div class="hours-line"><span>Availability</span><span>Call for hours</span></div></article>
+<article class="info-card reveal"><h3>Call Eckert's</h3><p>For service questions or current availability, call <a href="tel:+17178294002">(717) 829-4002</a>.</p></article>
+</div>
+</div>
+</div>
+</section>
+<section class="section contact" id="contact">
+<div class="container contact-grid">
+<div class="reveal">
+<p class="section-label">Get In Touch</p>
+<h2 class="section-title">Have yard work that needs handled?</h2>
+<p class="contact-note">Call Eckert's Lawn Care to ask about mowing, trimming and edging, yard cleanup, leaf removal, or current hours.</p>
+<a class="contact-phone" href="tel:+17178294002" aria-label="Call Eckert's Lawn Care at 717-829-4002">(717) 829-4002</a>
+</div>
+<div class="contact-photo-bg reveal">
+<img src="../stock/eckerts-lawn-care/04.jpg" alt="Autumn yard with fallen leaves representing leaf removal service" loading="lazy">
+</div>
+<form class="contact-form reveal" id="contactForm" action="#" method="post">
+<div class="form-row">
+<div class="field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+<div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
+</div>
+<div class="field"><label for="message">What can we help with?</label><textarea id="message" name="message" required></textarea></div>
+<button class="btn btn-dark" type="submit">Send Message</button>
+</form>
+</div>
+</section>
+</main>
+<footer class="site-footer wood-texture">
+<div class="container">
+<div class="footer-grid">
+<div><div class="footer-brand">Eckert's Lawn Care</div><p>Middletown, PA 17057</p><p><a href="tel:+17178294002">(717) 829-4002</a></p></div>
+<div><h3>Quick Links</h3><div class="footer-links"><a href="#services">Services</a><a href="#about">About</a><a href="#location">Location</a><a href="#contact">Contact</a></div></div>
+<div><h3>Hours</h3><p>Call for hours</p></div>
+</div>
+<div class="footer-bottom">&copy; <span id="copyrightYear">2026</span> Eckert's Lawn Care. All rights reserved.</div>
+</div>
+</footer>
+<aside class="mobile-call-bar" id="mobileCallBar" aria-label="Quick call">
+<a class="mobile-call-link" href="tel:+17178294002" aria-label="Call Eckert's Lawn Care at 717-829-4002">Call Now: (717) 829-4002</a>
+<button class="mobile-call-close" id="mobileCallClose" type="button" aria-label="Dismiss call bar">×</button>
+</aside>
+<script>
+(function () {
+  "use strict";
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+  function closeMenu() {
+    if (!menuToggle || !navLinks) { return; }
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation menu");
+    navLinks.classList.remove("open");
+    document.body.classList.remove("menu-open");
+  }
+  function toggleMenu() {
+    if (!menuToggle || !navLinks) { return; }
+    const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+    menuToggle.setAttribute("aria-expanded", String(!isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Open navigation menu" : "Close navigation menu");
+    navLinks.classList.toggle("open", !isOpen);
+    document.body.classList.toggle("menu-open", !isOpen);
+  }
+  if (menuToggle) { menuToggle.addEventListener("click", toggleMenu); }
+  if (navLinks) {
+    const navAnchors = navLinks.querySelectorAll("a");
+    navAnchors.forEach(function (anchor) { anchor.addEventListener("click", closeMenu); });
+  }
+  window.addEventListener("resize", function () {
+    if (window.innerWidth >= 960) { closeMenu(); }
+  });
+  const revealElements = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -35px 0px" });
+    revealElements.forEach(function (element) { revealObserver.observe(element); });
+  } else {
+    revealElements.forEach(function (element) { element.classList.add("is-visible"); });
+  }
+  const mobileCallBar = document.getElementById("mobileCallBar");
+  const mobileCallClose = document.getElementById("mobileCallClose");
+  const callBarSessionKey = "eckertsLawnCareCallBarDismissed";
+  function callBarWasDismissed() {
+    try { return sessionStorage.getItem(callBarSessionKey) === "true"; } catch (error) { return false; }
+  }
+  function dismissCallBar() {
+    if (mobileCallBar) { mobileCallBar.classList.add("is-hidden"); }
+    document.body.classList.add("call-bar-dismissed");
+    try { sessionStorage.setItem(callBarSessionKey, "true"); } catch (error) { return; }
+  }
+  if (callBarWasDismissed()) {
+    if (mobileCallBar) { mobileCallBar.classList.add("is-hidden"); }
+    document.body.classList.add("call-bar-dismissed");
+  }
+  if (mobileCallClose) { mobileCallClose.addEventListener("click", dismissCallBar); }
+  const contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const nameField = document.getElementById("name");
+      const phoneField = document.getElementById("phone");
+      const messageField = document.getElementById("message");
+      if (!nameField || !phoneField || !messageField) { return; }
+      if (!nameField.value.trim() || !phoneField.value.trim() || !messageField.value.trim()) {
+        contactForm.reportValidity();
+        return;
+      }
+      window.location.href = "tel:+17178294002";
+    });
+  }
+  const copyrightYear = document.getElementById("copyrightYear");
+  if (copyrightYear) { copyrightYear.textContent = String(new Date().getFullYear()); }
+})();
+</script>
+</body>
+</html>

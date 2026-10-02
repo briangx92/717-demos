@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steelton Hair | Hair Salon in Steelton, PA</title>
+  <meta name="description" content="Steelton Hair offers haircuts, fades, styling, and beard trims at 227 S 6th St, Steelton, PA 17113. Call (717) 939-0940.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <style>
+  :root {
+    --color-ink: #171614;
+    --color-paper: #f4f1eb;
+    --color-white: #fffdf9;
+    --color-muted: #69645e;
+    --color-line: #d8d2c9;
+    --color-accent: #b66a43;
+    --color-accent-dark: #955237;
+    --color-dark-panel: #1c1b19;
+    --color-overlay: rgba(18, 17, 15, 0.26);
+    --color-shadow: rgba(21, 18, 15, 0.12);
+    --font-display: "Playfair Display", Georgia, serif;
+    --font-body: "DM Sans", sans-serif;
+    --space-2xs: 0.35rem;
+    --space-xs: 0.6rem;
+    --space-sm: 0.9rem;
+    --space-md: 1.25rem;
+    --space-lg: 1.75rem;
+    --space-xl: 2.5rem;
+    --space-2xl: 3.5rem;
+    --space-3xl: 5rem;
+    --space-4xl: 7rem;
+    --radius-sm: 0.2rem;
+    --radius-md: 0.45rem;
+    --radius-pill: 999px;
+    --max-width: 1240px;
+    --nav-height: 74px;
+    --mobile-call-height: 76px;
+    --transition-fast: 180ms ease;
+    --transition-medium: 420ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-height) + var(--space-lg));
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: "DM Sans", sans-serif;
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    padding-bottom: var(--mobile-call-height);
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .container {
+    width: min(calc(100% - (var(--space-md) * 2)), var(--max-width));
+    margin-inline: auto;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin: 0 0 var(--space-md);
+    color: var(--color-accent);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.17em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .eyebrow::before {
+    width: 2.6rem;
+    height: 1px;
+    background: currentColor;
+    content: "";
+  }
+
+  .section-title {
+    max-width: 900px;
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2.7rem, 9vw, 6.2rem);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 0.94;
+  }
+
+  .section-intro {
+    max-width: 650px;
+    margin: var(--space-lg) 0;
+    color: var(--color-muted);
+    font-size: 1.02rem;
+  }
+
+  .button {
+    display: inline-flex;
+    min-height: 50px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: var(--radius-pill);
+    padding: 0.82rem 1.45rem;
+    cursor: pointer;
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+  }
+
+  .button-primary {
+    background: var(--color-accent);
+    color: var(--color-white);
+  }
+
+  .button-primary:hover {
+    background: var(--color-accent-dark);
+  }
+
+  .button-outline {
+    border-color: var(--color-ink);
+    background: transparent;
+    color: var(--color-ink);
+  }
+
+  .button-outline:hover {
+    background: var(--color-ink);
+    color: var(--color-white);
+  }
+
+  .site-header {
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+    height: var(--nav-height);
+    border-bottom: 1px solid rgba(23, 22, 20, 0.12);
+    background: rgba(244, 241, 235, 0.92);
+    backdrop-filter: blur(18px);
+  }
+
+  .nav-shell {
+    position: relative;
+    display: flex;
+    width: min(calc(100% - (var(--space-md) * 2)), var(--max-width));
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-inline: auto;
+  }
+
+  .brand {
+    position: relative;
+    z-index: 1002;
+    font-family: "Playfair Display", serif;
+    font-size: 1.45rem;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+  }
+
+  .nav-links {
+    position: fixed;
+    z-index: 1001;
+    inset: var(--nav-height) 0;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0;
+    padding: var(--space-xl) var(--space-md);
+    background: var(--color-paper);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .nav-links.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .nav-links a {
+    width: 100%;
+    border-bottom: 1px solid var(--color-line);
+    padding: var(--space-md) 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.7rem, 8vw, 3rem);
+    line-height: 1.15;
+  }
+
+  .nav-links .nav-call {
+    width: auto;
+    margin-top: var(--space-lg);
+    border: 0;
+    padding: 0.9rem 1.25rem;
+    background: var(--color-accent);
+    color: var(--color-white);
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .menu-toggle {
+    position: relative;
+    z-index: 1002;
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    color: var(--color-ink);
+    cursor: pointer;
+  }
+
+  .menu-toggle span,
+  .menu-toggle span::before,
+  .menu-toggle span::after {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: currentColor;
+    content: "";
+    transition: transform var(--transition-fast);
+  }
+
+  .menu-toggle span {
+    position: relative;
+  }
+
+  .menu-toggle span::before {
+    position: absolute;
+    top: -7px;
+    left: 0;
+  }
+
+  .menu-toggle span::after {
+    position: absolute;
+    top: 7px;
+    left: 0;
+  }
+
+  .menu-toggle[aria-expanded="true"] span {
+    background: transparent;
+  }
+
+  .menu-toggle[aria-expanded="true"] span::before {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded="true"] span::after {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .hero {
+    overflow: hidden;
+    padding: var(--space-xl) 0 var(--space-3xl);
+  }
+
+  .hero-layout {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .hero-copy {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-kicker {
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero h1 {
+    max-width: 930px;
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(4rem, 17vw, 9.3rem);
+    font-weight: 500;
+    letter-spacing: -0.065em;
+    line-height: 0.82;
+  }
+
+  .hero h1 em {
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  .hero-description {
+    max-width: 500px;
+    margin: var(--space-xl) 0;
+    color: var(--color-muted);
+    font-size: clamp(1rem, 3vw, 1.15rem);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .hero-visual {
+    position: relative;
+    min-height: 480px;
+  }
+
+  .hero-image {
+    width: calc(100% - var(--space-lg));
+    height: 480px;
+    margin-left: auto;
+    object-fit: cover;
+    object-position: center;
+    filter: grayscale(100%);
+  }
+
+  .hero-visual::before {
+    position: absolute;
+    z-index: -1;
+    top: var(--space-xl);
+    left: 0;
+    width: 60%;
+    height: calc(100% - var(--space-md));
+    background: var(--color-accent);
+    content: "";
+  }
+
+  .issue-marker {
+    position: absolute;
+    bottom: var(--space-md);
+    left: 0;
+    display: grid;
+    width: 115px;
+    aspect-ratio: 1;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--color-paper);
+    box-shadow: 0 12px 40px var(--color-shadow);
+    color: var(--color-ink);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    line-height: 1.3;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .editorial-rule {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--space-md);
+    border-top: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-line);
+    padding: var(--space-sm) 0;
+    color: var(--color-muted);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .editorial-rule .rule-line {
+    height: 1px;
+    background: var(--color-line);
+  }
+
+  .services {
+    padding: var(--space-3xl) 0;
+  }
+
+  .service-list {
+    margin-top: var(--space-2xl);
+    border-top: 1px solid var(--color-ink);
+  }
+
+  .service-row {
+    display: grid;
+    gap: var(--space-sm);
+    border-bottom: 1px solid var(--color-line);
+    padding: var(--space-lg) 0;
+  }
+
+  .service-number {
+    color: var(--color-accent);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+  }
+
+  .service-name {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(2rem, 8vw, 4.5rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .service-description {
+    max-width: 440px;
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  .image-strip {
+    display: grid;
+    gap: var(--space-md);
+    padding: 0 var(--space-3xl);
+  }
+
+  .image-strip img {
+    height: 360px;
+    object-fit: cover;
+    filter: grayscale(100%);
+  }
+
+  .image-strip figure {
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .image-strip figure:nth-child(2) img {
+    filter: grayscale(75%);
+  }
+
+  .about {
+    background: var(--color-dark-panel);
+    color: var(--color-white);
+    padding: var(--space-3xl) 0;
+  }
+
+  .about .eyebrow {
+    color: #d6936d;
+  }
+
+  .about-grid {
+    display: grid;
+    gap: var(--space-2xl);
+  }
+
+  .about-image-wrap {
+    position: relative;
+  }
+
+  .about-image-wrap img {
+    height: 520px;
+    object-fit: cover;
+    filter: grayscale(100%);
+  }
+
+  .about-image-wrap::after {
+    position: absolute;
+    right: calc(var(--space-md) * -1);
+    bottom: calc(var(--space-md) * -1);
+    width: 42%;
+    height: 34%;
+    border: 1px solid var(--color-accent);
+    content: "";
+    pointer-events: none;
+  }
+
+  .about-copy {
+    align-self: center;
+  }
+
+  .about-title {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(3rem, 11vw, 6rem);
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 0.94;
+  }
+
+  .about-copy p {
+    max-width: 570px;
+    color: #cfc9c1;
+    font-size: 1.04rem;
+  }
+
+  .about-copy p:first-of-type {
+    margin-top: var(--space-xl);
+  }
+
+  .about-detail {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+    color: var(--color-white);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .about-detail::before {
+    width: 2.5rem;
+    height: 1px;
+    background: var(--color-accent);
+    content: "";
+  }
+
+  .feature-image {
+    padding: var(--space-3xl) 0;
+  }
+
+  .feature-image img {
+    height: min(70vh, 700px);
+    object-fit: cover;
+    object-position: center;
+    filter: grayscale(65%);
+  }
+
+  .visit {
+    padding: var(--space-3xl) 0;
+  }
+
+  .visit-header {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .visit-grid {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .map-frame {
+    position: relative;
+    min-height: 430px;
+    overflow: hidden;
+    background: var(--color-line);
+  }
+
+  .map-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(100%);
+  }
+
+  .location-details {
+    display: grid;
+    align-content: start;
+    gap: var(--space-xl);
+  }
+
+  .detail-block {
+    border-top: 1px solid var(--color-ink);
+    padding-top: var(--space-md);
+  }
+
+  .detail-label {
+    margin: 0 0 var(--space-sm);
+    color: var(--color-accent);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .address {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .hours-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .hours-table td {
+    border-bottom: 1px solid var(--color-line);
+    padding: 0.68rem 0;
+    vertical-align: top;
+  }
+
+  .hours-table td:last-child {
+    text-align: right;
+  }
+
+  .closed {
+    color: var(--color-muted);
+  }
+
+  .contact {
+    padding: var(--space-3xl) 0;
+    background: var(--color-white);
+  }
+
+  .contact-grid {
+    display: grid;
+    gap: var(--space-2xl);
+  }
+
+  .contact-copy {
+    align-self: start;
+  }
+
+  .contact-phone {
+    display: inline-block;
+    margin-top: var(--space-xl);
+    border-bottom: 1px solid var(--color-accent);
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.8rem, 8vw, 3.3rem);
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+  }
+
+  .contact-phone:hover {
+    color: var(--color-accent);
+  }
+
+  .contact-form {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .form-field {
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .form-field label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--color-ink);
+    border-radius: 0;
+    outline: none;
+    background: transparent;
+    color: var(--color-ink);
+    padding: 0.8rem 0;
+    transition: border-color var(--transition-fast);
+  }
+
+  .form-field input:focus,
+  .form-field textarea:focus {
+    border-color: var(--color-accent);
+  }
+
+  .form-field textarea {
+    min-height: 130px;
+    resize: vertical;
+  }
+
+  .form-note {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.78rem;
+  }
+
+  .site-footer {
+    background: var(--color-ink);
+    color: var(--color-white);
+    padding: var(--space-2xl) 0 var(--space-xl);
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .footer-brand {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: 2.5rem;
+    font-weight: 500;
+    letter-spacing: -0.045em;
+  }
+
+  .footer-label {
+    margin: 0 0 var(--space-sm);
+    color: #a69f96;
+    font-size: 0.67rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .footer-links {
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .footer-links a:hover {
+    color: #d6936d;
+  }
+
+  .footer-hours {
+    margin: 0;
+    color: #d5d0c9;
+    line-height: 1.8;
+  }
+
+  .footer-bottom {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin-top: var(--space-xl);
+    border-top: 1px solid #34312d;
+    padding-top: var(--space-md);
+    color: #8e8880;
+    font-size: 0.72rem;
+  }
+
+  .mobile-call-bar {
+    position: fixed;
+    z-index: 1200;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    min-height: var(--mobile-call-height);
+    align-items: center;
+    gap: var(--space-sm);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--color-ink);
+    padding: var(--space-sm) max(var(--space-sm), env(safe-area-inset-right)) max(var(--space-sm), env(safe-area-inset-bottom)) max(var(--space-sm), env(safe-area-inset-left));
+    color: var(--color-white);
+    box-shadow: 0 -12px 35px rgba(0, 0, 0, 0.16);
+  }
+
+  .mobile-call-button {
+    display: flex;
+    min-height: 48px;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-pill);
+    background: var(--color-accent);
+    color: var(--color-white);
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .mobile-call-close {
+    display: inline-grid;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid #4a4641;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--color-white);
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  .mobile-call-bar[hidden] {
+    display: none;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 700ms ease, transform 700ms cubic-bezier(0.18, 0.75, 0.28, 1);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (min-width: 700px) {
+    .container,
+    .nav-shell {
+      width: min(calc(100% - (var(--space-xl) * 2)), var(--max-width));
+    }
+
+    .hero {
+      padding-top: var(--space-2xl);
+    }
+
+    .hero-image {
+      height: 620px;
+    }
+
+    .hero-visual {
+      min-height: 620px;
+    }
+
+    .service-row {
+      grid-template-columns: 70px minmax(220px, 0.8fr) 1fr;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+
+    .image-strip {
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+
+    .image-strip figure:nth-child(2) {
+      padding-top: var(--space-3xl);
+    }
+
+    .image-strip img {
+      height: 540px;
+    }
+
+    .footer-grid {
+      grid-template-columns: 1.3fr 0.7fr 1fr;
+    }
+
+    .footer-bottom {
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  @media (min-width: 900px) {
+    body {
+      padding-bottom: 0;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .nav-links {
+      position: static;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap: var(--space-lg);
+      padding: 0;
+      background: transparent;
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+    }
+
+    .nav-links a {
+      width: auto;
+      border: 0;
+      padding: 0;
+      font-family: "DM Sans", sans-serif;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a:not(.nav-call) {
+      position: relative;
+    }
+
+    .nav-links a:not(.nav-call)::after {
+      position: absolute;
+      right: 0;
+      bottom: -5px;
+      left: 0;
+      height: 1px;
+      background: var(--color-accent);
+      content: "";
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform var(--transition-fast);
+    }
+
+    .nav-links a:not(.nav-call):hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .nav-links .nav-call {
+      margin: 0 0 0 var(--space-xs);
+      border-radius: var(--radius-pill);
+      padding: 0.78rem 1.15rem;
+    }
+
+    .hero {
+      min-height: calc(100vh - var(--nav-height));
+      padding: var(--space-3xl) 0 var(--space-4xl);
+    }
+
+    .hero-layout {
+      grid-template-columns: minmax(0, 1.12fr) minmax(350px, 0.88fr);
+      align-items: center;
+      gap: var(--space-xl);
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 3;
+      width: 120%;
+    }
+
+    .hero-description {
+      max-width: 470px;
+    }
+
+    .hero-visual {
+      min-height: 680px;
+    }
+
+    .hero-image {
+      width: calc(100% - var(--space-2xl));
+      height: 680px;
+    }
+
+    .issue-marker {
+      width: 132px;
+      bottom: var(--space-lg);
+    }
+
+    .services {
+      padding: var(--space-4xl) 0;
+    }
+
+    .image-strip {
+      padding-bottom: var(--space-4xl);
+    }
+
+    .about {
+      padding: var(--space-4xl) 0;
+    }
+
+    .about-grid {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: center;
+      gap: clamp(3rem, 8vw, 8rem);
+    }
+
+    .about-image-wrap img {
+      height: 700px;
+    }
+
+    .visit {
+      padding: var(--space-4xl) 0;
+    }
+
+    .visit-grid {
+      grid-template-columns: minmax(0, 1.45fr) minmax(290px, 0.55fr);
+      align-items: stretch;
+    }
+
+    .map-frame {
+      min-height: 620px;
+    }
+
+    .contact {
+      padding: var(--space-4xl) 0;
+    }
+
+    .contact-grid {
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: clamp(4rem, 10vw, 10rem);
+    }
+
+    .mobile-call-bar {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .hero h1 {
+      font-size: clamp(7rem, 10.5vw, 10rem);
+    }
+
+    .service-row {
+      grid-template-columns: 90px minmax(300px, 0.8fr) 1fr;
+      padding: var(--space-xl) 0;
+    }
+  }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Steelton Hair home">Steelton Hair</a>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="navLinks"
+        aria-expanded="false"
+      >
+        <span aria-hidden="true"></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#visit">Visit</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-call" href="tel:+17179390940">Call (717) 939-0940</a>
+      </div>
+    </nav>
+  </header>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-layout">
+          <div class="hero-copy reveal">
+            <p class="eyebrow hero-kicker">Hair salon · Steelton, Pennsylvania</p>
+            <h1 id="hero-title">Sharp cuts.<br><em>Clean style.</em></h1>
+            <p class="hero-description">
+              Haircuts, fades, styling, and beard trims at 227 S 6th St in Steelton. Straightforward service and a look that fits you.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="tel:+17179390940">Call Now</a>
+              <a class="button button-outline" href="#services">View Services</a>
+            </div>
+          </div>
+          <div class="hero-visual reveal">
+            <img
+              class="hero-image"
+              src="../stock/steelton-hair/hero.jpg"
+              alt="Salon styling scene representing hair services at Steelton Hair"
+            >
+            <div class="issue-marker" aria-hidden="true">
+              Steelton<br>Hair
+            </div>
+          </div>
+        </div>
+        <div class="editorial-rule reveal" aria-hidden="true">
+          <span>227 S 6th St</span>
+          <span class="rule-line"></span>
+          <span>Steelton, PA</span>
+        </div>
+      </div>
+    </section>
+    <section class="services" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <p class="eyebrow reveal">The service edit</p>
+        <h2 class="section-title reveal" id="services-title">What we do.</h2>
+        <p class="section-intro reveal">
+          Keep it classic, clean it up, or change the shape. Steelton Hair handles the essentials without making things complicated.
+        </p>
+        <div class="service-list">
+          <article class="service-row reveal">
+            <span class="service-number">01</span>
+            <h3 class="service-name">Haircuts</h3>
+            <p class="service-description">
+              A clean, balanced cut shaped around the style you want to wear.
+            </p>
+          </article>
+          <article class="service-row reveal">
+            <span class="service-number">02</span>
+            <h3 class="service-name">Fades</h3>
+            <p class="service-description">
+              Crisp transitions and a neat finish from the sides through the top.
+            </p>
+          </article>
+          <article class="service-row reveal">
+            <span class="service-number">03</span>
+            <h3 class="service-name">Styling</h3>
+            <p class="service-description">
+              Hair shaped and styled for a polished finish that works beyond the chair.
+            </p>
+          </article>
+          <article class="service-row reveal">
+            <span class="service-number">04</span>
+            <h3 class="service-name">Beard Trims</h3>
+            <p class="service-description">
+              Clean lines and controlled shape to keep your beard looking intentional.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="container image-strip" aria-label="Salon gallery">
+      <figure class="reveal">
+        <img
+          src="../stock/steelton-hair/01.jpg"
+          alt="Close-up salon haircut and styling detail"
+          loading="lazy"
+        >
+      </figure>
+      <figure class="reveal">
+        <img
+          src="../stock/steelton-hair/02.jpg"
+          alt="Hair salon service scene with modern styling"
+          loading="lazy"
+        >
+      </figure>
+    </section>
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-image-wrap reveal">
+          <img
+            src="../stock/steelton-hair/03.jpg"
+            alt="Hair styling work in a contemporary salon setting"
+            loading="lazy"
+          >
+        </div>
+        <div class="about-copy reveal">
+          <p class="eyebrow">Steelton Hair</p>
+          <h2 class="about-title" id="about-title">Your style.<br>Your call.</h2>
+          <p>
+            Steelton Hair is a local salon on S 6th St offering the services that keep your hair and beard in shape. Come in for a haircut, tighten up a fade, get styled, or clean up your beard.
+          </p>
+          <p>
+            The focus is simple. Start with what you want and leave with a clean, finished look.
+          </p>
+          <div class="about-detail">227 S 6th St, Steelton, PA 17113</div>
+        </div>
+      </div>
+      <div class="container feature-image reveal">
+        <img
+          src="../stock/steelton-hair/04.jpg"
+          alt="Finished salon hairstyle showing detailed texture and shape"
+          loading="lazy"
+        >
+      </div>
+    </section>
+    <section class="visit" id="visit" aria-labelledby="visit-title">
+      <div class="container">
+        <div class="visit-header">
+          <p class="eyebrow reveal">Visit the salon</p>
+          <h2 class="section-title reveal" id="visit-title">Find us in Steelton.</h2>
+        </div>
+        <div class="visit-grid">
+          <div class="map-frame reveal">
+            <iframe
+              title="Map showing Steelton Hair at 227 S 6th St, Steelton, PA 17113"
+              src="https://maps.google.com/maps?q=227%20S%206th%20St%2C%20Steelton%2C%20PA%2017113&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="location-details">
+            <div class="detail-block reveal">
+              <p class="detail-label">Address</p>
+              <p class="address">
+                227 S 6th St<br>
+                Steelton, PA 17113
+              </p>
+            </div>
+            <div class="detail-block reveal">
+              <p class="detail-label">Hours</p>
+              <table class="hours-table">
+                <tbody>
+                  <tr>
+                    <td>Monday</td>
+                    <td class="closed">Closed</td>
+                  </tr>
+                  <tr>
+                    <td>Tuesday</td>
+                    <td>10am-7pm</td>
+                  </tr>
+                  <tr>
+                    <td>Wednesday</td>
+                    <td>10am-7pm</td>
+                  </tr>
+                  <tr>
+                    <td>Thursday</td>
+                    <td>10am-7pm</td>
+                  </tr>
+                  <tr>
+                    <td>Friday</td>
+                    <td>10am-7pm</td>
+                  </tr>
+                  <tr>
+                    <td>Saturday</td>
+                    <td>10am-3pm</td>
+                  </tr>
+                  <tr>
+                    <td>Sunday</td>
+                    <td class="closed">Closed</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="detail-block reveal">
+              <p class="detail-label">Phone</p>
+              <a class="address" href="tel:+17179390940">(717) 939-0940</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <p class="eyebrow">Contact</p>
+          <h2 class="section-title" id="contact-title">Ready for a cut?</h2>
+          <p class="section-intro">
+            Call Steelton Hair directly or send a message with your name, number, and what you need.
+          </p>
+          <a class="contact-phone" href="tel:+17179390940">(717) 939-0940</a>
+        </div>
+        <form class="contact-form reveal" id="contactForm">
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+            >
+          </div>
+          <div class="form-field">
+            <label for="phone">Phone</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              required
+            >
+          </div>
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+            ></textarea>
+          </div>
+          <button class="button button-primary" type="submit">Prepare Message</button>
+          <p class="form-note">
+            Submitting opens your default SMS app with your message ready to send to Steelton Hair.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand">Steelton Hair</p>
+          <p class="footer-hours">
+            227 S 6th St<br>
+            Steelton, PA 17113
+          </p>
+        </div>
+        <div>
+          <p class="footer-label">Quick links</p>
+          <div class="footer-links">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#visit">Location</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-label">Hours</p>
+          <p class="footer-hours">
+            Tue-Fri 10am-7pm<br>
+            Sat 10am-3pm
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="copyrightYear"></span> Steelton Hair.</span>
+        <a href="tel:+17179390940">(717) 939-0940</a>
+      </div>
+    </div>
+  </footer>
+  <div class="mobile-call-bar" id="mobileCallBar">
+    <a class="mobile-call-button" href="tel:+17179390940">Call Steelton Hair · (717) 939-0940</a>
+    <button class="mobile-call-close" id="mobileCallClose" type="button" aria-label="Dismiss call bar">×</button>
+  </div>
+  <script>
+  (() => {
+    "use strict";
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const mobileCallBar = document.getElementById("mobileCallBar");
+    const mobileCallClose = document.getElementById("mobileCallClose");
+    const copyrightYear = document.getElementById("copyrightYear");
+    const contactForm = document.getElementById("contactForm");
+
+    const closeMenu = () => {
+      if (!menuToggle || !navLinks) {
+        return;
+      }
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open navigation menu");
+      navLinks.classList.remove("is-open");
+      document.body.classList.remove("menu-open");
+    };
+
+    const openMenu = () => {
+      if (!menuToggle || !navLinks) {
+        return;
+      }
+      menuToggle.setAttribute("aria-expanded", "true");
+      menuToggle.setAttribute("aria-label", "Close navigation menu");
+      navLinks.classList.add("is-open");
+      document.body.classList.add("menu-open");
+    };
+
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener("click", () => {
+        const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+        if (isExpanded) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+
+      const navAnchors = navLinks.querySelectorAll("a");
+      if (navAnchors.length > 0) {
+        navAnchors.forEach((link) => {
+          link.addEventListener("click", closeMenu);
+        });
+      }
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth >= 900) {
+          closeMenu();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeMenu();
+        }
+      });
+    }
+
+    if (copyrightYear) {
+      copyrightYear.textContent = String(new Date().getFullYear());
+    }
+
+    let callBarDismissed = false;
+    try {
+      callBarDismissed = sessionStorage.getItem("steeltonHairCallBarDismissed") === "true";
+    } catch (error) {
+      callBarDismissed = false;
+    }
+
+    if (mobileCallBar && callBarDismissed) {
+      mobileCallBar.hidden = true;
+    }
+
+    if (mobileCallClose && mobileCallBar) {
+      mobileCallClose.addEventListener("click", () => {
+        mobileCallBar.hidden = true;
+        try {
+          sessionStorage.setItem("steeltonHairCallBarDismissed", "true");
+        } catch (error) {
+          return;
+        }
+      });
+    }
+
+    const revealElements = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window && revealElements.length > 0) {
+      const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            }
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      );
+      revealElements.forEach((element) => {
+        element.classList.add("is-visible");
+      });
+    } else if (revealElements.length > 0) {
+      revealElements.forEach((element) => {
+        element.classList.add("is-visible");
+      });
+    }
+
+    if (contactForm) {
+      contactForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const nameInput = document.getElementById("name");
+        const phoneInput = document.getElementById("phone");
+        const messageInput = document.getElementById("message");
+        if (!nameInput || !phoneInput || !messageInput) {
+          return;
+        }
+        const name = nameInput.value.trim();
+        const phone = phoneInput.value.trim();
+        const message = messageInput.value.trim();
+        if (!name || !phone || !message) {
+          return;
+        }
+        const smsBody = [
+          "Hi Steelton Hair,",
+          "",
+          "Name: " + name,
+          "Phone: " + phone,
+          "Message: " + message
+        ].join("\n");
+        window.location.href = "sms:+17179390940?body=" + encodeURIComponent(smsBody);
+      });
+    }
+  })();
+  </script>
+</body>
+</html>

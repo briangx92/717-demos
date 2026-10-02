@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bam's Auto Center | Auto Repair in Middletown, PA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-asphalt: #17191c;
+      --color-asphalt-soft: #22252a;
+      --color-steel: #3c4651;
+      --color-steel-light: #7f8b97;
+      --color-blue: #1f5f93;
+      --color-blue-dark: #17486f;
+      --color-blue-light: #dbe9f4;
+      --color-silver: #c7ccd1;
+      --color-off-white: #f3f1ec;
+      --color-white: #ffffff;
+      --color-black: #0c0d0f;
+      --color-border: #353b42;
+      --color-muted: #a7adb4;
+      --color-overlay: rgba(10, 12, 14, 0.72);
+      --color-shadow: rgba(0, 0, 0, 0.28);
+      --color-grid: rgba(255, 255, 255, 0.045);
+      --color-blue-wash: rgba(31, 95, 147, 0.14);
+
+      --space-0: 0;
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-7: 1.75rem;
+      --space-8: 2rem;
+      --space-9: 2.5rem;
+      --space-10: 3rem;
+      --space-11: 3.5rem;
+      --space-12: 4rem;
+      --space-13: 5rem;
+      --space-14: 6rem;
+
+      --radius-sm: 0.35rem;
+      --radius-md: 0.65rem;
+      --radius-lg: 1rem;
+
+      --max-width: 1200px;
+      --nav-height: 4.75rem;
+      --mobile-bar-height: 4.5rem;
+      --line-width: 4rem;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--nav-height);
+    }
+
+    body {
+      margin: var(--space-0);
+      background: var(--color-off-white);
+      color: var(--color-asphalt);
+      font-family: "Inter", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    section {
+      position: relative;
+    }
+
+    .container {
+      width: min(calc(100% - var(--space-8)), var(--max-width));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+      color: var(--color-blue);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: var(--line-width);
+      height: 0.18rem;
+      background: var(--color-blue);
+      content: "";
+    }
+
+    .section-title {
+      margin: var(--space-0);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(2.35rem, 8vw, 4.8rem);
+      font-weight: 800;
+      line-height: 0.96;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+    }
+
+    .section-copy {
+      max-width: 42rem;
+      margin-top: var(--space-5);
+      color: var(--color-steel);
+      font-size: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3.25rem;
+      padding: var(--space-3) var(--space-6);
+      border: 0.12rem solid transparent;
+      border-radius: var(--radius-sm);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition:
+        transform 180ms ease,
+        background-color 180ms ease,
+        border-color 180ms ease,
+        color 180ms ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-0.12rem);
+    }
+
+    .btn-primary {
+      background: var(--color-blue);
+      color: var(--color-white);
+      box-shadow: 0 var(--space-2) var(--space-6) var(--color-shadow);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background: var(--color-blue-dark);
+    }
+
+    .btn-outline {
+      border-color: var(--color-white);
+      color: var(--color-white);
+    }
+
+    .btn-outline:hover,
+    .btn-outline:focus-visible {
+      background: var(--color-white);
+      color: var(--color-asphalt);
+    }
+
+    .site-header {
+      position: sticky;
+      top: var(--space-0);
+      z-index: 1000;
+      min-height: var(--nav-height);
+      background: rgba(23, 25, 28, 0.97);
+      border-bottom: 0.08rem solid var(--color-border);
+      backdrop-filter: blur(0.7rem);
+    }
+
+    .nav-wrap {
+      display: flex;
+      min-height: var(--nav-height);
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      color: var(--color-white);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 2.25rem;
+      height: 2.25rem;
+      place-items: center;
+      background: var(--color-blue);
+      border: 0.12rem solid var(--color-silver);
+      border-radius: var(--radius-sm);
+      color: var(--color-white);
+      font-size: 1.05rem;
+      line-height: 1;
+    }
+
+    .nav-menu {
+      position: fixed;
+      top: var(--nav-height);
+      right: var(--space-0);
+      bottom: var(--space-0);
+      left: var(--space-0);
+      display: none;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding: var(--space-8);
+      background: var(--color-asphalt);
+      color: var(--color-white);
+    }
+
+    .nav-menu.is-open {
+      display: flex;
+    }
+
+    .nav-menu a:not(.nav-call) {
+      padding-block: var(--space-3);
+      border-bottom: 0.08rem solid var(--color-border);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .nav-call {
+      margin-top: var(--space-4);
+    }
+
+    .menu-toggle {
+      display: inline-grid;
+      width: 2.85rem;
+      height: 2.85rem;
+      place-items: center;
+      padding: var(--space-0);
+      background: transparent;
+      border: 0.08rem solid var(--color-border);
+      border-radius: var(--radius-sm);
+      color: var(--color-white);
+      cursor: pointer;
+    }
+
+    .menu-toggle-lines {
+      position: relative;
+      width: 1.25rem;
+      height: 0.95rem;
+    }
+
+    .menu-toggle-lines::before,
+    .menu-toggle-lines::after,
+    .menu-toggle-lines span {
+      position: absolute;
+      left: var(--space-0);
+      width: 100%;
+      height: 0.12rem;
+      background: var(--color-white);
+      content: "";
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
+    .menu-toggle-lines::before {
+      top: var(--space-0);
+    }
+
+    .menu-toggle-lines span {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .menu-toggle-lines::after {
+      bottom: var(--space-0);
+    }
+
+    .menu-toggle[aria-expanded="true"] .menu-toggle-lines::before {
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .menu-toggle[aria-expanded="true"] .menu-toggle-lines span {
+      opacity: 0;
+    }
+
+    .menu-toggle[aria-expanded="true"] .menu-toggle-lines::after {
+      bottom: 50%;
+      transform: translateY(50%) rotate(-45deg);
+    }
+
+    .hero {
+      min-height: calc(100svh - var(--nav-height));
+      display: grid;
+      align-items: end;
+      background:
+        linear-gradient(var(--color-overlay), var(--color-overlay)),
+        linear-gradient(90deg, var(--color-blue-wash), transparent),
+        url("../stock/bam-s-auto-center/hero.jpg") center center / cover no-repeat;
+      color: var(--color-white);
+      isolation: isolate;
+    }
+
+    .hero::before {
+      position: absolute;
+      inset: var(--space-0);
+      z-index: -1;
+      background-image:
+        linear-gradient(var(--color-grid) 0.08rem, transparent 0.08rem),
+        linear-gradient(90deg, var(--color-grid) 0.08rem, transparent 0.08rem);
+      background-size: var(--space-8) var(--space-8);
+      content: "";
+    }
+
+    .hero-inner {
+      padding-block: var(--space-13) var(--space-12);
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      gap: var(--space-2);
+      align-items: center;
+      margin-bottom: var(--space-5);
+      color: var(--color-silver);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker::before {
+      width: var(--space-9);
+      height: 0.18rem;
+      background: var(--color-blue);
+      content: "";
+    }
+
+    .hero h1 {
+      max-width: 54rem;
+      margin: var(--space-0);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(2.5rem, 13vw, 8.6rem);
+      font-weight: 800;
+      line-height: 0.82;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      text-shadow: 0 var(--space-2) var(--space-5) var(--color-shadow);
+      overflow-wrap: break-word;
+    }
+
+    .hero-tagline {
+      max-width: 42rem;
+      margin: var(--space-6) var(--space-0) var(--space-0);
+      color: var(--color-off-white);
+      font-size: clamp(1rem, 4vw, 1.3rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      margin-top: var(--space-8);
+    }
+
+    .hero-meta {
+      display: grid;
+      gap: var(--space-2);
+      margin-top: var(--space-8);
+      padding-top: var(--space-5);
+      border-top: 0.08rem solid rgba(255, 255, 255, 0.22);
+      color: var(--color-silver);
+      font-size: 0.92rem;
+    }
+
+    .hero-meta strong {
+      color: var(--color-white);
+      font-weight: 700;
+    }
+
+    .services {
+      padding-block: var(--space-13);
+      background: var(--color-off-white);
+    }
+
+    .services-grid {
+      display: grid;
+      gap: var(--space-4);
+      margin-top: var(--space-9);
+    }
+
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 23rem;
+      display: flex;
+      align-items: flex-end;
+      padding: var(--space-6);
+      border-radius: var(--radius-md);
+      background: var(--color-asphalt);
+      color: var(--color-white);
+      box-shadow: 0 var(--space-3) var(--space-8) var(--color-shadow);
+    }
+
+    .service-card img {
+      position: absolute;
+      inset: var(--space-0);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.58;
+      transition: transform 500ms ease, opacity 500ms ease;
+    }
+
+    .service-card::after {
+      position: absolute;
+      inset: var(--space-0);
+      background: linear-gradient(to top, rgba(10, 12, 14, 0.96), rgba(10, 12, 14, 0.1));
+      content: "";
+    }
+
+    .service-card:hover img {
+      transform: scale(1.04);
+      opacity: 0.68;
+    }
+
+    .service-card-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .service-number {
+      display: inline-block;
+      margin-bottom: var(--space-3);
+      color: var(--color-blue-light);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+    }
+
+    .service-card h3 {
+      margin: var(--space-0) var(--space-0) var(--space-3);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 2rem;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .service-card p {
+      margin: var(--space-0);
+      color: var(--color-silver);
+    }
+
+    .about {
+      padding-block: var(--space-13);
+      background: var(--color-asphalt);
+      color: var(--color-white);
+    }
+
+    .about-grid {
+      display: grid;
+      gap: var(--space-8);
+    }
+
+    .about-photo {
+      position: relative;
+      overflow: hidden;
+      min-height: 23rem;
+      border: 0.08rem solid var(--color-border);
+      border-radius: var(--radius-md);
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      min-height: 23rem;
+      object-fit: cover;
+    }
+
+    .about-photo::after {
+      position: absolute;
+      right: var(--space-4);
+      bottom: var(--space-4);
+      width: var(--space-12);
+      height: var(--space-12);
+      border-right: 0.25rem solid var(--color-blue);
+      border-bottom: 0.25rem solid var(--color-blue);
+      content: "";
+    }
+
+    .about-copy .eyebrow {
+      color: var(--color-blue-light);
+    }
+
+    .about-copy .eyebrow::before {
+      background: var(--color-blue);
+    }
+
+    .about-copy p {
+      color: var(--color-silver);
+    }
+
+    .garage-points {
+      display: grid;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+
+    .garage-point {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      border: 0.08rem solid var(--color-border);
+      background: var(--color-asphalt-soft);
+      border-radius: var(--radius-sm);
+    }
+
+    .garage-point-mark {
+      flex: 0 0 auto;
+      width: var(--space-3);
+      height: var(--space-3);
+      margin-top: var(--space-2);
+      background: var(--color-blue);
+      border-radius: 50%;
+    }
+
+    .location-hours {
+      padding-block: var(--space-13);
+      background: var(--color-white);
+    }
+
+    .location-grid {
+      display: grid;
+      gap: var(--space-8);
+    }
+
+    .map-shell {
+      overflow: hidden;
+      min-height: 25rem;
+      border: 0.08rem solid var(--color-silver);
+      border-radius: var(--radius-md);
+      box-shadow: 0 var(--space-3) var(--space-8) rgba(0, 0, 0, 0.1);
+    }
+
+    .map-shell iframe {
+      display: block;
+      width: 100%;
+      min-height: 25rem;
+      border: var(--space-0);
+    }
+
+    .info-panel {
+      padding: var(--space-6);
+      background: var(--color-asphalt);
+      border-radius: var(--radius-md);
+      color: var(--color-white);
+    }
+
+    .info-panel h3 {
+      margin: var(--space-0) var(--space-0) var(--space-5);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 2rem;
+      text-transform: uppercase;
+    }
+
+    .address-block {
+      padding-bottom: var(--space-5);
+      border-bottom: 0.08rem solid var(--color-border);
+    }
+
+    .address-block strong {
+      display: block;
+      margin-bottom: var(--space-2);
+      color: var(--color-blue-light);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hours-list {
+      display: grid;
+      gap: var(--space-2);
+      margin-top: var(--space-5);
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding-block: var(--space-2);
+      border-bottom: 0.08rem solid var(--color-border);
+      color: var(--color-silver);
+    }
+
+    .hours-row span:first-child {
+      color: var(--color-white);
+      font-weight: 600;
+    }
+
+    .contact {
+      padding-block: var(--space-13);
+      background:
+        linear-gradient(var(--color-blue-wash), var(--color-blue-wash)),
+        var(--color-off-white);
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: var(--space-8);
+    }
+
+    .contact-card {
+      padding: var(--space-6);
+      background: var(--color-white);
+      border-top: 0.3rem solid var(--color-blue);
+      box-shadow: 0 var(--space-3) var(--space-8) rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-phone {
+      display: block;
+      margin-top: var(--space-5);
+      color: var(--color-blue);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(2rem, 9vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .field {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .field label {
+      color: var(--color-steel);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: var(--space-4);
+      background: var(--color-white);
+      border: 0.08rem solid var(--color-silver);
+      border-radius: var(--radius-sm);
+      color: var(--color-asphalt);
+      outline: none;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--color-blue);
+      box-shadow: 0 0 0 0.2rem rgba(31, 95, 147, 0.12);
+    }
+
+    .field textarea {
+      min-height: 10rem;
+      resize: vertical;
+    }
+
+    .contact-form .btn {
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .site-footer {
+      padding-block: var(--space-10);
+      background: var(--color-black);
+      color: var(--color-silver);
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: var(--space-8);
+    }
+
+    .footer-brand {
+      color: var(--color-white);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .footer-heading {
+      margin: var(--space-0) var(--space-0) var(--space-3);
+      color: var(--color-white);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus-visible {
+      color: var(--color-white);
+    }
+
+    .footer-bottom {
+      margin-top: var(--space-8);
+      padding-top: var(--space-5);
+      border-top: 0.08rem solid var(--color-border);
+      font-size: 0.88rem;
+    }
+
+    .mobile-call-bar {
+      position: fixed;
+      right: var(--space-0);
+      bottom: var(--space-0);
+      left: var(--space-0);
+      z-index: 1200;
+      display: flex;
+      min-height: var(--mobile-bar-height);
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2);
+      background: var(--color-black);
+      border-top: 0.08rem solid var(--color-border);
+      box-shadow: 0 calc(var(--space-2) * -1) var(--space-5) var(--color-shadow);
+    }
+
+    .mobile-call-link {
+      display: flex;
+      flex: 1;
+      min-height: 3.4rem;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-blue);
+      border-radius: var(--radius-sm);
+      color: var(--color-white);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .mobile-call-close {
+      display: grid;
+      flex: 0 0 2.7rem;
+      width: 2.7rem;
+      height: 2.7rem;
+      place-items: center;
+      padding: var(--space-0);
+      background: transparent;
+      border: 0.08rem solid var(--color-border);
+      border-radius: var(--radius-sm);
+      color: var(--color-white);
+      font-size: 1.4rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .mobile-call-bar.is-hidden {
+      display: none;
+    }
+
+    body.has-mobile-call {
+      padding-bottom: var(--mobile-bar-height);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(var(--space-6));
+      transition: opacity 600ms ease, transform 600ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(var(--space-0));
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (min-width: 42rem) {
+      .hero-actions {
+        flex-direction: row;
+      }
+
+      .hero-meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .service-card:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.5fr 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 64rem) {
+      body {
+        padding-bottom: var(--space-0);
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+
+      .nav-menu {
+        position: static;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-5);
+        padding: var(--space-0);
+        background: transparent;
+      }
+
+      .nav-menu a:not(.nav-call) {
+        padding: var(--space-0);
+        border-bottom: var(--space-0);
+        color: var(--color-silver);
+        font-size: 0.9rem;
+        letter-spacing: 0.05em;
+      }
+
+      .nav-menu a:not(.nav-call):hover,
+      .nav-menu a:not(.nav-call):focus-visible {
+        color: var(--color-white);
+      }
+
+      .nav-call {
+        margin-top: var(--space-0);
+      }
+
+      .hero-inner {
+        padding-block: var(--space-14) var(--space-13);
+      }
+
+      .hero-meta {
+        max-width: 50rem;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .service-card:last-child {
+        grid-column: auto;
+      }
+
+      .about-grid {
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        align-items: center;
+        gap: var(--space-12);
+      }
+
+      .location-grid {
+        grid-template-columns: minmax(0, 1.45fr) minmax(19rem, 0.55fr);
+        align-items: stretch;
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+        gap: var(--space-12);
+        align-items: start;
+      }
+
+      .mobile-call-bar {
+        display: none;
+      }
+
+      .site-footer {
+        padding-bottom: var(--space-10);
+      }
+    }
+  </style>
+</head>
+<body class="has-mobile-call">
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="Bam's Auto Center home">
+        <span class="brand-mark" aria-hidden="true">B</span>
+        <span>Bam's Auto Center</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="navMenu"
+        aria-expanded="false"
+      >
+        <span class="menu-toggle-lines" aria-hidden="true"><span></span></span>
+      </button>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#location">Location</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-primary nav-call" href="tel:+17179449450">Call (717) 944-9450</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <div class="hero-kicker">Auto Repair in Middletown, PA</div>
+        <h1 id="hero-title">Straightforward Auto Care. No Fancy Talk.</h1>
+        <p class="hero-tagline">
+          Bam's Auto Center handles everyday auto repair and maintenance, Pennsylvania state inspections, and emissions testing from its shop on W Harrisburg Pike.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="tel:+17179449450">Call Now</a>
+          <a class="btn btn-outline" href="#services">See Services</a>
+        </div>
+
+        <div class="hero-meta">
+          <div><strong>Address:</strong> 2146 W Harrisburg Pike, Middletown, PA 17057</div>
+          <div><strong>Hours:</strong> Monday through Friday, 9:00 AM to 5:00 PM</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">What We Handle</div>
+          <h2 class="section-title" id="services-title">Core Shop Services</h2>
+          <p class="section-copy">
+            The work is simple to understand. Bam's Auto Center focuses on repair, maintenance, inspections, and emissions testing for local drivers.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <img
+              src="../stock/bam-s-auto-center/01.jpg"
+              alt="Vehicle being serviced inside an auto repair garage"
+            >
+            <div class="service-card-content">
+              <span class="service-number">01</span>
+              <h3>General Auto Repair and Maintenance</h3>
+              <p>
+                Routine maintenance and general repair work to help keep your vehicle operating as it should.
+              </p>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <img
+              src="../stock/bam-s-auto-center/02.jpg"
+              alt="Mechanic inspecting a vehicle in a professional garage"
+            >
+            <div class="service-card-content">
+              <span class="service-number">02</span>
+              <h3>State Inspections</h3>
+              <p>
+                Pennsylvania state inspection service for drivers who need their vehicle checked and current.
+              </p>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <img
+              src="../stock/bam-s-auto-center/03.jpg"
+              alt="Automotive diagnostic and emissions equipment in a repair shop"
+            >
+            <div class="service-card-content">
+              <span class="service-number">03</span>
+              <h3>Emissions Testing</h3>
+              <p>
+                Emissions testing for vehicles that require it as part of Pennsylvania inspection requirements.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-photo reveal">
+          <img
+            src="../stock/bam-s-auto-center/04.jpg"
+            alt="Auto repair work area with vehicles and garage equipment"
+          >
+        </div>
+
+        <div class="about-copy reveal">
+          <div class="eyebrow">About the Shop</div>
+          <h2 class="section-title" id="about-title">A Local Garage for the Work Your Car Needs</h2>
+          <p>
+            Bam's Auto Center is an auto repair shop at 2146 W Harrisburg Pike in Middletown. The shop provides general auto repair and maintenance along with state inspections and emissions testing.
+          </p>
+          <p>
+            If your vehicle needs service, call the shop directly at (717) 944-9450. Bam's Auto Center is open Monday through Friday from 9:00 AM to 5:00 PM.
+          </p>
+
+          <div class="garage-points">
+            <div class="garage-point">
+              <span class="garage-point-mark" aria-hidden="true"></span>
+              <div>
+                <strong>Repair and maintenance</strong><br>
+                General service for everyday vehicle needs.
+              </div>
+            </div>
+
+            <div class="garage-point">
+              <span class="garage-point-mark" aria-hidden="true"></span>
+              <div>
+                <strong>Inspection services</strong><br>
+                State inspections and emissions testing in one local shop.
+              </div>
+            </div>
+
+            <div class="garage-point">
+              <span class="garage-point-mark" aria-hidden="true"></span>
+              <div>
+                <strong>Weekday hours</strong><br>
+                Open Monday through Friday from 9:00 AM to 5:00 PM.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="location-hours" id="location" aria-labelledby="location-title">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">Find the Shop</div>
+          <h2 class="section-title" id="location-title">2146 W Harrisburg Pike</h2>
+          <p class="section-copy">
+            Bam's Auto Center is located in Middletown, Pennsylvania. Use the map below for directions to the shop.
+          </p>
+        </div>
+
+        <div class="location-grid">
+          <div class="map-shell reveal">
+            <iframe
+              title="Map showing Bam's Auto Center at 2146 W Harrisburg Pike, Middletown, PA 17057"
+              src="https://maps.google.com/maps?q=2146%20W%20Harrisburg%20Pike%2C%20Middletown%2C%20PA%2017057&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+
+          <aside class="info-panel reveal" id="hours" aria-labelledby="hours-title">
+            <h3 id="hours-title">Location &amp; Hours</h3>
+
+            <div class="address-block">
+              <strong>Address</strong>
+              <div>2146 W Harrisburg Pike</div>
+              <div>Middletown, PA 17057</div>
+            </div>
+
+            <div class="hours-list" aria-label="Business hours">
+              <div class="hours-row">
+                <span>Monday</span>
+                <span>9:00 AM - 5:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span>Tuesday</span>
+                <span>9:00 AM - 5:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span>Wednesday</span>
+                <span>9:00 AM - 5:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span>Thursday</span>
+                <span>9:00 AM - 5:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span>Friday</span>
+                <span>9:00 AM - 5:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span>Saturday</span>
+                <span>Closed</span>
+              </div>
+              <div class="hours-row">
+                <span>Sunday</span>
+                <span>Closed</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-grid">
+        <div class="contact-card reveal">
+          <div class="eyebrow">Contact</div>
+          <h2 class="section-title" id="contact-title">Need Service? Call the Shop.</h2>
+          <p class="section-copy">
+            For general auto repair and maintenance, state inspections, or emissions testing, contact Bam's Auto Center directly.
+          </p>
+          <a class="contact-phone" href="tel:+17179449450">(717) 944-9450</a>
+          <p>
+            2146 W Harrisburg Pike<br>
+            Middletown, PA 17057
+          </p>
+        </div>
+
+        <form class="contact-form reveal" action="#" method="post">
+          <div class="field">
+            <label for="name">Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+            ></textarea>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Bam's Auto Center</div>
+          <p>
+            General auto repair and maintenance, state inspections, and emissions testing in Middletown, PA.
+          </p>
+          <a href="tel:+17179449450">(717) 944-9450</a>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Quick Links</h2>
+          <nav class="footer-links" aria-label="Footer navigation">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#location">Location</a>
+            <a href="#hours">Hours</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+
+        <div>
+          <h2 class="footer-heading">Hours</h2>
+          <div>Mon-Fri 9:00 AM - 5:00 PM</div>
+          <div>Sat-Sun closed</div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; <span id="copyrightYear"></span> Bam's Auto Center. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-call-bar" id="mobileCallBar">
+    <a class="mobile-call-link" href="tel:+17179449450">Call (717) 944-9450</a>
+    <button
+      class="mobile-call-close"
+      id="mobileCallClose"
+      type="button"
+      aria-label="Close call bar"
+    >
+      &times;
+    </button>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var menuToggle = document.getElementById("menuToggle");
+      var navMenu = document.getElementById("navMenu");
+      var mobileCallBar = document.getElementById("mobileCallBar");
+      var mobileCallClose = document.getElementById("mobileCallClose");
+      var copyrightYear = document.getElementById("copyrightYear");
+      var body = document.body;
+
+      function closeMenu() {
+        if (!menuToggle || !navMenu) {
+          return;
+        }
+
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        navMenu.classList.remove("is-open");
+
+        if (body) {
+          body.classList.remove("menu-open");
+        }
+      }
+
+      function toggleMenu() {
+        if (!menuToggle || !navMenu) {
+          return;
+        }
+
+        var isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+        var nextState = !isExpanded;
+
+        menuToggle.setAttribute("aria-expanded", String(nextState));
+        menuToggle.setAttribute(
+          "aria-label",
+          nextState ? "Close navigation menu" : "Open navigation menu"
+        );
+        navMenu.classList.toggle("is-open", nextState);
+
+        if (body) {
+          body.classList.toggle("menu-open", nextState);
+        }
+      }
+
+      if (menuToggle) {
+        menuToggle.addEventListener("click", toggleMenu);
+      }
+
+      if (navMenu) {
+        var navLinks = navMenu.querySelectorAll("a");
+
+        navLinks.forEach(function (link) {
+          link.addEventListener("click", closeMenu);
+        });
+      }
+
+      window.addEventListener("resize", function () {
+        if (window.innerWidth >= 1024) {
+          closeMenu();
+        }
+      });
+
+      if (copyrightYear) {
+        copyrightYear.textContent = String(new Date().getFullYear());
+      }
+
+      function dismissMobileCallBar() {
+        if (mobileCallBar) {
+          mobileCallBar.classList.add("is-hidden");
+        }
+
+        if (body) {
+          body.classList.remove("has-mobile-call");
+        }
+
+        try {
+          sessionStorage.setItem("bamMobileCallDismissed", "true");
+        } catch (error) {
+          return;
+        }
+      }
+
+      function restoreMobileCallState() {
+        var isDismissed = false;
+
+        try {
+          isDismissed = sessionStorage.getItem("bamMobileCallDismissed") === "true";
+        } catch (error) {
+          isDismissed = false;
+        }
+
+        if (isDismissed) {
+          if (mobileCallBar) {
+            mobileCallBar.classList.add("is-hidden");
+          }
+
+          if (body) {
+            body.classList.remove("has-mobile-call");
+          }
+        }
+      }
+
+      restoreMobileCallState();
+
+      if (mobileCallClose) {
+        mobileCallClose.addEventListener("click", dismissMobileCallBar);
+      }
+
+      var revealItems = document.querySelectorAll(".reveal");
+
+      if ("IntersectionObserver" in window) {
+        var revealObserver = new IntersectionObserver(
+          function (entries, observer) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.14
+          }
+        );
+
+        revealItems.forEach(function (item) {
+          revealObserver.observe(item);
+        });
+      } else {
+        revealItems.forEach(function (item) {
+          item.classList.add("is-visible");
+        });
+      }
+
+      var contactForm = document.querySelector(".contact-form");
+
+      if (contactForm) {
+        contactForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          var submitButton = contactForm.querySelector('button[type="submit"]');
+
+          if (!submitButton) {
+            return;
+          }
+
+          var originalText = submitButton.textContent;
+          submitButton.textContent = "Call the Shop to Send";
+          submitButton.setAttribute("disabled", "disabled");
+
+          window.setTimeout(function () {
+            submitButton.textContent = originalText || "Send Message";
+            submitButton.removeAttribute("disabled");
+          }, 2400);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

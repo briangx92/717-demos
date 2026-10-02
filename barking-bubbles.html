@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barking Bubbles | Pet Grooming in Hummelstown, PA</title>
+  <meta name="description" content="Barking Bubbles offers dog grooming, cat grooming, bathing, haircuts, and nail trimming at 201 E Main St in Hummelstown, PA. Call (717) 576-5126.">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-sky-50: #f3fbff;
+      --color-sky-100: #e1f6ff;
+      --color-sky-200: #bcecff;
+      --color-sky-300: #82dcff;
+      --color-sky-400: #49c9f4;
+      --color-sky-500: #1eb0e3;
+      --color-sky-600: #128fbd;
+      --color-sky-700: #106f94;
+      --color-sky-800: #115a76;
+      --color-sky-900: #124b62;
+      --color-yellow-100: #fff8c9;
+      --color-yellow-200: #fff09a;
+      --color-yellow-300: #ffe365;
+      --color-yellow-400: #ffd63e;
+      --color-yellow-500: #fbc51c;
+      --color-ink: #17344a;
+      --color-ink-soft: #4f687a;
+      --color-white: #ffffff;
+      --color-cream: #fffdf5;
+      --color-border: rgba(23, 52, 74, 0.11);
+      --color-shadow: rgba(17, 90, 118, 0.14);
+      --color-overlay: rgba(7, 42, 60, 0.48);
+      --color-bubble: rgba(255, 255, 255, 0.42);
+      --font-display: "Fredoka", sans-serif;
+      --font-body: "Nunito", sans-serif;
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-7: 1.75rem;
+      --space-8: 2rem;
+      --space-9: 2.5rem;
+      --space-10: 3rem;
+      --space-11: 4rem;
+      --space-12: 5rem;
+      --space-13: 6rem;
+      --container-pad: 1.1rem;
+      --container-width: 74rem;
+      --nav-height: 4.75rem;
+      --mobile-call-height: 4.85rem;
+      --radius-sm: 0.75rem;
+      --radius-md: 1.25rem;
+      --radius-lg: 2rem;
+      --radius-xl: 3rem;
+      --radius-pill: 999rem;
+      --shadow-sm: 0 0.5rem 1.5rem var(--color-shadow);
+      --shadow-md: 0 1.25rem 3rem var(--color-shadow);
+      --shadow-button: 0 0.55rem 0 rgba(17, 90, 118, 0.14);
+      --border-thin: 0.0625rem;
+      --border-medium: 0.125rem;
+      --transition-fast: 180ms ease;
+      --transition-base: 320ms ease;
+      --transition-reveal: 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + var(--space-4));
+    }
+
+    body {
+      margin: 0;
+      min-width: 20rem;
+      padding-bottom: var(--mobile-call-height);
+      overflow-x: hidden;
+      color: var(--color-ink);
+      background: var(--color-cream);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.call-bar-dismissed {
+      padding-bottom: 0;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, textarea {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    section {
+      position: relative;
+      padding: var(--space-12) 0;
+    }
+
+    .container {
+      width: min(100% - calc(var(--container-pad) * 2), var(--container-width));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin: 0 0 var(--space-3);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-pill);
+      background: var(--color-yellow-200);
+      color: var(--color-sky-800);
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    .section-title {
+      max-width: 42rem;
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(2.15rem, 8vw, 4.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+      color: var(--color-sky-900);
+    }
+
+    .section-lead {
+      max-width: 40rem;
+      margin: var(--space-5) 0;
+      color: var(--color-ink-soft);
+      font-size: 1.05rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3.35rem;
+      padding: var(--space-3) var(--space-6);
+      border: var(--border-medium) solid transparent;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .button:hover {
+      transform: translateY(-0.18rem);
+    }
+
+    .button:focus-visible, .nav-toggle:focus-visible, .mobile-call-close:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: var(--border-medium) solid var(--color-sky-700);
+      outline-offset: var(--space-1);
+    }
+
+    .button-primary {
+      color: var(--color-ink);
+      background: var(--color-yellow-400);
+      box-shadow: var(--shadow-button);
+    }
+
+    .button-primary:hover {
+      background: var(--color-yellow-300);
+      box-shadow: 0 0.72rem 0 rgba(17, 90, 118, 0.12);
+    }
+
+    .button-secondary {
+      color: var(--color-sky-900);
+      background: var(--color-white);
+      border-color: var(--color-sky-200);
+    }
+
+    .button-secondary:hover {
+      border-color: var(--color-sky-400);
+      background: var(--color-sky-50);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: var(--nav-height);
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: var(--border-thin) solid var(--color-border);
+      backdrop-filter: blur(1rem);
+    }
+
+    .nav-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      gap: var(--space-4);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--color-sky-800);
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 2.55rem;
+      height: 2.55rem;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--color-sky-300);
+      border: var(--border-medium) solid var(--color-white);
+      box-shadow: 0 var(--border-medium) var(--color-sky-200), inset -0.4rem -0.4rem 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .brand-mark::before, .brand-mark::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: var(--color-yellow-300);
+    }
+
+    .brand-mark::before {
+      width: 0.75rem;
+      height: 0.75rem;
+      top: -0.38rem;
+      right: -0.1rem;
+    }
+
+    .brand-mark::after {
+      width: 0.45rem;
+      height: 0.45rem;
+      top: 0.05rem;
+      right: -0.75rem;
+    }
+
+    .nav-toggle {
+      display: grid;
+      place-items: center;
+      width: 2.8rem;
+      height: 2.8rem;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: var(--color-sky-100);
+      color: var(--color-sky-900);
+      cursor: pointer;
+    }
+
+    .nav-toggle-lines, .nav-toggle-lines::before, .nav-toggle-lines::after {
+      display: block;
+      width: 1.2rem;
+      height: var(--border-medium);
+      border-radius: var(--radius-pill);
+      background: currentColor;
+      transition: transform var(--transition-fast), opacity var(--transition-fast);
+    }
+
+    .nav-toggle-lines {
+      position: relative;
+    }
+
+    .nav-toggle-lines::before, .nav-toggle-lines::after {
+      content: "";
+      position: absolute;
+      left: 0;
+    }
+
+    .nav-toggle-lines::before {
+      top: -0.4rem;
+    }
+
+    .nav-toggle-lines::after {
+      top: 0.4rem;
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-lines {
+      background: transparent;
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-lines::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-lines::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
+    .nav-menu {
+      position: absolute;
+      top: calc(100% + var(--space-2));
+      left: var(--container-pad);
+      right: var(--container-pad);
+      display: none;
+      padding: var(--space-4);
+      border: var(--border-thin) solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-white);
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav-menu.is-open {
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-links a:not(.nav-call) {
+      display: block;
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      color: var(--color-ink-soft);
+    }
+
+    .nav-links a:not(.nav-call):hover {
+      color: var(--color-sky-800);
+      background: var(--color-sky-50);
+    }
+
+    .nav-call {
+      width: 100%;
+      margin-top: var(--space-2);
+    }
+
+    .hero {
+      isolation: isolate;
+      min-height: calc(100svh - var(--nav-height));
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      padding: var(--space-10) 0 var(--space-12);
+      background: radial-gradient(circle at 12% 15%, var(--color-yellow-200) 0, var(--color-yellow-200) 8%, transparent 8.2%), linear-gradient(145deg, var(--color-sky-100), var(--color-white) 52%, var(--color-yellow-100));
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: var(--space-9);
+      align-items: center;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 3;
+    }
+
+    .hero h1 {
+      max-width: 44rem;
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(3.15rem, 14vw, 7.4rem);
+      line-height: 0.88;
+      letter-spacing: -0.055em;
+      color: var(--color-sky-800);
+    }
+
+    .hero h1 span {
+      color: var(--color-yellow-500);
+      text-shadow: 0.09em 0 var(--color-sky-100);
+    }
+
+    .hero-tagline {
+      max-width: 35rem;
+      margin: var(--space-6) 0;
+      color: var(--color-ink-soft);
+      font-size: clamp(1.05rem, 4.7vw, 1.3rem);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-7);
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 34rem;
+      margin-inline: auto;
+    }
+
+    .hero-image-shell {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      border: var(--space-2) solid var(--color-white);
+      border-radius: 45% 55% 48% 52% / 38% 42% 58% 62%;
+      box-shadow: var(--shadow-md);
+      transform: rotate(2deg);
+    }
+
+    .hero-image-shell img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .bubble {
+      position: absolute;
+      z-index: 1;
+      border: var(--border-medium) solid rgba(255, 255, 255, 0.65);
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 27%, rgba(255, 255, 255, 0.9) 0, rgba(255, 255, 255, 0.55) 8%, transparent 20%), var(--color-bubble);
+      box-shadow: inset -0.7rem -0.9rem 1.5rem rgba(73, 201, 244, 0.12);
+      pointer-events: none;
+      animation: bubbleFloat 6s ease-in-out infinite;
+    }
+
+    .bubble-one {
+      width: 4.4rem;
+      height: 4.4rem;
+      top: 7%;
+      right: 7%;
+    }
+
+    .bubble-two {
+      width: 2.5rem;
+      height: 2.5rem;
+      top: 20%;
+      right: 2%;
+      animation-delay: -2s;
+    }
+
+    .bubble-three {
+      width: 5.7rem;
+      height: 5.7rem;
+      bottom: 8%;
+      left: -1.6rem;
+      animation-delay: -3.5s;
+    }
+
+    .bubble-four {
+      width: 2.9rem;
+      height: 2.9rem;
+      bottom: 23%;
+      left: 7%;
+      animation-delay: -1s;
+    }
+
+    @keyframes bubbleFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-0.8rem) rotate(5deg);
+      }
+    }
+
+    .services {
+      position: relative;
+      overflow: hidden;
+      background: var(--color-white);
+    }
+
+    .services::before {
+      content: "";
+      position: absolute;
+      width: 11rem;
+      height: 11rem;
+      top: -5rem;
+      right: -4rem;
+      border-radius: 50%;
+      background: var(--color-yellow-100);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+      margin-top: var(--space-9);
+    }
+
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 15rem;
+      padding: var(--space-6);
+      border: var(--border-thin) solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-sky-50);
+      box-shadow: 0 0.8rem 2rem rgba(17, 90, 118, 0.07);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .service-card:hover {
+      transform: translateY(-0.35rem);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .service-card:nth-child(even) {
+      background: var(--color-yellow-100);
+    }
+
+    .service-number {
+      display: grid;
+      place-items: center;
+      width: 3rem;
+      height: 3rem;
+      margin-bottom: var(--space-6);
+      border-radius: 50%;
+      background: var(--color-white);
+      color: var(--color-sky-700);
+      font-family: var(--font-display);
+      font-weight: 700;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .service-card h2, .service-card h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      line-height: 1.05;
+      color: var(--color-sky-900);
+    }
+
+    .service-card p {
+      margin: var(--space-3) 0;
+      color: var(--color-ink-soft);
+    }
+
+    .service-photo {
+      grid-column: 1 / -1;
+      position: relative;
+      overflow: hidden;
+      min-height: 19rem;
+      border-radius: var(--radius-xl);
+      background: var(--color-sky-100);
+    }
+
+    .service-photo img {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .service-photo-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: var(--space-6);
+      background: linear-gradient(to top, var(--color-overlay), transparent 65%);
+    }
+
+    .service-photo-overlay p {
+      max-width: 24rem;
+      margin: 0;
+      color: var(--color-white);
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 600;
+      line-height: 1.15;
+    }
+
+    .about {
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--color-sky-50), var(--color-white));
+    }
+
+    .about-grid {
+      display: grid;
+      gap: var(--space-9);
+      align-items: center;
+    }
+
+    .about-photo {
+      position: relative;
+      max-width: 33rem;
+      margin-inline: auto;
+    }
+
+    .about-photo::before {
+      content: "";
+      position: absolute;
+      inset: var(--space-5) calc(var(--space-4) * -1) calc(var(--space-4) * -1) var(--space-5);
+      border-radius: var(--radius-xl);
+      background: var(--color-yellow-300);
+      transform: rotate(-3deg);
+    }
+
+    .about-photo img {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border: var(--space-2) solid var(--color-white);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-md);
+      transform: rotate(1deg);
+    }
+
+    .about-copy p {
+      color: var(--color-ink-soft);
+    }
+
+    .about-copy p:first-of-type {
+      margin-top: var(--space-6);
+    }
+
+    .about-copy p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .mini-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+
+    .mini-gallery img {
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+    }
+
+    .visit {
+      overflow: hidden;
+      background: var(--color-yellow-100);
+    }
+
+    .visit-grid {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    .map-card, .hours-card {
+      overflow: hidden;
+      border: var(--border-thin) solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .map-frame {
+      width: 100%;
+      height: 22rem;
+      border: 0;
+      display: block;
+    }
+
+    .map-copy {
+      padding: var(--space-6);
+    }
+
+    .map-copy h3, .hours-card h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: var(--color-sky-900);
+    }
+
+    .map-copy address {
+      margin-top: var(--space-3);
+      color: var(--color-ink-soft);
+      font-style: normal;
+    }
+
+    .hours-card {
+      padding: var(--space-6);
+    }
+
+    .hours-list {
+      margin: var(--space-5) 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-5);
+      padding: var(--space-3) 0;
+      border-bottom: var(--border-thin) dashed var(--color-border);
+    }
+
+    .hours-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .hours-list strong {
+      font-family: var(--font-display);
+      color: var(--color-sky-800);
+    }
+
+    .hours-list span {
+      text-align: right;
+      color: var(--color-ink-soft);
+    }
+
+    .contact {
+      background: var(--color-sky-700);
+      color: var(--color-white);
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: var(--space-9);
+      align-items: start;
+    }
+
+    .contact .eyebrow {
+      background: var(--color-yellow-300);
+    }
+
+    .contact .section-title, .contact .section-lead {
+      color: var(--color-white);
+    }
+
+    .contact-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 7vw, 2.5rem);
+      font-weight: 700;
+      color: var(--color-yellow-300);
+    }
+
+    .contact-form {
+      padding: var(--space-6);
+      border-radius: var(--radius-lg);
+      background: var(--color-white);
+      color: var(--color-ink);
+      box-shadow: var(--shadow-md);
+    }
+
+    .field {
+      margin-bottom: var(--space-5);
+    }
+
+    .field:last-of-type {
+      margin-bottom: var(--space-6);
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: var(--space-2);
+      font-weight: 800;
+      color: var(--color-sky-900);
+    }
+
+    .field input, .field textarea {
+      width: 100%;
+      border: var(--border-medium) solid var(--color-sky-100);
+      border-radius: var(--radius-md);
+      background: var(--color-sky-50);
+      color: var(--color-ink);
+      padding: var(--space-4);
+      transition: border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .field input:focus, .field textarea:focus {
+      border-color: var(--color-sky-400);
+      background: var(--color-white);
+    }
+
+    .field textarea {
+      min-height: 8rem;
+      resize: vertical;
+    }
+
+    .contact-form .button {
+      width: 100%;
+      border: 0;
+    }
+
+    .site-footer {
+      padding: var(--space-9) 0;
+      background: var(--color-sky-900);
+      color: var(--color-sky-100);
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: var(--space-7);
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--color-white);
+    }
+
+    .footer-copy {
+      max-width: 24rem;
+      margin: var(--space-3) 0;
+      color: var(--color-sky-200);
+    }
+
+    .footer-heading {
+      margin: 0 0 var(--space-3);
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--color-yellow-300);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3) var(--space-5);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-yellow-300);
+    }
+
+    .footer-bottom {
+      margin-top: var(--space-7);
+      padding-top: var(--space-5);
+      border-top: var(--border-thin) solid rgba(255, 255, 255, 0.14);
+      color: var(--color-sky-200);
+      font-size: 0.9rem;
+    }
+
+    .mobile-call-bar {
+      position: fixed;
+      z-index: 1100;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      min-height: var(--mobile-call-height);
+      padding: var(--space-2) var(--space-3);
+      background: var(--color-white);
+      border-top: var(--border-thin) solid var(--color-border);
+      box-shadow: 0 -0.5rem 2rem rgba(17, 90, 118, 0.12);
+    }
+
+    .mobile-call-bar.is-hidden {
+      display: none;
+    }
+
+    .mobile-call-link {
+      flex: 1;
+      min-height: 3.45rem;
+    }
+
+    .mobile-call-close {
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      width: 2.7rem;
+      height: 2.7rem;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: var(--color-sky-100);
+      color: var(--color-sky-800);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(1.3rem);
+      transition: opacity var(--transition-reveal), transform var(--transition-reveal);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (min-width: 42rem) {
+      :root {
+        --container-pad: 1.75rem;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .visit-grid {
+        grid-template-columns: 1.35fr 0.85fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      }
+    }
+
+    @media (min-width: 58rem) {
+      body {
+        padding-bottom: 0;
+      }
+
+      .mobile-call-bar {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: none;
+      }
+
+      .nav-menu {
+        position: static;
+        display: block;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .nav-links {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-1);
+      }
+
+      .nav-links a:not(.nav-call) {
+        padding: var(--space-2) var(--space-3);
+        font-size: 0.94rem;
+      }
+
+      .nav-call {
+        width: auto;
+        margin: 0 0 0 var(--space-2);
+        min-height: 2.85rem;
+        padding-inline: var(--space-5);
+      }
+
+      .hero {
+        padding: var(--space-11) 0 var(--space-13);
+      }
+
+      .hero-grid {
+        grid-template-columns: 1.04fr 0.96fr;
+        gap: var(--space-10);
+      }
+
+      .hero-image-wrap {
+        width: 100%;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+
+      .service-card {
+        grid-column: span 2;
+      }
+
+      .service-card:nth-child(4), .service-card:nth-child(5) {
+        grid-column: span 3;
+      }
+
+      .service-photo {
+        grid-column: span 6;
+        min-height: 28rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: var(--space-12);
+      }
+
+      .contact-grid {
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: var(--space-12);
+      }
+    }
+
+    @media (min-width: 72rem) {
+      :root {
+        --container-pad: 2rem;
+      }
+
+      section {
+        padding: var(--space-13) 0;
+      }
+
+      .service-photo {
+        min-height: 31rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="container nav-wrap" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Barking Bubbles home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Barking Bubbles</span>
+      </a>
+
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="navMenu"
+        aria-label="Open navigation menu"
+      >
+        <span class="nav-toggle-lines" aria-hidden="true"></span>
+      </button>
+
+      <div class="nav-menu" id="navMenu">
+        <ul class="nav-links">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#visit">Visit</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a class="button button-primary nav-call" href="tel:+17175765126">(717) 576-5126</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="bubble bubble-one" aria-hidden="true"></div>
+      <div class="bubble bubble-two" aria-hidden="true"></div>
+      <div class="bubble bubble-three" aria-hidden="true"></div>
+      <div class="bubble bubble-four" aria-hidden="true"></div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Pet grooming in Hummelstown</p>
+          <h1>Fresh fur. <span>Happy fluff.</span></h1>
+          <p class="hero-tagline">
+            Dog grooming, cat grooming, baths, haircuts, and nail trimming right on East Main Street in Hummelstown.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="tel:+17175765126">Call Now</a>
+            <a class="button button-secondary" href="#services">See Services</a>
+          </div>
+        </div>
+
+        <div class="hero-image-wrap reveal">
+          <div class="hero-image-shell">
+            <img
+              src="../stock/barking-bubbles/hero.jpg"
+              alt="Freshly groomed pet at Barking Bubbles in Hummelstown"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="container">
+        <div class="reveal">
+          <p class="eyebrow">Scrub, snip, smile</p>
+          <p class="section-title">Good grooming feels good.</p>
+          <p class="section-lead">
+            From a clean bath to a tidy haircut, Barking Bubbles offers straightforward grooming care for dogs and cats.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <span class="service-number">01</span>
+            <h2>Dog Grooming</h2>
+            <p>Grooming care to help your dog leave clean, neat, and ready for the ride home.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-number">02</span>
+            <h3>Cat Grooming</h3>
+            <p>Grooming services for cats that need help keeping their coat clean and manageable.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-number">03</span>
+            <h3>Bathing</h3>
+            <p>A thorough bath for a cleaner coat and a fresh start from nose to tail.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-number">04</span>
+            <h3>Haircuts</h3>
+            <p>Coat trimming and haircuts to clean up overgrowth and keep your pet looking tidy.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-number">05</span>
+            <h3>Nail Trimming</h3>
+            <p>A simple nail trim to keep paws neat and everyday walking more comfortable.</p>
+          </article>
+
+          <div class="service-photo reveal">
+            <img
+              src="../stock/barking-bubbles/01.jpg"
+              alt="Pet receiving grooming care in a bright grooming salon"
+            >
+            <div class="service-photo-overlay">
+              <p>A little cleanup can make a very fluffy difference.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div class="about-photo reveal">
+          <img
+            src="../stock/barking-bubbles/02.jpg"
+            alt="Groomed pet with a clean and freshly trimmed coat"
+          >
+        </div>
+
+        <div class="about-copy reveal">
+          <p class="eyebrow">Hello, Hummelstown</p>
+          <p class="section-title">A cleaner coat starts here.</p>
+          <p>
+            Barking Bubbles is a pet groomer at 201 E Main St in Hummelstown. The service list stays focused on the grooming basics pets need: baths, haircuts, nail trims, and grooming for both dogs and cats.
+          </p>
+          <p>
+            Appointments are available Monday, Wednesday, and Friday from 7:30am to 5pm. Call directly to talk about the grooming service your pet needs.
+          </p>
+
+          <div class="mini-gallery">
+            <img
+              src="../stock/barking-bubbles/03.jpg"
+              alt="Dog with a neat coat after a grooming session"
+            >
+            <img
+              src="../stock/barking-bubbles/04.jpg"
+              alt="Pet being cared for during a grooming visit"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit" id="visit">
+      <div class="container">
+        <div class="reveal">
+          <p class="eyebrow">Find Barking Bubbles</p>
+          <p class="section-title">Right on East Main Street.</p>
+          <p class="section-lead">
+            Visit Barking Bubbles at 201 E Main St, Hummelstown, PA 17036.
+          </p>
+        </div>
+
+        <div class="visit-grid">
+          <div class="map-card reveal">
+            <iframe
+              class="map-frame"
+              title="Map showing Barking Bubbles at 201 E Main St, Hummelstown, PA 17036"
+              src="https://maps.google.com/maps?q=201%20E%20Main%20St%2C%20Hummelstown%2C%20PA%2017036&amp;output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+            <div class="map-copy">
+              <h3>Location</h3>
+              <address>201 E Main St, Hummelstown, PA 17036</address>
+            </div>
+          </div>
+
+          <aside class="hours-card reveal" aria-labelledby="hours-heading">
+            <h3 id="hours-heading">Hours</h3>
+            <ul class="hours-list">
+              <li><strong>Monday</strong><span>7:30am-5pm</span></li>
+              <li><strong>Tuesday</strong><span>Closed</span></li>
+              <li><strong>Wednesday</strong><span>7:30am-5pm</span></li>
+              <li><strong>Thursday</strong><span>Closed</span></li>
+              <li><strong>Friday</strong><span>7:30am-5pm</span></li>
+              <li><strong>Saturday</strong><span>Closed</span></li>
+              <li><strong>Sunday</strong><span>Closed</span></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div class="reveal">
+          <p class="eyebrow">Ready for a cleanup?</p>
+          <p class="section-title">Give Barking Bubbles a call.</p>
+          <p class="section-lead">
+            Call to ask about dog grooming, cat grooming, bathing, haircuts, or nail trimming.
+          </p>
+          <a class="contact-phone" href="tel:+17175765126">(717) 576-5126</a>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm">
+          <div class="field">
+            <label for="name">Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+            ></textarea>
+          </div>
+
+          <button class="button button-primary" type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Barking Bubbles</div>
+          <p class="footer-copy">
+            Pet grooming at 201 E Main St in Hummelstown, Pennsylvania.
+          </p>
+        </div>
+
+        <div>
+          <p class="footer-heading">Quick Links</p>
+          <ul class="footer-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#visit">Visit</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-heading">Hours</p>
+          <p class="footer-copy">
+            Mon, Wed, Fri<br>
+            7:30am-5pm
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; <span id="copyrightYear">2026</span> Barking Bubbles. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-call-bar" id="mobileCallBar">
+    <a class="button button-primary mobile-call-link" href="tel:+17175765126">
+      Call (717) 576-5126
+    </a>
+    <button class="mobile-call-close" id="mobileCallClose" type="button" aria-label="Close call bar">
+      ×
+    </button>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+      var navToggle = document.getElementById("navToggle");
+      var navMenu = document.getElementById("navMenu");
+      var mobileCallBar = document.getElementById("mobileCallBar");
+      var mobileCallClose = document.getElementById("mobileCallClose");
+      var copyrightYear = document.getElementById("copyrightYear");
+      var contactForm = document.getElementById("contactForm");
+
+      function closeMenu() {
+        if (!navToggle || !navMenu) {
+          return;
+        }
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.setAttribute("aria-label", "Open navigation menu");
+        navMenu.classList.remove("is-open");
+      }
+
+      function toggleMenu() {
+        if (!navToggle || !navMenu) {
+          return;
+        }
+        var isOpen = navToggle.getAttribute("aria-expanded") === "true";
+        navToggle.setAttribute("aria-expanded", String(!isOpen));
+        navToggle.setAttribute(
+          "aria-label",
+          isOpen ? "Open navigation menu" : "Close navigation menu"
+        );
+        navMenu.classList.toggle("is-open", !isOpen);
+      }
+
+      function setupNavigation() {
+        if (navToggle) {
+          navToggle.addEventListener("click", toggleMenu);
+        }
+        if (navMenu) {
+          var menuLinks = navMenu.querySelectorAll("a");
+          if (menuLinks && menuLinks.length > 0) {
+            menuLinks.forEach(function (link) {
+              if (!link) {
+                return;
+              }
+              link.addEventListener("click", closeMenu);
+            });
+          }
+        }
+        window.addEventListener("resize", function () {
+          if (window.innerWidth >= 928) {
+            closeMenu();
+          }
+        });
+      }
+
+      function setupCallBar() {
+        if (!mobileCallBar) {
+          return;
+        }
+        var dismissed = false;
+        try {
+          dismissed = sessionStorage.getItem("barkingBubblesCallBarDismissed") === "true";
+        } catch (error) {
+          dismissed = false;
+        }
+        if (dismissed) {
+          mobileCallBar.classList.add("is-hidden");
+          if (document.body) {
+            document.body.classList.add("call-bar-dismissed");
+          }
+        }
+        if (mobileCallClose) {
+          mobileCallClose.addEventListener("click", function () {
+            if (mobileCallBar) {
+              mobileCallBar.classList.add("is-hidden");
+            }
+            if (document.body) {
+              document.body.classList.add("call-bar-dismissed");
+            }
+            try {
+              sessionStorage.setItem("barkingBubblesCallBarDismissed", "true");
+            } catch (error) {
+              return;
+            }
+          });
+        }
+      }
+
+      function setupReveals() {
+        var revealElements = document.querySelectorAll(".reveal");
+        if (!revealElements || revealElements.length === 0) {
+          return;
+        }
+        if (!("IntersectionObserver" in window)) {
+          revealElements.forEach(function (element) {
+            if (element) {
+              element.classList.add("is-visible");
+            }
+          });
+          return;
+        }
+        var observer = new IntersectionObserver(
+          function (entries, activeObserver) {
+            if (!entries || !activeObserver) {
+              return;
+            }
+            entries.forEach(function (entry) {
+              if (!entry || !entry.target) {
+                return;
+              }
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                activeObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+        revealElements.forEach(function (element) {
+          if (element) {
+            observer.observe(element);
+          }
+        });
+      }
+
+      function setupYear() {
+        if (!copyrightYear) {
+          return;
+        }
+        copyrightYear.textContent = String(new Date().getFullYear());
+      }
+
+      function setupContactForm() {
+        if (!contactForm) {
+          return;
+        }
+        contactForm.addEventListener("submit", function (event) {
+          if (event) {
+            event.preventDefault();
+          }
+          var nameInput = document.getElementById("name");
+          var phoneInput = document.getElementById("phone");
+          var messageInput = document.getElementById("message");
+          if (!nameInput || !phoneInput || !messageInput) {
+            return;
+          }
+          var name = nameInput.value.trim();
+          var phone = phoneInput.value.trim();
+          var message = messageInput.value.trim();
+          if (!name || !phone || !message) {
+            return;
+          }
+          window.location.href = "tel:+17175765126";
+        });
+      }
+
+      setupNavigation();
+      setupCallBar();
+      setupReveals();
+      setupYear();
+      setupContactForm();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sharon's Pet Styling | Pet Groomer in Hummelstown, PA</title>
+  <meta name="description" content="Sharon's Pet Styling in Hummelstown, PA offers bathing, haircuts, nail trimming, ear cleaning, and de-shedding. Call (717) 566-6842.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Italiana&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --charcoal: #252421;
+      --charcoal-soft: #36342f;
+      --champagne: #d8c29d;
+      --champagne-light: #eee3d0;
+      --champagne-pale: #f8f3e9;
+      --ivory: #fcfaf6;
+      --white: #ffffff;
+      --muted: #77736c;
+      --line: rgba(37, 36, 33, 0.16);
+      --line-light: rgba(255, 255, 255, 0.2);
+      --shadow: 0 24px 70px rgba(37, 36, 33, 0.12);
+      --space-1: 0.5rem;
+      --space-2: 0.75rem;
+      --space-3: 1rem;
+      --space-4: 1.5rem;
+      --space-5: 2rem;
+      --space-6: 3rem;
+      --space-7: 4.5rem;
+      --space-8: 6rem;
+      --radius-sm: 0.35rem;
+      --radius-md: 0.75rem;
+      --radius-lg: 1.2rem;
+      --max-width: 1180px;
+      --nav-height: 76px;
+      --mobile-call-height: 76px;
+      --display-font: "Italiana", Georgia, serif;
+      --body-font: "DM Sans", Arial, sans-serif;
+      --transition: 220ms ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + 1rem);
+    }
+
+    body {
+      font-family: var(--body-font);
+      color: var(--charcoal);
+      background: var(--ivory);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, textarea {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    section {
+      position: relative;
+      padding: var(--space-7) var(--space-4);
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-3);
+      color: #8c7756;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 2.8rem;
+      height: 1px;
+      background: var(--champagne);
+    }
+
+    h1, h2, h3 {
+      font-family: var(--display-font);
+      font-weight: 400;
+      line-height: 1.08;
+    }
+
+    h2 {
+      font-size: clamp(2.4rem, 7vw, 4.5rem);
+      letter-spacing: -0.025em;
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    .button {
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: 0.85rem 1.45rem;
+      border: 1px solid transparent;
+      background: var(--charcoal);
+      color: var(--white);
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), border-color var(--transition), transform var(--transition);
+    }
+
+    .button:hover, .button:focus-visible {
+      background: var(--champagne);
+      color: var(--charcoal);
+      transform: translateY(-2px);
+    }
+
+    .button-outline {
+      border-color: var(--charcoal);
+      background: transparent;
+      color: var(--charcoal);
+    }
+
+    .button-outline:hover, .button-outline:focus-visible {
+      background: var(--charcoal);
+      color: var(--white);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: var(--nav-height);
+      border-bottom: 1px solid var(--line);
+      background: rgba(252, 250, 246, 0.94);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-wrap {
+      width: min(calc(100% - 2rem), var(--max-width));
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+    }
+
+    .brand {
+      position: relative;
+      z-index: 1002;
+      font-family: var(--display-font);
+      font-size: clamp(1.22rem, 4vw, 1.65rem);
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: #a28860;
+    }
+
+    .desktop-nav {
+      display: none;
+    }
+
+    .nav-call {
+      display: none;
+    }
+
+    .menu-toggle {
+      position: relative;
+      z-index: 1002;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--charcoal);
+      cursor: pointer;
+    }
+
+    .menu-lines, .menu-lines::before, .menu-lines::after {
+      width: 18px;
+      height: 1px;
+      display: block;
+      background: currentColor;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+
+    .menu-lines {
+      position: relative;
+    }
+
+    .menu-lines::before, .menu-lines::after {
+      content: "";
+      position: absolute;
+      left: 0;
+    }
+
+    .menu-lines::before {
+      top: -6px;
+    }
+
+    .menu-lines::after {
+      top: 6px;
+    }
+
+    .menu-toggle.is-open .menu-lines {
+      background: transparent;
+    }
+
+    .menu-toggle.is-open .menu-lines::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .menu-toggle.is-open .menu-lines::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: var(--nav-height);
+      right: 0;
+      left: 0;
+      z-index: 999;
+      display: none;
+      padding: var(--space-5) var(--space-4);
+      border-bottom: 1px solid var(--line);
+      background: var(--ivory);
+      box-shadow: var(--shadow);
+    }
+
+    .mobile-menu.is-open {
+      display: block;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.92rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .mobile-menu .button {
+      margin-top: var(--space-4);
+      border-bottom: none;
+      color: var(--white);
+    }
+
+    .hero {
+      min-height: calc(100svh - var(--nav-height));
+      padding: 0;
+      display: grid;
+      overflow: hidden;
+      background: var(--champagne-pale);
+    }
+
+    .hero-image {
+      min-height: 44vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 44vh;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-image::after {
+      content: "";
+      position: absolute;
+      inset: auto 0;
+      height: 50%;
+      background: linear-gradient(to top, rgba(37, 36, 33, 0.22), transparent);
+      pointer-events: none;
+    }
+
+    .hero-monogram {
+      position: absolute;
+      right: var(--space-4);
+      bottom: var(--space-4);
+      z-index: 2;
+      width: 76px;
+      height: 76px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 50%;
+      color: var(--white);
+      font-family: var(--display-font);
+      font-size: 1.65rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-content {
+      padding: var(--space-6) var(--space-4) var(--space-7);
+      align-self: center;
+    }
+
+    .hero-content-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      max-width: 10ch;
+      margin-bottom: var(--space-4);
+      font-size: clamp(3.25rem, 13vw, 7rem);
+      letter-spacing: -0.045em;
+    }
+
+    .hero-copy {
+      max-width: 590px;
+      font-size: clamp(1rem, 2.6vw, 1.15rem);
+    }
+
+    .hero-actions {
+      margin-top: var(--space-5);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    .hero-actions .button {
+      flex: 1 1 170px;
+    }
+
+    .luxury-rule {
+      height: 1px;
+      width: 100%;
+      background: linear-gradient(to right, transparent, var(--champagne), transparent);
+    }
+
+    .intro-strip {
+      padding: var(--space-5) var(--space-4);
+      background: var(--charcoal);
+      color: var(--white);
+    }
+
+    .intro-strip .container {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .intro-strip p {
+      max-width: 850px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      font-weight: 300;
+    }
+
+    .intro-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3) var(--space-5);
+      font-size: 0.75rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--champagne-light);
+    }
+
+    .services {
+      background: var(--ivory);
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: var(--space-6);
+    }
+
+    .section-heading p {
+      max-width: 560px;
+      margin-top: var(--space-4);
+    }
+
+    .services-layout {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .service-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .service-item {
+      display: grid;
+      grid-template-columns: 2.2rem 1fr;
+      gap: var(--space-3);
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .service-number {
+      padding-top: 0.35rem;
+      color: #a28860;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+    }
+
+    .service-item h3 {
+      margin-bottom: 0.3rem;
+      font-size: clamp(1.6rem, 5vw, 2.1rem);
+    }
+
+    .service-image {
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .service-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+    }
+
+    .service-image::before {
+      content: "";
+      position: absolute;
+      inset: var(--space-3);
+      z-index: 1;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      pointer-events: none;
+    }
+
+    .editorial-pair {
+      padding: 0 var(--space-4) var(--space-7);
+      background: var(--ivory);
+    }
+
+    .editorial-grid {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .editorial-card {
+      position: relative;
+      min-height: 300px;
+      overflow: hidden;
+    }
+
+    .editorial-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      object-fit: cover;
+      transition: transform 700ms ease;
+    }
+
+    .editorial-card:hover img {
+      transform: scale(1.025);
+    }
+
+    .editorial-card:first-child {
+      margin-right: 8%;
+    }
+
+    .editorial-card:last-child {
+      margin-left: 8%;
+    }
+
+    .about {
+      background: var(--champagne-pale);
+    }
+
+    .about-grid {
+      display: grid;
+      gap: var(--space-6);
+      align-items: center;
+    }
+
+    .about-photo {
+      position: relative;
+      padding: 0 var(--space-4) var(--space-4);
+    }
+
+    .about-photo::before {
+      content: "";
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-4);
+      bottom: 0;
+      left: 0;
+      border: 1px solid var(--champagne);
+    }
+
+    .about-photo img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+    }
+
+    .about-copy p + p {
+      margin-top: var(--space-4);
+    }
+
+    .about-signature {
+      margin-top: var(--space-5);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      color: #8c7756;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .about-signature::before {
+      content: "";
+      width: 38px;
+      height: 1px;
+      background: var(--champagne);
+    }
+
+    .visit {
+      background: var(--charcoal);
+      color: var(--white);
+    }
+
+    .visit .eyebrow {
+      color: var(--champagne);
+    }
+
+    .visit h2 {
+      color: var(--white);
+    }
+
+    .visit-grid {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .map-frame {
+      min-height: 400px;
+      border: 1px solid var(--line-light);
+      background: var(--charcoal-soft);
+      padding: var(--space-2);
+    }
+
+    .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      border: 0;
+      filter: grayscale(1) sepia(0.14) contrast(0.92);
+    }
+
+    .visit-info {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .address-card {
+      padding-bottom: var(--space-5);
+      border-bottom: 1px solid var(--line-light);
+    }
+
+    .address-card h3, .hours-card h3 {
+      margin-bottom: var(--space-3);
+      color: var(--champagne-light);
+      font-size: 1.85rem;
+    }
+
+    .address-card p, .hours-card p {
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .hours-list {
+      list-style: none;
+    }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding: 0.55rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.73);
+      font-size: 0.92rem;
+    }
+
+    .hours-list li span:first-child {
+      color: var(--white);
+    }
+
+    .contact {
+      background: var(--ivory);
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    .contact-copy {
+      max-width: 520px;
+    }
+
+    .phone-display {
+      display: inline-block;
+      margin: var(--space-5) 0 var(--space-3);
+      padding-bottom: var(--space-2);
+      border-bottom: 1px solid var(--champagne);
+      font-family: var(--display-font);
+      font-size: clamp(2rem, 8vw, 3.65rem);
+      line-height: 1;
+      transition: color var(--transition);
+    }
+
+    .phone-display:hover, .phone-display:focus-visible {
+      color: #9a8059;
+    }
+
+    .contact-form {
+      padding: var(--space-5);
+      border: 1px solid var(--line);
+      background: var(--white);
+      box-shadow: 0 15px 45px rgba(37, 36, 33, 0.07);
+    }
+
+    .form-grid {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: var(--space-2);
+      color: var(--charcoal);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .field input, .field textarea {
+      width: 100%;
+      border: 0;
+      border-bottom: 1px solid #bdb8ae;
+      border-radius: 0;
+      outline: none;
+      background: transparent;
+      color: var(--charcoal);
+      padding: 0.75rem 0;
+      transition: border-color var(--transition);
+    }
+
+    .field input:focus, .field textarea:focus {
+      border-color: var(--charcoal);
+    }
+
+    .field textarea {
+      min-height: 125px;
+      resize: vertical;
+    }
+
+    .contact-form .button {
+      width: 100%;
+      margin-top: var(--space-2);
+    }
+
+    .form-note {
+      margin-top: var(--space-3);
+      font-size: 0.78rem;
+    }
+
+    .site-footer {
+      padding: var(--space-6) var(--space-4);
+      background: #1e1d1b;
+      color: var(--white);
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .footer-brand {
+      font-family: var(--display-font);
+      font-size: 2rem;
+    }
+
+    .footer-tagline {
+      max-width: 340px;
+      margin-top: var(--space-3);
+      color: rgba(255, 255, 255, 0.56);
+    }
+
+    .footer-heading {
+      margin-bottom: var(--space-3);
+      color: var(--champagne);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li + li {
+      margin-top: var(--space-2);
+    }
+
+    .footer-links a, .footer-hours {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover, .footer-links a:focus-visible {
+      color: var(--champagne);
+    }
+
+    .footer-bottom {
+      margin-top: var(--space-6);
+      padding-top: var(--space-4);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.42);
+      font-size: 0.75rem;
+    }
+
+    .mobile-call-bar {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1100;
+      height: var(--mobile-call-height);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 0.65rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(30, 29, 27, 0.97);
+      backdrop-filter: blur(12px);
+    }
+
+    .mobile-call-bar.is-hidden {
+      display: none;
+    }
+
+    .mobile-call-button {
+      min-height: 54px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--champagne);
+      color: var(--charcoal);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .mobile-call-close {
+      width: 42px;
+      height: 54px;
+      flex: 0 0 42px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: transparent;
+      color: var(--white);
+      cursor: pointer;
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+
+    body.has-mobile-call {
+      padding-bottom: var(--mobile-call-height);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .editorial-card img, .button {
+        transition: none;
+      }
+    }
+
+    @media (min-width: 700px) {
+      section {
+        padding: var(--space-8) var(--space-5);
+      }
+
+      .hero {
+        grid-template-columns: 1.05fr 0.95fr;
+        min-height: 740px;
+      }
+
+      .hero-image {
+        order: 2;
+        min-height: 100%;
+      }
+
+      .hero-image img {
+        min-height: 100%;
+      }
+
+      .hero-content {
+        order: 1;
+        padding: var(--space-7) var(--space-5);
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-content-inner {
+        width: 100%;
+      }
+
+      .hero-actions .button {
+        flex: 0 1 auto;
+        min-width: 165px;
+      }
+
+      .intro-strip .container {
+        grid-template-columns: 1.45fr auto;
+        align-items: center;
+      }
+
+      .services-layout {
+        grid-template-columns: 1fr 0.88fr;
+        gap: var(--space-6);
+        align-items: start;
+      }
+
+      .service-image {
+        position: sticky;
+        top: calc(var(--nav-height) + var(--space-4));
+        min-height: 580px;
+      }
+
+      .service-image img {
+        min-height: 580px;
+      }
+
+      .editorial-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-5);
+        align-items: end;
+      }
+
+      .editorial-card:first-child {
+        min-height: 420px;
+        margin-right: 0;
+        transform: translateY(-2rem);
+      }
+
+      .editorial-card:last-child {
+        min-height: 520px;
+        margin-left: 0;
+      }
+
+      .editorial-card:first-child img {
+        min-height: 420px;
+      }
+
+      .editorial-card:last-child img {
+        min-height: 520px;
+      }
+
+      .about-grid {
+        grid-template-columns: 0.92fr 1.08fr;
+        gap: var(--space-8);
+      }
+
+      .visit-grid {
+        grid-template-columns: 1.4fr 0.6fr;
+        align-items: stretch;
+      }
+
+      .contact-grid {
+        grid-template-columns: 0.9fr 1.1fr;
+        align-items: start;
+      }
+
+      .form-grid.two {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.5fr 0.7fr 0.8fr;
+      }
+    }
+
+    @media (min-width: 980px) {
+      .desktop-nav {
+        display: flex;
+        align-items: center;
+        gap: 1.65rem;
+        margin-left: auto;
+      }
+
+      .desktop-nav a {
+        position: relative;
+        font-size: 0.74rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .desktop-nav a::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: -0.45rem;
+        left: 0;
+        height: 1px;
+        background: var(--champagne);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform var(--transition);
+      }
+
+      .desktop-nav a:hover::after, .desktop-nav a:focus-visible::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      .nav-call {
+        display: inline-flex;
+        min-height: 42px;
+        margin-left: var(--space-4);
+        padding: 0.7rem 1rem;
+      }
+
+      .menu-toggle, .mobile-menu {
+        display: none !important;
+      }
+
+      .mobile-call-bar {
+        display: none !important;
+      }
+
+      body.has-mobile-call {
+        padding-bottom: 0;
+      }
+
+      .hero-content {
+        padding-left: max(var(--space-5), calc((100vw - var(--max-width)) / 2));
+      }
+    }
+
+    @media (max-width: 979px) {
+      body.menu-open {
+        overflow: hidden;
+      }
+    }
+  </style>
+</head>
+<body class="has-mobile-call">
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="#home" aria-label="Sharon's Pet Styling home">
+        Sharon's <span>Pet Styling</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#location">Location</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a class="button nav-call" href="tel:+17175666842">(717) 566-6842</a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobileMenu"
+      >
+        <span class="menu-lines" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#location">Location</a>
+      <a href="#hours">Hours</a>
+      <a href="#contact">Contact</a>
+      <a class="button" href="tel:+17175666842">Call (717) 566-6842</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-image">
+        <img src="../stock/sharons-pet-styling/hero.jpg" alt="Freshly groomed pet at Sharon's Pet Styling in Hummelstown">
+        <div class="hero-monogram" aria-hidden="true">S</div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-content-inner reveal">
+          <div class="eyebrow">Pet Grooming • Hummelstown</div>
+          <h1>A polished finish for every pet.</h1>
+          <p class="hero-copy">
+            Thoughtful grooming in a calm salon setting. Sharon's Pet Styling offers bathing,
+            haircuts, nail trimming, ear cleaning, and de-shedding at 125 S Walnut St in Hummelstown.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button" href="tel:+17175666842">Call Now</a>
+            <a class="button button-outline" href="#services">View Services</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="intro-strip">
+      <div class="container">
+        <p>
+          Simple, focused pet care with the grooming essentials your pet needs to look clean and well kept.
+        </p>
+        <div class="intro-details">
+          <span>Sun-Fri</span>
+          <span>9am-5pm</span>
+          <span>Hummelstown, PA</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">The Services</div>
+          <h2>Care in every detail.</h2>
+          <p>
+            Choose the grooming care your pet needs, from a thorough bath to finishing touches for coat, ears, and nails.
+          </p>
+        </div>
+
+        <div class="services-layout">
+          <div class="service-list reveal">
+            <article class="service-item">
+              <div class="service-number">01</div>
+              <div>
+                <h3>Bathing</h3>
+                <p>A complete bath to freshen the coat and leave your pet feeling clean.</p>
+              </div>
+            </article>
+
+            <article class="service-item">
+              <div class="service-number">02</div>
+              <div>
+                <h3>Haircuts</h3>
+                <p>Coat trimming and styling for a neat, comfortable finish.</p>
+              </div>
+            </article>
+
+            <article class="service-item">
+              <div class="service-number">03</div>
+              <div>
+                <h3>Nail Trimming</h3>
+                <p>Careful nail trimming to keep paws maintained and tidy.</p>
+              </div>
+            </article>
+
+            <article class="service-item">
+              <div class="service-number">04</div>
+              <div>
+                <h3>Ear Cleaning</h3>
+                <p>Gentle ear cleaning as part of a clean, finished grooming routine.</p>
+              </div>
+            </article>
+
+            <article class="service-item">
+              <div class="service-number">05</div>
+              <div>
+                <h3>De-shedding</h3>
+                <p>Coat care focused on removing loose hair and reducing excess shedding.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="service-image reveal">
+            <img
+              src="../stock/sharons-pet-styling/01.jpg"
+              alt="Pet receiving grooming care at Sharon's Pet Styling"
+              loading="lazy"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="editorial-pair">
+      <div class="container editorial-grid">
+        <div class="editorial-card reveal">
+          <img
+            src="../stock/sharons-pet-styling/02.jpg"
+            alt="Well-groomed pet with a clean and carefully styled coat"
+            loading="lazy"
+          >
+        </div>
+        <div class="editorial-card reveal">
+          <img
+            src="../stock/sharons-pet-styling/03.jpg"
+            alt="Pet grooming detail showing a freshly maintained coat"
+            loading="lazy"
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="luxury-rule" aria-hidden="true"></div>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div class="about-photo reveal">
+          <img
+            src="../stock/sharons-pet-styling/04.jpg"
+            alt="Pet at Sharon's Pet Styling salon in Hummelstown"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="about-copy reveal">
+          <div class="eyebrow">Sharon's Pet Styling</div>
+          <h2>Pet grooming without the fuss.</h2>
+          <p>
+            Sharon's Pet Styling provides straightforward grooming services for pets in Hummelstown.
+            The focus is on the essentials: clean coats, neat haircuts, trimmed nails, clean ears, and de-shedding when needed.
+          </p>
+          <p>
+            The salon is located at 125 S Walnut St and is open Sunday through Friday from 9am to 5pm.
+            To ask about grooming or arrange a visit, call directly at (717) 566-6842.
+          </p>
+          <div class="about-signature">125 S Walnut St • Hummelstown</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="visit" id="location">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">Visit the Salon</div>
+          <h2>Right here in Hummelstown.</h2>
+        </div>
+
+        <div class="visit-grid">
+          <div class="map-frame reveal">
+            <iframe
+              src="https://maps.google.com/maps?q=125%20S%20Walnut%20St%2C%20Hummelstown%2C%20PA%2017036&output=embed"
+              title="Map showing Sharon's Pet Styling at 125 S Walnut St, Hummelstown, PA 17036"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <div class="visit-info reveal">
+            <div class="address-card">
+              <h3>Address</h3>
+              <p>
+                125 S Walnut St<br>
+                Hummelstown, PA 17036
+              </p>
+            </div>
+
+            <div class="hours-card" id="hours">
+              <h3>Hours</h3>
+              <ul class="hours-list">
+                <li><span>Sunday</span><span>9am-5pm</span></li>
+                <li><span>Monday</span><span>9am-5pm</span></li>
+                <li><span>Tuesday</span><span>9am-5pm</span></li>
+                <li><span>Wednesday</span><span>9am-5pm</span></li>
+                <li><span>Thursday</span><span>9am-5pm</span></li>
+                <li><span>Friday</span><span>9am-5pm</span></li>
+                <li><span>Saturday</span><span>Closed</span></li>
+              </ul>
+            </div>
+
+            <a class="button" href="tel:+17175666842">Call (717) 566-6842</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <div class="eyebrow">Contact</div>
+          <h2>Ready for a fresh groom?</h2>
+          <p>
+            Call Sharon's Pet Styling directly to ask about grooming services or your pet's needs.
+          </p>
+          <a class="phone-display" href="tel:+17175666842">(717) 566-6842</a>
+          <p>Open Sunday through Friday, 9am-5pm.</p>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm">
+          <div class="form-grid two">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+
+            <button class="button" type="submit">Prepare Message</button>
+          </div>
+
+          <p class="form-note" id="formNote">
+            Submitting opens your device's email app with your message prepared.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Sharon's Pet Styling</div>
+          <p class="footer-tagline">
+            Bathing, haircuts, nail trimming, ear cleaning, and de-shedding in Hummelstown, Pennsylvania.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-heading">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#location">Location</a></li>
+            <li><a href="#hours">Hours</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Hours</div>
+          <p class="footer-hours">
+            Sunday-Friday<br>
+            9am-5pm<br><br>
+            Saturday<br>
+            Closed
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; <span id="copyrightYear">2026</span> Sharon's Pet Styling. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-call-bar" id="mobileCallBar">
+    <a class="mobile-call-button" href="tel:+17175666842">Call (717) 566-6842</a>
+    <button class="mobile-call-close" id="mobileCallClose" type="button" aria-label="Close call bar">×</button>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+      var menuToggle = document.getElementById("menuToggle");
+      var mobileMenu = document.getElementById("mobileMenu");
+      var mobileCallBar = document.getElementById("mobileCallBar");
+      var mobileCallClose = document.getElementById("mobileCallClose");
+      var contactForm = document.getElementById("contactForm");
+      var formNote = document.getElementById("formNote");
+      var copyrightYear = document.getElementById("copyrightYear");
+
+      function closeMobileMenu() {
+        if (menuToggle) {
+          menuToggle.classList.remove("is-open");
+          menuToggle.setAttribute("aria-expanded", "false");
+          menuToggle.setAttribute("aria-label", "Open navigation menu");
+        }
+        if (mobileMenu) {
+          mobileMenu.classList.remove("is-open");
+        }
+        document.body.classList.remove("menu-open");
+      }
+
+      function toggleMobileMenu() {
+        if (!menuToggle || !mobileMenu) {
+          return;
+        }
+        var willOpen = !mobileMenu.classList.contains("is-open");
+        mobileMenu.classList.toggle("is-open", willOpen);
+        menuToggle.classList.toggle("is-open", willOpen);
+        menuToggle.setAttribute("aria-expanded", String(willOpen));
+        menuToggle.setAttribute(
+          "aria-label",
+          willOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+        document.body.classList.toggle("menu-open", willOpen);
+      }
+
+      if (menuToggle) {
+        menuToggle.addEventListener("click", toggleMobileMenu);
+      }
+
+      if (mobileMenu) {
+        var mobileLinks = mobileMenu.querySelectorAll("a");
+        mobileLinks.forEach(function (link) {
+          link.addEventListener("click", closeMobileMenu);
+        });
+      }
+
+      window.addEventListener("resize", function () {
+        if (window.innerWidth >= 980) {
+          closeMobileMenu();
+        }
+      });
+
+      function hideMobileCallBar() {
+        if (mobileCallBar) {
+          mobileCallBar.classList.add("is-hidden");
+        }
+        document.body.classList.remove("has-mobile-call");
+        try {
+          sessionStorage.setItem("sharonsCallBarDismissed", "true");
+        } catch (error) {
+          return;
+        }
+      }
+
+      if (mobileCallClose) {
+        mobileCallClose.addEventListener("click", hideMobileCallBar);
+      }
+
+      try {
+        if (sessionStorage.getItem("sharonsCallBarDismissed") === "true") {
+          if (mobileCallBar) {
+            mobileCallBar.classList.add("is-hidden");
+          }
+          document.body.classList.remove("has-mobile-call");
+        }
+      } catch (error) {
+        /* Session storage may be unavailable. The call bar remains visible. */
+      }
+
+      var revealElements = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window && revealElements.length > 0) {
+        var observer = new IntersectionObserver(
+          function (entries, currentObserver) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                currentObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { root: null, threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+        );
+        revealElements.forEach(function (element) {
+          observer.observe(element);
+        });
+      } else {
+        revealElements.forEach(function (element) {
+          element.classList.add("is-visible");
+        });
+      }
+
+      if (contactForm) {
+        contactForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+          var nameInput = document.getElementById("name");
+          var phoneInput = document.getElementById("phone");
+          var messageInput = document.getElementById("message");
+          if (!nameInput || !phoneInput || !messageInput) {
+            return;
+          }
+          var name = nameInput.value.trim();
+          var phone = phoneInput.value.trim();
+          var message = messageInput.value.trim();
+          if (!name || !phone || !message) {
+            if (formNote) {
+              formNote.textContent = "Please complete your name, phone number, and message.";
+            }
+            return;
+          }
+          var subject = encodeURIComponent("Pet grooming inquiry from " + name);
+          var body = encodeURIComponent(
+            "Name: " + name + "\n" +
+            "Phone: " + phone + "\n\n" +
+            "Message:\n" + message
+          );
+          if (formNote) {
+            formNote.textContent = "Your message is ready. If your email app does not open, please call (717) 566-6842.";
+          }
+          window.location.href = "mailto:?subject=" + subject + "&body=" + body;
+        });
+      }
+
+      if (copyrightYear) {
+        copyrightYear.textContent = String(new Date().getFullYear());
+      }
+    })();
+  </script>
+</body>
+</html>

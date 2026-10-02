@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mama's Pizza in Hummelstown, PA, serving pizza, pasta dishes, stromboli, salads, takeout and delivery.">
+  <meta name="theme-color" content="#9d2d25">
+
+  <title>Mama's Pizza | Hummelstown, PA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f7f0df;
+      --cream-deep: #eadfc6;
+      --paper: #fffaf0;
+      --tomato: #9d2d25;
+      --tomato-dark: #762019;
+      --tomato-soft: #bd4c3e;
+      --olive: #53613f;
+      --olive-dark: #3f4932;
+      --ink: #29221d;
+      --muted: #675d54;
+      --line: rgba(72, 54, 41, 0.18);
+      --shadow: 0 18px 48px rgba(62, 43, 28, 0.13);
+      --shadow-small: 0 8px 24px rgba(62, 43, 28, 0.10);
+      --radius: 1.25rem;
+      --radius-small: 0.85rem;
+      --display: "Lora", Georgia, serif;
+      --body: "DM Sans", Arial, sans-serif;
+      --max-width: 1180px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 6.5rem;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      min-width: 0;
+      overflow-x: hidden;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 1rem;
+      line-height: 1.7;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.mobile-call-active {
+      padding-bottom: 4.8rem;
+    }
+
+    body.call-bar-dismissed {
+      padding-bottom: 0;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    ::selection {
+      background: var(--tomato);
+      color: var(--paper);
+    }
+
+    .site-shell {
+      overflow: hidden;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max-width));
+      margin-inline: auto;
+    }
+
+    .section {
+      position: relative;
+      overflow: hidden;
+      padding: 5.5rem 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin: 0 0 1rem;
+      color: var(--tomato);
+      font-size: 0.76rem;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 2rem;
+      height: 2px;
+      flex: 0 0 auto;
+      background: currentColor;
+    }
+
+    .display-heading,
+    .hero-title,
+    .section-title,
+    .contact-title {
+      margin: 0;
+      font-family: var(--display);
+      line-height: 1.06;
+      letter-spacing: -0.035em;
+      overflow-wrap: break-word;
+    }
+
+    .section-title {
+      max-width: 15ch;
+      font-size: clamp(2rem, 8vw, 4rem);
+    }
+
+    .section-copy {
+      max-width: 42rem;
+      margin: 1.25rem 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.1rem);
+    }
+
+    .btn {
+      min-height: 3.15rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 0.8rem 1.15rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      line-height: 1.2;
+      cursor: pointer;
+      transition:
+        transform 180ms ease,
+        background-color 180ms ease,
+        color 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:focus-visible,
+    .nav-link:focus-visible,
+    .header-phone:focus-visible,
+    .footer-link:focus-visible,
+    .mobile-call-link:focus-visible,
+    .mobile-call-dismiss:focus-visible {
+      outline: 3px solid rgba(157, 45, 37, 0.3);
+      outline-offset: 3px;
+    }
+
+    .btn-primary {
+      background: var(--tomato);
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(157, 45, 37, 0.22);
+    }
+
+    .btn-primary:hover {
+      background: var(--tomato-dark);
+      box-shadow: 0 12px 30px rgba(157, 45, 37, 0.28);
+    }
+
+    .btn-secondary {
+      border-color: rgba(118, 32, 25, 0.34);
+      background: rgba(255, 250, 240, 0.54);
+      color: var(--tomato-dark);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--tomato);
+      background: var(--paper);
+    }
+
+    .btn svg,
+    .header-phone svg,
+    .info-row svg,
+    .mobile-call-link svg {
+      width: 1.1rem;
+      height: 1.1rem;
+      flex: 0 0 auto;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(93, 67, 48, 0.13);
+      background: rgba(247, 240, 223, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .nav-wrap {
+      min-height: 4.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 2.6rem;
+      height: 2.6rem;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--tomato);
+      border-radius: 50%;
+      background: var(--paper);
+      color: var(--tomato);
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      width: 0.36rem;
+      height: 0.36rem;
+      border-radius: 50%;
+      background: var(--tomato);
+    }
+
+    .brand-mark::before {
+      top: 0.38rem;
+      left: 0.48rem;
+    }
+
+    .brand-mark::after {
+      right: 0.48rem;
+      bottom: 0.38rem;
+    }
+
+    .brand-text {
+      min-width: 0;
+    }
+
+    .brand-name {
+      display: block;
+      font-family: var(--display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .brand-location {
+      display: none;
+      margin-top: 0.25rem;
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .desktop-nav {
+      display: none;
+      align-items: center;
+      gap: 1.65rem;
+    }
+
+    .nav-link {
+      position: relative;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 650;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -0.45rem;
+      left: 0;
+      height: 2px;
+      background: var(--tomato);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 180ms ease;
+    }
+
+    .nav-link:hover {
+      color: var(--tomato);
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    .header-phone {
+      min-height: 2.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.65rem 0.82rem;
+      border-radius: 999px;
+      background: var(--tomato);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 6px 18px rgba(157, 45, 37, 0.18);
+    }
+
+    .header-phone span {
+      display: none;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 4.1rem 0 4.8rem;
+      background-color: var(--cream);
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -2;
+      top: -13rem;
+      right: -13rem;
+      width: 28rem;
+      height: 28rem;
+      border: 5rem solid rgba(157, 45, 37, 0.08);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      right: -3rem;
+      bottom: -3rem;
+      width: 13rem;
+      height: 13rem;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, rgba(157, 45, 37, 0.11) 0 2px, transparent 2.5px);
+      background-size: 16px 16px;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1.1rem;
+      color: var(--olive-dark);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker::before {
+      content: "";
+      width: 1.9rem;
+      height: 1.9rem;
+      border: 1px solid rgba(83, 97, 63, 0.35);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, var(--olive) 0 2px, transparent 2.5px);
+      background-size: 8px 8px;
+    }
+
+    .hero-title {
+      max-width: 12ch;
+      color: var(--ink);
+      font-size: clamp(2.7rem, 12vw, 6rem);
+    }
+
+    .hero-title em {
+      color: var(--tomato);
+      font-weight: 600;
+    }
+
+    .hero-copy {
+      max-width: 38rem;
+      margin: 1.4rem 0 0;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 2vw, 1.18rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.8rem;
+    }
+
+    .hero-phone-line {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 1.6rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .hero-phone-line strong {
+      display: block;
+      color: var(--ink);
+      font-family: var(--display);
+      font-size: 1.07rem;
+    }
+
+    .hero-phone-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--paper);
+      color: var(--tomato);
+    }
+
+    .hero-phone-icon svg {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .hero-art {
+      position: relative;
+      min-height: 22rem;
+      display: grid;
+      place-items: center;
+    }
+
+    .table-cloth {
+      position: absolute;
+      inset: 2rem 0.5rem 0;
+      border: 1px solid rgba(93, 67, 48, 0.14);
+      border-radius: 2rem 2rem 0.7rem 0.7rem;
+      background-color: #f3e7ce;
+      background-image:
+        linear-gradient(90deg, transparent 49%, rgba(157, 45, 37, 0.08) 49% 51%, transparent 51%),
+        linear-gradient(transparent 49%, rgba(157, 45, 37, 0.08) 49% 51%, transparent 51%);
+      background-size: 42px 42px;
+      transform: rotate(2deg);
+      box-shadow: var(--shadow);
+    }
+
+    .plate {
+      position: relative;
+      z-index: 3;
+      width: min(72vw, 19rem);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border: 1rem solid #f9f4e9;
+      border-radius: 50%;
+      background: var(--tomato);
+      box-shadow:
+        0 1.3rem 2.6rem rgba(73, 45, 29, 0.22),
+        inset 0 0 0 0.28rem rgba(117, 34, 27, 0.8);
+      transform: rotate(-5deg);
+    }
+
+    .plate::before {
+      content: "";
+      position: absolute;
+      inset: 1.15rem;
+      border: 0.18rem solid rgba(255, 250, 240, 0.66);
+      border-radius: 50%;
+    }
+
+    .plate-copy {
+      position: relative;
+      z-index: 2;
+      width: 75%;
+      color: var(--paper);
+      text-align: center;
+    }
+
+    .plate-small {
+      display: block;
+      margin-bottom: 0.45rem;
+      font-size: 0.63rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .plate-big {
+      display: block;
+      font-family: var(--display);
+      font-size: clamp(1.75rem, 8vw, 2.8rem);
+      font-weight: 700;
+      line-height: 0.95;
+      overflow-wrap: break-word;
+    }
+
+    .plate-bottom {
+      display: block;
+      margin-top: 0.7rem;
+      font-size: 0.69rem;
+      font-weight: 700;
+    }
+
+    .basil {
+      position: absolute;
+      z-index: 4;
+      width: 3.8rem;
+      height: 1.65rem;
+      border-radius: 100% 0 100% 0;
+      background: var(--olive);
+      box-shadow: inset 0 -6px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .basil.one {
+      top: 1.8rem;
+      right: 11%;
+      transform: rotate(30deg);
+    }
+
+    .basil.two {
+      bottom: 1.2rem;
+      left: 9%;
+      width: 3rem;
+      transform: rotate(-30deg);
+    }
+
+    .flour-dust {
+      position: absolute;
+      z-index: 2;
+      width: 0.42rem;
+      height: 0.42rem;
+      border-radius: 50%;
+      background: rgba(255, 250, 240, 0.92);
+      box-shadow:
+        20px 12px 0 -1px rgba(255, 250, 240, 0.8),
+        38px -4px 0 -2px rgba(255, 250, 240, 0.92),
+        58px 17px 0 -1px rgba(255, 250, 240, 0.75),
+        74px -7px 0 -2px rgba(255, 250, 240, 0.85);
+    }
+
+    .flour-dust.one {
+      top: 18%;
+      left: 7%;
+      transform: rotate(15deg);
+    }
+
+    .flour-dust.two {
+      right: 20%;
+      bottom: 10%;
+      transform: rotate(-40deg);
+    }
+
+    .hero-note {
+      position: absolute;
+      z-index: 5;
+      right: 0;
+      bottom: 1rem;
+      max-width: 10.5rem;
+      padding: 0.9rem 1rem;
+      border: 1px solid rgba(93, 67, 48, 0.14);
+      border-radius: 0.5rem;
+      background: #fffaf0;
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.45;
+      box-shadow: var(--shadow-small);
+      transform: rotate(2deg);
+    }
+
+    .hero-note strong {
+      display: block;
+      margin-bottom: 0.15rem;
+      color: var(--tomato);
+      font-family: var(--display);
+      font-size: 0.95rem;
+    }
+
+    /* Offerings */
+    .offerings {
+      background: var(--paper);
+    }
+
+    .offerings::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 0.45rem;
+      background: var(--tomato);
+    }
+
+    .offerings-head {
+      margin-bottom: 2.6rem;
+    }
+
+    .offer-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .offer-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 15rem;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--cream);
+      box-shadow: 0 4px 0 rgba(93, 67, 48, 0.035);
+      transition:
+        transform 200ms ease,
+        box-shadow 200ms ease,
+        border-color 200ms ease;
+    }
+
+    .offer-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(157, 45, 37, 0.28);
+      box-shadow: var(--shadow-small);
+    }
+
+    .offer-number {
+      position: absolute;
+      top: -1.1rem;
+      right: 0.8rem;
+      color: rgba(157, 45, 37, 0.07);
+      font-family: var(--display);
+      font-size: 6rem;
+      font-weight: 700;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .offer-icon {
+      width: 3rem;
+      height: 3rem;
+      display: grid;
+      place-items: center;
+      margin-bottom: 2.1rem;
+      border-radius: 50%;
+      background: var(--tomato);
+      color: #fff;
+    }
+
+    .offer-icon svg {
+      width: 1.35rem;
+      height: 1.35rem;
+    }
+
+    .offer-card h3 {
+      margin: auto 0 0.55rem;
+      color: var(--ink);
+      font-family: var(--display);
+      font-size: 1.45rem;
+      line-height: 1.15;
+      overflow-wrap: break-word;
+    }
+
+    .offer-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .offer-card:nth-child(3) {
+      background: var(--tomato);
+      color: #fff;
+    }
+
+    .offer-card:nth-child(3) .offer-number {
+      color: rgba(255, 250, 240, 0.08);
+    }
+
+    .offer-card:nth-child(3) .offer-icon {
+      background: var(--paper);
+      color: var(--tomato);
+    }
+
+    .offer-card:nth-child(3) h3,
+    .offer-card:nth-child(3) p {
+      color: #fff;
+    }
+
+    .offer-card:nth-child(3) p {
+      opacity: 0.83;
+    }
+
+    /* About */
+    .about {
+      background: var(--cream);
+    }
+
+    .about::before {
+      content: "";
+      position: absolute;
+      top: 4rem;
+      left: -6rem;
+      width: 13rem;
+      height: 13rem;
+      border: 2rem solid rgba(83, 97, 63, 0.08);
+      border-radius: 50%;
+    }
+
+    .about-grid {
+      display: grid;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .about-copy p {
+      margin: 1.2rem 0 0;
+      color: var(--muted);
+    }
+
+    .about-card {
+      position: relative;
+      padding: 2rem 1.5rem;
+      border-radius: 1.6rem;
+      background: var(--olive-dark);
+      color: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .about-card::before {
+      content: "Mama's";
+      position: absolute;
+      top: -1.2rem;
+      right: 0.8rem;
+      color: rgba(255, 250, 240, 0.08);
+      font-family: var(--display);
+      font-size: 4.1rem;
+      font-style: italic;
+      font-weight: 700;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .about-card-label {
+      position: relative;
+      margin: 0 0 1.2rem;
+      color: #d8dfc7;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .about-list {
+      position: relative;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .about-point {
+      display: grid;
+      grid-template-columns: 2.3rem minmax(0, 1fr);
+      gap: 0.8rem;
+      align-items: start;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 250, 240, 0.14);
+    }
+
+    .about-point:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .about-point svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      margin-top: 0.12rem;
+      color: #d8dfc7;
+    }
+
+    .about-point strong {
+      display: block;
+      margin-bottom: 0.15rem;
+      font-family: var(--display);
+      font-size: 1.05rem;
+    }
+
+    .about-point span {
+      color: rgba(255, 250, 240, 0.74);
+      font-size: 0.88rem;
+    }
+
+    /* Visit */
+    .visit {
+      background: var(--paper);
+    }
+
+    .visit-grid {
+      display: grid;
+      gap: 1.3rem;
+    }
+
+    .map-wrap {
+      position: relative;
+      min-height: 25rem;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 1.5rem;
+      background: var(--cream-deep);
+      box-shadow: var(--shadow-small);
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      min-height: 25rem;
+      display: block;
+      border: 0;
+    }
+
+    .visit-card {
+      display: flex;
+      flex-direction: column;
+      padding: 1.7rem;
+      border: 1px solid var(--line);
+      border-radius: 1.5rem;
+      background: var(--cream);
+    }
+
+    .visit-card h3 {
+      margin: 0 0 1.35rem;
+      font-family: var(--display);
+      font-size: 1.65rem;
+      line-height: 1.15;
+      overflow-wrap: break-word;
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 2.4rem minmax(0, 1fr);
+      gap: 0.75rem;
+      align-items: start;
+      padding: 1rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .info-row:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .info-row strong {
+      display: block;
+      margin-bottom: 0.14rem;
+      color: var(--ink);
+      font-size: 0.88rem;
+    }
+
+    .info-row span,
+    .info-row a {
+      display: block;
+      color: var(--muted);
+      font-size: 0.91rem;
+      line-height: 1.55;
+    }
+
+    .hours-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .hours-list li {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.65rem;
+      padding: 0.36rem 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .hours-list strong {
+      color: var(--ink);
+      font-size: inherit;
+      font-weight: 650;
+    }
+
+    .directions-btn {
+      width: 100%;
+      margin-top: auto;
+      padding-top: 1.2rem;
+    }
+
+    .directions-btn .btn {
+      width: 100%;
+    }
+
+    /* Contact */
+    .contact {
+      position: relative;
+      overflow: hidden;
+      padding: 5.2rem 0;
+      background: var(--tomato);
+      color: #fff;
+    }
+
+    .contact::before {
+      content: "";
+      position: absolute;
+      top: -6rem;
+      right: -4rem;
+      width: 16rem;
+      height: 16rem;
+      border: 3rem solid rgba(255, 250, 240, 0.08);
+      border-radius: 50%;
+    }
+
+    .contact::after {
+      content: "";
+      position: absolute;
+      bottom: -5rem;
+      left: -5rem;
+      width: 13rem;
+      height: 13rem;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, rgba(255, 250, 240, 0.11) 0 2px, transparent 2.5px);
+      background-size: 15px 15px;
+    }
+
+    .contact-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .contact-kicker {
+      margin: 0 0 0.85rem;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .contact-title {
+      max-width: 14ch;
+      font-size: clamp(2.2rem, 10vw, 4.6rem);
+    }
+
+    .contact-copy {
+      max-width: 38rem;
+      margin: 1rem 0 0;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 1rem;
+    }
+
+    .contact-phone {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #fff;
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 7vw, 2.65rem);
+      font-weight: 700;
+      line-height: 1.1;
+      overflow-wrap: break-word;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .contact .btn-primary {
+      background: var(--paper);
+      color: var(--tomato-dark);
+      box-shadow: none;
+    }
+
+    .contact .btn-primary:hover {
+      background: var(--cream-deep);
+    }
+
+    .contact .btn-secondary {
+      border-color: rgba(255, 255, 255, 0.36);
+      background: transparent;
+      color: #fff;
+    }
+
+    .contact .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    /* Footer */
+    .site-footer {
+      position: relative;
+      overflow: hidden;
+      padding: 3rem 0 2rem;
+      background: #261f1b;
+      color: rgba(255, 250, 240, 0.72);
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .footer-brand .brand-name {
+      color: var(--paper);
+      font-size: 1.35rem;
+    }
+
+    .footer-brand p {
+      max-width: 28rem;
+      margin: 0.8rem 0 0;
+      font-size: 0.88rem;
+    }
+
+    .footer-label {
+      margin: 0 0 0.65rem;
+      color: var(--paper);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .footer-link {
+      display: inline-block;
+      margin: 0.15rem 0;
+      color: rgba(255, 250, 240, 0.78);
+      font-size: 0.88rem;
+    }
+
+    .footer-link:hover {
+      color: #fff;
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(255, 250, 240, 0.1);
+      font-size: 0.76rem;
+    }
+
+    /* Mobile Call Bar */
+    .mobile-call-bar {
+      position: fixed;
+      z-index: 80;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: stretch;
+      padding: 0.6rem;
+      border-top: 1px solid rgba(93, 67, 48, 0.14);
+      background: rgba(255, 250, 240, 0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 -8px 24px rgba(42, 31, 24, 0.08);
+    }
+
+    .mobile-call-bar.is-hidden {
+      display: none;
+    }
+
+    .mobile-call-link {
+      min-width: 0;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      min-height: 3.35rem;
+      border-radius: 999px;
+      background: var(--tomato);
+      color: #fff;
+      font-size: 0.91rem;
+      font-weight: 800;
+    }
+
+    .mobile-call-dismiss {
+      width: 2.8rem;
+      height: 3.35rem;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      margin-left: 0.3rem;
+      border: 0;
+      border-radius: 0.8rem;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .mobile-call-dismiss svg {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    @media (min-width: 480px) {
+      .container {
+        width: min(calc(100% - 2.5rem), var(--max-width));
+      }
+
+      .brand-location {
+        display: block;
+      }
+
+      .header-phone span {
+        display: inline;
+      }
+
+      .hero {
+        padding-top: 5rem;
+      }
+
+      .offer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .offer-card:last-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (min-width: 760px) {
+      body.mobile-call-active {
+        padding-bottom: 0;
+      }
+
+      .mobile-call-bar {
+        display: none;
+      }
+
+      .section {
+        padding: 7.2rem 0;
+      }
+
+      .hero {
+        padding: 6.2rem 0 6.5rem;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.08fr) minmax(19rem, 0.92fr);
+        gap: 2rem;
+      }
+
+      .hero-art {
+        min-height: 30rem;
+      }
+
+      .table-cloth {
+        inset: 3rem 0 0;
+      }
+
+      .plate {
+        width: min(34vw, 22rem);
+      }
+
+      .about-grid {
+        grid-template-columns: minmax(0, 1.05fr) minmax(20rem, 0.95fr);
+        gap: 4rem;
+      }
+
+      .about-card {
+        padding: 2.3rem;
+      }
+
+      .visit-grid {
+        grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
+      }
+
+      .map-wrap,
+      .map-wrap iframe {
+        min-height: 38rem;
+      }
+
+      .visit-card {
+        padding: 2rem;
+      }
+
+      .contact-inner {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 3rem;
+      }
+
+      .contact-actions {
+        max-width: 17rem;
+        justify-content: flex-end;
+      }
+
+      .contact-actions .btn {
+        width: 100%;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.4fr 0.8fr 0.8fr;
+      }
+
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    @media (min-width: 940px) {
+      .desktop-nav {
+        display: flex;
+      }
+
+      .offer-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+
+      .offer-card:nth-child(1),
+      .offer-card:nth-child(2),
+      .offer-card:nth-child(3) {
+        grid-column: span 2;
+      }
+
+      .offer-card:nth-child(4),
+      .offer-card:nth-child(5) {
+        grid-column: span 3;
+      }
+
+      .offer-card:last-child {
+        grid-column: span 3;
+      }
+
+      .hero-art {
+        min-height: 33rem;
+      }
+
+      .hero-note {
+        right: 4%;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .header-phone {
+        padding-inline: 1rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="mobile-call-active">
+  <div class="site-shell">
+
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="brand" href="#top" aria-label="Mama's Pizza home">
+          <span class="brand-mark" aria-hidden="true">M</span>
+          <span class="brand-text">
+            <span class="brand-name">Mama's Pizza</span>
+            <span class="brand-location">Hummelstown, Pennsylvania</span>
+          </span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Primary navigation">
+          <a class="nav-link" href="#menu">Offerings</a>
+          <a class="nav-link" href="#about">About</a>
+          <a class="nav-link" href="#visit">Visit</a>
+          <a class="nav-link" href="#contact">Contact</a>
+        </nav>
+
+        <a class="header-phone" href="tel:+17178386300" aria-label="Call Mama's Pizza at 717-838-6300">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.28-1.28a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span>(717) 838-6300</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <div class="hero-kicker">Hummelstown's neighborhood pizzeria</div>
+
+            <h1 class="hero-title">
+              Mama's is <em>cooking.</em>
+            </h1>
+
+            <p class="hero-copy">
+              Pizza, pasta, stromboli and salads from a Hummelstown kitchen that cooks like family. Takeout and delivery when dinner needs to come to you.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="tel:+17178386300">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.28-1.28a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                Call Mama's Pizza
+              </a>
+
+              <a class="btn btn-secondary" href="#menu">
+                See what we serve
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="m9 18 6-6-6-6"/>
+                </svg>
+              </a>
+            </div>
+
+            <div class="hero-phone-line">
+              <div class="hero-phone-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.28-1.28a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div>
+                Call for takeout or delivery
+                <strong><a href="tel:+17178386300">(717) 838-6300</a></strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-art" aria-hidden="true">
+            <div class="table-cloth"></div>
+            <div class="flour-dust one"></div>
+            <div class="flour-dust two"></div>
+            <div class="basil one"></div>
+            <div class="basil two"></div>
+
+            <div class="plate">
+              <div class="plate-copy">
+                <span class="plate-small">Hummelstown</span>
+                <span class="plate-big">Mama's<br>Pizza</span>
+                <span class="plate-bottom">Pizza • Pasta • Stromboli</span>
+              </div>
+            </div>
+
+            <div class="hero-note">
+              <strong>Come hungry.</strong>
+              Find us on East Main Street in Hummelstown.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section offerings" id="menu">
+        <div class="container">
+          <div class="offerings-head">
+            <p class="eyebrow">From Mama's kitchen</p>
+            <h2 class="section-title">The comfort-food lineup.</h2>
+            <p class="section-copy">
+              Pizza, pasta, stromboli or something lighter. Mama's keeps the choices easy and the portions honest.
+            </p>
+          </div>
+
+          <div class="offer-grid">
+            <article class="offer-card">
+              <span class="offer-number" aria-hidden="true">01</span>
+              <div class="offer-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M12 3 3.5 20h17L12 3Z"/>
+                  <circle cx="10" cy="12" r="1"/>
+                  <circle cx="14.5" cy="16" r="1"/>
+                  <path d="M8.5 8.5c2.2 1 4.5 1 7 0"/>
+                </svg>
+              </div>
+              <h3>Pizza</h3>
+              <p>
+                Hand-tossed pies, baked golden, ready for the table or the ride home.
+              </p>
+            </article>
+
+            <article class="offer-card">
+              <span class="offer-number" aria-hidden="true">02</span>
+              <div class="offer-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M6 5h12"/>
+                  <path d="M7 8c1 4 1 7 0 11"/>
+                  <path d="M11 8c1 4 1 7 0 11"/>
+                  <path d="M15 8c1 4 1 7 0 11"/>
+                  <path d="M18 8c-1 4-1 7 0 11"/>
+                </svg>
+              </div>
+              <h3>Pasta dishes</h3>
+              <p>
+                Hearty bowls of pasta, the sit-down kind of dinner.
+              </p>
+            </article>
+
+            <article class="offer-card">
+              <span class="offer-number" aria-hidden="true">03</span>
+              <div class="offer-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M4 9c4-4 12-4 16 0"/>
+                  <path d="M4 9v6c4 4 12 4 16 0V9"/>
+                  <path d="M8 8c1.5 2 2.5 5 2 9"/>
+                  <path d="M16 8c-1.5 2-2.5 5-2 9"/>
+                </svg>
+              </div>
+              <h3>Stromboli</h3>
+              <p>
+                Rolled, stuffed and baked. Pizza's heartier cousin.
+              </p>
+            </article>
+
+            <article class="offer-card">
+              <span class="offer-number" aria-hidden="true">04</span>
+              <div class="offer-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M4 10c1 7 4 10 8 10s7-3 8-10H4Z"/>
+                  <path d="M7 9c1-2 2-3 4-4"/>
+                  <path d="M12 9c0-3 1-5 3-6"/>
+                  <path d="M15 9c1-2 2-3 4-3"/>
+                </svg>
+              </div>
+              <h3>Salads</h3>
+              <p>
+                Crisp and fresh, for the lighter side of the table.
+              </p>
+            </article>
+
+            <article class="offer-card">
+              <span class="offer-number" aria-hidden="true">05</span>
+              <div class="offer-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M3 7h11v10H3z"/>
+                  <path d="M14 10h4l3 3v4h-7z"/>
+                  <circle cx="7" cy="18" r="2"/>
+                  <circle cx="18" cy="18" r="2"/>
+                </svg>
+              </div>
+              <h3>Takeout and delivery</h3>
+              <p>
+                Call ahead and dinner's waiting. Delivery too.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section about" id="about">
+        <div class="container about-grid">
+          <div class="about-copy">
+            <p class="eyebrow">A Main Street kind of place</p>
+            <h2 class="section-title">Dinner without the fuss.</h2>
+
+            <p>
+              Mama's Pizza brings together the kind of choices that make ordering simple: pizza, pasta dishes, stromboli and salads, all from one neighborhood stop in Hummelstown.
+            </p>
+
+            <p>
+              Stop in on East Main Street, pick up dinner on the way home, or call when delivery makes more sense. No fuss, no pretense, just the kind of food that ends the debate about what's for dinner.
+            </p>
+          </div>
+
+          <aside class="about-card" aria-label="Ways to enjoy Mama's Pizza">
+            <p class="about-card-label">Made for real-life dinner plans</p>
+
+            <div class="about-list">
+              <div class="about-point">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M3 11h18"/>
+                  <path d="M5 11V7a7 7 0 0 1 14 0v4"/>
+                  <path d="M4 20h16"/>
+                  <path d="M7 16h10"/>
+                </svg>
+                <div>
+                  <strong>Plenty to choose from</strong>
+                  <span>Pizza, pasta dishes, stromboli and salads all share the menu.</span>
+                </div>
+              </div>
+
+              <div class="about-point">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0Z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <div>
+                  <strong>Right on Main Street</strong>
+                  <span>Find Mama's Pizza at 100 E Main St in Hummelstown.</span>
+                </div>
+              </div>
+
+              <div class="about-point">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.28-1.28a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                <div>
+                  <strong>Easy to call ahead</strong>
+                  <span>Takeout and delivery are available by calling (717) 838-6300.</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section visit" id="visit">
+        <div class="container">
+          <div class="offerings-head">
+            <p class="eyebrow">Plan your visit</p>
+            <h2 class="section-title">Find Mama's on Main.</h2>
+            <p class="section-copy">
+              Located at 100 E Main St in Hummelstown, with hours running Tuesday through Sunday.
+            </p>
+          </div>
+
+          <div class="visit-grid">
+            <div class="map-wrap">
+              <iframe
+                title="Map showing Mama's Pizza at 100 E Main St, Hummelstown, PA 17036"
+                src="https://maps.google.com/maps?q=100%20E%20Main%20St%2C%20Hummelstown%2C%20PA%2017036&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen>
+              </iframe>
+            </div>
+
+            <aside class="visit-card">
+              <h3>Hours &amp; location</h3>
+
+              <div class="info-row">
+                <div class="info-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0Z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Address</strong>
+                  <span>100 E Main St<br>Hummelstown, PA 17036</span>
+                </div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M12 7v5l3 2"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Hours</strong>
+                  <ul class="hours-list">
+                    <li>
+                      <span>Monday</span>
+                      <strong>Closed</strong>
+                    </li>
+                    <li>
+                      <span>Tuesday</span>
+                      <strong>11 AM–9 PM</strong>
+                    </li>
+                    <li>
+                      <span>Wednesday</span>
+                      <strong>11 AM–9 PM</strong>
+                    </li>
+                    <li>
+                      <span>Thursday</span>
+                      <strong>11 AM–9 PM</strong>
+                    </li>
+                    <li>
+                      <span>Friday</span>
+                      <strong>11 AM–10 PM</strong>
+                    </li>
+                    <li>
+                      <span>Saturday</span>
+                      <strong>11 AM–10 PM</strong>
+                    </li>
+                    <li>
+                      <span>Sunday</span>
+                      <strong>12 PM–8 PM</strong>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.28-1.28a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Phone</strong>
+                  <a href="tel:+17178386300">(717) 838-6300</a>
+                </div>
+              </div>
+
+              <div class="directions-btn">
+                <a
+                  class="btn btn-primary"
+                  href="https://www.google.com/maps/dir/?api=1&destination=100%20E%20Main%20St%2C%20Hummelstown%2C%20PA%2017036"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Get Directions
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M7 17 17 7"/>
+                    <path d="M7 7h10v10"/>
+                  </svg>
+                </a>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="container contact-inner">
+          <div>
+            <p class="contact-kicker">Takeout and delivery</p>
+            <h2 class="contact-title">Dinner plans? Call Mama's.</h2>
+            <p class="contact-copy">
+              Reach Mama's Pizza directly for takeout and delivery.
+            </p>
+            <a class="contact-phone" href="tel:+17178386300">(717) 838-6300</a>
+          </div>
+
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="tel:+17178386300">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.28-1.28a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              Call now
+            </a>
+
+            <a class="btn btn-secondary" href="#visit">
+              Hours &amp; directions
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="#top">
+              <span class="brand-mark" aria-hidden="true">M</span>
+              <span class="brand-text">
+                <span class="brand-name">Mama's Pizza</span>
+              </span>
+            </a>
+            <p>
+              Pizza, pasta dishes, stromboli, salads, takeout and delivery in Hummelstown, Pennsylvania.
+            </p>
+          </div>
+
+          <div>
+            <p class="footer-label">Visit</p>
+            <a
+              class="footer-link"
+              href="https://www.google.com/maps/dir/?api=1&destination=100%20E%20Main%20St%2C%20Hummelstown%2C%20PA%2017036"
+              target="_blank"
+              rel="noopener noreferrer">
+              100 E Main St<br>
+              Hummelstown, PA 17036
+            </a>
+          </div>
+
+          <div>
+            <p class="footer-label">Call</p>
+            <a class="footer-link" href="tel:+17178386300">(717) 838-6300</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>&copy; <span id="currentYear"></span> Mama's Pizza</span>
+          <span>Hummelstown, Pennsylvania</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div class="mobile-call-bar" id="mobileCallBar">
+    <a class="mobile-call-link" href="tel:+17178386300">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.28-1.28a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92z"/>
+      </svg>
+      Call Mama's Pizza
+    </a>
+
+    <button
+      class="mobile-call-dismiss"
+      id="dismissCallBar"
+      type="button"
+      aria-label="Dismiss call bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M18 6 6 18"/>
+        <path d="m6 6 12 12"/>
+      </svg>
+    </button>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const year = document.getElementById("currentYear");
+      const callBar = document.getElementById("mobileCallBar");
+      const dismissCallBar = document.getElementById("dismissCallBar");
+
+      if (year) {
+        year.textContent = new Date().getFullYear();
+      }
+
+      if (callBar && dismissCallBar) {
+        dismissCallBar.addEventListener("click", () => {
+          callBar.classList.add("is-hidden");
+          document.body.classList.remove("mobile-call-active");
+          document.body.classList.add("call-bar-dismissed");
+        });
+      }
+
+      const internalLinks = document.querySelectorAll('a[href^="#"]');
+
+      internalLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const targetId = link.getAttribute("href");
+
+          if (!targetId || targetId === "#") {
+            return;
+          }
+
+          const target = document.querySelector(targetId);
+
+          if (!target) {
+            return;
+          }
+
+          event.preventDefault();
+
+          target.scrollIntoView({
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+              ? "auto"
+              : "smooth",
+            block: "start"
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

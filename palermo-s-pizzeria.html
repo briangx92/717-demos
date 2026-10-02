@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex,nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palermo's Pizzeria | Hummelstown, PA</title>
+  <meta name="description" content="Palermo's Pizzeria in Hummelstown, PA serving Sicilian pizza, stuffed pizza slices, baked-ziti pizza, subs, garlic knots, takeout and delivery.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brick: #8e2f23;
+      --brick-deep: #5f1c16;
+      --brick-dark: #3c120f;
+      --tomato: #b74330;
+      --cream: #f5eedf;
+      --cream-light: #fffaf0;
+      --parchment: #e5d5b8;
+      --olive: #455334;
+      --olive-dark: #29351f;
+      --ink: #211c19;
+      --muted: #6f6259;
+      --white: #ffffff;
+      --black: #100c0a;
+      --border: rgba(71, 41, 28, 0.18);
+      --shadow-sm: 0 10px 30px rgba(53, 28, 19, 0.10);
+      --shadow-md: 0 20px 55px rgba(53, 28, 19, 0.16);
+      --shadow-lg: 0 28px 80px rgba(40, 18, 11, 0.24);
+      --radius-sm: 0.55rem;
+      --radius-md: 1rem;
+      --radius-lg: 1.6rem;
+      --space-1: 0.35rem;
+      --space-2: 0.6rem;
+      --space-3: 0.85rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-7: 2rem;
+      --space-8: 2.5rem;
+      --space-9: 3rem;
+      --space-10: 4rem;
+      --space-11: 5rem;
+      --space-12: 6rem;
+      --content: 1180px;
+      --nav-height: 76px;
+      --mobile-call-height: 78px;
+      --transition: 220ms ease;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + 1rem);
+    }
+
+    body {
+      margin: 0;
+      font-family: "DM Sans", sans-serif;
+      color: var(--ink);
+      background: var(--cream-light);
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    section {
+      position: relative;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--content));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin: 0 0 var(--space-4);
+      color: var(--brick);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.17em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 2rem;
+      height: 1px;
+      background: currentColor;
+      content: "";
+    }
+
+    .section-title {
+      max-width: 750px;
+      margin: 0;
+      font-family: "Libre Caslon Display", serif;
+      font-size: clamp(2.3rem, 8vw, 4.75rem);
+      font-weight: 400;
+      letter-spacing: -0.035em;
+      line-height: 0.98;
+    }
+
+    .section-intro {
+      max-width: 670px;
+      margin: var(--space-5) 0 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      min-height: 3.25rem;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: 0.8rem 1.3rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-weight: 700;
+      line-height: 1;
+      text-align: center;
+      text-decoration: none;
+      transition:
+        transform var(--transition),
+        background var(--transition),
+        color var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: var(--cream-light);
+      background: var(--brick);
+      box-shadow: 0 11px 30px rgba(142, 47, 35, 0.28);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background: var(--brick-deep);
+    }
+
+    .btn-secondary {
+      color: var(--cream-light);
+      border-color: rgba(255, 250, 240, 0.5);
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(7px);
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible {
+      color: var(--brick-dark);
+      background: var(--cream);
+      border-color: var(--cream);
+    }
+
+    .site-header {
+      position: sticky;
+      z-index: 1000;
+      top: 0;
+      height: var(--nav-height);
+      border-bottom: 1px solid rgba(245, 238, 223, 0.12);
+      background: rgba(44, 15, 12, 0.96);
+      box-shadow: 0 6px 28px rgba(30, 10, 8, 0.18);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-wrap {
+      display: flex;
+      min-height: var(--nav-height);
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .brand {
+      position: relative;
+      z-index: 1002;
+      flex: 0 1 auto;
+      color: var(--cream-light);
+      font-family: "Libre Caslon Display", serif;
+      font-size: clamp(1.25rem, 6vw, 1.65rem);
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 0.15rem;
+      color: var(--parchment);
+      font-family: "DM Sans", sans-serif;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+    }
+
+    .mobile-menu-toggle {
+      position: relative;
+      z-index: 1002;
+      display: inline-grid;
+      width: 2.8rem;
+      height: 2.8rem;
+      padding: 0;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 50%;
+      color: var(--cream-light);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .mobile-menu-toggle span,
+    .mobile-menu-toggle::before,
+    .mobile-menu-toggle::after {
+      display: block;
+      width: 1.1rem;
+      height: 2px;
+      border-radius: 3px;
+      background: currentColor;
+      content: "";
+      transition: transform var(--transition), opacity var(--transition);
+    }
+
+    .mobile-menu-toggle span {
+      margin: 0.23rem 0;
+    }
+
+    .mobile-menu-toggle[aria-expanded="true"] span {
+      opacity: 0;
+    }
+
+    .mobile-menu-toggle[aria-expanded="true"]::before {
+      transform: translateY(0.28rem) rotate(45deg);
+    }
+
+    .mobile-menu-toggle[aria-expanded="true"]::after {
+      transform: translateY(-0.28rem) rotate(-45deg);
+    }
+
+    .nav-menu {
+      position: fixed;
+      z-index: 1001;
+      inset: var(--nav-height) 0 auto 0;
+      display: none;
+      padding: var(--space-7) 1rem var(--space-8);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--brick-dark);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .nav-menu.open {
+      display: block;
+    }
+
+    .nav-links {
+      display: grid;
+      gap: 0.35rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 0.78rem 0;
+      color: var(--cream-light);
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .nav-call {
+      width: 100%;
+      margin-top: var(--space-5);
+    }
+
+    .hero {
+      position: relative;
+      min-height: calc(100svh - var(--nav-height));
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      isolation: isolate;
+      color: var(--cream-light);
+      background: var(--brick-dark);
+    }
+
+    .hero::before {
+      position: absolute;
+      z-index: -3;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(29, 9, 6, 0.27) 0%, rgba(29, 9, 6, 0.54) 49%, rgba(29, 9, 6, 0.92) 100%),
+        linear-gradient(90deg, rgba(45, 13, 10, 0.79) 0%, rgba(45, 13, 10, 0.36) 55%, rgba(45, 13, 10, 0.2) 100%),
+        url("../stock/palermo-s-pizzeria/hero.jpg") center / cover no-repeat;
+      content: "";
+      transform: scale(1.01);
+    }
+
+    .hero::after {
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      opacity: 0.26;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+      background-size: 46px 28px, 92px 56px;
+      content: "";
+      mix-blend-mode: soft-light;
+    }
+
+    .hero-content {
+      width: 100%;
+      padding: clamp(6rem, 18vh, 10rem) 0 var(--space-9);
+    }
+
+    .hero-inner {
+      max-width: 900px;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+      color: var(--parchment);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker::before {
+      width: 2.5rem;
+      height: 1px;
+      background: var(--parchment);
+      content: "";
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      margin: 0;
+      font-family: "Libre Caslon Display", serif;
+      font-size: clamp(2.6rem, 13vw, 7.7rem);
+      font-weight: 400;
+      letter-spacing: -0.055em;
+      line-height: 0.84;
+      text-wrap: balance;
+      overflow-wrap: break-word;
+    }
+
+    .hero h1 em {
+      display: block;
+      color: var(--parchment);
+      font-style: italic;
+    }
+
+    .hero-tagline {
+      max-width: 590px;
+      margin: var(--space-6) 0 0;
+      color: rgba(255, 250, 240, 0.88);
+      font-size: clamp(1rem, 4vw, 1.18rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-7);
+    }
+
+    .hero-info {
+      display: grid;
+      gap: var(--space-3);
+      margin-top: var(--space-8);
+      padding-top: var(--space-5);
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      color: rgba(255, 250, 240, 0.72);
+      font-size: 0.85rem;
+    }
+
+    .hero-info strong {
+      display: block;
+      margin-bottom: 0.1rem;
+      color: var(--cream-light);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .services {
+      padding: var(--space-11) 0;
+      background:
+        radial-gradient(circle at 90% 3%, rgba(142, 47, 35, 0.08), transparent 30%),
+        var(--cream);
+    }
+
+    .services-header {
+      margin-bottom: var(--space-8);
+    }
+
+    .services-grid {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .service-card {
+      position: relative;
+      min-height: 240px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--cream-light);
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .service-card.has-image {
+      min-height: 340px;
+      display: grid;
+      align-items: end;
+      color: var(--cream-light);
+      background: var(--brick-dark);
+    }
+
+    .service-card.has-image img {
+      position: absolute;
+      inset: 0;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .service-card.has-image::after {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 20%, rgba(35, 9, 6, 0.87) 100%);
+      content: "";
+    }
+
+    .service-card-content {
+      position: relative;
+      z-index: 2;
+      padding: var(--space-6);
+    }
+
+    .service-number {
+      display: inline-block;
+      margin-bottom: var(--space-7);
+      color: var(--brick);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+    }
+
+    .has-image .service-number {
+      color: var(--parchment);
+    }
+
+    .service-card h3 {
+      margin: 0 0 var(--space-3);
+      font-family: "Libre Caslon Display", serif;
+      font-size: 1.9rem;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .service-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .has-image p {
+      color: rgba(255, 250, 240, 0.78);
+    }
+
+    .about {
+      overflow: hidden;
+      padding: var(--space-11) 0;
+      background: var(--cream-light);
+    }
+
+    .about-grid {
+      display: grid;
+      gap: var(--space-8);
+      align-items: center;
+    }
+
+    .about-image-wrap {
+      position: relative;
+      max-width: 650px;
+    }
+
+    .about-image-wrap::before {
+      position: absolute;
+      z-index: 0;
+      right: -1rem;
+      bottom: -1rem;
+      width: 72%;
+      height: 72%;
+      border-radius: var(--radius-lg);
+      background: var(--brick);
+      content: "";
+    }
+
+    .about-image {
+      position: relative;
+      z-index: 1;
+      min-height: 420px;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+    }
+
+    .about-image img {
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+    }
+
+    .about-copy p {
+      margin: var(--space-5) 0 0;
+      color: var(--muted);
+    }
+
+    .about-list {
+      display: grid;
+      gap: var(--space-3);
+      margin: var(--space-7) 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .about-list li {
+      display: grid;
+      grid-template-columns: 1.6rem 1fr;
+      gap: var(--space-3);
+      align-items: start;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .about-list li::before {
+      display: grid;
+      width: 1.55rem;
+      height: 1.55rem;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--cream-light);
+      background: var(--olive);
+      content: "✓";
+      font-size: 0.75rem;
+    }
+
+    .feature-strip {
+      overflow: hidden;
+      padding: var(--space-9) 0;
+      color: var(--cream);
+      background: var(--olive-dark);
+    }
+
+    .feature-strip-inner {
+      display: grid;
+      gap: var(--space-7);
+    }
+
+    .feature-strip-item {
+      padding-left: var(--space-5);
+      border-left: 2px solid var(--parchment);
+    }
+
+    .feature-strip-item strong {
+      display: block;
+      margin-bottom: 0.2rem;
+      font-family: "Libre Caslon Display", serif;
+      font-size: 1.55rem;
+      font-weight: 400;
+    }
+
+    .feature-strip-item span {
+      color: rgba(245, 238, 223, 0.73);
+      font-size: 0.88rem;
+    }
+
+    .location-hours {
+      padding: var(--space-11) 0;
+      background:
+        linear-gradient(rgba(142, 47, 35, 0.025), rgba(142, 47, 35, 0.025)),
+        var(--cream);
+    }
+
+    .location-grid {
+      display: grid;
+      gap: var(--space-7);
+    }
+
+    .map-shell {
+      overflow: hidden;
+      min-height: 430px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--parchment);
+      box-shadow: var(--shadow-md);
+    }
+
+    .map-shell iframe {
+      display: block;
+      width: 100%;
+      min-height: 430px;
+      height: 100%;
+      border: 0;
+    }
+
+    .location-card {
+      padding: var(--space-7);
+      border-radius: var(--radius-lg);
+      color: var(--cream-light);
+      background:
+        linear-gradient(150deg, var(--brick) 0%, var(--brick-deep) 100%);
+      box-shadow: var(--shadow-md);
+    }
+
+    .location-card .eyebrow {
+      color: var(--parchment);
+    }
+
+    .location-card h2 {
+      margin: 0;
+      font-family: "Libre Caslon Display", serif;
+      font-size: clamp(2.25rem, 9vw, 4rem);
+      font-weight: 400;
+      letter-spacing: -0.035em;
+      line-height: 1;
+    }
+
+    .address {
+      margin: var(--space-5) 0 0;
+      color: rgba(255, 250, 240, 0.84);
+      font-size: 1.03rem;
+    }
+
+    .hours {
+      margin-top: var(--space-7);
+      padding-top: var(--space-6);
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .hours h3 {
+      margin: 0 0 var(--space-4);
+      font-family: "Libre Caslon Display", serif;
+      font-size: 1.65rem;
+      font-weight: 400;
+    }
+
+    .hours-list {
+      display: grid;
+      gap: 0.2rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.52rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+      font-size: 0.89rem;
+    }
+
+    .hours-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .hours-list span:first-child {
+      font-weight: 700;
+    }
+
+    .hours-list span:last-child {
+      color: rgba(255, 250, 240, 0.78);
+      text-align: right;
+    }
+
+    .location-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-6);
+    }
+
+    .location-actions .btn {
+      flex: 1 1 150px;
+    }
+
+    .contact {
+      position: relative;
+      overflow: hidden;
+      padding: var(--space-11) 0;
+      background: var(--cream-light);
+    }
+
+    .contact::before {
+      position: absolute;
+      top: -18rem;
+      right: -18rem;
+      width: 38rem;
+      height: 38rem;
+      border: 1px solid rgba(142, 47, 35, 0.14);
+      border-radius: 50%;
+      content: "";
+      box-shadow:
+        0 0 0 5rem rgba(142, 47, 35, 0.025),
+        0 0 0 10rem rgba(142, 47, 35, 0.018);
+    }
+
+    .contact-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: var(--space-8);
+    }
+
+    .contact-copy p {
+      max-width: 530px;
+      margin: var(--space-5) 0 0;
+      color: var(--muted);
+    }
+
+    .contact-phone {
+      display: inline-block;
+      margin-top: var(--space-6);
+      color: var(--brick);
+      font-family: "Libre Caslon Display", serif;
+      font-size: clamp(2rem, 9vw, 3.8rem);
+      line-height: 1;
+      text-decoration: none;
+      overflow-wrap: break-word;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: var(--space-4);
+      padding: var(--space-6);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--cream);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-group {
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .form-group label {
+      font-size: 0.79rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      border: 1px solid rgba(79, 48, 36, 0.22);
+      border-radius: var(--radius-sm);
+      outline: none;
+      color: var(--ink);
+      background: var(--cream-light);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .form-group input {
+      min-height: 3.2rem;
+      padding: 0 0.95rem;
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      padding: 0.9rem 0.95rem;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--brick);
+      box-shadow: 0 0 0 3px rgba(142, 47, 35, 0.11);
+    }
+
+    .form-submit {
+      width: 100%;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .form-note {
+      margin: -0.2rem 0 0;
+      color: var(--muted);
+      font-size: 0.76rem;
+    }
+
+    .footer {
+      padding: var(--space-9) 0 var(--space-7);
+      color: var(--cream);
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.14)),
+        var(--brick-dark);
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: var(--space-7);
+    }
+
+    .footer-brand {
+      max-width: 330px;
+    }
+
+    .footer-logo {
+      margin: 0 0 var(--space-3);
+      font-family: "Libre Caslon Display", serif;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .footer-brand p,
+    .footer-hours p {
+      margin: 0;
+      color: rgba(245, 238, 223, 0.67);
+      font-size: 0.88rem;
+    }
+
+    .footer h3 {
+      margin: 0 0 var(--space-3);
+      color: var(--parchment);
+      font-size: 0.73rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 0.45rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: rgba(245, 238, 223, 0.82);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus-visible {
+      color: var(--white);
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      margin-top: var(--space-8);
+      padding-top: var(--space-5);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(245, 238, 223, 0.55);
+      font-size: 0.75rem;
+    }
+
+    .mobile-call-bar {
+      position: fixed;
+      z-index: 1200;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      min-height: var(--mobile-call-height);
+      align-items: center;
+      gap: var(--space-3);
+      padding: 0.7rem 0.8rem max(0.7rem, env(safe-area-inset-bottom));
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(48, 15, 11, 0.97);
+      box-shadow: 0 -10px 35px rgba(27, 8, 6, 0.26);
+      backdrop-filter: blur(14px);
+    }
+
+    .mobile-call-link {
+      display: flex;
+      flex: 1;
+      min-height: 3.2rem;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      border-radius: 999px;
+      color: var(--cream-light);
+      background: var(--brick);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .mobile-call-close {
+      display: grid;
+      width: 2.65rem;
+      height: 2.65rem;
+      flex: 0 0 2.65rem;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 50%;
+      color: var(--cream-light);
+      background: transparent;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .mobile-call-bar.is-hidden {
+      display: none;
+    }
+
+    body.call-bar-dismissed {
+      padding-bottom: 0 !important;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition:
+        opacity 650ms ease,
+        transform 650ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 90ms;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 170ms;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 250ms;
+    }
+
+    @media (max-width: 767px) {
+      body {
+        padding-bottom: var(--mobile-call-height);
+      }
+    }
+
+    @media (min-width: 560px) {
+      .hero-info {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .feature-strip-inner {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.5fr 1fr;
+      }
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding-bottom: 0;
+      }
+
+      .mobile-call-bar {
+        display: none;
+      }
+
+      .mobile-menu-toggle {
+        display: none;
+      }
+
+      .nav-menu {
+        position: static;
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: flex-end;
+        gap: var(--space-5);
+        padding: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 0.15rem;
+      }
+
+      .nav-links a {
+        position: relative;
+        padding: 0.7rem 0.72rem;
+        color: rgba(255, 250, 240, 0.82);
+        font-size: 0.83rem;
+      }
+
+      .nav-links a::after {
+        position: absolute;
+        right: 0.7rem;
+        bottom: 0.4rem;
+        left: 0.7rem;
+        height: 1px;
+        background: var(--parchment);
+        content: "";
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform var(--transition);
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a:focus-visible::after {
+        transform: scaleX(1);
+      }
+
+      .nav-call {
+        width: auto;
+        margin-top: 0;
+        padding-inline: 1.1rem;
+        font-size: 0.83rem;
+      }
+
+      .hero-content {
+        padding-bottom: var(--space-10);
+      }
+
+      .hero-info {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        max-width: 770px;
+      }
+
+      .services,
+      .about,
+      .location-hours,
+      .contact {
+        padding-block: var(--space-12);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+
+      .service-card {
+        grid-column: span 2;
+      }
+
+      .service-card.has-image {
+        grid-column: span 3;
+      }
+
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+        gap: clamp(3rem, 8vw, 7rem);
+      }
+
+      .about-copy {
+        padding-right: var(--space-4);
+      }
+
+      .location-grid {
+        grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.7fr);
+        align-items: stretch;
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        gap: clamp(3rem, 8vw, 7rem);
+        align-items: center;
+      }
+
+      .contact-form {
+        padding: var(--space-7);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.6fr 0.75fr 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .nav-links a {
+        padding-inline: 0.9rem;
+      }
+
+      .hero {
+        min-height: 780px;
+      }
+
+      .service-card {
+        min-height: 280px;
+      }
+
+      .service-card.has-image {
+        min-height: 390px;
+      }
+
+      .about-image {
+        min-height: 570px;
+      }
+
+      .about-image img {
+        min-height: 570px;
+      }
+
+      .map-shell,
+      .map-shell iframe {
+        min-height: 590px;
+      }
+
+      .location-card {
+        padding: var(--space-8);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="Palermo's Pizzeria home">
+        Palermo's Pizzeria
+        <span>Hummelstown, Pennsylvania</span>
+      </a>
+
+      <button
+        class="mobile-menu-toggle"
+        id="mobileMenuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="navMenu"
+        aria-expanded="false"
+      >
+        <span></span>
+      </button>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#about">Our Place</a></li>
+          <li><a href="#location">Location</a></li>
+          <li><a href="#hours">Hours</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a class="btn btn-primary nav-call" href="tel:+17175660668">Call (717) 566-0668</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="container">
+          <div class="hero-inner">
+            <div class="hero-kicker reveal">Pizza, subs and more in Hummelstown</div>
+            <h1 class="reveal reveal-delay-1">
+              A slice of the
+              <em>old neighborhood.</em>
+            </h1>
+            <p class="hero-tagline reveal reveal-delay-2">
+              Sicilian pizza, stuffed slices, baked-ziti pizza, subs and garlic knots from Palermo's Pizzeria on East Main Street.
+            </p>
+
+            <div class="hero-actions reveal reveal-delay-3">
+              <a class="btn btn-primary" href="tel:+17175660668">Call Now</a>
+              <a class="btn btn-secondary" href="#menu">See What We Serve</a>
+            </div>
+
+            <div class="hero-info reveal reveal-delay-3">
+              <div>
+                <strong>Find us</strong>
+                103 E Main St, Hummelstown
+              </div>
+              <div>
+                <strong>Order your way</strong>
+                Takeout and delivery
+              </div>
+              <div>
+                <strong>Tuesday-Saturday</strong>
+                10:30 AM - 10:00 PM
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="menu">
+      <div class="container">
+        <div class="services-header reveal">
+          <div class="eyebrow">From the kitchen</div>
+          <h2 class="section-title">Pizza-night favorites with plenty to choose from.</h2>
+          <p class="section-intro">
+            Grab a slice, bring home a full meal, or call in an order for delivery. Palermo's Pizzeria keeps the menu centered on familiar pizza-shop favorites.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card has-image reveal">
+            <img
+              src="../stock/palermo-s-pizzeria/01.jpg"
+              alt="Fresh pizza served at Palermo's Pizzeria"
+              loading="lazy"
+            >
+            <div class="service-card-content">
+              <span class="service-number">01</span>
+              <h3>Sicilian Pizza</h3>
+              <p>Thick, satisfying Sicilian-style pizza for a hearty slice or a full meal.</p>
+            </div>
+          </article>
+
+          <article class="service-card has-image reveal reveal-delay-1">
+            <img
+              src="../stock/palermo-s-pizzeria/02.jpg"
+              alt="Stuffed pizza prepared at Palermo's Pizzeria"
+              loading="lazy"
+            >
+            <div class="service-card-content">
+              <span class="service-number">02</span>
+              <h3>Stuffed Pizza Slices</h3>
+              <p>Loaded stuffed slices when a regular slice simply is not enough.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-card-content">
+              <span class="service-number">03</span>
+              <h3>Baked-Ziti Pizza</h3>
+              <p>A pizza-shop favorite that brings baked ziti and pizza together in one slice.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal reveal-delay-1">
+            <div class="service-card-content">
+              <span class="service-number">04</span>
+              <h3>Subs</h3>
+              <p>A straightforward choice for lunch, dinner, or anyone in the mood for something besides pizza.</p>
+            </div>
+          </article>
+
+          <article class="service-card reveal reveal-delay-2">
+            <div class="service-card-content">
+              <span class="service-number">05</span>
+              <h3>Garlic Knots</h3>
+              <p>A classic side for sharing with pizza, subs, or the rest of the table.</p>
+            </div>
+          </article>
+
+          <article class="service-card has-image reveal">
+            <img
+              src="../stock/palermo-s-pizzeria/03.jpg"
+              alt="Pizza order ready for takeout from Palermo's Pizzeria"
+              loading="lazy"
+            >
+            <div class="service-card-content">
+              <span class="service-number">06</span>
+              <h3>Takeout &amp; Delivery</h3>
+              <p>Call Palermo's Pizzeria for an order you can pick up or have delivered.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div class="about-image-wrap reveal">
+          <div class="about-image">
+            <img
+              src="../stock/palermo-s-pizzeria/04.jpg"
+              alt="Inside Palermo's Pizzeria in Hummelstown, Pennsylvania"
+              loading="lazy"
+            >
+          </div>
+        </div>
+
+        <div class="about-copy reveal reveal-delay-1">
+          <div class="eyebrow">Palermo's Pizzeria</div>
+          <h2 class="section-title">Right on Main Street when pizza sounds right.</h2>
+          <p>
+            Palermo's Pizzeria is located at 103 E Main St in Hummelstown. The menu covers the pizza-shop staples people come looking for, from Sicilian pizza and stuffed slices to subs and garlic knots.
+          </p>
+          <p>
+            Ordering is simple. Call ahead for takeout or delivery, whether you are picking up dinner on the way home or feeding a group.
+          </p>
+
+          <ul class="about-list">
+            <li>Sicilian and specialty pizza choices</li>
+            <li>Subs and garlic knots alongside the pizza menu</li>
+            <li>Takeout and delivery available</li>
+          </ul>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="tel:+17175660668">Call (717) 566-0668</a>
+            <a class="btn" href="#location">Get the Address</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-strip" aria-label="Palermo's Pizzeria highlights">
+      <div class="container feature-strip-inner">
+        <div class="feature-strip-item reveal">
+          <strong>Pizza with choices.</strong>
+          <span>Sicilian, stuffed slices and baked-ziti pizza are all on the menu.</span>
+        </div>
+        <div class="feature-strip-item reveal reveal-delay-1">
+          <strong>More than pizza.</strong>
+          <span>Subs and garlic knots give the table a few more options.</span>
+        </div>
+        <div class="feature-strip-item reveal reveal-delay-2">
+          <strong>Order your way.</strong>
+          <span>Call for takeout or delivery from the Hummelstown location.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="location-hours" id="location">
+      <div class="container">
+        <div class="services-header reveal">
+          <div class="eyebrow">Visit Palermo's</div>
+          <h2 class="section-title">On East Main Street in Hummelstown.</h2>
+        </div>
+
+        <div class="location-grid">
+          <div class="map-shell reveal">
+            <iframe
+              title="Map showing Palermo's Pizzeria at 103 E Main St, Hummelstown, PA 17036"
+              src="https://maps.google.com/maps?q=103%20E%20Main%20St%2C%20Hummelstown%2C%20PA%2017036&amp;output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <aside class="location-card reveal reveal-delay-1" id="hours">
+            <div class="eyebrow">Location &amp; hours</div>
+            <h2>Stop in or call ahead.</h2>
+            <p class="address">
+              103 E Main St<br>
+              Hummelstown, PA 17036
+            </p>
+
+            <div class="hours">
+              <h3>Weekly Hours</h3>
+              <ul class="hours-list">
+                <li><span>Sunday</span><span>10:30 AM - 9:00 PM</span></li>
+                <li><span>Monday</span><span>Closed</span></li>
+                <li><span>Tuesday</span><span>10:30 AM - 10:00 PM</span></li>
+                <li><span>Wednesday</span><span>10:30 AM - 10:00 PM</span></li>
+                <li><span>Thursday</span><span>10:30 AM - 10:00 PM</span></li>
+                <li><span>Friday</span><span>10:30 AM - 10:00 PM</span></li>
+                <li><span>Saturday</span><span>10:30 AM - 10:00 PM</span></li>
+              </ul>
+            </div>
+
+            <div class="location-actions">
+              <a class="btn btn-secondary" href="tel:+17175660668">Call Now</a>
+              <a
+                class="btn btn-secondary"
+                href="https://maps.google.com/?q=103%20E%20Main%20St%2C%20Hummelstown%2C%20PA%2017036"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Directions
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <div class="eyebrow">Get in touch</div>
+          <h2 class="section-title">Hungry? Call Palermo's.</h2>
+          <p>
+            For takeout, delivery, or questions about your order, call Palermo's Pizzeria directly.
+          </p>
+          <a class="contact-phone" href="tel:+17175660668">(717) 566-0668</a>
+        </div>
+
+        <form class="contact-form reveal reveal-delay-1" id="contactForm">
+          <div class="form-group">
+            <label for="contactName">Name</label>
+            <input
+              type="text"
+              id="contactName"
+              name="name"
+              autocomplete="name"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="contactPhone">Phone</label>
+            <input
+              type="tel"
+              id="contactPhone"
+              name="phone"
+              autocomplete="tel"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="contactMessage">Message</label>
+            <textarea
+              id="contactMessage"
+              name="message"
+              required
+            ></textarea>
+          </div>
+
+          <button class="btn btn-primary form-submit" type="submit">Send Message</button>
+          <p class="form-note" id="formNote">
+            For immediate ordering, call (717) 566-0668.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p class="footer-logo">Palermo's Pizzeria</p>
+          <p>
+            Sicilian pizza, stuffed pizza slices, baked-ziti pizza, subs, garlic knots, takeout and delivery in Hummelstown, Pennsylvania.
+          </p>
+        </div>
+
+        <div>
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">Our Place</a></li>
+            <li><a href="#location">Location</a></li>
+            <li><a href="#hours">Hours</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-hours">
+          <h3>Hours</h3>
+          <p>
+            Sunday: 10:30 AM - 9:00 PM<br>
+            Monday: Closed<br>
+            Tuesday-Saturday: 10:30 AM - 10:00 PM
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; <span id="copyrightYear"></span> Palermo's Pizzeria. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-call-bar" id="mobileCallBar">
+    <a class="mobile-call-link" href="tel:+17175660668" aria-label="Call Palermo's Pizzeria at (717) 566-0668">
+      Call Palermo's &nbsp;·&nbsp; (717) 566-0668
+    </a>
+    <button
+      class="mobile-call-close"
+      id="mobileCallClose"
+      type="button"
+      aria-label="Dismiss call bar"
+    >
+      ×
+    </button>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const menuToggle = document.getElementById("mobileMenuToggle");
+      const navMenu = document.getElementById("navMenu");
+      const navLinks = navMenu ? navMenu.querySelectorAll("a") : [];
+      const mobileCallBar = document.getElementById("mobileCallBar");
+      const mobileCallClose = document.getElementById("mobileCallClose");
+      const copyrightYear = document.getElementById("copyrightYear");
+      const contactForm = document.getElementById("contactForm");
+      const formNote = document.getElementById("formNote");
+
+      const closeMenu = () => {
+        if (!menuToggle || !navMenu) {
+          return;
+        }
+
+        navMenu.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        document.body.classList.remove("menu-open");
+      };
+
+      const openMenu = () => {
+        if (!menuToggle || !navMenu) {
+          return;
+        }
+
+        navMenu.classList.add("open");
+        menuToggle.setAttribute("aria-expanded", "true");
+        menuToggle.setAttribute("aria-label", "Close navigation menu");
+        document.body.classList.add("menu-open");
+      };
+
+      if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", () => {
+          const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+
+          if (expanded) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", closeMenu);
+        });
+
+        window.addEventListener("resize", () => {
+          if (window.innerWidth >= 768) {
+            closeMenu();
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeMenu();
+          }
+        });
+      }
+
+      if (copyrightYear) {
+        copyrightYear.textContent = String(new Date().getFullYear());
+      }
+
+      const storageKey = "palermosMobileCallDismissed";
+
+      function dismissCallBar() {
+        if (mobileCallBar) {
+          mobileCallBar.classList.add("is-hidden");
+        }
+        document.body.classList.add("call-bar-dismissed");
+        try {
+          sessionStorage.setItem(storageKey, "true");
+        } catch (error) {
+          // Dismissal will still work for the current page view.
+        }
+      }
+
+      if (mobileCallBar) {
+        try {
+          const dismissed = sessionStorage.getItem(storageKey) === "true";
+
+          if (dismissed) {
+            mobileCallBar.classList.add("is-hidden");
+            document.body.classList.add("call-bar-dismissed");
+          }
+        } catch (error) {
+          // Session storage may be unavailable. The call bar can remain visible.
+        }
+      }
+
+      if (mobileCallClose && mobileCallBar) {
+        mobileCallClose.addEventListener("click", dismissCallBar);
+      }
+
+      const revealElements = document.querySelectorAll(".reveal");
+      const reducedMotion = window.matchMedia
+        ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        : false;
+
+      if (revealElements.length > 0) {
+        if (reducedMotion || !("IntersectionObserver" in window)) {
+          revealElements.forEach((element) => {
+            element.classList.add("visible");
+          });
+        } else {
+          const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                  return;
+                }
+
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              });
+            },
+            {
+              threshold: 0.14,
+              rootMargin: "0px 0px -40px 0px"
+            }
+          );
+
+          revealElements.forEach((element) => {
+            revealObserver.observe(element);
+          });
+        }
+      }
+
+      if (contactForm) {
+        contactForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const nameField = document.getElementById("contactName");
+          const phoneField = document.getElementById("contactPhone");
+          const messageField = document.getElementById("contactMessage");
+
+          if (!nameField || !phoneField || !messageField) {
+            return;
+          }
+
+          const name = nameField.value.trim();
+          const phone = phoneField.value.trim();
+          const message = messageField.value.trim();
+
+          if (!name || !phone || !message) {
+            if (formNote) {
+              formNote.textContent = "Please complete your name, phone number, and message.";
+            }
+            return;
+          }
+
+          if (formNote) {
+            formNote.textContent = "Thanks. For immediate assistance or to place an order, call (717) 566-0668.";
+          }
+
+          contactForm.reset();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
