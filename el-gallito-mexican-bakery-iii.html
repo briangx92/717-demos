@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#d83c28">
+  <title>El Gallito Mexican Bakery III | Steelton, PA</title>
+  <meta name="description" content="El Gallito Mexican Bakery III in Steelton, PA. Latin American baked goods, churros, sweet treats, tacos and Cubana sandwiches. Call (717) 982-6757.">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Paytone+One&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-ink: #26120b;
+      --color-brown: #6e2b18;
+      --color-red: #d83c28;
+      --color-red-dark: #a8241d;
+      --color-orange: #f27722;
+      --color-yellow: #f7c934;
+      --color-green: #237a4b;
+      --color-green-dark: #155b37;
+      --color-blue: #2876a8;
+      --color-pink: #e75b88;
+      --color-cream: #fff4d8;
+      --color-paper: #fffaf0;
+      --color-white: #ffffff;
+      --color-muted: #735f54;
+      --color-line: rgba(38, 18, 11, 0.15);
+      --color-overlay: rgba(27, 10, 4, 0.65);
+
+      --font-display: "Paytone One", sans-serif;
+      --font-body: "Archivo", sans-serif;
+
+      --space-1: 0.35rem;
+      --space-2: 0.6rem;
+      --space-3: 0.9rem;
+      --space-4: 1.25rem;
+      --space-5: 1.75rem;
+      --space-6: 2.5rem;
+      --space-7: 3.5rem;
+      --space-8: 5rem;
+      --space-9: 7rem;
+
+      --radius-sm: 0.5rem;
+      --radius-md: 1rem;
+      --radius-lg: 1.6rem;
+      --radius-pill: 999px;
+
+      --shadow-soft: 0 14px 40px rgba(75, 35, 15, 0.12);
+      --shadow-card: 0 9px 0 rgba(38, 18, 11, 0.11);
+      --shadow-button: 0 5px 0 rgba(77, 25, 12, 0.28);
+
+      --container: 1180px;
+      --nav-height: 76px;
+      --mobile-call-height: 76px;
+
+      --transition-fast: 180ms ease;
+      --transition-medium: 350ms ease;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + 1rem);
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      background: var(--color-paper);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.05;
+    }
+
+    h1,
+    h2 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      letter-spacing: -0.025em;
+    }
+
+    h3 {
+      font-weight: 800;
+    }
+
+    section {
+      position: relative;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--container));
+      margin-inline: auto;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: -100px;
+      left: var(--space-4);
+      z-index: 9999;
+      background: var(--color-white);
+      color: var(--color-ink);
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-sm);
+      font-weight: 800;
+    }
+
+    .skip-link:focus {
+      top: var(--space-4);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 4px;
+      border-radius: var(--radius-pill);
+      background: currentColor;
+    }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: var(--space-6);
+    }
+
+    .section-heading h2 {
+      margin-bottom: var(--space-3);
+      font-size: clamp(2.25rem, 8vw, 4.5rem);
+    }
+
+    .section-heading p {
+      max-width: 650px;
+      margin-bottom: 0;
+      color: var(--color-muted);
+      font-size: 1.05rem;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 50px;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: 0.8rem 1.25rem;
+      border: 2px solid transparent;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      font-weight: 800;
+      line-height: 1.1;
+      text-align: center;
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button:active {
+      transform: translateY(2px);
+      box-shadow: none;
+    }
+
+    .button-primary {
+      background: var(--color-yellow);
+      color: var(--color-ink);
+      box-shadow: var(--shadow-button);
+    }
+
+    .button-secondary {
+      border-color: rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--color-white);
+      backdrop-filter: blur(7px);
+    }
+
+    .button-dark {
+      background: var(--color-ink);
+      color: var(--color-white);
+      box-shadow: var(--shadow-button);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      min-height: var(--nav-height);
+      border-bottom: 3px solid var(--color-yellow);
+      background: rgba(255, 250, 240, 0.96);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-shell {
+      min-height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .brand {
+      position: relative;
+      z-index: 1002;
+      max-width: 210px;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      line-height: 1.05;
+      color: var(--color-red-dark);
+    }
+
+    .brand span {
+      display: block;
+      color: var(--color-green-dark);
+      font-family: var(--font-body);
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+
+    .mobile-menu-toggle {
+      position: relative;
+      z-index: 1002;
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--color-ink);
+      border-radius: 50%;
+      background: var(--color-yellow);
+      color: var(--color-ink);
+      cursor: pointer;
+    }
+
+    .hamburger {
+      position: relative;
+      width: 20px;
+      height: 14px;
+    }
+
+    .hamburger span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      border-radius: var(--radius-pill);
+      background: currentColor;
+      transition: var(--transition-fast);
+    }
+
+    .hamburger span:nth-child(1) {
+      top: 0;
+    }
+
+    .hamburger span:nth-child(2) {
+      top: 6px;
+    }
+
+    .hamburger span:nth-child(3) {
+      top: 12px;
+    }
+
+    .mobile-menu-toggle[aria-expanded="true"] .hamburger span:nth-child(1) {
+      top: 6px;
+      transform: rotate(45deg);
+    }
+
+    .mobile-menu-toggle[aria-expanded="true"] .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-toggle[aria-expanded="true"] .hamburger span:nth-child(3) {
+      top: 6px;
+      transform: rotate(-45deg);
+    }
+
+    .site-nav {
+      position: fixed;
+      inset: var(--nav-height) 0 auto 0;
+      max-height: 0;
+      overflow: hidden;
+      background: var(--color-paper);
+      transition: max-height var(--transition-medium);
+      border-bottom: 0 solid var(--color-red);
+    }
+
+    .site-nav.is-open {
+      max-height: calc(100vh - var(--nav-height));
+      border-bottom-width: 5px;
+      box-shadow: var(--shadow-soft);
+      overflow-y: auto;
+    }
+
+    .nav-links {
+      list-style: none;
+      margin: 0;
+      padding: var(--space-4) 1rem var(--space-6);
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .nav-links a:not(.nav-call) {
+      display: block;
+      padding: 0.75rem;
+      border-bottom: 1px dashed var(--color-line);
+      font-weight: 800;
+    }
+
+    .nav-call {
+      margin-top: var(--space-2);
+      background: var(--color-red);
+      color: var(--color-white);
+      border-radius: var(--radius-pill);
+      padding: 0.85rem 1.25rem;
+      text-align: center;
+      font-weight: 800;
+    }
+
+    .hero {
+      min-height: calc(100svh - var(--nav-height));
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(28, 11, 4, 0.34), var(--color-overlay)),
+        url("../stock/el-gallito-mexican-bakery-iii/hero.jpg") center / cover no-repeat;
+      color: var(--color-white);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.34;
+      background-image:
+        radial-gradient(circle at 15% 18%, var(--color-yellow) 0 3px, transparent 4px),
+        radial-gradient(circle at 82% 15%, var(--color-pink) 0 3px, transparent 4px),
+        radial-gradient(circle at 68% 72%, var(--color-green) 0 3px, transparent 4px);
+      background-size: 70px 70px, 95px 95px, 120px 120px;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 13px;
+      background:
+        linear-gradient(
+          90deg,
+          var(--color-red) 0 16.66%,
+          var(--color-orange) 16.66% 33.32%,
+          var(--color-yellow) 33.32% 49.98%,
+          var(--color-green) 49.98% 66.64%,
+          var(--color-blue) 66.64% 83.3%,
+          var(--color-pink) 83.3% 100%
+        );
+    }
+
+    .papel-strip {
+      position: absolute;
+      top: var(--space-5);
+      left: 0;
+      width: 100%;
+      height: 42px;
+      opacity: 0.93;
+      pointer-events: none;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .papel-strip span {
+      flex: 1 0 62px;
+      height: 34px;
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 65%,
+        85% 65%,
+        78% 100%,
+        66% 65%,
+        52% 65%,
+        44% 100%,
+        33% 65%,
+        18% 65%,
+        10% 100%,
+        0 65%
+      );
+    }
+
+    .papel-strip span:nth-child(6n + 1) {
+      background: var(--color-red);
+    }
+
+    .papel-strip span:nth-child(6n + 2) {
+      background: var(--color-yellow);
+    }
+
+    .papel-strip span:nth-child(6n + 3) {
+      background: var(--color-green);
+    }
+
+    .papel-strip span:nth-child(6n + 4) {
+      background: var(--color-pink);
+    }
+
+    .papel-strip span:nth-child(6n + 5) {
+      background: var(--color-blue);
+    }
+
+    .papel-strip span:nth-child(6n + 6) {
+      background: var(--color-orange);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding-top: 7rem;
+      padding-bottom: var(--space-8);
+    }
+
+    .hero-kicker {
+      width: fit-content;
+      margin-bottom: var(--space-4);
+      padding: 0.55rem 0.8rem;
+      background: var(--color-green);
+      border-radius: var(--radius-sm);
+      box-shadow: 5px 5px 0 var(--color-yellow);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transform: rotate(-1deg);
+    }
+
+    .hero h1 {
+      max-width: 900px;
+      margin-bottom: var(--space-4);
+      font-size: clamp(3.2rem, 14vw, 7.6rem);
+      line-height: 0.9;
+      overflow-wrap: anywhere;
+      text-shadow: 4px 4px 0 rgba(37, 13, 4, 0.28);
+    }
+
+    .hero h1 .accent {
+      color: var(--color-yellow);
+    }
+
+    .hero-copy {
+      max-width: 620px;
+      margin-bottom: var(--space-5);
+      font-size: clamp(1.05rem, 4vw, 1.3rem);
+      font-weight: 600;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    .hero-detail {
+      margin-top: var(--space-5);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .hero-detail span {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: var(--radius-pill);
+      background: rgba(38, 18, 11, 0.34);
+      font-size: 0.8rem;
+      font-weight: 700;
+      backdrop-filter: blur(5px);
+    }
+
+    .market-intro {
+      padding: var(--space-7) 0;
+      overflow: hidden;
+      background: var(--color-yellow);
+    }
+
+    .market-intro::before,
+    .market-intro::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: var(--color-red);
+      opacity: 0.14;
+    }
+
+    .market-intro::before {
+      width: 180px;
+      height: 180px;
+      top: -85px;
+      left: -70px;
+    }
+
+    .market-intro::after {
+      width: 250px;
+      height: 250px;
+      right: -130px;
+      bottom: -130px;
+    }
+
+    .market-intro-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .market-intro h2 {
+      margin-bottom: 0;
+      max-width: 720px;
+      font-size: clamp(2.2rem, 8vw, 4.6rem);
+    }
+
+    .market-intro-copy {
+      max-width: 620px;
+      margin: 0;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .services {
+      padding: var(--space-8) 0;
+      background:
+        linear-gradient(rgba(255, 250, 240, 0.94), rgba(255, 250, 240, 0.94)),
+        repeating-linear-gradient(
+          45deg,
+          transparent 0 18px,
+          rgba(216, 60, 40, 0.06) 18px 20px
+        );
+    }
+
+    .services .eyebrow {
+      color: var(--color-red);
+    }
+
+    .services-grid {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 210px;
+      padding: var(--space-5);
+      border: 2px solid var(--color-ink);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      isolation: isolate;
+    }
+
+    .service-card::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 100px;
+      height: 100px;
+      right: -28px;
+      bottom: -30px;
+      border: 12px solid rgba(38, 18, 11, 0.1);
+      border-radius: 50%;
+    }
+
+    .service-card:nth-child(1) {
+      background: #f9d356;
+    }
+
+    .service-card:nth-child(2) {
+      background: #e75b88;
+    }
+
+    .service-card:nth-child(3) {
+      background: #63a56c;
+    }
+
+    .service-card:nth-child(4) {
+      background: #eb704f;
+    }
+
+    .service-card:nth-child(5) {
+      background: #55a1c8;
+    }
+
+    .service-number {
+      display: block;
+      margin-bottom: var(--space-5);
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+    }
+
+    .service-card h3 {
+      margin-bottom: var(--space-2);
+      font-size: 1.35rem;
+    }
+
+    .service-card p {
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+
+    .food-gallery {
+      padding-top: var(--space-6);
+    }
+
+    .food-gallery-grid {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .food-shot {
+      position: relative;
+      overflow: hidden;
+      min-height: 230px;
+      border-radius: var(--radius-lg);
+      background: var(--color-cream);
+    }
+
+    .food-shot img {
+      height: 100%;
+      min-height: 230px;
+      object-fit: cover;
+      transition: transform 700ms ease;
+    }
+
+    .food-shot:hover img {
+      transform: scale(1.04);
+    }
+
+    .services .food-shot:first-child::after {
+      content: "Bakery";
+      position: absolute;
+      right: var(--space-3);
+      bottom: var(--space-3);
+      padding: 0.45rem 0.75rem;
+      background: var(--color-yellow);
+      color: var(--color-ink);
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .services .food-shot:last-child::after {
+      content: "Sweet treats";
+      position: absolute;
+      right: var(--space-3);
+      bottom: var(--space-3);
+      padding: 0.45rem 0.75rem;
+      background: var(--color-red);
+      color: var(--color-white);
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .about {
+      padding: var(--space-8) 0;
+      background: var(--color-green-dark);
+      color: var(--color-white);
+    }
+
+    .about::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.12;
+      background-image:
+        linear-gradient(30deg, var(--color-yellow) 12%, transparent 12.5%, transparent 87%, var(--color-yellow) 87.5%, var(--color-yellow)),
+        linear-gradient(150deg, var(--color-yellow) 12%, transparent 12.5%, transparent 87%, var(--color-yellow) 87.5%, var(--color-yellow));
+      background-size: 70px 120px;
+    }
+
+    .about-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: var(--space-6);
+      align-items: center;
+    }
+
+    .about-photo-wrap {
+      position: relative;
+    }
+
+    .about-photo-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -12px 14px 14px -12px;
+      border: 4px solid var(--color-yellow);
+      border-radius: var(--radius-lg);
+      transform: rotate(-2deg);
+    }
+
+    .about-photo {
+      position: relative;
+      overflow: hidden;
+      border: 4px solid var(--color-white);
+      border-radius: var(--radius-lg);
+      box-shadow: 12px 12px 0 var(--color-red);
+    }
+
+    .about-photo img {
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .about .eyebrow {
+      color: var(--color-yellow);
+    }
+
+    .about h2 {
+      margin-bottom: var(--space-4);
+      font-size: clamp(2.3rem, 9vw, 4.8rem);
+    }
+
+    .about-copy p {
+      max-width: 650px;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 1.05rem;
+    }
+
+    .about-copy strong {
+      color: var(--color-yellow);
+    }
+
+    .about-highlight {
+      margin-top: var(--space-5);
+      padding: var(--space-4);
+      border-left: 6px solid var(--color-yellow);
+      background: rgba(255, 255, 255, 0.08);
+      font-weight: 700;
+    }
+
+    .location-hours {
+      padding: var(--space-8) 0;
+      background: var(--color-cream);
+    }
+
+    .location-hours-grid {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .info-panel {
+      overflow: hidden;
+      border: 2px solid var(--color-ink);
+      border-radius: var(--radius-lg);
+      background: var(--color-white);
+      box-shadow: var(--shadow-card);
+    }
+
+    .panel-head {
+      padding: var(--space-5);
+      color: var(--color-white);
+    }
+
+    .location-panel .panel-head {
+      background: var(--color-red);
+    }
+
+    .hours-panel .panel-head {
+      background: var(--color-blue);
+    }
+
+    .panel-head .eyebrow {
+      margin-bottom: var(--space-2);
+    }
+
+    .panel-head h2 {
+      margin-bottom: 0;
+      font-size: clamp(2rem, 7vw, 3.4rem);
+    }
+
+    .map-wrap {
+      min-height: 320px;
+      background: #eadfc3;
+    }
+
+    .map-wrap iframe {
+      display: block;
+      width: 100%;
+      height: 350px;
+      border: 0;
+    }
+
+    .address-block {
+      padding: var(--space-5);
+    }
+
+    .address-block p {
+      margin-bottom: var(--space-4);
+      font-weight: 700;
+    }
+
+    .hours-list {
+      list-style: none;
+      margin: 0;
+      padding: var(--space-4) var(--space-5) var(--space-5);
+    }
+
+    .hours-list li {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding: 0.8rem 0;
+      border-bottom: 1px dashed var(--color-line);
+    }
+
+    .hours-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .hours-list .day {
+      font-weight: 800;
+    }
+
+    .hours-list .time {
+      text-align: right;
+      color: var(--color-muted);
+      font-weight: 600;
+    }
+
+    .contact {
+      padding: var(--space-8) 0;
+      overflow: hidden;
+      background: var(--color-red);
+      color: var(--color-white);
+    }
+
+    .contact::before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      left: -220px;
+      top: 10%;
+      border: 55px solid rgba(255, 201, 52, 0.2);
+      border-radius: 50%;
+    }
+
+    .contact::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -150px;
+      bottom: -100px;
+      border: 40px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .contact-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: var(--space-6);
+      align-items: start;
+    }
+
+    .contact-copy h2 {
+      margin-bottom: var(--space-4);
+      font-size: clamp(2.5rem, 9vw, 5.2rem);
+    }
+
+    .contact-copy p {
+      max-width: 540px;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .phone-link-large {
+      display: inline-block;
+      margin-top: var(--space-3);
+      color: var(--color-yellow);
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 7vw, 2.8rem);
+      line-height: 1.1;
+      border-bottom: 4px solid currentColor;
+    }
+
+    .contact-form {
+      padding: var(--space-5);
+      border: 2px solid var(--color-ink);
+      border-radius: var(--radius-lg);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      box-shadow: 10px 10px 0 var(--color-yellow);
+    }
+
+    .field {
+      display: grid;
+      gap: var(--space-2);
+      margin-bottom: var(--space-4);
+    }
+
+    .field label {
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      min-height: 50px;
+      padding: 0.8rem 0.9rem;
+      border: 2px solid rgba(38, 18, 11, 0.35);
+      border-radius: var(--radius-sm);
+      background: var(--color-white);
+      color: var(--color-ink);
+      outline: none;
+      transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+    }
+
+    .field textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--color-green);
+      box-shadow: 0 0 0 3px rgba(35, 122, 75, 0.16);
+    }
+
+    .form-note {
+      margin: var(--space-3) 0 0;
+      color: var(--color-muted);
+      font-size: 0.78rem;
+    }
+
+    .site-footer {
+      position: relative;
+      overflow: hidden;
+      padding: var(--space-7) 0 var(--space-6);
+      background: var(--color-ink);
+      color: var(--color-white);
+    }
+
+    .site-footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background:
+        linear-gradient(
+          90deg,
+          var(--color-red) 0 20%,
+          var(--color-yellow) 20% 40%,
+          var(--color-green) 40% 60%,
+          var(--color-blue) 60% 80%,
+          var(--color-pink) 80% 100%
+        );
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    .footer-brand {
+      max-width: 360px;
+    }
+
+    .footer-brand strong {
+      display: block;
+      margin-bottom: var(--space-3);
+      color: var(--color-yellow);
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      line-height: 1.05;
+    }
+
+    .footer-brand p,
+    .footer-hours p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 0;
+    }
+
+    .footer-heading {
+      margin-bottom: var(--space-3);
+      color: var(--color-yellow);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-size: 0.8rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: var(--space-2);
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .footer-links a:hover {
+      color: var(--color-yellow);
+    }
+
+    .footer-bottom {
+      margin-top: var(--space-6);
+      padding-top: var(--space-4);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 0.8rem;
+    }
+
+    .mobile-call-bar {
+      position: fixed;
+      z-index: 1100;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      min-height: var(--mobile-call-height);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 0.65rem;
+      border-top: 3px solid var(--color-yellow);
+      background: var(--color-green-dark);
+      box-shadow: 0 -8px 26px rgba(0, 0, 0, 0.2);
+      transition:
+        transform var(--transition-medium),
+        visibility var(--transition-medium);
+    }
+
+    .mobile-call-bar.is-dismissed {
+      transform: translateY(120%);
+      visibility: hidden;
+    }
+
+    .mobile-call-link {
+      flex: 1;
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: 0.75rem;
+      border-radius: var(--radius-pill);
+      background: var(--color-yellow);
+      color: var(--color-ink);
+      font-weight: 800;
+      box-shadow: 0 4px 0 rgba(0, 0, 0, 0.16);
+    }
+
+    .mobile-call-close {
+      flex: 0 0 42px;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.14);
+      color: var(--color-white);
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition:
+        opacity 650ms ease,
+        transform 650ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (max-width: 767px) {
+      body {
+        padding-bottom: var(--mobile-call-height);
+      }
+    }
+
+    @media (min-width: 600px) {
+      .brand {
+        max-width: none;
+        font-size: 1.12rem;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .service-card:nth-child(5) {
+        grid-column: 1 / -1;
+      }
+
+      .food-gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding-bottom: 0;
+      }
+
+      .mobile-menu-toggle,
+      .mobile-call-bar {
+        display: none;
+      }
+
+      .site-nav {
+        position: static;
+        max-height: none;
+        overflow: visible;
+        background: transparent;
+        border: 0;
+      }
+
+      .nav-links {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+      }
+
+      .nav-links a:not(.nav-call) {
+        padding: 0.6rem 0.65rem;
+        border: 0;
+        border-radius: var(--radius-pill);
+        font-size: 0.78rem;
+      }
+
+      .nav-links a:not(.nav-call):hover {
+        background: var(--color-cream);
+      }
+
+      .nav-call {
+        margin: 0 0 0 var(--space-2);
+        padding: 0.75rem 1rem;
+        transition:
+          background var(--transition-fast),
+          transform var(--transition-fast);
+      }
+
+      .nav-call:hover {
+        background: var(--color-red-dark);
+        transform: translateY(-1px);
+      }
+
+      .hero-inner {
+        padding-top: 10rem;
+        padding-bottom: var(--space-9);
+      }
+
+      .market-intro-grid {
+        grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+        align-items: end;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+
+      .service-card:nth-child(1),
+      .service-card:nth-child(2),
+      .service-card:nth-child(3) {
+        grid-column: span 2;
+      }
+
+      .service-card:nth-child(4),
+      .service-card:nth-child(5) {
+        grid-column: span 3;
+      }
+
+      .food-shot img {
+        min-height: 350px;
+      }
+
+      .about-grid {
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      }
+
+      .location-hours-grid {
+        grid-template-columns: minmax(0, 1.25fr) minmax(310px, 0.75fr);
+        align-items: stretch;
+      }
+
+      .info-panel {
+        height: 100%;
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.3fr 0.7fr 1fr;
+      }
+    }
+
+    @media (min-width: 980px) {
+      .brand {
+        font-size: 1.25rem;
+      }
+
+      .nav-links {
+        gap: var(--space-1);
+      }
+
+      .nav-links a:not(.nav-call) {
+        font-size: 0.86rem;
+        padding-inline: 0.8rem;
+      }
+
+      .nav-call {
+        padding-inline: 1.2rem;
+      }
+
+      .hero {
+        background-position: center 45%;
+      }
+
+      .hero-copy {
+        font-size: 1.25rem;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .hero h1 {
+        max-width: 980px;
+      }
+
+      .section-heading {
+        margin-bottom: var(--space-7);
+      }
+    }
+  </style>
+
+  <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <div class="container nav-shell">
+      <a class="brand" href="#top" aria-label="El Gallito Mexican Bakery III home">
+        El Gallito Mexican Bakery III
+        <span>Steelton, Pennsylvania</span>
+      </a>
+
+      <button
+        class="mobile-menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="siteNav"
+        aria-expanded="false"
+      >
+        <span class="hamburger" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+        <ul class="nav-links">
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#location">Location</a></li>
+          <li><a href="#hours">Hours</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a class="nav-call" href="tel:+17179826757">Call (717) 982-6757</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="papel-strip" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="container hero-inner">
+        <div class="hero-kicker">Bakery + savory favorites in Steelton</div>
+
+        <h1 id="hero-title">
+          Sweet, savory,
+          <span class="accent">and ready to eat.</span>
+        </h1>
+
+        <p class="hero-copy">
+          Latin American baked goods, churros, sweet treats, tacos and Cubana sandwiches at El Gallito Mexican Bakery III on North Front Street.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="tel:+17179826757">
+            Call Now
+          </a>
+          <a class="button button-secondary" href="#location">
+            Get Directions
+          </a>
+        </div>
+
+        <div class="hero-detail" aria-label="Business details">
+          <span>750 N Front St, Ste B</span>
+          <span>Steelton, PA 17113</span>
+          <span>Open 7 days</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="market-intro">
+      <div class="container market-intro-grid reveal">
+        <h2>Bakery counter to taco stop, all under one roof.</h2>
+        <p class="market-intro-copy">
+          Stop in for something sweet, pick up churros, or go savory with tacos and a Cubana sandwich. El Gallito Mexican Bakery III brings a broad mix of bakery and food favorites to Steelton.
+        </p>
+      </div>
+    </section>
+
+    <section class="services" id="menu" aria-labelledby="menu-title">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">What you'll find</span>
+          <h2 id="menu-title">From the bakery case to the savory side.</h2>
+          <p>
+            A simple mix of baked goods, sweets and filling food when you want more than one kind of choice.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal">
+            <span class="service-number">01</span>
+            <h3>Latin American Baked Goods</h3>
+            <p>A selection of bakery favorites made for a sweet stop or something to take home.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-number">02</span>
+            <h3>Churros</h3>
+            <p>A classic sweet choice when you want something from the bakery side of the counter.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-number">03</span>
+            <h3>Sweet Treats</h3>
+            <p>More ways to satisfy a sweet tooth when one bakery pick is not enough.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-number">04</span>
+            <h3>Tacos</h3>
+            <p>A savory option for lunch, dinner or whenever you are stopping by hungry.</p>
+          </article>
+
+          <article class="service-card reveal">
+            <span class="service-number">05</span>
+            <h3>Cubana Sandwiches</h3>
+            <p>A hearty sandwich option when the bakery run turns into a full meal.</p>
+          </article>
+        </div>
+
+        <div class="food-gallery" aria-label="Food gallery">
+          <div class="food-gallery-grid">
+            <figure class="food-shot reveal">
+              <img
+                src="../stock/el-gallito-mexican-bakery-iii/02.jpg"
+                alt="Bakery selection at El Gallito Mexican Bakery III"
+                loading="lazy"
+              >
+            </figure>
+
+            <figure class="food-shot reveal">
+              <img
+                src="../stock/el-gallito-mexican-bakery-iii/03.jpg"
+                alt="Sweet treats from El Gallito Mexican Bakery III"
+                loading="lazy"
+              >
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-photo-wrap reveal">
+          <div class="about-photo">
+            <img
+              src="../stock/el-gallito-mexican-bakery-iii/01.jpg"
+              alt="Food and baked goods at El Gallito Mexican Bakery III in Steelton"
+              loading="lazy"
+            >
+          </div>
+        </div>
+
+        <div class="about-copy reveal">
+          <span class="eyebrow">El Gallito Mexican Bakery III</span>
+          <h2 id="about-title">A Steelton stop for sweet and savory.</h2>
+
+          <p>
+            El Gallito Mexican Bakery III is at <strong>750 N Front St, Ste B</strong> in Steelton. The menu brings together Latin American baked goods, churros and sweet treats with tacos and Cubana sandwiches.
+          </p>
+
+          <p>
+            Come by for a bakery stop, grab something savory, or mix the two. With hours every day of the week, there is plenty of time to stop in.
+          </p>
+
+          <div class="about-highlight">
+            Monday through Saturday: 10:00 AM to 9:00 PM<br>
+            Sunday: 10:00 AM to 7:00 PM
+          </div>
+        </div>
+      </div>
+
+      <div class="container food-gallery" aria-label="Additional bakery photo">
+        <figure class="food-shot reveal">
+          <img
+            src="../stock/el-gallito-mexican-bakery-iii/04.jpg"
+            alt="Food selection from El Gallito Mexican Bakery III"
+            loading="lazy"
+          >
+        </figure>
+      </div>
+    </section>
+
+    <section class="location-hours" aria-label="Location and hours">
+      <div class="container location-hours-grid">
+        <article class="info-panel location-panel reveal" id="location">
+          <div class="panel-head">
+            <span class="eyebrow">Find us</span>
+            <h2>North Front Street.</h2>
+          </div>
+
+          <div class="map-wrap">
+            <iframe
+              title="Map showing El Gallito Mexican Bakery III at 750 N Front St, Ste B, Steelton, PA 17113"
+              src="https://maps.google.com/maps?q=750%20N%20Front%20St%2C%20Ste%20B%2C%20Steelton%2C%20PA%2017113&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+
+          <div class="address-block">
+            <p>
+              750 N Front St, Ste B<br>
+              Steelton, PA 17113
+            </p>
+            <a
+              class="button button-dark"
+              href="https://maps.google.com/maps?q=750%20N%20Front%20St%2C%20Ste%20B%2C%20Steelton%2C%20PA%2017113"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open in Maps
+            </a>
+          </div>
+        </article>
+
+        <article class="info-panel hours-panel reveal" id="hours">
+          <div class="panel-head">
+            <span class="eyebrow">Hours</span>
+            <h2>Open all week.</h2>
+          </div>
+
+          <ul class="hours-list">
+            <li>
+              <span class="day">Monday</span>
+              <span class="time">10:00 AM - 9:00 PM</span>
+            </li>
+            <li>
+              <span class="day">Tuesday</span>
+              <span class="time">10:00 AM - 9:00 PM</span>
+            </li>
+            <li>
+              <span class="day">Wednesday</span>
+              <span class="time">10:00 AM - 9:00 PM</span>
+            </li>
+            <li>
+              <span class="day">Thursday</span>
+              <span class="time">10:00 AM - 9:00 PM</span>
+            </li>
+            <li>
+              <span class="day">Friday</span>
+              <span class="time">10:00 AM - 9:00 PM</span>
+            </li>
+            <li>
+              <span class="day">Saturday</span>
+              <span class="time">10:00 AM - 9:00 PM</span>
+            </li>
+            <li>
+              <span class="day">Sunday</span>
+              <span class="time">10:00 AM - 7:00 PM</span>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <span class="eyebrow">Contact</span>
+          <h2 id="contact-title">Hungry? Give us a call.</h2>
+          <p>
+            Call El Gallito Mexican Bakery III directly or stop by at 750 N Front St, Ste B in Steelton.
+          </p>
+
+          <a class="phone-link-large" href="tel:+17179826757">
+            (717) 982-6757
+          </a>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm">
+          <div class="field">
+            <label for="contactName">Name</label>
+            <input
+              id="contactName"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="contactPhone">Phone</label>
+            <input
+              id="contactPhone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="contactMessage">Message</label>
+            <textarea
+              id="contactMessage"
+              name="message"
+              required
+            ></textarea>
+          </div>
+
+          <button class="button button-dark" type="submit">
+            Prepare Message
+          </button>
+
+          <p class="form-note" id="formNote" aria-live="polite">
+            This form opens your phone or messaging setup with the details you enter.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <strong>El Gallito Mexican Bakery III</strong>
+          <p>
+            Latin American baked goods, churros, sweet treats, tacos and Cubana sandwiches in Steelton, Pennsylvania.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-heading">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#location">Location</a></li>
+            <li><a href="#hours">Hours</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-hours">
+          <div class="footer-heading">Hours</div>
+          <p>
+            Mon-Sat: 10:00 AM - 9:00 PM<br>
+            Sun: 10:00 AM - 7:00 PM
+          </p>
+          <p style="margin-top: 1rem;">
+            <a href="tel:+17179826757">(717) 982-6757</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; <span id="copyrightYear">2026</span> El Gallito Mexican Bakery III. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-call-bar" id="mobileCallBar" aria-label="Quick call">
+    <a class="mobile-call-link" href="tel:+17179826757">
+      Call Now&nbsp; · &nbsp;(717) 982-6757
+    </a>
+    <button
+      class="mobile-call-close"
+      id="mobileCallClose"
+      type="button"
+      aria-label="Dismiss call bar"
+    >
+      ×
+    </button>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const menuToggle = document.getElementById("menuToggle");
+      const siteNav = document.getElementById("siteNav");
+      const mobileCallBar = document.getElementById("mobileCallBar");
+      const mobileCallClose = document.getElementById("mobileCallClose");
+      const contactForm = document.getElementById("contactForm");
+      const formNote = document.getElementById("formNote");
+      const copyrightYear = document.getElementById("copyrightYear");
+
+      const closeMenu = () => {
+        if (!menuToggle || !siteNav) {
+          return;
+        }
+
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        siteNav.classList.remove("is-open");
+        document.body.classList.remove("menu-open");
+      };
+
+      const openMenu = () => {
+        if (!menuToggle || !siteNav) {
+          return;
+        }
+
+        menuToggle.setAttribute("aria-expanded", "true");
+        menuToggle.setAttribute("aria-label", "Close navigation menu");
+        siteNav.classList.add("is-open");
+        document.body.classList.add("menu-open");
+      };
+
+      if (menuToggle && siteNav) {
+        menuToggle.addEventListener("click", () => {
+          const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+
+          if (isExpanded) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        });
+
+        const navAnchors = siteNav.querySelectorAll("a");
+        navAnchors.forEach((anchor) => {
+          anchor.addEventListener("click", closeMenu);
+        });
+
+        window.addEventListener("resize", () => {
+          if (window.innerWidth >= 768) {
+            closeMenu();
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeMenu();
+          }
+        });
+      }
+
+      if (mobileCallBar && mobileCallClose) {
+        let wasDismissed = false;
+
+        try {
+          wasDismissed = sessionStorage.getItem("elGallitoCallBarDismissed") === "true";
+        } catch (error) {
+          wasDismissed = false;
+        }
+
+        if (wasDismissed) {
+          mobileCallBar.classList.add("is-dismissed");
+        }
+
+        mobileCallClose.addEventListener("click", () => {
+          mobileCallBar.classList.add("is-dismissed");
+
+          try {
+            sessionStorage.setItem("elGallitoCallBarDismissed", "true");
+          } catch (error) {
+            // Session storage may be unavailable. The visual dismissal still works.
+          }
+        });
+      }
+
+      const revealElements = document.querySelectorAll(".reveal");
+
+      if ("IntersectionObserver" in window && revealElements.length > 0) {
+        const observer = new IntersectionObserver(
+          (entries, activeObserver) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              entry.target.classList.add("is-visible");
+              activeObserver.unobserve(entry.target);
+            });
+          },
+          {
+            root: null,
+            threshold: 0.14,
+            rootMargin: "0px 0px -35px 0px"
+          }
+        );
+
+        revealElements.forEach((element) => {
+          observer.observe(element);
+        });
+      } else {
+        revealElements.forEach((element) => {
+          element.classList.add("is-visible");
+        });
+      }
+
+      if (contactForm) {
+        contactForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+
+          const nameField = document.getElementById("contactName");
+          const phoneField = document.getElementById("contactPhone");
+          const messageField = document.getElementById("contactMessage");
+
+          if (!nameField || !phoneField || !messageField) {
+            if (formNote) {
+              formNote.textContent = "Please call (717) 982-6757 to get in touch.";
+            }
+            return;
+          }
+
+          const name = nameField.value.trim();
+          const phone = phoneField.value.trim();
+          const message = messageField.value.trim();
+
+          if (!name || !phone || !message) {
+            if (formNote) {
+              formNote.textContent = "Please complete your name, phone number and message.";
+            }
+            return;
+          }
+
+          const smsBody = [
+            "Hello El Gallito Mexican Bakery III,",
+            "",
+            message,
+            "",
+            "Name: " + name,
+            "Phone: " + phone
+          ].join("\n");
+
+          const smsUrl = "sms:+17179826757?body=" + encodeURIComponent(smsBody);
+
+          if (formNote) {
+            formNote.textContent = "Opening your messaging app with your message ready.";
+          }
+
+          window.location.href = smsUrl;
+        });
+      }
+
+      if (copyrightYear) {
+        copyrightYear.textContent = String(new Date().getFullYear());
+      }
+    })();
+  </script>
+</body>
+</html>
