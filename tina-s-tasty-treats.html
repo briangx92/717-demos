@@ -348,7 +348,7 @@
     .hero {
       position: relative;
       display: grid;
-      min-height: calc(100vh - var(--nav-height));
+      min-height: min(calc(100vh - var(--nav-height)), 680px);
       align-items: center;
       padding: var(--space-6) 0 var(--space-7);
       isolation: isolate;
