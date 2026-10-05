@@ -362,7 +362,7 @@
 
     .hero {
       isolation: isolate;
-      min-height: calc(100svh - var(--nav-height));
+      min-height: min(calc(100svh - var(--nav-height)), 680px);
       display: grid;
       align-items: center;
       overflow: hidden;
