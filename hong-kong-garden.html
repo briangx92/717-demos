@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hong Kong Garden | Chinese Restaurant in Lancaster, PA Since 1980</title>
+<meta name="description" content="Hong Kong Garden — Lancaster County's oldest Chinese restaurant, serving since 1980. Dine-in, takeout. 1807 Columbia Ave, Lancaster PA. Call (717) 394-4336.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#faf6ef; --paper:#fffdf8; --ink:#2b2118; --muted:#6f6355;
+  --red:#b3271e; --red-dark:#8c1d16; --gold:#c9a227; --gold-soft:#f3e9cf;
+  --line:#e8ddc9;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.serif{font-family:'Playfair Display',Georgia,serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+/* top bar */
+.topbar{background:var(--ink);color:#f5efe2;font-size:13px}
+.topbar .wrap{display:flex;justify-content:space-between;gap:10px;padding:9px 22px;flex-wrap:wrap}
+.topbar a{color:#f5efe2;text-decoration:none;font-weight:600}
+/* header */
+header.site{position:sticky;top:0;z-index:50;background:rgba(250,246,239,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 22px}
+.brand{text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:12px}
+.brand .mark{width:44px;height:44px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display';font-weight:800;font-size:22px;box-shadow:0 2px 10px rgba(179,39,30,.35)}
+.brand b{font-family:'Playfair Display';font-size:21px;display:block;line-height:1.1}
+.brand small{font-size:11px;letter-spacing:.24em;color:var(--muted);font-weight:600}
+.navlinks{display:flex;gap:24px;align-items:center}
+.navlinks a.nl{color:var(--muted);text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.08em}
+.navlinks a.nl:hover{color:var(--red)}
+.btn-call{display:inline-flex;align-items:center;gap:9px;background:var(--red);color:#fff;text-decoration:none;font-weight:700;padding:12px 24px;border-radius:8px;font-size:15px;transition:.15s;box-shadow:0 3px 12px rgba(179,39,30,.3)}
+.btn-call:hover{background:var(--red-dark);transform:translateY(-1px)}
+.btn-outline{display:inline-flex;align-items:center;gap:9px;border:2px solid var(--red);color:var(--red);text-decoration:none;font-weight:700;padding:10px 22px;border-radius:8px;font-size:15px}
+.btn-outline:hover{background:var(--red);color:#fff}
+/* hero */
+.hero{background:
+  radial-gradient(700px 340px at 85% 10%, rgba(201,162,39,.16), transparent 60%),
+  linear-gradient(180deg,#f7f1e4 0%, var(--cream) 100%);
+  border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero .wrap{padding:76px 22px 64px;text-align:center}
+.hero .since{display:inline-block;border:1px solid var(--gold);color:#8a6d1a;background:var(--gold-soft);font-size:12px;font-weight:700;letter-spacing:.22em;padding:8px 18px;border-radius:24px;margin-bottom:22px}
+.hero h1{font-size:clamp(40px,6vw,68px);font-weight:800;line-height:1.08;margin-bottom:16px}
+.hero h1 em{color:var(--red);font-style:normal}
+.hero p.lede{color:var(--muted);font-size:18px;max-width:620px;margin:0 auto 30px}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:26px}
+.hero-note{color:var(--muted);font-size:14px}
+.hero-note b{color:var(--ink)}
+.awards{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.awards span{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--muted)}
+.awards span b{color:var(--gold);font-size:15px}
+/* sections */
+section{padding:68px 0}
+.sec-head{text-align:center;margin-bottom:38px}
+.sec-head .eyebrow{color:var(--red);font-weight:700;font-size:12px;letter-spacing:.26em;margin-bottom:10px}
+.sec-head h2{font-size:clamp(28px,4vw,42px);font-weight:700}
+.sec-head p{color:var(--muted);max-width:640px;margin:10px auto 0}
+/* menu */
+.menu-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.cat{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:28px}
+.cat h3{font-size:21px;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+.cat .cn{color:var(--gold);font-size:15px}
+.cat p.desc{color:var(--muted);font-size:13px;margin-bottom:14px}
+.cat ul{list-style:none}
+.cat li{padding:8px 0;border-bottom:1px dashed var(--line);font-size:14px;color:#463b2e}
+.cat li:last-child{border-bottom:none}
+.cat li b{color:var(--ink)}
+.menu-note{text-align:center;color:var(--muted);font-size:14px;margin-top:26px}
+.menu-note a{color:var(--red);font-weight:700}
+/* story */
+.story{background:var(--ink);color:#f2ead9}
+.story .wrap{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+@media(max-width:820px){.story .wrap{grid-template-columns:1fr}.navlinks a.nl{display:none}}
+.story .eyebrow{color:var(--gold);font-weight:700;font-size:12px;letter-spacing:.26em;margin-bottom:12px}
+.story h2{font-size:clamp(28px,4vw,40px);margin-bottom:16px;color:#fff}
+.story p{color:#c9bfa9;margin-bottom:14px;font-size:15px}
+.story .nums{display:flex;gap:36px;margin-top:24px}
+.story .nums div b{font-family:'Playfair Display';font-size:34px;color:var(--gold);display:block}
+.story .nums div span{font-size:13px;color:#a99e86}
+/* info */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:820px){.info-grid{grid-template-columns:1fr}}
+.info-card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:30px}
+.info-card h3{font-size:19px;margin-bottom:16px;display:flex;gap:10px;align-items:center}
+.hours-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.hours-row:last-child{border:none}
+.hours-row b{font-weight:600}
+.hours-row.closed b,.hours-row.closed span{color:var(--muted)}
+.map{border-radius:14px;overflow:hidden;border:1px solid var(--line);margin-top:18px}
+.map iframe{width:100%;height:320px;border:0;display:block}
+/* call band */
+.callband{background:var(--red);color:#fff;text-align:center}
+.callband .wrap{padding:56px 22px}
+.callband h2{font-size:clamp(26px,4vw,40px);margin-bottom:10px;color:#fff}
+.callband p{color:#f6d9d4;margin-bottom:24px}
+.callband .btn-call{background:#fff;color:var(--red);font-size:18px;padding:15px 34px}
+.callband .btn-call:hover{background:var(--gold-soft)}
+footer{background:var(--ink);color:#a99e86;font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:10px;padding:24px 22px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>📍 1807 Columbia Ave, Lancaster, PA 17603 · Wheatland Shopping Center</span>
+    <a href="tel:+17173944336">📞 (717) 394-4336</a>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <span class="mark">香</span>
+      <span><b>Hong Kong Garden</b><small>CHINESE RESTAURANT</small></span>
+    </a>
+    <nav class="navlinks">
+      <a class="nl" href="#menu">MENU</a>
+      <a class="nl" href="#story">OUR STORY</a>
+      <a class="nl" href="#visit">HOURS &amp; LOCATION</a>
+      <a class="btn-call" href="tel:+17173944336">📞 Order Takeout</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <span class="since">SERVING LANCASTER COUNTY SINCE 1980</span>
+    <h1>Lancaster's Chinese restaurant for <em>four decades.</em></h1>
+    <p class="lede">Same location, same family, same recipes since 1980. Dine in our 120-seat dining room or take it home — over 160 takeout items made fresh daily.</p>
+    <div class="hero-cta">
+      <a class="btn-call" href="tel:+17173944336">📞 Call (717) 394-4336</a>
+      <a class="btn-outline" href="#menu">Browse the menu</a>
+    </div>
+    <p class="hero-note">Takeout orders by phone · <b>Dine-in &amp; takeout</b> · Lunch served Tue–Sat till 3pm</p>
+    <div class="awards">
+      <span><b>★</b> Voted #1 Chinese Restaurant</span>
+      <span>Lancaster County Magazine · 2004–2022</span>
+    </div>
+  </div>
+</div>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">THE MENU</div>
+      <h2>Something for every appetite.</h2>
+      <p>Over 160 takeout items and 130+ lunch specials. Any meat entrée can be made with tofu — and every entrée can be steamed without sauce. Call for today's details.</p>
+    </div>
+    <div class="menu-cats">
+      <div class="cat">
+        <h3>🍲 Soups <span class="cn">湯</span></h3>
+        <p class="desc">Made fresh, served steaming.</p>
+        <ul>
+          <li><b>Wonton Soup</b> &amp; Egg Drop Soup</li>
+          <li><b>Hot &amp; Sour Soup</b> — spicy &amp; tangy</li>
+          <li><b>House Soup</b> — chicken, ham, shrimp &amp; egg white</li>
+          <li><b>Wor Wonton Soup</b> — a meal in a bowl</li>
+          <li><b>Seafood Tofu Soup</b> &amp; Seafood Corn Soup</li>
+          <li>Roast Pork, Chicken &amp; Vegetable Rice Noodle Soups</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <h3>🥟 Appetizers <span class="cn">頭盤</span></h3>
+        <p class="desc">Start every meal right.</p>
+        <ul>
+          <li><b>Egg Rolls</b> &amp; Spring Rolls</li>
+          <li><b>Pan-Fried Dumplings</b></li>
+          <li><b>Fried Chicken Wings</b> &amp; Spicy Wings</li>
+          <li><b>Shrimp Toast</b> &amp; Shrimp Wrap</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <h3>🥦 Entrées <span class="cn">主菜</span></h3>
+        <p class="desc">Poultry, pork, beef &amp; seafood.</p>
+        <ul>
+          <li><b>Poultry</b> — chicken classics, many ways</li>
+          <li><b>Pork</b> — sweet &amp; sour, twice-cooked &amp; more</li>
+          <li><b>Beef</b> — with broccoli, peppers &amp; vegetables</li>
+          <li><b>Seafood</b> — shrimp, scallops &amp; lobster sauce</li>
+          <li><b>Chef's Specialties</b> &amp; Cantonese Chow Mein</li>
+          <li><b>Vegetarian entrées</b> — tofu your way</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <h3>🍜 Noodles &amp; Rice <span class="cn">麵飯</span></h3>
+        <p class="desc">Wok-fired favorites.</p>
+        <ul>
+          <li><b>Lo Mein</b> — chicken, pork, beef or shrimp</li>
+          <li><b>Chow Fun</b> &amp; Angel Hair Rice Noodles</li>
+          <li><b>Chow Mein</b> &amp; Chop Suey</li>
+          <li><b>Egg Foo Young</b></li>
+          <li><b>Fried Rice</b> — house, shrimp, beef &amp; more</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <h3>🌞 Lunch Specials <span class="cn">午餐</span></h3>
+        <p class="desc">Tue–Sat till 3pm · 130+ items.</p>
+        <ul>
+          <li>Many entrées include <b>egg roll + fried rice</b></li>
+          <li>Generous portions at lunch prices</li>
+          <li>Dinner menu available all day</li>
+        </ul>
+      </div>
+      <div class="cat">
+        <h3>🧒 Children's Menu <span class="cn">兒童餐</span></h3>
+        <p class="desc">Ages 10 &amp; under · dine-in.</p>
+        <ul>
+          <li><b>Sweet &amp; Sour Chicken</b>, wings &amp; dumplings</li>
+          <li>Steak or chicken on a stick</li>
+          <li>Fried rice or lo mein</li>
+          <li>Every meal comes with <b>ice cream</b></li>
+        </ul>
+      </div>
+    </div>
+    <p class="menu-note">Full menu with 160+ items in store — <a href="tel:+17173944336">call (717) 394-4336</a> and we'll walk you through it.</p>
+  </div>
+</section>
+
+<section id="story" class="story">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">OUR STORY</div>
+      <h2>The oldest Chinese restaurant in Lancaster County.</h2>
+      <p>Hong Kong Garden opened its doors in 1980 — same location, same business name, same family ever since. Families have been bringing their second and third generations through our doors for years.</p>
+      <p>Fresh, quality Chinese cuisine at reasonable prices, generous portions, and a relaxed 120-seat dining room. Voted the county's #1 Chinese restaurant by Lancaster County Magazine nineteen years running.</p>
+      <div class="nums">
+        <div><b>1980</b><span>serving since</span></div>
+        <div><b>160+</b><span>takeout items</span></div>
+        <div><b>19×</b><span>voted #1 · 2004–2022</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="info-card" style="background:#231b12;border-color:#3a2f1f">
+        <h3 style="color:#fff">🍱 Good to know</h3>
+        <ul style="list-style:none;color:#c9bfa9;font-size:14px">
+          <li style="padding:7px 0">✓ Dine-in &amp; takeout</li>
+          <li style="padding:7px 0">✓ 120-seat dining room for any occasion</li>
+          <li style="padding:7px 0">✓ Vegetarian-friendly — tofu swaps welcome</li>
+          <li style="padding:7px 0">✓ Steamed options, no sauce on request</li>
+          <li style="padding:7px 0">✓ Minutes from west Lancaster City</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">HOURS &amp; LOCATION</div>
+      <h2>Come hungry.</h2>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>🕒 Hours</h3>
+        <div class="hours-row"><b>Tuesday – Thursday</b><span>11:30 AM – 8:30 PM</span></div>
+        <div class="hours-row"><b>Friday</b><span>11:30 AM – 9:30 PM</span></div>
+        <div class="hours-row"><b>Saturday</b><span>12:00 PM – 9:30 PM</span></div>
+        <div class="hours-row"><b>Sunday</b><span>11:30 AM – 8:30 PM</span></div>
+        <div class="hours-row closed"><b>Monday</b><span>Closed</span></div>
+      </div>
+      <div class="info-card">
+        <h3>📍 Find us</h3>
+        <p style="font-size:15px;margin-bottom:6px"><b>1807 Columbia Ave</b><br>Lancaster, PA 17603</p>
+        <p style="color:var(--muted);font-size:14px;margin-bottom:16px">Wheatland Shopping Center — minutes outside west Lancaster City.</p>
+        <a class="btn-call" href="tel:+17173944336" style="width:100%;justify-content:center">📞 (717) 394-4336</a>
+        <p style="margin-top:14px;font-size:14px;color:var(--muted)">✉️ hongkonggarden@comcast.net</p>
+      </div>
+    </div>
+    <div class="map">
+      <iframe title="Map to Hong Kong Garden" loading="lazy" src="https://maps.google.com/maps?q=1807+Columbia+Ave,+Lancaster,+PA+17603&output=embed"></iframe>
+    </div>
+  </div>
+</section>
+
+<div class="callband">
+  <div class="wrap">
+    <h2>Craving it already? Call it in.</h2>
+    <p>Takeout ready when you are — one call does it.</p>
+    <a class="btn-call" href="tel:+17173944336">📞 (717) 394-4336</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Hong Kong Garden · 1807 Columbia Ave, Lancaster, PA</span>
+    <span>Demo concept by 717 Digital Studio</span>
+  </div>
+</footer>
+
+</body>
+</html>
