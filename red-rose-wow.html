@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Red Rose Mobile Detailing | Mobile Car Detailing in Lancaster, PA</title>
+<meta name="description" content="Red Rose Mobile Detailing brings professional car detailing to your driveway anywhere in Lancaster County, PA. Interior, exterior, paint correction & ceramic coating. Call (717) 823-7104.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0a0a0c;--paper:#f2f2f4;--muted:#a7a7b0;--red:#d6202f;--red2:#ff5b68;--drop:#7cc4ff;--line:rgba(214,32,47,.18)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--ink);color:var(--paper);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
+body.locked{overflow:hidden}
+::selection{background:var(--red);color:#fff}
+h1,h2,h3,.disp{font-family:'Archivo',sans-serif;text-transform:uppercase;letter-spacing:.02em}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+/* cursor */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:400;border-radius:50%;transform:translate(-50%,-50%)}
+.cursor-dot{width:8px;height:8px;background:var(--red2)}
+.cursor-ring{width:38px;height:38px;border:1px solid rgba(214,32,47,.6);transition:width .25s,height .25s,background .25s}
+body.link-hover .cursor-ring{width:64px;height:64px;background:rgba(214,32,47,.1)}
+@media(hover:none){.cursor-dot,.cursor-ring{display:none}}
+/* preloader */
+#loader{position:fixed;inset:0;z-index:300;background:#08080a;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:26px;transition:transform 1s cubic-bezier(.76,0,.24,1)}
+#loader.done{transform:translateY(-101%)}
+#loader .seal{width:92px;height:92px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f04352,#a5121f);display:flex;align-items:center;justify-content:center;font-family:'Archivo';font-weight:900;font-size:44px;color:#fff;box-shadow:0 0 70px rgba(214,32,47,.5);animation:sealfloat 2.6s ease-in-out infinite}
+@keyframes sealfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+#loader .pct{font-family:'Archivo';font-weight:800;font-size:15px;letter-spacing:.3em;color:var(--muted)}
+#loader .bar{width:min(320px,60vw);height:2px;background:rgba(214,32,47,.2)}
+#loader .bar i{display:block;height:100%;width:0;background:var(--red)}
+/* grain */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:200;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 8s steps(10) infinite}
+@keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-2%,2%)}40%{transform:translate(2%,-1%)}60%{transform:translate(-1%,-2%)}80%{transform:translate(1%,2%)}}
+/* header */
+header{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+header.scrolled{background:rgba(10,10,12,.88);backdrop-filter:blur(16px);border-bottom-color:var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;padding:15px 28px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--paper)}
+.brand .rose{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f04352,#a5121f);display:flex;align-items:center;justify-content:center;font-family:'Archivo';font-weight:900;font-size:19px;color:#fff;box-shadow:0 0 18px rgba(214,32,47,.45)}
+.brand b{font-family:'Archivo';font-size:15px;letter-spacing:.06em;display:block;line-height:1.2}
+.brand small{display:block;font-size:10px;color:var(--muted);letter-spacing:.22em;font-weight:600}
+nav.links{display:flex;gap:26px;align-items:center}
+nav.links a.nl{color:var(--muted);text-decoration:none;font-size:12.5px;font-weight:600;letter-spacing:.1em;position:relative;padding:4px 0}
+nav.links a.nl::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--red);transition:width .3s}
+nav.links a.nl:hover{color:var(--paper)}nav.links a.nl:hover::after{width:100%}
+.btn-call{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:800;font-family:'Archivo';letter-spacing:.05em;padding:13px 26px;border-radius:6px;font-size:14.5px;transition:transform .18s ease-out,box-shadow .25s,background .25s;will-change:transform}
+.btn-call:hover{background:#f02c3d;box-shadow:0 10px 32px rgba(214,32,47,.5)}
+.btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #3a3a42;color:var(--paper);text-decoration:none;font-weight:700;font-family:'Archivo';letter-spacing:.05em;padding:13px 26px;border-radius:6px;font-size:14.5px;transition:.25s;will-change:transform}
+.btn-ghost:hover{border-color:var(--red)}
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
+#fx{position:absolute;inset:0;width:100%;height:100%}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:1}
+.orb.o1{width:560px;height:560px;left:-160px;top:-140px;background:radial-gradient(circle,rgba(214,32,47,.26),transparent 65%);animation:drift1 15s ease-in-out infinite}
+.orb.o2{width:640px;height:640px;right:-200px;bottom:-180px;background:radial-gradient(circle,rgba(124,196,255,.1),transparent 65%);animation:drift2 19s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(70px,50px)}}
+@keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-60px,-60px)}}
+.hero-bgword{position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);font-family:'Archivo';font-weight:900;font-size:clamp(200px,34vw,480px);color:transparent;-webkit-text-stroke:1px rgba(214,32,47,.16);user-select:none;pointer-events:none;line-height:1;z-index:1;letter-spacing:.02em;white-space:nowrap}
+.hero-inner{position:relative;z-index:2;width:100%;padding:130px 0 110px}
+.kicker{display:inline-block;color:var(--red2);font-weight:700;font-size:12px;letter-spacing:.3em;margin-bottom:22px;font-family:'Archivo'}
+.kicker::before{content:"";display:inline-block;width:36px;height:2px;background:var(--red);vertical-align:middle;margin-right:12px}
+h1.mega{font-size:clamp(40px,6.6vw,88px);font-weight:900;line-height:1.04;max-width:900px}
+h1.mega .ch{display:inline-block;opacity:0;transform:translateY(.55em);animation:charIn .8s cubic-bezier(.19,1,.22,1) forwards}
+@keyframes charIn{to{opacity:1;transform:none}}
+h1.mega .red{color:var(--red)}
+.lede{color:var(--muted);font-size:18px;max-width:580px;margin-top:24px;opacity:0;transform:translateY(24px);transition:opacity 1s .2s,transform 1s .2s}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;opacity:0;transform:translateY(24px);transition:opacity 1s .35s,transform 1s .35s}
+.hero-badges{display:flex;gap:30px;flex-wrap:wrap;margin-top:46px;color:var(--muted);font-size:13px;font-weight:600;letter-spacing:.04em;opacity:0;transform:translateY(24px);transition:opacity 1s .5s,transform 1s .5s}
+.hero-badges b{color:var(--paper);font-size:21px;display:block;font-family:'Archivo'}
+body.ready .lede,body.ready .hero-cta,body.ready .hero-badges{opacity:1;transform:none}
+.scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--muted);font-size:10px;letter-spacing:.36em;font-family:'Archivo'}
+.scroll-cue i{width:1px;height:46px;background:linear-gradient(var(--red),transparent);display:block;animation:cue 2s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:scaleY(.4);transform-origin:top;opacity:.4}50%{transform:scaleY(1);opacity:1}}
+/* marquee */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:16px 0;background:#0d0d10;position:relative;z-index:3}
+.marquee .track{display:inline-block;font-family:'Archivo';font-weight:800;font-size:14px;letter-spacing:.26em;color:#5c5c64;animation:scroll 30s linear infinite}
+.marquee .track b{color:var(--red)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+/* chapters */
+.chapter{padding:120px 0;position:relative;z-index:3}
+.chapter h2{font-size:clamp(32px,4.6vw,56px);font-weight:800;margin:12px 0 14px}
+.ch-sub{color:var(--muted);max-width:660px}
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.19,1,.22,1),transform 1s cubic-bezier(.19,1,.22,1)}
+.rv.in{opacity:1;transform:none}
+/* horizontal packages */
+.hwrap{height:380vh;position:relative}
+.hsticky{position:sticky;top:0;height:100svh;overflow:hidden;display:flex;align-items:center}
+.htrack{display:flex;gap:30px;padding:0 8vw;will-change:transform;align-items:stretch}
+.hcard{flex:0 0 min(460px,82vw);border:1px solid var(--line);background:linear-gradient(165deg,#151519,#0c0c0f);border-radius:14px;padding:40px 36px;position:relative;overflow:hidden;transition:border-color .3s;max-height:82svh;overflow-y:auto}
+.hcard:hover{border-color:rgba(214,32,47,.55)}
+.hcard::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--red),transparent);opacity:0;transition:opacity .4s}
+.hcard:hover::after{opacity:1}
+.hcard .cat{font-family:'Archivo';font-weight:800;font-size:12px;letter-spacing:.3em;color:var(--red2);margin-bottom:20px}
+.pkg{margin-bottom:26px;padding-bottom:26px;border-bottom:1px dashed #26262c}
+.pkg:last-child{margin-bottom:0;padding-bottom:0;border:none}
+.pkg .phead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px}
+.pkg h3{font-size:19px}
+.pkg .tag{background:var(--red);color:#fff;font-size:10px;font-weight:800;letter-spacing:.1em;padding:4px 10px;border-radius:20px;font-family:'Archivo'}
+.pkg .sub{color:var(--muted);font-size:12.5px;margin-bottom:10px}
+.pkg ul{list-style:none;margin-bottom:12px}
+.pkg ul li{color:#cfcfd6;font-size:13px;padding:5px 0 5px 24px;position:relative}
+.pkg ul li::before{content:"✓";position:absolute;left:2px;color:var(--red);font-weight:800}
+.pkg .prow{display:flex;align-items:baseline;justify-content:space-between}
+.pkg .price{font-family:'Archivo';font-weight:900;font-size:25px}
+.pkg .price small{font-size:13px;color:var(--muted);font-weight:600}
+.pkg .time{color:var(--muted);font-size:12.5px}
+.h-intro{flex:0 0 min(360px,72vw);display:flex;flex-direction:column;justify-content:center}
+.h-intro p{color:var(--muted);margin-top:14px;line-height:1.7}
+.h-progress{position:absolute;bottom:40px;left:8vw;right:8vw;height:2px;background:rgba(214,32,47,.15)}
+.h-progress i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--red);display:block}
+/* special band */
+.band{background:linear-gradient(120deg,#17090c,#0a0a0c);border-top:1px solid #3a1d21;border-bottom:1px solid #3a1d21;position:relative;z-index:3;overflow:hidden}
+.band .wrap{display:flex;gap:26px;align-items:center;flex-wrap:wrap;padding-top:44px;padding-bottom:44px}
+.band h3{font-size:clamp(22px,3vw,30px)}
+.band p{color:var(--muted)}
+.band .btn-call{margin-left:auto}
+/* why */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:44px}
+.why{background:#131316;border:1px solid var(--line);border-radius:12px;padding:30px;transition:transform .3s,border-color .3s}
+.why:hover{transform:translateY(-4px);border-color:rgba(214,32,47,.5)}
+.why .ic{width:14px;height:14px;background:var(--red);transform:rotate(45deg);margin:6px 0 20px 2px;box-shadow:0 0 14px rgba(214,32,47,.55)}
+.why h3{font-size:17px;margin-bottom:10px}
+.why p{color:var(--muted);font-size:14px}
+/* area */
+.area-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}
+@media(max-width:820px){.area-grid{grid-template-columns:1fr}}
+.area-cell{background:var(--ink);padding:48px 44px}
+.area-cell h3{font-size:24px;margin-bottom:20px}
+.towns{display:flex;flex-wrap:wrap;gap:10px}
+.towns span{background:#17171b;border:1px solid var(--line);padding:10px 20px;border-radius:24px;font-size:14px;font-weight:600;transition:border-color .25s}
+.towns span:hover{border-color:var(--red)}
+.area-cell p.note{color:var(--muted);font-size:14px;margin-top:20px}
+.map{border:1px solid var(--line);border-top:none}
+.map iframe{width:100%;height:340px;border:0;display:block;filter:grayscale(.4) contrast(1.05)}
+/* policies */
+.pol-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:44px}
+.pol{background:#131316;border:1px solid var(--line);border-radius:12px;padding:30px}
+.pol h3{font-size:16px;margin-bottom:14px}
+.pol p,.pol li{color:var(--muted);font-size:14px}
+.pol ul{list-style:none}
+.pol li{padding:6px 0 6px 22px;position:relative}
+.pol li::before{content:"–";position:absolute;left:6px;color:var(--red)}
+/* faq */
+.faq{max-width:780px;margin-top:40px}
+.faq details{background:#131316;border:1px solid var(--line);border-radius:10px;margin-bottom:12px;overflow:hidden;transition:border-color .3s}
+.faq details[open]{border-color:rgba(214,32,47,.5)}
+.faq summary{cursor:pointer;padding:20px 24px;font-weight:700;font-family:'Archivo';font-size:15px;letter-spacing:.03em;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--red);font-size:24px;font-weight:400;flex-shrink:0}
+.faq details[open] summary::after{content:"–"}
+.faq .a{padding:0 24px 22px;color:var(--muted);font-size:14px}
+/* book */
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:48px}
+@media(max-width:820px){.book-grid{grid-template-columns:1fr}}
+.big-call{background:#131316;border:1px solid var(--line);border-radius:14px;padding:44px 36px;text-align:center;transition:border-color .3s}
+.big-call:hover{border-color:rgba(214,32,47,.5)}
+.big-call .lbl{color:var(--muted);font-size:12px;letter-spacing:.24em;font-weight:700;margin-bottom:14px;font-family:'Archivo'}
+.big-call a.num{font-family:'Archivo';font-weight:900;font-size:clamp(30px,4.4vw,44px);color:#fff;text-decoration:none;display:block;margin-bottom:10px}
+.big-call a.num:hover{color:var(--red2)}
+.big-call p{color:var(--muted);font-size:14px;margin-bottom:24px}
+.big-call .btn-call{width:100%}
+.fine{font-size:12px;color:#6d6d76;margin-top:14px}
+/* finale strip */
+.strip2{background:var(--red);color:#fff;position:relative;z-index:3;overflow:hidden}
+.strip2 .wrap{display:flex;gap:12px;align-items:center;justify-content:center;padding:16px 28px;font-family:'Archivo';font-weight:700;letter-spacing:.06em;font-size:14.5px;text-align:center;flex-wrap:wrap}
+.strip2 a{color:#fff;font-weight:800}
+footer{border-top:1px solid var(--line);padding:30px 0;color:#6d6d76;font-size:13px;position:relative;z-index:3}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:880px){nav.links a.nl{display:none}}
+@media (prefers-reduced-motion:reduce){
+  .grain{animation:none}#loader{display:none}.cursor-dot,.cursor-ring{display:none}
+  h1.mega .ch{opacity:1;transform:none;animation:none}
+  .rv{opacity:1;transform:none}
+  .hwrap{height:auto}.hsticky{position:static;height:auto}.htrack{flex-wrap:wrap;transform:none!important;padding:40px 28px}
+}
+</style>
+</head>
+<body class="locked">
+
+<div class="cursor-dot" id="cdot"></div><div class="cursor-ring" id="cring"></div>
+<div class="grain"></div>
+<div id="loader"><div class="seal">R</div><div class="bar"><i id="lbar"></i></div><div class="pct" id="lpct">00</div></div>
+
+<header id="hdr">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="rose">R</span><span><b>RED ROSE</b><small>MOBILE DETAILING</small></span></a>
+    <nav class="links">
+      <a class="nl" href="#packages">PACKAGES</a>
+      <a class="nl" href="#area">SERVICE AREA</a>
+      <a class="nl" href="#faq">FAQ</a>
+      <a class="btn-call magnetic" href="tel:+17178237104">📞 (717) 823-7104</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <canvas id="fx"></canvas>
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <div class="hero-bgword" id="bgword">SHINE</div>
+  <div class="wrap hero-inner">
+    <span class="kicker">MOBILE DETAILING · LANCASTER COUNTY PA</span>
+    <h1 class="mega" id="mega">We bring the <span class="red">detail shop</span> to your driveway.</h1>
+    <p class="lede">Professional interior, exterior, and paint correction detailing at your home or office. No waiting rooms, no drop-offs. We come to you, anywhere in Lancaster County.</p>
+    <div class="hero-cta">
+      <a class="btn-call magnetic" href="tel:+17178237104">📞 Call (717) 823-7104</a>
+      <a class="btn-ghost magnetic" href="https://book.squareup.com/appointments/4b66f4c5nj52kk/location/L2QR2X9V87VNX/services?buttonTextColor=ffffff&color=ff1616&locale=en&referrer=so&team_member_id=TMn05VbA_Bn6I-X7">Book online</a>
+    </div>
+    <div class="hero-badges">
+      <span><b>100%</b>mobile: we come to you</span>
+      <span><b>Full menu</b>interior, exterior &amp; coatings</span>
+      <span><b>Lancaster Co.</b>based here</span>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>SCROLL</span><i></i></div>
+</div>
+
+<div class="marquee"><div class="track" id="mtrack"></div></div>
+
+<div class="hwrap" id="packages">
+  <div class="hsticky">
+    <div class="htrack" id="htrack">
+      <div class="h-intro">
+        <span class="kicker">PACKAGES &amp; PRICING</span>
+        <h2>Pick your<br>shine.</h2>
+        <p>Straightforward packages with real prices. Final pricing depends on vehicle size and condition. We'll always confirm before we start.</p>
+        <p style="margin-top:16px;font-size:11px;letter-spacing:.26em;color:var(--red2);font-family:'Archivo'">SCROLL TO TOUR THE MENU →</p>
+      </div>
+
+      <div class="hcard">
+        <div class="cat">INTERIOR</div>
+        <div class="pkg">
+          <div class="phead"><h3>The Deep Cleanse</h3><span class="tag">MOST POPULAR</span></div>
+          <div class="sub">Deep interior clean with protective finishes</div>
+          <ul><li>Complete vacuum, including under &amp; between seats</li><li>Door panels, crevices &amp; jambs deep cleaned</li><li>All compartments &amp; vents cleaned &amp; disinfected</li><li>Dash, wheel, console &amp; pedals detailed</li><li>Mats refurbished, glass streak-free</li><li>UV-protective top coat on all surfaces</li></ul>
+          <div class="prow"><span class="price">$175</span><span class="time">≈ 2 hrs</span></div>
+        </div>
+        <div class="pkg">
+          <div class="phead"><h3>The Interior Reset</h3></div>
+          <div class="sub">Intensive restoration: the full reset</div>
+          <ul><li>Everything in The Deep Cleanse, plus:</li><li>Steam cleaning of high-touch areas</li><li>Leather deep cleaned &amp; conditioned</li><li>Headliner spot treatment</li><li>Odor-neutralizing treatment</li><li>Complimentary interior wipe kit</li></ul>
+          <div class="prow"><span class="price"><small>from</small> $250</span><span class="time">3 hrs+</span></div>
+        </div>
+      </div>
+
+      <div class="hcard">
+        <div class="cat">EXTERIOR</div>
+        <div class="pkg">
+          <div class="phead"><h3>Gloss &amp; Go</h3></div>
+          <div class="sub">Hand wash + months of protection</div>
+          <ul><li>Foam pre-soak hand wash</li><li>Wheels, tires &amp; wells deep cleaned</li><li>Bug &amp; debris removal</li><li>Tires dressed, glass streak-free</li><li>Premium paint sealant (4–6 months)</li></ul>
+          <div class="prow"><span class="price">$200</span><span class="time">1 hr+</span></div>
+        </div>
+        <div class="pkg">
+          <div class="phead"><h3>Paint Perfector</h3></div>
+          <div class="sub">Top-level gloss, depth &amp; protection</div>
+          <ul><li>Everything in Gloss &amp; Go, plus:</li><li>Iron &amp; tar decontamination</li><li>Ceramic spray coating (6–12 months)</li><li>Paint inspection &amp; 2-step correction</li></ul>
+          <div class="prow"><span class="price">$200</span><span class="time">4 hrs 30 min</span></div>
+        </div>
+      </div>
+
+      <div class="hcard">
+        <div class="cat">FULL DETAILS &amp; BUNDLES</div>
+        <div class="pkg">
+          <div class="phead"><h3>Fall Into Winter Protection</h3><span class="tag">SEASONAL</span></div>
+          <div class="sub">Seasonal reset + winter armor</div>
+          <ul><li>Full interior reset service</li><li>Exterior hand wash &amp; sealant</li><li>Hydrophobic protection vs. salt &amp; slush</li><li>Extra attention to road-grime zones</li></ul>
+          <div class="prow"><span class="price"><small>from</small> $399</span><span class="time">4 hrs 30 min</span></div>
+        </div>
+        <div class="pkg">
+          <div class="phead"><h3>Signature Red Rose Detail</h3></div>
+          <div class="sub">Top-to-bottom transformation</div>
+          <ul><li>Full interior: shampoo, sanitize, condition</li><li>Foam wash, clay bar, decontamination</li><li>Premium sealant or ceramic spray</li><li>Take-home wipe kit included</li></ul>
+          <div class="prow"><span class="price">$375</span><span class="time">4 hrs+</span></div>
+        </div>
+        <div class="pkg">
+          <div class="phead"><h3>Standard Full Detail</h3></div>
+          <div class="sub">The complete inside-out clean</div>
+          <ul><li>Hand wash, wheels &amp; paint protection</li><li>Full interior vacuum &amp; deep clean</li><li>Protective top coat on all surfaces</li></ul>
+          <div class="prow"><span class="price">$250</span><span class="time">3 hrs 30 min</span></div>
+        </div>
+      </div>
+
+      <div class="hcard">
+        <div class="cat">PAINT CORRECTION &amp; COATINGS</div>
+        <div class="pkg">
+          <div class="phead"><h3>Gloss Correction</h3></div>
+          <div class="sub">Heavy multi-stage buffing</div>
+          <ul><li>Removes moderate oxidation</li><li>Restores color depth &amp; gloss</li><li>Best for older vehicles</li></ul>
+          <div class="prow"><span class="price"><small>from</small> $275 <small>car / $350 SUV</small></span><span class="time">4 hrs 30 min</span></div>
+        </div>
+        <div class="pkg">
+          <div class="phead"><h3>Shine Boost</h3></div>
+          <div class="sub">1-step swirl &amp; haze removal</div>
+          <ul><li>Machine buff + protective polish</li><li>High-gloss sealant finish</li></ul>
+          <div class="prow"><span class="price"><small>from</small> $175 <small>car / $225 SUV</small></span><span class="time">2 hrs 30 min</span></div>
+        </div>
+        <div class="pkg">
+          <div class="phead"><h3>Ceramic Coating</h3><span class="tag">PREMIUM</span></div>
+          <div class="sub">Years of protection</div>
+          <ul><li>Paint correction included</li><li>Coating on paint, glass &amp; lights</li><li>3-yr base or 10-yr maintained warranty</li></ul>
+          <div class="prow"><span class="price"><small>from</small> $899</span><span class="time">5 hrs+</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="h-progress"><i id="hprog"></i></div>
+  </div>
+</div>
+
+<div class="band">
+  <div class="wrap">
+    <div>
+      <h3>First-time customer special</h3>
+      <p>FREE clay bar treatment with any full detail package. Just mention it when you book.</p>
+    </div>
+    <a class="btn-call magnetic" href="tel:+17178237104" style="background:#fff;color:var(--red)">Claim it: call now</a>
+  </div>
+</div>
+
+<div class="chapter" id="why">
+  <div class="wrap">
+    <div class="rv"><span class="kicker">WHY MOBILE</span><h2>Detailing that fits your day.</h2></div>
+    <div class="why-grid">
+      <div class="why rv"><div class="ic"></div><h3>We come to you</h3><p>Home, office, anywhere in Lancaster County. You hand over the keys and get back to your day.</p></div>
+      <div class="why rv"><div class="ic"></div><h3>Truly mobile</h3><p>Our complete detailing setup comes to your driveway. All we need is access to the vehicle.</p></div>
+      <div class="why rv"><div class="ic"></div><h3>Easy payment</h3><p>Cards, cash, or mobile payment on completion. Card on file secures your booking.</p></div>
+      <div class="why rv"><div class="ic"></div><h3>Weather-proof booking</h3><p>If weather stops us, we reschedule at no cost. No fees, no hassle.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="chapter" id="area" style="padding-top:20px">
+  <div class="wrap">
+    <div class="rv"><span class="kicker">SERVICE AREA</span><h2>Proudly serving Lancaster County.</h2><p class="ch-sub">Mobile detailing throughout the county. A small travel fee may apply outside our standard area. We'll always tell you up front.</p></div>
+    <div class="area-grid rv">
+      <div class="area-cell">
+        <h3>Where we roll</h3>
+        <div class="towns"><span>Lancaster City</span><span>Lititz</span><span>Manheim</span><span>Ephrata</span><span>Surrounding areas</span></div>
+        <p class="note">Mobile detailing throughout the county. A small travel fee may apply outside our standard area. We'll always tell you up front.</p>
+      </div>
+      <div class="area-cell">
+        <h3>Book your spot</h3>
+        <p class="note" style="margin-top:0;margin-bottom:22px">Pick your package and grab a time slot, or call us directly.</p>
+        <a class="btn-call magnetic" href="https://book.squareup.com/appointments/4b66f4c5nj52kk/location/L2QR2X9V87VNX/services?buttonTextColor=ffffff&color=ff1616&locale=en&referrer=so&team_member_id=TMn05VbA_Bn6I-X7" style="width:100%;margin-bottom:12px">Book online</a>
+        <a class="btn-ghost magnetic" href="tel:+17178237104" style="width:100%">📞 (717) 823-7104</a>
+      </div>
+    </div>
+    <div class="map rv">
+      <iframe title="Map of Lancaster County, PA" loading="lazy" src="https://maps.google.com/maps?q=Lancaster+County,+PA&output=embed"></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="chapter" id="policies" style="padding-top:20px">
+  <div class="wrap">
+    <div class="rv"><span class="kicker">GOOD TO KNOW</span><h2>Booking policies, plain and simple.</h2></div>
+    <div class="pol-grid">
+      <div class="pol rv"><h3>Cancellation</h3><ul><li>24 hours' notice to cancel or reschedule</li><li>Late cancellations: $25 fee</li><li>No-shows: 50% of service total</li></ul></div>
+      <div class="pol rv"><h3>When we arrive</h3><ul><li>Vehicle ready, accessible, keys available</li><li>Can't start within 15 min: may cancel/reschedule with fee</li><li>Can't access the vehicle: treated as no-show</li></ul></div>
+      <div class="pol rv"><h3>Weather</h3><p>Extreme weather may delay or reschedule your appointment. We'll notify you as early as possible. Reschedules are always free.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="chapter" id="faq" style="padding-top:20px">
+  <div class="wrap">
+    <div class="rv"><span class="kicker">FAQ</span><h2>Questions, answered.</h2></div>
+    <div class="faq rv">
+      <details><summary>Do I need to provide anything?</summary><div class="a">Just make sure the vehicle is accessible with keys available. We'll confirm any other setup details when you book.</div></details>
+      <details><summary>What if it rains on my appointment day?</summary><div class="a">If weather prevents safe, quality work, we'll reschedule you at no cost and notify you as early as possible.</div></details>
+      <details><summary>How do I pay?</summary><div class="a">Payment is due when the service is complete. We accept all major cards, cash, and mobile payments via Square.</div></details>
+      <details><summary>How long does a detail take?</summary><div class="a">From 40 minutes for a Wash and Wipe to 5+ hours for ceramic coating. Each package above lists its typical time.</div></details>
+      <details><summary>Do you offer gift options or boats?</summary><div class="a">Yes, we do full boat detailing (priced by footage, ask for a quote). Call us and we'll work it out.</div></details>
+    </div>
+  </div>
+</div>
+
+<div class="chapter" id="book" style="padding-top:20px">
+  <div class="wrap">
+    <div class="rv"><span class="kicker">BOOK NOW</span><h2>Ready when you are.</h2><p class="ch-sub">Book online in about a minute, or call/text, whichever's easier.</p></div>
+    <div class="book-grid">
+      <div class="big-call rv">
+        <div class="lbl">BOOK ONLINE</div>
+        <p>Pick your package and grab a time slot.</p>
+        <a class="btn-call magnetic" href="https://book.squareup.com/appointments/4b66f4c5nj52kk/location/L2QR2X9V87VNX/services?buttonTextColor=ffffff&color=ff1616&locale=en&referrer=so&team_member_id=TMn05VbA_Bn6I-X7">Book your detail</a>
+        <p class="fine">Powered by Square, the same booking you know.</p>
+      </div>
+      <div class="big-call rv">
+        <div class="lbl">CALL OR TEXT</div>
+        <a class="num" href="tel:+17178237104">(717) 823-7104</a>
+        <p>Redrosemobiledetailing@gmail.com</p>
+        <a class="btn-call magnetic" href="tel:+17178237104">📞 Tap to call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="strip2">
+  <div class="wrap">First-time customer? <a href="tel:+17178237104">FREE clay bar treatment</a> with any full detail package.</div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Red Rose Mobile Detailing · Lancaster County, PA</span>
+    <span>Unlimited concept · Demo by 717 Digital Studio</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var touch = window.matchMedia("(hover: none)").matches;
+
+  /* preloader */
+  var loader = document.getElementById('loader'), lbar = document.getElementById('lbar'), lpct = document.getElementById('lpct');
+  var p = 0, piv = setInterval(function(){
+    p = Math.min(100, p + Math.random()*16 + 4);
+    lbar.style.width = p + '%';
+    lpct.textContent = (p < 10 ? '0' : '') + Math.floor(p);
+    if(p >= 100){
+      clearInterval(piv);
+      setTimeout(function(){
+        loader.classList.add('done');
+        document.body.classList.remove('locked');
+        document.body.classList.add('ready');
+      }, 350);
+    }
+  }, 110);
+
+  /* headline char split (keep .red spans) */
+  var mega = document.getElementById('mega');
+  (function split(){
+    var html = '', delay = 0.55;
+    function walk(node, red){
+      Array.prototype.forEach.call(node.childNodes, function(n){
+        if(n.nodeType === 3){
+          var txt = n.textContent;
+          for(var i = 0; i < txt.length; i++){
+            var c = txt[i];
+            if(c === ' '){ html += '<span class="ch" style="width:.3em">&nbsp;</span>'; }
+            else{ html += '<span class="ch' + (red ? ' red' : '') + '" style="animation-delay:' + delay.toFixed(2) + 's">' + c + '</span>'; delay += 0.02; }
+          }
+        } else { walk(n, red || (n.className && n.className.indexOf('red') > -1)); }
+      });
+    }
+    walk(mega, false);
+    mega.innerHTML = html;
+  })();
+
+  /* marquee */
+  var words = 'WE COME TO YOU <b>·</b> INTERIOR <b>·</b> EXTERIOR <b>·</b> CERAMIC COATING <b>·</b> LANCASTER COUNTY <b>·</b> ';
+  document.getElementById('mtrack').innerHTML = words + words + words + words;
+
+  /* water bead canvas */
+  var cv = document.getElementById('fx'), ctx = cv.getContext('2d');
+  var W, H, DPR, drops = [];
+  var mouse = {x: -9999, y: -9999};
+  function size(){
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W*DPR; cv.height = H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  function spawn(a){
+    var layer = Math.random();
+    drops.push({x: Math.random()*W, y: a ? Math.random()*H : H + 14,
+      z: .35 + layer*.65, r: (1 + Math.random()*3) * (.5 + layer),
+      vy: -(.25 + Math.random()*.7) * (.5 + layer), vx: (Math.random()-.5)*.3,
+      sway: Math.random()*6.2832, ssp: .004+Math.random()*.01,
+      al: .1 + Math.random()*.28, glow: 0, blue: Math.random() < .55});
+  }
+  size(); for(var i = 0; i < 110; i++) spawn(true);
+  window.addEventListener('resize', size);
+  var hero = document.querySelector('.hero');
+  hero.addEventListener('pointermove', function(e){
+    var r = cv.getBoundingClientRect();
+    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+  });
+  hero.addEventListener('pointerleave', function(){ mouse.x = -9999; mouse.y = -9999; });
+  function tick(){
+    ctx.clearRect(0,0,W,H);
+    for(var k = 0; k < drops.length; k++){
+      var d = drops[k];
+      d.sway += d.ssp; d.x += d.vx + Math.sin(d.sway)*.32; d.y += d.vy;
+      if(d.y < -16){ drops.splice(k,1); k--; spawn(false); continue; }
+      var dx = d.x - mouse.x, dy = d.y - mouse.y, dist = Math.sqrt(dx*dx+dy*dy), tg = 0;
+      if(dist < 170 && dist > 1){
+        var f = (170-dist)/170;
+        d.x += (dx/dist)*f*2.6*d.z; d.y += (dy/dist)*f*2.6*d.z - f*.8;
+        tg = f;
+      }
+      d.glow += (tg - d.glow)*.14;
+      var al = Math.min(.9, d.al + d.glow*.6);
+      /* droplet: circle + highlight */
+      ctx.beginPath(); ctx.arc(d.x, d.y, d.r + d.glow*2.4*d.z, 0, 6.2832);
+      ctx.fillStyle = d.blue ? 'rgba(124,196,255,'+al.toFixed(3)+')' : 'rgba(255,91,104,'+(al*.8).toFixed(3)+')';
+      ctx.fill();
+      ctx.beginPath(); ctx.arc(d.x - d.r*.3, d.y - d.r*.3, Math.max(.4, d.r*.28), 0, 6.2832);
+      ctx.fillStyle = 'rgba(255,255,255,' + Math.min(.9, al+.25).toFixed(3) + ')';
+      ctx.fill();
+    }
+    var sy = window.scrollY;
+    if(sy < window.innerHeight){
+      document.getElementById('bgword').style.transform = 'translate(-50%, calc(-54% + ' + (sy*.24) + 'px))';
+      var inner = hero.querySelector('.hero-inner');
+      inner.style.transform = 'translateY(' + (sy*.18) + 'px)';
+      inner.style.opacity = Math.max(0, 1 - sy/(window.innerHeight*.72));
+    }
+    if(!reduced) requestAnimationFrame(tick);
+  }
+  if(!reduced) tick();
+
+  /* cursor */
+  if(!touch){
+    var dot = document.getElementById('cdot'), ring = document.getElementById('cring');
+    var rx = -100, ry = -100, tx = -100, ty = -100;
+    window.addEventListener('pointermove', function(e){
+      tx = e.clientX; ty = e.clientY;
+      dot.style.left = tx + 'px'; dot.style.top = ty + 'px';
+    });
+    (function follow(){
+      rx += (tx-rx)*.16; ry += (ty-ry)*.16;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(follow);
+    })();
+    document.querySelectorAll('a, .hcard, summary').forEach(function(el){
+      el.addEventListener('pointerenter', function(){ document.body.classList.add('link-hover'); });
+      el.addEventListener('pointerleave', function(){ document.body.classList.remove('link-hover'); });
+    });
+  }
+
+  /* magnetic */
+  if(!reduced && !touch){
+    document.querySelectorAll('.magnetic').forEach(function(b){
+      b.addEventListener('pointermove', function(e){
+        var r = b.getBoundingClientRect();
+        b.style.transform = 'translate(' + ((e.clientX-r.left-r.width/2)*.22).toFixed(1) + 'px,' + ((e.clientY-r.top-r.height/2)*.26).toFixed(1) + 'px)';
+      });
+      b.addEventListener('pointerleave', function(){ b.style.transform = ''; });
+    });
+  }
+
+  /* horizontal packages */
+  var hwrap = document.querySelector('.hwrap'), htrack = document.getElementById('htrack'), hprog = document.getElementById('hprog');
+  function hscroll(){
+    var r = hwrap.getBoundingClientRect();
+    var total = r.height - window.innerHeight;
+    var k = Math.max(0, Math.min(1, -r.top / total));
+    var maxX = htrack.scrollWidth - window.innerWidth + window.innerWidth*0.08;
+    htrack.style.transform = 'translateX(' + (-k*maxX).toFixed(1) + 'px)';
+    hprog.style.width = (k*100).toFixed(1) + '%';
+  }
+  window.addEventListener('scroll', hscroll, {passive:true});
+  window.addEventListener('resize', hscroll);
+  hscroll();
+
+  /* reveals */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold: .1});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  /* header */
+  var hdr = document.getElementById('hdr');
+  window.addEventListener('scroll', function(){ hdr.classList.toggle('scrolled', window.scrollY > 40); }, {passive:true});
+})();
+</script>
+</body>
+</html>
