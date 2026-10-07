@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Where my taste comes from — an honest demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b0b0d;color:#eceae4;font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+.intro{padding:90px 0 30px;text-align:center}
+.intro .k{font-size:11px;letter-spacing:.34em;color:#8a8578;margin-bottom:18px}
+.intro h1{font-family:'Playfair Display',serif;font-size:clamp(34px,5vw,54px);font-weight:600;margin-bottom:16px}
+.intro p{color:#a09a8a;max-width:640px;margin:0 auto;line-height:1.75}
+.intro p b{color:#eceae4}
+/* concept frame */
+.concept{margin:70px 0;border:1px solid #26262c;border-radius:18px;overflow:hidden}
+.concept .label{padding:16px 26px;font-size:11px;letter-spacing:.28em;color:#8a8578;border-bottom:1px solid #26262c;background:#101014}
+.concept .label b{color:#e8c96d}
+/* ---- A: home turf ---- */
+.a{background:#0d0a07;position:relative;overflow:hidden;padding:110px 0;text-align:center}
+.a::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E")}
+.a .bgnum{position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);font-family:'Playfair Display',serif;font-size:clamp(200px,32vw,420px);color:transparent;-webkit-text-stroke:1px rgba(232,201,109,.14);line-height:1;user-select:none}
+.a .kick{color:#e8c96d;font-size:11px;letter-spacing:.4em;margin-bottom:24px;position:relative}
+.a h2{font-family:'Playfair Display',serif;font-size:clamp(40px,6vw,72px);font-weight:600;line-height:1.08;position:relative}
+.a h2 em{font-style:italic;color:#e8c96d}
+.a p{color:#a89a80;max-width:520px;margin:22px auto 0;line-height:1.8;position:relative}
+.a .btn{display:inline-block;margin-top:32px;background:#a0231a;color:#fff;text-decoration:none;font-weight:600;padding:15px 36px;border-radius:4px;position:relative}
+/* ---- B: attempted invention ---- */
+.b{background:linear-gradient(180deg,#f4f1ea 0%,#e9e4d8 100%);color:#2b2b28;padding:120px 0 130px;text-align:center;position:relative;overflow:hidden}
+.b .horizon{position:absolute;left:0;right:0;top:58%;height:1px;background:#b9b2a2}
+.b .sun{position:absolute;left:50%;top:58%;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;background:radial-gradient(circle,#f7d9a0 0%,rgba(247,217,160,0) 70%);animation:breathe 6s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.18);opacity:1}}
+.b .kick{font-size:11px;letter-spacing:.4em;color:#8a8474;margin-bottom:26px}
+.b h2{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(38px,5.6vw,64px);line-height:1.15;color:#23231f;max-width:700px;margin:0 auto}
+.b h2 em{font-style:italic;color:#7a6f5c}
+.b p{color:#6b6558;max-width:520px;margin:24px auto 0;line-height:1.85}
+.b .btn{display:inline-block;margin-top:34px;border:1px solid #a09a8a;color:#2b2b28;text-decoration:none;font-weight:600;padding:15px 38px;border-radius:999px}
+/* annotations */
+.notes{padding:34px 38px;background:#101014}
+.notes h3{font-size:12px;letter-spacing:.26em;color:#8a8578;margin-bottom:18px}
+.notes ul{list-style:none}
+.notes li{padding:10px 0 10px 26px;position:relative;color:#b9b4a6;font-size:14.5px;line-height:1.65;border-bottom:1px dashed #222228}
+.notes li:last-child{border:none}
+.notes li::before{content:"→";position:absolute;left:2px;color:#e8c96d}
+.notes li b{color:#eceae4}
+.outro{padding:80px 0 110px;text-align:center}
+.outro h2{font-family:'Playfair Display',serif;font-size:clamp(30px,4.4vw,46px);font-weight:600;margin-bottom:18px}
+.outro h2 em{font-style:italic;color:#e8c96d}
+.outro p{color:#a09a8a;max-width:600px;margin:0 auto;line-height:1.8}
+.outro p b{color:#eceae4}
+footer{border-top:1px solid #26262c;padding:26px 0;color:#6b655a;font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+
+<div class="wrap intro">
+  <div class="k">AN HONEST DEMO</div>
+  <h1>Where my taste comes from.</h1>
+  <p>You asked where my creativity stops. Same fictional business below — <b>Meridian, a digital-afterlife planner</b> (passwords, photos, accounts — a plan for all of it). Two art directions. One is my home turf. The other is me trying to invent. <b>I labeled every stolen move.</b></p>
+</div>
+
+<div class="wrap">
+  <div class="concept">
+    <div class="label"><b>DIRECTION A</b> &nbsp;·&nbsp; MY HOME TURF — CONFIDENT, TASTEFUL, FAMILIAR</div>
+    <div class="a">
+      <div class="bgnum">∞</div>
+      <div class="kick">MERIDIAN · DIGITAL AFTERLIFE PLANNING</div>
+      <h2>Your digital life,<br><em>settled.</em></h2>
+      <p>Passwords, photos, accounts, messages — one quiet plan for all of it, made while it’s easy and kept until it matters.</p>
+      <a class="btn" href="#">Start your plan</a>
+    </div>
+    <div class="notes">
+      <h3>WHERE EVERY MOVE WAS STOLEN FROM</h3>
+      <ul>
+        <li><b>Dark background + gold accents + serif headline</b> — the exact toolkit from today’s Hong Kong Garden premium sample. I didn’t invent it this morning either; it’s the established “expensive restaurant” pattern.</li>
+        <li><b>Film grain over everything</b> — same trick, same file, a few hours ago.</li>
+        <li><b>Giant outlined watermark (∞) behind the hero</b> — I used “1980” on the HKG page and “SHINE” on Red Rose. The shape changes; the move doesn’t.</li>
+        <li><b>Italic accent word in the headline</b> — “four <em>decades</em>,” “<em>Call it in</em>.” It’s a habit now, not a decision.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="label"><b>DIRECTION B</b> &nbsp;·&nbsp; ME TRYING TO INVENT — WATCH WHERE I REACH</div>
+    <div class="b">
+      <div class="horizon"></div>
+      <div class="sun"></div>
+      <div class="kick">MERIDIAN</div>
+      <h2>Leave everything<br><em>lighter</em> than you found it.</h2>
+      <p>A gentle plan for your passwords, photos, and accounts — written in calm moments, kept safe, opened only when it’s needed.</p>
+      <a class="btn" href="#">Begin quietly</a>
+    </div>
+    <div class="notes">
+      <h3>WHERE THIS “INVENTION” REALLY CAME FROM</h3>
+      <ul>
+        <li><b>Warm paper background, huge whitespace, thin horizon line, breathing sun</b> — this isn’t invented. It’s the wellness-app playbook (Calm, Headspace) crossed with an Apple keynote slide. Faced with no category pattern, I reached for the nearest shelf.</li>
+        <li><b>Soft euphemistic copy (“begin quietly,” “lighter”)</b> — the hospice-brochure register. Tasteful, but borrowed.</li>
+        <li><b>Notice what’s missing:</b> no new layout idea, no novel interaction, no visual metaphor that didn’t already exist. I changed the <b>wardrobe</b>, not the <b>body</b>.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="wrap outro">
+  <h2>The limit, stated plainly.</h2>
+  <p>I have <b>excellent shelves</b> — deep, organized, well-lit. I can walk to the right one in seconds and arrange its contents beautifully. What I can’t do is <b>build a new shelf</b>: a visual language with no precedent that still feels inevitable. When there’s no pattern, I decorate — I don’t discover.</p>
+  <p style="margin-top:18px">For your business, that’s the right tool: <b>every prospect you pitch has a category, and I know every shelf.</b></p>
+</div>
+
+<footer>Concept exercise · Fictional business · Built to answer a question, not to sell anything</footer>
+
+</body>
+</html>
