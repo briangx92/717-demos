@@ -23,7 +23,7 @@ h1,h2,h3,.disp{font-family:'Archivo',sans-serif;text-transform:uppercase;letter-
 .nav{position:sticky;top:0;z-index:50;background:rgba(11,11,13,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
-.brand .rose{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #f04352, var(--red-dark));display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 0 18px rgba(214,32,47,.45)}
+.brand .rose{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #f04352, var(--red-dark));display:flex;align-items:center;justify-content:center;font-family:Archivo,sans-serif;font-weight:900;font-size:19px;color:#fff;box-shadow:0 0 18px rgba(214,32,47,.45)}
 .brand b{font-family:'Archivo';font-size:15px;letter-spacing:.06em}
 .brand small{display:block;font-size:10px;color:var(--muted);letter-spacing:.22em;font-weight:600}
 .nav-links{display:flex;gap:22px;align-items:center}
@@ -82,7 +82,7 @@ section{padding:72px 0}
 /* why */
 .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
 .why{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:26px}
-.why .ic{font-size:30px;margin-bottom:12px}
+.why .ic{width:14px;height:14px;background:var(--red);transform:rotate(45deg);margin:6px 0 18px 2px;box-shadow:0 0 12px rgba(214,32,47,.5)}
 .why h3{font-size:17px;margin-bottom:8px}
 .why p{color:var(--muted);font-size:14px}
 /* area */
@@ -137,7 +137,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <header class="nav">
   <div class="wrap">
     <a class="brand" href="#top">
-      <span class="rose">🌹</span>
+      <span class="rose">R</span>
       <span><b>RED ROSE</b><small>MOBILE DETAILING</small></span>
     </a>
     <nav class="nav-links">
@@ -168,7 +168,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </div>
 
 <div class="strip">
-  <div class="wrap">🎁 First-time customer? <a href="#special">FREE clay bar treatment</a> with any full detail package.</div>
+  <div class="wrap">First-time customer? <a href="#special">FREE clay bar treatment</a> with any full detail package.</div>
 </div>
 
 <section id="packages">
@@ -313,7 +313,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <section id="special" style="padding-top:0">
   <div class="wrap">
     <div class="special">
-      <span class="big">🎁</span>
+      
       <div>
         <h3>First-time customer special</h3>
         <p>FREE clay bar treatment with any full detail package. Just mention it when you book.</p>
@@ -330,10 +330,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <h2>Detailing that fits your day.</h2>
     </div>
     <div class="why-grid">
-      <div class="why"><div class="ic">🚗</div><h3>We come to you</h3><p>Home, office, anywhere in Lancaster County. You hand over the keys and get back to your day.</p></div>
-      <div class="why"><div class="ic">💧</div><h3>Truly mobile</h3><p>Our complete detailing setup comes to your driveway. All we need is access to the vehicle.</p></div>
-      <div class="why"><div class="ic">💳</div><h3>Easy payment</h3><p>Cards, cash, or mobile payment on completion. Card on file secures your booking.</p></div>
-      <div class="why"><div class="ic">🌦️</div><h3>Weather-proof booking</h3><p>If weather stops us, we reschedule at no cost. No fees, no hassle.</p></div>
+      <div class="why"><div class="ic"></div><h3>We come to you</h3><p>Home, office, anywhere in Lancaster County. You hand over the keys and get back to your day.</p></div>
+      <div class="why"><div class="ic"></div><h3>Truly mobile</h3><p>Our complete detailing setup comes to your driveway. All we need is access to the vehicle.</p></div>
+      <div class="why"><div class="ic"></div><h3>Easy payment</h3><p>Cards, cash, or mobile payment on completion. Card on file secures your booking.</p></div>
+      <div class="why"><div class="ic"></div><h3>Weather-proof booking</h3><p>If weather stops us, we reschedule at no cost. No fees, no hassle.</p></div>
     </div>
   </div>
 </section>
@@ -361,9 +361,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <h2>Booking policies, plain and simple.</h2>
     </div>
     <div class="pol-grid">
-      <div class="pol"><h3>📅 Cancellation</h3><ul><li>24 hours' notice to cancel or reschedule</li><li>Late cancellations: $25 fee</li><li>No-shows: 50% of service total</li></ul></div>
-      <div class="pol"><h3>🕒 When we arrive</h3><ul><li>Vehicle ready, accessible, keys available</li><li>Can't start within 15 min: may cancel/reschedule with fee</li><li>Can't access the vehicle: treated as no-show</li></ul></div>
-      <div class="pol"><h3>🌧️ Weather</h3><p>Extreme weather may delay or reschedule your appointment. We'll notify you as early as possible. Reschedules are always free.</p></div>
+      <div class="pol"><h3>Cancellation</h3><ul><li>24 hours' notice to cancel or reschedule</li><li>Late cancellations: $25 fee</li><li>No-shows: 50% of service total</li></ul></div>
+      <div class="pol"><h3>When we arrive</h3><ul><li>Vehicle ready, accessible, keys available</li><li>Can't start within 15 min: may cancel/reschedule with fee</li><li>Can't access the vehicle: treated as no-show</li></ul></div>
+      <div class="pol"><h3>Weather</h3><p>Extreme weather may delay or reschedule your appointment. We'll notify you as early as possible. Reschedules are always free.</p></div>
     </div>
   </div>
 </section>
@@ -395,7 +395,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <div class="big-call">
         <div class="lbl">BOOK ONLINE</div>
         <p style="margin-bottom:20px">Pick your package and grab a time slot.</p>
-        <a class="btn-call" href="https://book.squareup.com/appointments/4b66f4c5nj52kk/location/L2QR2X9V87VNX/services?buttonTextColor=ffffff&color=ff1616&locale=en&referrer=so&team_member_id=TMn05VbA_Bn6I-X7" style="width:100%;justify-content:center">📅 Book your detail</a>
+        <a class="btn-call" href="https://book.squareup.com/appointments/4b66f4c5nj52kk/location/L2QR2X9V87VNX/services?buttonTextColor=ffffff&color=ff1616&locale=en&referrer=so&team_member_id=TMn05VbA_Bn6I-X7" style="width:100%;justify-content:center">Book your detail</a>
         <p class="fine" style="margin-top:14px">Powered by Square, the same booking you know.</p>
       </div>
       <div class="big-call">
