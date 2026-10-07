@@ -107,6 +107,30 @@ section{padding:80px 0}
 .callband p{color:var(--muted);margin-bottom:26px}
 footer{padding:24px 0;color:#6b5f4a;font-size:13px}
 footer .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+/* noodle box showcase */
+.noodle-band{padding:80px 0 40px;text-align:center;border-top:1px solid var(--line);background:radial-gradient(640px 320px at 50% 42%,rgba(212,164,55,.07),transparent 70%);overflow:hidden}
+.scene{width:min(340px,84vw);height:460px;margin:0 auto;position:relative;perspective:1100px}
+.spinner{position:absolute;inset:0;transform-style:preserve-3d;animation:spin 16s linear infinite}
+.scene:hover .spinner{animation-play-state:paused}
+@keyframes spin{from{transform:rotateX(-10deg) rotateY(0)}to{transform:rotateX(-10deg) rotateY(360deg)}}
+.face{position:absolute;left:50%;top:180px;width:150px;height:140px;margin-left:-75px;background:linear-gradient(160deg,#c22f26,#8c1d16);border:1px solid rgba(212,164,55,.55);clip-path:polygon(11% 0,89% 0,100% 100%,0 100%)}
+.face span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',Georgia,serif;font-size:46px;color:var(--gold);text-shadow:0 2px 10px rgba(0,0,0,.45)}
+.front{transform:translateZ(64px)}
+.back{transform:rotateY(180deg) translateZ(64px)}
+.right{transform:rotateY(90deg) translateZ(64px)}
+.left{transform:rotateY(-90deg) translateZ(64px)}
+.rim{position:absolute;left:50%;top:111px;width:118px;height:118px;margin-left:-59px;transform:rotateX(90deg);border:4px solid var(--gold);box-shadow:0 0 16px rgba(212,164,55,.35)}
+.noodles{position:absolute;left:50%;top:-32px;width:190px;height:230px;margin-left:-95px;animation:sway 4.5s ease-in-out infinite}
+.noodles svg{width:100%;height:100%;filter:drop-shadow(0 0 6px rgba(242,199,92,.35))}
+@keyframes sway{0%,100%{transform:translateX(0)}50%{transform:translateX(7px)}}
+.stick{position:absolute;left:50%;top:40px;width:240px;height:10px;margin-left:-120px;border-radius:6px;background:linear-gradient(90deg,#7a4e22,#d8a860 55%,#7a4e22);box-shadow:0 3px 10px rgba(0,0,0,.55)}
+.s1{transform:rotateZ(-14deg) translateZ(16px)}
+.s2{top:54px;transform:rotateZ(-6deg) translateZ(-12px)}
+.shadow{position:absolute;left:50%;bottom:26px;width:210px;height:38px;margin-left:-105px;background:radial-gradient(ellipse,rgba(0,0,0,.6),transparent 70%)}
+.steam{position:absolute;bottom:130px;width:26px;height:90px;background:radial-gradient(ellipse,rgba(245,239,226,.3),transparent 70%);filter:blur(6px);opacity:0;animation:rise 3.8s ease-in-out infinite}
+.st1{left:42%}.st2{left:55%;animation-delay:1.3s}.st3{left:48%;animation-delay:2.4s}
+@keyframes rise{0%{transform:translateY(24px) scaleX(1);opacity:0}30%{opacity:.85}100%{transform:translateY(-95px) scaleX(1.7);opacity:0}}
+.noodle-cap{color:var(--muted);font-size:14px;letter-spacing:.14em;margin-top:6px}
 @media (prefers-reduced-motion:reduce){.marquee .track{animation:none}.hint{display:none}}
 </style>
 </head>
@@ -150,7 +174,36 @@ footer .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
       <span>Lancaster County Magazine · 2004-2022</span>
     </div>
   </div>
-  <div class="hint">MOVE THROUGH THE STEAM · TAP FOR SPARKS</div>
+  <div class="hint">MOVE THROUGH THE STEAM</div>
+</div>
+
+<div class="noodle-band">
+  <div class="scene" aria-hidden="true">
+    <div class="shadow"></div>
+    <div class="spinner">
+      <div class="face front"><span>香</span></div>
+      <div class="face back"><span>香</span></div>
+      <div class="face left"></div>
+      <div class="face right"></div>
+      <div class="rim"></div>
+      <div class="noodles">
+        <svg viewBox="0 0 190 230" fill="none" stroke-linecap="round">
+          <path d="M95,215 C80,175 110,155 95,115 C85,85 100,60 95,28" stroke="#f2c75c" stroke-width="5"/>
+          <path d="M70,215 C60,180 85,162 75,125 C68,98 78,72 72,42" stroke="#e0a83e" stroke-width="4.5"/>
+          <path d="M120,215 C130,180 105,162 118,125 C125,98 112,72 118,48" stroke="#f2c75c" stroke-width="4.5"/>
+          <path d="M48,215 C43,185 60,168 55,138 C52,118 58,100 55,80" stroke="#c9922f" stroke-width="4"/>
+          <path d="M142,215 C147,185 132,168 138,138 C141,118 135,100 138,82" stroke="#e0a83e" stroke-width="4"/>
+          <path d="M95,215 C92,195 98,185 95,170" stroke="#f7d47c" stroke-width="6"/>
+        </svg>
+      </div>
+      <div class="stick s1"></div>
+      <div class="stick s2"></div>
+    </div>
+    <div class="steam st1"></div>
+    <div class="steam st2"></div>
+    <div class="steam st3"></div>
+  </div>
+  <p class="noodle-cap">Wok-fired favorites.</p>
 </div>
 
 <div class="marquee"><div class="track" id="mtrack"></div></div>
@@ -314,7 +367,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 
   /* ---- hero canvas: rising steam and lantern embers ---- */
   var cv = document.getElementById('fx'), ctx = cv.getContext('2d');
-  var W, H, DPR, embers = [], sparks = [];
+  var W, H, DPR, embers = [];
   var mouse = {x:-9999, y:-9999, speed:0};
 
   function size(){
@@ -348,15 +401,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
     mouse.x = nx; mouse.y = ny;
   });
   hero.addEventListener('pointerleave', function(){ mouse.x = -9999; mouse.y = -9999; });
-  hero.addEventListener('pointerdown', function(e){
-    var r = cv.getBoundingClientRect();
-    var bx = e.clientX - r.left, by = e.clientY - r.top;
-    for(var k=0;k<22;k++){
-      var an = -Math.PI/2 + (Math.random()-0.5)*1.6, sp = 1.5+Math.random()*3.5;
-      sparks.push({x:bx, y:by, vx:Math.cos(an)*sp, vy:Math.sin(an)*sp,
-        r:1+Math.random()*2.2, life:1, gold: Math.random()<0.7});
-    }
-  });
 
   function tick(){
     ctx.clearRect(0,0,W,H);
@@ -390,17 +434,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
         : 'rgba(214,90,70,'+al.toFixed(3)+')';
       ctx.fill();
     }
-    for(i=sparks.length-1;i>=0;i--){
-      var s = sparks[i];
-      s.x += s.vx; s.y += s.vy; s.vy += 0.045; s.vx *= 0.986; s.life -= 0.018;
-      if(s.life <= 0){ sparks.splice(i,1); continue; }
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, Math.max(0.1, s.r*s.life), 0, 6.2832);
-      ctx.fillStyle = s.gold
-        ? 'rgba(242,199,92,'+(0.9*s.life).toFixed(3)+')'
-        : 'rgba(230,120,80,'+(0.9*s.life).toFixed(3)+')';
-      ctx.fill();
-    }
+    /* parallax */
     var sy = window.scrollY;
     if(sy < window.innerHeight){
       var inner = document.querySelector('.hero-inner');
