@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Red Rose Mobile Detailing | Interactive 3D Sample</title>
+<meta name="description" content="Interactive 3D concept for Red Rose Mobile Detailing, Lancaster PA. Move your cursor. Call (717) 823-7104.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0c;--panel:#121216;--line:#232328;--red:#d6202f;--red-hi:#ff4d5e;--txt:#f4f4f6;--muted:#9a9aa3}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Archivo',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
+#fx{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair}
+.hero-inner{position:relative;z-index:2;width:100%;pointer-events:none}
+.hero-inner a{pointer-events:auto}
+.kicker{display:inline-flex;align-items:center;gap:10px;color:var(--red-hi);font-size:12px;font-weight:800;letter-spacing:.28em;margin-bottom:20px}
+.kicker::before{content:"";width:34px;height:2px;background:var(--red)}
+.hero h1{font-weight:900;font-size:clamp(44px,8.5vw,104px);line-height:.98;letter-spacing:-.02em;margin-bottom:18px}
+.hero h1 .rd{color:var(--red-hi)}
+.hero p.lede{color:var(--muted);font-size:clamp(15px,2vw,19px);max-width:520px;margin-bottom:30px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;padding:15px 30px;border-radius:10px;font-size:16px;transition:transform .15s, box-shadow .15s}
+.btn-call{background:var(--red);color:#fff;box-shadow:0 6px 28px rgba(214,32,47,.4)}
+.btn-call:hover{transform:translateY(-2px);box-shadow:0 10px 34px rgba(214,32,47,.55)}
+.btn-ghost{border:1px solid #3a3a42;color:var(--txt);background:rgba(255,255,255,.03)}
+.btn-ghost:hover{border-color:var(--red-hi)}
+.hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--muted);font-size:12px;letter-spacing:.2em;z-index:2;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+/* marquee */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:16px 0;background:#0d0d10}
+.marquee .track{display:inline-block;animation:scroll 26s linear infinite;font-weight:800;font-size:15px;letter-spacing:.24em;color:#55555e}
+.marquee .track b{color:var(--red-hi);font-weight:800}
+@keyframes scroll{to{transform:translateX(-50%)}}
+/* sections */
+section{padding:90px 0}
+.sec-head{margin-bottom:44px;opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.sec-head.in{opacity:1;transform:none}
+.sec-head .kicker{margin-bottom:12px}
+.sec-head h2{font-size:clamp(30px,4.6vw,52px);font-weight:900;letter-spacing:-.01em}
+.sec-head p{color:var(--muted);margin-top:10px;max-width:560px}
+/* packages: 3D tilt cards */
+.pkgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;perspective:1200px}
+.pkg{background:linear-gradient(160deg,#141418,#0e0e11);border:1px solid var(--line);border-radius:16px;padding:30px 26px;transform-style:preserve-3d;transition:transform .18s ease-out,border-color .2s,opacity .7s;opacity:0;transform:translateY(30px)}
+.pkg.in{opacity:1;transform:translateY(0)}
+.pkg:hover{border-color:#4a4a55}
+.pkg .tag{display:inline-block;background:var(--red);color:#fff;font-size:10px;font-weight:800;letter-spacing:.14em;padding:5px 11px;border-radius:20px;margin-bottom:14px;transform:translateZ(30px)}
+.pkg h3{font-size:21px;font-weight:800;margin-bottom:6px;transform:translateZ(24px)}
+.pkg .sub{color:var(--muted);font-size:13px;margin-bottom:18px;transform:translateZ(18px)}
+.pkg ul{list-style:none;margin-bottom:22px;transform:translateZ(12px)}
+.pkg li{color:#c9c9d2;font-size:13.5px;padding:7px 0 7px 24px;position:relative;border-bottom:1px dashed #1e1e24}
+.pkg li::before{content:"";position:absolute;left:2px;top:14px;width:8px;height:8px;background:var(--red);transform:rotate(45deg)}
+.pkg .pr{display:flex;align-items:baseline;justify-content:space-between;border-top:1px solid var(--line);padding-top:16px;transform:translateZ(20px)}
+.pkg .price{font-weight:900;font-size:30px}
+.pkg .time{color:var(--muted);font-size:12px}
+/* stats */
+.stats{background:#0d0d10;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:20px;text-align:center}
+.stat b{font-size:clamp(34px,4.5vw,52px);font-weight:900;color:var(--red-hi);display:block}
+.stat span{color:var(--muted);font-size:13px;letter-spacing:.08em}
+/* cta */
+.cta{text-align:center}
+.cta h2{font-size:clamp(32px,5.5vw,64px);font-weight:900;margin-bottom:14px}
+.cta h2 .rd{color:var(--red-hi)}
+.cta p{color:var(--muted);margin-bottom:30px}
+.cta .hero-cta{justify-content:center}
+footer{border-top:1px solid var(--line);padding:26px 0;color:#55555e;font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){.marquee .track{animation:none}.hint{display:none}}
+</style>
+</head>
+<body>
+
+<div class="hero" id="top">
+  <canvas id="fx"></canvas>
+  <div class="wrap hero-inner">
+    <span class="kicker">MOBILE DETAILING, LANCASTER COUNTY PA</span>
+    <h1>SHOWROOM SHINE.<br><span class="rd">YOUR DRIVEWAY.</span></h1>
+    <p class="lede">Professional interior, exterior, and paint correction detailing at your home or office. Move your cursor. Tap the paint. Then call us.</p>
+    <div class="hero-cta">
+      <a class="btn btn-call" href="tel:+17178237104">Call (717) 823-7104</a>
+      <a class="btn btn-ghost" href="https://book.squareup.com/appointments/4b66f4c5nj52kk/location/L2QR2X9V87VNX/services?buttonTextColor=ffffff&color=ff1616&locale=en&referrer=so&team_member_id=TMn05VbA_Bn6I-X7">Book online</a>
+    </div>
+  </div>
+  <div class="hint">MOVE YOUR CURSOR · TAP THE PAINT</div>
+</div>
+
+<div class="marquee"><div class="track" id="mtrack"></div></div>
+
+<section id="packages">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">PACKAGES</span>
+      <h2>Pick your shine.</h2>
+      <p>Straightforward packages with real prices. Final pricing depends on vehicle size and condition. Tilt a card.</p>
+    </div>
+    <div class="pkgs" id="pkgs">
+      <div class="pkg">
+        <span class="tag">MOST POPULAR</span>
+        <h3>The Deep Cleanse</h3>
+        <div class="sub">Deep interior clean with protective finishes</div>
+        <ul><li>Full vacuum, seats to trunk</li><li>Dash, console and crevices detailed</li><li>Streak-free glass, mats refreshed</li><li>UV-protective top coat</li></ul>
+        <div class="pr"><span class="price">$175</span><span class="time">about 2 hrs</span></div>
+      </div>
+      <div class="pkg">
+        <h3>Gloss &amp; Go</h3>
+        <div class="sub">Exterior wash with spray sealant</div>
+        <ul><li>Foam bath hand wash</li><li>Wheels, tires and wells cleaned</li><li>Spray sealant for months of beading</li><li>Streak-free glass</li></ul>
+        <div class="pr"><span class="price">$200</span><span class="time">about 1 hr</span></div>
+      </div>
+      <div class="pkg">
+        <h3>Standard Full Detail</h3>
+        <div class="sub">Inside and out, top to bottom</div>
+        <ul><li>Everything in Deep Cleanse</li><li>Full exterior wash and sealant</li><li>Trim dressed, details finished</li></ul>
+        <div class="pr"><span class="price">$250</span><span class="time">about 3.5 hrs</span></div>
+      </div>
+      <div class="pkg">
+        <h3>Signature Red Rose Detail</h3>
+        <div class="sub">Our flagship, nothing skipped</div>
+        <ul><li>Full interior restoration</li><li>One-step gloss enhancement</li><li>12-month paint sealant</li><li>Engine bay wiped down</li></ul>
+        <div class="pr"><span class="price">$375</span><span class="time">4 hrs and up</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap">
+    <section style="padding:60px 0">
+      <div class="stat-grid">
+        <div class="stat"><b data-count="100">0</b><span>% MOBILE, WE COME TO YOU</span></div>
+        <div class="stat"><b data-count="10">0</b><span>PACKAGES AND ADD-ONS</span></div>
+        <div class="stat"><b data-count="24">0</b><span>HR CANCELLATION NOTICE</span></div>
+        <div class="stat"><b data-count="1">0</b><span>CALL TO BOOK</span></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<section class="cta">
+  <div class="wrap">
+    <div class="sec-head in">
+      <h2>Your car called.<br><span class="rd">It wants the shine.</span></h2>
+      <p style="margin:0 auto">One call or one tap books it. We bring the detail shop to you.</p>
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn-call" href="tel:+17178237104">Call (717) 823-7104</a>
+      <a class="btn btn-ghost" href="https://book.squareup.com/appointments/4b66f4c5nj52kk/location/L2QR2X9V87VNX/services?buttonTextColor=ffffff&color=ff1616&locale=en&referrer=so&team_member_id=TMn05VbA_Bn6I-X7">Book online</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Interactive 3D concept for Red Rose Mobile Detailing, Lancaster County PA</span>
+    <span>Sample by 717 Digital Studio</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* marquee */
+  var words = 'MOBILE DETAILING <b>·</b> WE COME TO YOU <b>·</b> INTERIOR <b>·</b> EXTERIOR <b>·</b> PAINT CORRECTION <b>·</b> CERAMIC COATING <b>·</b> ';
+  document.getElementById('mtrack').innerHTML = (words+words+words+words);
+
+  /* ---- hero particle canvas: water beading on wax ---- */
+  var cv = document.getElementById('fx'), ctx = cv.getContext('2d');
+  var W, H, DPR, parts = [], bursts = [];
+  var mouse = {x:-9999, y:-9999, px:-9999, py:-9999, speed:0};
+
+  function size(){
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * DPR; cv.height = H * DPR;
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+  function spawn(n, ambient){
+    for(var i=0;i<n;i++){
+      parts.push({
+        x: Math.random()*W, y: Math.random()*H,
+        r: ambient ? 0.6+Math.random()*1.8 : 1+Math.random()*2.6,
+        vx:(Math.random()-0.5)*0.25, vy:(Math.random()-0.5)*0.25,
+        a: 0.12+Math.random()*0.3, glow:0,
+        hue: Math.random()<0.22 ? 1 : 0   /* 22% red tint, rest silver */
+      });
+    }
+  }
+  size(); spawn(130, true);
+  window.addEventListener('resize', function(){ size(); });
+
+  var hero = document.querySelector('.hero');
+  hero.addEventListener('pointermove', function(e){
+    var r = cv.getBoundingClientRect();
+    var nx = e.clientX - r.left, ny = e.clientY - r.top;
+    var dx = nx - mouse.x, dy = ny - mouse.y;
+    mouse.speed = Math.min(Math.sqrt(dx*dx+dy*dy), 60);
+    mouse.px = mouse.x; mouse.py = mouse.y;
+    mouse.x = nx; mouse.y = ny;
+  });
+  hero.addEventListener('pointerleave', function(){ mouse.x = -9999; mouse.y = -9999; });
+  hero.addEventListener('pointerdown', function(e){
+    var r = cv.getBoundingClientRect();
+    var bx = e.clientX - r.left, by = e.clientY - r.top;
+    for(var i=0;i<26;i++){
+      var an = Math.random()*Math.PI*2, sp = 1+Math.random()*3.4;
+      bursts.push({x:bx, y:by, vx:Math.cos(an)*sp, vy:Math.sin(an)*sp-1,
+        r:1+Math.random()*2.4, life:1, hue: Math.random()<0.3?1:0});
+    }
+  });
+
+  function tick(){
+    ctx.clearRect(0,0,W,H);
+    /* faint vignette glow follows cursor */
+    if(mouse.x > -100){
+      var g = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 220);
+      g.addColorStop(0, 'rgba(214,32,47,0.10)');
+      g.addColorStop(1, 'rgba(214,32,47,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(mouse.x-220, mouse.y-220, 440, 440);
+    }
+    var i, p, dx, dy, d;
+    for(i=0;i<parts.length;i++){
+      p = parts[i];
+      p.x += p.vx; p.y += p.vy;
+      if(p.x<0)p.x=W; if(p.x>W)p.x=0; if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+      /* cursor repulsion + glow */
+      dx = p.x - mouse.x; dy = p.y - mouse.y; d = Math.sqrt(dx*dx+dy*dy);
+      var target = 0;
+      if(d < 130 && d > 1){
+        var f = (130-d)/130;
+        p.x += (dx/d)*f*3.2; p.y += (dy/d)*f*3.2;
+        target = f * Math.min(1, 0.35 + mouse.speed/28);
+      }
+      p.glow += (target - p.glow)*0.18;
+      var al = p.a + p.glow*0.75;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r + p.glow*2.2, 0, 6.2832);
+      ctx.fillStyle = p.hue
+        ? 'rgba(255,77,94,'+al.toFixed(3)+')'
+        : 'rgba(210,215,225,'+al.toFixed(3)+')';
+      ctx.fill();
+    }
+    /* droplet bursts */
+    for(i=bursts.length-1;i>=0;i--){
+      var b = bursts[i];
+      b.x += b.vx; b.y += b.vy; b.vy += 0.06; b.vx *= 0.985; b.life -= 0.016;
+      if(b.life <= 0){ bursts.splice(i,1); continue; }
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r*b.life, 0, 6.2832);
+      ctx.fillStyle = b.hue
+        ? 'rgba(255,77,94,'+(0.85*b.life).toFixed(3)+')'
+        : 'rgba(225,230,240,'+(0.85*b.life).toFixed(3)+')';
+      ctx.fill();
+    }
+    /* hero parallax on scroll */
+    var sy = window.scrollY;
+    if(sy < window.innerHeight){
+      document.querySelector('.hero-inner').style.transform = 'translateY('+(sy*0.28)+'px)';
+      document.querySelector('.hero-inner').style.opacity = Math.max(0, 1 - sy/(window.innerHeight*0.75));
+    }
+    if(!reduced) requestAnimationFrame(tick);
+  }
+  if(reduced){ /* static single frame */
+    ctx.fillStyle = '#0a0a0c'; ctx.fillRect(0,0,W,H);
+  } else { tick(); }
+
+  /* ---- 3D tilt on package cards ---- */
+  var cards = document.querySelectorAll('.pkg');
+  cards.forEach(function(card){
+    card.addEventListener('pointermove', function(e){
+      if(reduced) return;
+      var r = card.getBoundingClientRect();
+      var rx = ((e.clientY - r.top)/r.height - 0.5) * -14;
+      var ry = ((e.clientX - r.left)/r.width - 0.5) * 14;
+      card.style.transform = 'perspective(900px) rotateX('+rx.toFixed(2)+'deg) rotateY('+ry.toFixed(2)+'deg) translateY(-4px)';
+    });
+    card.addEventListener('pointerleave', function(){
+      card.style.transform = card.classList.contains('in') ? '' : '';
+    });
+  });
+
+  /* ---- scroll reveals ---- */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, {threshold: 0.12});
+  document.querySelectorAll('.sec-head, .pkg').forEach(function(el){ io.observe(el); });
+
+  /* ---- count-up stats ---- */
+  var cio = new IntersectionObserver(function(es){
+    es.forEach(function(en){
+      if(!en.isIntersecting) return;
+      cio.unobserve(en.target);
+      var el = en.target, end = parseInt(el.dataset.count, 10), t0 = null;
+      function step(ts){
+        if(!t0) t0 = ts;
+        var k = Math.min((ts-t0)/1200, 1);
+        el.textContent = Math.round(end * (1-Math.pow(1-k,3)));
+        if(k<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }, {threshold: 0.5});
+  document.querySelectorAll('[data-count]').forEach(function(el){ cio.observe(el); });
+})();
+</script>
+</body>
+</html>
