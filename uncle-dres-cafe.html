@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Uncle Dre's Cafe — Bar & Grill, Harrisburg PA</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;800;900&family=Oswald:wght@500;600;700&display=swap');
+:root{--bg:#100b08;--bg2:#1c130c;--card:#241a10;--line:#463317;--txt:#f7ecdc;--mut:#c2a878;--amber:#ffab1a;--amber2:#ffd166;--hot:#ff4d2e;--pink:#ff2e88}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Archivo',system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+  background-image:repeating-linear-gradient(45deg,rgba(242,167,27,.025) 0 2px,transparent 2px 14px)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(20,16,11,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .in{max-width:1120px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:14px}
+.brand{font-family:'Oswald';font-weight:700;font-size:1.25rem;letter-spacing:.06em;text-transform:uppercase}
+.brand span{color:var(--amber)}
+.btn{display:inline-block;background:linear-gradient(135deg,var(--amber),#ff8a00);color:#1a1206;box-shadow:0 4px 24px rgba(255,171,26,.35);font-weight:800;text-decoration:none;padding:13px 26px;border-radius:12px;border:none;cursor:pointer;font-size:1rem;transition:transform .15s,background .15s}
+.btn:hover{background:var(--amber2);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--amber);border:2px solid var(--amber)}
+.btn.ghost:hover{background:rgba(242,167,27,.12)}
+/* hero */
+.hero{padding:76px 0 54px;text-align:center;position:relative}
+.hero::before{content:"";position:absolute;inset:-40px 0;background:radial-gradient(ellipse 60% 45% at 50% 30%,rgba(255,171,26,.14),transparent 70%),radial-gradient(ellipse 40% 30% at 70% 60%,rgba(255,46,136,.08),transparent 70%);pointer-events:none;animation:pulse 5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.kicker{font-size:.78rem;letter-spacing:.35em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+.hero h1{font-family:'Oswald';font-weight:700;font-size:clamp(3rem,9vw,6.5rem);line-height:.95;text-transform:uppercase;letter-spacing:.02em}
+.hero h1 .d{color:var(--amber)}
+.hero .tag{color:var(--mut);font-size:1.1rem;margin:16px 0 30px}
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hours-badge{display:inline-block;margin-top:26px;padding:10px 22px;border:1px solid var(--line);border-radius:999px;font-size:.9rem;color:var(--mut)}
+.hours-badge b{color:var(--txt)}
+.livedot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#3ddc74;margin-right:8px;animation:blink 1.6s infinite}
+@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 8px #3ddc74}50%{opacity:.4;box-shadow:none}}
+/* marquee */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(90deg,#2a1608,#1c130c,#2a1608);overflow:hidden;white-space:nowrap;padding:13px 0;margin:10px 0 0}
+.marquee .track{display:inline-block;animation:scroll 22s linear infinite}
+.marquee span{font-family:'Oswald';font-size:1rem;letter-spacing:.25em;text-transform:uppercase;color:var(--amber);padding:0 18px}
+@keyframes scroll{to{transform:translateX(-50%)}}
+/* sections */
+section{padding:56px 0}
+h2{font-family:'Oswald';font-weight:700;font-size:clamp(1.9rem,4.5vw,2.8rem);text-transform:uppercase;margin-bottom:8px;letter-spacing:.03em}
+h2 em{font-style:normal;color:var(--amber)}
+.sub{color:var(--mut);margin-bottom:28px;max-width:640px}
+/* menu */
+.mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:640px){.mgrid{grid-template-columns:1fr}}
+.mitem{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;transition:border-color .2s,transform .2s}
+.mitem:hover{border-color:var(--amber);transform:translateY(-2px)}
+.mitem .n{font-weight:700;font-size:1.02rem}
+.mitem .d{font-size:.82rem;color:var(--mut);margin-top:4px}
+.mitem .p{font-family:'Oswald';font-size:1.35rem;color:var(--amber);white-space:nowrap}
+.mnote{margin-top:18px;font-size:.85rem;color:var(--mut)}
+/* entertainment */
+.ent{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.egrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:860px){.egrid{grid-template-columns:repeat(2,1fr)}}
+.ecard{background:linear-gradient(160deg,var(--card),#2b1c0e);border:1px solid var(--line);border-radius:14px;padding:26px 18px;text-align:center;transition:transform .25s,border-color .25s}
+.ecard:hover{transform:translateY(-4px) scale(1.02);border-color:var(--amber)}
+.ecard .ic{filter:drop-shadow(0 0 12px rgba(255,171,26,.4))}
+.ecard .ic{font-size:2rem;margin-bottom:10px}
+.ecard h3{font-family:'Oswald';font-size:1.1rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.ecard p{font-size:.85rem;color:var(--mut)}
+/* visit */
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+@media(max-width:860px){.vgrid{grid-template-columns:1fr}}
+.hours{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.hours td{padding:12px 18px;border-bottom:1px solid var(--line);font-size:.95rem}
+.hours tr:last-child td{border-bottom:none}
+.hours td:last-child{text-align:right;color:var(--mut)}
+.hours tr.today td{color:var(--amber);font-weight:700}
+.hours tr.today td:last-child{color:var(--amber)}
+.addr{margin-top:20px;font-size:1.05rem}
+.addr a{color:var(--amber)}
+.map{border:1px solid var(--line);border-radius:14px;overflow:hidden;min-height:320px;background:var(--card)}
+.map iframe{width:100%;height:340px;border:0;display:block}
+/* order */
+.order{text-align:center;background:linear-gradient(180deg,var(--bg2),var(--bg));border-top:1px solid var(--line)}
+.obtns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mut);font-size:.85rem;text-align:center}
+footer a{color:var(--amber)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.marquee .track{animation:none}.hero::before{animation:none}.livedot{animation:none}}
+</style>
+</head>
+<body>
+<nav><div class="in">
+  <div class="brand">Uncle <span>Dre's</span></div>
+  <div style="margin-left:auto"><a class="btn" href="tel:+17178297681" style="padding:10px 20px">Call Now</a></div>
+</div></nav>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="kicker">Harrisburg, PA · Bar &amp; Grill</div>
+    <h1>Uncle<br><span class="d">Dre's</span> Cafe</h1>
+    <p class="tag">Wings, seafood, salmon phillies — plus karaoke, comedy, and game days.<br>Good food, good vibes, right on Vernon St.</p>
+    <div class="cta-row">
+      <a class="btn" href="tel:+17178297681">Call (717) 829-7681</a>
+      <a class="btn ghost" href="#order">Order Online</a>
+    </div>
+    <div><span class="hours-badge" id="openbadge"><span class="livedot"></span>Open today <b>12:00 PM – 12:00 AM</b></span></div>
+  </div>
+</div>
+
+<div class="marquee"><div class="track"><span>Wings</span>·<span>Seafood Boils</span>·<span>Salmon Phillies</span>·<span>Karaoke</span>·<span>Comedy Nights</span>·<span>Game Days</span>·<span>Cocktails</span>·<span>Wings</span>·<span>Seafood Boils</span>·<span>Salmon Phillies</span>·<span>Karaoke</span>·<span>Comedy Nights</span>·<span>Game Days</span>·<span>Cocktails</span></div></div>
+
+<div class="wrap">
+  <section class="rv" id="menu">
+    <h2>The <em>menu.</em></h2>
+    <p class="sub">Crowd favorites with real prices — order for pickup or delivery.</p>
+    <div class="mgrid">
+      <div class="mitem"><div><div class="n">Hot &amp; Honey Salmon Philly</div><div class="d">The one people write home about</div></div><div class="p">$20.00</div></div>
+      <div class="mitem"><div><div class="n">Fried Catfish</div><div class="d">Crispy, seasoned, done right</div></div><div class="p">$19.00</div></div>
+      <div class="mitem"><div><div class="n">Crabby Fries</div><div class="d">Loaded with crab</div></div><div class="p">$15.00</div></div>
+      <div class="mitem"><div><div class="n">Bang Bang Shrimp</div><div class="d">Sweet heat, crispy shrimp</div></div><div class="p">$14.00</div></div>
+      <div class="mitem"><div><div class="n">6 Pc Flavored Wings</div><div class="d">BBQ · hot · garlic parm · lemon pepper · jerk · hot honey · sweet chili · cajun</div></div><div class="p">$12.99</div></div>
+      <div class="mitem"><div><div class="n">Funnel Cake Fries</div><div class="d">Save room</div></div><div class="p">$10.00</div></div>
+      <div class="mitem"><div><div class="n">Cheese Fries</div><div class="d">Boardwalk-style</div></div><div class="p">$8.00</div></div>
+      <div class="mitem"><div><div class="n">Seasoned Fries</div><div class="d">The classic side</div></div><div class="p">$7.00</div></div>
+    </div>
+    <p class="mnote">Also known for seafood boils, jerk salmon, fried fish sandwiches, and taco salads. Full menu available on DoorDash, Uber Eats, and Postmates.</p>
+  </section>
+</div>
+
+<div class="ent"><div class="wrap">
+  <section class="rv">
+    <h2>The <em>vibe.</em></h2>
+    <p class="sub">Dre's never sits still — eat, drink, and stay for the show.</p>
+    <div class="egrid">
+      <div class="ecard"><div class="ic">🎤</div><h3>Karaoke</h3><p>Grab the mic and own the night</p></div>
+      <div class="ecard"><div class="ic">🎭</div><h3>Comedy</h3><p>Stand-up nights with local talent</p></div>
+      <div class="ecard"><div class="ic">💃</div><h3>Latin Nights</h3><p>Music, dancing, and energy</p></div>
+      <div class="ecard"><div class="ic">🏈</div><h3>Game Days</h3><p>NFL Sundays done right</p></div>
+    </div>
+  </section>
+</div></div>
+
+<div class="wrap">
+  <section class="rv" id="visit">
+    <h2>Come <em>through.</em></h2>
+    <p class="sub">Dine in or take it to go.</p>
+    <div class="vgrid">
+      <div>
+        <table class="hours" id="hours">
+          <tr data-d="0"><td>Sunday</td><td>11:00 AM – 12:00 AM</td></tr>
+          <tr data-d="1"><td>Monday</td><td>12:00 PM – 12:00 AM</td></tr>
+          <tr data-d="2"><td>Tuesday</td><td>12:00 PM – 12:00 AM</td></tr>
+          <tr data-d="3"><td>Wednesday</td><td>12:00 PM – 12:00 AM</td></tr>
+          <tr data-d="4"><td>Thursday</td><td>9:00 AM – 1:00 AM</td></tr>
+          <tr data-d="5"><td>Friday</td><td>9:00 AM – 1:00 AM</td></tr>
+          <tr data-d="6"><td>Saturday</td><td>9:00 AM – 1:00 AM</td></tr>
+        </table>
+        <p class="addr">📍 1415 Vernon St, Harrisburg, PA<br>📞 <a href="tel:+17178297681">(717) 829-7681</a></p>
+      </div>
+      <div class="map">
+        <iframe title="Map to Uncle Dre's Cafe" loading="lazy" src="https://www.google.com/maps?q=1415+Vernon+St,+Harrisburg,+PA&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="order"><div class="wrap">
+  <section class="rv" id="order">
+    <h2>Order <em>online.</em></h2>
+    <p class="sub" style="margin-left:auto;margin-right:auto">Delivery and pickup through your favorite app.</p>
+    <div class="obtns">
+      <a class="btn" href="https://www.doordash.com/en/store/uncle-dres-cafe-llc-harrisburg-33254747/" target="_blank" rel="noopener">DoorDash</a>
+      <a class="btn" href="https://www.ubereats.com/store/uncles-dres-cafe/EaHuos-PWVS8nGTIPuDf_g" target="_blank" rel="noopener">Uber Eats</a>
+      <a class="btn" href="https://postmates.com/store/uncles-dres-cafe/EaHuos-PWVS8nGTIPuDf_g?diningMode=DELIVERY" target="_blank" rel="noopener">Postmates</a>
+    </div>
+  </section>
+</div></div>
+
+<footer><div class="wrap">
+  Uncle Dre's Cafe · 1415 Vernon St, Harrisburg, PA · <a href="tel:+17178297681">(717) 829-7681</a>
+</div></footer>
+
+<script>
+(function(){
+  var d = new Date().getDay();
+  document.querySelectorAll('#hours tr').forEach(function(r){
+    if (+r.dataset.d === d) r.classList.add('today');
+  });
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
