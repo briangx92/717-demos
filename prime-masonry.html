@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Masonry LLC — Concrete Contractor, Quarryville PA</title>
+<meta name="description" content="Prime Masonry LLC — concrete floors, patios, sidewalks, stamped concrete. Serving PA, DE, MD & NJ. Licensed and insured. Call (717) 406-6910.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0e0d0b;--card:#161412;--line:#2a2620;--txt:#f2efe8;--mut:#a8a091;--amber:#e8e4d8}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding:26px 30px 60px}
+nav{display:flex;align-items:center;gap:30px;padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:44px}
+.logo{font-family:'Archivo';font-weight:800;font-size:22px;letter-spacing:.04em}
+.logo span{color:var(--amber)}
+nav .links{display:flex;gap:26px;margin-left:auto;font-size:14px;align-items:center}
+nav .links a.nl{color:var(--mut);text-decoration:none}
+nav .links a.nl:hover{color:var(--txt)}
+.btn{display:inline-block;background:var(--amber);color:#171410;font-weight:700;padding:15px 30px;border-radius:8px;text-decoration:none;font-size:15px;border:none;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--txt)}
+.btn.ghost:hover{border-color:var(--amber)}
+.layout{display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:34px;align-items:start}
+.eyebrow{font-size:11px;letter-spacing:.3em;color:var(--amber);font-weight:700}
+.col h2{font-family:'Archivo';font-weight:800;font-size:clamp(38px,4.4vw,58px);line-height:1.05;margin:14px 0 20px;text-transform:uppercase}
+.col h2 em{font-style:normal;color:var(--amber)}
+.lede{color:var(--mut);line-height:1.8;font-size:16px;margin-bottom:28px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.fact{border-top:1px solid var(--line);padding:18px 0}
+.fact .k{font-size:11px;letter-spacing:.24em;color:var(--mut);margin-bottom:8px}
+.fact .v{font-size:17px;font-weight:600}
+.fact .v small{color:var(--mut);font-weight:400}
+/* center visual */
+.visual{border-radius:20px;min-height:560px;position:relative;overflow:hidden;border:1px solid var(--line);
+  background:
+    radial-gradient(600px 300px at 70% 20%,rgba(232,228,216,.08),transparent 60%),
+    repeating-linear-gradient(0deg,transparent 0 46px,rgba(255,255,255,.03) 46px 47px),
+    repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.03) 46px 47px),
+    #141210}
+.visual .big{position:absolute;top:44px;left:34px;right:34px;font-family:'Archivo';font-weight:800;font-size:clamp(40px,4.6vw,64px);line-height:1.02;text-transform:uppercase}
+.visual .big em{font-style:normal;color:var(--amber)}
+.visual .sub{position:absolute;top:250px;left:34px;right:34px;color:var(--mut);font-size:15px;line-height:1.75;max-width:34ch}
+.visual .caption{position:absolute;bottom:24px;left:26px;right:26px;z-index:2;display:flex;justify-content:space-between;align-items:center;background:rgba(14,12,10,.66);border:1px solid var(--line);border-radius:14px;padding:16px 20px;backdrop-filter:blur(8px)}
+.visual .caption b{font-size:15px}
+.visual .caption span{color:var(--mut);font-size:13px}
+/* right rail */
+.rail .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:18px}
+.rail .card .k{font-size:11px;letter-spacing:.24em;color:var(--mut);margin-bottom:6px}
+.rail .btn{width:100%;text-align:center}
+details.svc{border-bottom:1px solid var(--line)}
+details.svc:last-of-type{border:0}
+details.svc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:14px 0;gap:10px}
+details.svc summary::-webkit-details-marker{display:none}
+details.svc summary .nm{font-weight:600;font-size:15px}
+details.svc summary .chev{color:var(--mut);font-size:12px;transition:transform .25s}
+details.svc[open] summary .chev{transform:rotate(180deg)}
+details.svc .det{padding:2px 0 16px;color:var(--mut);font-size:14px;line-height:1.7}
+.rail .card p.note{color:var(--mut);font-size:13px;line-height:1.7;margin-top:12px}
+.tel-big{font-family:'Archivo';font-weight:800;font-size:30px;color:var(--txt);text-decoration:none;display:block;margin:8px 0 4px}
+.tel-big:hover{color:var(--amber)}
+/* quote band */
+.qband{margin-top:56px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center}
+.qband h3{font-family:'Archivo';font-weight:800;font-size:clamp(26px,3vw,38px);text-transform:uppercase;line-height:1.1;margin-bottom:12px}
+.qband h3 em{font-style:normal;color:var(--amber)}
+.qband p{color:var(--mut);font-size:15px;line-height:1.75}
+form .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-size:11px;letter-spacing:.18em;color:var(--mut);margin:12px 0 6px;font-weight:600}
+input,textarea{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--txt);padding:13px 14px;font:inherit;font-size:14px;border-radius:8px}
+input:focus,textarea:focus{outline:2px solid var(--amber);border-color:var(--amber)}
+textarea{min-height:88px;resize:vertical}
+form .btn{width:100%;margin-top:16px}
+/* map + footer */
+.map{margin-top:44px;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.map iframe{width:100%;height:260px;border:0;display:block;filter:grayscale(1) invert(.92) contrast(.9)}
+footer{margin-top:44px;padding-top:26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+footer p{color:var(--mut);font-size:13px}
+/* mobile */
+.callbar{position:fixed;bottom:0;left:0;right:0;z-index:60;display:none;background:var(--amber);padding:12px 14px;align-items:center;gap:10px}
+.callbar a{font-family:'Archivo';font-weight:800;color:#171410;text-decoration:none;font-size:17px;flex:1;text-align:center}
+.callbar button{background:none;border:none;color:#171410;font-size:20px;cursor:pointer;padding:4px 10px}
+@media(max-width:980px){
+  .layout{grid-template-columns:1fr 1fr}
+  .visual{min-height:420px;grid-column:1/-1;order:-1}
+  .visual .sub{top:230px}
+  .qband{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .layout{grid-template-columns:1fr}
+  nav .links a.nl{display:none}
+  .callbar{display:flex}
+  body{padding-bottom:62px}
+  .wrap{padding:20px 20px 50px}
+  .visual .sub{display:none}
+  .visual{min-height:340px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <div class="logo" style="display:flex;align-items:center;gap:12px"><img src="data:image/jpeg;base64,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" alt="Prime Masonry LLC logo" style="width:44px;height:44px;object-fit:contain"><span>PRIME <span>MASONRY</span></span></div>
+    <div class="links">
+      <a class="nl" href="#services">Services</a>
+      <a class="nl" href="#quote">Quote</a>
+      <a class="btn" href="tel:+17174066910" style="padding:12px 22px;font-size:14px">Call Now</a>
+    </div>
+  </nav>
+
+  <div class="layout">
+    <div class="col">
+      <div class="eyebrow">QUARRYVILLE, PA · CONCRETE CONTRACTOR</div>
+      <h2>Poured right <em>the first time.</em></h2>
+      <p class="lede">Driveways, patios, floors, stamped work — concrete is all we do, and we do it across four states. Licensed &amp; insured, always open.</p>
+      <div class="cta-row">
+        <a class="btn" href="tel:+17174066910">Call (717) 406-6910</a>
+        <a class="btn ghost" href="#quote">Free Quote</a>
+      </div>
+      <div class="fact"><div class="k">SERVICE AREA</div><div class="v">PA · DE · MD · NJ <small>— based in Quarryville</small></div></div>
+      <div class="fact"><div class="k">HOURS</div><div class="v">Always open <small>— call anytime</small></div></div>
+      <div class="fact"><div class="k">BOOKING</div><div class="v">Phone only <small>— talk to the crew direct</small></div></div>
+    </div>
+
+    <div class="visual" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:44px 30px 130px">
+      <img src="data:image/jpeg;base64,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" alt="Prime Masonry LLC logo" style="width:min(240px,60%);aspect-ratio:1;object-fit:contain;filter:drop-shadow(0 10px 30px rgba(0,0,0,.5))">
+      <div class="big" style="position:static;text-align:center;font-size:clamp(28px,3.4vw,44px)">Flat.<br>Level. <em>Forever.</em></div>
+      <div class="caption">
+        <div><b>Licensed &amp; insured</b><br><span>Concrete contractor · Quarryville, PA</span></div>
+        <a class="btn ghost" style="padding:10px 18px;font-size:13px" href="tel:+17174066910">Call</a>
+      </div>
+    </div>
+
+    <div class="rail" id="services">
+      <div class="card">
+        <div class="k">SERVICES · TAP FOR DETAILS</div>
+        <details class="svc" open>
+          <summary><span class="nm">Concrete Floors</span><span class="chev">▼</span></summary>
+          <div class="det">Residential &amp; commercial slabs — garages, basements, workshops. Flat, level, load-ready.</div>
+        </details>
+        <details class="svc">
+          <summary><span class="nm">Patios</span><span class="chev">▼</span></summary>
+          <div class="det">Outdoor space built for how you actually live — and for Pennsylvania weather.</div>
+        </details>
+        <details class="svc">
+          <summary><span class="nm">Sidewalks &amp; Walkways</span><span class="chev">▼</span></summary>
+          <div class="det">Clean runs from driveway to door. New pours and replacements, graded to drain.</div>
+        </details>
+        <details class="svc">
+          <summary><span class="nm">Stamped Concrete</span><span class="chev">▼</span></summary>
+          <div class="det">Stone and brick looks at concrete prices. Patterns and colors you pick.</div>
+        </details>
+        <details class="svc">
+          <summary><span class="nm">Pole-Barn Floors</span><span class="chev">▼</span></summary>
+          <div class="det">Thick slabs for barns and outbuildings — built for equipment, finished to last.</div>
+        </details>
+        <details class="svc">
+          <summary><span class="nm">Garage Floors</span><span class="chev">▼</span></summary>
+          <div class="det">From oil-stained and cracked to clean and sealed.</div>
+        </details>
+      </div>
+      <div class="card">
+        <div class="k">GET IN TOUCH</div>
+        <a class="tel-big" href="tel:+17174066910">(717) 406-6910</a>
+        <p class="note">Prefer to type it out? The quote form below goes straight to the crew.</p>
+        <a class="btn" href="#quote" style="margin-top:14px">Free Quote</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="qband" id="quote">
+    <div>
+      <h3>Talk to <em>the crew,</em> not a call center.</h3>
+      <p>Describe the project and where it is — we'll get back to you with a straight number. No obligation, no pressure.</p>
+    </div>
+    <form onsubmit="return false">
+      <div class="frow">
+        <div><label>NAME</label><input type="text" required autocomplete="name"></div>
+        <div><label>PHONE</label><input type="tel" required autocomplete="tel"></div>
+      </div>
+      <label>WHAT DO YOU NEED POURED?</label>
+      <textarea required placeholder="e.g. 24×24 garage floor in Quarryville"></textarea>
+      <button class="btn" type="submit">Request My Free Quote</button>
+    </form>
+  </div>
+
+  <div class="map">
+    <iframe title="Map — Quarryville, PA 17566" loading="lazy" src="https://maps.google.com/maps?q=Quarryville%2C%20PA%2017566&t=&z=11&ie=UTF8&iwloc=&output=embed"></iframe>
+  </div>
+
+  <footer>
+    <div>
+      <div class="logo" style="font-size:18px;display:flex;align-items:center;gap:10px"><img src="data:image/jpeg;base64,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" alt="Prime Masonry LLC logo" style="width:34px;height:34px;object-fit:contain"><span>PRIME <span>MASONRY</span> LLC</span></div>
+      <p>Concrete contractor · Quarryville, PA 17566 · Serving PA, DE, MD &amp; NJ<br>Site concept by 717 Digital Studio.</p>
+    </div>
+    <a class="btn ghost" href="tel:+17174066910">Call Now</a>
+  </footer>
+
+</div>
+
+<div class="callbar" id="callbar">
+  <button aria-label="Dismiss" onclick="document.getElementById('callbar').style.display='none';document.body.style.paddingBottom='0'">✕</button>
+  <a href="tel:+17174066910">📞 (717) 406-6910</a>
+</div>
+
+</body>
+</html>
