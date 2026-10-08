@@ -145,9 +145,14 @@ const dots = document.querySelectorAll('#dots span');
 let target = 0, current = 0;
 
 chapters.forEach((ch, i) => {
-  gsap.timeline({scrollTrigger:{trigger:'#space', start:() => (i/5)*100 + '%', end:() => ((i+1)/5)*100 + '%', scrub:true}})
-    .fromTo(ch, {opacity:0, y:60}, {opacity:1, y:0, duration:0.35})
-    .to(ch, {opacity:0, y:-60, duration:0.35}, 0.65);
+  const tl = gsap.timeline({scrollTrigger:{trigger:'#space', start:() => (i/5)*100 + '%', end:() => ((i+1)/5)*100 + '%', scrub:true}});
+  if(i === 0){
+    tl.to(ch, {opacity:1, y:0, duration:0.02})   // hero visible on load
+      .to(ch, {opacity:0, y:-60, duration:0.35}, 0.65);
+  } else {
+    tl.fromTo(ch, {opacity:0, y:60}, {opacity:1, y:0, duration:0.35})
+      .to(ch, {opacity:0, y:-60, duration:0.35}, 0.65);
+  }
   ScrollTrigger.create({trigger:'#space',
     start:() => 'top+=' + (document.getElementById('space').offsetHeight * (i/5)) + ' top',
     end:() => 'top+=' + (document.getElementById('space').offsetHeight * ((i+1)/5)) + ' top',
