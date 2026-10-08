@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jarhead Contracting LLC | Contractor in Harrisburg, PA</title>
+<meta name="description" content="Jarhead Contracting LLC — contracting services in Harrisburg, PA. Call (717) 743-7090 for a quote.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141414; --ink2:#1e1e1e; --paper:#f4f1ea; --orange:#e8641b;
+  --orange-d:#c24e12; --steel:#8a8f98; --line:#2b2b2b;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--paper);font-family:'Archivo',sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.display{font-family:'Archivo Black',sans-serif;text-transform:uppercase;letter-spacing:.01em;line-height:1.02}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+/* hazard stripe */
+.stripe{height:10px;background:repeating-linear-gradient(-45deg,var(--orange) 0 18px,var(--ink) 18px 36px)}
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(20,20,20,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-family:'Archivo Black',sans-serif;font-size:1rem;text-transform:uppercase;letter-spacing:.04em}
+.brand span{color:var(--orange)}
+.navlinks{display:flex;gap:26px;align-items:center}
+.navlinks a.nl{text-decoration:none;font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--steel)}
+.navlinks a.nl:hover{color:var(--paper)}
+.btn{display:inline-block;background:var(--orange);color:#141414;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.85rem;padding:13px 26px;border:none;cursor:pointer;text-decoration:none;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);transition:background .15s}
+.btn:hover{background:var(--orange-d)}
+.btn.ghost{background:transparent;color:var(--paper);outline:2px solid var(--paper);outline-offset:-2px}
+.btn.ghost:hover{background:var(--paper);color:var(--ink)}
+/* hero */
+.hero{position:relative;overflow:hidden;background:
+  radial-gradient(1200px 500px at 80% -10%,rgba(232,100,27,.14),transparent 60%),
+  repeating-linear-gradient(0deg,transparent 0 47px,rgba(255,255,255,.025) 47px 48px),
+  var(--ink)}
+.hero .wrap{padding:96px 22px 90px;position:relative}
+.kicker{display:inline-block;background:var(--orange);color:#141414;font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.14em;padding:6px 14px;margin-bottom:22px}
+.hero h1{font-size:clamp(2.6rem,7vw,5.2rem);max-width:14ch}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero p.lede{max-width:46ch;color:#c9c4b8;font-size:1.12rem;margin:20px 0 34px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.hero-meta{display:flex;gap:34px;margin-top:44px;flex-wrap:wrap}
+.hero-meta div b{display:block;font-family:'Archivo Black',sans-serif;font-size:1.25rem;color:var(--orange)}
+.hero-meta div span{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--steel)}
+/* sections */
+section{padding:72px 0}
+.sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:34px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(1.6rem,4vw,2.6rem)}
+.sec-head .num{font-family:'Archivo Black',sans-serif;color:var(--orange);font-size:1rem}
+/* work strip */
+.work{background:var(--paper);color:var(--ink)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.card{background:#fff;border:2px solid var(--ink);padding:28px 24px;box-shadow:6px 6px 0 var(--ink)}
+.card h3{font-size:1.05rem;margin-bottom:10px}
+.card h3 i{font-style:normal;color:var(--orange)}
+.card p{font-size:.94rem;color:#4a4a4a}
+/* quote */
+.quote{background:var(--ink2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+@media(max-width:760px){.quote-grid{grid-template-columns:1fr}}
+.quote h2{font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:16px}
+.quote h2 em{font-style:normal;color:var(--orange)}
+.quote p{color:#c9c4b8;margin-bottom:14px}
+.phone-big{font-family:'Archivo Black',sans-serif;font-size:clamp(1.5rem,4vw,2.2rem);color:var(--paper);text-decoration:none;display:inline-block;margin:8px 0 4px}
+.phone-big:hover{color:var(--orange)}
+form{background:var(--ink);border:1px solid var(--line);padding:28px}
+label{display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--steel);margin:14px 0 6px}
+label:first-child{margin-top:0}
+input,textarea,select{width:100%;background:#0e0e0e;border:1px solid #3a3a3a;color:var(--paper);padding:12px 14px;font:inherit;font-size:.95rem}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--orange);border-color:var(--orange)}
+textarea{min-height:110px;resize:vertical}
+form .btn{margin-top:20px;width:100%;text-align:center}
+/* map */
+.map iframe{width:100%;height:340px;border:0;filter:grayscale(1) contrast(1.05)}
+/* footer */
+footer{background:#0c0c0c;padding:44px 0 90px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;align-items:flex-start}
+footer p{color:var(--steel);font-size:.85rem;margin-top:8px;max-width:40ch}
+footer .fbrand{font-family:'Archivo Black',sans-serif;text-transform:uppercase}
+footer .fbrand span{color:var(--orange)}
+/* mobile call bar */
+.callbar{position:fixed;bottom:0;left:0;right:0;z-index:60;display:none;background:var(--orange);padding:10px 14px;align-items:center;justify-content:space-between;gap:10px}
+.callbar a.tel{font-family:'Archivo Black',sans-serif;color:#141414;text-decoration:none;font-size:1.05rem;flex:1;text-align:center}
+.callbar button{background:none;border:none;color:#141414;font-size:1.2rem;cursor:pointer;padding:4px 8px}
+@media(max-width:700px){
+  .navlinks a.nl{display:none}
+  .callbar{display:flex}
+  body{padding-bottom:64px}
+}
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .5s,transform .5s}
+.rv.on{opacity:1;transform:none}
+/* mobile menu */
+#mnav{display:none}
+@media(max-width:700px){
+  #mnav{display:block;background:none;border:1px solid var(--steel);color:var(--paper);padding:8px 12px;font-weight:700;cursor:pointer}
+  .navlinks{display:none}
+  .navlinks.open{display:flex;position:absolute;top:64px;left:0;right:0;background:#141414;flex-direction:column;align-items:stretch;padding:12px 22px 20px;gap:4px;border-bottom:1px solid var(--line)}
+  .navlinks.open a.nl{display:block;padding:10px 0;border-bottom:1px solid #2b2b2b}
+  .navlinks.open .btn{margin-top:12px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div class="stripe"></div>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="brand" style="text-decoration:none">Jarhead <span>Contracting</span></a>
+    <button id="mnav" aria-label="Menu">☰</button>
+    <div class="navlinks" id="navlinks">
+      <a class="nl" href="#work">Work</a>
+      <a class="nl" href="#quote">Quote</a>
+      <a class="nl" href="#find">Find Us</a>
+      <a class="btn" href="tel:+17177437090">Call Now</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="kicker rv">Harrisburg, PA · Contractor</span>
+    <h1 class="rv">Done right. <em>Done once.</em></h1>
+    <p class="lede rv">Jarhead Contracting LLC handles the jobs other guys walk away from. One call, straight answers, work that holds up.</p>
+    <div class="cta-row rv">
+      <a class="btn" href="tel:+17177437090">Call (717) 743-7090</a>
+      <a class="btn ghost" href="#quote">Get a Quote</a>
+    </div>
+    <div class="hero-meta rv">
+      <div><b>Direct line</b><span>No phone tag</span></div>
+      <div><b>Free quotes</b><span>Upfront pricing</span></div>
+      <div><b>Harrisburg</b><span>Local &amp; on time</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="stripe"></div>
+
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="num">01</span><h2>What we take on</h2></div>
+    <div class="cards">
+      <div class="card rv"><h3><i>▸</i> Repairs &amp; Fixes</h3><p>The stuff that's been on your list for months. We show up, fix it right, and clean up after.</p></div>
+      <div class="card rv"><h3><i>▸</i> Remodels</h3><p>Kitchens, baths, basements — the rooms you actually live in, rebuilt to last.</p></div>
+      <div class="card rv"><h3><i>▸</i> Outdoor Work</h3><p>Decks, fences, and exterior projects built for Pennsylvania weather.</p></div>
+    </div>
+    <p class="rv" style="margin-top:26px;color:#4a4a4a;max-width:60ch">Got something else? If it's contracting work, we'll tell you straight whether it's in our lane — and if it isn't, we'll point you to someone it is.</p>
+  </div>
+</section>
+
+<section class="quote" id="quote">
+  <div class="wrap quote-grid">
+    <div class="rv">
+      <div class="sec-head"><span class="num">02</span><h2>Get a <em>quote</em></h2></div>
+      <p>Skip the voicemail maze. Call direct or send the form — tell us what needs doing and where, and we'll get back to you with a straight number.</p>
+      <a class="phone-big" href="tel:+17177437090">(717) 743-7090</a>
+      <p style="font-size:.85rem;color:var(--steel)">Prefer to talk? Call anytime — if we're on a job, leave a message and we'll call back.</p>
+    </div>
+    <form class="rv" action="https://formspree.io/f/placeholder" method="POST" onsubmit="return false">
+      <label for="qn">Name</label>
+      <input id="qn" name="name" type="text" required autocomplete="name">
+      <label for="qp">Phone</label>
+      <input id="qp" name="phone" type="tel" required autocomplete="tel">
+      <label for="qm">What needs doing?</label>
+      <textarea id="qm" name="message" required placeholder="e.g. Bathroom remodel in Harrisburg — tub to walk-in shower"></textarea>
+      <button class="btn" type="submit">Request My Quote</button>
+      <p style="font-size:.75rem;color:var(--steel);margin-top:12px">Demo form — connect to your email before launch.</p>
+    </form>
+  </div>
+</section>
+
+<section class="map" id="find">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="num">03</span><h2>Find us</h2></div>
+  </div>
+  <div class="rv"><iframe title="Map — Harrisburg, PA 17110" loading="lazy" src="https://maps.google.com/maps?q=Harrisburg%2C%20PA%2017110&t=&z=12&ie=UTF8&iwloc=&output=embed"></iframe></div>
+  <div class="wrap"><p class="rv" style="margin-top:18px;color:#c9c4b8">Jarhead Contracting LLC · Harrisburg, PA 17110 · <a href="tel:+17177437090" style="color:var(--orange)">(717) 743-7090</a></p></div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="fbrand">Jarhead <span>Contracting</span> LLC</div>
+      <p>Contractor serving Harrisburg, PA.<br>Site concept by 717 Digital Studio.</p>
+    </div>
+    <div style="text-align:right">
+      <a class="btn" href="tel:+17177437090">Call Now</a>
+      <p>© 2026 Jarhead Contracting LLC</p>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar" id="callbar">
+  <button aria-label="Dismiss" onclick="document.getElementById('callbar').style.display='none';document.body.style.paddingBottom='0'">✕</button>
+  <a class="tel" href="tel:+17177437090">📞 Call (717) 743-7090</a>
+</div>
+
+<script>
+document.getElementById('mnav').addEventListener('click',function(){
+  document.getElementById('navlinks').classList.toggle('open');
+});
+document.querySelectorAll('#navlinks a').forEach(function(a){
+  a.addEventListener('click',function(){document.getElementById('navlinks').classList.remove('open')});
+});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>
