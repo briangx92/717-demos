@@ -108,6 +108,11 @@ footer p{color:var(--mut);font-size:13px}
 @media(max-width:640px){
   .layout{grid-template-columns:1fr}
   nav .links a.nl{display:none}
+  nav #mnav{display:block}
+  nav{position:relative}
+  .links.open a.nl{display:block;position:absolute;top:64px;right:20px;background:#1c1a16;border:1px solid var(--line);border-radius:12px;padding:14px 24px;z-index:60;white-space:nowrap}
+  .links.open a.nl:nth-of-type(2){top:118px}
+  .links.open a.nl:nth-of-type(3){top:172px}
   .callbar{display:flex}
   body{padding-bottom:62px}
   .wrap{padding:20px 20px 50px}
