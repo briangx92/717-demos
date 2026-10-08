@@ -80,7 +80,9 @@ details.svc .det{padding:2px 0 16px;color:var(--mut);font-size:14px;line-height:
 .tnote{border-top:1px solid var(--line);margin-top:14px;padding-top:14px;font-size:.86rem;color:var(--mut)}
 .tnote b{color:var(--amber)}
 .proc-dots{display:flex;gap:10px;margin-top:26px}
-.proc-dots span{font-family:'Archivo';font-weight:700;font-size:.8rem;color:#5a544a;border:1px solid var(--line);border-radius:8px;padding:8px 12px;transition:all .3s;cursor:default}
+.skip-link{display:inline-block;margin-top:18px;color:var(--mut);font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+.skip-link:hover{color:var(--amber);border-color:var(--amber)}
+.proc-dots span{font-family:'Archivo';font-weight:700;font-size:.8rem;color:#5a544a;border:1px solid var(--line);border-radius:8px;padding:8px 12px;transition:all .3s;cursor:pointer}
 .proc-dots span.active{color:#171410;background:var(--amber);border-color:var(--amber)}
 .proc-intro{max-width:1240px;margin:0 auto;padding:64px 30px 0}
 .proc-intro h2{font-family:'Archivo';font-weight:800;font-size:clamp(2.2rem,5.5vw,3.8rem);text-transform:uppercase;line-height:1.03}
@@ -244,6 +246,7 @@ footer p{color:var(--mut);font-size:13px}
         <div class="proc-dots" id="proc-dots">
           <span class="active" data-step="0">01</span><span data-step="1">02</span><span data-step="2">03</span><span data-step="3">04</span><span data-step="4">05</span>
         </div>
+        <a href="#quote" class="skip-link">Skip the process ↓</a>
       </div>
     </div>
   </div>
@@ -313,6 +316,15 @@ footer p{color:var(--mut);font-size:13px}
   window.addEventListener('scroll', function(){
     if(!ticking){ ticking = true; requestAnimationFrame(update); }
   }, {passive:true});
+  dots.forEach(function(d){
+    d.addEventListener('click', function(){
+      var i = parseInt(d.getAttribute('data-step'), 10);
+      var r = sec.getBoundingClientRect();
+      var secTop = r.top + window.scrollY;
+      var total = sec.offsetHeight - window.innerHeight;
+      window.scrollTo({top: secTop + total * ((i + 0.5) / 5), behavior: 'smooth'});
+    });
+  });
   update();
 })();
 </script>
