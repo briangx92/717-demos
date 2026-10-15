@@ -167,7 +167,8 @@ footer.site .brand small{color:#e8a49e}
 }
 @media (max-width:720px){
   .callbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:90;background:var(--ink);border-top:2px solid var(--red);padding:10px 12px calc(10px + env(safe-area-inset-bottom));gap:10px}
-  .callbar a{flex:1;text-align:center;padding:12px 8px;border-radius:3px;font-weight:700;text-decoration:none;font-size:.98rem}
+  /* call-bar text centering (measured on the rendered page, 2026-10-15): flex centering keeps each label centered when the sibling button wraps to two lines at narrow widths (block layout pinned the one-line label to the top of the stretched button, ~13px high); top padding trimmed 0.5px because Archivo's glyphs ride ~0.6px low in their em box at this size */
+  .callbar a{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:11.5px 8px 12.5px;border-radius:3px;font-weight:700;text-decoration:none;font-size:.98rem}
   .callbar .cb-call{background:var(--red);color:#fff}
   .callbar .cb-book{background:var(--paper);color:var(--ink)}
   footer.site{padding-bottom:calc(128px + env(safe-area-inset-bottom))}
