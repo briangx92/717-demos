@@ -37,7 +37,7 @@
   --sans:"Jost",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;scroll-padding-top:78px;scroll-padding-bottom:84px;}
 html.lean{scroll-behavior:auto;}
 body{background:var(--green-1);color:var(--cream);font-family:var(--sans);font-size:16.5px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 /* dark-glass texture: faint vertical panes + fine grain; text always sits on solid ground */
@@ -165,6 +165,14 @@ h2.sec{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.6vw,42px)
 #idxStrip .chip b{color:var(--cream);font-weight:600;margin-right:6px;}
 .book-fallback{display:flex;flex-direction:column;gap:10px;}
 .book-fallback .page{min-height:300px;}
+/* phone book fit (2026-10-17 fix): shorter page so book + flip controls share the
+   screen with the sticky header/callbar instead of sliding under them */
+@media(max-width:700px){
+  .book-stage{margin-top:22px;}
+  .page .pg-in{padding:22px 20px;}
+  .page h3{font-size:24px;}
+  .page.cover h3{font-size:28px;}
+}
 
 /* story + visit */
 .story-grid{display:grid;grid-template-columns:1fr;gap:26px;margin-top:8px;}
@@ -502,10 +510,10 @@ footer .fl a{color:var(--cream);text-decoration:none;border-bottom:1px solid rgb
     if (window.St && window.St.PageFlip) {
       var small = window.innerWidth < 700;
       var book = new St.PageFlip(document.getElementById('book'), {
-        width: small ? 340 : 460,
-        height: small ? 500 : 620,
+        width: small ? 330 : 460,
+        height: small ? 430 : 620,
         size: 'fixed',
-        minWidth: 300, maxWidth: 900, minHeight: 420, maxHeight: 1100,
+        minWidth: 300, maxWidth: 900, minHeight: 360, maxHeight: 1100,
         showCover: true,
         mobileScrollSupport: true,
         drawShadow: true,
