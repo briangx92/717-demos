@@ -25,7 +25,7 @@
   --sans:'Public Sans', -apple-system, 'Segoe UI', sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:72px;scroll-padding-bottom:80px}
 html.lean{scroll-behavior:auto}
 body{background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit}
@@ -196,6 +196,13 @@ textarea{resize:vertical;min-height:96px}
 .visit-card .vv a{text-decoration:none;border-bottom:1px solid var(--line2)}
 .map-frame{border:1px solid var(--line);border-radius:4px;overflow:hidden;min-height:280px;background:var(--coal)}
 .map-frame iframe{width:100%;height:100%;min-height:280px;border:0;display:block;filter:grayscale(1) invert(.92) contrast(.9)}
+
+/* phone book fit (2026-10-17 fix): shorter page so book + flip controls share the
+   screen with the sticky header/call bar instead of sliding under them */
+@media(max-width:760px){
+  .page .pg-in{padding:22px 20px}
+  .page h3{font-size:25px}
+}
 
 /* ---------- footer / sticky ---------- */
 footer{border-top:1px solid var(--line);background:var(--coal)}
@@ -585,9 +592,9 @@ footer{border-top:1px solid var(--line);background:var(--coal)}
     if (typeof St !== 'undefined' && St.PageFlip) {
       var small = window.innerWidth < 940;
       book = new St.PageFlip(document.getElementById('book'), {
-        width: small ? 320 : 460, height: small ? 480 : 620,
+        width: small ? 320 : 460, height: small ? 425 : 620,
         size: 'fixed',
-        minWidth: 280, maxWidth: 920, minHeight: 400, maxHeight: 1100,
+        minWidth: 280, maxWidth: 920, minHeight: 360, maxHeight: 1100,
         showCover: true, flippingTime: 900, usePortrait: small,
         startPage: 0, drawShadow: true, maxShadowOpacity: 0.45,
         autoSize: true,
