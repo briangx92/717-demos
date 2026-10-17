@@ -1,0 +1,272 @@
+<!-- SEED 2026-017 | OCD Auto Detailing And Auto Sales | Swiss Clean pack, inspection-sheet concept from the name itself | board v5.10 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>OCD Auto Detailing And Auto Sales — Lancaster, PA</title>
+<meta name="description" content="OCD Auto Detailing And Auto Sales in Lancaster, PA: auto detailing and auto sales, open Monday to Saturday, 9 to 5. Call (717) 538-0448.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fafafa;--ink:#14161a;--grey:#5c6470;--line:#dfe3e8;--panel:#ffffff;--teal:#0f766e;--tealsoft:#e6f4f2;--sans:'Archivo',Helvetica,Arial,sans-serif;--mono:'IBM Plex Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-bottom:96px}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1020px;margin:0 auto;padding:0 20px}
+.mono{font-family:var(--mono)}
+/* cinematic entry */
+#veil{position:fixed;inset:0;background:var(--paper);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:opacity .7s ease,visibility .7s}
+#veil.gone{opacity:0;visibility:hidden}
+#veil .reticle{width:92px;height:92px;border:2px solid var(--ink);position:relative;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:24px;letter-spacing:.06em}
+#veil .reticle:before,#veil .reticle:after{content:"";position:absolute;background:var(--teal)}
+#veil .reticle:before{width:26px;height:2px;top:-2px;left:50%;transform:translateX(-50%)}
+#veil .reticle:after{width:2px;height:26px;left:-2px;top:50%;transform:translateY(-50%)}
+#veil .vsub{font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--grey)}
+#veil .vcheck{font-family:var(--mono);font-size:12px;color:var(--teal)}
+/* header */
+header{position:sticky;top:0;z-index:60;background:rgba(250,250,250,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hbar{display:flex;align-items:center;gap:12px;padding:11px 0}
+.mark{width:42px;height:42px;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;letter-spacing:.02em;flex:none;position:relative}
+.mark:after{content:"";position:absolute;right:-2px;bottom:-2px;width:10px;height:10px;background:var(--teal)}
+.hbar .hn{font-weight:900;font-size:16.5px;line-height:1.15;letter-spacing:-.01em}
+.hbar .hn small{display:block;font-family:var(--mono);font-weight:500;font-size:10px;letter-spacing:.26em;color:var(--grey);text-transform:uppercase}
+.hbar nav{margin-left:auto;display:flex;gap:18px;font-size:13.5px;font-weight:600}
+.hbar nav a{text-decoration:none;color:var(--grey)}
+.hbar nav a:hover{color:var(--ink)}
+.hcall{background:var(--teal);color:#fff !important;padding:9px 16px;border-radius:8px;text-decoration:none}
+@media(max-width:640px){.hbar nav a:not(.hcall){display:none}}
+/* hero */
+.hero{padding:58px 0 46px;border-bottom:1px solid var(--line);background:linear-gradient(rgba(20,22,26,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(20,22,26,.045) 1px,transparent 1px);background-size:44px 44px}
+.hero .spec-line{font-family:var(--mono);font-size:11.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);text-align:center}
+.hero h1{font-size:clamp(40px,8.4vw,74px);font-weight:900;letter-spacing:-.025em;line-height:.98;text-align:center;margin-top:14px}
+.hero h1 .thin{color:var(--grey)}
+.hero .tag{margin:18px auto 0;max-width:560px;text-align:center;font-size:17.5px;color:#39404a}
+.hero .cta{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 28px;border-radius:10px;font-weight:700;font-size:15.5px;text-decoration:none;border:1.5px solid var(--ink)}
+.btn.teal{background:var(--teal);border-color:var(--teal);color:#fff}
+.btn.ghost{color:var(--ink);background:transparent}
+.hero .meta{margin-top:26px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--grey)}
+.hero .meta span{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 13px}
+/* sections */
+section{padding:56px 0}
+.kick{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);text-align:center}
+h2{font-size:clamp(28px,5vw,40px);font-weight:900;letter-spacing:-.02em;line-height:1.08;text-align:center;margin-top:10px}
+.sub{color:var(--grey);text-align:center;max-width:600px;margin:12px auto 0;font-size:16px}
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+@media(max-width:760px){.doors{grid-template-columns:1fr}}
+.door{background:var(--panel);border:1.5px solid var(--ink);border-radius:14px;padding:28px 26px;position:relative}
+.door .no{font-family:var(--mono);font-size:11px;letter-spacing:.26em;color:var(--teal)}
+.door h3{font-size:24px;font-weight:900;letter-spacing:-.01em;margin-top:8px}
+.door p{color:#39404a;font-size:15.5px;margin-top:9px}
+.door .btn{margin-top:18px;padding:12px 22px;font-size:14.5px}
+/* checklist */
+.checksec{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sheet{max-width:640px;margin:34px auto 0;border:1.5px solid var(--ink);border-radius:14px;background:var(--paper);padding:26px 24px}
+.sheet .sh{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:12px}
+.sheet .sh b{font-weight:900;font-size:17px}
+.sheet .sh span{font-family:var(--mono);font-size:11px;color:var(--grey);letter-spacing:.14em}
+.zones{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+@media(max-width:520px){.zones{grid-template-columns:1fr}}
+.zone{display:flex;gap:11px;align-items:flex-start;border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:13px 14px;cursor:pointer;text-align:left;font:inherit;width:100%}
+.zone .box{width:21px;height:21px;border:2px solid var(--ink);border-radius:5px;flex:none;margin-top:1px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:900}
+.zone.on{border-color:var(--teal);background:var(--tealsoft)}
+.zone.on .box{background:var(--teal);border-color:var(--teal)}
+.zone b{font-size:15px;display:block}
+.zone small{color:var(--grey);font-size:12.5px;line-height:1.35;display:block}
+.sheet .tally{margin-top:16px;font-family:var(--mono);font-size:12.5px;color:var(--grey)}
+.sheet .tally b{color:var(--teal)}
+/* form */
+.fcard{max-width:640px;margin:34px auto 0;background:var(--panel);border:1.5px solid var(--ink);border-radius:14px;padding:28px 24px}
+.fcard h3{font-size:18px;font-weight:900}
+.fcard label.lb{display:block;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin:18px 0 8px}
+.fcard label.lb:first-of-type{margin-top:14px}
+.fcard input,.fcard select,.fcard textarea{width:100%;background:var(--paper);border:1.5px solid var(--line);border-radius:10px;color:var(--ink);padding:12px 14px;font:400 15.5px var(--sans)}
+.fcard input:focus,.fcard select:focus,.fcard textarea:focus{outline:2px solid var(--teal);outline-offset:1px}
+.fcard .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.fcard .row2{grid-template-columns:1fr}}
+#fsum{background:var(--tealsoft);border:1px dashed var(--teal);border-radius:11px;padding:14px 16px;font-size:14.5px;white-space:pre-line;color:#173f3b}
+.fsend{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.fsend .btn{flex:1;text-align:center;min-width:150px}
+.fnote{font-size:13px;color:var(--grey);margin-top:12px}
+/* hours + visit */
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px}
+@media(max-width:760px){.visit{grid-template-columns:1fr}}
+.vcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px 24px}
+.vcard h3{font-size:19px;font-weight:900}
+.hrow{display:flex;justify-content:space-between;font-family:var(--mono);font-size:13.5px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.hrow:last-child{border-bottom:0}
+.hrow b{color:var(--teal)}
+.vcard p{color:#39404a;font-size:15.5px;margin-top:8px}
+footer{border-top:1px solid var(--line);padding:36px 0 118px;text-align:center}
+footer .fn{font-weight:900;font-size:19px}
+footer p{color:var(--grey);font-size:13.5px;margin-top:6px}
+footer a{color:var(--teal)}
+.callbar{position:fixed;left:0;right:0;bottom:0;z-index:80;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:flex;gap:10px}
+.callbar a{flex:1;text-align:center;padding:13px;border-radius:10px;font-weight:800;font-size:15px;text-decoration:none}
+.callbar .cb1{background:var(--teal);color:#fff}
+.callbar .cb2{border:1.5px solid var(--ink);color:var(--ink)}
+.rv{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+.rv.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div id="veil" aria-hidden="true">
+<div class="reticle">OCD</div>
+<div class="vsub">Auto Detailing · Auto Sales</div>
+<div class="vcheck">INSPECTION IN PROGRESS…</div>
+</div>
+
+<header><div class="wrap hbar">
+<span class="mark">OCD</span>
+<span class="hn">OCD Auto Detailing<small>And Auto Sales · Lancaster, PA</small></span>
+<nav>
+<a href="#services">Services</a>
+<a href="#inspection">Inspection</a>
+<a href="#request">Request</a>
+<a class="hcall" href="tel:+17175380448">Call</a>
+</nav>
+</div></header>
+
+<div class="hero"><div class="wrap">
+<p class="spec-line">Lancaster, PA · The standard: obsessive</p>
+<h1>Detailed like<br>it <span class="thin">matters.</span></h1>
+<p class="tag">The name is the standard. OCD Auto Detailing And Auto Sales cleans cars the obsessive way, and sells them too.</p>
+<div class="cta">
+<a class="btn teal" href="tel:+17175380448">Call (717) 538-0448</a>
+<a class="btn ghost" href="#inspection">Start the inspection ↓</a>
+</div>
+<div class="meta"><span>MON–SAT · 9–5</span><span>DETAILING</span><span>AUTO SALES</span><span>LANCASTER, PA</span></div>
+</div></div>
+
+<section id="services"><div class="wrap">
+<p class="kick">Services</p>
+<h2>Two doors. One standard.</h2>
+<div class="doors">
+<div class="door rv"><p class="no">DOOR 01</p><h3>Auto Detailing</h3><p>A detail is not a wash. It is the whole car, gone over zone by zone until it passes inspection. Run the checklist below, then send it with your request.</p><a class="btn teal" href="#inspection">Build my detail</a></div>
+<div class="door rv"><p class="no">DOOR 02</p><h3>Auto Sales</h3><p>Cars come and go, so the lot changes. Call for what is available now.</p><a class="btn ghost" href="tel:+17175380448">Ask what's on the lot</a></div>
+</div>
+</div></section>
+<section class="checksec" id="inspection"><div class="wrap">
+<p class="kick">The Inspection</p>
+<h2>Check the zones your car needs</h2>
+<p class="sub">This is how an obsessive detail starts: zone by zone. Tap everything that needs attention, and it lands on your request below.</p>
+<div class="sheet">
+<div class="sh"><b>DETAIL INSPECTION SHEET</b><span>FORM OCD-01</span></div>
+<div class="zones" id="zones">
+<button type="button" class="zone" data-v="Paint & exterior"><span class="box"></span><span><b>Paint &amp; exterior</b><small>Wash, decontamination, and the finish checked panel by panel.</small></span></button>
+<button type="button" class="zone" data-v="Wheels & tires"><span class="box"></span><span><b>Wheels &amp; tires</b><small>Faces, barrels, and sidewalls, cleaned and dressed.</small></span></button>
+<button type="button" class="zone" data-v="Glass"><span class="box"></span><span><b>Glass</b><small>Inside and out, streak-free, mirrors included.</small></span></button>
+<button type="button" class="zone" data-v="Interior & dash"><span class="box"></span><span><b>Interior &amp; dash</b><small>Every vent, seam, and surface wiped down and checked.</small></span></button>
+<button type="button" class="zone" data-v="Seats & carpets"><span class="box"></span><span><b>Seats &amp; carpets</b><small>Vacuumed to the edges, spots and crumbs hunted down.</small></span></button>
+<button type="button" class="zone" data-v="Door jambs & trim"><span class="box"></span><span><b>Door jambs &amp; trim</b><small>The places a quick wash never touches.</small></span></button>
+</div>
+<p class="tally" id="tally">ZONES CHECKED: <b>0 / 6</b> — tap to add yours.</p>
+</div>
+</div></section>
+
+<section id="request"><div class="wrap">
+<p class="kick">Request</p>
+<h2>Send the request</h2>
+<p class="sub">Call first if you prefer. The form takes under a minute, and your checked zones ride along.</p>
+<div class="fcard">
+<h3>Detailing / sales request</h3>
+<label class="lb" for="fsel">I am asking about</label>
+<select id="fsel">
+<option>Auto detailing</option>
+<option>Auto sales</option>
+<option>Both</option>
+</select>
+<div class="row2">
+<div><label class="lb" for="fname">Your name</label><input id="fname" type="text" autocomplete="name" placeholder="Name"></div>
+<div><label class="lb" for="fphone">Your phone</label><input id="fphone" type="tel" autocomplete="tel" placeholder="(717) ___-____"></div>
+</div>
+<label class="lb" for="fveh">Vehicle (year, make, model)</label>
+<input id="fveh" type="text" placeholder="e.g. 2021 Ford Escape">
+<label class="lb" for="fmsg">Anything else?</label>
+<textarea id="fmsg" rows="2" placeholder="Timing, questions, or what you are looking for"></textarea>
+<label class="lb">Your request</label>
+<div id="fsum">Fill in the form and your request will appear here, ready to send.</div>
+<div class="fsend">
+<a class="btn teal" href="tel:+17175380448">Call (717) 538-0448</a>
+<a class="btn ghost" href="https://www.facebook.com/900570003451006/" target="_blank" rel="noopener">Message on Facebook</a>
+</div>
+<p class="fnote">Tapping call or message opens your phone or Facebook with the shop. Nothing is sent until you send it.</p>
+</div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+<p class="kick">Visit</p>
+<h2>Hours &amp; contact</h2>
+<div class="visit">
+<div class="vcard"><h3>Open hours</h3>
+<div style="margin-top:10px">
+<div class="hrow"><span>Monday</span><b>9:00 AM – 5:00 PM</b></div>
+<div class="hrow"><span>Tuesday</span><b>9:00 AM – 5:00 PM</b></div>
+<div class="hrow"><span>Wednesday</span><b>9:00 AM – 5:00 PM</b></div>
+<div class="hrow"><span>Thursday</span><b>9:00 AM – 5:00 PM</b></div>
+<div class="hrow"><span>Friday</span><b>9:00 AM – 5:00 PM</b></div>
+<div class="hrow"><span>Saturday</span><b>9:00 AM – 5:00 PM</b></div>
+</div>
+</div>
+<div class="vcard"><h3>Get in touch</h3>
+<p>Lancaster, PA 17602</p>
+<p>Call: <a href="tel:+17175380448">(717) 538-0448</a></p>
+<p>Booking by phone or Facebook message.</p>
+<a class="btn teal" href="tel:+17175380448" style="margin-top:14px;padding:12px 22px;font-size:14.5px">Call now</a>
+</div>
+</div>
+</div></section>
+
+<footer><div class="wrap">
+<p class="fn">OCD Auto Detailing And Auto Sales</p>
+<p>Lancaster, PA 17602 · <a href="tel:+17175380448">(717) 538-0448</a> · Mon–Sat 9–5</p>
+<p><a href="https://www.facebook.com/900570003451006/" target="_blank" rel="noopener">OCD Auto Detailing And Auto Sales on Facebook</a></p>
+</div></footer>
+
+<div class="callbar">
+<a class="cb1" href="tel:+17175380448">Call the shop</a>
+<a class="cb2" href="#request">Request</a>
+</div>
+
+<script>
+(function(){
+var veil=document.getElementById('veil');
+function lift(){veil.classList.add('gone');setTimeout(function(){veil.style.display='none'},800)}
+window.addEventListener('load',function(){setTimeout(lift,1300)});
+setTimeout(lift,3600);
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+setTimeout(function(){document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in')})},2500);
+var zones=[];
+function tally(){document.getElementById('tally').innerHTML='ZONES CHECKED: <b>'+zones.length+' / 6</b>'+(zones.length?' — '+zones.join(', '):' — tap to add yours.')}
+document.querySelectorAll('#zones .zone').forEach(function(z){z.addEventListener('click',function(){
+var v=z.getAttribute('data-v'),i=zones.indexOf(v);
+if(i>=0){zones.splice(i,1);z.classList.remove('on');z.querySelector('.box').textContent=''}
+else{zones.push(v);z.classList.add('on');z.querySelector('.box').textContent='✓'}
+tally();sum();
+})});
+function sum(){
+var s=document.getElementById('fsel').value,n=document.getElementById('fname').value.trim(),p=document.getElementById('fphone').value.trim(),v=document.getElementById('fveh').value.trim(),m=document.getElementById('fmsg').value.trim();
+var el=document.getElementById('fsum');
+if(!n&&!p&&!v&&!m&&!zones.length){el.textContent='Fill in the form and your request will appear here, ready to send.';return}
+var L=['REQUEST — OCD Auto Detailing And Auto Sales','About: '+s];
+if(v)L.push('Vehicle: '+v);
+if(zones.length)L.push('Zones to inspect: '+zones.join(', '));
+if(n)L.push('Name: '+n);
+if(p)L.push('Phone: '+p);
+if(m)L.push('Notes: '+m);
+el.textContent=L.join('\n');
+}
+['fsel','fname','fphone','fveh','fmsg'].forEach(function(id){var e=document.getElementById(id);e.addEventListener('input',sum);e.addEventListener('change',sum)});
+})();
+</script>
+<script data-goatcounter="https://briangx92.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+(function(){try{fetch('https://abacus.jasoncameron.dev/hit/717digitalstudio-demos/ocd-auto-detailing')}catch(e){}})();
+</script>
+</body>
+</html>
