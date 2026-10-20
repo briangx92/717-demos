@@ -117,6 +117,7 @@ footer a{color:var(--soft)}
 
 #lookbook .pg.center img{object-fit:contain;flex:none;width:auto;max-width:82%;max-height:210px;height:auto;margin-left:auto;margin-right:auto}
 #lookbook .pg img.badge,#lookbook .pg img.badge2{object-fit:contain}
+.stf__block{overflow:hidden}
 </style>
 </head>
 <body>
@@ -250,8 +251,8 @@ setTimeout(function(){document.querySelectorAll('.rv').forEach(function(el){el.c
 try{
 var pf=new St.PageFlip(document.getElementById('book'),{width:330,height:430,size:'fixed',showCover:false,flippingTime:550,maxShadowOpacity:.35,mobileScrollSupport:false});
 pf.loadFromHTML(document.querySelectorAll('#book .pg'));
-document.getElementById('bprev').addEventListener('click',function(){pf.flipPrev()});
-document.getElementById('bnext').addEventListener('click',function(){pf.flipNext()});
+document.getElementById('bprev').addEventListener('click',function(){pf.turnToPrevPage()});
+document.getElementById('bnext').addEventListener('click',function(){pf.turnToNextPage()});
 }catch(e){document.querySelector('.bookctl').style.display='none'}
 /* builder */
 var svc='';

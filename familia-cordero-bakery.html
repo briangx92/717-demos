@@ -226,6 +226,7 @@ footer{border-top:1px solid var(--line);background:var(--coal)}
 
 #book .pg.center img{object-fit:contain;flex:none;width:auto;max-width:82%;max-height:210px;height:auto;margin-left:auto;margin-right:auto}
 #book .pg img.badge,#book .pg img.badge2{object-fit:contain}
+.stf__block{overflow:hidden}
 </style>
 <noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
 </head>
@@ -605,11 +606,11 @@ footer{border-top:1px solid var(--line);background:var(--coal)}
       });
       book.loadFromHTML(document.querySelectorAll('#book .page'));
       book.on('flip', function(e){ setPos(e.data); });
-      document.getElementById('bkPrev').addEventListener('click', function(){ book.flipPrev(); });
-      document.getElementById('bkNext').addEventListener('click', function(){ book.flipNext(); });
+      document.getElementById('bkPrev').addEventListener('click', function(){ book.turnToPrevPage(); });
+      document.getElementById('bkNext').addEventListener('click', function(){ book.turnToNextPage(); });
       document.querySelectorAll('#idxStrip .idx').forEach(function(ch){
         ch.addEventListener('click', function(){
-          book.flip(parseInt(ch.getAttribute('data-page'), 10));
+          book.turnToPage(parseInt(ch.getAttribute('data-page'), 10));
         });
       });
       setPos(0);

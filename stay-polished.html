@@ -235,6 +235,7 @@ html.lean .mono .draw{animation:none;stroke-dashoffset:0}
 
 #book .pg.center img{object-fit:contain;flex:none;width:auto;max-width:82%;max-height:210px;height:auto;margin-left:auto;margin-right:auto}
 #book .pg img.badge,#book .pg img.badge2{object-fit:contain}
+.stf__block{overflow:hidden}
 </style>
 <noscript><style>.rv{opacity:1!important;transform:none!important}.mono .draw{stroke-dashoffset:0!important}</style></noscript>
 </head>
@@ -585,7 +586,7 @@ html.lean .mono .draw{animation:none;stroke-dashoffset:0}
     labels.forEach(function(l, i){
       var b = document.createElement('button');
       b.type = 'button'; b.className = 'chip'; b.textContent = (i+1 < 10 ? '0' : '') + (i+1) + ' · ' + l; b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
-      b.addEventListener('click', function(){ if(book) book.flip(i); });
+      b.addEventListener('click', function(){ if(book) book.turnToPage(i); });
       strip.appendChild(b);
     });
   }
@@ -632,12 +633,12 @@ html.lean .mono .draw{animation:none;stroke-dashoffset:0}
       el.innerHTML = origPages;
       book = null;
       initBook();
-      if(book && cur > 0) book.flip(cur);
+      if(book && cur > 0) book.turnToPage(cur);
     }, 350);
   });
   var prev = document.getElementById('bkPrev'), next = document.getElementById('bkNext');
-  if(prev) prev.addEventListener('click', function(){ if(book) book.flipPrev(); });
-  if(next) next.addEventListener('click', function(){ if(book) book.flipNext(); });
+  if(prev) prev.addEventListener('click', function(){ if(book) book.turnToPrevPage(); });
+  if(next) next.addEventListener('click', function(){ if(book) book.turnToNextPage(); });
 
   /* booking form (rev 2026-10-17, v5.11): STRAIGHT form card mirroring Brian's own site form —
      choice cards + chips build the request; the form sends nothing — call or Messenger carries it */

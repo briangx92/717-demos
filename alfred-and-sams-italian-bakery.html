@@ -205,6 +205,7 @@ footer .fl a{color:var(--cream);text-decoration:none;border-bottom:1px solid rgb
 
 #book .pg.center img{object-fit:contain;flex:none;width:auto;max-width:82%;max-height:210px;height:auto;margin-left:auto;margin-right:auto}
 #book .pg img.badge,#book .pg img.badge2{object-fit:contain}
+.stf__block{overflow:hidden}
 </style>
 </head>
 <body class="grain">
@@ -540,8 +541,8 @@ footer .fl a{color:var(--cream);text-decoration:none;border-bottom:1px solid rgb
       }
       book.on('flip', upd);
       book.on('init', upd);
-      document.getElementById('bkPrev').addEventListener('click', function(){ book.flipPrev(); });
-      document.getElementById('bkNext').addEventListener('click', function(){ book.flipNext(); });
+      document.getElementById('bkPrev').addEventListener('click', function(){ book.turnToPrevPage(); });
+      document.getElementById('bkNext').addEventListener('click', function(){ book.turnToNextPage(); });
       document.querySelectorAll('#idxStrip .chip').forEach(function(ch){
         ch.addEventListener('click', function(){ book.turnToPage(parseInt(ch.getAttribute('data-pg'), 10)); });
       });

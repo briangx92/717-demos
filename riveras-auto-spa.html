@@ -218,6 +218,7 @@ footer{border-top:1px solid var(--hair);background:var(--gun-3);padding:34px 20p
 
 #book .pg.center img{object-fit:contain;flex:none;width:auto;max-width:82%;max-height:210px;height:auto;margin-left:auto;margin-right:auto}
 #book .pg img.badge,#book .pg img.badge2{object-fit:contain}
+.stf__block{overflow:hidden}
 </style>
 <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 </head>
@@ -591,10 +592,10 @@ footer{border-top:1px solid var(--hair);background:var(--gun-3);padding:34px 20p
     flip.loadFromHTML(document.querySelectorAll('.bk-page'));
     flip.on('flip',function(){setPg(flip.getCurrentPageIndex());});
     setPg(0);
-    document.getElementById('bkNext').addEventListener('click',function(){flip.flipNext();});
-    document.getElementById('bkPrev').addEventListener('click',function(){flip.flipPrev();});
+    document.getElementById('bkNext').addEventListener('click',function(){flip.turnToNextPage();});
+    document.getElementById('bkPrev').addEventListener('click',function(){flip.turnToPrevPage();});
     document.querySelectorAll('.index-strip button').forEach(function(b){
-      b.addEventListener('click',function(){flip.flip(+b.getAttribute('data-flip'));});
+      b.addEventListener('click',function(){flip.turnToPage(+b.getAttribute('data-flip'));});
     });
   }catch(err){
     pgLabel.textContent='Book unavailable';

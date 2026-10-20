@@ -124,6 +124,7 @@ footer p{color:var(--faint);font-size:13.5px;margin-top:6px}
 
 #flashbook .pg.center img{object-fit:contain;flex:none;width:auto;max-width:82%;max-height:210px;height:auto;margin-left:auto;margin-right:auto}
 #flashbook .pg img.badge,#flashbook .pg img.badge2{object-fit:contain}
+.stf__block{overflow:hidden}
 </style>
 </head>
 <body>
@@ -273,8 +274,8 @@ function sizeBook(){var w=Math.min(360,window.innerWidth-44);return{width:w,heig
 var dims=sizeBook();
 var pf=new St.PageFlip(document.getElementById('book'),{width:dims.width,height:dims.height,size:'fixed',minWidth:dims.width,maxWidth:dims.width,minHeight:dims.height,maxHeight:dims.height,showCover:false,flippingTime:550,maxShadowOpacity:.45,mobileScrollSupport:true,swipeDistance:24,clickEventZoom:false});
 pf.loadFromHTML(document.querySelectorAll('#book .pg'));
-document.getElementById('bnext').addEventListener('click',function(){pf.flipNext()});
-document.getElementById('bprev').addEventListener('click',function(){pf.flipPrev()});
+document.getElementById('bnext').addEventListener('click',function(){pf.turnToNextPage()});
+document.getElementById('bprev').addEventListener('click',function(){pf.turnToPrevPage()});
 var svc='',art='';
 var chips=document.querySelectorAll('#svcchips .chip');
 var achips=document.querySelectorAll('#artchips .chip');

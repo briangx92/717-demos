@@ -212,6 +212,7 @@ body.lean .rv{opacity:1;transform:none;transition:none;}
 
 #book .pg.center img{object-fit:contain;flex:none;width:auto;max-width:82%;max-height:210px;height:auto;margin-left:auto;margin-right:auto}
 #book .pg img.badge,#book .pg img.badge2{object-fit:contain}
+.stf__block{overflow:hidden}
 </style>
 </head>
 <body>
@@ -609,11 +610,11 @@ body.lean .rv{opacity:1;transform:none;transition:none;}
   }
   book.on('flip', upd);
   book.on('init', upd);
-  document.getElementById('bkPrev').addEventListener('click', function(){ book.flipPrev(); });
-  document.getElementById('bkNext').addEventListener('click', function(){ book.flipNext(); });
+  document.getElementById('bkPrev').addEventListener('click', function(){ book.turnToPrevPage(); });
+  document.getElementById('bkNext').addEventListener('click', function(){ book.turnToNextPage(); });
   document.addEventListener('keydown', function(e){
-    if (e.key === 'ArrowRight') book.flipNext();
-    if (e.key === 'ArrowLeft') book.flipPrev();
+    if (e.key === 'ArrowRight') book.turnToNextPage();
+    if (e.key === 'ArrowLeft') book.turnToPrevPage();
   });
 
   // ---- booking inquiry form: validates in-page, transmits nothing ----

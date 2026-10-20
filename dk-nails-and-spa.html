@@ -116,6 +116,7 @@ footer a{color:#eef5f0;text-decoration:none;font-weight:700}
 @media(max-width:760px){.callbar{display:flex}}
 .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
+.stf__block{overflow:hidden}
 </style>
 </head>
 <body>
@@ -222,8 +223,8 @@ function sizeBook(){var w=Math.min(360,window.innerWidth-44);return{width:w,heig
 var dims=sizeBook();
 var pf=new St.PageFlip(document.getElementById('flipbook'),{width:dims.width,height:dims.height,size:'fixed',minWidth:dims.width,maxWidth:dims.width,minHeight:dims.height,maxHeight:dims.height,showCover:false,flippingTime:550,maxShadowOpacity:.45,mobileScrollSupport:true,swipeDistance:24,clickEventZoom:false});
 pf.loadFromHTML(document.querySelectorAll('#flipbook .pg'));
-document.getElementById('bnext').addEventListener('click',function(){pf.flipNext()});
-document.getElementById('bprev').addEventListener('click',function(){pf.flipPrev()});
+document.getElementById('bnext').addEventListener('click',function(){pf.turnToNextPage()});
+document.getElementById('bprev').addEventListener('click',function(){pf.turnToPrevPage()});
 var svc='';
 function upd(){
 var nm=document.getElementById('bname').value.trim();
