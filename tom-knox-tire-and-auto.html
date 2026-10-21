@@ -312,7 +312,7 @@ bar.style.width=(n/total*100)+'%';stext.textContent='Step '+n+' of '+total;
 back.style.visibility=n===1?'hidden':'visible';
 next.textContent=n===total?'Done':'Continue';
 if(n===total)updSum();
-document.getElementById('gform').scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});}
+if(window.__gInit)document.getElementById('gform').scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});window.__gInit=1;}
 back.addEventListener('click',function(){if(step>1)show(step-1)});
 next.addEventListener('click',function(){if(step<total)show(step+1);else show(1)});
 show(1);
