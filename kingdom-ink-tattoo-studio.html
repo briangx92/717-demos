@@ -122,6 +122,25 @@ footer img{width:74px;border-radius:12px;margin:0 auto 12px}
 footer .fn{font-family:var(--disp);font-weight:800;font-size:18px}
 footer p{color:var(--faint);font-size:14px;margin-top:8px}
 footer a{color:var(--goldpale);text-decoration:none}
+
+/* guided booking flow - mirrors the 717 Digital Studio site pattern */
+.kprog{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.kprog .bar{flex:1;height:6px;background:rgba(179,155,94,.18);border-radius:99px;overflow:hidden}
+.kprog .bar i{display:block;height:100%;background:var(--goldb);border-radius:99px;transition:width .35s ease}
+.kprog span{font-size:12.5px;font-weight:700;letter-spacing:.08em;color:var(--faint);text-transform:uppercase;white-space:nowrap}
+.kstep{display:none}
+.kstep.active{display:block;animation:kfade .3s ease}
+@keyframes kfade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.kchoices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:520px){.kchoices{grid-template-columns:1fr}}
+.kchoice{border:1.5px solid var(--line);background:#100e0a;color:var(--paper);border-radius:12px;padding:13px 15px;font-family:var(--sans);font-weight:700;font-size:15px;cursor:pointer;text-align:left}
+.kchoice small{display:block;font-weight:500;font-size:12.5px;color:var(--faint);margin-top:2px}
+.kchoice.on{border-color:var(--goldb);background:rgba(179,155,94,.14)}
+.khint{font-size:13px;color:var(--faint);margin-top:8px}
+.knav{display:flex;gap:10px;margin-top:22px}
+.knav .btn{flex:1;text-align:center}
+.knav .kback{flex:0 0 110px}
+
 /* sticky call bar */
 .callbar{position:fixed;left:0;right:0;bottom:0;display:flex;z-index:90;box-shadow:0 -6px 24px rgba(0,0,0,.4)}
 .callbar a{flex:1;text-align:center;padding:15px 10px;font-weight:700;font-size:15.5px;text-decoration:none}
@@ -259,7 +278,8 @@ footer a{color:var(--goldpale);text-decoration:none}
 <p class="sub">Build your request here, then send it by phone or Messenger. It takes a minute.</p>
 <div class="bld rv">
 <h3>Booking request</h3>
-<div class="step">
+<div class="kprog"><div class="bar"><i id="kbar" style="width:33%"></i></div><span id="ksteptext">Step 1 of 3</span></div>
+<div class="kstep active" data-kstep="1">
 <label class="lb">What are you booking?</label>
 <div class="chips" id="svcchips">
 <button type="button" class="chip">Custom tattoo</button>
@@ -267,20 +287,28 @@ footer a{color:var(--goldpale);text-decoration:none}
 <button type="button" class="chip">Black &amp; grey tattoo</button>
 <button type="button" class="chip">Body piercing</button>
 </div>
+<p class="khint">Pick any that apply — plenty of people book more than one thing.</p>
 </div>
-<div class="step">
+<div class="kstep" data-kstep="2">
+<label class="lb">Where's it going?</label>
+<div class="kchoices" id="placechoices">
+<button type="button" class="kchoice">Arm<small>Forearm, upper arm, sleeve work</small></button>
+<button type="button" class="kchoice">Leg<small>Calf, thigh, full leg piece</small></button>
+<button type="button" class="kchoice">Back or chest<small>Big canvas pieces</small></button>
+<button type="button" class="kchoice">Somewhere else<small>You'll describe it next step</small></button>
+</div>
+<label class="lb" style="margin-top:20px">Rough size?</label>
+<div class="chips" id="sizechips">
+<button type="button" class="chip">Small</button>
+<button type="button" class="chip">Medium</button>
+<button type="button" class="chip">Large</button>
+<button type="button" class="chip">Not sure yet</button>
+</div>
+</div>
+<div class="kstep" data-kstep="3">
+<div class="step" style="margin-top:0">
 <label class="lb" for="kname">Your name</label>
 <input id="kname" type="text" autocomplete="name" placeholder="Your name">
-</div>
-<div class="step row2">
-<div>
-<label class="lb" for="kplace">Placement</label>
-<input id="kplace" type="text" placeholder="Forearm, calf, shoulder…">
-</div>
-<div>
-<label class="lb" for="ksize">Rough size</label>
-<input id="ksize" type="text" placeholder="About 4 inches…">
-</div>
 </div>
 <div class="step">
 <label class="lb" for="kidea">The idea</label>
@@ -288,12 +316,17 @@ footer a{color:var(--goldpale);text-decoration:none}
 </div>
 <div class="step">
 <label class="lb">Your request</label>
-<div id="ksum">Pick a service above and your request builds itself here.</div>
+<div id="ksum">Nothing picked yet — head back and tap what you're booking.</div>
 </div>
 <div class="bsend">
 <a class="btn solid" href="tel:+17175688200">Call the shop</a>
 <button class="btn ghost" id="kcopy" type="button" style="color:var(--goldpale)">Copy my request</button>
 <a class="btn ghost" href="https://www.facebook.com/Kingdom-Ink-Tattoo-252594358089102" target="_blank" rel="noopener" style="color:var(--goldpale)">Message on Facebook</a>
+</div>
+</div>
+<div class="knav">
+<button class="btn ghost kback" id="kback" type="button" style="color:var(--goldpale);visibility:hidden">Back</button>
+<button class="btn solid" id="knext" type="button">Continue</button>
 </div>
 <p class="bnote">Calling is fastest. Or copy this request and send it to Kingdom Ink on Facebook Messenger — the studio takes walk-ins and appointments.</p>
 </div>
@@ -357,25 +390,41 @@ document.getElementById('bnext').addEventListener('click',function(){pf.turnToNe
 document.getElementById('bprev').addEventListener('click',function(){pf.turnToPrevPage()});
 document.addEventListener('keydown',function(e){if(e.key==='ArrowRight')pf.turnToNextPage();if(e.key==='ArrowLeft')pf.turnToPrevPage()});
 }
-/* booking builder */
-var svc='';
-var chips=document.querySelectorAll('#svcchips .chip');
-function upd(){
-var nm=document.getElementById('kname').value.trim();
-var pl=document.getElementById('kplace').value.trim();
-var sz=document.getElementById('ksize').value.trim();
-var id=document.getElementById('kidea').value.trim();
+/* booking builder - guided 3-step flow, multi-select services */
+var kstep=1, kplace='', ksize='';
+var ksvc=new Set();
+var ksteps=document.querySelectorAll('.kstep');
+function ksumText(){
 var lines=[];
+var nm=document.getElementById('kname').value.trim();
+var id=document.getElementById('kidea').value.trim();
 if(nm)lines.push('Name: '+nm);
-if(svc)lines.push('Booking: '+svc);
-if(pl)lines.push('Placement: '+pl);
-if(sz)lines.push('Size: '+sz);
+if(ksvc.size)lines.push('Booking: '+[...ksvc].join(', '));
+if(kplace)lines.push('Placement: '+kplace);
+if(ksize)lines.push('Size: '+ksize);
 if(id)lines.push('Idea: '+id);
-document.getElementById('ksum').textContent=lines.length?lines.join('\n'):'Pick a service above and your request builds itself here.';}
-chips.forEach(function(c){c.addEventListener('click',function(){chips.forEach(function(x){x.classList.remove('on')});c.classList.add('on');svc=c.textContent;upd()})});
-['kname','kplace','ksize','kidea'].forEach(function(i){document.getElementById(i).addEventListener('input',upd)});
+return lines.length?lines.join('\n'):'Nothing picked yet — head back and tap what you\'re booking.';}
+function kshow(){
+ksteps.forEach(function(st){st.classList.toggle('active',+st.dataset.kstep===kstep)});
+document.getElementById('kbar').style.width=(kstep/3*100)+'%';
+document.getElementById('ksteptext').textContent='Step '+kstep+' of 3';
+document.getElementById('kback').style.visibility=kstep===1?'hidden':'visible';
+document.getElementById('knext').style.visibility=kstep===3?'hidden':'visible';
+if(kstep===3)document.getElementById('ksum').textContent=ksumText();}
+document.querySelectorAll('#svcchips .chip').forEach(function(c){c.addEventListener('click',function(){
+if(c.classList.toggle('on')){ksvc.add(c.textContent)}else{ksvc.delete(c.textContent)}})});
+document.querySelectorAll('#placechoices .kchoice').forEach(function(c){c.addEventListener('click',function(){
+document.querySelectorAll('#placechoices .kchoice').forEach(function(x){x.classList.remove('on')});
+c.classList.add('on');kplace=c.childNodes[0].textContent.trim()})});
+document.querySelectorAll('#sizechips .chip').forEach(function(c){c.addEventListener('click',function(){
+document.querySelectorAll('#sizechips .chip').forEach(function(x){x.classList.remove('on')});
+c.classList.add('on');ksize=c.textContent})});
+document.getElementById('knext').addEventListener('click',function(){if(kstep<3){kstep++;kshow()}});
+document.getElementById('kback').addEventListener('click',function(){if(kstep>1){kstep--;kshow()}});
+['kname','kidea'].forEach(function(i){document.getElementById(i).addEventListener('input',function(){if(kstep===3)document.getElementById('ksum').textContent=ksumText()})});
+kshow();
 document.getElementById('kcopy').addEventListener('click',function(){
-var t=document.getElementById('ksum').textContent;
+var t=ksumText();
 var b=this;
 function done(){b.textContent='Copied — send it on Messenger';setTimeout(function(){b.textContent='Copy my request'},2600)}
 if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done).catch(done)}else{done()}
