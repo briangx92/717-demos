@@ -64,6 +64,10 @@ html.js [data-rv].in{opacity:1;transform:none}
 .btn-red:hover{background:var(--red-deep)}
 .btn-ghost{border-color:rgba(243,225,190,.4);color:var(--cream);background:transparent}
 .btn-ghost:hover{border-color:var(--cream)}
+.beam{position:relative;animation:beamglow 2.6s ease-in-out infinite}
+.beam::after{content:"";position:absolute;inset:-1.5px;border-radius:inherit;padding:1.5px;background:linear-gradient(120deg,var(--gold),#f3e1be,var(--gold));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:beampulse 2.6s ease-in-out infinite;pointer-events:none}
+@keyframes beampulse{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes beamglow{0%,100%{box-shadow:0 0 0 rgba(193,166,133,0)}50%{box-shadow:0 0 26px rgba(193,166,133,.35)}}
 .btn-dark{background:var(--tx-dark);color:var(--cream)}
 .btn-dark:hover{background:#000}
 :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
@@ -100,7 +104,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(13,11,9,.88);backdrop-fi
 .mq-track span{font-family:'Fraunces',serif;font-size:clamp(21px,3.2vw,32px);font-weight:560;white-space:nowrap;padding-right:.6em;color:var(--cream)}
 .mq-track b{color:var(--gold);font-weight:400;padding-left:.6em}
 @keyframes mq{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.mq-track{animation:none}.hero-bg img{animation:none}.pole{animation:none}}
+@media (prefers-reduced-motion:reduce){.mq-track{animation:none}.hero-bg img{animation:none}.pole{animation:none}.beam,.beam::after{animation:none}}
 
 /* services */
 .services{background:var(--paper);color:var(--tx-dark);padding-top:88px;padding-bottom:92px}
@@ -235,7 +239,7 @@ footer .fmeta a{text-decoration:none;border-bottom:1px solid rgba(243,225,190,.3
       </div>
       <div><span class="status" id="shopStatus"><span class="dot"></span><span id="shopStatusTx">Marietta, PA</span></span></div>
       <div class="hero-cta">
-        <a class="btn btn-red" href="#book">Request an appointment</a>
+        <a class="btn btn-red beam" href="#book">Request an appointment</a>
         <a class="btn btn-ghost" href="tel:+17176041502">Call (717) 604-1502</a>
       </div>
     </div>
@@ -379,7 +383,7 @@ footer .fmeta a{text-decoration:none;border-bottom:1px solid rgba(243,225,190,.3
         <div class="bnav">
           <button type="button" class="btn btn-ghost" id="backBtn" disabled>Back</button>
           <span class="spacer"></span>
-          <button type="button" class="btn btn-red" id="nextBtn">Continue</button>
+          <button type="button" class="btn btn-red beam" id="nextBtn">Continue</button>
         </div>
       </div>
     </div>
@@ -403,7 +407,7 @@ footer .fmeta a{text-decoration:none;border-bottom:1px solid rgba(243,225,190,.3
 
 <div class="mbar">
   <a class="mc" href="tel:+17176041502">Call the shop</a>
-  <a class="mr" href="#book">Request a chair</a>
+  <a class="mr beam" href="#book">Request a chair</a>
 </div>
 
 <script>
