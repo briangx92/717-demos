@@ -145,6 +145,20 @@ html.js [data-rv="d2"]{transition-delay:.18s}
 .summary{background:var(--bg-soft);border:1px solid var(--card-border);border-radius:14px;padding:22px;margin-top:20px;white-space:pre-wrap;font-size:15.5px;line-height:1.65;color:var(--text)}
 .sendrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
 .note{color:var(--muted);font-size:13.5px;margin-top:16px}
+.attach{margin-top:20px}
+.attach-label{display:block;font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.attach-label span{text-transform:none;letter-spacing:0;font-weight:500}
+.attach-drop{display:flex;flex-direction:column;gap:2px;border:1.5px dashed #3a3e3c;border-radius:14px;padding:18px;text-align:center;cursor:pointer;color:var(--text);font-weight:600;transition:border-color .25s}
+.attach-drop:hover{border-color:var(--acc)}
+.attach-drop span{color:var(--muted);font-weight:500;font-size:13px}
+.attach input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.attach-thumbs{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.attach-thumbs:empty{margin-top:0}
+.rthumb{position:relative;width:74px;height:74px;border-radius:12px;overflow:clip;border:1px solid var(--card-border);cursor:pointer;background:var(--bg-soft)}
+.rthumb img{width:100%;height:100%;object-fit:cover}
+.rthumb i{position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:50%;background:rgba(10,11,10,.85);color:#fff;font-style:normal;font-size:13px;line-height:20px;text-align:center}
+.attach-msg{color:#f0a49c;font-size:13.5px;margin-top:9px;min-height:0}
+.attach-msg:empty{display:none}
 
 /* footer + mobile bar */
 footer{border-top:1px solid var(--card-border);padding-top:44px;padding-bottom:118px;text-align:center}
@@ -317,6 +331,13 @@ footer a{color:var(--acc);text-decoration:none}
                 </select>
               </div>
             </div>
+            <div class="attach">
+              <span class="attach-label">Reference photos <span>(optional)</span></span>
+              <label class="attach-drop" for="fRef">Tap to add a photo<span>JPG or PNG &middot; up to 10 MB each &middot; max 3</span></label>
+              <input id="fRef" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" multiple>
+              <div class="attach-thumbs" id="refThumbs"></div>
+              <p class="attach-msg" id="refMsg"></p>
+            </div>
           </div>
           <div class="fstep" id="step3" hidden>
             <p class="fq">Your request</p>
@@ -373,6 +394,7 @@ footer a{color:var(--acc);text-decoration:none}
     document.querySelectorAll('[data-rv]').forEach(function(el){io.observe(el);});
   }
   var step=1,kind='',navStarted=false;
+  var refFiles=[];
   var pieceChips=document.querySelectorAll('#pieceChips .chip');
   function pieces(){var out=[];pieceChips.forEach(function(c){if(c.classList.contains('sel'))out.push(c.textContent.trim());});return out;}
   function show(n){
@@ -393,6 +415,7 @@ footer a{color:var(--acc);text-decoration:none}
     var pc=pieces(); if(pc.length)lines.push('About the piece: '+pc.join(', '));
     var idea=document.getElementById('fIdea').value.trim(); if(idea)lines.push('My idea: '+idea);
     lines.push('When: '+document.getElementById('fWhen').value);
+    if(refFiles.length)lines.push('Reference photos: '+refFiles.length+' ready \u2014 I\u2019ll send them in the Messenger chat.');
     var nm=document.getElementById('fName').value.trim(); if(nm)lines.push('Name: '+nm);
     var ph=document.getElementById('fPhone').value.trim(); if(ph)lines.push('Phone: '+ph);
     document.getElementById('summaryBox').textContent=lines.join('\n');
@@ -406,6 +429,31 @@ footer a{color:var(--acc);text-decoration:none}
   pieceChips.forEach(function(c){c.addEventListener('click',function(){c.classList.toggle('sel');});});
   document.getElementById('nextBtn').addEventListener('click',function(){ if(step<3)show(step+1); });
   document.getElementById('backBtn').addEventListener('click',function(){ if(step>1)show(step-1); });
+  var refInput=document.getElementById('fRef'),refMsg=document.getElementById('refMsg'),refThumbs=document.getElementById('refThumbs');
+  function renderThumbs(){
+    refThumbs.innerHTML='';
+    refFiles.forEach(function(rf,idx){
+      var b=document.createElement('button');b.type='button';b.className='rthumb';b.title='Remove photo';
+      var im=document.createElement('img');im.src=rf.url;im.alt='Reference photo '+(idx+1);
+      var x=document.createElement('i');x.textContent='\u00D7';
+      b.appendChild(im);b.appendChild(x);
+      b.addEventListener('click',function(){URL.revokeObjectURL(rf.url);refFiles.splice(idx,1);renderThumbs();});
+      refThumbs.appendChild(b);
+    });
+  }
+  refInput.addEventListener('change',function(){
+    var msgs=[];
+    Array.prototype.forEach.call(refInput.files,function(f){
+      var okType=(f.type==='image/jpeg'||f.type==='image/png'||/\.(jpe?g|png)$/i.test(f.name));
+      if(!okType){msgs.push(f.name+' isn\u2019t a JPG or PNG.');return;}
+      if(f.size>10*1024*1024){msgs.push(f.name+' is over 10 MB.');return;}
+      if(refFiles.length>=3){msgs.push('Three photos max \u2014 that\u2019s plenty to start.');return;}
+      refFiles.push({file:f,url:URL.createObjectURL(f)});
+    });
+    refMsg.textContent=msgs.join(' ');
+    refInput.value='';
+    renderThumbs();
+  });
   document.getElementById('copyBtn').addEventListener('click',function(){
     var t=document.getElementById('summaryBox').textContent,btn=this;
     function done(){btn.textContent='Copied \u2014 paste it in Messenger';setTimeout(function(){btn.textContent='Copy the message';},2600);}
