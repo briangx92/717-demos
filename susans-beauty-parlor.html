@@ -6,7 +6,7 @@
 <title>Susan's Beauty Parlor · Greenville, PA</title>
 <meta name="description" content="Susan's Beauty Parlor is a local salon on Main Street in Greenville. Offering a wide range of services from haircuts to permanent makeup. Call (724) 588-2626.">
 <meta property="og:title" content="Susan's Beauty Parlor · Greenville, PA">
-<meta property="og:description" content="Susan's Beauty Parlor is a local salon on Main Street in Greenville. Offering a wide range of services from haircuts to permanent makeup. Call (724) 588-2626.">
+<meta property="og:description" content="Susan's Beauty Parlor is a local salon on Main Street in Greenville. Offering a wide range of services from haircuts to permanent makeup.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%235a7263'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' fill='%23faf6ee' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -158,8 +158,11 @@ footer.site a:hover{text-decoration:underline}
 .artifact{display:block;margin:0 auto}
 @media (max-width:719px){
   .hcall{display:none}
-  .brand .bname{font-size:1.55rem}
-  .hero .himg{height:76vh;object-position:center 14%}
+  .brand>span{min-width:0}
+  .brand .bname{font-size:1.32rem;white-space:normal;line-height:1.08}
+  .brand .bsub{white-space:normal}
+  .hero .himg{height:88vh;object-position:center 14%}
+  .hero .hname{font-size:2.2rem}
   .hero .scrim{background:linear-gradient(180deg,rgba(24,20,14,.16) 0%,rgba(24,20,14,.04) 34%,rgba(24,20,14,.74) 100%)}
 }
 @media (min-width:720px){
@@ -199,7 +202,7 @@ footer.site a:hover{text-decoration:underline}
 <header class="site">
   <div class="wrap hbar">
     <a class="brand" href="#top" aria-label="Susan's Beauty Parlor, back to top">
-      <span class="markring" aria-hidden="true"><svg class="artifact" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 10 L40 10 M10 30 L40 30 M10 10 L10 30 M40 10 L40 30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      <span class="markring" aria-hidden="true"><svg class="artifact" viewBox="0 0 48 48" aria-hidden="true"><circle cx="13" cy="35" r="5.5" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="13" cy="13" r="5.5" stroke="currentColor" stroke-width="2" fill="none"/><path d="M17.5 16.5 L39 33M17.5 31.5 L39 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
       <span><span class="bname">Susan's Beauty Parlor</span><span class="bsub" style="display:block">By Susan · Greenville</span></span>
     </a>
     <a class="btn btn-acc hcall" href="tel:+17245882626">Call (724) 588-2626</a>
@@ -208,7 +211,7 @@ footer.site a:hover{text-decoration:underline}
 
 <main id="top">
   <div class="hero-type">
-    <svg class="artifact" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 10 L40 10 M10 30 L40 30 M10 10 L10 30 M40 10 L40 30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <svg class="artifact" viewBox="0 0 48 48" aria-hidden="true"><circle cx="13" cy="35" r="5.5" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="13" cy="13" r="5.5" stroke="currentColor" stroke-width="2" fill="none"/><path d="M17.5 16.5 L39 33M17.5 31.5 L39 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     <div class="wrap">
       <span class="statuspill" id="statusPill"><span class="dot"></span><span id="statusText">Call for today's hours</span></span>
       <div class="script hname">Susan's Beauty Parlor</div>
@@ -400,9 +403,9 @@ footer.site a:hover{text-decoration:underline}
             <tr data-day="0"><td>Sunday</td><td>Closed</td></tr>
           </table>
         </div>
-</div>
+      </div>
       <div class="mapbox reveal">
-        <iframe title="Map to Susan's Beauty Parlor, 216 Main St, Greenville, PA" src="https://www.google.com/maps?q=216+Main+St%2C+Greenville%2C+PA+16125&output=embed" loading="lazy"></iframe>
+        <iframe title="Map to Susan's Beauty Parlor, 216 Main St, Greenville, PA 16125" src="https://www.google.com/maps?q=216+Main+St%2C+Greenville%2C+PA+16125&output=embed" loading="lazy"></iframe>
       </div>
     </div>
   </section>
@@ -427,8 +430,7 @@ footer.site a:hover{text-decoration:underline}
   <button type="button" id="lbClose" aria-label="Close photo viewer">✕</button>
   <img id="lbImg" src="" alt="Enlarged photo">
 </div>
-<style>section{scroll-margin-top:70px}@media (max-width:719px){.brand>span{min-width:0}.brand .bname{font-size:1.32rem;white-space:normal;line-height:1.08}.brand .bsub{white-space:normal}}
-</style>
+<style>section{scroll-margin-top:70px}</style>
 <script>
 (function(){
   "use strict";
