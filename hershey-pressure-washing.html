@@ -69,6 +69,25 @@ footer{border-top:1px solid var(--line);margin-top:60px;padding:28px 0;color:var
 .stickybar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:60;background:rgba(8,17,32,.95);border-top:1px solid var(--line);padding:10px 14px;backdrop-filter:blur(8px)}
 .stickybar a{display:block;text-align:center;background:var(--yel);color:#231a02;font-weight:800;padding:14px;border-radius:12px;text-decoration:none;font-size:16px}
 @media(max-width:900px){.hero{grid-template-columns:1fr}.links{display:none}.svcgrid,.gal{grid-template-columns:1fr}.about,.est{grid-template-columns:1fr}.strip{grid-template-columns:repeat(2,1fr)}.wrap{padding:18px 18px 120px}.stickybar{display:block}}
+
+/* group centering, desktop (fleet fix 2026-10-24) */
+.bookwrap{margin-left:auto;margin-right:auto}
+.bookcta{margin-left:auto;margin-right:auto}
+@media(min-width:720px){
+.hero{text-align:center}
+.hero h1{margin-left:auto;margin-right:auto}
+.hero .sub{margin-left:auto;margin-right:auto}
+.hero .ctas{justify-content:center}
+.shead{justify-content:center}
+.secsub{margin-left:auto;margin-right:auto;text-align:center}
+.svc{max-width:880px;margin-left:auto;margin-right:auto}
+}
+
+/* section head centering (fleet fix 2026-10-24b) */
+@media(min-width:720px){
+h2.sec{text-align:center}
+.wrap>.eyebrow{text-align:center}
+}
 </style>
 </head>
 <body>

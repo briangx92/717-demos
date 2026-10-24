@@ -94,6 +94,20 @@ section{padding-top:3.4rem;padding-bottom:.4rem}
 .icard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.15rem 1.2rem;box-shadow:0 6px 18px -12px rgba(60,45,25,.22)}
 .icard .it{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.25rem;font-weight:600;line-height:1.2}
 .icard p{color:var(--ink2);font-size:.92rem;margin-top:.3rem}
+
+/* group centering, desktop (fleet fix 2026-10-24) */
+@media(min-width:720px){
+.shead{margin-left:auto;margin-right:auto;text-align:center}
+.hero .hcontent{align-items:center;text-align:center}
+.hero .hsub{margin-left:auto;margin-right:auto}
+.hero .hcta{justify-content:center}
+}
+
+/* section head centering (fleet fix 2026-10-24b) */
+@media(min-width:720px){
+h2.sec{text-align:center}
+.wrap>.eyebrow{text-align:center}
+}
 </style>
 </head>
 <body>

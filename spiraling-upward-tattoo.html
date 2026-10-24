@@ -61,6 +61,25 @@ h2.sec{font-size:clamp(28px,5.6vw,42px);margin:0 0 8px;font-weight:700}
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* group centering, desktop (fleet fix 2026-10-24) */
+.bookwrap{margin-left:auto;margin-right:auto}
+.bookcta{margin-left:auto;margin-right:auto}
+@media(min-width:720px){
+.hero{text-align:center}
+.hero h1{margin-left:auto;margin-right:auto}
+.hero .sub{margin-left:auto;margin-right:auto}
+.hero .ctas{justify-content:center}
+.shead{justify-content:center}
+.secsub{margin-left:auto;margin-right:auto;text-align:center}
+.svc{max-width:880px;margin-left:auto;margin-right:auto}
+}
+
+/* section head centering (fleet fix 2026-10-24b) */
+@media(min-width:720px){
+h2.sec{text-align:center}
+.wrap>.eyebrow{text-align:center}
+}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TattooParlor","name":"Spiraling Upward Tattoo & Art Gallery",
