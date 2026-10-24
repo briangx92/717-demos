@@ -246,5 +246,29 @@ panel.style.maxHeight=open?panel.scrollHeight+'px':'0px';});});
 (function(){try{fetch('https://abacus.jasoncameron.dev/hit/717digitalstudio-demos/lifes-a-treat')}catch(e){}})();
 </script>
 <style>@media (min-width:720px){.vcard,.hcard{width:min(640px,100%)}}.hours td:first-child{padding-right:1.1rem}.hours td:last-child{white-space:nowrap}</style>
+<style>
+/* Life's A Treat — desktop richness + mobile gallery carousel
+   (Brian's notes: desktop bland; gallery to a carousel on mobile).
+   Desktop: the page leaves its narrow column — wider stage, display
+   type at full size, treats in two columns, the gallery masonry at
+   three columns, a cherry dot under each title. Mobile: the gallery
+   becomes a swipeable snap carousel, photos still shown whole. */
+@media (min-width:1024px){
+  .wrap{max-width:1200px}
+  .hero{padding-top:84px;padding-bottom:72px}
+  .hero .mark{width:min(340px,68vw)}
+  h1{font-size:clamp(56px,6vw,84px)}
+  h2{font-size:clamp(38px,4vw,52px)}
+  h2::after{content:"";display:block;width:9px;height:9px;border-radius:50%;background:var(--pink);margin:16px auto 0}
+  .acc{max-width:none;display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;align-items:start}
+  .grid{columns:3;max-width:none}
+  .panel{border-top:4px solid var(--pink)}
+}
+@media (max-width:719px){
+  #gallery .grid{columns:unset;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;max-width:none;margin:36px -20px 0;padding:4px 20px 14px;scrollbar-width:none}
+  #gallery .grid::-webkit-scrollbar{display:none}
+  #gallery .grid figure{flex:0 0 84%;scroll-snap-align:center;margin:0 12px 0 0}
+}
+</style>
 </body>
 </html>
