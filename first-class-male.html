@@ -544,5 +544,29 @@ footer.site a:hover{text-decoration:underline}
 </script>
 <img src="https://abacus.jasoncameron.dev/hit/717digitalstudio-demos/first-class-male" alt="" width="1" height="1" style="position:absolute;opacity:0;pointer-events:none" aria-hidden="true">
 <style>@media (min-width:720px){.vcard,.hcard{width:min(640px,100%)}}.hours td:first-child{padding-right:1.1rem}.hours td:last-child{white-space:nowrap}</style>
+<style>
+/* Desktop centering fix — First Class Male (Brian's note: "centering
+   on desktop. use your judgement"). The page stacked three different
+   centered column widths (builder 780, hours 640, map 820) under
+   left-aligned titles, so nothing lined up. Desktop now composes on
+   one stage: services and the two-photo gallery fill the width, and
+   hours sit beside the map under one title. */
+@media (min-width:1024px){
+  .wrap{max-width:1240px}
+  .hero .himg{height:min(84vh,720px)}
+  .hero h1{font-size:clamp(2.9rem,4.2vw,4rem);max-width:16ch}
+  section{padding-top:5.2rem}
+  h2{font-size:clamp(2.4rem,3.4vw,3.2rem)}
+  section h2::after{content:"";display:block;width:64px;height:4px;border-radius:2px;margin-top:.9rem;background:var(--acc)}
+  .svc{display:grid;grid-template-columns:1fr 1fr;gap:1rem 2.5rem;align-items:start}
+  .grid{grid-template-columns:1fr 1fr}
+  .grid .gcard img{height:340px}
+  section .wrap:has(> .visit){display:grid;grid-template-columns:5fr 7fr;gap:2rem;align-items:start;grid-template-areas:"title title" "hours map"}
+  section .wrap:has(> .visit) > h2{grid-area:title}
+  section .wrap:has(> .visit) > .visit{grid-area:hours}
+  section .wrap:has(> .visit) > .mapbox{grid-area:map;max-width:none;margin:0;justify-self:stretch}
+  section .wrap:has(> .visit) .vcard{width:100%}
+}
+</style>
 </body>
 </html>
