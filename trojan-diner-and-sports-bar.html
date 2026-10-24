@@ -502,5 +502,35 @@ footer.site a:hover{text-decoration:underline}
 </script>
 <img src="https://abacus.jasoncameron.dev/hit/717digitalstudio-demos/trojan-diner-and-sports-bar" alt="" width="1" height="1" style="position:absolute;opacity:0;pointer-events:none" aria-hidden="true">
 <style>@media (min-width:720px){.vcard,.hcard{width:min(640px,100%)}}.hours td:first-child{padding-right:1.1rem}.hours td:last-child{white-space:nowrap}</style>
+<style>
+/* Desktop flare — Trojan Diner (Brian's note: "needs that restaurant
+   flare"). Desktop only; mobile untouched. Diner register after the
+   SpotHopper structure: a checkerboard strip under the hero, the
+   menu set as a printed card in two columns, food photography
+   leading with a wide banner shot, double-rule title flourishes,
+   hours beside the map. */
+@media (min-width:1024px){
+  .wrap{max-width:1240px}
+  .hero .himg{height:min(86vh,740px)}
+  .hero h1{font-size:clamp(3rem,4.4vw,4.2rem);max-width:15ch}
+  .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:28px;z-index:2;background:repeating-conic-gradient(var(--acc) 0% 25%,#fffdf7 0% 50%);background-size:28px 28px}
+  section{padding-top:5.2rem}
+  h2{font-size:clamp(2.4rem,3.4vw,3.2rem)}
+  section h2::after{content:"";display:block;width:120px;height:3px;margin-top:.95rem;border-top:2px solid var(--acc);border-bottom:2px solid var(--acc)}
+  section:has(.svc-item) .wrap{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:2.6rem 2.8rem;box-shadow:var(--shadow)}
+  .svc{display:grid;grid-template-columns:1fr 1fr;gap:1rem 2.5rem;align-items:start}
+  .grid{grid-template-columns:repeat(4,1fr);gap:1rem}
+  .grid .gcard{display:flex;flex-direction:column}
+  .grid .gcard:first-child{grid-column:span 2}
+  .grid .gcard img{height:300px}
+  .grid .gcard:first-child img{flex:1;height:auto;min-height:300px}
+  .grid .gcard .cap b{font-family:'Fraunces',Georgia,serif;font-size:1.15rem}
+  section .wrap:has(> .visit){display:grid;grid-template-columns:5fr 7fr;gap:2rem;align-items:start;grid-template-areas:"title title" "hours map"}
+  section .wrap:has(> .visit) > h2{grid-area:title}
+  section .wrap:has(> .visit) > .visit{grid-area:hours}
+  section .wrap:has(> .visit) > .mapbox{grid-area:map;max-width:none;margin:0;justify-self:stretch}
+  section .wrap:has(> .visit) .vcard{width:100%}
+}
+</style>
 </body>
 </html>
