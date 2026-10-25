@@ -17,9 +17,9 @@
 </script>
 <style>
 :root{
-  --bg:#faf6ee; --card:#fffdf7; --ink:#2c2620; --ink2:#6f6154; --line:#e7dcc8;
-  --acc:#1e4d3a; --acc-deep:#143628; --acc-soft:rgba(30,77,58,.07);
-  --shadow:0 18px 40px -18px rgba(60,45,25,.28);
+  --bg:#17140f; --card:#221d16; --ink:#f3ead8; --ink2:#b8a98f; --line:#3a3226;
+  --acc:#c8402a; --acc-deep:#9c2f1e; --acc-soft:rgba(200,64,42,.12);
+  --shadow:0 18px 40px -18px rgba(0,0,0,.6);
   --r:16px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -97,6 +97,7 @@ section{padding-top:3.4rem;padding-bottom:.4rem}
 .icard .it{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.25rem;font-weight:600;line-height:1.2}
 .icard p{color:var(--ink2);font-size:.92rem;margin-top:.3rem}
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <style>
@@ -515,6 +516,24 @@ footer.site a:hover{text-decoration:underline}
   .menucard{max-width:1140px;column-count:2;column-gap:3.5rem}
   .mrow{break-inside:avoid}
 }
+</style>
+
+<style>
+/* VINNIE'S REROLL v2 — Route 11 roadhouse (Brian rerolled 2026-10-24) */
+h1,h2,.hname{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.01em}
+.hname{font-size:clamp(2.6rem,8vw,4.6rem)}
+header.site{border-bottom:3px solid var(--acc)}
+.menucard{background:#100e0a;border-color:#3a3226}
+.mrow .dot{border-color:#57492f}
+.gcard{background:var(--card)}
+.gcard .cap b{color:var(--ink)}
+.gcard .cap span{color:var(--ink2)}
+.pill{background:#221d16;border:1px solid var(--line);color:var(--ink)}
+.chip{background:#221d16;border-color:var(--line);color:var(--ink)}
+.btn-ghost{background:#221d16;border:1px solid var(--line);color:var(--ink)}
+input,select,textarea{background:#100e0a;color:var(--ink);border-color:var(--line)}
+.hcard,.vcard{background:var(--card)}
+footer.site{background:#100e0a}
 </style>
 </body>
 </html>
