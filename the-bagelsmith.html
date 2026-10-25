@@ -351,10 +351,12 @@ footer.site a:hover{text-decoration:underline}
             <tr data-day="0"><td>Sunday</td><td>Closed</td></tr>
           </table>
         </div>
-      </div>
-      <div class="mapbox reveal">
+      
+<div class="mapbox reveal">
         <iframe title="Map to Bagelsmith Restaurant & Deli, 2443 Butler St, Easton, PA 18042" src="https://www.google.com/maps?q=2443+Butler+St%2C+Easton%2C+PA+18042&output=embed" loading="lazy"></iframe>
       </div>
+</div>
+      
     </div>
   </section>
 </main>
@@ -569,6 +571,10 @@ footer.site a:hover{text-decoration:underline}
   .menucard{max-width:1140px;column-count:2;column-gap:3.5rem}
   .mrow{break-inside:avoid}
 }
+</style>
+<style>
+/* BAGELSMITH VISIT ROW (Brian denial 2026-10-24: maps and hours beside each other) */
+@media(min-width:1024px){.visit{grid-template-columns:5fr 7fr;align-items:start}.visit .vcard{max-width:none}.visit .mapbox{max-width:none;margin:0}}
 </style>
 </body>
 </html>
