@@ -268,5 +268,27 @@ dialog#lb::backdrop{background:rgba(10,15,12,.8)}
 })();
 </script>
 <img src="https://abacus.jasoncameron.dev/hit/717digitalstudio-demos/taqueria-laurita" alt="" width="1" height="1" style="position:absolute;opacity:0;pointer-events:none">
+
+<style>
+/* DESKTOP COMPOSITION v2 (Brian 2026-10-24: demos read as mobile columns on desktop) */
+@media(min-width:1024px){
+  .wrap{max-width:1280px}
+  section{padding:4.4rem 0}
+  .hero{display:grid;grid-template-columns:5fr 7fr;background:var(--bg)}
+  .hero .himg{grid-column:2;grid-row:1;height:660px}
+  .hero .scrim{display:none}
+  .hero .hcontent{position:static;grid-column:1;grid-row:1;display:flex;align-items:center;background:var(--bg)}
+  .hero .inner{max-width:none;margin:0;padding:3rem 2.5rem 3rem max(20px,calc((100vw - 1280px)/2 + 20px))}
+  .hero h1{color:var(--ink);text-shadow:none;font-size:4.3rem}
+  .hero .hsub{color:var(--acc2)}
+  .hero p{color:var(--mut)}
+  .hero .pill{background:#fff;border:1px solid var(--line);color:var(--acc)}
+  .hero .btn-ghost{background:var(--panel);border:1px solid var(--line)}
+  .menucard{max-width:1140px;column-count:2;column-gap:3.5rem}
+  .mrow{break-inside:avoid}
+  #work .grid{grid-template-columns:repeat(4,1fr)}
+  .chips{padding-top:1.5rem}
+}
+</style>
 </body>
 </html>
