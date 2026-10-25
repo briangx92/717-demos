@@ -544,5 +544,25 @@ footer.site a:hover{text-decoration:underline}
 </script>
 <img src="https://abacus.jasoncameron.dev/hit/717digitalstudio-demos/top-shelf-barbershop" alt="" width="1" height="1" style="position:absolute;opacity:0;pointer-events:none" aria-hidden="true">
 <style>.gcard .cap{display:block;width:100%;text-align:center}</style>
+
+<style>
+/* DESKTOP COMPOSITION v2 (Brian 2026-10-24: demos read as mobile columns on desktop) */
+@media(min-width:1024px){
+  .wrap{max-width:1280px}
+  .hero{display:grid;grid-template-columns:5fr 7fr;background:var(--bg)}
+  .hero .himg{grid-column:2;grid-row:1;position:relative;inset:auto;height:640px}
+  .hero .scrim{display:none}
+  .hero .hcontent{position:static;grid-column:1;grid-row:1;display:flex;align-items:center;background:var(--bg)}
+  .hero .hcontent .wrap{max-width:none;margin:0;padding:3rem 2.5rem 3rem max(20px,calc((100vw - 1280px)/2 + 20px))}
+  .hero h1{color:var(--ink);text-shadow:none}
+  .hero .hcontent h1{color:var(--ink);text-shadow:none}
+  .hero .hcontent .hname{color:var(--ink);text-shadow:none}
+  .hero .hsub,.hero p.lede,.hero .lede{color:var(--ink2)}
+  .hero .pill{background:var(--card,var(--panel));border:1px solid var(--line);color:var(--ink)}
+  .hero .btn-ghost{background:var(--card,var(--panel));border:1px solid var(--line);color:var(--ink)}
+  .menucard{max-width:1140px;column-count:2;column-gap:3.5rem}
+  .mrow{break-inside:avoid}
+}
+</style>
 </body>
 </html>
