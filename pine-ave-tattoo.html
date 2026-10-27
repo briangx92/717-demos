@@ -94,6 +94,22 @@ h2.sec{text-align:center}
 "sameAs":["https://www.facebook.com/pineavetattooco/","https://www.instagram.com/pineavetattooco"],
 "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Wednesday","Thursday","Friday","Saturday"],"opens":"12:00","closes":"19:00"}]}
 </script>
+
+<style>
+/* PINE AVE PHOTO HERO (2026-10-27, Brian denial fix: change the hero into something else) */
+.hero{position:relative;isolation:isolate;overflow:hidden;border-radius:20px;margin-top:22px;padding:80px 24px 62px}
+.heroimg{position:absolute;inset:0;max-width:none;margin:0;border:0;border-radius:0;z-index:0}
+.heroimg img{width:100%;height:100%;object-fit:cover;object-position:center 26%}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(16,12,9,.55),rgba(16,12,9,.68) 55%,rgba(16,12,9,.86))}
+.hero .kick,.hero h1,.hero .sub,.hero .chips,.hero .ctas{position:relative;z-index:2}
+.hero .kick{color:#f2a99b}
+.hero h1{color:#fff;text-shadow:0 2px 22px rgba(0,0,0,.45)}
+.hero .sub{color:#ece4d3}
+.hero .chip{background:rgba(18,14,10,.5);border-color:rgba(255,255,255,.42);color:#fff}
+.hero .chip .st{color:#ffb59d}
+.hero .btn-line{border-color:#fff;color:#fff;background:rgba(18,14,10,.35)}
+@media(max-width:720px){.hero{padding:58px 18px 46px}}
+</style>
 </head><body id="top">
 
 <header><div class="wrap hbar">
