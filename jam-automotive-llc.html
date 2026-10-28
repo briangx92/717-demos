@@ -8,7 +8,7 @@
 <meta property="og:title" content="JAM Automotive LLC · Shoemakersville, PA">
 <meta property="og:description" content="JAM Automotive LLC is an auto repair shop at 147 Main St in Shoemakersville, PA. Its own listing bills it as 'Your Local Hometown Auto Mechanic,' offering inspection, emissions, alignments, brakes, A/C service, diagnostics, and general repair.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23b22222'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' fill='%23faf6ee' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000000'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' fill='%23faf6ee' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,8 +17,8 @@
 </script>
 <style>
 :root{
-  --bg:#f7f7f7; --card:#ffffff; --ink:#333333; --ink2:#666666; --line:#e0e0e0;
-  --acc:#b22222; --acc-deep:#7e1616; --acc-soft:rgba(178,34,34,.08);
+  --bg:#070707; --card:#000000; --ink:#f2f2f2; --ink2:#b8b8b8; --line:#262626;
+  --acc:#000000; --acc-deep:#000000; --acc-soft:rgba(255,255,255,.08);
   --shadow:0 18px 40px -18px rgba(60,45,25,.28);
   --r:16px;
 }
@@ -170,8 +170,18 @@ footer.site a:hover{text-decoration:underline}
 .lightbox.on{display:flex}
 .lightbox img{max-width:100%;max-height:86vh;border-radius:12px}
 .lightbox button{position:absolute;top:1rem;right:1rem;background:rgba(255,253,247,.12);color:#fff;border:1px solid rgba(255,255,255,.4);width:42px;height:42px;border-radius:50%;font-size:1.2rem;cursor:pointer}
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-.reveal.in{opacity:1;transform:none}
+/* SCROLL REVEAL (Brian's pick, Design Review scroll-reveal submit 2026-10-28: scrubbed engine) — content is visible by default; where view() timelines are supported the reveal is dragged by the scrollbar (plays in, reverses out); older browsers fall back to the fire-once script in the tail. */
+@keyframes rise717{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@supports (animation-timeline: view()){
+  .reveal{animation:rise717 linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
+}
+@supports not (animation-timeline: view()){
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+}
+@media (prefers-reduced-motion: reduce){
+  .reveal{animation:none;opacity:1;transform:none;transition:none}
+}
 .artifact{display:block;margin:0 auto}
 @media (max-width:719px){
   .hcall{display:none}
@@ -434,6 +444,16 @@ footer.site a:hover{text-decoration:underline}
 
 <style>/* MESSAGE-ME BUTTON (Brian, 2026-10-27) */.msgme-wrap{display:flex;justify-content:center;padding:30px 20px 40px}.msgme-btn{display:inline-block;background:#0084ff;color:#fff;font:600 15px/1.2 Inter,system-ui,-apple-system,sans-serif;letter-spacing:.01em;padding:14px 26px;border-radius:999px;text-decoration:none;box-shadow:0 8px 22px rgba(0,132,255,.35)}@media(max-width:719px){.msgme-wrap{padding-bottom:96px}}</style>
 <div class="msgme-wrap"><a class="msgme-btn" href="https://m.me/717digitalstudio" target="_blank" rel="noopener">Message me about this site</a></div>
+<style>/* SEND ANIMATION (Brian's tune, Design Review send-animation, 2026-10-28: envelope, 2000ms) — plays on the request send tap, then the messages app opens. It celebrates the tap only; the customer's own app does the sending. */
+.sendfx{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:200;pointer-events:none}
+.sendfx.on{display:flex}
+.sendenv{width:120px;height:80px;background:var(--card);border:1.5px solid var(--acc);border-radius:8px;position:relative;animation:envfly 2000ms cubic-bezier(.3,.6,.4,1) forwards}
+.sendenv:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,color-mix(in srgb,var(--acc) 25%,transparent) 49%,transparent 52%),linear-gradient(90deg,transparent 49%,color-mix(in srgb,var(--acc) 18%,transparent) 50%,transparent 51%);border-radius:8px}
+.sendenv:after{content:"";position:absolute;left:0;right:0;top:0;height:38px;background:color-mix(in srgb,var(--acc) 16%,transparent);clip-path:polygon(0 0,100% 0,50% 100%)}
+@keyframes envfly{0%{transform:scale(.6) translateY(30px);opacity:0}18%{transform:scale(1) translateY(0);opacity:1}45%{transform:scale(1) rotate(-2deg)}100%{transform:scale(.9) translate(300px,-240px) rotate(10deg);opacity:0}}
+@media (prefers-reduced-motion: reduce){.sendenv{animation:none}}
+</style>
+<div class="sendfx" id="sendFx" aria-hidden="true"><div class="sendenv"></div></div>
 <div class="callbar">
   <a class="btn btn-acc" href="tel:+14846603379">Call Us</a>
   <a class="btn btn-ghost" href="#book">Request a visit</a>
@@ -446,9 +466,13 @@ footer.site a:hover{text-decoration:underline}
 <script>
 (function(){
   "use strict";
+  /* Scroll reveal fallback: browsers with view() timelines run the CSS scrub in the head and need no script. Older browsers get the original fire-once observer. */
   var revealEls=document.querySelectorAll('.reveal');
   function showAll(){revealEls.forEach(function(el){el.classList.add('in')})}
-  if('IntersectionObserver' in window){
+  var viewTlOk=false;
+  try{viewTlOk=window.CSS&&CSS.supports('animation-timeline: view()')}catch(e){}
+  if(viewTlOk){/* CSS scrub handles it */}
+  else if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
     revealEls.forEach(function(el){io.observe(el)});
     setTimeout(showAll,2600);
@@ -544,6 +568,7 @@ footer.site a:hover{text-decoration:underline}
       var ph=document.getElementById('fPhone').value.replace(/\D/g,'');
       if(!nm)return 'Add your name so Mike knows who is asking.';
       if(ph.length<7)return 'Add a phone number Mike can reach you at.';
+      if(window.__refRequired&&!(window.__refNames&&window.__refNames.length))return 'Add at least one reference photo so Mike can see the idea.';
     }
     return '';
   }
@@ -553,6 +578,7 @@ footer.site a:hover{text-decoration:underline}
     var nt=document.getElementById('fNotes').value.trim();
     var lines=['Hi Mike, this is '+nm+'.','I would like to request an appointment.','Services: '+state.services.join(', '),'Preferred: '+state.day+', '+state.time.toLowerCase()];
     if(nt)lines.push('Note: '+nt);
+    if(window.__refNames&&window.__refNames.length)lines.push('Reference photos: '+window.__refNames.join(', '));
     lines.push('You can reach me at '+ph+'.');
     return lines.join('\n');
   }
@@ -598,6 +624,22 @@ footer.site a:hover{text-decoration:underline}
   }
 })();
 </script>
+<script>
+/* SEND ANIMATION hook: intercept the send tap, play the envelope, then hand off to the messages app. Reduced motion or no overlay = plain tap, unchanged. */
+(function(){
+  var sb=document.getElementById('smsBtn'),fx=document.getElementById('sendFx');
+  if(!sb||!fx)return;
+  var busy=false;
+  sb.addEventListener('click',function(e){
+    if(busy){e.preventDefault();return}
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    e.preventDefault();busy=true;
+    var href=sb.href;
+    fx.classList.remove('on');void fx.offsetWidth;fx.classList.add('on');
+    setTimeout(function(){window.location.href=href},2000);
+  });
+})();
+</script>
 <img src="https://abacus.jasoncameron.dev/hit/717digitalstudio-demos/jam-automotive-llc" alt="" width="1" height="1" style="position:absolute;opacity:0;pointer-events:none" aria-hidden="true">
 <style>
 /* reroll 2026-10-28: floating nav + lit primary + video hero (tuned standards, baked in) */
@@ -610,6 +652,10 @@ header.site{position:fixed;top:12px;left:50%;transform:translateX(-50%);width:mi
 section{scroll-margin-top:96px}
 .btn-acc{background:linear-gradient(180deg,color-mix(in srgb,var(--acc) 88%,#ffffff),var(--acc));box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -2px 4px rgba(0,0,0,.18),0 2px 6px rgba(0,0,0,.35),0 8px 24px color-mix(in srgb,var(--acc) 45%,transparent)}
 .btn-acc:active{box-shadow:inset 0 2px 5px rgba(0,0,0,.28),0 1px 3px rgba(0,0,0,.35),0 4px 12px color-mix(in srgb,var(--acc) 45%,transparent);transform:translateY(1px)}
+</style>
+<style>/* BRIAN TWEAKPAD TUNE (2026-10-28 submit): headline 140%, hero shade 55 */
+.hero h1{font-size:clamp(2.31rem,6.44vw,3.64rem)}
+.hero .scrim{background:linear-gradient(180deg,rgba(0,0,0,.30),rgba(0,0,0,.55))}
 </style>
 </body>
 </html>
