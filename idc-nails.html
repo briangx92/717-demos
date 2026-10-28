@@ -111,6 +111,11 @@ section{padding-top:3.4rem;padding-bottom:.4rem}
 h2.sec{text-align:center}
 .wrap>.eyebrow{text-align:center}
 }
+
+/* --- hero video layer (2026-10-28) --- */
+.hero .hvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+@media (max-width:719px){.hero .hvid{object-position:center 14%}}
+@media (prefers-reduced-motion:reduce){.hero .hvid{display:none}}
 </style>
 </head>
 <body>
@@ -242,6 +247,7 @@ footer.site a:hover{text-decoration:underline}
 <main id="top">
   <div class="hero">
     <img class="himg" src="" alt="Inside IDC Nails">
+    <video class="hvid" autoplay muted loop playsinline preload="auto" src="idc-nails-hero.mp4" aria-hidden="true"></video>
     <div class="scrim"></div>
     <div class="hcontent">
       <div class="wrap hwrap">
