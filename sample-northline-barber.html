@@ -5,7 +5,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0c0d10;--panel:#141519;--panel2:#1a1b20;--ink:#f0ead9;--ink2:#a89e87;--line:#2a2b31;--acc:#c8a24a;--acc-deep:#9a7a30;--acc-soft:rgba(200,162,74,.14);--fd:'Oswald',sans-serif;--fb:'Inter',sans-serif;--rad:16px;
---nav-blur:14px;--nav-tint:.45;--nav-inset:14px;--nav-rad:18px}
+--nav-blur:0px;--nav-tint:.35;--nav-inset:28px;--nav-rad:30px;--shade:.54}
 *{margin:0;box-sizing:border-box}html{scroll-behavior:smooth}html,body{overflow-x:clip}
 body{background:var(--bg);color:var(--ink);font-family:var(--fb);line-height:1.55}
 .wrap{max-width:1280px;margin:0 auto;padding-left:20px;padding-right:20px}
@@ -199,11 +199,11 @@ sum.style.display='block';sum.innerHTML='<b>Request ready.</b><br>'+picked().joi
   <button class="tp-x" id="tpclose" type="button" aria-label="Close">✕</button>
   <h3>Director&rsquo;s cut</h3>
   <div class="tstage" id="tstage"><video id="tvid" muted loop playsinline></video><div class="tshade"></div><div class="tnav"><span>NORTHLINE BARBER CO.</span><span class="tpill">Call Us</span></div></div>
-  <div class="trow"><label for="t-blur">Nav blur</label><input id="t-blur" type="range" min="0" max="30" step="1" value="14"><output id="o-blur">14px</output></div>
-  <div class="trow"><label for="t-tint">Nav tint</label><input id="t-tint" type="range" min="0" max="90" step="1" value="45"><output id="o-tint">0.45</output></div>
-  <div class="trow"><label for="t-inset">Nav inset</label><input id="t-inset" type="range" min="0" max="28" step="1" value="14"><output id="o-inset">14px</output></div>
-  <div class="trow"><label for="t-rad">Nav radius</label><input id="t-rad" type="range" min="0" max="30" step="1" value="18"><output id="o-rad">18px</output></div>
-  <div class="trow"><label for="t-shade">Hero shade</label><input id="t-shade" type="range" min="10" max="95" step="1" value="78"><output id="o-shade">0.78</output></div>
+  <div class="trow"><label for="t-blur">Nav blur</label><input id="t-blur" type="range" min="0" max="30" step="1" value="0"><output id="o-blur">0px</output></div>
+  <div class="trow"><label for="t-tint">Nav tint</label><input id="t-tint" type="range" min="0" max="90" step="1" value="35"><output id="o-tint">0.35</output></div>
+  <div class="trow"><label for="t-inset">Nav inset</label><input id="t-inset" type="range" min="0" max="28" step="1" value="28"><output id="o-inset">28px</output></div>
+  <div class="trow"><label for="t-rad">Nav radius</label><input id="t-rad" type="range" min="0" max="30" step="1" value="30"><output id="o-rad">30px</output></div>
+  <div class="trow"><label for="t-shade">Hero shade</label><input id="t-shade" type="range" min="10" max="95" step="1" value="54"><output id="o-shade">0.54</output></div>
   <button class="tsub" id="tsubmit" type="button">SUBMIT MY TUNE</button>
   <button class="tright" id="tright" type="button">This draft is right as-is</button>
   <div id="tres"></div>
