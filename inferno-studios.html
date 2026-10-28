@@ -212,42 +212,14 @@ section[id]{scroll-margin-top:96px}
   <p class="chap">Chapter Three · Book</p>
   <h2 class="sec">Build your request</h2>
   <p class="lede">Answer three quick steps. At the end you get the whole request as one message to text, call in, or send on Facebook. Nothing is sent until you tap a button.</p>
-  <form class="formcard" id="reqForm">
-    <div class="stepdots"><span class="on"></span><span></span><span></span></div>
-    <div class="gstep on" data-step="1">
-      <h3>1 · What style?</h3>
-      <div class="opts" data-field="Style">
-        <button type="button" class="opt">Black &amp; grey</button>
-        <button type="button" class="opt">Color</button>
-        <button type="button" class="opt">Fine line &amp; script</button>
-        <button type="button" class="opt">Traditional</button>
-        <button type="button" class="opt">Not sure yet</button>
-      </div>
-    </div>
-    <div class="gstep" data-step="2">
-      <h3>2 · Where and how big?</h3>
-      <div class="fld"><label for="fPlace">Placement</label>
-        <input type="text" id="fPlace" placeholder="e.g. forearm, back, ribs"></div>
-      <div class="opts" data-field="Size">
-        <button type="button" class="opt">Small, palm-sized</button>
-        <button type="button" class="opt">Medium</button>
-        <button type="button" class="opt">Large piece</button>
-      </div>
-    </div>
-    <div class="gstep" data-step="3">
-      <h3>3 · The idea &amp; your details</h3>
-      <div class="fld"><label for="fDesc">Describe the piece</label>
-        <textarea id="fDesc" rows="3" placeholder="What are you picturing? Reference photos help when you text."></textarea></div>
-      <div class="fld"><label for="fName">Your name</label>
-        <input type="text" id="fName" autocomplete="name"></div>
-      <div class="fld"><label for="fPhone">Your phone</label>
-        <input type="tel" id="fPhone" autocomplete="tel" placeholder="So the shop can reach you"></div>
-    </div>
-    <div class="gnav">
-      <button type="button" class="btn btn-line" id="gBack" style="visibility:hidden">Back</button>
-      <button type="button" class="btn btn-ink" id="gNext">Next</button>
-    </div>
-    <div id="reqSummary">
+  <form class="formcard gform" id="reqForm">
+<div class="gf-head"><div class="gf-prog"><span id="gfBar"></span></div><p class="gf-steplabel" id="gfStepLabel">Step 1 of 3</p><h3 class="gf-title" id="gfTitle">What style?</h3><p class="gf-hint" id="gfHint">Pick the closest match. You can fine-tune it in the text.</p></div>
+<div class="gstep on" data-step="1"><div class="opts" data-field="Style"><button type="button" class="opt"><span class="odot"></span>Black &amp; grey</button><button type="button" class="opt"><span class="odot"></span>Color</button><button type="button" class="opt"><span class="odot"></span>Fine line &amp; script</button><button type="button" class="opt"><span class="odot"></span>Traditional</button><button type="button" class="opt"><span class="odot"></span>Not sure yet</button></div></div>
+<div class="gstep" data-step="2"><div class="fld"><label for="fPlace">Placement</label><input type="text" id="fPlace" placeholder="e.g. forearm, back, ribs"></div><p class="gf-sublabel">Rough size</p><div class="opts" data-field="Size"><button type="button" class="opt"><span class="odot"></span>Small, palm-sized</button><button type="button" class="opt"><span class="odot"></span>Medium</button><button type="button" class="opt"><span class="odot"></span>Large piece</button></div></div>
+<div class="gstep" data-step="3"><div class="fld"><label for="fDesc">Describe the piece</label><textarea id="fDesc" rows="3" placeholder="What are you picturing? Reference photos help when you text."></textarea></div><div class="fld"><label for="fName">Your name</label><input type="text" id="fName" autocomplete="name"></div><div class="fld"><label for="fPhone">Your phone</label><input type="tel" id="fPhone" autocomplete="tel" inputmode="tel" placeholder="(716) 555-0123"></div></div>
+<p class="gf-err" id="gfErr" role="alert" hidden></p>
+<div class="gnav"><button type="button" class="btn btn-line" id="gBack" style="visibility:hidden">Back</button><button type="button" class="btn btn-ink" id="gNext">Next</button></div>
+<div id="reqSummary">
       <h3>Your request is ready</h3>
       <p id="reqText"></p>
       <div class="sendrow">
@@ -290,36 +262,54 @@ section[id]{scroll-margin-top:96px}
   document.getElementById('bkPrev').addEventListener('click', function(){ showB(bi-1); });
   document.getElementById('bkNext').addEventListener('click', function(){ showB(bi+1); });
   var state={Style:'',Size:''}, step=1;
-  var steps=Array.prototype.slice.call(document.querySelectorAll('.gstep'));
-  var dots=Array.prototype.slice.call(document.querySelectorAll('.stepdots span'));
+  var steps=Array.prototype.slice.call(document.querySelectorAll('#reqForm .gstep'));
   var back=document.getElementById('gBack'), next=document.getElementById('gNext');
-  document.querySelectorAll('.opts').forEach(function(group){
+  var errBox=document.getElementById('gfErr');
+  var TITLES={1:'What style?',2:'Where and how big?',3:'The idea & your details'};
+  var HINTS={1:'Pick the closest match. You can fine-tune it in the text.',2:'Placement first, then the rough size.',3:'A short description helps. Reference photos can ride along in the text.'};
+  function err(msg){ if(msg){ errBox.textContent=msg; errBox.hidden=false; } else { errBox.hidden=true; errBox.textContent=''; } }
+  document.querySelectorAll('#reqForm .opts').forEach(function(group){
     var field=group.getAttribute('data-field');
     group.querySelectorAll('.opt').forEach(function(b){ b.addEventListener('click', function(){
       group.querySelectorAll('.opt').forEach(function(x){ x.classList.remove('sel'); });
-      b.classList.add('sel'); state[field]=b.textContent.trim();
+      b.classList.add('sel'); state[field]=b.textContent.trim(); err('');
     }); });
   });
+  var phoneEl=document.getElementById('fPhone');
+  function fmtPhone(el){
+    var d=el.value.replace(/\D/g,'');
+    if(d.length>10 && d.charAt(0)==='1') d=d.slice(1);
+    d=d.slice(0,10);
+    if(d.length>6) el.value='('+d.slice(0,3)+') '+d.slice(3,6)+'-'+d.slice(6);
+    else if(d.length>3) el.value='('+d.slice(0,3)+') '+d.slice(3);
+    else if(d.length>0) el.value='('+d;
+    else el.value='';
+  }
+  phoneEl.addEventListener('input', function(){ fmtPhone(phoneEl); });
   function showStep(n){
     step=n;
-    steps.forEach(function(s){ s.classList.toggle('on', +s.getAttribute('data-step')===n); });
-    dots.forEach(function(d,i){ d.classList.toggle('on', i<n); });
+    steps.forEach(function(st){ st.classList.toggle('on', +st.getAttribute('data-step')===n); });
+    document.getElementById('gfBar').style.width=(n/3*100)+'%';
+    document.getElementById('gfStepLabel').textContent='Step '+n+' of 3';
+    document.getElementById('gfTitle').textContent=TITLES[n];
+    document.getElementById('gfHint').textContent=HINTS[n];
     back.style.visibility = n===1 ? 'hidden' : 'visible';
     next.textContent = n===3 ? 'Build my request' : 'Next';
     document.getElementById('reqSummary').classList.remove('show');
+    err('');
   }
   back.addEventListener('click', function(){ if(step>1) showStep(step-1); });
   next.addEventListener('click', function(){
-    if(step===1){ if(!state.Style){ steps[0].querySelector('.opt').focus(); return; } showStep(2); return; }
+    if(step===1){ if(!state.Style){ err('Pick a style to continue.'); return; } showStep(2); return; }
     if(step===2){
       var pl=document.getElementById('fPlace');
-      if(!pl.value.trim()){ pl.focus(); return; }
-      if(!state.Size){ return; }
+      if(!pl.value.trim()){ err('Tell us where the piece goes.'); pl.focus(); return; }
+      if(!state.Size){ err('Pick a rough size.'); return; }
       showStep(3); return;
     }
-    var name=document.getElementById('fName'), phone=document.getElementById('fPhone'), desc=document.getElementById('fDesc');
-    if(!name.value.trim()){ name.focus(); return; }
-    if(!phone.value.trim()){ phone.focus(); return; }
+    var name=document.getElementById('fName'), phone=phoneEl, desc=document.getElementById('fDesc');
+    if(!name.value.trim()){ err('Your name, so the shop knows who is texting.'); name.focus(); return; }
+    if(phone.value.replace(/\D/g,'').length<7){ err('That phone number looks short. Add the full number so the shop can reach you.'); phone.focus(); return; }
     var txt='Tattoo booking request: Inferno Studios\nStyle: '+state.Style+
       '\nPlacement: '+document.getElementById('fPlace').value.trim()+
       '\nSize: '+state.Size+
@@ -327,8 +317,9 @@ section[id]{scroll-margin-top:96px}
       '\nName: '+name.value.trim()+'\nPhone: '+phone.value.trim();
     document.getElementById('reqText').textContent=txt;
     document.getElementById('smsBtn').href='sms:+17167901110?&body='+encodeURIComponent(txt);
-    var s=document.getElementById('reqSummary'); s.classList.add('show'); s.scrollIntoView({behavior:'smooth', block:'center'});
+    var sm=document.getElementById('reqSummary'); sm.classList.add('show'); sm.scrollIntoView({behavior:'smooth', block:'center'});
   });
+  showStep(1);
 })();
 </script>
 <img src="https://abacus.jasoncameron.dev/hit/717digitalstudio-demos/inferno-studios" alt="" width="1" height="1" style="display:none">
@@ -350,5 +341,29 @@ section[id]{scroll-margin-top:96px}
 .hero-ov .stars{color:#fff}
 .hero-ov .sub{color:rgba(255,255,255,.88)}
 @media (max-width:719px){.heroX .ovband{height:94svh;min-height:620px}.hero-ov{padding:106px 18px 42px}}
+</style>
+
+<style>
+/* form structure (Brian 2026-10-28 denial fix: 'Form needs structure' - guided steps, progress, error state, fmtPhone) */
+#reqForm{scroll-margin-top:110px}
+.gform .gf-head{margin-bottom:18px}
+.gf-prog{height:6px;border-radius:99px;background:var(--line);overflow:hidden;margin-bottom:14px}
+.gf-prog span{display:block;height:100%;width:33.33%;background:var(--ink);border-radius:99px;transition:width .3s ease}
+.gf-steplabel{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#8a8378;margin:0 0 4px;font-weight:700}
+.gf-title{font-family:Anton,sans-serif;font-size:1.5rem;font-weight:400;letter-spacing:.01em;margin:0;color:var(--ink)}
+.gf-hint{color:#6d675c;font-size:.94rem;margin:6px 0 0}
+#reqForm .opts{display:grid;gap:9px}
+#reqForm .opt{display:flex;align-items:center;gap:11px;text-align:left;padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;background:#fff;font-size:1rem;font-weight:600;color:var(--ink);cursor:pointer;width:100%}
+#reqForm .opt .odot{width:17px;height:17px;border-radius:50%;border:2px solid #b9b2a4;flex:none}
+#reqForm .opt.sel{border-color:var(--ink);background:var(--ink);color:#fff}
+#reqForm .opt.sel .odot{border-color:#fff;background:#fff;box-shadow:inset 0 0 0 3px var(--ink)}
+.gf-sublabel{font-weight:700;margin:16px 0 8px;font-size:.92rem;color:var(--ink)}
+#reqForm .fld{margin-bottom:14px}
+#reqForm .fld label{display:block;font-weight:700;font-size:.92rem;margin-bottom:6px;color:var(--ink)}
+#reqForm .fld input,#reqForm .fld textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font-size:1rem;font-family:inherit;background:#fff;color:var(--ink)}
+#reqForm .fld input:focus,#reqForm .fld textarea:focus{border-color:var(--ink);outline:none}
+.gf-err{color:#b3261e;font-weight:600;font-size:.93rem;margin:12px 0 0}
+#reqForm .gnav{display:flex;gap:10px;margin-top:20px}
+#reqForm #gNext{flex:1}
 </style>
 </body></html>
