@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MARLOWE — Barber Atelier · Framer-grade motion showpiece (concept)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0a08; --bg2:#12100c; --panel:#171410; --ink:#f2ead8; --ink2:#a99e86;
+  --acc:#c9a35c; --acc2:#e8c987; --line:#2b2619; --rad:18px;
+  --fd:'Fraunces',serif; --fb:'Space Grotesk',sans-serif;
+}
+*{margin:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip;background:var(--bg)}
+body{color:var(--ink);font-family:var(--fb);line-height:1.55;-webkit-font-smoothing:antialiased}
+::selection{background:var(--acc);color:#0b0a08}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1320px;margin:0 auto;padding-left:22px;padding-right:22px}
+/* film grain */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:200;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  animation:grain 8s steps(10) infinite}
+@keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,3%)}}
+/* preloader */
+#loader{position:fixed;inset:0;z-index:400;background:#060504;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;transition:transform .9s cubic-bezier(.76,0,.24,1)}
+#loader.done{transform:translateY(-101%)}
+#loader .pct{font-family:var(--fd);font-weight:900;font-size:clamp(4rem,14vw,9rem);line-height:1;color:var(--ink)}
+#loader .bar{width:min(420px,70vw);height:2px;background:#2b2619;overflow:hidden}
+#loader .bar i{display:block;height:100%;width:0;background:var(--acc)}
+#loader .word{letter-spacing:.4em;text-transform:uppercase;font-size:.68rem;color:var(--ink2)}
+/* scroll progress */
+#prog{position:fixed;top:0;left:0;height:3px;width:100%;z-index:300;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--acc),var(--acc2))}
+/* custom cursor */
+#cur,#curR{position:fixed;top:0;left:0;pointer-events:none;z-index:350;border-radius:50%;display:none}
+@media(pointer:fine){#cur,#curR{display:block}}
+#cur{width:8px;height:8px;background:var(--acc);transform:translate(-50%,-50%)}
+#curR{width:38px;height:38px;border:1.5px solid rgba(201,163,92,.65);transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s,border-color .25s}
+#curR.big{width:74px;height:74px;background:rgba(201,163,92,.12);border-color:rgba(201,163,92,.9)}
+/* nav */
+header.site{position:fixed;inset:16px 16px auto 16px;z-index:120;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 18px;border-radius:999px;background:rgba(11,10,8,.55);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border:1px solid rgba(242,234,216,.14)}
+header.site .brand{font-family:var(--fd);font-weight:900;letter-spacing:.14em;font-size:1.02rem}
+header.site .brand em{color:var(--acc);font-style:normal}
+header.site nav{display:none;gap:26px;font-size:.85rem;color:var(--ink2)}
+header.site nav a{text-decoration:none;position:relative}
+header.site nav a::after{content:"";position:absolute;left:0;bottom:-4px;height:1.5px;width:100%;background:var(--acc);transform:scaleX(0);transform-origin:100% 50%;transition:transform .45s cubic-bezier(.76,0,.24,1)}
+header.site nav a:hover::after{transform:scaleX(1);transform-origin:0 50%}
+@media(min-width:820px){header.site nav{display:flex}}
+.btn{display:inline-flex;align-items:center;gap:9px;border-radius:999px;padding:12px 22px;font-weight:700;font-size:.9rem;text-decoration:none;border:1px solid transparent;transition:transform .3s,background .3s,color .3s;will-change:transform}
+.btn-acc{background:linear-gradient(180deg,color-mix(in srgb,var(--acc) 88%,#fff 12%),var(--acc));color:#171106;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -2px 4px rgba(0,0,0,.18),0 2px 6px rgba(0,0,0,.35),0 8px 24px color-mix(in srgb,var(--acc) 45%,transparent)}
+.btn-ghost{border-color:rgba(242,234,216,.3);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--acc);color:var(--acc2)}
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero .vidwrap{position:absolute;inset:0;overflow:hidden}
+.hero video{width:100%;height:100%;object-fit:cover;transform:scale(1.12);will-change:transform;filter:saturate(.92)}
+.hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,8,.42),rgba(11,10,8,.18) 40%,rgba(11,10,8,.88) 88%),radial-gradient(90% 60% at 50% 40%,transparent 40%,rgba(11,10,8,.35))}
+.hero .inner{position:relative;z-index:3;padding:120px 0 34px}
+.kick{font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:var(--acc2);font-weight:700;min-height:1.2em}
+h1.mega{font-family:var(--fd);font-weight:900;line-height:.9;letter-spacing:-.01em;font-size:clamp(4.2rem,17.5vw,15.5rem);margin:10px 0 4px}
+h1.mega .ch{display:inline-block;transform:translateY(110%) rotate(6deg);opacity:0;animation:chUp 1s cubic-bezier(.19,1,.22,1) forwards;animation-delay:calc(var(--i)*55ms + 150ms)}
+h1.mega .it{font-style:italic;font-weight:340;color:var(--acc2)}
+@keyframes chUp{to{transform:translateY(0) rotate(0);opacity:1}}
+.hero .sub{max-width:560px;color:var(--ink);font-size:clamp(1rem,1.6vw,1.2rem);margin-top:14px}
+.hero .sub .w{display:inline-block;opacity:0;transform:translateY(14px);animation:wUp .7s ease forwards;animation-delay:calc(var(--i)*45ms + 700ms)}
+@keyframes wUp{to{opacity:1;transform:none}}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;opacity:0;animation:wUp .8s ease 1.25s forwards}
+.hero .meta{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:34px;padding-top:18px;border-top:1px solid rgba(242,234,216,.18);font-size:.8rem;color:var(--ink2);opacity:0;animation:wUp .8s ease 1.45s forwards}
+.hero .meta b{color:var(--ink)}
+.scrollcue{position:absolute;right:26px;bottom:26px;z-index:3;width:54px;height:54px;border-radius:50%;border:1px solid rgba(242,234,216,.35);display:grid;place-items:center;color:var(--ink2);animation:bob 2.2s ease-in-out infinite;font-size:1.05rem}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+/* marquee */
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2);padding:16px 0;white-space:nowrap}
+.marquee .track{display:inline-flex;gap:0;animation:mq 26s linear infinite;will-change:transform}
+.marquee span{font-family:var(--fd);font-size:clamp(1.3rem,3vw,2.1rem);font-weight:600;padding:0 18px}
+.marquee span i{font-style:italic;color:var(--acc)}
+.marquee .dot{color:var(--acc);font-size:1rem;align-self:center}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* reveal system */
+.rv{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform .9s cubic-bezier(.19,1,.22,1);transition-delay:calc(var(--d,0)*120ms)}
+.rv.in{opacity:1;transform:none}
+@supports (animation-timeline: view()){
+  .rv{animation:rvScrub linear both;animation-timeline:view();animation-range:entry 0% entry 65%}
+  @keyframes rvScrub{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:none}}
+}
+.klabel{font-size:.7rem;letter-spacing:.38em;text-transform:uppercase;color:var(--acc);font-weight:700}
+h2.big{font-family:var(--fd);font-weight:800;font-size:clamp(2.2rem,5.4vw,4.2rem);line-height:1.02;letter-spacing:-.01em}
+h2.big em{font-style:italic;font-weight:340;color:var(--acc2)}
+section{padding:110px 0}
+.shead{max-width:720px;margin-bottom:52px}
+.shead p{color:var(--ink2);margin-top:14px;max-width:560px}
+/* pinned statement */
+.pinwrap{height:260vh;position:relative}
+.pinsticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden}
+.statement{font-family:var(--fd);font-weight:600;font-size:clamp(1.9rem,4.6vw,3.6rem);line-height:1.22;max-width:1050px}
+.statement .wd{opacity:.13;transition:opacity .3s}
+.statement .wd.lit{opacity:1}
+.statement em{font-style:italic;color:var(--acc2)}
+/* services */
+.svc{border-top:1px solid var(--line)}
+.svcrow{display:grid;grid-template-columns:64px 1fr auto;gap:16px;align-items:center;padding:28px 6px;border-bottom:1px solid var(--line);cursor:pointer;position:relative;transition:padding .35s,background .35s}
+.svcrow:hover{background:rgba(201,163,92,.05);padding-left:18px}
+.svcrow .n{font-family:var(--fd);font-style:italic;color:var(--acc);font-size:1.05rem}
+.svcrow h3{font-family:var(--fd);font-size:clamp(1.5rem,3.4vw,2.4rem);font-weight:700;line-height:1.05}
+.svcrow p{color:var(--ink2);font-size:.92rem;max-width:520px;margin-top:5px}
+.svcrow .pr{font-family:var(--fd);font-size:1.25rem;color:var(--acc2);white-space:nowrap}
+.svcrow .pr small{display:block;font-family:var(--fb);font-size:.7rem;color:var(--ink2);letter-spacing:.14em;text-transform:uppercase;text-align:right}
+#svcPrev{position:fixed;z-index:90;width:250px;height:320px;border-radius:14px;overflow:hidden;pointer-events:none;opacity:0;transform:scale(.85) rotate(-4deg);transition:opacity .3s,transform .45s cubic-bezier(.19,1,.22,1)}
+#svcPrev.on{opacity:1;transform:scale(1) rotate(-2deg)}
+#svcPrev img{width:100%;height:100%;object-fit:cover}
+@media(pointer:coarse){#svcPrev{display:none}}
+/* horizontal gallery */
+.hwrap{height:360vh;position:relative}
+.hsticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.htrack{display:flex;gap:26px;padding:0 6vw;will-change:transform;width:max-content}
+.hcard{position:relative;width:min(560px,78vw);height:62vh;border-radius:var(--rad);overflow:hidden;flex:none}
+.hcard img{width:100%;height:100%;object-fit:cover;transform:scale(1.18);will-change:transform}
+.hcard .cap{position:absolute;left:0;right:0;bottom:0;padding:20px;background:linear-gradient(transparent,rgba(6,5,4,.85));display:flex;justify-content:space-between;align-items:flex-end}
+.hcard .cap b{font-family:var(--fd);font-size:1.35rem}
+.hcard .cap span{color:var(--acc2);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase}
+.hhead{display:flex;justify-content:space-between;align-items:flex-end;padding:0 6vw;margin-bottom:30px}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--rad);overflow:hidden}
+@media(min-width:820px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--bg2);padding:34px 26px}
+.stat .num{font-family:var(--fd);font-weight:900;font-size:clamp(2.4rem,5vw,3.6rem);line-height:1;color:var(--ink)}
+.stat .num i{font-style:normal;color:var(--acc)}
+.stat p{color:var(--ink2);font-size:.85rem;margin-top:8px}
+/* pricing tilt */
+.tilts{display:grid;gap:20px}
+@media(min-width:900px){.tilts{grid-template-columns:repeat(3,1fr)}}
+.tilt{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:32px 28px;position:relative;transform-style:preserve-3d;transition:transform .35s ease;overflow:hidden}
+.tilt::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(201,163,92,.14),transparent 65%);opacity:0;transition:opacity .3s}
+.tilt:hover::before{opacity:1}
+.tilt h3{font-family:var(--fd);font-size:1.5rem}
+.tilt .amt{font-family:var(--fd);font-weight:900;font-size:2.6rem;margin:12px 0 4px}
+.tilt .amt small{font-size:.95rem;color:var(--ink2);font-family:var(--fb);font-weight:400}
+.tilt ul{list-style:none;margin:18px 0 24px;display:grid;gap:9px;color:var(--ink2);font-size:.92rem}
+.tilt li::before{content:"✦ ";color:var(--acc)}
+.tilt.hot{border-color:var(--acc);background:linear-gradient(180deg,rgba(201,163,92,.09),var(--panel) 55%)}
+.tilt .tag{position:absolute;top:18px;right:18px;background:var(--acc);color:#171106;font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+/* stacking testimonials */
+.stack{position:relative}
+.scard{position:sticky;border-radius:var(--rad);border:1px solid var(--line);padding:clamp(28px,5vw,54px);margin-bottom:26px;background:var(--bg2)}
+.scard:nth-child(1){top:96px}.scard:nth-child(2){top:118px;background:#181410}.scard:nth-child(3){top:140px;background:#1d1811}
+.scard blockquote{font-family:var(--fd);font-size:clamp(1.4rem,3vw,2.1rem);font-weight:560;line-height:1.3}
+.scard blockquote em{color:var(--acc2)}
+.scard .who{margin-top:20px;color:var(--ink2);font-size:.88rem}
+.scard .who b{color:var(--ink)}
+.stars{color:var(--acc);letter-spacing:.3em;margin-bottom:16px}
+/* before / after */
+.ba{position:relative;border-radius:var(--rad);overflow:hidden;height:min(68vh,560px);touch-action:none;cursor:ew-resize}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba .after{clip-path:inset(0 0 0 var(--cut,50%))}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--cut,50%);width:2px;background:var(--acc2);transform:translateX(-1px);z-index:4}
+.ba .knob{position:absolute;top:50%;left:var(--cut,50%);transform:translate(-50%,-50%);z-index:5;width:52px;height:52px;border-radius:50%;background:var(--acc);color:#171106;display:grid;place-items:center;font-weight:900;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.ba .lbl{position:absolute;top:16px;z-index:4;background:rgba(6,5,4,.65);backdrop-filter:blur(6px);padding:6px 13px;border-radius:999px;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase}
+.ba .lbl.l{left:16px}.ba .lbl.r{right:16px}
+/* faq */
+.faq{border-top:1px solid var(--line)}
+.faqit{border-bottom:1px solid var(--line)}
+.faqit button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:14px;background:none;border:0;color:var(--ink);font-family:var(--fd);font-size:clamp(1.1rem,2.4vw,1.5rem);font-weight:640;text-align:left;padding:24px 4px;cursor:pointer}
+.faqit .pl{color:var(--acc);font-size:1.5rem;transition:transform .4s}
+.faqit.open .pl{transform:rotate(45deg)}
+.faqit .ans{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.19,1,.22,1)}
+.faqit .ans p{color:var(--ink2);padding:0 4px 24px;max-width:640px}
+/* cta */
+.cta{position:relative;padding:150px 0;overflow:hidden;text-align:center}
+.cta .giant{position:absolute;inset:auto 0 8% 0;font-family:var(--fd);font-weight:900;font-size:clamp(5rem,19vw,17rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(201,163,92,.22);white-space:nowrap;pointer-events:none;animation:mq 40s linear infinite}
+.cta h2{position:relative}
+.cta p{position:relative;color:var(--ink2);max-width:520px;margin:16px auto 30px}
+.cta .row{position:relative;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+/* footer */
+footer{border-top:1px solid var(--line);padding:70px 0 130px;background:var(--bg2)}
+footer .word{font-family:var(--fd);font-weight:900;font-size:clamp(3.4rem,12.5vw,11rem);line-height:.95;letter-spacing:.01em}
+footer .word em{font-style:italic;font-weight:340;color:var(--acc)}
+footer .cols{display:flex;flex-wrap:wrap;gap:14px 44px;margin-top:34px;color:var(--ink2);font-size:.9rem}
+footer .fine{margin-top:38px;color:#6f675a;font-size:.76rem;max-width:640px}
+.callbar{position:fixed;left:12px;right:12px;bottom:12px;z-index:130;display:flex;gap:10px}
+.callbar a{flex:1;text-align:center;padding:15px;border-radius:999px;font-weight:700;text-decoration:none;font-size:.95rem}
+.callbar .c1{background:linear-gradient(180deg,color-mix(in srgb,var(--acc) 88%,#fff 12%),var(--acc));color:#171106;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -2px 4px rgba(0,0,0,.18),0 2px 6px rgba(0,0,0,.35),0 8px 24px color-mix(in srgb,var(--acc) 45%,transparent)}
+.callbar .c2{background:rgba(11,10,8,.7);backdrop-filter:blur(10px);color:var(--ink);border:1px solid rgba(242,234,216,.3)}
+@media(min-width:900px){.callbar{display:none}}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  .rv{opacity:1;transform:none}
+  h1.mega .ch,.hero .sub .w,.hero .cta,.hero .meta{opacity:1;transform:none;animation:none}
+}
+</style>
+</head>
+<body>
+<div id="loader" aria-hidden="true"><div class="pct" id="pct">0</div><div class="bar"><i id="loadbar"></i></div><div class="word">Marlowe · Barber Atelier</div></div>
+<div id="prog"></div><div id="cur"></div><div id="curR"></div><div class="grain"></div>
+
+<header class="site">
+  <div class="brand">MARLOWE<em>.</em></div>
+  <nav><a href="#services">Services</a><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+  <a class="btn btn-acc magnetic" href="#book">Book a chair</a>
+</header>
+
+<section class="hero" style="padding:0">
+  <div class="vidwrap"><video id="heroVid" autoplay muted loop playsinline preload="metadata" poster="framer-assets/photo1.jpg"><source src="video-bank/hero-barber.mp4" type="video/mp4"></video></div>
+  <div class="shade"></div>
+  <div class="inner wrap">
+    <div class="kick" id="scramble">Barber atelier · Est. 2016 · Harrisburg</div>
+    <h1 class="mega" aria-label="Marlowe"><span class="ch" style="--i:0">M</span><span class="ch" style="--i:1">A</span><span class="ch" style="--i:2">R</span><span class="ch" style="--i:3">L</span><span class="ch" style="--i:4">O</span><span class="ch" style="--i:5">W</span><span class="ch" style="--i:6">E</span><span class="ch it" style="--i:7">.</span></h1>
+    <p class="sub"><span class="w" style="--i:0">Precision</span> <span class="w" style="--i:1">cuts,</span> <span class="w" style="--i:2">hot-towel</span> <span class="w" style="--i:3">shaves,</span> <span class="w" style="--i:4">and</span> <span class="w" style="--i:5">zero</span> <span class="w" style="--i:6">small</span> <span class="w" style="--i:7">talk</span> <span class="w" style="--i:8">unless</span> <span class="w" style="--i:9">you</span> <span class="w" style="--i:10">start</span> <span class="w" style="--i:11">it.</span></p>
+    <div class="cta"><a class="btn btn-acc magnetic" href="#book">Book a chair</a><a class="btn btn-ghost magnetic" href="#work">See the work</a></div>
+    <div class="meta"><span><b>4.9</b> · 480+ reviews</span><span>Walk-ins <b>welcome</b></span><span>Open today until <b>7 PM</b></span><span>Chairs: <b>4 master barbers</b></span></div>
+  </div>
+  <div class="scrollcue" aria-hidden="true">↓</div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="track" id="mq1"></div></div>
+
+<div class="pinwrap" id="pinwrap"><div class="pinsticky"><div class="wrap">
+  <div class="klabel rv">The house rule</div>
+  <p class="statement" id="statement" style="margin-top:18px"></p>
+</div></div></div>
+
+<section id="services"><div class="wrap">
+  <div class="shead rv"><div class="klabel">Services</div><h2 class="big" style="margin-top:12px">The menu, <em>short &amp; sharp</em></h2><p>Hover a service to see it. Every chair service ends with a hot towel and a finish you can check in the mirror twice.</p></div>
+  <div class="svc" id="svcList">
+    <div class="svcrow rv" data-img="framer-assets/photo1.jpg" style="--d:0"><span class="n">01</span><div><h3>Signature Cut</h3><p>Consult, cut, wash, style. Tailored to head shape and how it grows out.</p></div><span class="pr">$38<small>45 min</small></span></div>
+    <div class="svcrow rv" data-img="framer-assets/photo2.jpg" style="--d:1"><span class="n">02</span><div><h3>Skin Fade</h3><p>Zero-blend fade, razor-finished edges, lined up to the millimetre.</p></div><span class="pr">$36<small>40 min</small></span></div>
+    <div class="svcrow rv" data-img="framer-assets/photo4.jpg" style="--d:2"><span class="n">03</span><div><h3>Hot Towel Shave</h3><p>Three towels, straight razor, cold finish. The full ceremony.</p></div><span class="pr">$34<small>35 min</small></span></div>
+    <div class="svcrow rv" data-img="framer-assets/photo5.jpg" style="--d:3"><span class="n">04</span><div><h3>Beard Sculpt</h3><p>Shape, razor lines, hot oil treatment and a home-care rundown.</p></div><span class="pr">$24<small>25 min</small></span></div>
+    <div class="svcrow rv" data-img="framer-assets/photo6.jpg" style="--d:4"><span class="n">05</span><div><h3>The Full Works</h3><p>Cut, shave, beard sculpt, facial. Walk out a different man.</p></div><span class="pr">$85<small>2 hrs</small></span></div>
+  </div>
+</div></section>
+<div id="svcPrev"><img alt=""></div>
+
+<div class="hwrap" id="work"><div class="hsticky">
+  <div class="hhead"><div><div class="klabel">Recent work</div><h2 class="big" style="margin-top:10px">Keep <em>scrolling</em></h2></div><p style="color:var(--ink2);max-width:260px;font-size:.9rem">The gallery moves sideways. Like a good fade, it rewards patience.</p></div>
+  <div class="htrack" id="htrack">
+    <figure class="hcard"><img src="framer-assets/photo1.jpg" alt="Barber at work, clipper cut"><figcaption class="cap"><b>The Signature</b><span>Cut 01</span></figcaption></figure>
+    <figure class="hcard"><img src="framer-assets/photo4.jpg" alt="Straight razor shave"><figcaption class="cap"><b>The Ceremony</b><span>Shave 02</span></figcaption></figure>
+    <figure class="hcard"><img src="framer-assets/photo2.jpg" alt="Skin fade in progress"><figcaption class="cap"><b>The Blend</b><span>Fade 03</span></figcaption></figure>
+    <figure class="hcard"><img src="framer-assets/photo5.jpg" alt="Beard sculpting detail"><figcaption class="cap"><b>The Sculpt</b><span>Beard 04</span></figcaption></figure>
+    <figure class="hcard"><img src="framer-assets/photo3.jpg" alt="Inside the atelier"><figcaption class="cap"><b>The Room</b><span>Atelier 05</span></figcaption></figure>
+    <figure class="hcard"><img src="framer-assets/photo6.jpg" alt="Finished cut, checked in the mirror"><figcaption class="cap"><b>The Finish</b><span>Works 06</span></figcaption></figure>
+  </div>
+</div></div>
+
+<section><div class="wrap">
+  <div class="shead rv"><div class="klabel">By the numbers</div><h2 class="big" style="margin-top:12px">A decade of <em>steady hands</em></h2></div>
+  <div class="stats">
+    <div class="stat rv" style="--d:0"><div class="num"><span data-count="10">0</span><i>+</i></div><p>Years on the same corner</p></div>
+    <div class="stat rv" style="--d:1"><div class="num"><span data-count="27">0</span><i>k</i></div><p>Cuts and counting</p></div>
+    <div class="stat rv" style="--d:2"><div class="num"><span data-count="480">0</span><i>+</i></div><p>Five-star reviews</p></div>
+    <div class="stat rv" style="--d:3"><div class="num"><span data-count="4">0</span></div><p>Master barbers, no juniors</p></div>
+  </div>
+</div></section>
+
+<section id="pricing" style="padding-top:20px"><div class="wrap">
+  <div class="shead rv"><div class="klabel">Pricing</div><h2 class="big" style="margin-top:12px">Pick your <em>chair time</em></h2></div>
+  <div class="tilts">
+    <div class="tilt rv" style="--d:0"><h3>The Maintenance</h3><div class="amt">$38<small> / visit</small></div><p style="color:var(--ink2);font-size:.92rem">For the regular. Keep it tight between big cuts.</p><ul><li>Signature cut</li><li>Wash &amp; style</li><li>Hot towel finish</li></ul><a class="btn btn-ghost magnetic" href="#book">Book</a></div>
+    <div class="tilt hot rv" style="--d:1"><span class="tag">Most booked</span><h3>The Works</h3><div class="amt">$85<small> / visit</small></div><p style="color:var(--ink2);font-size:.92rem">The full ceremony, head to towel.</p><ul><li>Cut + hot towel shave</li><li>Beard sculpt &amp; oil</li><li>Facial &amp; scalp massage</li></ul><a class="btn btn-acc magnetic" href="#book">Book</a></div>
+    <div class="tilt rv" style="--d:2"><h3>The Membership</h3><div class="amt">$99<small> / month</small></div><p style="color:var(--ink2);font-size:.92rem">Two chairs a month, priority booking.</p><ul><li>2 services monthly</li><li>Priority weekend slots</li><li>Product kit included</li></ul><a class="btn btn-ghost magnetic" href="#book">Book</a></div>
+  </div>
+</div></section>
+
+<section style="padding-top:20px"><div class="wrap">
+  <div class="shead rv"><div class="klabel">Word of mouth</div><h2 class="big" style="margin-top:12px">From the <em>chair</em></h2></div>
+  <div class="stack">
+    <div class="scard"><div class="stars">★★★★★</div><blockquote>“Best fade of my life, and I have <em>chased fades</em> in four states. The hot towel alone is worth the drive.”</blockquote><div class="who"><b>Marcus T.</b> · regular since 2019</div></div>
+    <div class="scard"><div class="stars">★★★★★</div><blockquote>“Booked at lunch, in the chair by five, out by six looking like I <em>meant it</em>. This is my place now.”</blockquote><div class="who"><b>Devon R.</b> · first visit, March</div></div>
+    <div class="scard"><div class="stars">★★★★★</div><blockquote>“My son will not let anyone else touch his hair. Neither will I. <em>That is the review.</em>”</blockquote><div class="who"><b>Andre &amp; Jaylen</b> · father &amp; son regulars</div></div>
+  </div>
+</div></section>
+
+<section style="padding-top:20px"><div class="wrap">
+  <div class="shead rv"><div class="klabel">Before / after</div><h2 class="big" style="margin-top:12px">Drag the <em>razor</em></h2><p>Slide the handle. Same chair, forty minutes apart.</p></div>
+  <div class="ba rv" id="ba">
+    <img src="framer-assets/photo5.jpg" alt="Before the appointment">
+    <img class="after" src="framer-assets/photo2.jpg" alt="After the appointment">
+    <span class="lbl l">Before</span><span class="lbl r">After</span>
+    <div class="handle"></div><div class="knob">↔</div>
+  </div>
+</div></section>
+
+<section id="faq" style="padding-top:20px"><div class="wrap">
+  <div class="shead rv"><div class="klabel">Questions</div><h2 class="big" style="margin-top:12px">Before you <em>sit down</em></h2></div>
+  <div class="faq">
+    <div class="faqit"><button type="button">Do I need an appointment?<span class="pl">+</span></button><div class="ans"><p>Walk-ins are welcome when a chair is open, but weekends book out by Thursday. Booking ahead guarantees your barber, not just a chair.</p></div></div>
+    <div class="faqit"><button type="button">What if I do not know what I want?<span class="pl">+</span></button><div class="ans"><p>Bring a photo or just a direction. Every service starts with a consult, and we will talk you out of anything that will not grow out well.</p></div></div>
+    <div class="faqit"><button type="button">Running late?<span class="pl">+</span></button><div class="ans"><p>Ten minutes is fine, we built the schedule with slack. Past that we will rebook you on the spot, no fee and no guilt trip.</p></div></div>
+    <div class="faqit"><button type="button">Do you cut kids' hair?<span class="pl">+</span></button><div class="ans"><p>Ages ten and up, first two chairs of the day are the calmest slots. Book the Signature and note it is for your kid.</p></div></div>
+  </div>
+</div></section>
+
+<section class="cta" id="book">
+  <div class="giant" aria-hidden="true">MARLOWE · MARLOWE · MARLOWE ·</div>
+  <div class="wrap">
+    <div class="klabel rv">The chair is open</div>
+    <h2 class="big rv" style="margin-top:14px">Look like you <em>meant it.</em></h2>
+    <p class="rv">Four chairs, four master barbers, one mirror that does not lie. Book in under a minute.</p>
+    <div class="row rv"><a class="btn btn-acc magnetic" href="tel:+17175550147">Call (717) 555-0147</a><a class="btn btn-ghost magnetic" href="#services">Browse services</a></div>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <div class="word">MARLOWE<em>.</em></div>
+  <div class="cols"><span>1200 Sample Street, Harrisburg, PA</span><span>Tue – Sat · 9 AM – 7 PM</span><span>(717) 555-0147</span><span>@marloweatelier</span></div>
+  <p class="fine">MARLOWE is a fictional business. This page is a motion-design showpiece built to test the Framer/Claude quality question: every animation pattern on it (preloader, custom cursor, letter-stagger hero, pinned word-scrub statement, hover-preview services, scroll-driven horizontal gallery, animated counters, tilt cards, stacking testimonials, before/after slider) is hand-built in one vanilla HTML file. Some gallery photos are watermarked stock, marked “your photo here”.</p>
+</div></footer>
+
+<div class="callbar"><a class="c1" href="tel:+17175550147">Call Us</a><a class="c2" href="#book">Book</a></div>
+
+<script>
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = (s, c) => (c || document).querySelector(s);
+const $$ = (s, c) => [...(c || document).querySelectorAll(s)];
+
+/* marquee content (duplicated for the loop) */
+(() => {
+  const items = ['Precision cuts','Hot towel shaves','Skin fades','Beard sculpting','Walk-ins welcome','Est. 2016'];
+  const half = items.map(t => `<span>${t}</span><span class="dot">✦</span>`).join('');
+  $('#mq1').innerHTML = half + half.replaceAll('<span>','<span aria-hidden="true">');
+})();
+
+/* preloader */
+(() => {
+  const pct = $('#pct'), bar = $('#loadbar'), loader = $('#loader');
+  if (RM) { loader.classList.add('done'); setTimeout(() => loader.remove(), 50); return; }
+  let p = 0;
+  const id = setInterval(() => {
+    p = Math.min(100, p + Math.random() * 16 + 5);
+    pct.textContent = Math.floor(p); bar.style.width = p + '%';
+    if (p >= 100) { clearInterval(id); setTimeout(() => { loader.classList.add('done'); setTimeout(() => loader.remove(), 950); }, 180); }
+  }, 90);
+})();
+
+/* scramble kicker */
+(() => {
+  const el = $('#scramble'); if (!el || RM) return;
+  const final = el.textContent, chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ·—✦', t0 = performance.now();
+  const tick = (t) => {
+    const k = Math.min(1, (t - t0) / 1100);
+    const n = Math.floor(final.length * k);
+    el.textContent = final.slice(0, n) + [...final.slice(n)].map(c => c === ' ' ? ' ' : chars[Math.random() * chars.length | 0]).join('');
+    if (k < 1) requestAnimationFrame(tick); else el.textContent = final;
+  };
+  setTimeout(() => requestAnimationFrame(tick), 350);
+})();
+
+/* statement word scrub */
+(() => {
+  const words = 'A barbershop should never waste your lunch hour, never guess at your head shape, and never let you leave checking the mirror in the car. Precision is the product. The chair is just where it happens.';
+  const st = $('#statement');
+  st.innerHTML = words.split(' ').map(w => `<span class="wd">${w}</span>`).join(' ');
+  const spans = $$('.wd', st), wrap = $('#pinwrap');
+  const onScroll = () => {
+    const r = wrap.getBoundingClientRect();
+    const total = r.height - innerHeight;
+    const k = Math.min(1, Math.max(0, -r.top / Math.max(1, total)));
+    const lit = Math.floor(k * spans.length * 1.15);
+    spans.forEach((s, i) => s.classList.toggle('lit', i < lit));
+  };
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+})();
+
+/* progress + hero parallax + horizontal gallery (one rAF loop) */
+(() => {
+  const prog = $('#prog'), vid = $('#heroVid'), track = $('#htrack'), hwrap = $('#work');
+  const imgs = $$('.hcard img');
+  const loop = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    prog.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+    if (!RM) {
+      const hy = Math.min(1, scrollY / innerHeight);
+      vid.style.transform = `scale(${1.12 + hy * 0.1}) translateY(${hy * 46}px)`;
+      const r = hwrap.getBoundingClientRect();
+      const total = r.height - innerHeight;
+      const k = Math.min(1, Math.max(0, -r.top / Math.max(1, total)));
+      const dist = track.scrollWidth - innerWidth + innerWidth * 0.06;
+      track.style.transform = `translateX(${-k * dist}px)`;
+      imgs.forEach((im, i) => { im.style.transform = `scale(1.18) translateX(${(k - 0.5) * (i % 2 ? 26 : -26)}px)`; });
+    }
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+})();
+
+/* reveals + counters */
+(() => {
+  const io = new IntersectionObserver((es) => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in');
+    $$('[data-count]', e.target.parentElement || document).forEach(el => {
+      if (el.dataset.done) return; el.dataset.done = 1;
+      const end = +el.dataset.count, t0 = performance.now();
+      const step = (t) => { const k = Math.min(1, (t - t0) / 1400); el.textContent = Math.floor(end * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); };
+      if (!RM) requestAnimationFrame(step); else el.textContent = end;
+    });
+    io.unobserve(e.target);
+  }), {threshold: 0.18});
+  $$('.rv').forEach(el => io.observe(el));
+})();
+
+/* custom cursor + magnetic buttons */
+(() => {
+  if (RM || !matchMedia('(pointer:fine)').matches) return;
+  const cur = $('#cur'), ring = $('#curR');
+  let mx = -100, my = -100, rx = -100, ry = -100;
+  addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
+  (function follow(){ rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(follow); })();
+  $$('a, button, .svcrow, .faqit button').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('big'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('big'));
+  });
+  $$('.magnetic').forEach(el => {
+    el.addEventListener('mousemove', e => { const r = el.getBoundingClientRect(); el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.22}px, ${(e.clientY - r.top - r.height / 2) * 0.32}px)`; });
+    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+  });
+})();
+
+/* services hover preview */
+(() => {
+  const prev = $('#svcPrev'), img = $('img', prev);
+  if (!matchMedia('(pointer:fine)').matches) return;
+  $$('.svcrow').forEach(row => {
+    row.addEventListener('mouseenter', () => { img.src = row.dataset.img; prev.classList.add('on'); });
+    row.addEventListener('mouseleave', () => prev.classList.remove('on'));
+    row.addEventListener('click', () => { location.hash = 'book'; });
+  });
+  addEventListener('mousemove', e => { prev.style.left = Math.min(innerWidth - 270, e.clientX + 26) + 'px'; prev.style.top = Math.max(10, Math.min(innerHeight - 340, e.clientY - 160)) + 'px'; });
+})();
+
+/* tilt cards */
+(() => {
+  if (!matchMedia('(pointer:fine)').matches || RM) return;
+  $$('.tilt').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      card.style.transform = `perspective(900px) rotateY(${(x - 0.5) * 9}deg) rotateX(${(0.5 - y) * 9}deg)`;
+      card.style.setProperty('--mx', x * 100 + '%'); card.style.setProperty('--my', y * 100 + '%');
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+})();
+
+/* before / after */
+(() => {
+  const ba = $('#ba'); if (!ba) return;
+  const set = (clientX) => { const r = ba.getBoundingClientRect(); const k = Math.min(96, Math.max(4, (clientX - r.left) / r.width * 100)); ba.style.setProperty('--cut', k + '%'); };
+  let down = false;
+  ba.addEventListener('pointerdown', e => { down = true; ba.setPointerCapture(e.pointerId); set(e.clientX); });
+  ba.addEventListener('pointermove', e => { if (down) set(e.clientX); });
+  ['pointerup', 'pointercancel'].forEach(ev => ba.addEventListener(ev, () => down = false));
+})();
+
+/* faq */
+$$('.faqit button').forEach(btn => btn.addEventListener('click', () => {
+  const it = btn.parentElement, ans = $('.ans', it), open = it.classList.contains('open');
+  $$('.faqit.open').forEach(o => { o.classList.remove('open'); $('.ans', o).style.maxHeight = '0px'; });
+  if (!open) { it.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
+}));
+</script>
+</body>
+</html>
