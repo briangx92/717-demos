@@ -111,6 +111,18 @@ section{padding-top:3.4rem;padding-bottom:.4rem}
 h2.sec{text-align:center}
 .wrap>.eyebrow{text-align:center}
 }
+
+/* news stripe with Google reviews (example 2026-10-30) */
+body{padding-bottom:0}
+.callbar{display:none!important}
+.newsstripe{height:46px;background:var(--ink);border-top:2px solid var(--line);border-bottom:1px solid var(--line);display:flex;align-items:stretch;overflow:hidden}
+.newsstripe .ns-call{flex:0 0 auto;display:flex;align-items:center;gap:7px;background:#f9f5f2;color:var(--ink);font:700 13px 'Inter',sans-serif;letter-spacing:.08em;padding:0 14px;text-decoration:none;text-transform:uppercase}
+.newsstripe .ns-book{flex:0 0 auto;display:flex;align-items:center;background:transparent;color:#f9f5f2;font:700 13px 'Inter',sans-serif;letter-spacing:.08em;padding:0 14px;text-decoration:none;text-transform:uppercase;border-left:1px solid rgba(249,245,242,.25)}
+.newsstripe .ns-view{flex:1;overflow:hidden;display:flex;align-items:center;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
+.newsstripe .ns-track{display:inline-flex;white-space:nowrap;animation:nsscroll 46s linear infinite;will-change:transform}
+.newsstripe .ns-track span{font:600 13px 'Inter',sans-serif;color:#f9f5f2;padding:0 10px}
+.newsstripe .ns-track i{color:#c9a86a;font-style:normal}
+@keyframes nsscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 </style>
 </head>
 <body>
@@ -256,6 +268,7 @@ footer.site a:hover{text-decoration:underline}
       </div>
     </div>
   </div>
+<!-- newsstripe --><div class="newsstripe"><a class="ns-call" href="tel:+12156609488">&#128222; Call</a><div class="ns-view"><div class="ns-track"><span>Pedicures <i>&#9679;</i> Gel pedicure <i>&#9679;</i> Custom nail art <i>&#9679;</i> Mani-pedi <i>&#9679;</i> Dip manicure <i>&#9679;</i> Hot stone massage <i>&#9679;</i> ★★★★★ &ldquo;These ladies are top notch! I love the time attention and care they have given me over the years, not to mention my nails always look incredible when I leave! Love the massage chairs as well😊&rdquo; &mdash; Brent S., Google <i>&#9679;</i> ★★★★★ &ldquo;I had the “Nu Skin ageLOC Face Lift” facial today. I always loved how Thuy did my nails so I was really excited to have a facial by her. At the new location in Telford (on the corner of Main St & Reliance Rd) expect a clean salon, quiet, relaxing experience. The facial was a little over an hour. The massage on my head, neck & shoulders was soo good! I came home with loose muscles & relaxed. The facial itself was nice. She used NuSkin products & a tool that beeped wherever I had loose skin. She used a lot of products & towards the end, she puts a frigid face mask that sits there for about 15min while she massages your shoulders arms & hands again. If I don’t come back for the facial, it will def be for the massage 😉. In the end, my skin looked rejuvenated & a little less old, but it was good. I would recommend it. It’s still a new salon so I think once Thuy gets more comfortable in the new space her facials will get even better!&rdquo; &mdash; D S., Google <i>&#9679;</i> Souderton, PA <i>&#9679;</i></span><span>Pedicures <i>&#9679;</i> Gel pedicure <i>&#9679;</i> Custom nail art <i>&#9679;</i> Mani-pedi <i>&#9679;</i> Dip manicure <i>&#9679;</i> Hot stone massage <i>&#9679;</i> ★★★★★ &ldquo;These ladies are top notch! I love the time attention and care they have given me over the years, not to mention my nails always look incredible when I leave! Love the massage chairs as well😊&rdquo; &mdash; Brent S., Google <i>&#9679;</i> ★★★★★ &ldquo;I had the “Nu Skin ageLOC Face Lift” facial today. I always loved how Thuy did my nails so I was really excited to have a facial by her. At the new location in Telford (on the corner of Main St & Reliance Rd) expect a clean salon, quiet, relaxing experience. The facial was a little over an hour. The massage on my head, neck & shoulders was soo good! I came home with loose muscles & relaxed. The facial itself was nice. She used NuSkin products & a tool that beeped wherever I had loose skin. She used a lot of products & towards the end, she puts a frigid face mask that sits there for about 15min while she massages your shoulders arms & hands again. If I don’t come back for the facial, it will def be for the massage 😉. In the end, my skin looked rejuvenated & a little less old, but it was good. I would recommend it. It’s still a new salon so I think once Thuy gets more comfortable in the new space her facials will get even better!&rdquo; &mdash; D S., Google <i>&#9679;</i> Souderton, PA <i>&#9679;</i></span></div></div><a class="ns-book" href="#book">Book</a></div>
 
 <div class="wrap">
     <div class="chips reveal">
@@ -461,10 +474,7 @@ document.querySelectorAll('.sc-row').forEach(function(row){
 
 <style>/* MESSAGE-ME BUTTON (Brian, 2026-10-27) */.msgme-wrap{display:flex;justify-content:center;padding:30px 20px 40px}.msgme-btn{display:inline-block;background:#0084ff;color:#fff;font:600 15px/1.2 Inter,system-ui,-apple-system,sans-serif;letter-spacing:.01em;padding:14px 26px;border-radius:999px;text-decoration:none;box-shadow:0 8px 22px rgba(0,132,255,.35)}@media(max-width:719px){.msgme-wrap{padding-bottom:96px}}</style>
 <div class="msgme-wrap"><a class="msgme-btn" href="https://m.me/717digitalstudio" target="_blank" rel="noopener">Message me about this site</a></div>
-<div class="callbar">
-  <a class="btn btn-acc" href="tel:+12156609488">Call Us</a>
-  <a class="btn btn-ghost" href="#book">Request a visit</a>
-</div>
+
 <div class="lightbox" id="lightbox" role="dialog" aria-label="Photo viewer">
   <button type="button" id="lbClose" aria-label="Close photo viewer">✕</button>
   <img id="lbImg" src="" alt="Enlarged photo">
