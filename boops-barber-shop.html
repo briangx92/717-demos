@@ -127,9 +127,8 @@ h2.sec{text-align:center}
 .bookctl button{background:var(--acc-soft);color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:10px 22px;font:600 14px 'Inter',sans-serif;cursor:pointer}
 .bookhint{text-align:center;color:var(--ink2);font-size:13px;margin-top:10px}
 .stf__block{overflow:hidden}
-body{padding-bottom:52px}
 .callbar{display:none!important}
-.newsstripe{position:fixed;left:0;right:0;bottom:0;height:46px;background:#0c0e10;border-top:2px solid var(--acc);display:flex;align-items:stretch;z-index:60;overflow:hidden}
+.newsstripe{height:46px;background:#0c0e10;border-top:2px solid var(--acc);display:flex;align-items:stretch;z-index:60;overflow:hidden}
 .newsstripe .ns-call{flex:0 0 auto;display:flex;align-items:center;gap:7px;background:var(--acc);color:#0e1114;font:700 13px 'Oswald',sans-serif;letter-spacing:.08em;padding:0 14px;text-decoration:none;text-transform:uppercase}
 .newsstripe .ns-book{flex:0 0 auto;display:flex;align-items:center;background:#171b1f;color:var(--ink);font:700 13px 'Oswald',sans-serif;letter-spacing:.08em;padding:0 14px;text-decoration:none;text-transform:uppercase;border-left:1px solid var(--line)}
 .newsstripe .ns-view{flex:1;overflow:hidden;display:flex;align-items:center;-webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
@@ -289,7 +288,8 @@ footer.site a:hover{text-decoration:underline}
     </div>
   </div>
 
-  <section id="services">
+  <!-- newsstripe --><div class="newsstripe"><a class="ns-call" href="tel:+15708479131">&#128222; Call</a><div class="ns-view"><div class="ns-track"><span>Haircuts <i>&#9679;</i> Beards and shaves <i>&#9679;</i> Hot towel shaves <i>&#9679;</i> Walk-ins welcome <i>&#9679;</i> Book online through Square <i>&#9679;</i> Chestnut Street, Mifflinburg <i>&#9679;</i></span><span>Haircuts <i>&#9679;</i> Beards and shaves <i>&#9679;</i> Hot towel shaves <i>&#9679;</i> Walk-ins welcome <i>&#9679;</i> Book online through Square <i>&#9679;</i> Chestnut Street, Mifflinburg <i>&#9679;</i></span></div></div><a class="ns-book" href="#book">Book</a></div>
+<section id="services">
     <div class="wrap">
       <div class="shead reveal">
         <div class="kicker">Services</div>
@@ -362,7 +362,7 @@ footer.site a:hover{text-decoration:underline}
 
 <style>/* MESSAGE-ME BUTTON (Brian, 2026-10-27) */.msgme-wrap{display:flex;justify-content:center;padding:30px 20px 40px}.msgme-btn{display:inline-block;background:#0084ff;color:#fff;font:600 15px/1.2 Inter,system-ui,-apple-system,sans-serif;letter-spacing:.01em;padding:14px 26px;border-radius:999px;text-decoration:none;box-shadow:0 8px 22px rgba(0,132,255,.35)}@media(max-width:719px){.msgme-wrap{padding-bottom:96px}}</style>
 <div class="msgme-wrap"><a class="msgme-btn" href="https://m.me/717digitalstudio" target="_blank" rel="noopener">Message me about this site</a></div>
-<!-- newsstripe --><div class="newsstripe"><a class="ns-call" href="tel:+15708479131">&#128222; Call</a><div class="ns-view"><div class="ns-track"><span>Haircuts <i>&#9679;</i> Beards and shaves <i>&#9679;</i> Hot towel shaves <i>&#9679;</i> Walk-ins welcome <i>&#9679;</i> Book online through Square <i>&#9679;</i> Chestnut Street, Mifflinburg <i>&#9679;</i></span><span>Haircuts <i>&#9679;</i> Beards and shaves <i>&#9679;</i> Hot towel shaves <i>&#9679;</i> Walk-ins welcome <i>&#9679;</i> Book online through Square <i>&#9679;</i> Chestnut Street, Mifflinburg <i>&#9679;</i></span></div></div><a class="ns-book" href="#book">Book</a></div>
+
 <div class="lightbox" id="lightbox" role="dialog" aria-label="Photo viewer">
   <button type="button" id="lbClose" aria-label="Close photo viewer">✕</button>
   <img id="lbImg" src="" alt="Enlarged photo">
