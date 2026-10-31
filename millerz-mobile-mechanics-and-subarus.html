@@ -564,6 +564,12 @@
   @media (prefers-reduced-motion: reduce) { .is-js .u-reveal { opacity: 1; transform: none; transition: none; } }
 }
 </style>
+<style>/* nav-fit fix 2026-10-31: long business names must never push the call/menu buttons off-screen */
+.s-header__brand{min-width:0;flex:0 1 auto;overflow:hidden}
+.s-header__brand strong{flex:none}
+.s-header__brand span{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.s-header__right{flex:none}
+</style>
 </head>
 <body>
 
