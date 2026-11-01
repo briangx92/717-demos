@@ -1,0 +1,1258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>100% Lawn Care | Lawn Care in Ford City, PA</title>
+<meta name="description" content="100% Lawn Care at 190 Sheasley Ln, Ford City, PA. Mowing and trimming, clean-ups, brush clearing, leaf blowing, and snow removal.">
+<meta name="theme-color" content="#0c2716">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@layer reset, tokens, base, layout, components, sections, utilities;
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  * { margin: 0; }
+  img, video, svg { display: block; max-width: 100%; }
+  input, button, select, textarea { font: inherit; color: inherit; }
+  button { cursor: pointer; background: none; border: 0; padding: 0; }
+  a { color: inherit; }
+  ul, ol { list-style: none; padding: 0; }
+  table { border-collapse: collapse; }
+  fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+  [hidden] { display: none !important; }
+}
+
+@layer tokens {
+  :root {
+    --bg: #f5f1e4;
+    --bg-2: #ebe6d4;
+    --card: #fffcf2;
+    --ink: #12351f;
+    --ink-2: #4b6253;
+    --ink-3: #8a9a8e;
+    --line: rgba(18,53,31,.13);
+    --line-strong: rgba(18,53,31,.38);
+    --line-dark: rgba(245,241,228,.15);
+    --dark: #0c2716;
+    --dark-2: #12351f;
+    --dark-texture: repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 70px, transparent 70px 140px);
+    --paper: #f5f1e4;
+    --paper-2: rgba(245,241,228,.76);
+    --accent: #9bd13b;
+    --accent-ink: #0c2716;
+    --accent-text: #3f7a12;
+    --accent-on-dark: #b8e46c;
+    --header-bg: rgba(245,241,228,.95);
+    --header-ink: #12351f;
+    --shade: linear-gradient(180deg, rgba(6,24,12,.55) 0%, rgba(6,24,12,.15) 35%, rgba(6,24,12,.42) 62%, rgba(6,24,12,.93) 100%);
+    --ticker-bg: #9bd13b;
+    --ticker-ink: #0c2716;
+    --icon-bg: #e3efcc;
+    --photo-bg: #d5dcc4;
+    --tape: rgba(155,209,59,.45);
+    --cover-bg: #12351f;
+    --cover-ink: #b8e46c;
+    --rated-bg: #9bd13b;
+    --rated-ink: #0c2716;
+    --rated-star: #0c2716;
+    --rated-btn-bg: #0c2716;
+    --rated-btn-ink: #f5f1e4;
+    --star: #3f7a12;
+    --mark-stroke: rgba(245,241,228,.24);
+    --neo-section: #e9e5d6;
+    --neo-panel: #e2ddcc;
+    --neo-dark: rgba(120,124,98,.42);
+    --neo-light: rgba(255,255,248,.9);
+    --neo-ink: #12351f;
+    --neo-ink-2: #4b6253;
+    --neo-ink-3: #8f9a8a;
+    --ring: rgba(127,186,40,.4);
+    --f-display: "Archivo Black", "Arial Black", sans-serif;
+    --f-body: "Archivo", system-ui, sans-serif;
+    --f-label: "Archivo", system-ui, sans-serif;
+    --f-btn: "Archivo", system-ui, sans-serif;
+    --display-weight: 400;
+    --display-tracking: -.02em;
+    --display-case: none;
+    --em-style: normal;
+    --fs-btn: .98rem;
+    --btn-tracking: .01em;
+    --btn-case: none;
+    --r-card: 14px;
+    --r-btn: 10px;
+    --r-icon: 12px;
+    --r-note: 10px;
+    --dot-r: 50%;
+    /* shared scale */
+    --fs-2xs: .72rem; --fs-xs: .8rem; --fs-sm: .92rem; --fs-md: 1.02rem;
+    --fs-lg: clamp(1.06rem, 1rem + .4vw, 1.28rem);
+    --fs-xl: clamp(1.5rem, 1.25rem + 1vw, 2.1rem);
+    --fs-2xl: clamp(2.5rem, 1.6rem + 4vw, 5.4rem);
+    --lh-body: 1.6;
+    --s-1: .25rem; --s-2: .5rem; --s-3: .75rem; --s-4: 1rem; --s-5: 1.5rem; --s-6: 2rem; --s-7: 3rem; --s-8: 5rem; --s-9: 7.5rem;
+    --gutter: clamp(1.1rem, .4rem + 3vw, 3.5rem);
+    --max: 1360px;
+    --header-h: 66px;
+    --r-md: 12px; --r-lg: 22px; --r-pill: 999px;
+    --ease: cubic-bezier(.2, .75, .1, 1);
+    --t-fast: .18s; --t-med: .4s; --t-slow: .85s;
+    --marquee: 44s;
+    --neo-raise: 12px 12px 26px var(--neo-dark), -10px -10px 24px var(--neo-light);
+    --neo-raise-sm: 5px 5px 12px var(--neo-dark), -5px -5px 12px var(--neo-light);
+    --neo-inset: inset 4px 4px 9px var(--neo-dark), inset -4px -4px 9px var(--neo-light);
+    --neo-ring: 0 0 0 3px var(--ring);
+  }
+}
+
+@layer base {
+  html { overflow-x: clip; scroll-behavior: smooth; scroll-padding-top: var(--header-h); -webkit-text-size-adjust: 100%; }
+  body { overflow-x: clip; font-family: var(--f-body); font-size: var(--fs-md); line-height: var(--lh-body); color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; }
+  body.is-locked { overflow: hidden; }
+  h1, h2, h3 { font-family: var(--f-display); font-weight: var(--display-weight); line-height: .95; letter-spacing: var(--display-tracking); text-transform: var(--display-case); color: var(--ink); }
+  h2 { font-size: var(--fs-2xl); }
+  h3 { font-size: var(--fs-xl); }
+  h2 em, h3 em { font-style: var(--em-style); color: var(--accent-text); }
+  ::selection { background: var(--accent); color: var(--accent-ink); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+}
+
+@layer layout {
+  .l-wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
+  .l-section { position: relative; padding-block: var(--s-8); }
+  .l-split { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-6); }
+  .l-split > * { min-width: 0; }
+  @media (min-width: 1000px) {
+    .l-section { padding-block: var(--s-9); }
+    .l-split { grid-template-columns: minmax(0, 5fr) minmax(0, 8fr); gap: var(--s-8); align-items: start; }
+    .l-split > .c-head { position: sticky; top: calc(var(--header-h) + var(--s-6)); margin-bottom: 0; }
+  }
+}
+
+@layer components {
+  .c-label { display: inline-flex; align-items: center; gap: var(--s-3); font-family: var(--f-label); font-size: var(--fs-2xs); font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2); }
+  .c-label b { color: var(--accent-text); font-weight: 600; }
+  .c-label::after { content: ""; width: 36px; height: 1px; background: currentColor; opacity: .45; }
+  .c-head { display: grid; gap: var(--s-4); margin-bottom: var(--s-7); align-content: start; }
+  .c-head p { max-width: 32rem; color: var(--ink-2); }
+  .is-dark .c-head p, .is-dark .c-label { color: var(--paper-2); }
+  .is-dark h2, .is-dark h3 { color: var(--paper); }
+  .is-dark h2 em { color: var(--accent-on-dark); }
+
+  .c-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: var(--s-3); min-height: 52px; padding: .8rem 1.5rem; border-radius: var(--r-btn); font-family: var(--f-btn); font-weight: 600; font-size: var(--fs-btn); letter-spacing: var(--btn-tracking); text-transform: var(--btn-case); text-decoration: none; white-space: nowrap; overflow: hidden; isolation: isolate; border: 1.5px solid transparent; transition: color var(--t-med) var(--ease), border-color var(--t-med), background var(--t-med); }
+  .c-btn::before { content: ""; position: absolute; inset: 0; z-index: -1; transform: scaleX(0); transform-origin: left; transition: transform var(--t-med) var(--ease); }
+  .c-btn:hover:not(:disabled)::before { transform: scaleX(1); }
+  .c-btn svg { width: 19px; height: 19px; flex: none; }
+  .c-btn--accent { background: var(--accent); color: var(--accent-ink); }
+  .c-btn--accent::before { background: var(--paper); }
+  .c-btn--accent:hover:not(:disabled) { color: var(--ink); }
+  .c-btn--ghost { border-color: rgba(255,255,255,.45); color: var(--paper); }
+  .c-btn--ghost::before { background: var(--paper); }
+  .c-btn--ghost:hover:not(:disabled) { color: var(--ink); border-color: var(--paper); }
+  .c-btn--line { border-color: var(--line-strong); color: var(--ink); }
+  .c-btn--line::before { background: var(--ink); }
+  .c-btn--line:hover:not(:disabled) { color: var(--bg); border-color: var(--ink); }
+  .c-btn--dark { background: var(--dark); color: var(--paper); }
+  .c-btn--dark::before { background: var(--accent); }
+  .c-btn--dark:hover:not(:disabled) { color: var(--accent-ink); }
+  .c-btn:disabled { opacity: .3; cursor: default; }
+  .c-pin { color: #d93025; }
+
+  .c-status { display: inline-flex; align-items: center; gap: var(--s-2); }
+  .c-status::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: #9a9a9a; }
+  .c-status.is-open::before { background: #3fae6a; box-shadow: 0 0 0 3px rgba(63,174,106,.22); }
+  .c-status.is-closed::before { background: #d9534f; }
+
+  .c-stars { display: inline-flex; gap: 3px; color: var(--star); letter-spacing: 0; line-height: 1; }
+  [data-fit] { white-space: nowrap; display: block; }
+}
+
+@layer sections {
+  /* ===== Header ===== */
+  .s-header { position: fixed; inset: 0 0 auto 0; z-index: 40; height: var(--header-h); color: var(--paper); border-bottom: 1px solid transparent; transition: background var(--t-med) var(--ease), color var(--t-med), border-color var(--t-med); }
+  .s-header.is-solid { background: var(--header-bg); color: var(--header-ink); border-bottom-color: var(--line); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  .s-header__bar { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); }
+  .s-header__brand { font-family: var(--f-display); font-weight: var(--display-weight); font-size: 1.45rem; text-transform: var(--display-case); letter-spacing: var(--display-tracking); text-decoration: none; white-space: nowrap; line-height: 1; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .s-header__brand em { font-style: var(--em-style); color: var(--accent-on-dark); }
+  .s-header.is-solid .s-header__brand em { color: var(--accent-text); }
+  .s-header__nav { display: none; gap: var(--s-6); font-size: var(--fs-sm); font-weight: 500; }
+  .s-header__nav a { text-decoration: none; opacity: .85; }
+  .s-header__nav a:hover { opacity: 1; color: var(--accent-on-dark); }
+  .s-header.is-solid .s-header__nav a:hover { color: var(--accent-text); }
+  .s-header__right { display: flex; align-items: center; gap: var(--s-3); flex: none; }
+  .s-header__call { min-height: 42px; padding: .45rem 1rem; }
+  .s-header__call span { display: none; }
+  .s-header__menu { width: 42px; height: 42px; display: grid; place-items: center; border: 1.5px solid currentColor; border-radius: var(--r-btn); opacity: .9; }
+  .s-header__menu span { width: 17px; height: 2px; background: currentColor; box-shadow: 0 -6px 0 currentColor, 0 6px 0 currentColor; }
+  @media (min-width: 1000px) { .s-header__nav { display: flex; } .s-header__menu { display: none; } .s-header__call span { display: inline; } }
+
+  .s-sheet { position: fixed; inset: 0; z-index: 60; background: var(--dark); color: var(--paper); display: grid; grid-template-rows: var(--header-h) 1fr auto; padding-bottom: max(var(--s-6), env(safe-area-inset-bottom)); opacity: 0; visibility: hidden; transition: opacity var(--t-med) var(--ease), visibility 0s var(--t-med); }
+  .s-sheet.is-open { opacity: 1; visibility: visible; transition: opacity var(--t-med) var(--ease); }
+  .s-sheet__top { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); }
+  .s-sheet__close { width: 42px; height: 42px; border: 1.5px solid currentColor; border-radius: var(--r-btn); font-size: 1.5rem; line-height: 1; flex: none; }
+  .s-sheet__links { align-self: center; display: grid; gap: var(--s-2); }
+  .s-sheet__links a { display: flex; align-items: baseline; gap: var(--s-4); font-family: var(--f-display); font-weight: var(--display-weight); text-transform: var(--display-case); font-size: clamp(2.4rem, 12vw, 4rem); line-height: 1.05; text-decoration: none; }
+  .s-sheet__links a small { font-family: var(--f-label); font-size: var(--fs-2xs); letter-spacing: .12em; color: var(--accent-on-dark); }
+  .s-sheet__foot { display: grid; gap: var(--s-2); font-size: var(--fs-sm); color: var(--paper-2); }
+
+  /* ===== Hero ===== */
+  .s-hero { position: relative; min-height: 100svh; display: grid; grid-template-rows: 1fr auto; isolation: isolate; overflow: hidden; background: var(--dark); color: var(--paper); }
+  .s-hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+  .s-hero::after { content: ""; position: absolute; inset: 0; background: var(--shade); z-index: -1; }
+  .s-hero__main { align-self: end; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-5); padding-top: calc(var(--header-h) + var(--s-8)); padding-bottom: var(--s-7); }
+  .s-hero__main > * { min-width: 0; }
+  .s-hero__kicker { display: inline-flex; align-items: center; gap: var(--s-3); font-family: var(--f-label); font-size: var(--fs-xs); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-on-dark); }
+  .s-hero__kicker::before { content: ""; width: 26px; height: 2px; background: currentColor; }
+  .s-hero__name { color: var(--paper); line-height: .86; }
+  .s-hero__name span { font-size: var(--hero-max); }
+  .s-hero__name span + span { margin-top: .08em; font-style: var(--em-style); color: var(--accent-on-dark); }
+  .s-hero__line { max-width: 32rem; font-size: var(--fs-lg); color: var(--paper-2); }
+  .s-hero__slogan { font-family: var(--f-display); font-size: clamp(1.3rem, 1rem + 1.2vw, 1.9rem); color: var(--accent-on-dark); line-height: 1.1; }
+  .s-hero__actions { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+  @media (max-width: 400px) { .s-hero__actions .c-btn { flex: 1 1 100%; } }
+  .s-hero__plate { background: rgba(0,0,0,.45); border-top: 1px solid rgba(255,255,255,.18); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .s-hero__plate dl { display: grid; grid-template-columns: 1fr 1fr; }
+  .s-hero__plate div { padding: var(--s-4) 0; display: grid; gap: 3px; min-width: 0; }
+  .s-hero__plate div:nth-child(2n) { padding-left: var(--s-4); border-left: 1px solid rgba(255,255,255,.12); }
+  .s-hero__plate div:nth-child(n+3) { border-top: 1px solid rgba(255,255,255,.12); }
+  .s-hero__plate dt { font-family: var(--f-label); font-size: var(--fs-2xs); letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.6); }
+  .s-hero__plate dd { font-size: var(--fs-sm); color: var(--paper); overflow-wrap: anywhere; }
+  .s-hero__plate a { text-decoration: none; }
+  .s-hero__plate a:hover { color: var(--accent-on-dark); }
+  .s-hero__plate--desk { display: none; }
+  @media (min-width: 1000px) {
+    .s-hero { grid-template-rows: 1fr; }
+    .s-hero__main { grid-template-columns: minmax(0, 1fr) 340px; grid-template-areas: "kicker kicker" "name plate" "line plate" "actions plate"; column-gap: var(--s-7); align-items: end; padding-bottom: var(--s-8); }
+    .s-hero__kicker { grid-area: kicker; } .s-hero__name { grid-area: name; } .s-hero__line { grid-area: line; } .s-hero__actions { grid-area: actions; }
+    .s-hero__plate--desk { display: block; grid-area: plate; align-self: end; border: 1px solid rgba(255,255,255,.18); border-top: 3px solid var(--accent); }
+    .s-hero__plate--desk dl { grid-template-columns: 1fr; padding: var(--s-2) var(--s-5); }
+    .s-hero__plate--desk div, .s-hero__plate--desk div:nth-child(2n), .s-hero__plate--desk div:nth-child(n+3) { padding: var(--s-4) 0; border-left: 0; border-top: 1px solid rgba(255,255,255,.12); }
+    .s-hero__plate--desk div:first-child { border-top: 0; }
+    .s-hero__plate--phone { display: none; }
+  }
+
+  /* ===== Ticker ===== */
+  .s-ticker { background: var(--ticker-bg); color: var(--ticker-ink); overflow: hidden; }
+  .s-ticker__track { display: flex; width: max-content; padding-block: var(--s-3); animation: marquee var(--marquee) linear infinite; }
+  .s-ticker__group { display: flex; flex: none; }
+  .s-ticker__item { font-family: var(--f-display); font-weight: var(--display-weight); text-transform: var(--display-case); font-size: clamp(1.3rem, 1rem + 1.2vw, 2.1rem); white-space: nowrap; padding-inline: var(--s-5); display: inline-flex; align-items: center; gap: var(--s-6); }
+  .s-ticker__item::after { content: ""; width: 10px; height: 10px; border-radius: var(--dot-r); background: currentColor; opacity: .6; transform: rotate(45deg); }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .s-ticker__track { animation: none; } }
+
+  /* ===== Services ===== */
+  .s-services { background: var(--bg); }
+  .s-services__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-4); }
+  .s-services__grid > * { min-width: 0; }
+  .s-services__card { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s-2) var(--s-4); padding: var(--s-5); background: var(--card); border: 1px solid var(--line); border-radius: var(--r-card); transition: border-color var(--t-med), box-shadow var(--t-med); }
+  .s-services__card.is-picked { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .s-services__icon { grid-row: span 3; width: 50px; height: 50px; display: grid; place-items: center; border-radius: var(--r-icon); background: var(--icon-bg); color: var(--accent-text); }
+  .s-services__icon svg { width: 26px; height: 26px; }
+  .s-services__num { font-family: var(--f-label); font-size: var(--fs-2xs); letter-spacing: .14em; color: var(--ink-3); }
+  .s-services__card h3 { font-size: clamp(1.5rem, 1.25rem + .9vw, 2rem); line-height: 1.02; overflow-wrap: break-word; }
+  .s-services__card p { font-size: var(--fs-sm); color: var(--ink-2); }
+  .s-services__add { grid-column: 2; justify-self: start; margin-top: var(--s-3); display: inline-flex; align-items: center; gap: var(--s-2); min-height: 40px; padding: .4rem .95rem; border: 1.5px solid var(--line-strong); border-radius: var(--r-btn); font-size: var(--fs-sm); font-weight: 600; transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast); }
+  .s-services__add i { font-style: normal; transition: transform var(--t-med) var(--ease); }
+  .s-services__add[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .s-services__add[aria-pressed="true"] i { transform: rotate(45deg); }
+  .s-services__tray { margin-top: var(--s-5); display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-4); min-height: 52px; font-size: var(--fs-sm); color: var(--ink-2); }
+  @media (min-width: 700px) { .s-services__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .s-services__card { grid-template-columns: minmax(0, 1fr); align-content: start; } .s-services__icon { grid-row: auto; margin-bottom: var(--s-3); } .s-services__add { grid-column: 1; } }
+  @media (min-width: 1200px) { .s-services__grid.is-three { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 700px) and (max-width: 1199px), (min-width: 700px) { .s-services__grid:not(.is-three) > :last-child:nth-child(odd) { grid-column: 1 / -1; } }
+
+  /* ===== How it works ===== */
+  .s-how { background: var(--bg); }
+  .s-how__steps { display: grid; gap: var(--s-4); counter-reset: step; }
+  .s-how__step { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--s-4); align-items: center; padding: var(--s-5); background: var(--card); border: 1px solid var(--line); border-radius: var(--r-card); }
+  .s-how__step b { width: 58px; height: 58px; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--f-display); font-size: 1.7rem; }
+  .s-how__step h3 { font-size: 1.6rem; }
+  .s-how__step p { color: var(--ink-2); font-size: var(--fs-sm); grid-column: 2; }
+  @media (min-width: 1000px) { .s-how__steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5); } .s-how__step { grid-template-columns: minmax(0, 1fr); padding: var(--s-6); } .s-how__step p { grid-column: auto; } }
+
+  /* ===== Flavor board ===== */
+  .s-flavors { background: var(--dark); color: var(--paper); }
+  .s-flavors__board { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
+  .s-flavors__board > * { min-width: 0; }
+  .s-flavors__panel { padding: var(--s-5); border-radius: var(--r-card); background: var(--dark-2); border: 1px solid var(--line-dark); }
+  .s-flavors__panel h3 { color: var(--paper); font-size: 1.8rem; margin-bottom: var(--s-4); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: var(--s-2) var(--s-3); }
+  .s-flavors__panel h3 small { font-family: var(--f-label); font-size: var(--fs-2xs); letter-spacing: .12em; text-transform: uppercase; color: var(--paper-2); white-space: nowrap; }
+  .s-flavors__list { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+  .s-flavors__list li { padding: .45rem .9rem; border-radius: var(--r-pill); background: rgba(255,255,255,.08); border: 1px solid var(--line-dark); font-size: var(--fs-sm); font-weight: 600; }
+  .s-flavors__panel--main { background: var(--accent); color: var(--accent-ink); border-color: transparent; }
+  .s-flavors__panel--main h3, .s-flavors__panel--main h3 small { color: var(--accent-ink); }
+  .s-flavors__panel--main .s-flavors__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-2) var(--s-4); }
+  .s-flavors__panel--main .s-flavors__list li { padding: var(--s-2) 0; background: none; border: 0; border-bottom: 2px dotted rgba(0,0,0,.2); border-radius: 0; font-family: var(--f-display); font-size: 1.15rem; font-weight: 600; }
+  @media (max-width: 420px) { .s-flavors__panel--main .s-flavors__list { grid-template-columns: minmax(0, 1fr); } }
+  @media (min-width: 1000px) { .s-flavors__board { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); grid-template-rows: auto auto auto; } .s-flavors__panel--main { grid-row: span 3; padding: var(--s-6); } }
+
+  /* ===== Prices ===== */
+  .s-prices { background: var(--bg-2); }
+  .s-prices__note { justify-self: start; display: inline-flex; align-items: center; gap: var(--s-3); margin-top: var(--s-2); padding: .6rem .95rem; border: 1px dashed var(--accent-text); border-radius: var(--r-note); color: var(--ink); font-size: var(--fs-sm); background: var(--card); }
+  .s-prices__note::before { content: "i"; display: grid; place-items: center; flex: none; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: .78rem; font-style: italic; }
+  .s-prices__menu { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-6); padding: var(--s-6) var(--s-5); background: var(--card); border: 1px solid var(--line); border-radius: var(--r-card); position: relative; }
+  .s-prices__group h3 { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-3); font-size: 1.9rem; padding-bottom: var(--s-3); margin-bottom: var(--s-2); border-bottom: 2px solid var(--ink); }
+  .s-prices__group h3 small { font-family: var(--f-label); font-size: var(--fs-2xs); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; white-space: nowrap; }
+  .s-prices__row { display: flex; align-items: baseline; gap: var(--s-3); padding-block: var(--s-3); border-bottom: 1px dashed var(--line); font-size: var(--fs-sm); font-weight: 500; }
+  .s-prices__row:last-child { border-bottom: 0; }
+  .s-prices__row span:first-child { flex: 0 1 auto; }
+  .s-prices__dots { flex: 1 1 1rem; }
+  .s-prices__amt { flex: none; font-family: var(--f-display); font-size: 1.45rem; line-height: 1; color: var(--ink); }
+  .s-prices__amt small { font-family: var(--f-body); font-size: var(--fs-2xs); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); margin-right: .3rem; }
+  @media (min-width: 1000px) { .s-prices__menu { grid-template-columns: repeat(var(--price-cols, 2), minmax(0, 1fr)); gap: var(--s-7); padding: var(--s-7); } }
+
+  /* ===== Book (shared) ===== */
+  .s-book { overflow: hidden; }
+  .s-book.is-dark { background: var(--dark); background-image: var(--dark-texture); }
+  .s-book__layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-6); justify-items: center; }
+  .s-book__layout > .c-head { justify-self: stretch; margin-bottom: 0; }
+  .s-book__nav { width: min(100%, 400px); display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--s-4); }
+  .s-book__count { text-align: center; font-family: var(--f-label); font-size: var(--fs-sm); letter-spacing: .1em; color: var(--paper); }
+  .s-book__nav .c-btn { min-width: 96px; }
+  .bk { position: relative; width: min(100%, 380px); outline: none; }
+  .bk:focus-visible { outline: 2px solid var(--accent); outline-offset: 10px; }
+  .bk__pages { position: relative; }
+  .bk__page { position: absolute; inset: 0; }
+  .bk__frame { position: absolute; inset: 0; overflow: hidden; background: var(--photo-bg); }
+  .bk__frame img { width: 100%; height: 100%; object-fit: cover; }
+  .bk__cover { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: var(--s-5); overflow: hidden; }
+  .bk__cover h3 { line-height: .9; }
+  .bk__cover h3 span { display: block; }
+  @media (min-width: 1000px) {
+    .s-book__layout { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "head book" "nav book"; column-gap: var(--s-9); align-items: center; justify-items: start; }
+    .s-book__layout > .c-head { grid-area: head; align-self: end; }
+    .bk { grid-area: book; width: 420px; }
+    .s-book__nav { grid-area: nav; align-self: start; width: 100%; }
+  }
+  /* polaroid */
+  .bk--polaroid .bk__back { position: absolute; inset: 0; background: #faf7f3; box-shadow: 0 30px 50px -28px rgba(0,0,0,.7); }
+  .bk--polaroid .bk__back:nth-child(1) { transform: rotate(-7deg) translate(-12px, 8px); }
+  .bk--polaroid .bk__back:nth-child(2) { transform: rotate(5deg) translate(14px, 2px); background: #f2ece6; }
+  .bk--polaroid .bk__print { position: relative; padding: 16px 16px 0; background: #fffdfa; box-shadow: 0 30px 50px -28px rgba(0,0,0,.75); transform: rotate(-1.5deg); }
+  .bk--polaroid .bk__print::before { content: ""; position: absolute; z-index: 2; top: -13px; left: 50%; width: 96px; height: 26px; transform: translateX(-50%) rotate(-3deg); background: var(--tape); }
+  .bk--polaroid .bk__pages { aspect-ratio: 1; }
+  .bk--polaroid .bk__cover { background: var(--cover-bg); color: var(--cover-ink); }
+  .bk--polaroid .bk__cover h3 { font-size: clamp(2.4rem, 11vw, 3.6rem); color: var(--cover-ink); }
+  .bk--polaroid .bk__cap { height: 70px; display: grid; place-items: center; font-family: "Caveat", cursive; font-size: 1.7rem; color: var(--ink); }
+  /* clipboard */
+  .bk--clipboard { padding: 34px 16px 16px; background: #7d5f3d; background-image: repeating-linear-gradient(90deg, rgba(0,0,0,.06) 0 3px, transparent 3px 10px); border-radius: 12px; box-shadow: 0 40px 70px -32px rgba(0,0,0,.8); }
+  .bk--clipboard .bk__clamp { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); width: 132px; height: 40px; border-radius: 10px 10px 5px 5px; background: linear-gradient(180deg, #e3e6e8, #8d959c); box-shadow: 0 5px 10px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.7); z-index: 2; }
+  .bk--clipboard .bk__clamp::after { content: ""; position: absolute; left: 50%; top: 9px; width: 26px; height: 10px; transform: translateX(-50%); border-radius: 6px; background: #2b3035; }
+  .bk--clipboard .bk__sheet { background: #f6f4ee; padding: var(--s-4); display: grid; gap: var(--s-3); box-shadow: 0 2px 0 #d6d4cc, 0 4px 0 #c8c6be; color: #1d1d1b; }
+  .bk--clipboard .bk__hd { display: flex; justify-content: space-between; align-items: end; gap: var(--s-3); padding-bottom: var(--s-2); border-bottom: 3px solid var(--accent); }
+  .bk--clipboard .bk__hd strong { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--f-display); font-size: 1.15rem; line-height: 1.1; text-transform: var(--display-case); }
+  .bk--clipboard .bk__hd span { line-height: 1.1; font-family: var(--f-label); font-size: var(--fs-2xs); letter-spacing: .1em; white-space: nowrap; color: #55554f; }
+  .bk--clipboard .bk__pages { aspect-ratio: 4 / 3.6; border: 1px solid #1d1d1b; }
+  .bk--clipboard .bk__cover { background: var(--cover-bg); color: var(--cover-ink); }
+  .bk--clipboard .bk__cover h3 { font-size: clamp(2.4rem, 11vw, 3.6rem); color: var(--cover-ink); }
+  .bk--clipboard .bk__meta { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); font-family: var(--f-label); font-size: var(--fs-2xs); letter-spacing: .08em; text-transform: uppercase; color: #6a6a63; }
+  .bk--clipboard .bk__meta b { display: block; font-family: var(--f-body); font-weight: 600; text-transform: none; letter-spacing: 0; font-size: var(--fs-xs); color: #1d1d1b; }
+  /* ticket */
+  .bk--ticket { padding: var(--s-5); background: #fffdf6; color: #1d1714; box-shadow: 10px 12px 0 rgba(0,0,0,.18), 0 40px 70px -30px rgba(0,0,0,.6); }
+  .bk--ticket::before, .bk--ticket::after { content: ""; position: absolute; left: 0; right: 0; height: 10px; background: linear-gradient(-45deg, transparent 7px, #fffdf6 0) 0 0 / 14px 10px repeat-x, linear-gradient(45deg, transparent 7px, #fffdf6 0) 0 0 / 14px 10px repeat-x; }
+  .bk--ticket::before { top: -10px; transform: scaleY(-1); }
+  .bk--ticket::after { bottom: -10px; }
+  .bk--ticket .bk__hd { text-align: center; padding-bottom: var(--s-3); margin-bottom: var(--s-4); border-bottom: 2px dashed rgba(0,0,0,.3); }
+  .bk--ticket .bk__hd b { display: block; font-family: var(--f-display); font-size: 1.5rem; line-height: 1; }
+  .bk--ticket .bk__hd span { display: block; margin-top: 4px; font-size: var(--fs-2xs); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #6a5d55; }
+  .bk--ticket .bk__pages { aspect-ratio: 1; border: 2px solid #1d1714; }
+  .bk--ticket .bk__cover { background: var(--cover-bg); color: var(--cover-ink); }
+  .bk--ticket .bk__cover h3 { font-size: clamp(2.2rem, 10vw, 3.4rem); color: var(--cover-ink); }
+  .bk--ticket .bk__foot { display: flex; justify-content: space-between; gap: var(--s-3); margin-top: var(--s-4); padding-top: var(--s-3); border-top: 2px dashed rgba(0,0,0,.3); font-family: var(--f-display); font-size: 1.05rem; }
+  .bk--ticket .bk__foot span:last-child { padding: 0 .55rem; border-radius: var(--r-pill); background: var(--accent); color: var(--accent-ink); font-size: .9rem; }
+
+  /* ===== Rated band ===== */
+  .s-rated { background: var(--rated-bg); color: var(--rated-ink); padding-block: var(--s-7); }
+  .s-rated__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-5); align-items: center; }
+  .s-rated__inner > * { min-width: 0; }
+  .s-rated__big { display: flex; align-items: center; gap: var(--s-4); }
+  .s-rated__num { font-family: var(--f-display); font-size: clamp(4.2rem, 3rem + 5vw, 7.5rem); line-height: .8; color: var(--rated-ink); }
+  .s-rated__stars { position: relative; display: inline-block; font-size: 1.6rem; letter-spacing: 3px; color: rgba(0,0,0,.2); line-height: 1; }
+  .s-rated__stars i { position: absolute; inset: 0 auto 0 0; overflow: hidden; white-space: nowrap; font-style: normal; color: var(--rated-star); }
+  .s-rated__line { font-family: var(--f-display); font-size: clamp(1.8rem, 1.3rem + 2vw, 3rem); line-height: 1; color: var(--rated-ink); text-transform: var(--display-case); }
+  .s-rated__copy { max-width: 30rem; margin-top: var(--s-3); }
+  .s-rated .c-btn { white-space: normal; text-align: center; max-width: 100%; }
+  @media (min-width: 1000px) { .s-rated { padding-block: var(--s-8); } .s-rated__inner { grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--s-8); } }
+
+  /* ===== Visit ===== */
+  .s-visit { background: var(--dark-2); color: var(--paper); }
+  .s-visit__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-7); }
+  .s-visit__grid > * { min-width: 0; }
+  .s-visit__info { display: grid; gap: var(--s-5); align-content: start; }
+  .s-visit__addr { font-family: var(--f-display); font-style: normal; font-size: clamp(1.8rem, 1.4rem + 1.8vw, 3rem); line-height: 1.02; color: var(--paper); text-transform: var(--display-case); overflow-wrap: anywhere; }
+  .s-visit__addr small { display: block; font-family: var(--f-label); font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--paper-2); margin-bottom: var(--s-2); }
+  .s-visit__status { font-size: var(--fs-sm); }
+  .s-visit__actions { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+  .s-visit__social a { color: var(--accent-on-dark); font-size: var(--fs-sm); }
+  .s-visit__hours { border: 1px solid var(--line-dark); background: rgba(255,255,255,.03); border-radius: var(--r-card); overflow: hidden; }
+  .s-visit__hours h3 { padding: var(--s-4) var(--s-5); font-size: 1.8rem; color: var(--paper); border-bottom: 3px solid var(--accent); }
+  .s-visit__table { width: 100%; }
+  .s-visit__table th, .s-visit__table td { padding: var(--s-3) var(--s-4); border-bottom: 1px solid var(--line-dark); text-align: left; font-weight: 500; }
+  .s-visit__table tr:last-child th, .s-visit__table tr:last-child td { border-bottom: 0; }
+  .s-visit__table th { color: var(--paper); }
+  .s-visit__table td { text-align: right; font-size: var(--fs-sm); color: var(--paper-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .s-visit__table tr.is-closed td { opacity: .6; }
+  .s-visit__table tr.is-today { background: rgba(255,255,255,.06); box-shadow: inset 3px 0 0 var(--accent); }
+  .s-visit__table tr.is-today th::after { content: "Today"; display: inline-block; margin-left: var(--s-2); padding: 1px 8px; border-radius: var(--r-pill); background: var(--accent); color: var(--accent-ink); font-size: var(--fs-2xs); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; vertical-align: 1px; }
+  @media (max-width: 380px) { .s-visit__table td { white-space: normal; } .s-visit__table th, .s-visit__table td { padding-inline: var(--s-3); } }
+  @media (min-width: 1000px) { .s-visit__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-9); align-items: center; } .s-visit__table th, .s-visit__table td { padding: var(--s-4) var(--s-5); } }
+
+  /* ===== Request form (neomorphic panel) ===== */
+  .s-form { background: var(--neo-section); color: var(--neo-ink); }
+  .s-form h2 { color: var(--neo-ink); }
+  .s-form__steps { display: grid; gap: var(--s-3); margin-top: var(--s-3); counter-reset: step; }
+  .s-form__steps li { counter-increment: step; display: grid; grid-template-columns: 2.4rem 1fr; align-items: baseline; padding-bottom: var(--s-3); border-bottom: 1px solid rgba(0,0,0,.1); font-size: var(--fs-sm); color: var(--neo-ink-2); }
+  .s-form__steps li::before { content: "0" counter(step); font-family: var(--f-display); font-size: 1.3rem; color: var(--accent-text); }
+  .s-form__panel { background: var(--neo-panel); border-radius: var(--r-lg); padding: 30px; box-shadow: var(--neo-raise); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
+  .s-form__panel > * { min-width: 0; }
+  @media (max-width: 380px) { .s-form__panel { padding: 22px 16px; } }
+  .s-form__field { display: grid; gap: var(--s-2); min-width: 0; }
+  .s-form__field > label, .s-form__legend { font-family: var(--f-label); font-size: var(--fs-xs); font-weight: 600; letter-spacing: .06em; color: var(--neo-ink); }
+  .s-form__legend small { font-weight: 400; color: var(--neo-ink-2); letter-spacing: 0; }
+  .s-form__row { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
+  @media (min-width: 560px) { .s-form__row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .s-form__panel input, .s-form__panel textarea { width: 100%; min-height: 52px; padding: .85rem 1rem; background: var(--neo-panel); border: 1px solid rgba(255,255,255,.55); border-radius: var(--r-md); box-shadow: var(--neo-inset); font-size: 16px; color: var(--neo-ink); transition: box-shadow var(--t-fast) var(--ease); appearance: none; -webkit-appearance: none; }
+  .s-form__panel ::placeholder { color: var(--neo-ink-3); }
+  .s-form__panel textarea { min-height: 120px; resize: vertical; }
+  .s-form__panel input:focus, .s-form__panel textarea:focus { outline: none; box-shadow: var(--neo-inset), var(--neo-ring); }
+  .s-form__hint { font-size: var(--fs-xs); color: var(--neo-ink-2); }
+  .s-form__hint.is-ok { color: #23864f; }
+  .s-form__error { font-size: var(--fs-xs); color: #b4321f; min-height: 1em; }
+  /* service tiles */
+  .s-form__groups { display: grid; gap: var(--s-4); margin-top: var(--s-3); }
+  .s-form__group-title { display: flex; align-items: center; gap: var(--s-3); margin-bottom: var(--s-3); font-family: var(--f-display); font-size: 1.15rem; text-transform: var(--display-case); color: var(--neo-ink); }
+  .s-form__group-title::after { content: ""; flex: 1; height: 1px; background: rgba(0,0,0,.12); }
+  .s-form__tiles { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-3); }
+  @media (min-width: 560px) { .s-form__tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .s-form__tile { position: relative; display: block; }
+  .s-form__tile input { position: absolute; opacity: 0; width: 1px; height: 1px; min-height: 0; padding: 0; }
+  .s-form__tile span { position: relative; height: 100%; min-height: 56px; display: grid; grid-template-columns: 32px minmax(0, 1fr); align-items: center; gap: var(--s-3); padding: .6rem 2.2rem .6rem .7rem; border-radius: var(--r-md); background: var(--neo-panel); box-shadow: var(--neo-raise-sm); font-size: var(--fs-sm); font-weight: 600; line-height: 1.25; cursor: pointer; user-select: none; transition: box-shadow var(--t-fast) var(--ease), color var(--t-fast); }
+  .s-form__tile i { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 9px; box-shadow: var(--neo-inset); color: var(--neo-ink-2); }
+  .s-form__tile i svg { width: 18px; height: 18px; }
+  .s-form__tile b { position: absolute; top: 50%; right: .75rem; width: 18px; height: 18px; margin-top: -9px; border-radius: 50%; box-shadow: var(--neo-inset); }
+  .s-form__tile input:checked + span { box-shadow: var(--neo-inset); color: var(--accent-text); }
+  .s-form__tile input:checked + span i { color: var(--accent-text); }
+  .s-form__tile input:checked + span b { background: var(--accent); box-shadow: none; }
+  .s-form__tile input:checked + span b::after { content: ""; position: absolute; left: 6px; top: 3px; width: 4px; height: 8px; border: solid var(--accent-ink); border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  .s-form__tile input:focus-visible + span { box-shadow: var(--neo-raise-sm), var(--neo-ring); }
+  /* day strip */
+  .s-when { position: relative; display: grid; gap: var(--s-4); }
+  .s-when__arrows { position: absolute; top: -10px; right: 0; display: none; gap: var(--s-2); }
+  .s-when__arrow { width: 34px; height: 34px; border-radius: 10px; background: var(--neo-panel); box-shadow: var(--neo-raise-sm); }
+  .s-when__arrow:active { box-shadow: var(--neo-inset); }
+  .s-when__arrow:disabled { opacity: .35; cursor: default; }
+  @media (hover: hover) and (min-width: 700px) { .s-when__arrows { display: flex; } .s-when__strip { margin-top: 18px !important; } }
+  .s-when__strip { display: grid; grid-auto-flow: column; grid-auto-columns: auto; gap: 10px; overflow-x: auto; padding: 12px 14px 16px; margin: -4px -14px -8px; scroll-snap-type: x mandatory; scroll-padding-inline: 14px; scrollbar-width: none; }
+  .s-when__strip::-webkit-scrollbar { display: none; }
+  .s-when__day { scroll-snap-align: start; display: grid; justify-items: center; gap: 1px; padding: 9px 4px 8px; border-radius: var(--r-md); background: var(--neo-panel); border: 1px solid rgba(255,255,255,.55); box-shadow: var(--neo-raise-sm); transition: box-shadow var(--t-fast) var(--ease), color var(--t-fast); }
+  .s-when__day span { font-size: var(--fs-2xs); letter-spacing: .1em; text-transform: uppercase; color: var(--neo-ink-2); }
+  .s-when__day b { font-family: var(--f-display); font-size: 1.85rem; line-height: 1.05; font-variant-numeric: tabular-nums; }
+  .s-when__day.is-any b { font-family: var(--f-body); font-weight: 700; font-size: .88rem; letter-spacing: 0; padding-block: .55rem; white-space: nowrap; }
+  .s-when__day { width: 72px; overflow: hidden; }
+  .s-when__day.is-any { width: 96px; padding-inline: 8px; }
+  .s-when__day i { min-height: 1em; margin-top: 2px; font-style: normal; font-size: .6rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-text); }
+  .s-when__day[aria-pressed="true"] { box-shadow: var(--neo-inset), 0 0 0 2px var(--accent); }
+  .s-when__day[aria-pressed="true"] b { color: var(--accent-text); }
+  .s-when__day:focus-visible, .s-when__time:focus-visible, .s-when__arrow:focus-visible { outline: none; box-shadow: var(--neo-raise-sm), var(--neo-ring); }
+  .s-when__times { display: grid; gap: var(--s-4); }
+  .s-when__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); gap: var(--s-2); }
+  .s-when__time { min-height: 44px; padding: .4rem .5rem; border-radius: 10px; background: var(--neo-panel); border: 1px solid rgba(255,255,255,.55); box-shadow: var(--neo-raise-sm); font-size: var(--fs-sm); font-weight: 600; transition: box-shadow var(--t-fast) var(--ease), color var(--t-fast); }
+  .s-when__time.is-wide { grid-column: 1 / -1; }
+  .s-when__time.is-window { min-height: 62px; display: grid; gap: 2px; place-content: center; }
+  .s-when__time.is-window small { font-size: var(--fs-xs); font-weight: 500; color: var(--neo-ink-2); }
+  .s-when__time[aria-pressed="true"] { box-shadow: var(--neo-inset); color: var(--accent-text); }
+  .s-when__empty { font-size: var(--fs-sm); color: var(--neo-ink-2); padding: var(--s-2) 2px; }
+  .s-when__sum { display: grid; gap: 2px; padding: .75rem 1rem; border-radius: var(--r-md); background: var(--neo-panel); box-shadow: var(--neo-inset); border: 1px solid rgba(255,255,255,.55); font-size: var(--fs-sm); font-weight: 600; }
+  .s-when__sum small { font-size: var(--fs-2xs); font-weight: 500; color: var(--neo-ink-2); }
+  /* submit + result */
+  .s-form__submit { min-height: 56px; border-radius: var(--r-md); background: var(--neo-panel); box-shadow: var(--neo-raise); border: 1px solid rgba(255,255,255,.55); font-family: var(--f-btn); font-weight: 700; font-size: var(--fs-btn); letter-spacing: .1em; text-transform: uppercase; color: var(--neo-ink); transition: box-shadow var(--t-fast) var(--ease), color var(--t-fast); }
+  .s-form__submit:hover:not(:disabled) { color: var(--accent-text); }
+  .s-form__submit:active:not(:disabled) { box-shadow: var(--neo-inset); }
+  .s-form__submit:focus-visible { outline: none; box-shadow: var(--neo-raise), var(--neo-ring); }
+  .s-form__submit:disabled { cursor: not-allowed; opacity: .55; box-shadow: var(--neo-raise-sm); }
+  .s-form__result { display: grid; gap: var(--s-4); }
+  .s-form__summary { white-space: pre-wrap; font-size: var(--fs-sm); line-height: 1.7; padding: var(--s-4); border-radius: var(--r-md); background: var(--neo-panel); box-shadow: var(--neo-inset); border: 1px solid rgba(255,255,255,.55); overflow-wrap: anywhere; }
+  .s-form__send { display: grid; gap: var(--s-3); }
+  @media (min-width: 560px) { .s-form__send { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .s-form__send a, .s-form__send button { display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2); min-height: 52px; padding: .6rem 1rem; border-radius: var(--r-md); background: var(--neo-panel); box-shadow: var(--neo-raise-sm); border: 1px solid rgba(255,255,255,.55); text-decoration: none; color: var(--neo-ink); font-weight: 600; font-size: var(--fs-sm); }
+  .s-form__send a:active, .s-form__send button:active { box-shadow: var(--neo-inset); }
+  .s-form__send a.is-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .s-form__send svg { width: 18px; height: 18px; flex: none; }
+  .s-form__edit { justify-self: start; font-size: var(--fs-sm); color: var(--neo-ink-2); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ===== Send overlay ===== */
+  .s-send { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; background: rgba(0,0,0,.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); opacity: 0; pointer-events: none; transition: opacity var(--t-med) var(--ease); }
+  .s-send.is-on { opacity: 1; pointer-events: auto; }
+  .s-send__card { width: min(86vw, 300px); padding: var(--s-6) var(--s-5) var(--s-5); background: var(--card); border-radius: var(--r-lg); text-align: center; display: grid; gap: var(--s-3); justify-items: center; box-shadow: 0 40px 90px -20px rgba(0,0,0,.7); }
+  .s-send__card svg { width: 160px; height: 160px; overflow: visible; }
+  .s-send__msg { font-family: var(--f-display); font-size: 1.8rem; color: var(--ink); opacity: 0; text-transform: var(--display-case); }
+  .s-send.is-on .s-send__msg { animation: fadeUp .45s 1.7s var(--ease) forwards; }
+  .s-send__check { stroke-dasharray: 40; stroke-dashoffset: 40; }
+  .s-send.is-on .s-send__check { animation: draw .45s 1.6s ease-out forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @keyframes calmIn { from { opacity: 0; } to { opacity: 1; } }
+  .s-send__a1 { transform-origin: 50% 100%; transform-box: fill-box; transform: scaleY(0); }
+  .s-send__a2 { opacity: 0; }
+  .s-send.is-on .s-send__a1 { animation: grow .7s var(--ease) forwards; }
+  .s-send.is-on .s-send__a2 { animation: calmIn .6s 1s ease forwards; }
+  @keyframes grow { to { transform: scaleY(1); } }
+  @media (prefers-reduced-motion: reduce) {
+    .s-send [class*="s-send__a"] { animation: none !important; transform: none !important; }
+    .s-send__check { stroke-dashoffset: 0; opacity: 0; }
+    .s-send.is-on .s-send__check, .s-send.is-on .s-send__msg { animation: calmIn .5s .1s ease forwards; }
+  }
+
+  /* ===== Pill ===== */
+  .s-pill { position: fixed; left: 50%; bottom: max(var(--s-4), env(safe-area-inset-bottom)); z-index: 45; transform: translate(-50%, 150%); transition: transform var(--t-med) var(--ease); max-width: calc(100vw - 2 * var(--s-4)); }
+  .s-pill.is-on { transform: translate(-50%, 0); }
+  .s-pill a { display: inline-flex; align-items: center; gap: var(--s-3); min-height: 52px; padding: .55rem 1.1rem .55rem .6rem; border-radius: var(--r-pill); background: var(--dark); color: var(--paper); text-decoration: none; font-weight: 600; font-size: var(--fs-sm); white-space: nowrap; box-shadow: 0 18px 40px -14px rgba(0,0,0,.6); }
+  .s-pill b { display: grid; place-items: center; min-width: 32px; height: 32px; padding: 0 6px; border-radius: var(--r-pill); background: var(--accent); color: var(--accent-ink); }
+  .s-pill svg { width: 16px; height: 16px; }
+  @media (min-width: 1000px) { .s-pill { display: none; } }
+
+  /* ===== Footer ===== */
+  .s-footer { background: var(--dark); color: var(--paper-2); overflow: hidden; }
+  .s-footer__top { display: grid; gap: var(--s-5); padding-block: var(--s-7) var(--s-6); border-bottom: 1px solid var(--line-dark); }
+  .s-footer__name { font-family: var(--f-display); font-size: 1.7rem; color: var(--paper); text-transform: var(--display-case); line-height: 1.05; }
+  .s-footer__line { font-size: var(--fs-sm); }
+  .s-footer__line a { color: var(--paper); }
+  .s-footer__links { display: flex; flex-wrap: wrap; gap: var(--s-5); font-size: var(--fs-sm); font-weight: 600; }
+  .s-footer__links a { color: var(--paper); text-decoration: none; border-bottom: 1px solid var(--line-dark); padding-bottom: 2px; }
+  .s-footer__links a:hover { border-color: var(--accent); }
+  @media (min-width: 900px) { .s-footer__top { grid-template-columns: 1fr auto; align-items: end; } }
+  .s-footer__mark { font-family: var(--f-display); font-weight: var(--display-weight); text-transform: var(--display-case); line-height: .85; color: transparent; -webkit-text-stroke: 1px var(--mark-stroke); padding-block: var(--s-6) var(--s-4); font-size: 8rem; }
+  .s-footer__mark em { font-style: var(--em-style); color: var(--accent-on-dark); -webkit-text-stroke: 0; }
+  .s-credit { background: var(--bg-2); text-align: center; padding-block: var(--s-4); font-size: var(--fs-sm); border-top: 1px solid var(--line); }
+  .s-credit a { color: var(--ink); text-underline-offset: 3px; }
+
+  .c-btn--rated { background: var(--rated-btn-bg); color: var(--rated-btn-ink); justify-self: start; }
+  .c-btn--rated::before { background: var(--accent); }
+  .c-btn--rated:hover:not(:disabled) { color: var(--accent-ink); }
+
+}
+
+@layer utilities {
+  .u-sr { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .is-js .u-reveal { opacity: 0; transform: translateY(24px); transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease); transition-delay: var(--d, 0s); }
+  .is-js .u-reveal.is-in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .is-js .u-reveal { opacity: 1; transform: none; transition: none; } }
+}
+</style>
+</head>
+<body>
+<header class="s-header" data-module="header">
+  <div class="l-wrap s-header__bar">
+    <a class="s-header__brand" href="#top" data-slot="brand"></a>
+    <nav class="s-header__nav" aria-label="Main"><a href="#services">Services</a><a href="#prices">Prices</a><a href="#work">Recent yards</a><a href="#visit">Visit</a><a href="#request">Request</a></nav>
+    <div class="s-header__right">
+      <a class="c-btn c-btn--accent s-header__call" data-slot="call"></a>
+      <button class="s-header__menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sheet" data-slot="open"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="s-sheet" id="sheet" data-module="sheet" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div class="l-wrap s-sheet__top"><span class="s-header__brand" data-slot="brand"></span><button class="s-sheet__close" type="button" aria-label="Close menu" data-slot="close">&times;</button></div>
+  <nav class="l-wrap s-sheet__links" aria-label="Mobile"><a href="#services"><small>01</small>Services</a><a href="#prices"><small>02</small>Prices</a><a href="#work"><small>03</small>Recent yards</a><a href="#visit"><small>04</small>Visit</a><a href="#request"><small>05</small>Request</a></nav>
+  <div class="l-wrap s-sheet__foot" data-slot="foot"></div>
+</div>
+
+<section class="s-hero" id="top" data-module="hero" aria-label="Introduction">
+  <video class="s-hero__video" src="100-lawn-care-hero.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+  <div class="l-wrap s-hero__main">
+    <p class="s-hero__kicker" data-slot="kicker"></p>
+    <h1 class="s-hero__name" data-slot="name"></h1>
+    <div class="s-hero__line"><p data-slot="line"></p><p class="s-hero__slogan" data-slot="slogan"></p></div>
+    <div class="s-hero__actions"><a class="c-btn c-btn--accent" data-slot="call"></a><a class="c-btn c-btn--ghost" data-slot="cta2"></a></div>
+    <aside class="s-hero__plate s-hero__plate--desk" aria-label="Details" data-slot="plate-desk"></aside>
+  </div>
+  <aside class="s-hero__plate s-hero__plate--phone" aria-label="Details"><div class="l-wrap" data-slot="plate-phone"></div></aside>
+</section>
+
+<div class="s-ticker" data-module="ticker" aria-hidden="true"><div class="s-ticker__track"></div></div>
+<main>
+  <section class="s-services l-section" id="services" data-module="services" aria-labelledby="services-title">
+    <div class="l-wrap l-split">
+      <div class="c-head u-reveal"><span class="c-label"><b>01</b>Services</span><h2 id="services-title">Yard work &amp; <em>snow</em></h2><p>Mowing, clean-ups, brush clearing, and leaf blowing, plus snow and ice in winter.</p><p>Tap <strong>Add</strong> on anything you want. It carries straight into your request.</p></div>
+      <div><ul class="s-services__grid" data-slot="list"></ul><p class="s-services__tray" data-slot="tray" aria-live="polite"></p></div>
+    </div>
+  </section>
+  <section class="s-prices l-section" id="prices" data-module="prices" aria-labelledby="prices-title">
+    <div class="l-wrap l-split">
+      <div class="c-head u-reveal"><span class="c-label"><b>02</b>Price list</span><h2 id="prices-title">Sample prices</h2><p class="s-prices__note" data-slot="note"></p></div>
+      <div class="s-prices__menu u-reveal" data-slot="menu"></div>
+    </div>
+  </section>
+  <section class="s-book l-section is-dark" id="work" data-module="book" aria-labelledby="work-title">
+    <div class="l-wrap s-book__layout">
+      <div class="c-head u-reveal"><span class="c-label"><b>03</b>Photos</span><h2 id="work-title">Recent <em>Yards</em></h2><p>Photos from the job.</p></div>
+      <div class="bk u-reveal" data-slot="book" tabindex="0" aria-roledescription="photo book"></div>
+      <div class="s-book__nav"><button class="c-btn c-btn--ghost" type="button" data-slot="prev">Prev</button><span class="s-book__count" data-slot="count"></span><button class="c-btn c-btn--accent" type="button" data-slot="next">Next</button></div>
+    </div>
+  </section>
+  <section class="s-rated" id="rated" data-module="rated" aria-labelledby="rated-title">
+    <div class="l-wrap s-rated__inner">
+      <div class="s-rated__big" aria-hidden="true"><span class="s-rated__num" data-slot="num"></span><span class="s-rated__stars" data-slot="stars"></span></div>
+      <div><h2 class="s-rated__line" id="rated-title" data-slot="line"></h2><p class="s-rated__copy" data-slot="copy"></p></div>
+      <a class="c-btn c-btn--rated" data-slot="more" target="_blank" rel="noopener">Read reviews on Google</a>
+    </div>
+  </section>
+  <section class="s-visit l-section is-dark" id="visit" data-module="visit" aria-labelledby="visit-title">
+    <div class="l-wrap s-visit__grid">
+      <div class="s-visit__info u-reveal"><span class="c-label"><b>04</b>Visit</span><h2 id="visit-title">Where to <em>find us</em></h2>
+        <address class="s-visit__addr" data-slot="addr"></address>
+        <p class="c-status s-visit__status" data-slot="status"></p>
+        <p class="s-visit__note" data-slot="note" style="color:var(--paper-2);font-size:var(--fs-sm);max-width:30rem"></p>
+        <div class="s-visit__actions"><a class="c-btn c-btn--accent" data-slot="call"></a><a class="c-btn c-btn--ghost" data-slot="map" target="_blank" rel="noopener"></a></div>
+        <p class="s-visit__social" data-slot="social"></p>
+      </div>
+      <div class="s-visit__hours u-reveal" style="--d:.1s"><h3>Hours</h3><table class="s-visit__table"><caption class="u-sr">Hours</caption><tbody data-slot="hours"></tbody></table></div>
+    </div>
+  </section>
+  <section class="s-form l-section" id="request" data-module="form" aria-labelledby="request-title">
+    <div class="l-wrap l-split">
+      <div class="c-head u-reveal"><span class="c-label"><b>05</b>Request</span><h2 id="request-title">Request <em>service</em></h2>
+        <ol class="s-form__steps"><li>Pick your services and a preferred time.</li><li>We build the message for you.</li><li>Text it, call, or copy it to the crew.</li></ol>
+      </div>
+      <form class="s-form__panel u-reveal" novalidate data-slot="form">
+        <div class="s-form__row">
+          <div class="s-form__field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" required></div>
+          <div class="s-form__field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" enterkeyhint="next" placeholder="(724) 555-0123" aria-describedby="f-phone-hint" required><span class="s-form__hint" id="f-phone-hint" data-slot="phone-hint" aria-live="polite"></span></div>
+        </div>
+        <div class="s-form__row" data-slot="extra"></div>
+        <fieldset class="s-form__set"><legend class="s-form__legend">Service needed <small>(choose any)</small></legend><div class="s-form__groups" data-slot="chips"></div></fieldset>
+        <fieldset class="s-form__set s-when">
+          <legend class="s-form__legend">Preferred day &amp; time</legend>
+          <div class="s-when__arrows"><button type="button" class="s-when__arrow" data-dir="-1" aria-label="Earlier days">&larr;</button><button type="button" class="s-when__arrow" data-dir="1" aria-label="Later days">&rarr;</button></div>
+          <div class="s-when__strip" role="group" aria-label="Preferred day" data-slot="days"></div>
+          <div class="s-when__times" data-slot="times" aria-live="polite"></div>
+          <p class="s-when__sum"><small>Goes into your request as</small><span data-slot="when"></span></p>
+        </fieldset>
+        <div class="s-form__field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" placeholder="Yard size, what needs doing, gate codes, how often..."></textarea></div>
+        <p class="s-form__error" id="f-error" data-slot="error" role="alert"></p>
+        <button class="s-form__submit" type="submit" disabled data-slot="submit" aria-describedby="f-phone-hint">Send request</button>
+        <div class="s-form__result" data-slot="result" hidden>
+          <p class="s-form__legend">Your request is ready. Send it to the crew:</p>
+          <div class="s-form__summary" data-slot="summary"></div>
+          <div class="s-form__send">
+            <a class="is-primary" data-slot="sms"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z" stroke-linejoin="round"/></svg>Text it</a>
+            <a data-slot="tel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z" stroke-linejoin="round"/></svg>Call</a>
+            <button type="button" data-slot="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg><span>Copy</span></button>
+          </div>
+          <button type="button" class="s-form__edit" data-slot="edit">Edit request</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="s-footer" data-module="footer">
+  <div class="l-wrap">
+    <div class="s-footer__top"><div><p class="s-footer__name" data-slot="name"></p><p class="s-footer__line" data-slot="line"></p></div>
+      <nav class="s-footer__links" aria-label="Footer"><a href="#services">Services</a><a href="#work">Recent Work</a><a href="#visit">Visit</a></nav></div>
+    <p class="s-footer__mark" data-slot="mark" aria-hidden="true"></p>
+  </div>
+</footer>
+<div class="s-credit"><a href="https://www.facebook.com/717DigitalStudio" target="_blank" rel="noopener">Message me about this site</a></div>
+<div class="s-pill" data-module="pill" aria-live="polite"><a href="#request" tabindex="-1"></a></div>
+<div class="s-send" data-module="send" role="status" aria-live="assertive" aria-hidden="true"><div class="s-send__card"><svg viewBox="0 0 160 160" aria-hidden="true"><circle cx="126" cy="26" r="13" fill="#f5c542" class="s-send__a2"/><path class="s-send__a1" style="animation-delay:0.15s" d="M30 118 C28 96 27 80 24 70" fill="none" stroke="#2f6b2a" stroke-width="7" stroke-linecap="round"/><path class="s-send__a1" style="animation-delay:0.22s" d="M46 118 C44 96 48 80 50 52" fill="none" stroke="#9bd13b" stroke-width="7" stroke-linecap="round"/><path class="s-send__a1" style="animation-delay:0.29s" d="M62 118 C60 96 60 80 58 40" fill="none" stroke="#2f6b2a" stroke-width="7" stroke-linecap="round"/><path class="s-send__a1" style="animation-delay:0.36s" d="M78 118 C76 96 81 80 84 30" fill="none" stroke="#9bd13b" stroke-width="7" stroke-linecap="round"/><path class="s-send__a1" style="animation-delay:0.43s" d="M94 118 C92 96 91 80 88 44" fill="none" stroke="#2f6b2a" stroke-width="7" stroke-linecap="round"/><path class="s-send__a1" style="animation-delay:0.50s" d="M110 118 C108 96 112 80 114 56" fill="none" stroke="#9bd13b" stroke-width="7" stroke-linecap="round"/><path class="s-send__a1" style="animation-delay:0.57s" d="M126 118 C124 96 124 80 122 74" fill="none" stroke="#2f6b2a" stroke-width="7" stroke-linecap="round"/><path d="M18 120h124" stroke="#2f6b2a" stroke-width="4" stroke-linecap="round"/><path class="s-send__check" d="M66 146 l10 9 20-20" fill="none" stroke="#3fae6a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><p class="s-send__msg">Request ready</p></div></div>
+<script type="application/ld+json" id="schema-data"></script>
+<script>
+/* ==========================================================
+   SITE: every fact on the page lives here.
+   ========================================================== */
+const SITE = {
+  "name": "100% Lawn Care",
+  "nameLines": [
+    "100%",
+    "Lawn Care"
+  ],
+  "categoryLine": "Lawn Care · Ford City, PA",
+  "schemaType": "HomeAndConstructionBusiness",
+  "heroLine": "Mowing, clean-ups, brush clearing, leaf blowing, and snow removal in Ford City.",
+  "slogan": null,
+  "hero": {
+    "cta2": "See services",
+    "cta2Target": "services",
+    "plateLabel": "Seasons",
+    "plateValue": "Lawn care and snow removal"
+  },
+  "theme": {
+    "heroMax": 210,
+    "heroMax2": 110
+  },
+  "phone": "(724) 664-2224",
+  "address": {
+    "street": "190 Sheasley Ln",
+    "city": "Ford City",
+    "region": "PA",
+    "zip": "16226",
+    "lines": [
+      "190 Sheasley Ln",
+      "Ford City, PA 16226"
+    ]
+  },
+  "footerLine": "Ford City, PA",
+  "timeZone": "America/New_York",
+  "rating": {
+    "value": 5.0,
+    "count": 34,
+    "source": "Google"
+  },
+  "ratedCopy": "Had work done? Read what other customers say, or leave a review of your own on Google.",
+  "facebook": "https://www.facebook.com/730577197150582",
+  "mapUrl": "https://www.google.com/maps/search/?api=1&query=100%25+Lawn+Care%2C+190+Sheasley+Ln%2C+Ford+City%2C+PA+16226",
+  "reviewsUrl": "https://www.google.com/maps/search/?api=1&query=100%25+Lawn+Care%2C+190+Sheasley+Ln%2C+Ford+City%2C+PA+16226",
+  "visitNote": null,
+  "hours": {
+    "mon": {
+      "open": "07:00",
+      "close": "20:00"
+    },
+    "tue": {
+      "open": "07:00",
+      "close": "20:00"
+    },
+    "wed": {
+      "open": "07:00",
+      "close": "20:00"
+    },
+    "thu": {
+      "open": "07:00",
+      "close": "20:00"
+    },
+    "fri": {
+      "open": "07:00",
+      "close": "20:00"
+    },
+    "sat": {
+      "open": "07:00",
+      "close": "20:00"
+    },
+    "sun": {
+      "open": "10:00",
+      "close": "17:00"
+    }
+  },
+  "ticker": [
+    "Mowing and Trimming",
+    "General Clean-up",
+    "Brush Clearing",
+    "Leaf Blowing",
+    "Snow plowing",
+    "Sidewalk shoveling"
+  ],
+  "serviceGroups": [
+    "Lawn & Yard",
+    "Snow & Ice"
+  ],
+  "services": [
+    {
+      "name": "Mowing and Trimming",
+      "icon": "grass",
+      "group": "Lawn & Yard",
+      "desc": "Grass cut and edges trimmed."
+    },
+    {
+      "name": "General Clean-up",
+      "icon": "rake",
+      "group": "Lawn & Yard",
+      "desc": "Debris and yard waste picked up and cleared."
+    },
+    {
+      "name": "Brush Clearing",
+      "icon": "branch",
+      "group": "Lawn & Yard",
+      "desc": "Overgrown brush cut back and cleared."
+    },
+    {
+      "name": "Leaf Blowing",
+      "icon": "wind",
+      "group": "Lawn & Yard",
+      "desc": "Leaves blown clear of lawns, beds, and walkways."
+    },
+    {
+      "name": "Snow plowing/salting/anti-skid application",
+      "icon": "snow",
+      "group": "Snow & Ice",
+      "desc": "Plowing, salt, and anti-skid for driveways and lots."
+    },
+    {
+      "name": "Sidewalk shoveling",
+      "icon": "shovel",
+      "group": "Snow & Ice",
+      "desc": "Snow shoveled clear from sidewalks and walkways."
+    }
+  ],
+  "priceNote": "Sample prices for illustration. Call for current pricing.",
+  "prices": [
+    {
+      "group": "Lawn & Yard",
+      "rows": [
+        {
+          "name": "Mowing and Trimming",
+          "amount": 55
+        },
+        {
+          "name": "General Clean-up",
+          "amount": 220
+        },
+        {
+          "name": "Brush Clearing",
+          "amount": 150,
+          "from": true
+        },
+        {
+          "name": "Leaf Blowing",
+          "amount": 60,
+          "from": true
+        }
+      ]
+    },
+    {
+      "group": "Snow & Ice",
+      "rows": [
+        {
+          "name": "Snow plowing, salting, anti-skid",
+          "amount": 65,
+          "from": true
+        },
+        {
+          "name": "Sidewalk shoveling",
+          "amount": 25,
+          "from": true
+        }
+      ]
+    }
+  ],
+  "book": {
+    "style": "clipboard",
+    "coverTitle": [
+      "Recent",
+      "Yards"
+    ],
+    "photos": [
+      {
+        "src": "data:image/jpeg;base64,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/v8AS/8AxFfT1FAHzF/wzZ4s/wCgpo35y/8AxFL/AMM2+LP+gno35y//ABFfTlFAz5i/4Zs8Wf8AQT0b85f/AIik/wCGbPFn/QT0b/v9L/8AEV9PUUCPmH/hmzxZ/wBBPRv+/wBL/wDEUv8AwzX4s/6CmjfnL/8AEV9O0UAfMX/DNXiz/oK6P+cv/wARR/wzV4s/6Cuj/nL/APEV9O0UAfMH/DNfi7/oK6N+cv8A8RR/wzX4u/6CujfnL/8AEV9P0UDPmD/hmvxd/wBBXRvzl/8AiKd/wzX4s/6CujfnL/8AEV9O0UAfMX/DNni//oK6N+cv/wARWh4e+AfiXRfFGlapPqGlPHYXUNwUQyZbD+6V9G0UCCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACisz+0Zf+mdH9oy/wDTOgDTorM/tGX/AKZ0f2jL/wBM6ANOisz+0Zf+mdH9oy/9M6ANOisz+0Zf+mdH9oy/9M6ANOisz+0Zf+mdH9oy/wDTOgDTorM/tGX/AKZ0f2jL/wBM6ANOisz+0Zf+mdH9oy/9M6ANOisz+0Zf+mdH9oy/9M6ANOisz+0Zf+mdH9oy/wDTOgDTorM/tGX/AKZ0f2jL/wBM6ANOisz+0Zf+mdH9oy/9M6ANOisz+0Zf+mdH9oy/9M6ANOisz+0Zf+mdH9oy/wDTOgDTorM/tGX/AKZ0f2jL/wBM6ANOisz+0Zf+mdH9oy/9M6ANOisz+0Zf+mdH9oy/9M6ANOisz+0Zf+mdH9oy/wDTOgDTorM/tGX/AKZ0f2jL/wBM6ANOisz+0Zf+mdH9oy/9M6ANOisz+0Zf+mdH9oy/9M6ANOisz+0Zf+mdH9oy/wDTOgDTorM/tGX/AKZ0f2jL/wBM6ANOisz+0Zf+mdH9oy/9M6AP/9k=",
+        "alt": "100% Lawn Care photo 1"
+      }
+    ]
+  },
+  "form": {
+    "ask": "request a quote",
+    "timePicker": "windows",
+    "timeWindows": [
+      {
+        "name": "Morning",
+        "from": 0,
+        "to": 720
+      },
+      {
+        "name": "Afternoon",
+        "from": 720,
+        "to": 960
+      },
+      {
+        "name": "Evening",
+        "from": 960,
+        "to": 1440
+      }
+    ],
+    "slotMinutes": 30,
+    "daysAhead": 14,
+    "extra": [
+      {
+        "id": "address",
+        "label": "Property address",
+        "optional": false,
+        "placeholder": "Street address, town",
+        "autocomplete": "street-address"
+      }
+    ]
+  }
+};
+
+/* ==========================================================
+   Shared helpers (derived values only)
+   ========================================================== */
+const DAYS = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+const WEEK = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+const DAY_NAMES = { mon: "Monday", tue: "Tuesday", wed: "Wednesday", thu: "Thursday", fri: "Friday", sat: "Saturday", sun: "Sunday" };
+const DAY_SHORT = { mon: "Mon", tue: "Tue", wed: "Wed", thu: "Thu", fri: "Fri", sat: "Sat", sun: "Sun" };
+const ICONS = {"scissors": "<circle cx=\"6\" cy=\"7\" r=\"3\"/><circle cx=\"6\" cy=\"17\" r=\"3\"/><path d=\"M8.5 8.5 20 19M8.5 15.5 20 5\"/>", "razor": "<path d=\"M4 14 14 4h4L6 16z\"/><path d=\"M12 12l8 8\"/>", "beard": "<path d=\"M6 4v5a6 6 0 0 0 12 0V4\"/><path d=\"M9 12.5c1.5 1 4.5 1 6 0M8 17c2 4 6 4 8 0\"/>", "clippers": "<rect x=\"8\" y=\"5\" width=\"8\" height=\"16\" rx=\"3\"/><path d=\"M8 9h8M9.5 2v3M12 2v3M14.5 2v3\"/>", "fade": "<path d=\"M4 20h16M5 16h14M7 12h10M9 8h6M11 4h2\"/>", "kid": "<circle cx=\"12\" cy=\"7\" r=\"3\"/><path d=\"M7 21v-4a5 5 0 0 1 10 0v4\"/>", "lineup": "<path d=\"M4 20V9a5 5 0 0 1 5-5h11\"/><path d=\"M8 20v-7a5 5 0 0 1 5-5h7\" stroke-dasharray=\"2 2.5\"/>", "towel": "<rect x=\"4\" y=\"9\" width=\"16\" height=\"11\" rx=\"2\"/><path d=\"M8 6c0-1 1-1 1-2s-1-1-1-2M12 6c0-1 1-1 1-2s-1-1-1-2M16 6c0-1 1-1 1-2s-1-1-1-2\"/>", "strand": "<path d=\"M8 3c0 6 4 6 4 12s-4 6-4 6M12 3c0 6 4 6 4 12s-4 6-4 6M16 3c0 5-2 6-2 9\"/>", "brush": "<path d=\"M14 3l7 7-5 5-7-7z\"/><path d=\"M9 8l-4.5 4.5a3 3 0 0 0 0 4.2l2.8 2.8a3 3 0 0 0 4.2 0L16 15\"/>", "sparkle": "<path d=\"M11 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z\"/><path d=\"M19 3v4M17 5h4\"/>", "drop": "<path d=\"M12 3s7 7 7 12a7 7 0 0 1-14 0c0-5 7-12 7-12z\"/><path d=\"M9 15a3 3 0 0 0 3 3\"/>", "ring": "<circle cx=\"12\" cy=\"15\" r=\"6\"/><path d=\"M9 3h6l-3 5z\"/>", "polish": "<rect x=\"7\" y=\"10\" width=\"10\" height=\"11\" rx=\"2\"/><path d=\"M10 10V4h4v6\"/>", "foot": "<path d=\"M9 21c-3 0-4-3-4-6s1-7 4-10c2 2 3 5 3 8s1 4 3 5 1 3-2 3z\"/><circle cx=\"16\" cy=\"5\" r=\"1.2\"/><circle cx=\"18.5\" cy=\"8\" r=\"1\"/>", "hand": "<path d=\"M8 21v-9M11 21V6a1.5 1.5 0 0 1 3 0v15M14 9a1.5 1.5 0 0 1 3 0v12M8 12a1.5 1.5 0 0 0-3 0v4\"/>", "grass": "<path d=\"M3 20h18M6 20c0-4 1-7 3-9M10 20c0-5 1-9 2-12M14 20c0-4 1-7 3-9M18 20c0-3 0-5 1-7\"/>", "rake": "<path d=\"M12 3v12M6 15h12M7 15v4M10 15v4M14 15v4M17 15v4\"/>", "branch": "<path d=\"M4 20 18 6M10 14l-4-2M13 11l-1-5M16 8l4-1\"/>", "wind": "<path d=\"M3 8h11a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h8\"/>", "snow": "<path d=\"M12 2v20M3.5 7l17 10M20.5 7l-17 10\"/><path d=\"M9 4l3 2 3-2M9 20l3-2 3 2\"/>", "shovel": "<path d=\"M14 4l6 6M17 7l-8 8\"/><path d=\"M9 15l-4 1-2 4 4-2 1-4z\"/>", "star": "<path d=\"M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.5 2.9 1-6.1-4.4-4.3 6.1-.9z\"/>"};
+
+const H = {
+  digits: s => String(s).replace(/\D/g, ""),
+  telHref: p => "tel:+1" + H.digits(p),
+  esc: s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])),
+  toMin: hhmm => { const [h, m] = hhmm.split(":").map(Number); return h * 60 + m; },
+  fmtMin: min => { let h = Math.floor(min / 60); const m = min % 60, ap = h >= 12 ? "PM" : "AM"; h = h % 12 || 12; return h + ":" + String(m).padStart(2, "0") + " " + ap; },
+  isOpenDay: k => { const d = SITE.hours[k]; return !!(d && !d.closed && d.open && d.close); },
+  dayLabel: k => { const d = SITE.hours[k]; if (!d) return "Call for hours"; if (d.closed) return "Closed"; return H.fmtMin(H.toMin(d.open)) + " - " + H.fmtMin(H.toMin(d.close)); },
+  fullAddress: () => SITE.address.lines.join(", "),
+  townLine: () => SITE.address.city + ", " + SITE.address.region,
+  icon: n => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONS[n] || ICONS.star) + "</svg>",
+  phoneIcon: () => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z" stroke-linejoin="round"/></svg>',
+  pin: () => '<svg class="c-pin" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.6A2.6 2.6 0 1 1 12 6.4a2.6 2.6 0 0 1 0 5.2z"/></svg>',
+  arrow: () => '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg>',
+  brand: () => H.esc(SITE.nameLines[0]) + (SITE.nameLines[1] ? " <em>" + H.esc(SITE.nameLines[1]) + "</em>" : ""),
+  bizNow: () => {
+    const p = new Intl.DateTimeFormat("en-US", { timeZone: SITE.timeZone, weekday: "short", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(new Date());
+    const g = t => p.find(x => x.type === t).value;
+    return { key: g("weekday").toLowerCase().slice(0, 3), minutes: (Number(g("hour")) % 24) * 60 + Number(g("minute")), y: Number(g("year")), m: Number(g("month")), d: Number(g("day")) };
+  },
+  status: () => {
+    const now = H.bizNow();
+    if (!SITE.hours[now.key]) return { open: false, text: "Call for hours", short: "Call for hours" };
+    if (H.isOpenDay(now.key)) {
+      const o = H.toMin(SITE.hours[now.key].open), c = H.toMin(SITE.hours[now.key].close);
+      if (now.minutes >= o && now.minutes < c) return { open: true, text: "Open now, until " + H.fmtMin(c), short: "Open until " + H.fmtMin(c) };
+      if (now.minutes < o) return { open: false, text: "Closed now, opens today at " + H.fmtMin(o), short: "Opens today " + H.fmtMin(o) };
+    }
+    const idx = DAYS.indexOf(now.key);
+    for (let i = 1; i <= 7; i++) {
+      const k = DAYS[(idx + i) % 7];
+      if (!SITE.hours[k]) return { open: false, text: "Closed now. Call for hours.", short: "Call for hours" };
+      if (H.isOpenDay(k)) { const t = H.fmtMin(H.toMin(SITE.hours[k].open)); return { open: false, text: "Closed now, opens " + (i === 1 ? "tomorrow" : DAY_NAMES[k]) + " at " + t, short: "Opens " + (i === 1 ? "tomorrow" : DAY_SHORT[k]) + " " + t }; }
+    }
+    return { open: false, text: "Call for hours", short: "Call for hours" };
+  },
+  paintStatus: el => { const s = H.status(); el.textContent = el.dataset.short ? s.short : s.text; el.classList.toggle("is-open", s.open); el.classList.toggle("is-closed", !s.open); },
+  /* shrink a single line of display type until it fits its container */
+  fit: el => { const max = parseFloat(el.dataset.max || "200"); el.style.fontSize = max + "px"; const w = el.parentElement.clientWidth; if (el.scrollWidth > w && w > 0) el.style.fontSize = Math.max(16, Math.floor(max * w / el.scrollWidth * .98)) + "px"; }
+};
+
+const PICK = { set: new Set(), subs: [], toggle(n, on) { if (on === undefined) on = !this.set.has(n); on ? this.set.add(n) : this.set.delete(n); this.subs.forEach(f => f()); }, on(f) { this.subs.push(f); } };
+
+/* ==========================================================
+   Section modules
+   ========================================================== */
+const MODULES = {
+  header(el) {
+    el.querySelector('[data-slot="brand"]').innerHTML = H.brand();
+    const call = el.querySelector('[data-slot="call"]');
+    call.href = H.telHref(SITE.phone); call.setAttribute("aria-label", "Call " + SITE.phone);
+    call.innerHTML = H.phoneIcon() + "<span>" + H.esc(SITE.phone) + "</span>";
+    const hero = document.getElementById("top");
+    const onScroll = () => el.classList.toggle("is-solid", window.scrollY > Math.max(40, (hero ? hero.offsetHeight : 400) - 90));
+    onScroll(); window.addEventListener("scroll", onScroll, { passive: true }); window.addEventListener("resize", onScroll);
+    el.querySelector('[data-slot="open"]').addEventListener("click", () => document.dispatchEvent(new CustomEvent("sheet:open")));
+  },
+
+  sheet(el) {
+    el.querySelector('[data-slot="brand"]').innerHTML = H.brand();
+    el.querySelector('[data-slot="foot"]').innerHTML = "<span>" + H.esc(H.fullAddress()) + '</span><a href="' + H.telHref(SITE.phone) + '">' + H.esc(SITE.phone) + "</a>";
+    const opener = document.querySelector('.s-header [data-slot="open"]');
+    const open = () => { el.classList.add("is-open"); document.body.classList.add("is-locked"); opener && opener.setAttribute("aria-expanded", "true"); el.querySelector('[data-slot="close"]').focus(); };
+    const close = () => { el.classList.remove("is-open"); document.body.classList.remove("is-locked"); opener && opener.setAttribute("aria-expanded", "false"); };
+    document.addEventListener("sheet:open", open);
+    el.querySelector('[data-slot="close"]').addEventListener("click", () => { close(); opener && opener.focus(); });
+    el.querySelectorAll("a[href^='#']").forEach(a => a.addEventListener("click", close));
+    document.addEventListener("keydown", e => { if (e.key === "Escape" && el.classList.contains("is-open")) close(); });
+  },
+
+  hero(el) {
+    el.querySelector('[data-slot="kicker"]').textContent = SITE.categoryLine;
+    const name = el.querySelector('[data-slot="name"]');
+    name.innerHTML = SITE.nameLines.map((t, i) => '<span data-fit data-max="' + (i === 0 ? SITE.theme.heroMax : SITE.theme.heroMax2) + '">' + H.esc(t) + "</span>").join("");
+    el.querySelector('[data-slot="line"]').textContent = SITE.heroLine;
+    const sl = el.querySelector('[data-slot="slogan"]');
+    if (SITE.slogan) sl.textContent = SITE.slogan; else sl.remove();
+    const call = el.querySelector('[data-slot="call"]');
+    call.href = H.telHref(SITE.phone); call.innerHTML = H.phoneIcon() + "Call " + H.esc(SITE.phone);
+    const sec = el.querySelector('[data-slot="cta2"]');
+    sec.href = "#" + SITE.hero.cta2Target; sec.innerHTML = H.esc(SITE.hero.cta2) + H.arrow();
+    /* hours live only in the Visit table, so the plate carries rating, a fact, town and phone */
+    const plate = "<dl>" +
+      '<div><dt>Google rating</dt><dd><a href="#rated">★ ' + SITE.rating.value.toFixed(1) + " · " + SITE.rating.count + " reviews</a></dd></div>" +
+      '<div><dt>' + H.esc(SITE.hero.plateLabel) + "</dt><dd>" + H.esc(SITE.hero.plateValue) + "</dd></div>" +
+      '<div><dt>Find us</dt><dd><a href="' + SITE.mapUrl + '" target="_blank" rel="noopener">' + H.esc(H.townLine()) + "</a></dd></div>" +
+      '<div><dt>Call</dt><dd><a href="' + H.telHref(SITE.phone) + '">' + H.esc(SITE.phone) + "</a></dd></div></dl>";
+    el.querySelector('[data-slot="plate-desk"]').innerHTML = plate;
+    el.querySelector('[data-slot="plate-phone"]').innerHTML = plate;
+    const v = el.querySelector("video");
+    if (v) { v.muted = true; const p = v.play && v.play(); if (p && p.catch) p.catch(() => {}); }
+  },
+
+  ticker(el) {
+    const group = '<div class="s-ticker__group">' + SITE.ticker.map(s => '<span class="s-ticker__item">' + H.esc(s) + "</span>").join("") + "</div>";
+    el.querySelector(".s-ticker__track").innerHTML = group + group;
+  },
+
+  services(el) {
+    const list = el.querySelector('[data-slot="list"]');
+    if (SITE.services.length % 3 === 0) list.classList.add("is-three");
+    const hasForm = !!document.querySelector('[data-module="form"]');
+    list.innerHTML = SITE.services.map((s, i) =>
+      '<li class="s-services__card u-reveal" style="--d:' + (i * .05) + 's"><span class="s-services__icon">' + H.icon(s.icon) + '</span><span class="s-services__num">' + String(i + 1).padStart(2, "0") + "</span><h3>" + H.esc(s.name) + "</h3><p>" + H.esc(s.desc) + "</p>" +
+      (hasForm ? '<button type="button" class="s-services__add" aria-pressed="false" data-name="' + H.esc(s.name) + '"><i>+</i><span>Add</span></button>' : "") + "</li>"
+    ).join("");
+    const tray = el.querySelector('[data-slot="tray"]');
+    if (!hasForm) { tray.remove(); return; }
+    list.addEventListener("click", e => { const b = e.target.closest(".s-services__add"); if (b) PICK.toggle(b.dataset.name); });
+    const paint = () => {
+      list.querySelectorAll(".s-services__add").forEach(b => { const on = PICK.set.has(b.dataset.name); b.setAttribute("aria-pressed", on); b.querySelector("span").textContent = on ? "Added" : "Add"; b.closest(".s-services__card").classList.toggle("is-picked", on); });
+      const n = PICK.set.size;
+      tray.innerHTML = n ? "<span>" + n + " service" + (n > 1 ? "s" : "") + ' in your request</span><a class="c-btn c-btn--accent" href="#request">Continue to request' + H.arrow() + "</a>" : "";
+    };
+    PICK.on(paint); paint();
+  },
+
+  how(el) {
+    el.querySelector('[data-slot="steps"]').innerHTML = SITE.how.map((s, i) =>
+      '<li class="s-how__step u-reveal" style="--d:' + (i * .08) + 's"><b>' + (i + 1) + "</b><div><h3>" + H.esc(s.title) + "</h3></div><p>" + H.esc(s.text) + "</p></li>").join("");
+  },
+
+  flavors(el) {
+    const f = SITE.flavors;
+    el.querySelector('[data-slot="board"]').innerHTML =
+      '<div class="s-flavors__panel s-flavors__panel--main u-reveal"><h3>' + H.esc(f.title) + "<small>" + H.esc(f.note) + '</small></h3><ul class="s-flavors__list">' + f.list.map(x => "<li>" + H.esc(x) + "</li>").join("") + "</ul></div>" +
+      f.groups.map((g, i) => '<div class="s-flavors__panel u-reveal" style="--d:' + (i * .08) + 's"><h3>' + H.esc(g.title) + "<small>" + H.esc(g.note || "") + '</small></h3><ul class="s-flavors__list">' + g.items.map(x => "<li>" + H.esc(x) + "</li>").join("") + "</ul></div>").join("");
+  },
+
+  prices(el) {
+    el.querySelector('[data-slot="note"]').textContent = SITE.priceNote;
+    const menu = el.querySelector('[data-slot="menu"]');
+    menu.style.setProperty("--price-cols", SITE.prices.length);
+    menu.innerHTML = SITE.prices.map(g =>
+      '<div class="s-prices__group"><h3>' + H.esc(g.group) + "<small>Sample</small></h3><ul>" +
+      g.rows.map(r => '<li class="s-prices__row"><span>' + H.esc(r.name) + '</span><span class="s-prices__dots"></span><span class="s-prices__amt">' + (r.from ? "<small>from</small>" : "") + "$" + r.amount + "</span></li>").join("") + "</ul></div>"
+    ).join("");
+  },
+
+  book(el) {
+    const bk = el.querySelector('[data-slot="book"]');
+    const style = SITE.book.style, photos = SITE.book.photos, total = photos.length + 1;
+    const coverH = '<h3>' + SITE.book.coverTitle.map(t => "<span>" + H.esc(t) + "</span>").join("") + "</h3>";
+    const pageHtml = '<div class="bk__page"><div class="bk__cover">' + coverH + "</div></div>" +
+      photos.map(p => '<div class="bk__page" hidden><div class="bk__frame"><img src="' + H.esc(p.src) + '" alt="' + H.esc(p.alt) + '" loading="lazy" decoding="async"></div></div>').join("");
+    bk.classList.add("bk--" + style);
+    if (style === "polaroid") bk.innerHTML = '<div class="bk__back"></div><div class="bk__back"></div><div class="bk__print"><div class="bk__pages" data-slot="pages" aria-live="polite">' + pageHtml + '</div><p class="bk__cap" data-slot="cap"></p></div>';
+    else if (style === "clipboard") bk.innerHTML = '<div class="bk__clamp" aria-hidden="true"></div><div class="bk__sheet"><div class="bk__hd"><strong>' + H.esc(SITE.book.coverTitle.join(" ")) + '</strong><span data-slot="cap"></span></div><div class="bk__pages" data-slot="pages" aria-live="polite">' + pageHtml + '</div><div class="bk__meta"><span>Business<b>' + H.esc(SITE.name) + "</b></span><span>Location<b>" + H.esc(H.townLine()) + "</b></span></div></div>";
+    else bk.innerHTML = '<div class="bk__hd"><b>' + H.esc(SITE.name) + "</b><span>" + H.esc(SITE.address.street + " · " + SITE.address.city) + '</span></div><div class="bk__pages" data-slot="pages" aria-live="polite">' + pageHtml + '</div><div class="bk__foot" data-slot="cap"></div>';
+    const pages = [...bk.querySelectorAll(".bk__page")];
+    const cap = bk.querySelector('[data-slot="cap"]');
+    const imgs = pages.map(p => p.querySelector("img"));
+    const warm = i => { const im = imgs[i]; if (im && im.loading !== "eager") { im.loading = "eager"; const pre = new Image(); pre.src = im.src; } };
+    if ("IntersectionObserver" in window) { const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { warm(1); warm(2); io.disconnect(); } }, { rootMargin: "600px 0px" }); io.observe(bk); } else imgs.forEach((_, i) => warm(i));
+    const prev = el.querySelector('[data-slot="prev"]'), next = el.querySelector('[data-slot="next"]'), count = el.querySelector('[data-slot="count"]');
+    const two = n => String(n).padStart(2, "0");
+    let cur = 0;
+    const show = n => {
+      cur = Math.max(0, Math.min(total - 1, n));
+      if (cur > 0) { warm(cur); warm(cur + 1); }
+      pages.forEach((p, i) => { p.hidden = i !== cur; });
+      prev.disabled = cur === 0; next.disabled = cur === total - 1;
+      count.textContent = cur === 0 ? "Cover" : two(cur) + " / " + two(photos.length);
+      if (style === "polaroid") cap.textContent = cur === 0 ? SITE.name : "No. " + cur + " · " + SITE.name;
+      else if (style === "clipboard") cap.textContent = cur === 0 ? "COVER" : "PHOTO " + two(cur) + " / " + two(photos.length);
+      else cap.innerHTML = cur === 0 ? "<span>Cover</span><span>" + photos.length + " photo" + (photos.length > 1 ? "s" : "") + "</span>" : "<span>Ticket #" + two(cur) + "</span><span>" + cur + " of " + photos.length + "</span>";
+    };
+    prev.addEventListener("click", () => show(cur - 1));
+    next.addEventListener("click", () => show(cur + 1));
+    bk.addEventListener("keydown", e => { if (e.key === "ArrowLeft") show(cur - 1); if (e.key === "ArrowRight") show(cur + 1); });
+    let x0 = null;
+    bk.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+    bk.addEventListener("touchend", e => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) show(cur + (dx < 0 ? 1 : -1)); x0 = null; });
+    show(0);
+  },
+
+  rated(el) {
+    const r = SITE.rating;
+    el.querySelector('[data-slot="num"]').textContent = r.value.toFixed(1);
+    el.querySelector('[data-slot="stars"]').innerHTML = "★★★★★<i style=\"width:" + (r.value / 5 * 100) + '%">★★★★★</i>';
+    el.querySelector('[data-slot="line"]').textContent = "★ " + r.value.toFixed(1) + " · " + r.count + " " + r.source + " reviews";
+    el.querySelector('[data-slot="copy"]').textContent = SITE.ratedCopy;
+    el.querySelector('[data-slot="more"]').href = SITE.reviewsUrl;
+  },
+
+  visit(el) {
+    const a = SITE.address;
+    el.querySelector('[data-slot="addr"]').innerHTML = (a.building ? "<small>" + H.esc(a.building) + "</small>" : "") + H.esc(a.street) + "<br>" + H.esc(a.city + ", " + a.region + " " + a.zip);
+    const call = el.querySelector('[data-slot="call"]');
+    call.href = H.telHref(SITE.phone); call.innerHTML = H.phoneIcon() + "Call " + H.esc(SITE.phone);
+    const map = el.querySelector('[data-slot="map"]'); map.href = SITE.mapUrl; map.innerHTML = H.pin() + "Get directions";
+    const soc = el.querySelector('[data-slot="social"]');
+    if (SITE.facebook) soc.innerHTML = '<a href="' + H.esc(SITE.facebook) + '" target="_blank" rel="noopener">' + H.esc(SITE.name) + " on Facebook</a>"; else soc.remove();
+    const note = el.querySelector('[data-slot="note"]');
+    if (SITE.visitNote) note.textContent = SITE.visitNote; else note.remove();
+    const todayKey = H.bizNow().key;
+    el.querySelector('[data-slot="hours"]').innerHTML = WEEK.map(k => '<tr class="' + [k === todayKey ? "is-today" : "", H.isOpenDay(k) ? "" : "is-closed"].join(" ").trim() + '"><th scope="row">' + DAY_NAMES[k] + "</th><td>" + H.dayLabel(k) + "</td></tr>").join("");
+    const st = el.querySelector('[data-slot="status"]');
+    H.paintStatus(st); setInterval(() => H.paintStatus(st), 60000);
+  },
+
+  form(el) {
+    const form = el.querySelector('[data-slot="form"]');
+    const $ = n => form.querySelector('[data-slot="' + n + '"]');
+    const name = form.querySelector("#f-name"), phone = form.querySelector("#f-phone"), msg = form.querySelector("#f-msg");
+    const submit = $("submit"), error = $("error"), result = $("result"), hint = $("phone-hint");
+    const fields = [...form.children].filter(c => c !== result);
+
+    /* extra fields from SITE (stylist, barber, property address, ...) */
+    $("extra").innerHTML = SITE.form.extra.map(f => '<div class="s-form__field"><label for="f-' + f.id + '">' + H.esc(f.label) + (f.optional ? ' <small style="font-weight:400">(optional)</small>' : "") + '</label><input id="f-' + f.id + '" name="' + f.id + '" type="text" placeholder="' + H.esc(f.placeholder || "") + '"' + (f.autocomplete ? ' autocomplete="' + f.autocomplete + '"' : "") + ' autocapitalize="words" enterkeyhint="next"></div>').join("");
+    const extras = SITE.form.extra.map(f => ({ f, input: form.querySelector("#f-" + f.id) }));
+
+    /* service tiles grouped by category, synced with the service cards */
+    $("chips").innerHTML = SITE.serviceGroups.map(g => '<div class="s-form__group"><p class="s-form__group-title">' + H.esc(g) + '</p><div class="s-form__tiles">' +
+      SITE.services.map((s, i) => s.group !== g ? "" : '<label class="s-form__tile"><input type="checkbox" name="service" value="' + H.esc(s.name) + '" id="svc-' + i + '"><span><i>' + H.icon(s.icon) + "</i>" + H.esc(s.name) + '<b aria-hidden="true"></b></span></label>').join("") + "</div></div>").join("");
+    const boxes = [...form.querySelectorAll('input[name="service"]')];
+    boxes.forEach(b => b.addEventListener("change", () => PICK.toggle(b.value, b.checked)));
+    PICK.on(() => boxes.forEach(b => { b.checked = PICK.set.has(b.value); }));
+
+    /* preferred day & time: open days only, times inside that day's hours (business time zone) */
+    const now = H.bizNow(), base = Date.UTC(now.y, now.m - 1, now.d);
+    const slotsFor = (key, isToday) => { const d = SITE.hours[key], out = []; for (let t = H.toMin(d.open); t <= H.toMin(d.close) - SITE.form.slotMinutes; t += SITE.form.slotMinutes) { if (isToday && t < now.minutes + 60) continue; out.push(t); } return out; };
+    const windowsFor = (key, isToday) => { const d = SITE.hours[key], o = H.toMin(d.open), c = H.toMin(d.close); return SITE.form.timeWindows.map(w => ({ name: w.name, from: Math.max(o, w.from), to: Math.min(c, w.to) })).filter(w => w.to - w.from >= 60 && !(isToday && w.to - SITE.form.slotMinutes < now.minutes + 60)); };
+    const optionsFor = (key, isToday) => SITE.form.timePicker === "windows" ? windowsFor(key, isToday) : slotsFor(key, isToday);
+    const shortTime = m => H.fmtMin(m).replace(":00", "").replace(/ (AM|PM)/, "");
+    const dayOpts = [];
+    for (let i = 0; i < SITE.form.daysAhead; i++) {
+      const dt = new Date(base + i * 86400000), key = DAYS[dt.getUTCDay()];
+      if (!H.isOpenDay(key) || !optionsFor(key, i === 0).length) continue;
+      dayOpts.push({ key, isToday: i === 0, num: dt.getUTCDate(), mon: dt.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" }), tag: i === 0 ? "Today" : i === 1 ? "Tomorrow" : "", label: (i === 0 ? "Today, " : i === 1 ? "Tomorrow, " : DAY_SHORT[key] + ", ") + dt.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" }) });
+    }
+    const daysEl = $("days"), timesEl = $("times"), whenEl = $("when");
+    let pickDay = -1, pickTime = null;
+    daysEl.innerHTML = '<button type="button" class="s-when__day is-any" data-i="-1" aria-pressed="true"><span>Any</span><b>Flexible</b><span>day</span><i></i></button>' +
+      dayOpts.map((d, i) => '<button type="button" class="s-when__day" data-i="' + i + '" aria-pressed="false" aria-label="' + H.esc(d.label) + '"><span>' + DAY_SHORT[d.key] + "</span><b>" + d.num + "</b><span>" + d.mon + "</span><i>" + d.tag + "</i></button>").join("");
+    const whenText = () => {
+      if (pickDay < 0) return "Any open day";
+      const d = dayOpts[pickDay];
+      if (pickTime === null) return d.label + ", any time";
+      if (SITE.form.timePicker === "windows") { const w = optionsFor(d.key, d.isToday)[pickTime]; return d.label + ", " + w.name.toLowerCase() + " (" + H.fmtMin(w.from) + " - " + H.fmtMin(w.to) + ")"; }
+      return d.label + " at " + H.fmtMin(pickTime);
+    };
+    const renderWhen = () => {
+      daysEl.querySelectorAll(".s-when__day").forEach(b => b.setAttribute("aria-pressed", String(Number(b.dataset.i) === pickDay)));
+      if (pickDay < 0) timesEl.innerHTML = '<p class="s-when__empty">Pick a day to see times, or leave it flexible.</p>';
+      else {
+        const d = dayOpts[pickDay], opts = optionsFor(d.key, d.isToday);
+        const btn = (val, label, cls) => '<button type="button" class="s-when__time' + (cls ? " " + cls : "") + '" data-t="' + val + '" aria-pressed="' + (val === "any" ? pickTime === null : pickTime === val) + '">' + label + "</button>";
+        let html = '<div class="s-when__grid">' + btn("any", "Any time that day", "is-wide") + "</div>";
+        if (SITE.form.timePicker === "windows") html += '<div class="s-when__grid">' + opts.map((w, i) => btn(i, "<b>" + H.esc(w.name) + "</b><small>" + shortTime(w.from) + " - " + shortTime(w.to) + "</small>", "is-window")).join("") + "</div>";
+        else html += '<div class="s-when__grid">' + opts.map(m => btn(m, H.fmtMin(m).replace(/ (AM|PM)/, ""))).join("") + "</div>";
+        timesEl.innerHTML = html;
+      }
+      whenEl.textContent = whenText();
+    };
+    daysEl.addEventListener("click", e => { const b = e.target.closest(".s-when__day"); if (!b) return; pickDay = Number(b.dataset.i); pickTime = null; renderWhen(); });
+    timesEl.addEventListener("click", e => { const b = e.target.closest(".s-when__time"); if (!b) return; pickTime = b.dataset.t === "any" ? null : Number(b.dataset.t); renderWhen(); });
+    const arrows = [...form.querySelectorAll(".s-when__arrow")];
+    const syncArrows = () => { arrows[0].disabled = daysEl.scrollLeft < 4; arrows[1].disabled = daysEl.scrollLeft + daysEl.clientWidth >= daysEl.scrollWidth - 4; };
+    arrows.forEach(a => a.addEventListener("click", () => daysEl.scrollBy({ left: Number(a.dataset.dir) * daysEl.clientWidth * .8, behavior: "smooth" })));
+    daysEl.addEventListener("scroll", syncArrows, { passive: true });
+    renderWhen(); syncArrows();
+
+    /* phone: (XXX) XXX-XXXX while typing; send stays disabled under 7 digits */
+    const fmtPhone = d => { d = d.slice(0, 10); if (!d.length) return ""; if (d.length < 4) return "(" + d; if (d.length < 7) return "(" + d.slice(0, 3) + ") " + d.slice(3); return "(" + d.slice(0, 3) + ") " + d.slice(3, 6) + "-" + d.slice(6); };
+    let lastDigits = "";
+    const sync = () => { const ok = H.digits(phone.value).length >= 7; submit.disabled = !ok; hint.textContent = ok ? "Looks good." : "Enter at least 7 digits to continue."; hint.classList.toggle("is-ok", ok); };
+    phone.addEventListener("input", e => { let d = H.digits(phone.value); if (e.inputType === "deleteContentBackward" && d === lastDigits) d = d.slice(0, -1); lastDigits = d.slice(0, 10); phone.value = fmtPhone(d); sync(); });
+    sync();
+
+    /* errors are tied to their field so screen readers announce them */
+    const flag = (field, m) => { error.textContent = m; field.setAttribute("aria-invalid", "true"); const ids = (field.getAttribute("aria-describedby") || "").split(" ").filter(Boolean); if (!ids.includes("f-error")) ids.push("f-error"); field.setAttribute("aria-describedby", ids.join(" ")); field.focus(); };
+    const clearErrors = () => { error.textContent = ""; [name, phone].forEach(f => { f.removeAttribute("aria-invalid"); const ids = (f.getAttribute("aria-describedby") || "").split(" ").filter(i => i && i !== "f-error"); ids.length ? f.setAttribute("aria-describedby", ids.join(" ")) : f.removeAttribute("aria-describedby"); }); };
+    [name, phone].forEach(f => f.addEventListener("input", () => { if (f.getAttribute("aria-invalid")) clearErrors(); }));
+
+    const buildSummary = () => {
+      const services = boxes.filter(b => b.checked).map(b => b.value);
+      const lines = ["Hi " + SITE.name + ", I'd like to " + SITE.form.ask + ".", "Name: " + name.value.trim(), "Phone: " + phone.value];
+      extras.forEach(x => { if (x.input.value.trim()) lines.push(x.f.label + ": " + x.input.value.trim()); });
+      lines.push("Service: " + (services.join(", ") || "Not sure yet"), "Preferred: " + whenText());
+      if (msg.value.trim()) lines.push("Note: " + msg.value.trim());
+      return lines.join("\n");
+    };
+    const overlay = document.querySelector('[data-module="send"]');
+    const playSend = () => new Promise(res => {
+      if (!overlay) return res();
+      overlay.setAttribute("aria-hidden", "false"); overlay.classList.remove("is-on"); void overlay.offsetWidth; overlay.classList.add("is-on");
+      const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+      setTimeout(() => { overlay.classList.remove("is-on"); overlay.setAttribute("aria-hidden", "true"); res(); }, reduce ? 1300 : 2600);
+    });
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      clearErrors();
+      if (!name.value.trim()) { flag(name, "Please add your name."); return; }
+      if (H.digits(phone.value).length < 7) { flag(phone, "Please enter at least 7 digits."); return; }
+      const text = buildSummary();
+      submit.disabled = true;
+      await playSend();
+      $("summary").textContent = text;
+      $("sms").href = "sms:+1" + H.digits(SITE.phone) + "?&body=" + encodeURIComponent(text);
+      $("tel").href = H.telHref(SITE.phone);
+      fields.forEach(f => { f.hidden = true; });
+      result.hidden = false;
+      result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+    $("copy").addEventListener("click", async () => {
+      const text = $("summary").textContent, label = $("copy").querySelector("span");
+      try { await navigator.clipboard.writeText(text); } catch (_) { const ta = document.createElement("textarea"); ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (__) {} ta.remove(); }
+      label.textContent = "Copied"; setTimeout(() => { label.textContent = "Copy"; }, 1800);
+    });
+    $("edit").addEventListener("click", () => { result.hidden = true; fields.forEach(f => { f.hidden = false; }); sync(); name.focus(); });
+  },
+
+  pill(el) {
+    const a = el.querySelector("a"), target = document.getElementById("request");
+    if (!target) { el.remove(); return; }
+    let past = false;
+    const paint = () => { const n = PICK.set.size; a.innerHTML = "<b>" + n + "</b> " + (n === 1 ? "service" : "services") + " picked · Continue" + H.arrow(); const on = n > 0 && !past; el.classList.toggle("is-on", on); a.tabIndex = on ? 0 : -1; };
+    const check = () => { const p = target.getBoundingClientRect().top < innerHeight * .85; if (p !== past) { past = p; paint(); } };
+    window.addEventListener("scroll", check, { passive: true }); window.addEventListener("resize", check); check();
+    PICK.on(paint); paint();
+  },
+
+  footer(el) {
+    el.querySelector('[data-slot="name"]').textContent = SITE.name;
+    el.querySelector('[data-slot="line"]').innerHTML = H.esc(SITE.footerLine) + ' · <a href="' + H.telHref(SITE.phone) + '">' + H.esc(SITE.phone) + "</a>";
+    el.querySelector('[data-slot="mark"]').innerHTML = '<span data-fit data-max="220">' + H.brand() + "</span>";
+  },
+
+  send() {}
+};
+
+function bootReveal() {
+  if (!("IntersectionObserver" in window)) return;
+  document.documentElement.classList.add("is-js");
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); } }), { rootMargin: "0px 0px -8% 0px", threshold: .06 });
+  document.querySelectorAll(".u-reveal").forEach(n => io.observe(n));
+}
+
+function bootFit() {
+  const run = () => document.querySelectorAll("[data-fit]").forEach(H.fit);
+  run();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(run);
+  let t; window.addEventListener("resize", () => { clearTimeout(t); t = setTimeout(run, 120); });
+}
+
+function buildSchema() {
+  const a = SITE.address;
+  const data = {
+    "@context": "https://schema.org", "@type": SITE.schemaType, name: SITE.name,
+    telephone: "+1-" + H.digits(SITE.phone).replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"),
+    address: { "@type": "PostalAddress", streetAddress: a.street, addressLocality: a.city, addressRegion: a.region, postalCode: a.zip, addressCountry: "US" },
+    openingHoursSpecification: WEEK.filter(H.isOpenDay).map(k => ({ "@type": "OpeningHoursSpecification", dayOfWeek: DAY_NAMES[k], opens: SITE.hours[k].open, closes: SITE.hours[k].close })),
+    aggregateRating: { "@type": "AggregateRating", ratingValue: SITE.rating.value, reviewCount: SITE.rating.count, bestRating: 5 }
+  };
+  if (SITE.facebook) data.sameAs = [SITE.facebook];
+  if (SITE.services.length) data.hasOfferCatalog = { "@type": "OfferCatalog", name: "Services", itemListElement: SITE.services.map(s => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s.name } })) };
+  if (SITE.schemaExtra) Object.assign(data, SITE.schemaExtra);
+  document.getElementById("schema-data").textContent = JSON.stringify(data);
+}
+
+document.querySelectorAll("[data-module]").forEach(el => {
+  const n = el.getAttribute("data-module");
+  try { if (MODULES[n]) MODULES[n](el); } catch (err) { if (window.console) console.warn("Module failed:", n, err); }
+});
+try { buildSchema(); } catch (err) { if (window.console) console.warn("Schema failed", err); }
+try { bootFit(); } catch (err) { if (window.console) console.warn("Fit failed", err); }
+try { bootReveal(); } catch (err) { if (window.console) console.warn("Reveal failed", err); }
+</script>
+<div id="hit-counter"><img src="https://abacus.jasoncameron.dev/hit/717digitalstudio-demos/100-lawn-care" alt="" width="1" height="1" style="position:absolute;left:-9999px"></div>
+</body>
+</html>
