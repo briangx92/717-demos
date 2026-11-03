@@ -184,8 +184,8 @@ textarea.fin{resize:vertical;min-height:84px}
 .thumb img{width:64px;height:64px;object-fit:cover;border-radius:10px;display:block}
 .thumb button{position:absolute;top:-7px;right:-7px;width:23px;height:23px;border-radius:50%;border:none;background:var(--acc);color:#fff;font-size:.8rem;line-height:1;cursor:pointer}
 .upmsg{color:var(--rose);font-size:.88rem;margin:10px 0 0;min-height:1em}
-.fsum{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;white-space:pre-line;font-size:.94rem;margin-top:20px;color:var(--ink)}
-.fsum:empty{display:none}
+.fsum{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;white-space:pre-line;font-size:.94rem;margin-top:20px;color:var(--ink);min-height:218px}
+
 .ferr{color:var(--rose);font-size:.88rem;min-height:1.2em;margin:10px 0 0}
 .frow{display:flex;gap:12px;margin-top:18px}
 .frow .btn{flex:1}
@@ -429,12 +429,12 @@ footer nav a:hover{color:var(--ink)}
         <input type="file" id="fFiles" accept="image/*" multiple hidden>
         <div class="thumbs" id="thumbs"></div>
         <p class="upmsg" id="upMsg"></p>
-        <div class="fsum" id="fSum" aria-live="polite"></div>
         <p class="ferr" data-err></p>
         <div class="frow">
           <button type="button" class="btn btn-g" data-back>Back</button>
           <button type="button" class="btn btn-p" id="sendBtn">Send my request</button>
         </div>
+        <div class="fsum" id="fSum" aria-live="polite"></div>
         <p class="sendnote">Send opens your text app with the request written out. Nothing sends until you hit send there.</p>
       </div>
 
@@ -651,7 +651,7 @@ footer nav a:hover{color:var(--ink)}
     });
   }
 
-  function summaryText() {
+  function summaryText(forSend) {
     var lines = [];
     lines.push("Hi Bitter Hearts, I would like to book in.");
     lines.push("What: " + (state.services.length ? state.services.join(", ") : "not picked yet"));
@@ -660,15 +660,23 @@ footer nav a:hover{color:var(--ink)}
     lines.push("When: " + when);
     var name = document.getElementById("fName").value.trim();
     var idea = document.getElementById("fIdea").value.trim();
-    if (name) lines.push("Name: " + name);
-    if (digits(phoneEl.value)) lines.push("Phone: " + fmtPhone(phoneEl.value));
-    if (idea) lines.push("The idea: " + idea);
-    if (state.files.length) lines.push("Reference photos: " + state.files.length + " picked in the form (I will send them here too)");
+    if (forSend) {
+      if (name) lines.push("Name: " + name);
+      if (digits(phoneEl.value)) lines.push("Phone: " + fmtPhone(phoneEl.value));
+      if (idea) lines.push("The idea: " + idea);
+      if (state.files.length) lines.push("Reference photos: " + state.files.length + " picked in the form (I will send them here too)");
+    } else {
+      lines.push("Name: " + (name || "not added yet"));
+      lines.push("Phone: " + (digits(phoneEl.value) ? fmtPhone(phoneEl.value) : "not added yet"));
+      var ideaShort = idea.length > 60 ? idea.slice(0, 60) + "..." : idea;
+      lines.push("The idea: " + (ideaShort || "not added yet"));
+      lines.push("Reference photos: " + (state.files.length ? state.files.length + " picked" : "none"));
+    }
     return lines.join("\n");
   }
   function renderSummary() {
     var el = document.getElementById("fSum");
-    if (el) el.textContent = summaryText();
+    if (el) el.textContent = summaryText(false);
   }
 
   /* step navigation */
@@ -695,7 +703,7 @@ footer nav a:hover{color:var(--ink)}
     if (!name) { err(stepEl(3), "Add your name so the shop knows who is asking."); return; }
     if (digits(phoneEl.value).length < 7) { err(stepEl(3), "Add a phone number with at least 7 digits so the shop can reach you."); return; }
     err(stepEl(3), "");
-    var body = encodeURIComponent(summaryText());
+    var body = encodeURIComponent(summaryText(true));
     var url = "sms:+12348550892?&body=" + body;
     var fx = document.getElementById("sendFx");
     if (reduceMotion) { window.location.href = url; return; }
