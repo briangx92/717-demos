@@ -184,7 +184,7 @@ textarea.fin{resize:vertical;min-height:84px}
 .thumb img{width:64px;height:64px;object-fit:cover;border-radius:10px;display:block}
 .thumb button{position:absolute;top:-7px;right:-7px;width:23px;height:23px;border-radius:50%;border:none;background:var(--acc);color:#fff;font-size:.8rem;line-height:1;cursor:pointer}
 .upmsg{color:var(--rose);font-size:.88rem;margin:10px 0 0;min-height:1em}
-.fsum{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;white-space:pre-line;font-size:.94rem;margin-top:20px;color:var(--ink);min-height:218px}
+.fsum{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;white-space:pre-line;font-size:.94rem;margin-top:20px;color:var(--ink);min-height:264px}
 
 .ferr{color:var(--rose);font-size:.88rem;min-height:1.2em;margin:10px 0 0}
 .frow{display:flex;gap:12px;margin-top:18px}
@@ -434,7 +434,7 @@ footer nav a:hover{color:var(--ink)}
           <button type="button" class="btn btn-g" data-back>Back</button>
           <button type="button" class="btn btn-p" id="sendBtn">Send my request</button>
         </div>
-        <div class="fsum" id="fSum" aria-live="polite"></div>
+        <div class="fsum" id="fSum"></div>
         <p class="sendnote">Send opens your text app with the request written out. Nothing sends until you hit send there.</p>
       </div>
 
@@ -570,6 +570,7 @@ footer nav a:hover{color:var(--ink)}
   function stepEl(n){ return document.querySelector('.fstep[data-step="' + n + '"]'); }
 
   /* step 1: service chips, multi-select */
+  document.getElementById("svcChips").addEventListener("pointerdown", function(ev){ ev.preventDefault(); });
   document.getElementById("svcChips").addEventListener("click", function(ev) {
     var chip = ev.target.closest(".chip");
     if (!chip) return;
@@ -582,6 +583,7 @@ footer nav a:hover{color:var(--ink)}
   });
 
   /* step 2: when cards */
+  document.getElementById("whenCards").addEventListener("pointerdown", function(ev){ ev.preventDefault(); });
   document.getElementById("whenCards").addEventListener("click", function(ev) {
     var card = ev.target.closest(".wcard");
     if (!card) return;
@@ -668,7 +670,7 @@ footer nav a:hover{color:var(--ink)}
     } else {
       lines.push("Name: " + (name || "not added yet"));
       lines.push("Phone: " + (digits(phoneEl.value) ? fmtPhone(phoneEl.value) : "not added yet"));
-      var ideaShort = idea.length > 60 ? idea.slice(0, 60) + "..." : idea;
+      var ideaShort = idea.length > 40 ? idea.slice(0, 40) + "..." : idea;
       lines.push("The idea: " + (ideaShort || "not added yet"));
       lines.push("Reference photos: " + (state.files.length ? state.files.length + " picked" : "none"));
     }
