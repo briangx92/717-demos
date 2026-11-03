@@ -570,7 +570,6 @@ footer nav a:hover{color:var(--ink)}
   function stepEl(n){ return document.querySelector('.fstep[data-step="' + n + '"]'); }
 
   /* step 1: service chips, multi-select */
-  document.getElementById("svcChips").addEventListener("pointerdown", function(ev){ ev.preventDefault(); });
   document.getElementById("svcChips").addEventListener("click", function(ev) {
     var chip = ev.target.closest(".chip");
     if (!chip) return;
@@ -583,7 +582,6 @@ footer nav a:hover{color:var(--ink)}
   });
 
   /* step 2: when cards */
-  document.getElementById("whenCards").addEventListener("pointerdown", function(ev){ ev.preventDefault(); });
   document.getElementById("whenCards").addEventListener("click", function(ev) {
     var card = ev.target.closest(".wcard");
     if (!card) return;
