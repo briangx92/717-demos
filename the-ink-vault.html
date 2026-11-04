@@ -200,6 +200,14 @@ footer a{color:var(--acc);text-decoration:none}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"The Ink Vault","address":{"@type":"PostalAddress","streetAddress":"310 Center Ave","addressLocality":"Butler","addressRegion":"PA","postalCode":"16001"},"telephone":"(724) 307-8282","openingHours":["Tu-Sa 14:30-22:00","Su 14:30-22:00"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"236"}}
 </script>
+<style>
+@media (min-width:1024px){
+  body .wrap{max-width:1280px}
+  section.hero>.wrap{display:grid;grid-template-columns:300px 1fr;column-gap:56px;align-items:center}
+  section.hero .hero-plaque{grid-column:1;grid-row:1/8;margin:0;width:100%;max-width:300px}
+  section.hero>.wrap>*:not(.hero-plaque){grid-column:2}
+}
+</style>
 </head>
 <body>
 <header class="topbar">

@@ -97,6 +97,16 @@ section{padding-top:3.4rem;padding-bottom:.4rem}
 .icard .it{font-family:'Fraunces',Georgia,serif;font-size:1.25rem;font-weight:600;line-height:1.2}
 .icard p{color:var(--ink2);font-size:.92rem;margin-top:.3rem}
 </style>
+<style>
+@media (min-width:1024px){
+  body .wrap{max-width:1280px}
+  main .hero{display:grid;grid-template-columns:1.08fr .92fr;background:#181410;min-height:600px}
+  .hero>img.himg{grid-column:1;grid-row:1;height:100%;min-height:600px}
+  .hero>.scrim{display:none}
+  .hero>.hcontent{position:static;grid-column:2;grid-row:1;justify-content:center}
+  .hero .hwrap{max-width:none}
+}
+</style>
 </head>
 <body>
 <style>
