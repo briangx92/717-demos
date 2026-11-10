@@ -159,6 +159,18 @@
   .roleline strong{flex:none;width:86px}
   .roleline span{color:#5c5c66;line-height:1.45}
 </style>
+<style id="people-mobile-fix">
+  @media (max-width:900px){
+    [data-panel="people"] .cols{grid-template-columns:1fr !important}
+    [data-panel="people"] .addgrid{grid-template-columns:1fr}
+    [data-panel="people"] .addgrid .full{grid-column:1 / -1}
+    .person{flex-wrap:nowrap}
+    .person .grow{flex:1 1 auto;min-width:0}
+    .person .tag{margin-left:auto}
+    .person .rm{flex:none}
+    [data-panel="people"] .panel input{width:100%}
+  }
+</style>
 </head>
 <body>
 
