@@ -142,6 +142,23 @@
   .side .shop>div{min-width:0}
   .side .shop span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 </style>
+<style>
+  .login-links{display:flex;justify-content:space-between;gap:10px;margin-top:14px;flex-wrap:wrap}
+  .linkbtn{background:none;border:0;color:#c24e12;font-weight:700;font-size:13.5px;padding:4px 0;cursor:pointer;font-family:inherit}
+  .drag-handle{padding:8px 10px;font-size:12px;font-weight:700;color:#71717a;background:#fafafa;border-bottom:1px solid #eee;cursor:grab;touch-action:none;user-select:none;text-align:center}
+  .pfig.dragging{opacity:.55;outline:2px dashed #f4682a;outline-offset:-2px}
+  .person{display:flex;gap:11px;align-items:center;padding:11px 0;border-top:1px solid #f0f0ec}
+  .person:first-child{border-top:0}
+  .avatar{width:38px;height:38px;border-radius:50%;background:#fff4ee;color:#c24e12;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+  .person .grow{flex:1;min-width:0}
+  .person strong{display:block;font-size:14.5px}
+  .person small{color:#71717a;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .person .tag{font-size:11px;font-weight:700;background:#fff4ee;color:#c24e12;border-radius:999px;padding:3px 8px;white-space:nowrap}
+  .roleline{display:flex;gap:10px;padding:9px 0;border-top:1px solid #f0f0ec;font-size:13.5px}
+  .roleline:first-of-type{border-top:0}
+  .roleline strong{flex:none;width:86px}
+  .roleline span{color:#5c5c66;line-height:1.45}
+</style>
 </head>
 <body>
 
@@ -154,12 +171,21 @@
   <div class="login-side">
     <div class="login-card">
       <h2>Owner sign in</h2>
-      <p>Sign in with your own email. You will get a one-time code, so there is no password to remember.</p>
+      <p>Sign in with your own email and password, or get a one-time code by email instead.</p>
       <div id="p-step-email">
         <label class="f" for="p-email">Your email</label>
         <input id="p-email" type="email" value="owner@instattoosionalized.com" autocomplete="email">
         <p class="error hidden" id="p-email-error">Enter the email address connected to this website.</p>
-        <button class="btn btn--primary btn--wide" id="p-send" type="button">Send my code</button>
+        <label class="f" for="p-pass">Password</label>
+        <input id="p-pass" type="password" autocomplete="current-password" placeholder="Your password">
+        <p class="error hidden" id="p-pass-error">That password does not match. Try again, or use Forgot password below.</p>
+        <button class="btn btn--primary btn--wide" id="p-signin" type="button">Sign in</button>
+        <p class="note hidden" id="p-login-note"></p>
+        <div class="login-links">
+          <button type="button" class="linkbtn" id="p-forgot">Forgot password?</button>
+          <button type="button" class="linkbtn" id="p-send">Email me a code instead</button>
+        </div>
+        <p class="note">Trying the demo? The password is <strong>demo1234</strong>. The email code is <strong>246810</strong>.</p>
       </div>
       <div id="p-step-code" class="hidden">
         <p class="note">We sent a code to <strong id="p-code-email"></strong>. For this demo, use <strong>246810</strong>.</p>
@@ -168,6 +194,31 @@
         <p class="error hidden" id="p-code-error">That code does not match. Check it and try again.</p>
         <button class="btn btn--primary btn--wide" id="p-verify" type="button">Sign in</button>
         <button class="btn btn--wide" id="p-back" type="button">Use a different email</button>
+      </div>
+      <div id="p-step-reset" class="hidden">
+        <h3 style="font-size:17px;margin-bottom:4px">Reset your password</h3>
+        <p>We will email you a code, then you pick a new password.</p>
+        <div id="p-reset-1">
+          <label class="f" for="p-reset-email">Your email</label>
+          <input id="p-reset-email" type="email" value="owner@instattoosionalized.com" autocomplete="email">
+          <button class="btn btn--primary btn--wide" id="p-reset-send" type="button">Send reset code</button>
+        </div>
+        <div id="p-reset-2" class="hidden">
+          <p class="note">We sent a code to <strong id="p-reset-email-echo"></strong>. For this demo, use <strong>246810</strong>.</p>
+          <label class="f" for="p-reset-code">Reset code</label>
+          <input id="p-reset-code" type="text" inputmode="numeric" maxlength="6" placeholder="6-digit code">
+          <p class="error hidden" id="p-reset-code-error">That code does not match. Check it and try again.</p>
+          <button class="btn btn--primary btn--wide" id="p-reset-verify" type="button">Check code</button>
+        </div>
+        <div id="p-reset-3" class="hidden">
+          <label class="f" for="p-reset-new">New password</label>
+          <input id="p-reset-new" type="password" autocomplete="new-password" placeholder="At least 8 characters">
+          <label class="f" for="p-reset-conf">New password again</label>
+          <input id="p-reset-conf" type="password" autocomplete="new-password" placeholder="Type it again">
+          <p class="error hidden" id="p-reset-new-error">Use at least 8 characters, and type the same password twice.</p>
+          <button class="btn btn--primary btn--wide" id="p-reset-set" type="button">Set new password</button>
+        </div>
+        <button class="btn btn--wide" id="p-reset-back" type="button">Back to sign in</button>
       </div>
       <p class="fineprint">Only approved people can sign in. Each person uses their own email, so access can be removed one person at a time.</p>
     </div>
@@ -183,6 +234,7 @@
       <button type="button" data-tab="photos" aria-selected="false"><span class="dot"></span>Photos</button>
       <button type="button" data-tab="visits" aria-selected="false"><span class="dot"></span>Site visits</button>
       <button type="button" data-tab="help" aria-selected="false"><span class="dot"></span>Get help</button>
+      <button type="button" data-tab="people" aria-selected="false"><span class="dot"></span>People</button>
     </nav>
     <div class="side-foot">
       <a class="js-site-link" href="index.html" target="_blank" rel="noopener">View live website</a>
@@ -200,6 +252,7 @@
         <a class="card js-site-link" href="index.html" target="_blank" rel="noopener"><span class="ic">↗</span><h3>View live website</h3><p>See your website the way visitors see it.</p></a>
         <button class="card" type="button" data-goto="visits"><span class="ic">▦</span><h3>Site visits</h3><p>How many people found you and what they looked at.</p></button>
         <button class="card" type="button" data-goto="help"><span class="ic">✉</span><h3>Get help</h3><p>Anything you cannot change here, send it to 717 Digital Studio.</p></button>
+        <button class="card" type="button" data-goto="people"><span class="ic">◉</span><h3>People</h3><p>Who can sign in here, and what each person can do.</p></button>
       </div>
       <div class="cols">
         <div class="panel">
@@ -253,7 +306,7 @@
       <p class="sub">These are the photos in the Recent work book on your website. Add new ones, remove old ones, and move them into the order visitors see.</p>
       <div class="panel">
         <div class="shead" style="display:flex;justify-content:space-between;gap:14px;align-items:flex-start">
-          <div><h3 style="font-size:17px">Recent work book</h3><p style="color:#5c5c66;font-size:14px;margin:4px 0 0">The book updates as soon as you change something here.</p></div>
+          <div><h3 style="font-size:17px">Recent work book</h3><p style="color:#5c5c66;font-size:14px;margin:4px 0 0">The book updates as soon as you change something here. Drag a photo by its handle to change the order.</p></div>
           <label class="btn btn--accent" for="p-photo-file">Add photos</label>
           <input id="p-photo-file" type="file" accept="image/*" multiple hidden>
         </div>
@@ -308,6 +361,46 @@
         <p class="note hidden" id="p-help-sent">Sent. Brian has your message and will handle it from here. It is also listed under Recent requests on your Home page.</p>
       </div>
     </section>
+    <section data-panel="people" class="hidden">
+      <h1>People</h1>
+      <p class="sub">Only the people listed here can sign in to this page. Each person signs in with their own email, so when someone leaves, removing them here ends their access right away.</p>
+      <div class="cols" style="grid-template-columns:1.15fr 1fr">
+        <div class="panel">
+          <div class="head"><h3>Who can sign in</h3></div>
+          <div id="p-people"></div>
+          <div class="addgrid" style="margin-top:14px">
+            <input id="p-person-name" type="text" placeholder="Name">
+            <select id="p-person-role"><option>Owner</option><option selected>Can edit</option><option>Photos only</option></select>
+            <input id="p-person-email" class="full" type="email" placeholder="Email address">
+          </div>
+          <button class="btn btn--primary" type="button" id="p-person-add" style="margin-top:10px">Add person</button>
+          <p class="status" id="p-people-status"></p>
+          <p style="font-size:12.5px;color:#8a8a93;line-height:1.55">Demo list. On the live site, this list is what the sign-in page checks against.</p>
+        </div>
+        <div style="display:grid;gap:14px;align-content:start">
+          <div class="panel">
+            <h3>What each role can do</h3>
+            <div class="roleline"><strong>Owner</strong><span>Everything, including people, prices, and services.</span></div>
+            <div class="roleline"><strong>Can edit</strong><span>Photos, hours, phone, services, prices, and messages.</span></div>
+            <div class="roleline"><strong>Photos only</strong><span>Add photos and change their order. Nothing else.</span></div>
+          </div>
+          <div class="panel">
+            <h3>Your sign-in and security</h3>
+            <p style="color:#5c5c66;font-size:14px;line-height:1.55;margin:6px 0 2px">Signed in as <strong id="p-sec-email">owner</strong>. You stay signed in on this device for 30 days.</p>
+            <label class="f" for="p-cur-pw">Current password</label>
+            <input id="p-cur-pw" type="password" autocomplete="current-password">
+            <label class="f" for="p-new-pw">New password</label>
+            <input id="p-new-pw" type="password" autocomplete="new-password" placeholder="At least 8 characters">
+            <label class="f" for="p-conf-pw">New password again</label>
+            <input id="p-conf-pw" type="password" autocomplete="new-password">
+            <p class="error hidden" id="p-pw-error"></p>
+            <button class="btn btn--primary btn--wide" id="p-pw-change" type="button">Change password</button>
+            <p class="status" id="p-pw-status"></p>
+            <p style="font-size:12.5px;color:#8a8a93;line-height:1.55">Forgot yours? Sign out, then use Forgot password on the sign-in page and we will email you a code.</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 </div>
 
@@ -332,6 +425,10 @@ var DEFAULTS = {
   requests: [
     {text:'Update Saturday hours', when:'Oct 24', status:'Completed'},
     {text:'Add the fall special to the scrolling message', when:'Oct 20', status:'Completed'}
+  ],
+  people: [
+    {name: 'Shop owner', email: 'owner@instattoosionalized.com', role: 'Owner', you: true},
+    {name: 'Shop manager', email: 'manager@instattoosionalized.com', role: 'Can edit'}
   ]
 };
 </script>
@@ -343,6 +440,7 @@ var DEFAULTS = {
   var state;
   try { state = JSON.parse(localStorage.getItem(KEY)) || null; } catch (e) { state = null; }
   if (!state || !state.photos) state = JSON.parse(JSON.stringify(DEFAULTS));
+  if (!state.people) state.people = JSON.parse(JSON.stringify(DEFAULTS.people));
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
   function toast(msg){ var t = $('#p-toast'); t.textContent = msg; t.classList.remove('hidden'); clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.add('hidden'); }, 3200); }
   var pn2 = location.pathname;
@@ -359,28 +457,78 @@ var DEFAULTS = {
   var sess = null;
   try { sess = localStorage.getItem(SES); } catch (e) {}
   if (sess) showApp(sess);
+  function getPw(){ try { return localStorage.getItem('oa-pw') || 'demo1234'; } catch (e) { return 'demo1234'; } }
+  function setPw(v){ try { localStorage.setItem('oa-pw', v); } catch (e) {} }
+  function showStep(id){
+    ['p-step-email', 'p-step-code', 'p-step-reset'].forEach(function(x){ var el = document.getElementById(x); if (el) el.classList.toggle('hidden', x !== id); });
+  }
+  function doSignIn(email){
+    try { localStorage.setItem(SES, email); } catch (e) {}
+    showApp(email);
+    toast('You are signed in.');
+  }
+  function emailOk(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  $('#p-signin').addEventListener('click', function(){
+    var email = $('#p-email').value.trim();
+    var emOk = emailOk(email);
+    $('#p-email-error').classList.toggle('hidden', emOk);
+    if (!emOk) return;
+    var ok = $('#p-pass').value === getPw();
+    $('#p-pass-error').classList.toggle('hidden', ok);
+    if (!ok) return;
+    doSignIn(email);
+  });
   $('#p-send').addEventListener('click', function(){
     var email = $('#p-email').value.trim();
-    var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    var ok = emailOk(email);
     $('#p-email-error').classList.toggle('hidden', ok);
     if (!ok) return;
     $('#p-code-email').textContent = email;
-    $('#p-step-email').classList.add('hidden');
-    $('#p-step-code').classList.remove('hidden');
+    showStep('p-step-code');
     $('#p-code').focus();
   });
-  $('#p-back').addEventListener('click', function(){
-    $('#p-step-code').classList.add('hidden');
-    $('#p-step-email').classList.remove('hidden');
-  });
+  $('#p-back').addEventListener('click', function(){ showStep('p-step-email'); });
   $('#p-verify').addEventListener('click', function(){
     var ok = $('#p-code').value.trim() === '246810';
     $('#p-code-error').classList.toggle('hidden', ok);
     if (!ok) return;
-    var email = $('#p-email').value.trim();
-    try { localStorage.setItem(SES, email); } catch (e) {}
-    showApp(email);
-    toast('You are signed in.');
+    doSignIn($('#p-email').value.trim());
+  });
+  $('#p-forgot').addEventListener('click', function(){
+    $('#p-reset-email').value = $('#p-email').value.trim();
+    $('#p-reset-1').classList.remove('hidden');
+    $('#p-reset-2').classList.add('hidden');
+    $('#p-reset-3').classList.add('hidden');
+    showStep('p-step-reset');
+  });
+  $('#p-reset-back').addEventListener('click', function(){ showStep('p-step-email'); });
+  $('#p-reset-send').addEventListener('click', function(){
+    var email = $('#p-reset-email').value.trim();
+    if (!emailOk(email)) { toast('Enter your email first.'); return; }
+    $('#p-reset-email-echo').textContent = email;
+    $('#p-reset-1').classList.add('hidden');
+    $('#p-reset-2').classList.remove('hidden');
+    $('#p-reset-code').focus();
+  });
+  $('#p-reset-verify').addEventListener('click', function(){
+    var ok = $('#p-reset-code').value.trim() === '246810';
+    $('#p-reset-code-error').classList.toggle('hidden', ok);
+    if (!ok) return;
+    $('#p-reset-2').classList.add('hidden');
+    $('#p-reset-3').classList.remove('hidden');
+    $('#p-reset-new').focus();
+  });
+  $('#p-reset-set').addEventListener('click', function(){
+    var a = $('#p-reset-new').value, b = $('#p-reset-conf').value;
+    var ok = a.length >= 8 && a === b;
+    $('#p-reset-new-error').classList.toggle('hidden', ok);
+    if (!ok) return;
+    setPw(a);
+    showStep('p-step-email');
+    var note = $('#p-login-note');
+    note.textContent = 'Password updated. Sign in with your new password.';
+    note.classList.remove('hidden');
+    $('#p-pass').value = '';
   });
   $('#p-signout').addEventListener('click', function(){
     try { localStorage.removeItem(SES); } catch (e) {}
@@ -396,7 +544,7 @@ var DEFAULTS = {
   $$('[data-tab]').forEach(function(b){ b.addEventListener('click', function(){ setTab(b.dataset.tab); }); });
   $$('[data-goto]').forEach(function(b){ b.addEventListener('click', function(ev){ ev.preventDefault(); setTab(b.dataset.goto); }); });
 
-  function renderAll(){ renderHome(); populateEdit(); renderPhotos(); }
+  function renderAll(){ renderHome(); populateEdit(); renderPhotos(); renderPeople(); }
   function renderHome(){
     var thumbs = $('#p-home-thumbs'); thumbs.innerHTML = '';
     state.photos.slice(0, 3).forEach(function(src, i){
@@ -520,7 +668,7 @@ var DEFAULTS = {
   function renderPhotos(){
     var grid = $('#p-photo-grid'); grid.innerHTML = '';
     state.photos.forEach(function(src, idx){
-      var fig = document.createElement('figure'); fig.className = 'pfig';
+      var fig = document.createElement('figure'); fig.className = 'pfig'; fig.dataset.sidx = idx;
       var img = document.createElement('img'); img.src = src; img.alt = 'Recent work photo ' + (idx + 1);
       var cap = document.createElement('figcaption');
       var t = document.createElement('strong'); t.textContent = 'Photo ' + (idx + 1) + (idx === 0 ? ' · First in book' : '');
@@ -534,13 +682,45 @@ var DEFAULTS = {
         if (state.photos.length <= 1) return;
         state.photos.splice(idx, 1); save(); renderPhotos(); renderHome(); $('#p-photo-status').textContent = 'Photo removed from the book.';
       });
-      acts.append(left, right, del); cap.append(t, acts); fig.append(img, cap); grid.append(fig);
+      acts.append(left, right, del); cap.append(t, acts);
+      var handle = document.createElement('div'); handle.className = 'drag-handle'; handle.textContent = '⠿  Drag to reorder'; handle.setAttribute('role', 'button'); handle.setAttribute('aria-label', 'Drag to reorder photo ' + (idx + 1));
+      attachDrag(fig, handle);
+      fig.append(handle, img, cap); grid.append(fig);
     });
   }
   function move(idx, dir){
     var n = idx + dir; if (n < 0 || n >= state.photos.length) return;
     var item = state.photos.splice(idx, 1)[0]; state.photos.splice(n, 0, item);
     save(); renderPhotos(); renderHome(); $('#p-photo-status').textContent = 'Photo order updated.';
+  }
+  function attachDrag(fig, handle){
+    handle.addEventListener('pointerdown', function(e){
+      e.preventDefault();
+      var grid = $('#p-photo-grid');
+      fig.classList.add('dragging');
+      function onMove(ev){
+        var t = document.elementFromPoint(ev.clientX, ev.clientY);
+        var over = t && t.closest ? t.closest('.pfig') : null;
+        if (!over || over === fig || over.parentNode !== grid) return;
+        var r = over.getBoundingClientRect();
+        var after;
+        if (ev.clientY > r.bottom) after = true;
+        else if (ev.clientY < r.top) after = false;
+        else after = ev.clientX > r.left + r.width / 2;
+        grid.insertBefore(fig, after ? over.nextSibling : over);
+      }
+      function onUp(){
+        document.removeEventListener('pointermove', onMove);
+        document.removeEventListener('pointerup', onUp);
+        fig.classList.remove('dragging');
+        var old = state.photos.slice();
+        state.photos = $$('.pfig', grid).map(function(f){ return old[parseInt(f.dataset.sidx, 10)]; });
+        save(); renderPhotos(); renderHome();
+        $('#p-photo-status').textContent = 'Photo order updated.';
+      }
+      document.addEventListener('pointermove', onMove);
+      document.addEventListener('pointerup', onUp);
+    });
   }
   $('#p-photo-file').addEventListener('change', function(ev){
     var files = Array.prototype.slice.call(ev.target.files || []).filter(function(f){ return f.type.indexOf('image/') === 0; });
@@ -564,6 +744,60 @@ var DEFAULTS = {
       toast('Photos added.');
       ev.target.value = '';
     });
+  });
+
+  /* people + security */
+  function initials(name){ return String(name || '?').split(/\s+/).map(function(w){ return w[0]; }).join('').slice(0, 2).toUpperCase(); }
+  function renderPeople(){
+    var box = $('#p-people'); if (!box) return; box.innerHTML = '';
+    state.people.forEach(function(person, i){
+      var row = document.createElement('div'); row.className = 'person';
+      var av = document.createElement('span'); av.className = 'avatar'; av.textContent = initials(person.name || person.email);
+      var grow = document.createElement('div'); grow.className = 'grow';
+      var nm = document.createElement('strong'); nm.textContent = person.name + (person.you ? ' (you)' : '');
+      var em = document.createElement('small'); em.textContent = person.email;
+      grow.append(nm, em);
+      var tag = document.createElement('span'); tag.className = 'tag'; tag.textContent = person.role;
+      row.append(av, grow, tag);
+      if (!person.you) {
+        var rm = document.createElement('button'); rm.className = 'rm'; rm.type = 'button'; rm.textContent = 'Remove';
+        rm.addEventListener('click', function(){
+          if (person.role === 'Owner' && state.people.filter(function(x){ return x.role === 'Owner'; }).length <= 1) { $('#p-people-status').textContent = 'Keep at least one Owner on the list.'; return; }
+          state.people.splice(i, 1); save(); renderPeople();
+          $('#p-people-status').textContent = 'Access removed for ' + person.email + '.';
+        });
+        row.append(rm);
+      }
+      box.append(row);
+    });
+    var se = $('#p-sec-email');
+    if (se) { var s = null; try { s = localStorage.getItem(SES); } catch (e) {} if (s) se.textContent = s; }
+  }
+  $('#p-person-add').addEventListener('click', function(){
+    var name = $('#p-person-name').value.trim();
+    var email = $('#p-person-email').value.trim();
+    var st = $('#p-people-status');
+    if (!name) { st.textContent = 'Give the person a name first.'; return; }
+    if (!emailOk(email)) { st.textContent = 'Enter a valid email address.'; return; }
+    if (state.people.some(function(x){ return x.email.toLowerCase() === email.toLowerCase(); })) { st.textContent = 'That email is already on the list.'; return; }
+    state.people.push({name: name, email: email, role: $('#p-person-role').value});
+    $('#p-person-name').value = ''; $('#p-person-email').value = '';
+    save(); renderPeople();
+    st.textContent = name + ' can now sign in as ' + state.people[state.people.length - 1].role + '.';
+    toast('Person added.');
+  });
+  $('#p-pw-change').addEventListener('click', function(){
+    var err = $('#p-pw-error');
+    var cur = $('#p-cur-pw').value, a = $('#p-new-pw').value, b = $('#p-conf-pw').value;
+    function fail(msg){ err.textContent = msg; err.classList.remove('hidden'); $('#p-pw-status').textContent = ''; }
+    if (cur !== getPw()) { fail('Your current password does not match.'); return; }
+    if (a.length < 8) { fail('Use at least 8 characters for the new password.'); return; }
+    if (a !== b) { fail('The new password does not match the second typing.'); return; }
+    err.classList.add('hidden');
+    setPw(a);
+    $('#p-cur-pw').value = ''; $('#p-new-pw').value = ''; $('#p-conf-pw').value = '';
+    $('#p-pw-status').textContent = 'Password changed. Use the new one next time you sign in.';
+    toast('Password changed.');
   });
 
   /* help */
