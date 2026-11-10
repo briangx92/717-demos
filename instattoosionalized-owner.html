@@ -542,9 +542,27 @@ var DEFAULTS = {
     note.classList.remove('hidden');
     $('#p-pass').value = '';
   });
+  function showLogin(){
+    $('#p-app').classList.add('hidden');
+    $('#p-login').classList.remove('hidden');
+    showStep('p-step-email');
+    $('#p-pass').value = '';
+    $('#p-code').value = '';
+    window.scrollTo({top: 0});
+  }
   $('#p-signout').addEventListener('click', function(){
     try { localStorage.removeItem(SES); } catch (e) {}
-    location.reload();
+    showLogin();
+    toast('You are signed out.');
+  });
+  window.addEventListener('pageshow', function(e){
+    if (!e.persisted) return;
+    var s = null;
+    try { s = localStorage.getItem(SES); } catch (err) {}
+    if (!s) showLogin();
+  });
+  window.addEventListener('storage', function(e){
+    if (e.key === SES && !e.newValue) showLogin();
   });
 
   /* tabs */
