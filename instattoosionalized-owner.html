@@ -171,6 +171,18 @@
     [data-panel="people"] .panel input{width:100%}
   }
 </style>
+<style id="hamburger-fix">
+  .menu-btn{display:none;width:42px;height:42px;border:1px solid #2b2b31;background:#17171b;border-radius:10px;cursor:pointer;flex:none;flex-direction:column;align-items:center;justify-content:center;gap:5px;margin-left:auto}
+  .menu-btn span{display:block;width:20px;height:2px;background:#f4f2ec;border-radius:2px}
+  @media (max-width:900px){
+    .menu-btn{display:flex}
+    .side nav{display:none}
+    .side .side-foot{display:none}
+    .side.open nav{display:grid;gap:4px;overflow:visible;padding:2px 0 8px}
+    .side.open nav button{width:100%;white-space:normal}
+    .side.open .side-foot{display:grid;gap:4px;padding-bottom:12px}
+  }
+</style>
 </head>
 <body>
 
@@ -239,7 +251,7 @@
 
 <div id="p-app" class="hidden">
   <aside class="side">
-    <div class="shop"><div class="mark">IN</div><div><strong>Instattoosionalized</strong><span id="p-who">Owner page</span></div></div>
+    <div class="shop"><div class="mark">IN</div><div><strong>Instattoosionalized</strong><span id="p-who">Owner page</span></div><button type="button" class="menu-btn" id="p-menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
     <nav aria-label="Owner page">
       <button type="button" data-tab="home" aria-selected="true"><span class="dot"></span>Home</button>
       <button type="button" data-tab="edit" aria-selected="false"><span class="dot"></span>Edit site</button>
@@ -565,8 +577,15 @@ var DEFAULTS = {
     if (e.key === SES && !e.newValue) showLogin();
   });
 
+  $('#p-menu-btn').addEventListener('click', function(){
+    var open = $('.side').classList.toggle('open');
+    $('#p-menu-btn').setAttribute('aria-expanded', String(open));
+  });
+
   /* tabs */
   function setTab(tab){
+    var sd = $('.side'); if (sd) sd.classList.remove('open');
+    var mb = $('#p-menu-btn'); if (mb) mb.setAttribute('aria-expanded', 'false');
     $$('[data-tab]').forEach(function(b){ b.setAttribute('aria-selected', String(b.dataset.tab === tab)); });
     $$('[data-panel]').forEach(function(p){ p.classList.toggle('hidden', p.dataset.panel !== tab); });
     window.scrollTo({top: 0});
