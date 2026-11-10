@@ -478,9 +478,6 @@ var DEFAULTS = {
     $('#p-who').textContent = 'Signed in as ' + email;
     renderAll();
   }
-  var sess = null;
-  try { sess = localStorage.getItem(SES); } catch (e) {}
-  if (sess) showApp(sess);
   function getPw(){ try { return localStorage.getItem('oa-pw') || 'demo1234'; } catch (e) { return 'demo1234'; } }
   function setPw(v){ try { localStorage.setItem('oa-pw', v); } catch (e) {} }
   function showStep(id){
@@ -555,6 +552,8 @@ var DEFAULTS = {
     $('#p-pass').value = '';
   });
   function showLogin(){
+    var sd = $('.side'); if (sd) sd.classList.remove('open');
+    var mb = $('#p-menu-btn'); if (mb) mb.setAttribute('aria-expanded', 'false');
     $('#p-app').classList.add('hidden');
     $('#p-login').classList.remove('hidden');
     showStep('p-step-email');
@@ -859,6 +858,9 @@ var DEFAULTS = {
     $('#p-help-text').value = '';
     toast('Message sent to 717 Digital Studio.');
   });
+  var sess = null;
+  try { sess = localStorage.getItem(SES); } catch (e) {}
+  if (sess) showApp(sess);
 })();
 </script>
 </body>
