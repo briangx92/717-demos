@@ -543,7 +543,6 @@
         <div class="s-result__text" id="result-text"></div>
         <div class="s-result__actions">
           <a class="c-btn" id="result-sms">Text it to the shop</a>
-          <a class="c-btn c-btn--ghost" id="result-call"></a>
           <button class="c-btn c-btn--ghost" id="result-copy" type="button">Copy</button>
           <button class="c-btn c-btn--ghost" id="result-edit" type="button">Edit</button>
         </div>
@@ -1201,8 +1200,6 @@ const MODULES = {
         $("result-title").focus({ preventScroll: true });
       }, T.reduced() ? 900 : 2000);
     }
-    $("result-call").href = S.phoneHref;
-    $("result-call").textContent = "Call " + S.phoneDisplay;
     $("result-copy").addEventListener("click", async () => {
       const text = $("result").dataset.text || "";
       let ok = false;
