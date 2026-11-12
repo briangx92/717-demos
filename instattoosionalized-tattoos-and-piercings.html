@@ -361,7 +361,8 @@
 
   .s-callbar{ position:fixed; inset-inline:0; bottom:0; z-index:40; display:flex; }
   .s-callbar a{ flex:1; display:flex; gap:var(--sp-1); align-items:center; justify-content:center; min-height:calc(var(--tap) + var(--sp-1)); background:var(--accent); color:var(--accent-ink); text-decoration:none;
-    font-family:var(--font-display); text-transform:uppercase; letter-spacing:.08em; font-size:var(--text-h3); }
+    font-family:var(--font-display); text-transform:uppercase; letter-spacing:.03em; font-size:1.05rem; }
+  .s-callbar a.s-callbar__req{ background:var(--mid); color:var(--ink); }
   body{ padding-bottom:calc(var(--tap) + var(--sp-1)); }
   @media (min-width:1024px){ .s-callbar{ display:none; } body{ padding-bottom:0; } }
 
@@ -665,7 +666,7 @@
   <button class="c-btn s-jump__up" id="jump-up" type="button" aria-label="Back to top">&#8593;</button>
 </div>
 
-<div class="s-callbar" data-module="callbar"><a data-href="phoneHref">Call <span data-fill="phoneDisplay"></span></a></div>
+<div class="s-callbar" data-module="callbar"><a class="s-callbar__req" href="#ask">Request</a><a data-href="phoneHref">Call <span data-fill="phoneDisplay"></span></a></div>
 
 <div id="artist-overlay" class="s-aview" role="dialog" aria-modal="true" aria-label="Artist profile" hidden>
   <div class="s-aview__panel">
@@ -1302,7 +1303,6 @@ const MODULES = {
       who(body){
         body.append(...q("Who with?", "Pick one artist, or keep No preference.").filter(Boolean));
         if (st.artistNote) body.append(T.el("p", { class: "s-who__note", text: st.artistNote }));
-        const fams = families();
         const grid = T.el("div", { class: "s-tiles" });
         const mkTile = (val, name, sub, art) => {
           const box = T.el("input", { type: "radio", name: "who-artist", class: "u-sr", value: val, "data-key": "who-" + (val || "none") });
@@ -1327,7 +1327,7 @@ const MODULES = {
           return tile;
         };
         grid.append(mkTile("", "No preference", "First artist free for the work", null));
-        roster.filter(a => !fams.length || a.families.some(f => fams.indexOf(f) !== -1)).forEach(a => {
+        roster.forEach(a => {
           grid.append(mkTile(a.slug, a.name, a.role, a));
         });
         body.append(grid);
@@ -1537,14 +1537,7 @@ const MODULES = {
     }
     function syncArtistFit(){
       if (!st.artist) return;
-      const a = artistBySlug[st.artist];
-      if (!a) { st.artist = null; return; }
-      const fams = families();
-      if (fams.length && !a.families.some(f => fams.indexOf(f) !== -1)) {
-        st.artistNote = a.name + " does not do " + fams.map(f => S.familySteps[f].name.toLowerCase()).join(" or ") + ", so your pick is back to No preference. Pick another artist, or keep No preference.";
-        st.artist = null;
-        syncQuickArtist();
-      }
+      if (!artistBySlug[st.artist]) { st.artist = null; syncQuickArtist(); }
     }
     function syncQuickArtist(){
       const sel = $("q-artist");
