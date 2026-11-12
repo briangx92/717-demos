@@ -23,6 +23,7 @@
   @layer base{
     *,*::before,*::after{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
+    html, body{ overflow-x:hidden; overflow-x:clip; }
     body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:1.0625rem; line-height:1.55; }
     img{ display:block; max-width:100%; }
     h1,h2,h3{ font-family:var(--font-display); text-transform:uppercase; letter-spacing:.02em; line-height:1.05; margin:0; font-weight:400; }
@@ -45,6 +46,7 @@
   @layer sections{
     .p-frame{ position:sticky; top:0; z-index:40; background:rgba(14,14,16,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
     .p-frame__in{ max-width:1060px; margin-inline:auto; padding:.7rem 1rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .p-frame__in > *{ min-width:0; }
     .p-word{ font-family:var(--font-display); text-transform:uppercase; letter-spacing:.04em; font-size:1.05rem; text-decoration:none; }
     .p-word span{ color:var(--accent-bright); }
     .p-back{ color:var(--ink-soft); text-decoration:none; font-weight:600; }
