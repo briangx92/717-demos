@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marcus Doyle | Instattoosionalized Tattoos and Piercings</title>
+<meta name="description" content="Marcus Doyle, tattoo artist at Instattoosionalized in Northampton, PA. See the work and send a request.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0E0E10">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E0E10'/%3E%3Cpath d='M32 50s-16-9.6-16-20a8.8 8.8 0 0 1 16-5.6A8.8 8.8 0 0 1 48 30c0 10.4-16 20-16 20z' fill='%23BE1E2D'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+  @layer tokens, base, components, sections, utilities;
+  @layer tokens{ :root{
+    --bg:#0E0E10; --surface:#16161A; --mid:#1D1D22; --line:#26262C; --line-2:#3A3A42;
+    --ink:#F4F4F5; --ink-soft:#A7A7B0; --accent:#BE1E2D; --accent-hover:#D42838; --accent-press:#9E1826;
+    --accent-bright:#FF5252; --radius:14px; --radius-sm:10px;
+    --font-display:"Anton", "Arial Narrow", sans-serif; --font-body:"Source Serif 4", Georgia, serif;
+    --ease:cubic-bezier(.22,.61,.36,1); --dur:.28s;
+  }}
+  @layer base{
+    *,*::before,*::after{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:1.0625rem; line-height:1.55; }
+    img{ display:block; max-width:100%; }
+    h1,h2,h3{ font-family:var(--font-display); text-transform:uppercase; letter-spacing:.02em; line-height:1.05; margin:0; font-weight:400; }
+    p{ margin:0; }
+    a{ color:inherit; }
+    :focus-visible{ outline:3px solid var(--ink); outline-offset:3px; }
+    .u-sr{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+  }
+  @layer components{
+    .c-btn{ display:inline-flex; align-items:center; justify-content:center; gap:.5rem; min-height:48px; padding:.6rem 1.4rem; border-radius:var(--radius-sm); border:2px solid var(--accent-hover); background:var(--accent); color:#fff; font-family:var(--font-display); text-transform:uppercase; letter-spacing:.06em; font-size:1rem; text-decoration:none; cursor:pointer; transition:background var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+    .c-btn:hover{ background:var(--accent-hover); border-color:var(--accent-hover); }
+    .c-btn:active{ background:var(--accent-press); border-color:var(--accent-press); }
+    .c-btn--ghost{ background:transparent; border-color:var(--line-2); color:var(--ink); }
+    .c-btn--ghost:hover{ background:transparent; border-color:var(--accent-bright); color:var(--accent-bright); }
+    .c-kicker{ font-family:var(--font-display); text-transform:uppercase; letter-spacing:.16em; font-size:1rem; color:var(--accent-bright); margin:0 0 .5rem; }
+    .c-chip{ display:inline-flex; align-items:center; border:1px solid var(--line-2); color:var(--ink); border-radius:999px; padding:.3rem .8rem; font-size:.95rem; }
+    .s-sample{ display:inline-flex; align-items:center; border:1px solid var(--ink-soft); color:var(--ink-soft); border-radius:999px; padding:2px .5rem; font-family:var(--font-display); letter-spacing:.12em; text-transform:uppercase; font-size:.68rem; line-height:1.4; white-space:nowrap; }
+    .s-wm{ position:absolute; right:.5rem; bottom:.5rem; background:rgba(5,5,7,.72); color:#EDEDEF; border-radius:999px; padding:2px .5rem; font-size:.68rem; letter-spacing:.05em; text-transform:lowercase; font-weight:600; }
+  }
+  @layer sections{
+    .p-frame{ position:sticky; top:0; z-index:40; background:rgba(14,14,16,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+    .p-frame__in{ max-width:1060px; margin-inline:auto; padding:.7rem 1rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+    .p-word{ font-family:var(--font-display); text-transform:uppercase; letter-spacing:.04em; font-size:1.05rem; text-decoration:none; }
+    .p-word span{ color:var(--accent-bright); }
+    .p-back{ color:var(--ink-soft); text-decoration:none; font-weight:600; }
+    .p-back:hover{ color:var(--ink); }
+    .p-cover{ height:46vh; min-height:300px; position:relative; overflow:hidden; background:var(--mid); }
+    .p-cover img{ width:100%; height:100%; object-fit:cover; }
+    .p-cover::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,5,7,0) 40%, rgba(5,5,7,.55)); }
+    .p-shell{ max-width:1060px; margin-inline:auto; padding:0 1rem 3rem; }
+    .p-id{ display:grid; grid-template-columns:230px 1fr; gap:1.5rem; align-items:end; margin-top:-84px; position:relative; z-index:2; }
+    .p-portrait{ width:230px; height:230px; object-fit:cover; border-radius:18px; border:1px solid var(--line-2); box-shadow:0 18px 40px rgba(0,0,0,.5); }
+    .p-id h1{ font-size:clamp(2.2rem, 6vw, 3.4rem); }
+    .p-role{ color:var(--accent-bright); font-family:var(--font-display); text-transform:uppercase; letter-spacing:.12em; margin-top:.4rem; display:flex; gap:.5rem; align-items:center; flex-wrap:wrap; }
+    .p-status{ color:var(--ink-soft); margin-top:.6rem; display:flex; align-items:center; gap:.5rem; }
+    .p-status i{ width:9px; height:9px; border-radius:50%; background:var(--ink); flex:none; }
+    .p-actions{ display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.1rem; align-items:center; }
+    .p-ig{ display:inline-flex; align-items:center; gap:.5rem; min-height:48px; padding:.6rem 1.1rem; border:1px solid var(--line-2); border-radius:var(--radius-sm); font-weight:600; }
+    .p-samplenote{ color:var(--ink-soft); margin-top:.9rem; font-size:.95rem; }
+    .p-sect{ margin-top:3rem; }
+    .p-sect h2{ font-size:1.7rem; margin-bottom:1rem; }
+    .p-feat figure{ margin:0; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--surface); }
+    .p-feat .fw{ position:relative; }
+    .p-feat img{ width:100%; aspect-ratio:16 / 10; object-fit:cover; }
+    .p-feat figcaption{ padding:1.1rem 1.2rem 1.2rem; }
+    .p-feat .who{ color:var(--accent-bright); font-family:var(--font-display); text-transform:uppercase; letter-spacing:.1em; font-size:.85rem; margin-top:.6rem; }
+    .p-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .p-grid figure{ margin:0; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--surface); }
+    .p-grid .fw{ position:relative; }
+    .p-grid img{ width:100%; aspect-ratio:4 / 3; object-fit:cover; }
+    .p-grid figcaption{ padding:.6rem .9rem; color:var(--ink-soft); font-size:.95rem; }
+    .p-about p{ color:var(--ink-soft); max-width:65ch; }
+    .p-about p + p{ margin-top:.8rem; }
+    .p-chips{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.1rem; }
+    .p-note{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:1.4rem; }
+    .p-note p{ color:var(--ink-soft); max-width:65ch; }
+    .p-note p + p{ margin-top:.8rem; }
+    .p-req{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:1.6rem; text-align:center; }
+    .p-req p{ color:var(--ink-soft); margin:.6rem auto 1.2rem; max-width:52ch; }
+    .p-foot{ border-top:1px solid var(--line); margin-top:3.5rem; }
+    .p-foot__in{ max-width:1060px; margin-inline:auto; padding:1.6rem 1rem; display:grid; gap:.5rem; justify-items:center; text-align:center; }
+    .p-foot nav{ display:flex; gap:1.2rem; flex-wrap:wrap; justify-content:center; }
+    .p-foot a{ color:var(--ink-soft); text-decoration:none; font-weight:600; }
+    .p-foot a:hover{ color:var(--ink); }
+    .p-band{ background:var(--mid); border-top:1px solid var(--line); }
+    .p-band__in{ max-width:1060px; margin-inline:auto; padding:1.2rem 1rem; display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between; }
+    .p-band p{ color:var(--ink-soft); }
+    @media (max-width:720px){ .p-id{ grid-template-columns:1fr; margin-top:-64px; justify-items:center; text-align:center; } .p-role, .p-status, .p-actions{ justify-content:center; } .p-grid{ grid-template-columns:1fr; } .p-band__in{ justify-content:center; text-align:center; } }
+  }
+</style>
+</head>
+<body>
+<header class="p-frame">
+  <div class="p-frame__in">
+    <a class="p-word" href="instattoosionalized-tattoos-and-piercings.html">Instattoosionalized <span>Tattoos + Piercings</span></a>
+    <a class="p-back" href="instattoosionalized-tattoos-and-piercings.html">Back to the shop</a>
+  </div>
+</header>
+
+<div class="p-cover"><img src="https://images.pexels.com/photos/14242278/pexels-photo-14242278.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" alt="Artist working on a large black and grey piece in the studio"></div>
+
+<main class="p-shell">
+  <section class="p-id">
+    <img class="p-portrait" src="https://images.pexels.com/photos/19257754/pexels-photo-19257754.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Marcus Doyle tattooing at his station in the shop">
+    <div>
+      <h1>Marcus Doyle</h1>
+      <p class="p-role">Tattoo <span class="s-sample">Sample</span></p>
+      <p class="p-status"><i aria-hidden="true"></i> Books open, booking three to four weeks out.</p>
+      <div class="p-actions">
+        <span class="p-ig"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.3" fill="currentColor"/></svg> @marcusdoyle.ink</span>
+        <a class="c-btn" href="instattoosionalized-tattoos-and-piercings.html?artist=marcus-doyle#ask">Request with Marcus</a>
+      </div>
+      <p class="p-samplenote">Sample artist page. The photos and words here are stand-ins that show the layout. The shop's real roster replaces them at launch.</p>
+    </div>
+  </section>
+
+  <section class="p-sect p-feat">
+    <p class="c-kicker">Featured piece</p>
+    <h2>The one Marcus shows first</h2>
+    <figure>
+      <div class="fw"><img src="https://images.pexels.com/photos/14242278/pexels-photo-14242278.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Artist working on a large black and grey piece in the studio"><span class="s-wm">your photo here</span></div>
+      <figcaption>
+        <p>This is the piece I would show you first. Black and grey realism, caught in progress here and healed up bold. If you want work that reads from across the room, that is what I do.</p>
+        <p class="who">Marcus, on this piece</p>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="p-sect">
+    <p class="c-kicker">The book</p>
+    <h2>More of Marcus's work</h2>
+    <div class="p-grid">
+        <figure>
+          <div class="fw"><img src="https://images.pexels.com/photos/7005667/pexels-photo-7005667.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Artist tattooing a detailed sleeve piece in the studio" loading="lazy"><span class="s-wm">your photo here</span></div>
+          <figcaption>Sleeve work, in progress</figcaption>
+        </figure>
+        <figure>
+          <div class="fw"><img src="https://images.pexels.com/photos/2928342/pexels-photo-2928342.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Artist at work on a forearm piece, black and white photo" loading="lazy"><span class="s-wm">your photo here</span></div>
+          <figcaption>Custom forearm work</figcaption>
+        </figure>
+        <figure>
+          <div class="fw"><img src="https://images.pexels.com/photos/6593487/pexels-photo-6593487.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Coil machine laying down linework" loading="lazy"><span class="s-wm">your photo here</span></div>
+          <figcaption>Linework, in progress</figcaption>
+        </figure>
+    </div>
+  </section>
+
+  <section class="p-sect p-about">
+    <p class="c-kicker">About</p>
+    <h2>In Marcus's words</h2>
+        <p>I am Marcus. I have been tattooing for seven years, mostly black and grey realism and bold linework.</p>
+        <p>I take on cover-ups other shops pass on, and I will tell you straight if an idea needs a rethink before it goes on skin.</p>
+    <div class="p-chips">
+          <span class="c-chip">Black and grey realism</span>
+          <span class="c-chip">Bold linework</span>
+          <span class="c-chip">Cover-ups</span>
+          <span class="c-chip">Sleeve work</span>
+    </div>
+  </section>
+
+  <section class="p-sect">
+    <p class="c-kicker">Booking</p>
+    <h2>How booking works with Marcus</h2>
+    <div class="p-note">
+        <p>Send the shop request form and ask for me by name. Tell me what you are covering or starting, and send a photo of the spot if you can.</p>
+        <p>A deposit holds your spot and comes off the price at your session. Cover-ups can take more than one sitting, and I will map the plan out with you before we start.</p>
+    </div>
+  </section>
+
+  <section class="p-sect">
+    <div class="p-req">
+      <h2>Request with Marcus</h2>
+      <p>Send the shop request form with Marcus picked, and the idea lands with the right artist from the start.</p>
+      <a class="c-btn" href="instattoosionalized-tattoos-and-piercings.html?artist=marcus-doyle#ask">Request with Marcus</a>
+    </div>
+  </section>
+</main>
+
+<footer class="p-foot">
+  <div class="p-foot__in">
+    <p><strong>Instattoosionalized Tattoos and Piercings</strong></p>
+    <p>1852 Main St, Northampton, PA 18067 &middot; (610) 440-2700</p>
+    <nav aria-label="Shop">
+      <a href="instattoosionalized-tattoos-and-piercings.html#services">Services</a>
+      <a href="instattoosionalized-tattoos-and-piercings.html#work">Recent work</a>
+      <a href="instattoosionalized-tattoos-and-piercings.html#visit">Visit</a>
+      <a href="https://www.facebook.com/751661348261378" target="_blank" rel="noopener">Facebook</a>
+    </nav>
+  </div>
+</footer>
+<div class="p-band">
+  <div class="p-band__in">
+    <p>Like this site? It was built for Instattoosionalized by 717 Digital Studio.</p>
+    <a class="c-btn" href="https://m.me/717digitalstudio" target="_blank" rel="noopener">Message me about this site</a>
+  </div>
+</div>
+</body>
+</html>
