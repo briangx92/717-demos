@@ -220,6 +220,7 @@
   .s-proof__count{ color:var(--ink-soft); font-weight:600; }
   @media (min-width:1024px){ .s-proof .l-wrap{ grid-template-columns:auto 1fr auto; gap:var(--sp-6); } .s-proof__num{ font-size:calc(var(--text-mega) * 1.25); } }
   @media (min-width:1024px){ .s-prices .l-wrap, #work .l-wrap, .s-proof .l-wrap{ max-width:880px; } .s-visit .l-wrap, .s-ask .l-wrap{ max-width:1020px; } }
+  @media (min-width:1024px){ .s-artists .l-wrap{ max-width:1140px; } .s-rail.is-fit{ overflow-x:visible; scroll-snap-type:none; justify-content:center; padding-inline:var(--sp-2); } .s-rail.is-fit .s-rail__card{ flex-basis:320px; scroll-snap-align:none; } }
 
   .s-paper{ background-color:var(--paper); color:var(--paper-ink);
     background-image:
@@ -1038,6 +1039,13 @@ const MODULES = {
       rail.append(card);
     });
     if (cards.length) setFocus(cards[0]);
+    function fitRail(){
+      const gap = parseFloat(getComputedStyle(rail).columnGap) || 0;
+      const need = cards.length * 320 + Math.max(0, cards.length - 1) * gap + 32;
+      rail.classList.toggle("is-fit", window.innerWidth >= 1024 && need <= rail.clientWidth);
+    }
+    fitRail();
+    addEventListener("resize", fitRail);
     if ("IntersectionObserver" in window) {
       const io = new IntersectionObserver(entries => {
         entries.forEach(en => { if (en.isIntersecting) setFocus(en.target); });
