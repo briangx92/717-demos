@@ -378,6 +378,51 @@
           </div>
         </div>
         <div class="section">
+          <div class="shead"><div><h3>Your artists</h3><p>Add, edit, or remove the artists on your site. Each artist gets their own page, built from what is here. Their work photos live under Photos.</p></div><button class="btn btn--primary" type="button">Save artists</button></div>
+          <div style="border-top:1px solid #ececea;padding-top:12px;margin-top:12px">
+            <div class="roleline"><strong>Alex Rivera</strong><span>Tattoo + Piercing &middot; Shows on the site, on their own page, and in the request form</span></div>
+            <div class="addgrid">
+              <label class="f">Name<input type="text" value="Alex Rivera"></label>
+              <label class="f">What they do<input type="text" value="Tattoo + Piercing"></label>
+              <label class="f">Instagram<input type="text" value="@alexrivera.ink"></label>
+              <label class="f">Portrait<input type="text" value="On file" readonly></label>
+            </div>
+            <label class="f" style="display:block;margin-top:8px">About them<textarea rows="2">Alex has been tattooing for nine years. Fine line and black and grey, plus standard piercings.</textarea></label>
+            <div style="margin-top:8px"><button class="btn" type="button">Remove artist</button> <span style="color:#5c5c66;font-size:13px">Removing an artist takes their page down at the next publish. Their photos are kept for 30 days in case they come back.</span></div>
+          </div>
+          <div style="border-top:1px solid #ececea;padding-top:12px;margin-top:12px">
+            <div class="roleline"><strong>Marcus Doyle</strong><span>Tattoo &middot; Shows on the site, on their own page, and in the request form</span></div>
+            <div class="addgrid">
+              <label class="f">Name<input type="text" value="Marcus Doyle"></label>
+              <label class="f">What they do<input type="text" value="Tattoo"></label>
+              <label class="f">Instagram<input type="text" value="@marcusdoyle.ink"></label>
+              <label class="f">Portrait<input type="text" value="On file" readonly></label>
+            </div>
+            <label class="f" style="display:block;margin-top:8px">About them<textarea rows="2">Marcus has been tattooing for seven years, mostly black and grey realism and bold linework. He takes on cover-ups other shops pass on.</textarea></label>
+            <div style="margin-top:8px"><button class="btn" type="button">Remove artist</button> <span style="color:#5c5c66;font-size:13px">Removing an artist takes their page down at the next publish. Their photos are kept for 30 days in case they come back.</span></div>
+          </div>
+          <div style="border-top:1px solid #ececea;padding-top:12px;margin-top:12px">
+            <div class="roleline"><strong>Owen Park</strong><span>Piercing &middot; Shows on the site, on their own page, and in the request form</span></div>
+            <div class="addgrid">
+              <label class="f">Name<input type="text" value="Owen Park"></label>
+              <label class="f">What they do<input type="text" value="Piercing"></label>
+              <label class="f">Instagram<input type="text" value="@owenpark.piercing"></label>
+              <label class="f">Portrait<input type="text" value="On file" readonly></label>
+            </div>
+            <label class="f" style="display:block;margin-top:8px">About them<textarea rows="2">Owen handles piercings and jewelry changes, and will walk you through aftercare before you leave.</textarea></label>
+            <div style="margin-top:8px"><button class="btn" type="button">Remove artist</button> <span style="color:#5c5c66;font-size:13px">Removing an artist takes their page down at the next publish. Their photos are kept for 30 days in case they come back.</span></div>
+          </div>
+          <div style="border-top:1px solid #ececea;padding-top:12px;margin-top:12px">
+            <div class="roleline"><strong>Add an artist</strong><span>Their page is built at the next publish, from these basics. You can fill in the rest any time.</span></div>
+            <div class="addgrid">
+              <label class="f">Name<input type="text" placeholder="Full name"></label>
+              <label class="f">What they do<input type="text" placeholder="Like Tattoo, or Piercing"></label>
+              <label class="f">Instagram<input type="text" placeholder="@handle"></label>
+            </div>
+            <button class="btn" type="button" style="margin-top:10px">Add artist</button>
+          </div>
+        </div>
+        <div class="section">
           <div class="shead"><div><h3>Scrolling message</h3><p>The words moving across the strip under the main photo. One message per line.</p></div><button class="btn btn--primary" type="button" id="p-save-ticker">Save message</button></div>
           <textarea id="p-ticker" rows="4"></textarea>
         </div>
@@ -414,7 +459,25 @@
         </div>
         <p class="status" id="p-edit-status"></p>
       </div>
-    </section>
+    
+<div class="panel" style="margin-top:14px">
+          <div class="head"><h3>Guest artists</h3></div>
+          <div class="roleline"><strong>Dana Cole</strong><span>Dec 5 to 7 &middot; Fine line and blackwork &middot; Books open &middot; Shows on the site between those dates, then comes down on its own.</span></div>
+          <div class="addgrid" style="margin-top:10px">
+            <input type="text" placeholder="Guest artist name">
+            <input type="text" placeholder="What they do">
+            <input type="text" placeholder="Dates, like Dec 5 to 7">
+          </div>
+          <button class="btn" type="button" style="margin-top:10px">Add guest artist</button>
+        </div>
+<div class="panel" style="margin-top:14px">
+          <div class="head"><h3>Booked out until</h3></div>
+          <p style="color:#5c5c66;font-size:14px;line-height:1.55;margin-bottom:10px">If an artist is booked solid for a while, set the date here. The request calendar for that artist starts on that date. Nobody gets turned away, the earlier days just do not show for them. Leave it blank when they have room now.</p>
+          <div class="roleline"><strong>Alex Rivera</strong><span><input type="date" aria-label="Alex Rivera booked out until"></span></div>
+          <div class="roleline"><strong>Marcus Doyle</strong><span><input type="date" value="2026-12-01" aria-label="Marcus Doyle booked out until"></span></div>
+          <div class="roleline"><strong>Owen Park</strong><span><input type="date" aria-label="Owen Park booked out until"></span></div>
+        </div>
+</section>
 
     <section data-panel="photos" class="hidden">
       <h1>Photos</h1>
@@ -519,23 +582,8 @@
           </div>
         </div>
       </div>
-        <div class="panel" style="margin-top:14px">
-          <div class="head"><h3>Guest artists</h3></div>
-          <div class="roleline"><strong>Dana Cole</strong><span>Dec 5 to 7 &middot; Fine line and blackwork &middot; Books open &middot; Shows on the site between those dates, then comes down on its own.</span></div>
-          <div class="addgrid" style="margin-top:10px">
-            <input type="text" placeholder="Guest artist name">
-            <input type="text" placeholder="What they do">
-            <input type="text" placeholder="Dates, like Dec 5 to 7">
-          </div>
-          <button class="btn" type="button" style="margin-top:10px">Add guest artist</button>
-        </div>
-        <div class="panel" style="margin-top:14px">
-          <div class="head"><h3>Booked out until</h3></div>
-          <p style="color:#5c5c66;font-size:14px;line-height:1.55;margin-bottom:10px">If an artist is booked solid for a while, set the date here. The request calendar for that artist starts on that date. Nobody gets turned away, the earlier days just do not show for them. Leave it blank when they have room now.</p>
-          <div class="roleline"><strong>Alex Rivera</strong><span><input type="date" aria-label="Alex Rivera booked out until"></span></div>
-          <div class="roleline"><strong>Marcus Doyle</strong><span><input type="date" value="2026-12-01" aria-label="Marcus Doyle booked out until"></span></div>
-          <div class="roleline"><strong>Owen Park</strong><span><input type="date" aria-label="Owen Park booked out until"></span></div>
-        </div>
+        
+        
     </section>
   </main>
 </div>
