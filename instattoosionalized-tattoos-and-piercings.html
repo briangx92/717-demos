@@ -359,12 +359,6 @@
   .s-band{ background:var(--ink); color:var(--bg); text-align:center; padding:var(--sp-2); }
   .s-band a{ font-weight:700; }
 
-  .s-callbar{ position:fixed; inset-inline:0; bottom:0; z-index:40; display:flex; }
-  .s-callbar a{ flex:1; display:flex; gap:var(--sp-1); align-items:center; justify-content:center; min-height:calc(var(--tap) + var(--sp-1)); background:var(--accent); color:var(--accent-ink); text-decoration:none;
-    font-family:var(--font-display); text-transform:uppercase; letter-spacing:.03em; font-size:1.05rem; }
-  .s-callbar a.s-callbar__req{ background:var(--mid); color:var(--ink); }
-  body{ padding-bottom:calc(var(--tap) + var(--sp-1)); }
-  @media (min-width:1024px){ .s-callbar{ display:none; } body{ padding-bottom:0; } }
 
   .s-jump{ position:fixed; right:var(--sp-2); bottom:var(--sp-2); z-index:45; display:flex; gap:var(--sp-1);
     opacity:0; pointer-events:none; transition:opacity var(--dur) ease, bottom var(--dur-fast) ease; }
@@ -666,7 +660,6 @@
   <button class="c-btn s-jump__up" id="jump-up" type="button" aria-label="Back to top">&#8593;</button>
 </div>
 
-<div class="s-callbar" data-module="callbar"><a class="s-callbar__req" href="#ask">Request</a><a data-href="phoneHref">Call <span data-fill="phoneDisplay"></span></a></div>
 
 <div id="artist-overlay" class="s-aview" role="dialog" aria-modal="true" aria-label="Artist profile" hidden>
   <div class="s-aview__panel">
