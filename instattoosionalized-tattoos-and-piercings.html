@@ -10,7 +10,7 @@
 <meta property="og:description" content="Tattoos and body piercing on Main Street in Northampton, PA.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0E0E10">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E0E10'/%3E%3Cpath d='M32 50C18 41 12 33 15 25c3-7 12-8 17-1c5-7 14-6 17 1c3 8-3 16-17 25z' fill='%23BE1E2D'/%3E%3C/svg%3E">
+<link rel="icon" href="instattoosionalized-logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
@@ -149,6 +149,8 @@
 @layer sections {
   .s-header{ position:sticky; top:0; z-index:40; background:var(--bg); border-bottom:1px solid var(--line); }
   .s-header .l-wrap{ display:flex; align-items:center; justify-content:space-between; gap:var(--sp-2); padding-block:var(--sp-1); }
+  .s-header__brand{ display:flex; align-items:center; gap:10px; min-width:0; }
+  .s-header__logo{ width:38px; height:38px; flex:none; border-radius:9px; object-fit:cover; object-position:50% 20%; border:1px solid var(--line); background:#000; }
   .s-header__name{ font-family:var(--font-display); font-size:var(--text-h3); text-transform:uppercase; letter-spacing:.04em; text-decoration:none; min-width:0; }
   .s-header__name span{ color:var(--accent-bright); }
   .s-header .c-btn{ font-size:var(--text-body); padding-inline:var(--sp-2); flex:none; }
@@ -351,6 +353,7 @@
 
   .s-footer{ border-top:1px solid var(--line); padding-block:var(--sp-5); }
   .s-footer .l-wrap{ display:grid; gap:var(--sp-2); }
+  .s-footer__logo{ width:150px; max-width:55vw; border-radius:16px; border:1px solid var(--line); background:#000; margin-bottom:var(--sp-2); }
   .s-footer__name{ font-family:var(--font-display); text-transform:uppercase; letter-spacing:.04em; font-size:var(--text-h3); }
   .s-footer__info{ color:var(--ink-soft); }
   .s-footer nav{ display:flex; flex-wrap:wrap; gap:var(--sp-1) var(--sp-3); }
@@ -441,7 +444,7 @@
 <body>
 <header class="s-header" data-module="header">
   <div class="l-wrap">
-    <a class="s-header__name" href="#top" data-fill="shortName"></a>
+    <span class="s-header__brand"><img class="s-header__logo" src="instattoosionalized-logo.jpg" alt="Instattoosionalized logo"><a class="s-header__name" href="#top" data-fill="shortName"></a></span>
     <a class="c-btn" data-href="phoneHref">Call<span class="u-hide-sm" data-fill="phoneDisplay"></span></a>
   </div>
 </header>
@@ -640,6 +643,7 @@
 
 <footer class="s-footer" data-module="footer">
   <div class="l-wrap">
+    <img class="s-footer__logo" src="instattoosionalized-logo.jpg" alt="Instattoosionalized logo">
     <p class="s-footer__name" data-fill="copy.footerLine"></p>
     <p class="s-footer__info" data-fill="copy.footerInfo"></p>
     <nav aria-label="Footer">

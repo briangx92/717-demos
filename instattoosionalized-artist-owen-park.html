@@ -47,7 +47,8 @@
     .p-frame{ position:sticky; top:0; z-index:40; background:rgba(14,14,16,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
     .p-frame__in{ max-width:1060px; margin-inline:auto; padding:.7rem 1rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
     .p-frame__in > *{ min-width:0; }
-    .p-word{ font-family:var(--font-display); text-transform:uppercase; letter-spacing:.04em; font-size:1.05rem; text-decoration:none; }
+    .p-logo{ width:30px; height:30px; flex:none; border-radius:7px; object-fit:cover; object-position:50% 20%; border:1px solid var(--line); background:#000; }
+    .p-word{ font-family:var(--font-display); text-transform:uppercase; letter-spacing:.04em; font-size:1.05rem; text-decoration:none;  display:inline-flex; align-items:center; gap:9px;}
     .p-word span{ color:var(--accent-bright); }
     .p-back{ color:var(--ink-soft); text-decoration:none; font-weight:600; }
     .p-back:hover{ color:var(--ink); }
@@ -99,7 +100,7 @@
 <body>
 <header class="p-frame">
   <div class="p-frame__in">
-    <a class="p-word" href="instattoosionalized-tattoos-and-piercings.html">Instattoosionalized <span>Tattoos + Piercings</span></a>
+    <a class="p-word" href="instattoosionalized-tattoos-and-piercings.html"><img class="p-logo" src="instattoosionalized-logo.jpg" alt="Instattoosionalized logo">Instattoosionalized <span>Tattoos + Piercings</span></a>
     <a class="p-back" href="instattoosionalized-tattoos-and-piercings.html">Back to the shop</a>
   </div>
 </header>
