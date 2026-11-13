@@ -742,6 +742,7 @@ const SITE = {
     },
     {
       slug: "marcus-doyle", name: "Marcus Doyle", first: "Marcus", role: "Tattoo", families: ["tattoo"], sample: true,
+      bookedOutDays: 18,
       ig: "marcusdoyle.ink",
       portrait: "https://images.pexels.com/photos/19257754/pexels-photo-19257754.jpeg?auto=compress&cs=tinysrgb&w=1200",
       portraitAlt: "Marcus Doyle tattooing at his station in the shop",
@@ -1216,10 +1217,18 @@ const MODULES = {
       if (T.key(o) === T.key(n)) return out.filter(t => t > n.mins);
       return out;
     }
+    function firstOpen(){
+      const a = st.artist ? artistBySlug[st.artist] : null;
+      if (!a || !a.bookedOutDays) return null;
+      const n = T.now();
+      return T.add(n.y, n.m, n.d, a.bookedOutDays);
+    }
     function pickable(o){
       const n = T.now();
       const k = T.key(o);
       if (k < T.key(n) || k > T.key(T.add(n.y, n.m, n.d, L.bookingDays))) return false;
+      const fo = firstOpen();
+      if (fo && k < T.key(fo)) return false;
       return slotsFor(o).length > 0;
     }
     function partsFor(o){
@@ -1358,7 +1367,10 @@ const MODULES = {
       },
       when(body){
         const a = st.a;
+        const fo = firstOpen();
+        if (fo && a.date && T.key(a.date) < T.key(fo)) { a.date = null; a.part = null; a.time = null; }
         body.append(...q("When works?", "Flexible is fine.").filter(Boolean));
+        if (fo) body.append(T.el("p", { class: "c-field__hint", text: artistBySlug[st.artist].first + " is booked out until " + T.fmtDate(fo, { weekday: "short", month: "short", day: "numeric" }) + ". The calendar starts there." }));
         const flex = T.el("button", { type: "button", class: "c-choice c-choice--wide", "data-key": "when-flex", "aria-pressed": String(a.whenMode === "flex"), text: "Flexible",
           onclick: () => { a.whenMode = "flex"; a.date = null; a.part = null; a.time = null; st.calOpen = false; renderStep("when-flex", false, true); recheck(); } });
         const pickLabel = a.date ? T.fmtDate(a.date, { weekday: "short", month: "short", day: "numeric" }) : "Pick a date";
@@ -1367,7 +1379,7 @@ const MODULES = {
           onclick: () => {
             a.whenMode = "date";
             st.calOpen = !st.calOpen;
-            if (st.calOpen) { const base = a.date || T.now(); st.view = { y: base.y, m: base.m }; }
+            if (st.calOpen) { const fo = firstOpen(); const base = a.date || (fo && T.key(fo) > T.key(T.now()) ? fo : T.now()); st.view = { y: base.y, m: base.m }; }
             renderStep(st.calOpen ? "cal-first" : "when-date", false, true);
           } });
         body.append(T.el("div", { class: "c-choices s-step__block" }, [flex, pick]));
