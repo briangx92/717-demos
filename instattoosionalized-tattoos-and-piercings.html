@@ -219,6 +219,7 @@
   .s-proof__stars{ font-size:var(--text-h2); }
   .s-proof__count{ color:var(--ink-soft); font-weight:600; }
   @media (min-width:1024px){ .s-proof .l-wrap{ grid-template-columns:auto 1fr auto; gap:var(--sp-6); } .s-proof__num{ font-size:calc(var(--text-mega) * 1.25); } }
+  @media (min-width:1024px){ .s-prices .l-wrap, #work .l-wrap, .s-proof .l-wrap{ max-width:880px; } .s-visit .l-wrap{ max-width:1020px; } }
 
   .s-paper{ background-color:var(--paper); color:var(--paper-ink);
     background-image:
@@ -539,7 +540,6 @@
 
 <section class="l-section s-visit" id="visit" data-module="visit">
   <div class="l-wrap">
-    <p class="c-kicker" data-fill="copy.visitKicker"></p>
     <h2>Visit</h2>
     <div class="s-visit__grid">
       <div class="c-card">
@@ -643,7 +643,6 @@
 
 <footer class="s-footer" data-module="footer">
   <div class="l-wrap">
-    <img class="s-footer__logo" src="instattoosionalized-logo.jpg" alt="Instattoosionalized logo">
     <p class="s-footer__name" data-fill="copy.footerLine"></p>
     <p class="s-footer__info" data-fill="copy.footerInfo"></p>
     <nav aria-label="Footer">
@@ -800,7 +799,6 @@ const SITE = {
   S.copy.tagTop = S.street;
   S.copy.tagMain = S.town + ", " + S.region;
   S.copy.servicesIntro = "Both under one roof at " + S.street + ". Add what you're after and send the shop a request.";
-  S.copy.visitKicker = S.street + " · " + S.town;
   S.copy.footerLine = S.name + " · " + S.town + ", " + S.region;
   S.copy.footerInfo = S.address + " · " + S.phoneDisplay;
 })(SITE);
@@ -1368,10 +1366,14 @@ const MODULES = {
         if (st.calOpen) body.append(calendar());
         if (a.date && !st.calOpen) {
           const parts = partsFor(a.date);
-          const row = T.el("div", { class: "c-choices", role: "group", "aria-labelledby": "part-lab" });
-          parts.forEach(([name]) => row.append(T.el("button", { type: "button", class: "c-choice c-choice--wide", "data-key": "part-" + name, "aria-pressed": String(a.part === name), text: name,
-            onclick: () => { a.part = name; a.time = null; renderStep("part-" + name, false, true); } })));
-          body.append(T.el("div", { class: "s-step__block" }, [T.el("p", { class: "c-group-label", id: "part-lab", text: "Part of the day" }), row]));
+          if (a.part && !parts.some(p => p[0] === a.part)) { a.part = null; a.time = null; }
+          if (parts.length === 1 && !a.part) a.part = parts[0][0];
+          if (parts.length > 1) {
+            const row = T.el("div", { class: "c-choices", role: "group", "aria-labelledby": "part-lab" });
+            parts.forEach(([name]) => row.append(T.el("button", { type: "button", class: "c-choice c-choice--wide", "data-key": "part-" + name, "aria-pressed": String(a.part === name), text: name,
+              onclick: () => { a.part = name; a.time = null; renderStep("part-" + name, false, true); } })));
+            body.append(T.el("div", { class: "s-step__block" }, [T.el("p", { class: "c-group-label", id: "part-lab", text: "Part of the day" }), row]));
+          }
           if (a.part) {
             const [, from, to] = S.dayParts.find(p => p[0] === a.part);
             const times = slotsFor(a.date).filter(t => t >= from && t < to);
