@@ -596,8 +596,8 @@
             <label class="c-field__label" for="q-note">What do you need? (optional)</label>
             <textarea class="c-input" id="q-note" placeholder="A quick line is plenty" autocapitalize="sentences"></textarea>
           </div>
-          <button class="c-btn c-btn--big" id="q-send" type="button" aria-describedby="q-phone-hint" disabled>Get in touch</button>
-          <p class="s-quick__fine">Nothing sends from this page. You send it by text or call.</p>
+          <button class="c-btn c-btn--big" id="q-send" type="button" aria-describedby="q-phone-hint" disabled>Send request</button>
+          <p class="s-quick__fine">Send it right here. The shop confirms your time and puts it on their calendar.</p>
         </form>
       </div>
 
@@ -1608,7 +1608,7 @@ const MODULES = {
         result.hidden = false;
         $("result-text").textContent = text;
         $("result-sms").href = S.smsBase + "?&body=" + encodeURIComponent(text);
-        $("result-status").textContent = "";
+        $("result-title").textContent = "Request sent"; $("result-sms").hidden = true; $("result-copy").hidden = true; $("result-status").textContent = "The shop got your request. They will confirm your time by text, and once they do it goes on their calendar. Here is what you sent:";
         $("result").dataset.text = text;
         $("ask").scrollIntoView({ block: "start", behavior: "auto" });
         $("result-title").focus({ preventScroll: true });
