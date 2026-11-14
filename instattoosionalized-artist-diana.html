@@ -216,5 +216,114 @@
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
 })();
 </script>
+<style>
+  .p-grid figure, .p-feat figure{ position:relative; }
+  .lb-zoom{ position:absolute; top:8px; right:8px; width:38px; height:38px; border-radius:50%; border:1px solid rgba(255,255,255,.25); background:rgba(10,10,12,.72); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:3; }
+  .lb-zoom svg{ width:19px; height:19px; }
+  .lb-zoom:hover{ background:rgba(10,10,12,.92); }
+  .lbx{ position:fixed; inset:0; z-index:200; background:rgba(8,8,10,.97); display:none; flex-direction:column; }
+  .lbx.open{ display:flex; }
+  .lbx-top{ display:flex; align-items:center; justify-content:space-between; padding:12px 16px; color:#f2f0ea; }
+  .lbx-count{ font-size:13.5px; color:#b9b4a8; letter-spacing:.04em; }
+  .lbx-cap{ font-size:14.5px; color:#f2f0ea; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:56vw; }
+  .lbx-x{ width:42px; height:42px; border-radius:50%; border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.06); color:#fff; font-size:19px; cursor:pointer; flex:none; }
+  .lbx-stage{ flex:1; position:relative; display:flex; align-items:center; justify-content:center; min-height:0; }
+  .lbx-stage img{ max-width:92vw; max-height:100%; object-fit:contain; border-radius:6px; }
+  .lbx-nav{ position:absolute; top:50%; transform:translateY(-50%); width:48px; height:64px; border:none; background:rgba(255,255,255,.07); color:#fff; font-size:26px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+  .lbx-nav:hover{ background:rgba(255,255,255,.16); }
+  .lbx-prev{ left:10px; border-radius:0 10px 10px 0; }
+  .lbx-next{ right:10px; border-radius:10px 0 0 10px; }
+  .lbx-strip{ display:flex; gap:8px; padding:12px 16px 16px; overflow-x:auto; justify-content:flex-start; }
+  .lbx-strip img{ width:58px; height:58px; object-fit:cover; border-radius:8px; opacity:.45; cursor:pointer; flex:none; border:2px solid transparent; }
+  .lbx-strip img.on{ opacity:1; border-color:#ff5964; }
+  @media(max-width:700px){ .lbx-cap{ display:none; } .lbx-nav{ width:40px; height:56px; } }
+</style>
+<div class="lbx" id="lbx" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <div class="lbx-top">
+    <span class="lbx-count" id="lbx-count"></span>
+    <span class="lbx-cap" id="lbx-cap"></span>
+    <button type="button" class="lbx-x" id="lbx-x" aria-label="Close viewer">&#10005;</button>
+  </div>
+  <div class="lbx-stage" id="lbx-stage">
+    <button type="button" class="lbx-nav lbx-prev" id="lbx-prev" aria-label="Previous photo">&#8249;</button>
+    <img id="lbx-img" alt="Tattoo photo, full size">
+    <button type="button" class="lbx-nav lbx-next" id="lbx-next" aria-label="Next photo">&#8250;</button>
+  </div>
+  <div class="lbx-strip" id="lbx-strip"></div>
+</div>
+<script>
+(function(){
+  var figs = Array.prototype.slice.call(document.querySelectorAll('.p-feat figure, .p-grid figure'));
+  if (!figs.length) return;
+  var items = figs.map(function(f){
+    var img = f.querySelector('img');
+    var cap = f.querySelector('figcaption');
+    return { src: img.getAttribute('src'), cap: cap ? cap.textContent.trim().replace(/\s+/g,' ') : '' };
+  });
+  var ZOOM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>';
+  var lbx = document.getElementById('lbx'), im = document.getElementById('lbx-img'),
+      capEl = document.getElementById('lbx-cap'), cntEl = document.getElementById('lbx-count'),
+      strip = document.getElementById('lbx-strip'), idx = 0, lastWheel = 0;
+  items.forEach(function(it, i){
+    var t = document.createElement('img');
+    t.src = it.src; t.alt = '';
+    t.addEventListener('click', function(){ show(i); });
+    strip.appendChild(t);
+  });
+  function show(i){
+    idx = (i + items.length) % items.length;
+    im.src = items[idx].src;
+    capEl.textContent = items[idx].cap;
+    cntEl.textContent = (idx + 1) + ' of ' + items.length;
+    Array.prototype.forEach.call(strip.children, function(t, j){ t.classList.toggle('on', j === idx); });
+    var on = strip.children[idx];
+    if (on) on.scrollIntoView({ block:'nearest', inline:'center' });
+  }
+  function open(i){
+    show(i);
+    lbx.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close(){
+    lbx.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  figs.forEach(function(f, i){
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'lb-zoom'; b.setAttribute('aria-label', 'View photo full screen');
+    b.innerHTML = ZOOM;
+    b.addEventListener('click', function(ev){ ev.stopPropagation(); open(i); });
+    f.appendChild(b);
+    var img = f.querySelector('img');
+    if (img) { img.style.cursor = 'zoom-in'; img.addEventListener('click', function(){ open(i); }); }
+  });
+  document.getElementById('lbx-x').addEventListener('click', close);
+  document.getElementById('lbx-prev').addEventListener('click', function(){ show(idx - 1); });
+  document.getElementById('lbx-next').addEventListener('click', function(){ show(idx + 1); });
+  document.getElementById('lbx-stage').addEventListener('click', function(ev){ if (ev.target === this) close(); });
+  document.addEventListener('keydown', function(ev){
+    if (!lbx.classList.contains('open')) return;
+    if (ev.key === 'Escape') close();
+    if (ev.key === 'ArrowRight') show(idx + 1);
+    if (ev.key === 'ArrowLeft') show(idx - 1);
+  });
+  lbx.addEventListener('wheel', function(ev){
+    if (!lbx.classList.contains('open')) return;
+    var now = Date.now();
+    if (now - lastWheel < 350) return;
+    lastWheel = now;
+    show(idx + (ev.deltaY > 0 ? 1 : -1));
+  }, { passive:true });
+  var tx = null;
+  lbx.addEventListener('touchstart', function(ev){ tx = ev.changedTouches[0].clientX; }, { passive:true });
+  lbx.addEventListener('touchend', function(ev){
+    if (tx === null) return;
+    var dx = ev.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 44) show(idx + (dx < 0 ? 1 : -1));
+    tx = null;
+  }, { passive:true });
+})();
+</script>
+
 </body>
 </html>
