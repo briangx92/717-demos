@@ -299,6 +299,7 @@
       <button type="button" data-tab="home" aria-selected="true"><span class="dot"></span>Home</button>
       <button type="button" data-tab="requests" aria-selected="false"><span class="dot"></span>Site requests</button>
         <button type="button" data-tab="book" aria-selected="false"><span class="dot"></span>Book</button>
+      <button type="button" data-tab="crm" aria-selected="false"><span class="dot"></span>CRM</button>
       <button type="button" data-tab="edit" aria-selected="false"><span class="dot"></span>Edit site</button>
       <button type="button" data-tab="photos" aria-selected="false"><span class="dot"></span>Photos</button>
       <button type="button" data-tab="visits" aria-selected="false"><span class="dot"></span>Site visits</button>
@@ -410,6 +411,50 @@
       </div>
     </section>
 
+    
+    <section data-panel="crm" class="hidden">
+      <h1>Clients</h1>
+      <p class="sub">Everyone who has booked or asked about work, in one list. It builds itself from the shop's requests and the book. Search it, or add someone by hand.</p>
+      <style>
+        .crm-stats{ display:flex; gap:10px; flex-wrap:wrap; margin:14px 0; }
+        .crm-stat{ background:#fff; border:1px solid #e7e2d9; border-radius:12px; padding:10px 14px; min-width:130px; }
+        .crm-stat b{ display:block; font-size:20px; }
+        .crm-stat span{ font-size:12px; color:#8a8578; text-transform:uppercase; letter-spacing:.06em; }
+        .crm-bar{ display:flex; gap:10px; flex-wrap:wrap; margin:12px 0; }
+        .crm-bar input, .crm-bar select{ padding:9px 11px; border:1px solid #d9d4c7; border-radius:9px; font:inherit; }
+        .crm-bar input[type="search"]{ flex:1; min-width:200px; }
+        .crm-table{ width:100%; border-collapse:collapse; background:#fff; border:1px solid #e7e2d9; border-radius:12px; overflow:hidden; }
+        .crm-table th, .crm-table td{ text-align:left; padding:10px 12px; border-bottom:1px solid #efece4; font-size:14.5px; }
+        .crm-table th{ font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:#8a8578; }
+        .crm-chip{ display:inline-block; padding:2px 9px; border-radius:999px; font-size:12px; font-weight:700; background:#f1eee5; color:#6d675a; }
+        .crm-chip.booked{ background:#e4f0e6; color:#2e6b3e; }
+        .crm-chip.waiting{ background:#fdf0d9; color:#8a6414; }
+        .crm-chip.repeat{ background:#e8e6f5; color:#4c4390; }
+        .crm-add{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+        .crm-add input, .crm-add select{ padding:9px 11px; border:1px solid #d9d4c7; border-radius:9px; font:inherit; }
+        .crm-add button{ padding:9px 16px; border:none; border-radius:9px; background:#f4682a; color:#fff; font-weight:700; cursor:pointer; }
+        @media(max-width:700px){ .crm-table th:nth-child(5), .crm-table td:nth-child(5){ display:none; } }
+      </style>
+      <div class="crm-stats">
+        <div class="crm-stat"><b id="crm-total">0</b><span>Clients</span></div>
+        <div class="crm-stat"><b id="crm-repeat">0</b><span>Repeat clients</span></div>
+        <div class="crm-stat"><b id="crm-waiting">0</b><span>On the waitlist</span></div>
+      </div>
+      <div class="crm-bar">
+        <input type="search" id="crm-search" placeholder="Search by name, artist, or piece">
+      </div>
+      <table class="crm-table">
+        <thead><tr><th>Client</th><th>Artist</th><th>Last piece</th><th>Last visit</th><th>Visits</th><th>Phone</th><th>Status</th></tr></thead>
+        <tbody id="crm-body"></tbody>
+      </table>
+      <form class="crm-add" id="crm-add">
+        <input required id="crm-name" placeholder="Client name">
+        <input id="crm-phone" placeholder="Phone">
+        <select id="crm-artist"><option>Lex</option><option>Liv</option><option>Diana</option></select>
+        <input id="crm-piece" placeholder="Piece (e.g. Floral half sleeve)">
+        <button type="submit">Add client</button>
+      </form>
+    </section>
     <section data-panel="reviews" class="hidden">
       <h1>Reviews</h1>
       <p class="sub">Your Google rating is 5.0 from 98 reviews. New reviews show up here so you can answer them in one place.</p>
@@ -1216,6 +1261,47 @@ var DEFAULTS = {
     document.getElementById('bk-piece').value = '';
   });
   render();
+})();
+</script>
+
+<script>
+(function(){
+  var body = document.getElementById('crm-body');
+  if (!body) return;
+  var clients = [
+    { name:'Sam R.',   artist:'Lex',   piece:'Hello Kitty Jason',    last:'Today',     visits:1, phone:'(610) 555-0142', status:'Booked' },
+    { name:'Mia T.',   artist:'Liv',   piece:'Bunny and florals',    last:'Today',     visits:1, phone:'(484) 555-0117', status:'Booked' },
+    { name:'Sarah M.', artist:'Diana', piece:'Waiting on a consult', last:'Nov 12',    visits:1, phone:'(610) 555-0193', status:'Waiting' },
+    { name:'Mike K.',  artist:'Lex',   piece:'Waiting on a spot',    last:'Nov 11',    visits:2, phone:'(717) 555-0128', status:'Waiting' },
+    { name:'Ana P.',   artist:'Liv',   piece:'Waiting on a spot',    last:'Nov 10',    visits:1, phone:'(484) 555-0161', status:'Waiting' },
+    { name:'Jess P.',  artist:'Diana', piece:'Bulldog portrait',     last:'Oct 28',    visits:3, phone:'(610) 555-0139', status:'Repeat' },
+    { name:'Tom H.',   artist:'Lex',   piece:'Spooky cartoon',       last:'Nov 2',     visits:2, phone:'(717) 555-0174', status:'Repeat' },
+    { name:'Kayla D.', artist:'Liv',   piece:'Fairytale sleeve, session 3', last:'Nov 9', visits:4, phone:'(484) 555-0123', status:'Repeat' }
+  ];
+  function chip(st){ return '<span class="crm-chip ' + st.toLowerCase() + '">' + st + '</span>'; }
+  function render(list){
+    body.innerHTML = list.map(function(c){
+      return '<tr><td><b>' + c.name + '</b></td><td>' + c.artist + '</td><td>' + c.piece + '</td><td>' + c.last + '</td><td>' + c.visits + '</td><td>' + c.phone + '</td><td>' + chip(c.status) + '</td></tr>';
+    }).join('') || '<tr><td colspan="7">No clients match.</td></tr>';
+    document.getElementById('crm-total').textContent = clients.length;
+    document.getElementById('crm-repeat').textContent = clients.filter(function(c){ return c.visits > 1; }).length;
+    document.getElementById('crm-waiting').textContent = clients.filter(function(c){ return c.status === 'Waiting'; }).length;
+  }
+  render(clients);
+  document.getElementById('crm-search').addEventListener('input', function(){
+    var q = this.value.toLowerCase();
+    render(clients.filter(function(c){ return (c.name + ' ' + c.artist + ' ' + c.piece).toLowerCase().indexOf(q) >= 0; }));
+  });
+  document.getElementById('crm-add').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var name = document.getElementById('crm-name').value.trim();
+    if (!name) return;
+    clients.unshift({ name:name, artist:document.getElementById('crm-artist').value,
+      piece:document.getElementById('crm-piece').value.trim() || 'Not noted yet', last:'Today', visits:1,
+      phone:document.getElementById('crm-phone').value.trim() || 'Not on file', status:'Booked' });
+    this.reset();
+    render(clients);
+  });
 })();
 </script>
 </body>
