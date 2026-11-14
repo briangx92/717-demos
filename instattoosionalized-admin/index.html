@@ -60,6 +60,21 @@
   .stat{background:#fff;border:1px solid #e4e4e0;border-radius:16px;padding:16px}
   .stat .n{font-size:26px;font-weight:800;line-height:1.1}
   .stat .s{color:#5c5c66;font-size:13px;margin-top:3px}
+  
+  .bk-nav{display:flex;gap:8px;align-items:center}
+  .bk-navbtn{border:1px solid #d8d8d2;background:#fafafa;border-radius:9px;padding:8px 13px;font-size:13px;font-weight:700}
+  .bk-day{font-family:'Space Grotesk';font-size:15.5px;margin-left:4px}
+  .bk-grid{display:grid;grid-template-columns:46px repeat(3,1fr);gap:6px;margin-top:6px}
+  .bk-h{font-family:'Space Grotesk';font-size:14.5px;padding:4px 2px}
+  .bk-time{font-size:11.5px;color:#8a8a93;padding-top:9px}
+  .bk-cell{min-height:56px;background:#fafafa;border:1px solid #efefeb;border-radius:10px;padding:5px}
+  .bk-appt{border-radius:8px;padding:6px 8px;font-size:12px;line-height:1.4;color:#fff;margin-bottom:5px}
+  .bk-appt b{display:block;font-size:12.5px}
+  .bk-lex{background:#6d4fa1}.bk-liv{background:#2e7d6b}.bk-diana{background:#b3232a}
+  .bk-closed{grid-column:1/-1;background:#fafafa;border:1px dashed #d8d8d2;border-radius:10px;padding:16px;font-size:14px;color:#5c5c66;text-align:center}
+  .bk-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .bk-form .full{grid-column:1/-1}
+  @media(max-width:700px){.bk-form{grid-template-columns:1fr}.bk-grid{grid-template-columns:34px repeat(3,1fr)}}
   @media(max-width:900px){.statrow{grid-template-columns:1fr 1fr}}
   .panel{background:#fff;border:1px solid #e4e4e0;border-radius:16px;padding:20px;box-shadow:0 4px 18px rgba(20,20,30,.04)}
   .panel h3{font-size:16px}
@@ -274,6 +289,7 @@
     <nav aria-label="Owner page">
       <button type="button" data-tab="home" aria-selected="true"><span class="dot"></span>Home</button>
       <button type="button" data-tab="requests" aria-selected="false"><span class="dot"></span>Site requests</button>
+        <button type="button" data-tab="book" aria-selected="false"><span class="dot"></span>Book</button>
       <button type="button" data-tab="edit" aria-selected="false"><span class="dot"></span>Edit site</button>
       <button type="button" data-tab="photos" aria-selected="false"><span class="dot"></span>Photos</button>
       <button type="button" data-tab="visits" aria-selected="false"><span class="dot"></span>Site visits</button>
@@ -346,6 +362,40 @@
         <p style="color:#5c5c66;font-size:14px;line-height:1.55;margin-bottom:8px">People who asked for an artist whose calendar starts later. When that date gets close, this list is who you call first.</p>
         <div class="roleline"><strong>Waiting on Marcus</strong><span>Books open Tue, Dec 1 &middot; 3 people waiting: Tom W., Dana R., Chris P.</span></div>
         <div class="roleline"><strong>Waiting on Alex</strong><span>1 person waiting: Sam K.</span></div>
+      </div>
+    </section>
+
+        <section data-panel="book" class="hidden">
+      <h1>The book</h1>
+      <p class="sub">The shop's day at a glance, one column per artist. Website requests land here once you confirm them, and anything booked by phone or walk-in can be added by hand.</p>
+      <div class="panel">
+        <div class="head">
+          <div class="bk-nav">
+            <button type="button" class="bk-navbtn" id="bk-prev">&larr; Prev day</button>
+            <button type="button" class="bk-navbtn" id="bk-today">Today</button>
+            <button type="button" class="bk-navbtn" id="bk-next">Next day &rarr;</button>
+            <span class="bk-day" id="bk-day-label"></span>
+          </div>
+          <span class="chip">Sample rows</span>
+        </div>
+        <div class="bk-grid" id="bk-grid"></div>
+      </div>
+      <div class="panel" style="margin-top:14px">
+        <div class="head"><h3>Book an appointment</h3></div>
+        <div class="bk-form">
+          <div><label class="f" for="bk-name">Client name</label><input id="bk-name" type="text" placeholder="Client name"></div>
+          <div><label class="f" for="bk-artist">Artist</label><select id="bk-artist"><option>Lex</option><option>Liv</option><option>Diana</option></select></div>
+          <div><label class="f" for="bk-time">Start time</label><select id="bk-time"><option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option><option>3:00 PM</option><option>4:00 PM</option></select></div>
+          <div><label class="f" for="bk-piece">Piece</label><input id="bk-piece" type="text" placeholder="What are they getting?"></div>
+          <div class="full"><button type="button" class="btn btn--primary" id="bk-add">Add to the book</button></div>
+        </div>
+        <div class="status" id="bk-status" role="status"></div>
+      </div>
+      <div class="panel" style="margin-top:14px">
+        <div class="head"><h3>Waitlist</h3><span class="chip">Sample rows</span></div>
+        <div class="roleline"><strong>Sarah M.</strong><span>Wants Diana &middot; color work &middot; flexible</span></div>
+        <div class="roleline"><strong>Mike K.</strong><span>Wants Lex &middot; cartoon piece</span></div>
+        <div class="roleline"><strong>Ana P.</strong><span>Wants Liv &middot; florals</span></div>
       </div>
     </section>
 
@@ -1021,6 +1071,92 @@ var DEFAULTS = {
   var sess = null;
   try { sess = localStorage.getItem(SES); } catch (e) {}
   if (sess) showApp(sess);
+})();
+</script>
+<script>
+(function(){
+  var ARTISTS = ['Lex','Liv','Diana'];
+  var HOURS = [12,13,14,15,16];
+  var TODAY_SET = {
+    'Lex|12':'Hello Kitty Jason|<b>Sam R.</b> forearm',
+    'Diana|12':'Consult|Cover-up ideas',
+    'Liv|13':'Bunny + florals|<b>Mia T.</b> ankle',
+    'Diana|14':'Bulldog portrait|Session 1 of 2',
+    'Lex|15':'Spooky cartoon|Walk-in, calf',
+    'Liv|16':'Fairytale piece|Consult',
+    'Diana|16':'Character piece|Session 2 of 4'
+  };
+  var OTHER_SET = {
+    'Liv|12':'Consult|First tattoo',
+    'Lex|14':'Cartoon character|Booked by phone',
+    'Diana|15':'Realism piece|Session 1'
+  };
+  var added = {};
+  var offset = 0;
+  function dstr(d){ return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+  function dayAt(off){ var d = new Date(); d.setDate(d.getDate()+off); return d; }
+  function isOpen(d){ var g = d.getDay(); return g >= 2 && g <= 6; }
+  function fmtHour(h){ if(h===12) return '12 PM'; return (h-12)+' PM'; }
+  function fmtTime(h){ if(h===12) return '12:00 PM'; return (h-12)+':00 PM'; }
+  function render(){
+    var d = dayAt(offset);
+    var label = d.toLocaleDateString('en-US',{weekday:'short', month:'short', day:'numeric'});
+    document.getElementById('bk-day-label').textContent = (offset===0 ? 'Today · ' : offset===1 ? 'Tomorrow · ' : offset===-1 ? 'Yesterday · ' : '') + label;
+    var grid = document.getElementById('bk-grid');
+    grid.innerHTML = '';
+    if (!isOpen(d)) {
+      var note = document.createElement('div');
+      note.className = 'bk-closed';
+      note.textContent = 'Closed. The shop is shut on Sundays and Mondays.';
+      grid.appendChild(note);
+      return;
+    }
+    var corner = document.createElement('div'); grid.appendChild(corner);
+    ARTISTS.forEach(function(a){ var h = document.createElement('div'); h.className='bk-h'; h.textContent = a; grid.appendChild(h); });
+    var base = offset === 0 ? TODAY_SET : OTHER_SET;
+    HOURS.forEach(function(h){
+      var t = document.createElement('div'); t.className='bk-time'; t.textContent = fmtHour(h); grid.appendChild(t);
+      ARTISTS.forEach(function(a){
+        var cell = document.createElement('div'); cell.className='bk-cell';
+        var key = a+'|'+h;
+        var items = [];
+        if (base[key]) items.push(base[key]);
+        var extra = added[dstr(d)+'|'+key];
+        if (extra) items = items.concat(extra);
+        items.forEach(function(it){
+          var parts = it.split('|');
+          var b = document.createElement('div');
+          b.className = 'bk-appt bk-' + a.toLowerCase();
+          b.innerHTML = '<b></b><span></span>';
+          b.querySelector('b').textContent = parts[0];
+          b.querySelector('span').innerHTML = parts[1] || '';
+          cell.appendChild(b);
+        });
+        grid.appendChild(cell);
+      });
+    });
+  }
+  document.getElementById('bk-prev').addEventListener('click', function(){ offset--; render(); });
+  document.getElementById('bk-next').addEventListener('click', function(){ offset++; render(); });
+  document.getElementById('bk-today').addEventListener('click', function(){ offset = 0; render(); });
+  document.getElementById('bk-add').addEventListener('click', function(){
+    var st = document.getElementById('bk-status');
+    var d = dayAt(offset);
+    if (!isOpen(d)) { st.textContent = 'The shop is closed that day. Pick an open day first.'; return; }
+    var name = document.getElementById('bk-name').value.trim();
+    var piece = document.getElementById('bk-piece').value.trim();
+    var artist = document.getElementById('bk-artist').value;
+    var time = document.getElementById('bk-time').value;
+    if (!name || !piece) { st.textContent = 'Add the client name and the piece, then it goes in the book.'; return; }
+    var hour = time === '12:00 PM' ? 12 : 12 + parseInt(time, 10);
+    var k = dstr(d)+'|'+artist+'|'+hour;
+    (added[k] = added[k] || []).push(piece + '|<b>' + name.replace(/</g,'') + '</b>');
+    render();
+    st.textContent = 'Added. ' + name + ' is in the book with ' + artist + ' at ' + time + '.';
+    document.getElementById('bk-name').value = '';
+    document.getElementById('bk-piece').value = '';
+  });
+  render();
 })();
 </script>
 </body>
