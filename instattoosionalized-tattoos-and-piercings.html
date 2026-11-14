@@ -1737,8 +1737,6 @@ const MODULES = {
 (function(){
   try {
     var fl = document.getElementById('oa-footer-login');
-    if (fl && location.pathname.indexOf('insta-onsite-admin.html') >= 0) fl.setAttribute('href', 'insta-portal.html');
-    else if (fl && location.pathname.indexOf('instattoosionalized-tattoos-and-piercings.html') >= 0) fl.setAttribute('href', 'instattoosionalized-owner.html');
     var raw = localStorage.getItem('oa-state-v1');
     if (!raw) return;
     var st = JSON.parse(raw);
