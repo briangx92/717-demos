@@ -697,8 +697,8 @@ const SITE = {
   timeZone: "America/New_York",
   rating: { stars: 5.0, count: 98, source: "Google" },
   hours: [
-    ["Monday", "12:00 PM – 7:30 PM"], ["Tuesday", "12:00 PM – 7:30 PM"], ["Wednesday", "12:00 PM – 7:30 PM"],
-    ["Thursday", "12:00 PM – 7:30 PM"], ["Friday", "12:00 PM – 7:30 PM"], ["Saturday", "12:00 PM – 5:00 PM"],
+    ["Monday", null], ["Tuesday", "12:00 PM – 5:00 PM"], ["Wednesday", "12:00 PM – 5:00 PM"],
+    ["Thursday", "12:00 PM – 5:00 PM"], ["Friday", "12:00 PM – 5:00 PM"], ["Saturday", "12:00 PM – 5:00 PM"],
     ["Sunday", null]
   ],
   pickGroups: [
@@ -722,60 +722,99 @@ const SITE = {
   reviews: [],
   artists: [
     {
-      slug: "alex-rivera", name: "Alex Rivera", first: "Alex", role: "Tattoo + Piercing", families: ["tattoo", "piercing"], sample: true,
-      ig: "alexrivera.ink",
-      portrait: "https://images.pexels.com/photos/7005732/pexels-photo-7005732.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      portraitAlt: "Alex Rivera tattooing a client's forearm at her station in the shop",
-      quick: "Black and grey, fine line, and small custom pieces, plus standard piercings.",
-      bio: "Alex has been tattooing for nine years. Most of her work is black and grey and fine line, and she also does standard piercings. Bring a photo or a rough sketch and she will draw it up with you before anything is booked.",
-      status: "Books open, booking two to three weeks out.",
-      about: ["I am Alex. I have been tattooing for nine years, and most of my work is black and grey and fine line. I also do standard piercings.", "Bring me a photo or a rough sketch and I will draw it up with you before anything is booked."],
-      does: ["Black and grey", "Fine line", "Small custom pieces", "Standard piercings"],
-      featuredCap: "This is the piece I would show you first. Black and grey floral, drawn for a first tattoo and healed up clean. If this is the kind of work you are after, we will get along fine.",
-      note: ["Send the shop request form or message me on Instagram. Tell me the idea, where it is going, and roughly how big. I draw every piece custom, so I will sketch it up and send it back for a look before we set a date.", "A deposit holds your spot and comes off the price at your session. If you need to move a date, give me a couple of days of notice and we will find another one."],
+      slug: "lex", name: "Alexis \"lex\"", first: "lex", role: "Tattoo", families: ["tattoo"],
+      ig: "lextattss",
+      portrait: "lex-portrait.jpg",
+      portraitAlt: "Portrait of lex, tattoo artist at Instattoosionalized",
+      quick: "Horror and whimsical pieces, cartoon characters, spooky, and high contrast.",
+      bio: "lex is a freshly new tattoo artist. She loves all things horror and whimsical, and loves tattooing cartoon characters, spooky pieces, and high contrast work.",
+      about: ["Hi, I'm lex! I'm a freshly new tattoo artist! i love all things horror and whimsical. I love to tattoo things like cartoon characters, spooky, and high contrast!"],
+      does: ["Horror", "Whimsical", "Cartoon characters", "Spooky", "High contrast"],
+      featuredCap: "Hello Kitty in a Jason mask. Horror and cartoon characters are exactly what lex says she loves to tattoo.",
+      note: ["Send the shop request form with lex picked, or message her on Instagram at @lextattss. Tell her the idea, where it is going, and roughly how big.",
+      "The shop's deposit is $40 and holds your spot."],
       work: [
-        { src: "https://images.unsplash.com/photo-1562962230-16e4623d36e6?q=80&w=1200&auto=format&fit=crop", alt: "Black and grey floral tattoo on a forearm", cap: "Black and grey floral, healed" },
-        { src: "https://images.unsplash.com/photo-1542727365-19732a80dcfd?q=80&w=1200&auto=format&fit=crop", alt: "Fine line leaf and script tattoos on a forearm", cap: "Fine line and script, healed" },
-        { src: "https://images.pexels.com/photos/6593487/pexels-photo-6593487.jpeg?auto=compress&cs=tinysrgb&w=1200", alt: "Coil machine laying down linework", cap: "Linework, in progress" },
-        { src: "https://images.pexels.com/photos/14242278/pexels-photo-14242278.jpeg?auto=compress&cs=tinysrgb&w=1200", alt: "Artist working on a large black and grey piece in the studio", cap: "Black and grey, in progress" }
+        { src: "lex-work-01.jpg", alt: "Hello Kitty wearing a Jason mask, holding a knife, tattoo", cap: "Hello Kitty Jason, cartoon horror" },
+        { src: "lex-work-02.jpg", alt: "Snoopy in a pumpkin costume tattoo", cap: "Snoopy pumpkin, cartoon" },
+        { src: "lex-work-03.jpg", alt: "Ghostface knife tattoo on a forearm", cap: "Ghostface knife" },
+        { src: "lex-work-04.jpg", alt: "Sun and moon with florals tattoo on an upper arm", cap: "Sun and moon with florals" },
+        { src: "lex-work-05.jpg", alt: "Rose wreath and infinity heart tattoos on a forearm", cap: "Rose wreath and infinity heart" },
+        { src: "lex-work-06.jpg", alt: "The word secrets tattooed down a finger", cap: "Finger script" },
+        { src: "lex-work-07.jpg", alt: "Small flamingo tattoo on an ankle", cap: "Flamingo, ankle" },
+        { src: "lex-work-08.jpg", alt: "Deathly Hallows symbol tattoo on a forearm", cap: "Deathly Hallows symbol" },
+        { src: "lex-work-09.jpg", alt: "The word Unbothered in script on a forearm", cap: "Script lettering" },
+        { src: "lex-work-10.jpg", alt: "Script tattoo reading be still and know, Psalm 46:10", cap: "Psalm 46:10 script" },
+        { src: "lex-work-11.jpg", alt: "Rose tattoo with the name kaya in script", cap: "Rose with name script" },
+        { src: "lex-work-12.jpg", alt: "Daisy stem tattoo on a leg", cap: "Daisy stem" },
+        { src: "lex-work-13.jpg", alt: "The numbers 666 tattooed on an arm", cap: "666, bold numbers" },
+        { src: "lex-work-14.jpg", alt: "Paw print tattoo with a galaxy fill", cap: "Paw print" }
       ]
     },
     {
-      slug: "marcus-doyle", name: "Marcus Doyle", first: "Marcus", role: "Tattoo", families: ["tattoo"], sample: true,
-      bookedOutDays: 18,
-      ig: "marcusdoyle.ink",
-      portrait: "https://images.pexels.com/photos/19257754/pexels-photo-19257754.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      portraitAlt: "Marcus Doyle tattooing at his station in the shop",
-      quick: "Black and grey realism and bold linework, from first pieces to full cover-ups.",
-      bio: "Marcus has been tattooing for seven years, mostly black and grey realism and bold linework. He takes on cover-ups other shops pass on, and he will tell you straight if an idea needs a rethink before it goes on skin.",
-      status: "Books open, booking three to four weeks out.",
-      about: ["I am Marcus. I have been tattooing for seven years, mostly black and grey realism and bold linework.", "I take on cover-ups other shops pass on, and I will tell you straight if an idea needs a rethink before it goes on skin."],
-      does: ["Black and grey realism", "Bold linework", "Cover-ups", "Sleeve work"],
-      featuredCap: "This is the piece I would show you first. Black and grey realism, caught in progress here and healed up bold. If you want work that reads from across the room, that is what I do.",
-      note: ["Send the shop request form and ask for me by name. Tell me what you are covering or starting, and send a photo of the spot if you can.", "A deposit holds your spot and comes off the price at your session. Cover-ups can take more than one sitting, and I will map the plan out with you before we start."],
+      slug: "liv", name: "Olivia \"Liv\"", first: "Liv", role: "Tattoo", families: ["tattoo"],
+      ig: "Inked.by_liv",
+      portrait: "liv-portrait.jpg",
+      portraitAlt: "Portrait of Liv, tattoo artist at Instattoosionalized",
+      quick: "Whimsical, soft, and a little out of the ordinary. Florals, cute characters, and fairytale pieces.",
+      bio: "Olivia, Liv to everyone, is a tattoo artist who loves all things whimsical, soft, and a little out of the ordinary. She loves florals, cute little characters, and anything that feels like it belongs in a fairytale, and turns your ideas into a piece of art that's uniquely yours.",
+      about: ["Hello! I'm Olivia but everyone calls me Liv! I'm a tattoo artist who loves all things whimsical, soft, and a little out of the ordinary. If you have an idea for a tattoo but aren't sure how to bring it to life, come see me.",
+      "I love florals, cute little characters, and anything that feels like it belongs in a fairytale. My goal is to turn your ideas into a piece of art that's uniquely yours. Whether you come in with a fully formed idea or just a bunch of screenshots, I'm always excited to create something together!"],
+      does: ["Whimsical", "Soft", "Florals", "Cute characters", "Fairytale pieces"],
+      featuredCap: "A bunny with a flower. Cute characters and florals are what Liv says she loves most.",
+      note: ["Send the shop request form with Liv picked, or message her on Instagram at @Inked.by_liv. Fully formed idea or just a bunch of screenshots, she is always excited to create something together.",
+      "The shop's deposit is $40 and holds your spot."],
       work: [
-        { src: "https://images.pexels.com/photos/14242278/pexels-photo-14242278.jpeg?auto=compress&cs=tinysrgb&w=1200", alt: "Artist working on a large black and grey piece in the studio", cap: "Black and grey, in progress" },
-        { src: "https://images.pexels.com/photos/7005667/pexels-photo-7005667.jpeg?auto=compress&cs=tinysrgb&w=1200", alt: "Artist tattooing a detailed sleeve piece in the studio", cap: "Sleeve work, in progress" },
-        { src: "https://images.pexels.com/photos/2928342/pexels-photo-2928342.jpeg?auto=compress&cs=tinysrgb&w=1200", alt: "Artist at work on a forearm piece, black and white photo", cap: "Custom forearm work" },
-        { src: "https://images.pexels.com/photos/6593487/pexels-photo-6593487.jpeg?auto=compress&cs=tinysrgb&w=1200", alt: "Coil machine laying down linework", cap: "Linework, in progress" }
+        { src: "liv-work-01.jpg", alt: "Bunny with a flower tattoo on an upper arm", cap: "Bunny with a flower" },
+        { src: "liv-work-02.jpg", alt: "Character tattoo on a thigh", cap: "Character piece" },
+        { src: "liv-work-03.jpg", alt: "Lily tattoos with swirls on a forearm", cap: "Lilies with swirls" },
+        { src: "liv-work-04.jpg", alt: "Heart with wings memorial tattoo on a calf", cap: "Heart with wings, memorial piece" },
+        { src: "liv-work-05.jpg", alt: "Three small cat face tattoos on a forearm", cap: "Three cat faces" },
+        { src: "liv-work-06.jpg", alt: "Daisy tattoo with a face on a calf", cap: "Daisy with a face" },
+        { src: "liv-work-07.jpg", alt: "Floral tattoos on a forearm", cap: "Florals" },
+        { src: "liv-work-08.jpg", alt: "Baby footprint tattoos on a forearm", cap: "Baby footprints" },
+        { src: "liv-work-09.jpg", alt: "Eagle tattoo with a sword and scales on a forearm", cap: "Eagle with sword and scales" },
+        { src: "liv-work-10.jpg", alt: "Skull and crossbones tattoo on an arm", cap: "Skull and crossbones" },
+        { src: "liv-work-11.jpg", alt: "Script lettering tattoo on a chest", cap: "Script lettering" },
+        { src: "liv-work-12.jpg", alt: "Small tattoo on an upper back", cap: "Small piece, upper back" }
       ]
     },
     {
-      slug: "owen-park", name: "Owen Park", first: "Owen", role: "Piercing", families: ["piercing"], sample: true,
-      ig: "owenpark.piercing",
-      portrait: "https://images.pexels.com/photos/2177017/pexels-photo-2177017.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      portraitAlt: "Owen Park piercing a client at his station in the studio",
-      quick: "Curated ear projects, flat and forward helix work, and fine jewelry fitted on the spot.",
-      bio: "Owen runs the piercing side of the shop. He plans ear projects a piece at a time so the whole set sits right, fits fine jewelry on the spot, and checks every healing piercing for free.",
-      status: "Walk-ins and appointments, most days.",
-      about: ["I am Owen. I run the piercing side of the shop.", "I plan ear projects a piece at a time so the whole set sits right, fit fine jewelry on the spot, and check every healing piercing for free."],
-      does: ["Curated ear projects", "Flat and forward helix", "Fine jewelry fitting", "Healing checks"],
-      featuredCap: "This is the work I would show you first. A curated ear project, planned a piece at a time and healed up clean. Bring me the ear and the idea, and we will map the set out together.",
-      note: ["Send the shop request form or walk in. Tell me what you are thinking, and if it is a bigger ear project we will plan it in stages so each piece heals right.", "Jewelry is fitted in the shop, so what you see in the case is what goes in. Healing checks are always free."],
+      slug: "diana", name: "Diana", first: "Diana", role: "Tattoo", families: ["tattoo"],
+      ig: "excommunicated_af",
+      portrait: "diana-portrait.jpg",
+      portraitAlt: "Portrait of Diana, tattoo artist at Instattoosionalized",
+      quick: "Realism, characters, dark gothic art, and detailed designs. Cover-ups too.",
+      bio: "Diana enjoys tattooing realism, characters of all sorts, dark gothic art, and detailed designs of all natures. She also loves doing cover-up tattoos.",
+      about: ["I enjoy doing tattoos ranging from realism, characters of all sorts, dark gothic art, to detailed designs of all natures. I as well love to tattoo cover up tattoos"],
+      does: ["Realism", "Characters", "Dark gothic", "Detailed designs", "Cover-ups"],
+      featuredCap: "A French bulldog character piece. Characters and detailed designs are what Diana says she enjoys most.",
+      note: ["Send the shop request form with Diana picked, or message her on Instagram at @excommunicated_af. Tell her the idea, where it is going, and roughly how big.",
+      "The shop's deposit is $40 and holds your spot."],
       work: [
-        { src: "https://images.pexels.com/photos/7400018/pexels-photo-7400018.jpeg?auto=compress&cs=tinysrgb&w=1200", alt: "Ear with a curated set of piercings in low light", cap: "Curated ear project, healed" },
-        { src: "https://images.pexels.com/photos/7400019/pexels-photo-7400019.jpeg?auto=compress&cs=tinysrgb&w=1200", alt: "Ear with several piercings and an emerald stud", cap: "Ear curation with emerald stud, healed" },
-        { src: "https://images.pexels.com/photos/4224435/pexels-photo-4224435.jpeg?auto=compress&cs=tinysrgb&w=1200", alt: "Healed navel piercing with jewelry", cap: "Navel piercing, healed" }
+        { src: "diana-work-01.jpg", alt: "French bulldog character tattoo with Jack the Ripper lettering", cap: "French bulldog character piece" },
+        { src: "diana-work-02.jpg", alt: "Detailed tattoo covering a hand", cap: "Detailed hand piece" },
+        { src: "diana-work-03.jpg", alt: "Dark hooded figure tattoo, black and grey", cap: "Dark hooded figure, black and grey" },
+        { src: "diana-work-04.jpg", alt: "Monarch butterfly tattoo on a forearm", cap: "Monarch butterfly" },
+        { src: "diana-work-05.jpg", alt: "Stag beetle tattoo on a forearm", cap: "Stag beetle" },
+        { src: "diana-work-06.jpg", alt: "Blue fish tattoo with script on a forearm", cap: "Blue fish with script" },
+        { src: "diana-work-07.jpg", alt: "Color tattoo on a forearm", cap: "Color piece, forearm" },
+        { src: "diana-work-08.jpg", alt: "Phoenix tattoo on a shoulder", cap: "Phoenix, shoulder" },
+        { src: "diana-work-09.jpg", alt: "Sleeve tattoo in progress on a forearm", cap: "Sleeve in progress" },
+        { src: "diana-work-10.jpg", alt: "Red and black tattoo design on a forearm", cap: "Red and black design" },
+        { src: "diana-work-11.jpg", alt: "Woman's face tattoo in an ornate frame on a forearm", cap: "Woman's face in an ornate frame" },
+        { src: "diana-work-12.jpg", alt: "Lizard tattoo on a forearm", cap: "Lizard" },
+        { src: "diana-work-13.jpg", alt: "Creature silhouette tattoo on a forearm", cap: "Creature silhouette" },
+        { src: "diana-work-14.jpg", alt: "Cartoon character tattoo with script on a leg", cap: "Cartoon character with script" },
+        { src: "diana-work-15.jpg", alt: "Character in a dress tattoo on a side", cap: "Character in a dress" },
+        { src: "diana-work-16.jpg", alt: "Orange floral tattoo on a forearm", cap: "Orange florals" },
+        { src: "diana-work-17.jpg", alt: "Hearts and florals tattoo on a forearm", cap: "Hearts and florals" },
+        { src: "diana-work-18.jpg", alt: "Small daisy tattoo on a forearm", cap: "Small daisies" },
+        { src: "diana-work-19.jpg", alt: "Cherry tattoo on a leg", cap: "Cherries" },
+        { src: "diana-work-20.jpg", alt: "Balloon dog tattoo on an ankle", cap: "Balloon dog, ankle" },
+        { src: "diana-work-21.jpg", alt: "Skull tattoo on a forearm", cap: "Skull design, forearm" },
+        { src: "diana-work-22.jpg", alt: "Fine line tattoo on a wrist", cap: "Fine line wrist piece" },
+        { src: "diana-work-23.jpg", alt: "Ornamental script tattoo on a forearm", cap: "Ornamental script" },
+        { src: "diana-work-24.jpg", alt: "Small script tattoo with a bird on a wrist", cap: "Small script with a bird" }
       ]
     }
   ],
@@ -804,26 +843,17 @@ const SITE = {
   S.copy.footerLine = S.name + " · " + S.town + ", " + S.region;
   S.copy.footerInfo = S.address + " · " + S.phoneDisplay;
 })(SITE);
+let _artistOrder = null;
 function artistDisplayList(){
   const list = (SITE.artists || []).slice();
   if (!list.length) return list;
-  const canon = list.map(a => a.slug);
-  let order = null;
-  try {
-    const raw = sessionStorage.getItem("insta-artist-order");
-    if (raw) {
-      const p = JSON.parse(raw);
-      if (Array.isArray(p) && p.length === canon.length && canon.every(s => p.indexOf(s) !== -1)) order = p;
-    }
-  } catch (e) {}
-  if (!order) {
-    order = canon.slice();
-    for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = order[i]; order[i] = order[j]; order[j] = t; }
-    try { sessionStorage.setItem("insta-artist-order", JSON.stringify(order)); } catch (e) {}
+  if (!_artistOrder) {
+    _artistOrder = list.map(a => a.slug);
+    for (let i = _artistOrder.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = _artistOrder[i]; _artistOrder[i] = _artistOrder[j]; _artistOrder[j] = t; }
   }
   const by = {};
   list.forEach(a => { by[a.slug] = a; });
-  return order.map(s => by[s]);
+  return _artistOrder.map(x => by[x]);
 }
 function artistPageHref(a){ return "instattoosionalized-artist-" + a.slug + ".html"; }
 function igSvgEl(){

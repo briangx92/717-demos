@@ -3,9 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Owen Park | Instattoosionalized Tattoos and Piercings</title>
-<meta name="description" content="Owen Park, piercing artist at Instattoosionalized in Northampton, PA. See the work and send a request.">
-<meta name="robots" content="noindex">
+<title>Diana | Instattoosionalized Tattoos and Piercings</title>
+<meta name="description" content="Diana, tattoo artist at Instattoosionalized in Northampton, PA. See the work and send a request.">
 <meta name="theme-color" content="#0E0E10">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E0E10'/%3E%3Cpath d='M32 50s-16-9.6-16-20a8.8 8.8 0 0 1 16-5.6A8.8 8.8 0 0 1 48 30c0 10.4-16 20-16 20z' fill='%23BE1E2D'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,6 +51,15 @@
     .p-word span{ color:var(--accent-bright); }
     .p-back{ color:var(--ink-soft); text-decoration:none; font-weight:600; }
     .p-back:hover{ color:var(--ink); }
+    .p-frame__in{ position:relative; }
+    .p-burger{ margin-left:auto; background:transparent; border:1px solid var(--line-2); border-radius:12px; width:46px; height:46px; display:inline-flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; cursor:pointer; flex:none; }
+    .p-burger span{ display:block; width:20px; height:2px; background:var(--ink); border-radius:2px; }
+    .p-menu{ position:absolute; top:calc(100% + 8px); right:12px; background:var(--surface); border:1px solid var(--line-2); border-radius:16px; padding:.5rem; min-width:220px; box-shadow:0 18px 40px rgba(0,0,0,.5); z-index:50; }
+    .p-menu a{ display:block; padding:.65rem .8rem; color:var(--ink); text-decoration:none; font-weight:600; border-radius:10px; }
+    .p-menu a:hover{ background:var(--mid); }
+    @keyframes pmenu-in{ from{ opacity:0; transform:translateY(-4px); } }
+    .p-menu{ animation:pmenu-in .18s ease-out; }
+
     .p-cover{ height:46vh; min-height:300px; position:relative; overflow:hidden; background:var(--mid); }
     .p-cover img{ width:100%; height:100%; object-fit:cover; }
     .p-cover::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,5,7,0) 40%, rgba(5,5,7,.55)); }
@@ -101,102 +109,108 @@
 <header class="p-frame">
   <div class="p-frame__in">
     <a class="p-word" href="instattoosionalized-tattoos-and-piercings.html"><img class="p-logo" src="instattoosionalized-logo.jpg" alt="Instattoosionalized logo">Instattoosionalized <span>Tattoos + Piercings</span></a>
-    <a class="p-back" href="instattoosionalized-tattoos-and-piercings.html">Back to the shop</a>
-  </div>
-</header>
-
-<div class="p-cover"><img src="https://images.pexels.com/photos/7400018/pexels-photo-7400018.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" alt="Ear with a curated set of piercings in low light"></div>
-
-<main class="p-shell">
-  <section class="p-id">
-    <img class="p-portrait" src="https://images.pexels.com/photos/2177017/pexels-photo-2177017.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Owen Park piercing a client at his station in the studio">
-    <div>
-      <h1>Owen Park</h1>
-      <p class="p-role">Piercing <span class="s-sample">Sample</span></p>
-      <p class="p-status"><i aria-hidden="true"></i> Walk-ins and appointments, most days.</p>
-      <div class="p-actions">
-        <span class="p-ig"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.3" fill="currentColor"/></svg> @owenpark.piercing</span>
-        <a class="c-btn" href="instattoosionalized-tattoos-and-piercings.html?artist=owen-park#ask">Request with Owen</a>
-      </div>
-      <p class="p-samplenote">Sample artist page. The photos and words here are stand-ins that show the layout. The shop's real roster replaces them at launch.</p>
-    </div>
-  </section>
-
-  <section class="p-sect p-feat">
-    <p class="c-kicker">Featured piece</p>
-    <h2>The one Owen shows first</h2>
-    <figure>
-      <div class="fw"><img src="https://images.pexels.com/photos/7400018/pexels-photo-7400018.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Ear with a curated set of piercings in low light"><span class="s-wm">your photo here</span></div>
-      <figcaption>
-        <p>This is the work I would show you first. A curated ear project, planned a piece at a time and healed up clean. Bring me the ear and the idea, and we will map the set out together.</p>
-        <p class="who">Owen, on this piece</p>
-      </figcaption>
-    </figure>
-  </section>
-
-  <section class="p-sect">
-    <p class="c-kicker">The book</p>
-    <h2>More of Owen's work</h2>
-    <div class="p-grid">
-        <figure>
-          <div class="fw"><img src="https://images.pexels.com/photos/7400019/pexels-photo-7400019.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Ear with several piercings and an emerald stud" loading="lazy"><span class="s-wm">your photo here</span></div>
-          <figcaption>Ear curation with emerald stud, healed</figcaption>
-        </figure>
-        <figure>
-          <div class="fw"><img src="https://images.pexels.com/photos/4224435/pexels-photo-4224435.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Healed navel piercing with jewelry" loading="lazy"><span class="s-wm">your photo here</span></div>
-          <figcaption>Navel piercing, healed</figcaption>
-        </figure>
-    </div>
-  </section>
-
-  <section class="p-sect p-about">
-    <p class="c-kicker">About</p>
-    <h2>In Owen's words</h2>
-        <p>I am Owen. I run the piercing side of the shop.</p>
-        <p>I plan ear projects a piece at a time so the whole set sits right, fit fine jewelry on the spot, and check every healing piercing for free.</p>
-    <div class="p-chips">
-          <span class="c-chip">Curated ear projects</span>
-          <span class="c-chip">Flat and forward helix</span>
-          <span class="c-chip">Fine jewelry fitting</span>
-          <span class="c-chip">Healing checks</span>
-    </div>
-  </section>
-
-  <section class="p-sect">
-    <p class="c-kicker">Booking</p>
-    <h2>How booking works with Owen</h2>
-    <div class="p-note">
-        <p>Send the shop request form or walk in. Tell me what you are thinking, and if it is a bigger ear project we will plan it in stages so each piece heals right.</p>
-        <p>Jewelry is fitted in the shop, so what you see in the case is what goes in. Healing checks are always free.</p>
-    </div>
-  </section>
-
-  <section class="p-sect">
-    <div class="p-req">
-      <h2>Request with Owen</h2>
-      <p>Send the shop request form with Owen picked, and the idea lands with the right artist from the start.</p>
-      <a class="c-btn" href="instattoosionalized-tattoos-and-piercings.html?artist=owen-park#ask">Request with Owen</a>
-    </div>
-  </section>
-</main>
-
-<footer class="p-foot">
-  <div class="p-foot__in">
-    <p><strong>Instattoosionalized Tattoos and Piercings</strong></p>
-    <p>1852 Main St, Northampton, PA 18067 &middot; (610) 440-2700</p>
-    <nav aria-label="Shop">
+    <button class="p-burger" id="p-burger" aria-label="Menu" aria-expanded="false" aria-controls="p-menu"><span></span><span></span><span></span></button>
+    <nav class="p-menu" id="p-menu" hidden aria-label="Page">
+      <a href="instattoosionalized-tattoos-and-piercings.html">Back to the shop</a>
       <a href="instattoosionalized-tattoos-and-piercings.html#services">Services</a>
       <a href="instattoosionalized-tattoos-and-piercings.html#work">Recent work</a>
       <a href="instattoosionalized-tattoos-and-piercings.html#visit">Visit</a>
       <a href="https://www.facebook.com/751661348261378" target="_blank" rel="noopener">Facebook</a>
     </nav>
   </div>
-</footer>
-<div class="p-band">
-  <div class="p-band__in">
-    <p>Like this site? It was built for Instattoosionalized by 717 Digital Studio.</p>
-    <a class="c-btn" href="https://m.me/717digitalstudio" target="_blank" rel="noopener">Message me about this site</a>
+</header>
+<main class="l-wrap">
+  <div class="p-cover"><img src="diana-work-01.jpg" alt="French bulldog character tattoo, close view"></div>
+  <div class="p-id">
+    <img class="p-portrait" src="diana-portrait.jpg" alt="Portrait of Diana, tattoo artist at Instattoosionalized">
+    <div>
+      <h1 class="p-name">Diana</h1>
+      <p class="p-kicker">Tattoo artist</p>
+      <div class="p-links">
+        <a class="c-chip" href="https://www.instagram.com/excommunicated_af" target="_blank" rel="noopener">@excommunicated_af</a>
+        <a class="c-chip" href="https://www.tiktok.com/@excommunicated_pos" target="_blank" rel="noopener">@excommunicated_pos</a>
+      </div>
+    </div>
   </div>
-</div>
+
+  <section class="p-sec" aria-label="Featured piece">
+    <figure class="p-feat">
+      <img src="diana-work-01.jpg" alt="French bulldog character tattoo with Jack the Ripper lettering">
+      <figcaption><b>Diana, on this piece</b>A French bulldog character piece. Characters and detailed designs are what Diana says she enjoys most.</figcaption>
+    </figure>
+  </section>
+
+  <section class="p-sec p-about" aria-label="About">
+    <h2>In Diana's words</h2>
+      <p>I enjoy doing tattoos ranging from realism, characters of all sorts, dark gothic art, to detailed designs of all natures. I as well love to tattoo cover up tattoos</p>
+  </section>
+
+  <section class="p-sec" aria-label="What they do">
+    <h2>What I do</h2>
+    <div class="p-chips">
+        <span class="c-chip">Realism</span>
+        <span class="c-chip">Characters</span>
+        <span class="c-chip">Dark gothic</span>
+        <span class="c-chip">Detailed designs</span>
+        <span class="c-chip">Cover-ups</span>
+    </div>
+  </section>
+
+  <section class="p-sec" aria-label="Work">
+    <h2>The work</h2>
+    <div class="p-grid">
+        <figure><img loading="lazy" src="diana-work-02.jpg" alt="Detailed tattoo covering a hand"><figcaption>Detailed hand piece</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-03.jpg" alt="Dark hooded figure tattoo, black and grey"><figcaption>Dark hooded figure, black and grey</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-04.jpg" alt="Monarch butterfly tattoo on a forearm"><figcaption>Monarch butterfly</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-05.jpg" alt="Stag beetle tattoo on a forearm"><figcaption>Stag beetle</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-06.jpg" alt="Blue fish tattoo with script on a forearm"><figcaption>Blue fish with script</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-07.jpg" alt="Color tattoo on a forearm"><figcaption>Color piece, forearm</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-08.jpg" alt="Phoenix tattoo on a shoulder"><figcaption>Phoenix, shoulder</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-09.jpg" alt="Sleeve tattoo in progress on a forearm"><figcaption>Sleeve in progress</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-10.jpg" alt="Red and black tattoo design on a forearm"><figcaption>Red and black design</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-11.jpg" alt="Woman's face tattoo in an ornate frame on a forearm"><figcaption>Woman's face in an ornate frame</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-12.jpg" alt="Lizard tattoo on a forearm"><figcaption>Lizard</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-13.jpg" alt="Creature silhouette tattoo on a forearm"><figcaption>Creature silhouette</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-14.jpg" alt="Cartoon character tattoo with script on a leg"><figcaption>Cartoon character with script</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-15.jpg" alt="Character in a dress tattoo on a side"><figcaption>Character in a dress</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-16.jpg" alt="Orange floral tattoo on a forearm"><figcaption>Orange florals</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-17.jpg" alt="Hearts and florals tattoo on a forearm"><figcaption>Hearts and florals</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-18.jpg" alt="Small daisy tattoo on a forearm"><figcaption>Small daisies</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-19.jpg" alt="Cherry tattoo on a leg"><figcaption>Cherries</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-20.jpg" alt="Balloon dog tattoo on an ankle"><figcaption>Balloon dog, ankle</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-21.jpg" alt="Skull tattoo on a forearm"><figcaption>Skull design, forearm</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-22.jpg" alt="Fine line tattoo on a wrist"><figcaption>Fine line wrist piece</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-23.jpg" alt="Ornamental script tattoo on a forearm"><figcaption>Ornamental script</figcaption></figure>
+        <figure><img loading="lazy" src="diana-work-24.jpg" alt="Small script tattoo with a bird on a wrist"><figcaption>Small script with a bird</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="p-sec p-note" aria-label="Booking">
+    <h2>Booking with Diana</h2>
+      <p>Send the shop request form with Diana picked, or message her on Instagram at @excommunicated_af. Tell her the idea, where it is going, and roughly how big.</p> <p>The shop's deposit is $40 and holds your spot.</p>
+  </section>
+
+  <section class="p-req">
+    <h2>Want work by Diana?</h2>
+    <p>Send a request and pick Diana by name. The shop writes back to set it up.</p>
+    <a class="c-btn c-btn--solid" href="instattoosionalized-tattoos-and-piercings.html?artist=diana#ask">Request with Diana</a>
+  </section>
+</main>
+<footer class="p-foot">
+  <div class="l-wrap p-foot__in">
+    <span>© 2026 Instattoosionalized</span>
+    <a href="instattoosionalized-tattoos-and-piercings.html">Back to the shop</a>
+  </div>
+</footer>
+<script>
+(function(){
+  var b = document.getElementById('p-burger'), m = document.getElementById('p-menu');
+  if(!b || !m) return;
+  function close(){ m.hidden = true; b.setAttribute('aria-expanded','false'); }
+  b.addEventListener('click', function(e){ e.stopPropagation(); var open = m.hidden; m.hidden = !open; b.setAttribute('aria-expanded', String(open)); });
+  document.addEventListener('click', function(e){ if(!m.hidden && !m.contains(e.target)) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+})();
+</script>
 </body>
 </html>

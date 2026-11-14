@@ -3,9 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marcus Doyle | Instattoosionalized Tattoos and Piercings</title>
-<meta name="description" content="Marcus Doyle, tattoo artist at Instattoosionalized in Northampton, PA. See the work and send a request.">
-<meta name="robots" content="noindex">
+<title>Alexis "lex" | Instattoosionalized Tattoos and Piercings</title>
+<meta name="description" content="Alexis "lex", tattoo artist at Instattoosionalized in Northampton, PA. See the work and send a request.">
 <meta name="theme-color" content="#0E0E10">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E0E10'/%3E%3Cpath d='M32 50s-16-9.6-16-20a8.8 8.8 0 0 1 16-5.6A8.8 8.8 0 0 1 48 30c0 10.4-16 20-16 20z' fill='%23BE1E2D'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,6 +51,15 @@
     .p-word span{ color:var(--accent-bright); }
     .p-back{ color:var(--ink-soft); text-decoration:none; font-weight:600; }
     .p-back:hover{ color:var(--ink); }
+    .p-frame__in{ position:relative; }
+    .p-burger{ margin-left:auto; background:transparent; border:1px solid var(--line-2); border-radius:12px; width:46px; height:46px; display:inline-flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; cursor:pointer; flex:none; }
+    .p-burger span{ display:block; width:20px; height:2px; background:var(--ink); border-radius:2px; }
+    .p-menu{ position:absolute; top:calc(100% + 8px); right:12px; background:var(--surface); border:1px solid var(--line-2); border-radius:16px; padding:.5rem; min-width:220px; box-shadow:0 18px 40px rgba(0,0,0,.5); z-index:50; }
+    .p-menu a{ display:block; padding:.65rem .8rem; color:var(--ink); text-decoration:none; font-weight:600; border-radius:10px; }
+    .p-menu a:hover{ background:var(--mid); }
+    @keyframes pmenu-in{ from{ opacity:0; transform:translateY(-4px); } }
+    .p-menu{ animation:pmenu-in .18s ease-out; }
+
     .p-cover{ height:46vh; min-height:300px; position:relative; overflow:hidden; background:var(--mid); }
     .p-cover img{ width:100%; height:100%; object-fit:cover; }
     .p-cover::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(5,5,7,0) 40%, rgba(5,5,7,.55)); }
@@ -101,106 +109,98 @@
 <header class="p-frame">
   <div class="p-frame__in">
     <a class="p-word" href="instattoosionalized-tattoos-and-piercings.html"><img class="p-logo" src="instattoosionalized-logo.jpg" alt="Instattoosionalized logo">Instattoosionalized <span>Tattoos + Piercings</span></a>
-    <a class="p-back" href="instattoosionalized-tattoos-and-piercings.html">Back to the shop</a>
-  </div>
-</header>
-
-<div class="p-cover"><img src="https://images.pexels.com/photos/14242278/pexels-photo-14242278.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" alt="Artist working on a large black and grey piece in the studio"></div>
-
-<main class="p-shell">
-  <section class="p-id">
-    <img class="p-portrait" src="https://images.pexels.com/photos/19257754/pexels-photo-19257754.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Marcus Doyle tattooing at his station in the shop">
-    <div>
-      <h1>Marcus Doyle</h1>
-      <p class="p-role">Tattoo <span class="s-sample">Sample</span></p>
-      <p class="p-status"><i aria-hidden="true"></i> Books open, booking three to four weeks out.</p>
-      <div class="p-actions">
-        <span class="p-ig"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.3" fill="currentColor"/></svg> @marcusdoyle.ink</span>
-        <a class="c-btn" href="instattoosionalized-tattoos-and-piercings.html?artist=marcus-doyle#ask">Request with Marcus</a>
-      </div>
-      <p class="p-samplenote">Sample artist page. The photos and words here are stand-ins that show the layout. The shop's real roster replaces them at launch.</p>
-    </div>
-  </section>
-
-  <section class="p-sect p-feat">
-    <p class="c-kicker">Featured piece</p>
-    <h2>The one Marcus shows first</h2>
-    <figure>
-      <div class="fw"><img src="https://images.pexels.com/photos/14242278/pexels-photo-14242278.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Artist working on a large black and grey piece in the studio"><span class="s-wm">your photo here</span></div>
-      <figcaption>
-        <p>This is the piece I would show you first. Black and grey realism, caught in progress here and healed up bold. If you want work that reads from across the room, that is what I do.</p>
-        <p class="who">Marcus, on this piece</p>
-      </figcaption>
-    </figure>
-  </section>
-
-  <section class="p-sect">
-    <p class="c-kicker">The book</p>
-    <h2>More of Marcus's work</h2>
-    <div class="p-grid">
-        <figure>
-          <div class="fw"><img src="https://images.pexels.com/photos/7005667/pexels-photo-7005667.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Artist tattooing a detailed sleeve piece in the studio" loading="lazy"><span class="s-wm">your photo here</span></div>
-          <figcaption>Sleeve work, in progress</figcaption>
-        </figure>
-        <figure>
-          <div class="fw"><img src="https://images.pexels.com/photos/2928342/pexels-photo-2928342.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Artist at work on a forearm piece, black and white photo" loading="lazy"><span class="s-wm">your photo here</span></div>
-          <figcaption>Custom forearm work</figcaption>
-        </figure>
-        <figure>
-          <div class="fw"><img src="https://images.pexels.com/photos/6593487/pexels-photo-6593487.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" alt="Coil machine laying down linework" loading="lazy"><span class="s-wm">your photo here</span></div>
-          <figcaption>Linework, in progress</figcaption>
-        </figure>
-    </div>
-  </section>
-
-  <section class="p-sect p-about">
-    <p class="c-kicker">About</p>
-    <h2>In Marcus's words</h2>
-        <p>I am Marcus. I have been tattooing for seven years, mostly black and grey realism and bold linework.</p>
-        <p>I take on cover-ups other shops pass on, and I will tell you straight if an idea needs a rethink before it goes on skin.</p>
-    <div class="p-chips">
-          <span class="c-chip">Black and grey realism</span>
-          <span class="c-chip">Bold linework</span>
-          <span class="c-chip">Cover-ups</span>
-          <span class="c-chip">Sleeve work</span>
-    </div>
-  </section>
-
-  <section class="p-sect">
-    <p class="c-kicker">Booking</p>
-    <h2>How booking works with Marcus</h2>
-    <div class="p-note">
-        <p>Send the shop request form and ask for me by name. Tell me what you are covering or starting, and send a photo of the spot if you can.</p>
-        <p>A deposit holds your spot and comes off the price at your session. Cover-ups can take more than one sitting, and I will map the plan out with you before we start.</p>
-    </div>
-  </section>
-
-  <section class="p-sect">
-    <div class="p-req">
-      <h2>Request with Marcus</h2>
-      <p>Send the shop request form with Marcus picked, and the idea lands with the right artist from the start.</p>
-      <a class="c-btn" href="instattoosionalized-tattoos-and-piercings.html?artist=marcus-doyle#ask">Request with Marcus</a>
-    </div>
-  </section>
-</main>
-
-<footer class="p-foot">
-  <div class="p-foot__in">
-    <p><strong>Instattoosionalized Tattoos and Piercings</strong></p>
-    <p>1852 Main St, Northampton, PA 18067 &middot; (610) 440-2700</p>
-    <nav aria-label="Shop">
+    <button class="p-burger" id="p-burger" aria-label="Menu" aria-expanded="false" aria-controls="p-menu"><span></span><span></span><span></span></button>
+    <nav class="p-menu" id="p-menu" hidden aria-label="Page">
+      <a href="instattoosionalized-tattoos-and-piercings.html">Back to the shop</a>
       <a href="instattoosionalized-tattoos-and-piercings.html#services">Services</a>
       <a href="instattoosionalized-tattoos-and-piercings.html#work">Recent work</a>
       <a href="instattoosionalized-tattoos-and-piercings.html#visit">Visit</a>
       <a href="https://www.facebook.com/751661348261378" target="_blank" rel="noopener">Facebook</a>
     </nav>
   </div>
-</footer>
-<div class="p-band">
-  <div class="p-band__in">
-    <p>Like this site? It was built for Instattoosionalized by 717 Digital Studio.</p>
-    <a class="c-btn" href="https://m.me/717digitalstudio" target="_blank" rel="noopener">Message me about this site</a>
+</header>
+<main class="l-wrap">
+  <div class="p-cover"><img src="lex-work-01.jpg" alt="Hello Kitty wearing a Jason mask tattoo, close view"></div>
+  <div class="p-id">
+    <img class="p-portrait" src="lex-portrait.jpg" alt="Portrait of lex, tattoo artist at Instattoosionalized">
+    <div>
+      <h1 class="p-name">Alexis "lex"</h1>
+      <p class="p-kicker">Tattoo artist</p>
+      <div class="p-links">
+        <a class="c-chip" href="https://www.instagram.com/lextattss" target="_blank" rel="noopener">@lextattss</a>
+        <a class="c-chip" href="https://www.facebook.com/lextattss" target="_blank" rel="noopener">@lextattss</a>
+      </div>
+    </div>
   </div>
-</div>
+
+  <section class="p-sec" aria-label="Featured piece">
+    <figure class="p-feat">
+      <img src="lex-work-01.jpg" alt="Hello Kitty wearing a Jason mask, holding a knife, tattoo">
+      <figcaption><b>lex, on this piece</b>Hello Kitty in a Jason mask. Horror and cartoon characters are exactly what lex says she loves to tattoo.</figcaption>
+    </figure>
+  </section>
+
+  <section class="p-sec p-about" aria-label="About">
+    <h2>In lex's words</h2>
+      <p>Hi, I'm lex! I'm a freshly new tattoo artist! i love all things horror and whimsical. I love to tattoo things like cartoon characters, spooky, and high contrast!</p>
+  </section>
+
+  <section class="p-sec" aria-label="What they do">
+    <h2>What I do</h2>
+    <div class="p-chips">
+        <span class="c-chip">Horror</span>
+        <span class="c-chip">Whimsical</span>
+        <span class="c-chip">Cartoon characters</span>
+        <span class="c-chip">Spooky</span>
+        <span class="c-chip">High contrast</span>
+    </div>
+  </section>
+
+  <section class="p-sec" aria-label="Work">
+    <h2>The work</h2>
+    <div class="p-grid">
+        <figure><img loading="lazy" src="lex-work-02.jpg" alt="Snoopy in a pumpkin costume tattoo"><figcaption>Snoopy pumpkin, cartoon</figcaption></figure>
+        <figure><img loading="lazy" src="lex-work-03.jpg" alt="Ghostface knife tattoo on a forearm"><figcaption>Ghostface knife</figcaption></figure>
+        <figure><img loading="lazy" src="lex-work-04.jpg" alt="Sun and moon with florals tattoo on an upper arm"><figcaption>Sun and moon with florals</figcaption></figure>
+        <figure><img loading="lazy" src="lex-work-05.jpg" alt="Rose wreath and infinity heart tattoos on a forearm"><figcaption>Rose wreath and infinity heart</figcaption></figure>
+        <figure><img loading="lazy" src="lex-work-06.jpg" alt="The word secrets tattooed down a finger"><figcaption>Finger script</figcaption></figure>
+        <figure><img loading="lazy" src="lex-work-07.jpg" alt="Small flamingo tattoo on an ankle"><figcaption>Flamingo, ankle</figcaption></figure>
+        <figure><img loading="lazy" src="lex-work-08.jpg" alt="Deathly Hallows symbol tattoo on a forearm"><figcaption>Deathly Hallows symbol</figcaption></figure>
+        <figure><img loading="lazy" src="lex-work-09.jpg" alt="The word Unbothered in script on a forearm"><figcaption>Script lettering</figcaption></figure>
+        <figure><img loading="lazy" src="lex-work-10.jpg" alt="Script tattoo reading be still and know, Psalm 46:10"><figcaption>Psalm 46:10 script</figcaption></figure>
+        <figure><img loading="lazy" src="lex-work-11.jpg" alt="Rose tattoo with the name kaya in script"><figcaption>Rose with name script</figcaption></figure>
+        <figure><img loading="lazy" src="lex-work-12.jpg" alt="Daisy stem tattoo on a leg"><figcaption>Daisy stem</figcaption></figure>
+        <figure><img loading="lazy" src="lex-work-13.jpg" alt="The numbers 666 tattooed on an arm"><figcaption>666, bold numbers</figcaption></figure>
+        <figure><img loading="lazy" src="lex-work-14.jpg" alt="Paw print tattoo with a galaxy fill"><figcaption>Paw print</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="p-sec p-note" aria-label="Booking">
+    <h2>Booking with lex</h2>
+      <p>Send the shop request form with lex picked, or message her on Instagram at @lextattss. Tell her the idea, where it is going, and roughly how big.</p> <p>The shop's deposit is $40 and holds your spot.</p>
+  </section>
+
+  <section class="p-req">
+    <h2>Want work by lex?</h2>
+    <p>Send a request and pick lex by name. The shop writes back to set it up.</p>
+    <a class="c-btn c-btn--solid" href="instattoosionalized-tattoos-and-piercings.html?artist=lex#ask">Request with lex</a>
+  </section>
+</main>
+<footer class="p-foot">
+  <div class="l-wrap p-foot__in">
+    <span>© 2026 Instattoosionalized</span>
+    <a href="instattoosionalized-tattoos-and-piercings.html">Back to the shop</a>
+  </div>
+</footer>
+<script>
+(function(){
+  var b = document.getElementById('p-burger'), m = document.getElementById('p-menu');
+  if(!b || !m) return;
+  function close(){ m.hidden = true; b.setAttribute('aria-expanded','false'); }
+  b.addEventListener('click', function(e){ e.stopPropagation(); var open = m.hidden; m.hidden = !open; b.setAttribute('aria-expanded', String(open)); });
+  document.addEventListener('click', function(e){ if(!m.hidden && !m.contains(e.target)) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+})();
+</script>
 </body>
 </html>
