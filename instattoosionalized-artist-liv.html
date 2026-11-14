@@ -206,7 +206,7 @@
 })();
 </script>
 <style>
-  .p-grid figure, .p-feat figure{ position:relative; }
+  .p-grid figure, figure.p-feat{ position:relative; }
   .lb-zoom{ position:absolute; top:8px; right:8px; width:38px; height:38px; border-radius:50%; border:1px solid rgba(255,255,255,.25); background:rgba(10,10,12,.72); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:3; }
   .lb-zoom svg{ width:19px; height:19px; }
   .lb-zoom:hover{ background:rgba(10,10,12,.92); }
@@ -242,7 +242,7 @@
 </div>
 <script>
 (function(){
-  var figs = Array.prototype.slice.call(document.querySelectorAll('.p-feat figure, .p-grid figure'));
+  var figs = Array.prototype.slice.call(document.querySelectorAll('figure.p-feat, .p-grid figure'));
   if (!figs.length) return;
   var items = figs.map(function(f){
     var img = f.querySelector('img');
