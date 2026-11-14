@@ -103,6 +103,10 @@
     .p-band p{ color:var(--ink-soft); }
     @media (max-width:720px){ .p-id{ grid-template-columns:1fr; margin-top:-64px; justify-items:center; text-align:center; } .p-role, .p-status, .p-actions{ justify-content:center; } .p-grid{ grid-template-columns:1fr; } .p-band__in{ justify-content:center; text-align:center; } }
   }
+
+  /* desktop proportion fix (Brian, 2026-11-14): the page content rides in one centered column, same width as the frame bar and footer */
+  main.l-wrap{ max-width:1060px; margin-inline:auto; padding-inline:1rem; }
+  .p-cover{ border-radius:16px; margin-top:1rem; }
 </style>
 </head>
 <body>
