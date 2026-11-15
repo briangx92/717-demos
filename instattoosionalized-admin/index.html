@@ -1555,7 +1555,7 @@ var DEFAULTS = {
     row.addEventListener('click', function(){ openArtist(blk); });
     return row;
   }
-  function refreshList(){ listView.innerHTML = ''; blocks().forEach(function(blk){ listView.appendChild(rowFor(blk)); }); }
+  function refreshList(){ listView.innerHTML = ''; var bs = blocks().slice(); bs.sort(function(x, y){ var nx = (x.querySelector('.roleline strong') ? x.querySelector('.roleline strong').textContent : '').toLowerCase(); var ny = (y.querySelector('.roleline strong') ? y.querySelector('.roleline strong').textContent : '').toLowerCase(); return nx < ny ? -1 : nx > ny ? 1 : 0; }); bs.forEach(function(blk){ listView.appendChild(rowFor(blk)); }); }
   function showList(){ try { localStorage.removeItem('oa-artist-view'); } catch (e) {} backBar.style.display = 'none'; listView.style.display = ''; var ab = addBlockEl(); if (ab) ab.style.display = ''; blocks().forEach(function(blk){ blk.style.display = 'none'; }); }
   function openArtist(blk){ try { localStorage.setItem('oa-artist-view', blk.querySelector('.soc-list').getAttribute('data-artist')); } catch (e) {} listView.style.display = 'none'; var ab = addBlockEl(); if (ab) ab.style.display = 'none'; blocks().forEach(function(b){ b.style.display = (b === blk) ? '' : 'none'; }); backBar.style.display = ''; var nm = blk.querySelector('.roleline strong'); var ed = document.getElementById('oa-artist-editing'); if (ed) ed.textContent = nm ? nm.textContent : ''; }
   window.__oaArtistAdded = function(blk){ refreshList(); openArtist(blk); };
