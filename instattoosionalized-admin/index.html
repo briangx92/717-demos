@@ -949,7 +949,8 @@ var DEFAULTS = {
  if (artistsPanel) { artistsPanel.addEventListener('click', function(e){ var add = e.target.closest('.soc-add'); if (add) { var list = add.parentElement.querySelector('.soc-list'); if (list) list.appendChild(socRow('Instagram', '')); return; } var rm = e.target.closest('.soc-rm'); if (rm) { var row = rm.closest('.soc-row'); if (row) row.remove(); } });
  artistsPanel.addEventListener('change', function(e){ if (!e.target.classList || !e.target.classList.contains('mp-file')) return; var file = e.target.files && e.target.files[0]; if (!file) return; var wrap = e.target.closest('.mp-row'); var img = wrap ? wrap.querySelector('.mp-thumb') : null; if (!img) return; var rd = new FileReader(); rd.onload = function(){ img.src = rd.result; img.style.display = ''; }; rd.readAsDataURL(file); }); }
  var saveArtistsBtn = $('#p-save-artists');
- if (saveArtistsBtn) saveArtistsBtn.addEventListener('click', function(){ var out = {}; $$('.soc-list').forEach(function(list){ var key = list.getAttribute('data-artist'); if (!key || key === 'new') return; var rows = []; list.querySelectorAll('.soc-row').forEach(function(r){ var h = r.querySelector('.soc-handle').value.trim(); if (h) rows.push({ platform: r.querySelector('.soc-platform').value, handle: h }); }); out[key] = rows; }); var roster = [], pfAll = {};
+ if (saveArtistsBtn) saveArtistsBtn.addEventListener('click', function(){ var out = {};
+ var before = JSON.stringify([state.artistsSocial || null, state.artists || null, state.portfolio || null]); $$('.soc-list').forEach(function(list){ var key = list.getAttribute('data-artist'); if (!key || key === 'new') return; var rows = []; list.querySelectorAll('.soc-row').forEach(function(r){ var h = r.querySelector('.soc-handle').value.trim(); if (h) rows.push({ platform: r.querySelector('.soc-platform').value, handle: h }); }); out[key] = rows; }); var roster = [], pfAll = {};
   $$('[data-panel="artists"] .soc-list[data-artist]').forEach(function(list){
     var key = list.getAttribute('data-artist');
     if (key === 'new') return;
@@ -967,7 +968,7 @@ var DEFAULTS = {
     pfAll[key] = items;
   });
   state.artists = roster; state.portfolio = pfAll;
-  state.artistsSocial = out; save(); toast('Artists saved.'); }); var savePolBtn = $('#p-save-policies'); if (savePolBtn) savePolBtn.addEventListener('click', function(){ state.policies = { deposit: $('#p-pol-deposit').value.trim(), age: $('#p-pol-age').value.trim(), aftercare: $('#p-pol-after').value.trim() }; save(); setEditStatus('Policies saved.'); toast('Policies saved.'); });
+  state.artistsSocial = out; save(); if (JSON.stringify([state.artistsSocial, state.artists, state.portfolio]) !== before) { toast('Artists saved.'); } else { toast('No changes to save.'); } }); var savePolBtn = $('#p-save-policies'); if (savePolBtn) savePolBtn.addEventListener('click', function(){ state.policies = { deposit: $('#p-pol-deposit').value.trim(), age: $('#p-pol-age').value.trim(), aftercare: $('#p-pol-after').value.trim() }; save(); setEditStatus('Policies saved.'); toast('Policies saved.'); });
   $('#p-save-hours').addEventListener('click', function(){
     var updated = [];
     var rows = $$('.hrow');
@@ -1555,12 +1556,12 @@ var DEFAULTS = {
     return row;
   }
   function refreshList(){ listView.innerHTML = ''; blocks().forEach(function(blk){ listView.appendChild(rowFor(blk)); }); }
-  function showList(){ try { sessionStorage.removeItem('oa-artist-view'); } catch (e) {} backBar.style.display = 'none'; listView.style.display = ''; var ab = addBlockEl(); if (ab) ab.style.display = ''; blocks().forEach(function(blk){ blk.style.display = 'none'; }); }
-  function openArtist(blk){ try { sessionStorage.setItem('oa-artist-view', blk.querySelector('.soc-list').getAttribute('data-artist')); } catch (e) {} listView.style.display = 'none'; var ab = addBlockEl(); if (ab) ab.style.display = 'none'; blocks().forEach(function(b){ b.style.display = (b === blk) ? '' : 'none'; }); backBar.style.display = ''; var nm = blk.querySelector('.roleline strong'); var ed = document.getElementById('oa-artist-editing'); if (ed) ed.textContent = nm ? nm.textContent : ''; }
+  function showList(){ try { localStorage.removeItem('oa-artist-view'); } catch (e) {} backBar.style.display = 'none'; listView.style.display = ''; var ab = addBlockEl(); if (ab) ab.style.display = ''; blocks().forEach(function(blk){ blk.style.display = 'none'; }); }
+  function openArtist(blk){ try { localStorage.setItem('oa-artist-view', blk.querySelector('.soc-list').getAttribute('data-artist')); } catch (e) {} listView.style.display = 'none'; var ab = addBlockEl(); if (ab) ab.style.display = 'none'; blocks().forEach(function(b){ b.style.display = (b === blk) ? '' : 'none'; }); backBar.style.display = ''; var nm = blk.querySelector('.roleline strong'); var ed = document.getElementById('oa-artist-editing'); if (ed) ed.textContent = nm ? nm.textContent : ''; }
   window.__oaArtistAdded = function(blk){ refreshList(); openArtist(blk); };
   backBar.querySelector('#oa-artist-back').addEventListener('click', function(){ refreshList(); showList(); });
   panel.addEventListener('click', function(e){ var b = e.target.closest ? e.target.closest('button') : null; if (b && b.textContent.trim() === 'Remove artist') setTimeout(function(){ refreshList(); showList(); }, 0); });
-  var __sv = null; try { __sv = sessionStorage.getItem('oa-artist-view'); } catch (e) {}
+  var __sv = null; try { __sv = localStorage.getItem('oa-artist-view'); } catch (e) {}
   refreshList(); showList();
   try { var sv = __sv; if (sv) { var tgt = null; blocks().forEach(function(b2){ if (b2.querySelector('.soc-list').getAttribute('data-artist') === sv) tgt = b2; }); if (tgt) openArtist(tgt); } } catch (e) {}
 })();
@@ -1624,12 +1625,30 @@ var DEFAULTS = {
 </script>
 <script>
 (function(){
+  function apply(){ try { var saved = localStorage.getItem('oa-tab'); if (saved) { var btn = document.querySelector('[data-tab="' + saved + '"]'); if (btn) btn.click(); } } catch (e) {} }
   try {
-    document.querySelectorAll('[data-tab]').forEach(function(b){ b.addEventListener('click', function(){ try { sessionStorage.setItem('oa-tab', b.getAttribute('data-tab')); } catch (e) {} }); });
-    var saved = null;
-    try { saved = sessionStorage.getItem('oa-tab'); } catch (e) {}
-    if (saved) { var btn = document.querySelector('[data-tab="' + saved + '"]'); if (btn) btn.click(); }
+    document.querySelectorAll('[data-tab]').forEach(function(b){ b.addEventListener('click', function(){ try { localStorage.setItem('oa-tab', b.getAttribute('data-tab')); } catch (e) {} }); });
+    apply();
+    var sb = document.getElementById('p-signin');
+    if (sb) sb.addEventListener('click', function(){ setTimeout(apply, 600); });
   } catch (e) {}
+})();
+</script>
+<script>
+(function(){
+  var panel = document.querySelector('[data-panel="artists"]');
+  var btn = document.getElementById('p-save-artists');
+  if (!panel || !btn) return;
+  btn.style.display = 'none';
+  function dirty(){ btn.style.display = ''; }
+  panel.addEventListener('input', dirty, true);
+  panel.addEventListener('change', dirty, true);
+  panel.addEventListener('click', function(e){
+    var t = e.target;
+    var b = t.closest ? t.closest('button') : null;
+    if ((t.closest && t.closest('.soc-add, .soc-rm, .pf-rm')) || (b && /Remove artist|Add artist/.test(b.textContent))) dirty();
+  }, true);
+  btn.addEventListener('click', function(){ setTimeout(function(){ btn.style.display = 'none'; }, 50); });
 })();
 </script>
 </body>
