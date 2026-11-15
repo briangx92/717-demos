@@ -712,7 +712,7 @@ var DEFAULTS = {
     {group:'Tattoos', sample:true, items:[['Shop minimum','$60'],['Small flash tattoo','$80']]},
     {group:'Piercing', sample:true, items:[['Standard body piercing','$45']]}
   ],
-  photos: [],
+  photos: PHOTOS0.slice(),
   requests: [
     {text:'Update Saturday hours', when:'Oct 24', status:'Completed'},
     {text:'Add the fall special to the scrolling message', when:'Oct 20', status:'Completed'}
@@ -727,7 +727,7 @@ var DEFAULTS = {
 (function(){
   var $ = function(s, r){ return (r || document).querySelector(s); };
   var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-  var KEY = 'oa-state-v2', SES = 'oa-session';
+  var KEY = 'oa-state-v3', SES = 'oa-session';
   var state;
   try { state = JSON.parse(localStorage.getItem(KEY)) || null; } catch (e) { state = null; }
   if (!state || !state.photos) state = JSON.parse(JSON.stringify(DEFAULTS));
