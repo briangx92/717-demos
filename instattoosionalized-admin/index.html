@@ -300,6 +300,7 @@
       <button type="button" data-tab="requests" aria-selected="false"><span class="dot"></span>Site requests</button>
         <button type="button" data-tab="book" aria-selected="false"><span class="dot"></span>Book</button>
       <button type="button" data-tab="crm" aria-selected="false"><span class="dot"></span>CRM</button>
+        <button type="button" data-tab="artists" aria-selected="false"><span class="dot"></span>Artists</button>
       <button type="button" data-tab="edit" aria-selected="false"><span class="dot"></span>Edit site</button>
       <button type="button" data-tab="photos" aria-selected="false"><span class="dot"></span>Photos</button>
       <button type="button" data-tab="visits" aria-selected="false"><span class="dot"></span>Site visits</button>
@@ -471,20 +472,10 @@
     </section>
 
 
-    <section data-panel="edit" class="hidden">
-      <h1>Edit your site</h1>
-      <p class="sub">Save a change and it shows on your website. Nothing here can break the layout, the words and numbers are all that change.</p>
-      <div class="panel">
-        <div class="section">
-          <div class="shead"><div><h3>Site banner</h3><p>A strip at the very top of your site. Set the dates and it posts itself, then takes itself down the day after it ends.</p></div><label style="display:flex;align-items:center;gap:8px;font-size:14px;white-space:nowrap"><input type="checkbox" id="p-banner-on"> On</label></div>
-          <input id="p-banner-text" type="text" value="">
-          <div class="addgrid" style="margin-top:10px">
-            <label class="f">Starts<input id="p-banner-from" type="date" value=""></label>
-            <label class="f">Ends<input id="p-banner-to" type="date" value=""></label>
-          </div>
-        </div>
-        <div style="margin-top:10px"><button class="btn btn--primary" type="button" id="p-save-banner">Save banner</button></div>
-        <div class="section">
+    <section data-panel="artists" class="hidden">
+      <h1>Artists</h1>
+      <p class="sub">The roster on your site, and what each artist’s page says.</p>
+      <div class="section">
           <div class="shead"><div><h3>Your artists</h3><p>Add, edit, or remove the artists on your site. Each artist gets their own page, built from what is here. Their work photos live under Photos.</p></div><button class="btn btn--primary" type="button">Save artists</button></div>
           <div style="border-top:1px solid #ececea;padding-top:12px;margin-top:12px">
             <div class="roleline"><strong>Alexis "lex"</strong><span>Tattoo &middot; Shows on the site, on their own page, and in the request form</span></div>
@@ -529,6 +520,20 @@
             <button class="btn" type="button" style="margin-top:10px">Add artist</button>
           </div>
         </div>
+    </section>
+    <section data-panel="edit" class="hidden">
+      <h1>Edit your site</h1>
+      <p class="sub">Save a change and it shows on your website. Nothing here can break the layout, the words and numbers are all that change.</p>
+      <div class="panel">
+        <div class="section">
+          <div class="shead"><div><h3>Site banner</h3><p>A strip at the very top of your site. Set the dates and it posts itself, then takes itself down the day after it ends.</p></div><label style="display:flex;align-items:center;gap:8px;font-size:14px;white-space:nowrap"><input type="checkbox" id="p-banner-on"> On</label></div>
+          <input id="p-banner-text" type="text" value="">
+          <div class="addgrid" style="margin-top:10px">
+            <label class="f">Starts<input id="p-banner-from" type="date" value=""></label>
+            <label class="f">Ends<input id="p-banner-to" type="date" value=""></label>
+          </div>
+        </div>
+        <div style="margin-top:10px"><button class="btn btn--primary" type="button" id="p-save-banner">Save banner</button></div>
         <div class="section">
           <div class="shead"><div><h3>Scrolling message</h3><p>The words moving across the strip under the main photo. One message per line.</p></div><button class="btn btn--primary" type="button" id="p-save-ticker">Save message</button></div>
           <textarea id="p-ticker" rows="4"></textarea>
