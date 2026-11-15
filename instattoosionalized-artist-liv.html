@@ -117,6 +117,17 @@
   main.l-wrap{ max-width:1060px; margin-inline:auto; padding-inline:1rem; }
   .p-cover{ border-radius:16px; margin-top:1rem; }
 </style>
+<style>
+  @media (min-width:900px){
+    .p-note{ display:grid; grid-template-columns:230px 1fr; column-gap:2.5rem; align-items:start; padding:1.8rem 2rem; }
+    .p-note h2{ grid-row:1 / span 2; margin:0; }
+    .p-note p{ grid-column:2; }
+    .p-req{ display:flex; align-items:center; gap:2rem; text-align:left; padding:1.8rem 2rem; }
+    .p-req h2{ flex:0 0 auto; margin:0; }
+    .p-req p{ flex:1 1 auto; margin:0; max-width:none; }
+    .p-req a{ flex:0 0 auto; }
+  }
+</style>
 </head>
 <body>
 <header class="p-frame">
