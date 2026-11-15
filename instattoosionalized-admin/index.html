@@ -546,7 +546,7 @@
               </div><div style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">SOCIAL LINKS</div><div class="soc-list" data-artist="new"></div><button class="btn soc-add" type="button" style="margin-top:8px">Add a link</button></div>
             <label class="f" style="display:block;margin-top:10px">About them<textarea class="new-about" rows="3" placeholder="Their words about their work, in their voice"></textarea></label>
             <div class="pf-wrap" style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">WORK PHOTOS</div><div class="pf-grid"></div><label class="btn pf-add" style="margin-top:8px;display:inline-block;cursor:pointer">Add photos<input class="pf-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden></label><span class="pf-status" style="margin-left:8px;color:#5c5c66;font-size:12.5px"></span></div>
-            <button class="btn" type="button" style="margin-top:10px">Add artist</button>
+            <button class="btn btn--primary" type="button" style="margin-top:10px">Complete</button>
           </div>
         </div>
     </section>
@@ -948,8 +948,7 @@ var DEFAULTS = {
  var artistsPanel = document.querySelector('[data-panel="artists"]');
  if (artistsPanel) { artistsPanel.addEventListener('click', function(e){ var add = e.target.closest('.soc-add'); if (add) { var list = add.parentElement.querySelector('.soc-list'); if (list) list.appendChild(socRow('Instagram', '')); return; } var rm = e.target.closest('.soc-rm'); if (rm) { var row = rm.closest('.soc-row'); if (row) row.remove(); } });
  artistsPanel.addEventListener('change', function(e){ if (!e.target.classList || !e.target.classList.contains('mp-file')) return; var file = e.target.files && e.target.files[0]; if (!file) return; var wrap = e.target.closest('.mp-row'); var img = wrap ? wrap.querySelector('.mp-thumb') : null; if (!img) return; var rd = new FileReader(); rd.onload = function(){ img.src = rd.result; img.style.display = ''; }; rd.readAsDataURL(file); }); }
- var saveArtistsBtn = $('#p-save-artists');
- if (saveArtistsBtn) saveArtistsBtn.addEventListener('click', function(){ var out = {};
+ window.__oaSaveArtists = function(){ var out = {};
  var before = JSON.stringify([state.artistsSocial || null, state.artists || null, state.portfolio || null]); $$('.soc-list').forEach(function(list){ var key = list.getAttribute('data-artist'); if (!key || key === 'new') return; var rows = []; list.querySelectorAll('.soc-row').forEach(function(r){ var h = r.querySelector('.soc-handle').value.trim(); if (h) rows.push({ platform: r.querySelector('.soc-platform').value, handle: h }); }); out[key] = rows; }); var roster = [], pfAll = {};
   $$('[data-panel="artists"] .soc-list[data-artist]').forEach(function(list){
     var key = list.getAttribute('data-artist');
@@ -968,7 +967,7 @@ var DEFAULTS = {
     pfAll[key] = items;
   });
   state.artists = roster; state.portfolio = pfAll;
-  state.artistsSocial = out; save(); if (JSON.stringify([state.artistsSocial, state.artists, state.portfolio]) !== before) { toast('Artists saved.'); } else { toast('No changes to save.'); } }); var savePolBtn = $('#p-save-policies'); if (savePolBtn) savePolBtn.addEventListener('click', function(){ state.policies = { deposit: $('#p-pol-deposit').value.trim(), age: $('#p-pol-age').value.trim(), aftercare: $('#p-pol-after').value.trim() }; save(); setEditStatus('Policies saved.'); toast('Policies saved.'); });
+  state.artistsSocial = out; save(); if (JSON.stringify([state.artistsSocial, state.artists, state.portfolio]) !== before) { toast('Artists saved.'); } else { toast('No changes to save.'); } }; var saveArtistsBtn = $('#p-save-artists'); if (saveArtistsBtn) saveArtistsBtn.addEventListener('click', function(){ window.__oaSaveArtists(); }); var savePolBtn = $('#p-save-policies'); if (savePolBtn) savePolBtn.addEventListener('click', function(){ state.policies = { deposit: $('#p-pol-deposit').value.trim(), age: $('#p-pol-age').value.trim(), aftercare: $('#p-pol-after').value.trim() }; save(); setEditStatus('Policies saved.'); toast('Policies saved.'); });
   $('#p-save-hours').addEventListener('click', function(){
     var updated = [];
     var rows = $$('.hrow');
@@ -1410,7 +1409,7 @@ var DEFAULTS = {
     if (blk) blk.remove();
   });
   var addBtn = null;
-  panel.querySelectorAll('button').forEach(function(b){ if (b.textContent.trim() === 'Add artist') addBtn = b; });
+  panel.querySelectorAll('button').forEach(function(b){ if (b.textContent.trim() === 'Complete') addBtn = b; });
   if (!addBtn) return;
   var addBlock = blockOf(addBtn);
   var status = document.createElement('span');
@@ -1456,12 +1455,14 @@ var DEFAULTS = {
     var what = (inputs[1] && inputs[1].value.trim()) || 'Tattoo';
     var aboutTa = addBlock.querySelector('.new-about');
     var aboutVal = aboutTa ? aboutTa.value : '';
-    if (!name) { status.textContent = 'Type the artist’s name first, then tap Add artist.'; if (inputs[0]) inputs[0].focus(); return; }
+    if (!name) { status.textContent = 'Type the artist’s name first, then tap Complete.'; if (inputs[0]) inputs[0].focus(); return; }
     var firstList = panel.querySelector('.soc-list[data-artist]:not([data-artist="new"])');
     if (!firstList) { status.textContent = 'Could not add right now.'; return; }
     var template = blockOf(firstList);
     var clone = template.cloneNode(true);
     var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'artist';
+    var baseSlug = slug, sn = 2;
+    while (panel.querySelector('.soc-list[data-artist="' + slug + '"]')) { slug = baseSlug + '-' + sn; sn++; }
     var strong = clone.querySelector('.roleline strong');
     if (strong) strong.textContent = name;
     var gi = clone.querySelectorAll('.addgrid input');
@@ -1471,7 +1472,7 @@ var DEFAULTS = {
     if (thumb) { thumb.alt = name + ' main photo'; if (newPhotoData) { thumb.src = newPhotoData; thumb.style.visibility = 'visible'; } else { thumb.removeAttribute('src'); thumb.style.visibility = 'hidden'; } }
     var ta = clone.querySelector('textarea');
     if (ta) ta.value = aboutVal;
-    var pfg = clone.querySelector('.pf-grid'); if (pfg) pfg.innerHTML = '';
+    var pfg = clone.querySelector('.pf-grid'); if (pfg) pfg.innerHTML = ''; var pst = clone.querySelector('.pf-status'); if (pst) pst.textContent = '';
     var list = clone.querySelector('.soc-list');
     list.setAttribute('data-artist', slug);
     list.innerHTML = '';
@@ -1492,7 +1493,7 @@ var DEFAULTS = {
     });
     if (!copied) {
       var tplRow = template.querySelector('.soc-row');
-      if (tplRow) { var nr2 = tplRow.cloneNode(true); nr2.querySelector('.soc-handle').value = ''; var rm2 = nr2.querySelector('.soc-rm'); if (rm2) rm2.addEventListener('click', function(){ nr2.remove(); }); list.appendChild(nr2); }
+      if (tplRow) { var nr2 = tplRow.cloneNode(true); nr2.querySelector('.soc-handle').value = ''; var sel2 = nr2.querySelector('.soc-platform'); if (sel2) sel2.value = 'Instagram'; var rm2 = nr2.querySelector('.soc-rm'); if (rm2) rm2.addEventListener('click', function(){ nr2.remove(); }); list.appendChild(nr2); }
     }
     var addPf = addBlock.querySelector('.pf-grid');
     var clonePf = clone.querySelector('.pf-grid');
@@ -1501,9 +1502,9 @@ var DEFAULTS = {
     addBlock.parentNode.insertBefore(clone, addBlock);
     if (inputs[0]) inputs[0].value = '';
     if (inputs[1]) inputs[1].value = '';
-    if (addList) addList.innerHTML = '';
+    if (addList) { addList.innerHTML = ''; }
     newPhotoData = ''; if (newThumb) { newThumb.removeAttribute('src'); newThumb.style.visibility = 'hidden'; } if (newEmpty) newEmpty.style.display = ''; if (newFile) newFile.value = ''; var nab = addBlock.querySelector('.new-about'); if (nab) nab.value = '';
-    status.textContent = 'Added ' + name + '. Tap their photo to add one, write their About, then Save artists.';
+    status.textContent = 'Added ' + name + '.';
     clone.scrollIntoView({block: 'center'});
     if (window.__oaArtistAdded) window.__oaArtistAdded(clone);
   });
@@ -1533,7 +1534,7 @@ var DEFAULTS = {
   var panel = document.querySelector('[data-panel="artists"]');
   if (!section || !panel) return;
   function blocks(){ return Array.prototype.slice.call(section.querySelectorAll('.soc-list[data-artist]')).filter(function(l){ return l.getAttribute('data-artist') !== 'new'; }).map(function(l){ return l.closest('div[style*="border-top"]'); }).filter(Boolean); }
-  function addBlockEl(){ var b = Array.prototype.slice.call(panel.querySelectorAll('button')).filter(function(x){ return x.textContent.trim() === 'Add artist'; })[0]; return b ? b.closest('div[style*="border-top"]') : null; }
+  function addBlockEl(){ var b = Array.prototype.slice.call(panel.querySelectorAll('button')).filter(function(x){ return x.textContent.trim() === 'Complete'; })[0]; return b ? b.closest('div[style*="border-top"]') : null; }
   var listView = document.createElement('div'); listView.className = 'artist-list';
   var backBar = document.createElement('div'); backBar.className = 'artist-backbar'; backBar.style.display = 'none';
   backBar.innerHTML = '<button class="btn" type="button" id="oa-artist-back">&larr; All artists</button><strong id="oa-artist-editing" style="font-size:15px"></strong>';
@@ -1558,7 +1559,7 @@ var DEFAULTS = {
   function refreshList(){ listView.innerHTML = ''; var bs = blocks().slice(); bs.sort(function(x, y){ var nx = (x.querySelector('.roleline strong') ? x.querySelector('.roleline strong').textContent : '').toLowerCase(); var ny = (y.querySelector('.roleline strong') ? y.querySelector('.roleline strong').textContent : '').toLowerCase(); return nx < ny ? -1 : nx > ny ? 1 : 0; }); bs.forEach(function(blk){ listView.appendChild(rowFor(blk)); }); }
   function showList(){ try { localStorage.removeItem('oa-artist-view'); } catch (e) {} backBar.style.display = 'none'; listView.style.display = ''; var ab = addBlockEl(); if (ab) ab.style.display = ''; blocks().forEach(function(blk){ blk.style.display = 'none'; }); }
   function openArtist(blk){ try { localStorage.setItem('oa-artist-view', blk.querySelector('.soc-list').getAttribute('data-artist')); } catch (e) {} listView.style.display = 'none'; var ab = addBlockEl(); if (ab) ab.style.display = 'none'; blocks().forEach(function(b){ b.style.display = (b === blk) ? '' : 'none'; }); backBar.style.display = ''; var nm = blk.querySelector('.roleline strong'); var ed = document.getElementById('oa-artist-editing'); if (ed) ed.textContent = nm ? nm.textContent : ''; }
-  window.__oaArtistAdded = function(blk){ refreshList(); showList(); };
+  window.__oaArtistAdded = function(blk){ if (window.__oaSaveArtists) window.__oaSaveArtists(); refreshList(); showList(); };
   backBar.querySelector('#oa-artist-back').addEventListener('click', function(){ refreshList(); showList(); });
   panel.addEventListener('click', function(e){ var b = e.target.closest ? e.target.closest('button') : null; if (b && b.textContent.trim() === 'Remove artist') setTimeout(function(){ refreshList(); showList(); }, 0); });
   try {
@@ -1611,7 +1612,7 @@ var DEFAULTS = {
   var panel = document.querySelector('[data-panel="artists"]');
   if (!panel) return;
   var addBtn = null;
-  panel.querySelectorAll('button').forEach(function(b){ if (b.textContent.trim() === 'Add artist') addBtn = b; });
+  panel.querySelectorAll('button').forEach(function(b){ if (b.textContent.trim() === 'Complete') addBtn = b; });
   if (!addBtn) return;
   var addBlock = addBtn.closest('div[style*="border-top"]');
   if (!addBlock) return;
@@ -1653,6 +1654,8 @@ var DEFAULTS = {
   }
   function expand(){ active = true; step = 0; if (listView) listView.style.display = 'none'; render(); }
   function collapse(restore){ active = false; step = 0; if (restore && listView) listView.style.display = ''; render(); }
+  window.__oaObActive = function(){ return active; };
+  window.__oaObCollapse = function(){ collapse(true); };
   startBtn.addEventListener('click', expand);
   backBtn.addEventListener('click', function(){ if (step === 0) { collapse(true); } else { step--; render(); } });
   nextBtn.addEventListener('click', function(){
@@ -1677,18 +1680,166 @@ var DEFAULTS = {
 <script>
 (function(){
   var panel = document.querySelector('[data-panel="artists"]');
-  var btn = document.getElementById('p-save-artists');
-  if (!panel || !btn) return;
-  btn.style.display = 'none';
-  function dirty(){ btn.style.display = ''; }
-  panel.addEventListener('input', dirty, true);
-  panel.addEventListener('change', dirty, true);
+  var saveBtn = document.getElementById('p-save-artists');
+  if (!panel || !saveBtn) return;
+  var section = saveBtn.closest('.section');
+  if (!section) return;
+  var style = document.createElement('style');
+  style.textContent = '.oa-edit-actions{ display:flex; gap:10px; margin-top:18px; } .oa-edit-actions .btn{ flex:1 1 0; min-width:0; } .oa-guard{ position:fixed; inset:0; z-index:9999; background:rgba(12,12,14,.5); display:flex; align-items:center; justify-content:center; padding:20px; } .oa-guard-card{ background:#fff; color:#17171c; border-radius:14px; padding:20px; max-width:340px; width:100%; box-shadow:0 18px 50px rgba(0,0,0,.35); } .oa-guard-card p{ margin:0 0 10px; } .oa-guard-btns{ display:flex; gap:10px; margin-top:14px; } .oa-guard-btns .btn{ flex:1 1 0; min-width:0; }';
+  document.head.appendChild(style);
+  var row = document.createElement('div');
+  row.className = 'oa-edit-actions';
+  var cancelBtn = document.createElement('button');
+  cancelBtn.type = 'button';
+  cancelBtn.className = 'btn';
+  cancelBtn.id = 'oa-artist-cancel';
+  cancelBtn.textContent = 'Cancel';
+  row.appendChild(cancelBtn);
+  row.appendChild(saveBtn);
+  saveBtn.style.display = 'none';
+  var dirty = false;
+  var snap = null, snapBlock = null;
+  function blocks(){ return Array.prototype.slice.call(section.querySelectorAll('.soc-list[data-artist]')).filter(function(l){ return l.getAttribute('data-artist') !== 'new'; }).map(function(l){ return l.closest('div[style*="border-top"]'); }).filter(Boolean); }
+  function backBar(){ return section.querySelector('.artist-backbar'); }
+  function editing(){ var bb = backBar(); return !!(bb && bb.style.display !== 'none'); }
+  function openBlock(){ if (!editing()) return null; var bs = blocks(); for (var i = 0; i < bs.length; i++) { if (bs[i].style.display !== 'none') return bs[i]; } return null; }
+  function takeSnap(blk){
+    var gi = blk.querySelectorAll('.addgrid input');
+    var ta = blk.querySelector('textarea');
+    var th = blk.querySelector('.mp-thumb');
+    var socials = [];
+    var list = blk.querySelector('.soc-list');
+    if (list) list.querySelectorAll('.soc-row').forEach(function(r){ var h = r.querySelector('.soc-handle'); var p = r.querySelector('.soc-platform'); socials.push({ p: p ? p.value : 'Instagram', h: h ? h.value : '' }); });
+    var pf = [];
+    blk.querySelectorAll('.pf-item').forEach(function(it){ var im = it.querySelector('img'); var cap = it.querySelector('.pf-cap'); pf.push({ src: im ? (im.getAttribute('src') || '') : '', cap: cap ? cap.value : '' }); });
+    return { name: gi[0] ? gi[0].value : '', what: gi[1] ? gi[1].value : '', about: ta ? ta.value : '', photo: th ? (th.getAttribute('src') || '') : '', socials: socials, pf: pf };
+  }
+  function pfItemEl(it){
+    var d = document.createElement('div'); d.className = 'pf-item';
+    var im = document.createElement('img'); im.alt = ''; im.setAttribute('src', it.src); d.appendChild(im);
+    var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'pf-rm'; rm.textContent = '\u00d7'; rm.setAttribute('aria-label', 'Remove photo');
+    rm.addEventListener('click', function(){ d.remove(); });
+    d.appendChild(rm);
+    var cap = document.createElement('input'); cap.type = 'text'; cap.className = 'pf-cap'; cap.placeholder = 'Caption'; cap.value = it.cap || ''; d.appendChild(cap);
+    return d;
+  }
+  function makeSocRow(p, h){
+    var row = document.createElement('div'); row.className = 'soc-row'; row.style.cssText = 'display:flex;gap:8px;align-items:center;margin-top:6px';
+    var sel = document.createElement('select'); sel.className = 'soc-platform'; sel.setAttribute('aria-label', 'Platform');
+    ['Instagram', 'Facebook', 'TikTok', 'YouTube', 'X', 'Other'].forEach(function(x){ var o = document.createElement('option'); o.textContent = x; if (x === p) o.selected = true; sel.appendChild(o); });
+    var inp = document.createElement('input'); inp.type = 'text'; inp.className = 'soc-handle'; inp.value = h || ''; inp.placeholder = '@handle or link'; inp.style.flex = '1';
+    var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'btn soc-rm'; rm.textContent = 'Remove';
+    rm.addEventListener('click', function(){ row.remove(); });
+    row.appendChild(sel); row.appendChild(inp); row.appendChild(rm);
+    return row;
+  }
+  window.__oaBlankSocRow = function(list){ if (list) list.appendChild(makeSocRow('Instagram', '')); };
+  function restore(blk, s){
+    var gi = blk.querySelectorAll('.addgrid input');
+    if (gi[0]) gi[0].value = s.name;
+    if (gi[1]) gi[1].value = s.what;
+    var ta = blk.querySelector('textarea'); if (ta) ta.value = s.about;
+    var th = blk.querySelector('.mp-thumb');
+    if (th) { if (s.photo) { th.setAttribute('src', s.photo); th.style.visibility = 'visible'; } else { th.removeAttribute('src'); th.style.visibility = 'hidden'; } }
+    var list = blk.querySelector('.soc-list');
+    if (list) { list.innerHTML = ''; s.socials.forEach(function(x){ list.appendChild(makeSocRow(x.p, x.h)); }); }
+    var grid = blk.querySelector('.pf-grid');
+    if (grid) { grid.innerHTML = ''; s.pf.forEach(function(it){ if (it.src) grid.appendChild(pfItemEl(it)); }); }
+  }
+  function evaluate(){
+    var ob = openBlock();
+    if (ob) {
+      if (row.parentNode !== ob) ob.appendChild(row);
+      if (snapBlock !== ob) { snap = takeSnap(ob); snapBlock = ob; dirty = false; }
+    }
+    saveBtn.style.display = (dirty && ob) ? '' : 'none';
+  }
+  panel.addEventListener('input', function(){ dirty = true; evaluate(); }, true);
+  panel.addEventListener('change', function(){ dirty = true; evaluate(); }, true);
   panel.addEventListener('click', function(e){
     var t = e.target;
+    if (t.closest && t.closest('.soc-add, .soc-rm, .pf-rm')) { dirty = true; evaluate(); }
     var b = t.closest ? t.closest('button') : null;
-    if ((t.closest && t.closest('.soc-add, .soc-rm, .pf-rm')) || (b && /Remove artist|Add artist/.test(b.textContent))) dirty();
+    if (b && /Remove artist/.test(b.textContent)) {
+      setTimeout(function(){ if (window.__oaSaveArtists) window.__oaSaveArtists(); dirty = false; snap = null; snapBlock = null; evaluate(); }, 150);
+    }
   }, true);
-  btn.addEventListener('click', function(){ setTimeout(function(){ btn.style.display = 'none'; }, 50); });
+  saveBtn.addEventListener('click', function(){ setTimeout(function(){ dirty = false; var ob = openBlock(); if (ob) { snap = takeSnap(ob); snapBlock = ob; } evaluate(); }, 80); });
+  cancelBtn.addEventListener('click', function(){
+    var ob = openBlock();
+    if (ob && snap && snapBlock === ob) restore(ob, snap);
+    dirty = false;
+    snap = null; snapBlock = null;
+    var back = document.getElementById('oa-artist-back');
+    if (back) back.click();
+    evaluate();
+  });
+  /* Leave guard: switching tabs mid-onboarding asks first. */
+  function addBlockEl(){
+    var b = Array.prototype.slice.call(panel.querySelectorAll('button')).filter(function(x){ return x.textContent.trim() === 'Complete'; })[0];
+    return b ? b.closest('div[style*="border-top"]') : null;
+  }
+  function resetAddForm(){
+    var ab = addBlockEl(); if (!ab) return;
+    var ins = ab.querySelectorAll('.addgrid input');
+    if (ins[0]) ins[0].value = '';
+    if (ins[1]) ins[1].value = '';
+    var nab = ab.querySelector('.new-about'); if (nab) nab.value = '';
+    var nt = ab.querySelector('.mp-thumb-new'); if (nt) { nt.removeAttribute('src'); nt.style.visibility = 'hidden'; }
+    var ne = ab.querySelector('.mp-empty'); if (ne) ne.style.display = '';
+    var nf = ab.querySelector('.mp-file-new'); if (nf) nf.value = '';
+    var al = ab.querySelector('.soc-list');
+    if (al) { al.innerHTML = ''; }
+    var pg = ab.querySelector('.pf-grid'); if (pg) pg.innerHTML = '';
+  }
+  var guard = document.createElement('div');
+  guard.className = 'oa-guard';
+  guard.style.display = 'none';
+  guard.innerHTML = '<div class="oa-guard-card"><p><strong>Onboarding in progress</strong></p><p>If you continue, this onboarding will be canceled and what you entered will be cleared.</p><div class="oa-guard-btns"><button type="button" class="btn" id="oa-guard-stay">Stay</button><button type="button" class="btn btn--primary" id="oa-guard-go">Continue</button></div></div>';
+  document.body.appendChild(guard);
+  var pendingTab = null;
+  guard.querySelector('#oa-guard-stay').addEventListener('click', function(){ guard.style.display = 'none'; pendingTab = null; });
+  guard.querySelector('#oa-guard-go').addEventListener('click', function(){
+    guard.style.display = 'none';
+    if (window.__oaObCollapse) window.__oaObCollapse();
+    resetAddForm();
+    var b = pendingTab; pendingTab = null;
+    if (b) b.click();
+  });
+  document.addEventListener('click', function(e){
+    if (!window.__oaObActive || !window.__oaObActive()) return;
+    var b = e.target.closest ? e.target.closest('[data-tab]') : null;
+    if (!b) return;
+    e.preventDefault();
+    e.stopPropagation();
+    pendingTab = b;
+    guard.style.display = 'flex';
+  }, true);
+  /* Social gate: an added social link must have its handle before moving forward. */
+  panel.addEventListener('click', function(e){
+    var nb = e.target.closest ? e.target.closest('.ob-next') : null;
+    if (!nb) return;
+    if (!window.__oaObActive || !window.__oaObActive()) return;
+    var ab = addBlockEl(); if (!ab) return;
+    var cur = null;
+    ab.querySelectorAll('.ob-step').forEach(function(d){ if (d.style.display !== 'none') cur = d; });
+    if (!cur || !cur.querySelector('.soc-list')) return;
+    var list = ab.querySelector('.soc-list');
+    if (!list) return;
+    var bad = null;
+    list.querySelectorAll('.soc-row').forEach(function(r){ var h = r.querySelector('.soc-handle'); if (!bad && (!h || !h.value.trim())) bad = h; });
+    if (!bad) return;
+    e.preventDefault();
+    e.stopPropagation();
+    var st = panel.querySelector('.ob-status');
+    if (st) st.textContent = 'A social link needs its handle. Fill it in or remove the link.';
+    if (bad) bad.focus();
+  }, true);
+  var evT = null;
+  var mo = new MutationObserver(function(){ if (evT) return; evT = setTimeout(function(){ evT = null; evaluate(); }, 60); });
+  mo.observe(panel, { attributes: true, attributeFilter: ['style'], childList: true, subtree: true });
+  evaluate();
+  setTimeout(evaluate, 400);
 })();
 </script>
 <script>
