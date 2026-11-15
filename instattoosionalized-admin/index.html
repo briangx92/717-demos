@@ -1602,6 +1602,7 @@ var DEFAULTS = {
       });
     }
   } catch (e) {}
+  window.__oaRefreshList = refreshList;
   var __sv = null; try { __sv = localStorage.getItem('oa-artist-view'); } catch (e) {}
   refreshList(); showList();
   try { var sv = __sv; if (sv) { var tgt = null; blocks().forEach(function(b2){ if (b2.querySelector('.soc-list').getAttribute('data-artist') === sv) tgt = b2; }); if (tgt) openArtist(tgt); } } catch (e) {}
@@ -1761,15 +1762,16 @@ var DEFAULTS = {
     if (t.closest && t.closest('.soc-add, .soc-rm, .pf-rm')) { dirty = true; evaluate(); }
     var b = t.closest ? t.closest('button') : null;
     if (b && /Remove artist/.test(b.textContent)) {
-      setTimeout(function(){ if (window.__oaSaveArtists) window.__oaSaveArtists(); dirty = false; snap = null; snapBlock = null; evaluate(); }, 150);
+      setTimeout(function(){ if (window.__oaSaveArtists) window.__oaSaveArtists(); dirty = false; snap = null; snapBlock = null; if (window.__oaRefreshList) window.__oaRefreshList(); evaluate(); }, 150);
     }
   }, true);
-  saveBtn.addEventListener('click', function(){ setTimeout(function(){ dirty = false; var ob = openBlock(); if (ob) { snap = takeSnap(ob); snapBlock = ob; } evaluate(); }, 80); });
+  saveBtn.addEventListener('click', function(){ setTimeout(function(){ var ob = openBlock(); if (ob) { var gi = ob.querySelectorAll('.addgrid input'); var rl = ob.querySelector('.roleline strong'); if (rl && gi[0] && gi[0].value.trim()) rl.textContent = gi[0].value.trim(); } dirty = false; snap = null; snapBlock = null; if (window.__oaRefreshList) window.__oaRefreshList(); var back = document.getElementById('oa-artist-back'); if (back) back.click(); evaluate(); }, 150); });
   cancelBtn.addEventListener('click', function(){
     var ob = openBlock();
     if (ob && snap && snapBlock === ob) restore(ob, snap);
     dirty = false;
     snap = null; snapBlock = null;
+    if (window.__oaRefreshList) window.__oaRefreshList();
     var back = document.getElementById('oa-artist-back');
     if (back) back.click();
     evaluate();
