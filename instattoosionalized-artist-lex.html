@@ -257,6 +257,9 @@
   <div class="lbx-strip" id="lbx-strip"></div>
 </div>
 <script>
+(function(){ try { var raw = localStorage.getItem('oa-state-v3'); if (!raw) return; var st = JSON.parse(raw); var items = st.portfolio && st.portfolio['lex']; if (!items || !items.length) return; var grid = document.querySelector('.p-grid'); if (!grid) return; grid.innerHTML = ''; items.forEach(function(w){ var f = document.createElement('figure'); var img = document.createElement('img'); img.loading = 'lazy'; img.src = w.src; img.alt = w.cap || ''; f.appendChild(img); var c = document.createElement('figcaption'); c.textContent = w.cap || ''; f.appendChild(c); grid.appendChild(f); }); } catch (e) {} })();
+</script>
+<script>
 (function(){
   var figs = Array.prototype.slice.call(document.querySelectorAll('figure.p-feat, .p-grid figure'));
   if (!figs.length) return;

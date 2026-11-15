@@ -481,6 +481,17 @@
   [data-panel="artists"] .soc-row select.soc-platform{ flex:0 0 148px; width:148px; }
   [data-panel="artists"] .soc-row input.soc-handle{ flex:1 1 auto; min-width:0; width:auto; }
   [data-panel="artists"] .soc-row .soc-rm{ flex:0 0 auto; }
+  [data-panel="artists"] .artist-row{ display:flex; align-items:center; gap:12px; width:100%; text-align:left; background:#fff; border:1px solid #e3ded2; border-radius:13px; padding:10px 12px; margin-top:8px; cursor:pointer; font:inherit; }
+  [data-panel="artists"] .artist-row img{ width:52px; height:52px; border-radius:10px; object-fit:cover; flex:0 0 auto; background:#e9e6de; }
+  [data-panel="artists"] .artist-row .ar-name{ font-weight:700; font-size:15.5px; }
+  [data-panel="artists"] .artist-row .ar-what{ color:#5c5c66; font-size:13px; }
+  [data-panel="artists"] .artist-row .ar-chev{ margin-left:auto; color:#8a8a92; font-size:22px; }
+  [data-panel="artists"] .artist-backbar{ display:flex; align-items:center; gap:10px; margin-top:10px; }
+  [data-panel="artists"] .pf-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(104px,1fr)); gap:8px; margin-top:8px; }
+  [data-panel="artists"] .pf-item{ position:relative; }
+  [data-panel="artists"] .pf-item img{ width:100%; height:84px; object-fit:cover; border-radius:9px; display:block; border:1px solid #d9d4c7; }
+  [data-panel="artists"] .pf-item .pf-rm{ position:absolute; top:4px; right:4px; width:22px; height:22px; border-radius:50%; border:0; background:rgba(20,20,24,.82); color:#fff; cursor:pointer; line-height:1; font-size:14px; }
+  [data-panel="artists"] .pf-item .pf-cap{ margin-top:4px; width:100%; font-size:12px; padding:6px 8px; }
   [data-panel="artists"] .mp-pick{ position:relative; display:block; width:120px; height:120px; border-radius:14px; overflow:hidden; cursor:pointer; flex:0 0 auto; border:1px solid #d9d4c7; background:#e9e6de; }
   [data-panel="artists"] .mp-pick .mp-thumb{ width:100% !important; height:100% !important; object-fit:cover; display:block; border-radius:0 !important; }
   [data-panel="artists"] .mp-empty{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; color:#8a8a92; font-size:12.5px; font-weight:600; }
@@ -501,7 +512,8 @@
             <div class="addgrid">
               <label class="f">Name<input type="text" value="Alexis &quot;lex&quot;"></label>
               <label class="f">What they do<input type="text" value="Tattoo"></label>
-              </div><div class="artist-side"><div class="mp-row" style="display:flex;gap:12px;align-items:center"><label class="mp-pick" title="Change photo"><img class="mp-thumb" src="../lex-portrait.jpg" alt="Lex main photo" onerror="this.style.visibility='hidden'"><span class="mp-cam"><svg viewBox="0 0 24 24" width="16" height="16" fill="#fff" aria-hidden="true"><path d="M9 3.5 7.6 5.5H4A1.5 1.5 0 0 0 2.5 7v10A1.5 1.5 0 0 0 4 18.5h16A1.5 1.5 0 0 0 21.5 17V7A1.5 1.5 0 0 0 20 5.5h-3.6L15 3.5H9zM12 8a4.3 4.3 0 1 1 0 8.6A4.3 4.3 0 0 1 12 8z"/></svg></span><input class="mp-file" type="file" accept="image/*" hidden></label><div><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">MAIN PHOTO</div><div style="font-size:12.5px;color:#8a8a92;margin-top:3px">Tap the photo to change it</div></div></div><div class="soc-wrap" style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">SOCIAL LINKS</div><div class="soc-list" data-artist="lex"><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option selected>Instagram</option><option>Facebook</option><option>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="@lextattss" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option>Instagram</option><option selected>Facebook</option><option>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="lextatts" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div></div><button class="btn soc-add" type="button" style="margin-top:8px">Add a link</button></div></div>
+              </div><div class="artist-side"><div class="mp-row" style="display:flex;gap:12px;align-items:center"><label class="mp-pick" title="Change photo"><img class="mp-thumb" src="../lex-portrait.jpg" alt="Lex main photo" onerror="this.style.visibility='hidden'"><span class="mp-cam"><svg viewBox="0 0 24 24" width="16" height="16" fill="#fff" aria-hidden="true"><path d="M9 3.5 7.6 5.5H4A1.5 1.5 0 0 0 2.5 7v10A1.5 1.5 0 0 0 4 18.5h16A1.5 1.5 0 0 0 21.5 17V7A1.5 1.5 0 0 0 20 5.5h-3.6L15 3.5H9zM12 8a4.3 4.3 0 1 1 0 8.6A4.3 4.3 0 0 1 12 8z"/></svg></span><input class="mp-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif" hidden></label><div><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">MAIN PHOTO</div><div style="font-size:12.5px;color:#8a8a92;margin-top:3px">Tap the photo to change it</div></div></div><div class="soc-wrap" style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">SOCIAL LINKS</div><div class="soc-list" data-artist="lex"><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option selected>Instagram</option><option>Facebook</option><option>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="@lextattss" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option>Instagram</option><option selected>Facebook</option><option>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="lextatts" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div></div><button class="btn soc-add" type="button" style="margin-top:8px">Add a link</button></div></div>
+            <div class="pf-wrap" style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">WORK PHOTOS</div><div class="pf-grid"></div><label class="btn pf-add" style="margin-top:8px;display:inline-block;cursor:pointer">Add photos<input class="pf-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden></label><span class="pf-status" style="margin-left:8px;color:#5c5c66;font-size:12.5px"></span></div>
             <label class="f" style="display:block;margin-top:8px">About them<textarea rows="2">Hi, I'm lex! I'm a freshly new tattoo artist! i love all things horror and whimsical. I love to tattoo things like cartoon characters, spooky, and high contrast!</textarea></label>
             <div style="margin-top:8px"><button class="btn" type="button">Remove artist</button> <span style="color:#5c5c66;font-size:13px">Removing an artist takes their page down at the next publish. Their photos are kept for 30 days in case they come back.</span></div>
           </div>
@@ -510,7 +522,8 @@
             <div class="addgrid">
               <label class="f">Name<input type="text" value="Liv"></label>
               <label class="f">What they do<input type="text" value="Tattoo"></label>
-              </div><div class="artist-side"><div class="mp-row" style="display:flex;gap:12px;align-items:center"><label class="mp-pick" title="Change photo"><img class="mp-thumb" src="../liv-portrait.jpg" alt="Liv main photo" onerror="this.style.visibility='hidden'"><span class="mp-cam"><svg viewBox="0 0 24 24" width="16" height="16" fill="#fff" aria-hidden="true"><path d="M9 3.5 7.6 5.5H4A1.5 1.5 0 0 0 2.5 7v10A1.5 1.5 0 0 0 4 18.5h16A1.5 1.5 0 0 0 21.5 17V7A1.5 1.5 0 0 0 20 5.5h-3.6L15 3.5H9zM12 8a4.3 4.3 0 1 1 0 8.6A4.3 4.3 0 0 1 12 8z"/></svg></span><input class="mp-file" type="file" accept="image/*" hidden></label><div><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">MAIN PHOTO</div><div style="font-size:12.5px;color:#8a8a92;margin-top:3px">Tap the photo to change it</div></div></div><div class="soc-wrap" style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">SOCIAL LINKS</div><div class="soc-list" data-artist="liv"><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option selected>Instagram</option><option>Facebook</option><option>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="@Inked.by_liv" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option>Instagram</option><option>Facebook</option><option selected>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="@Oliviaaaa._" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div></div><button class="btn soc-add" type="button" style="margin-top:8px">Add a link</button></div></div>
+              </div><div class="artist-side"><div class="mp-row" style="display:flex;gap:12px;align-items:center"><label class="mp-pick" title="Change photo"><img class="mp-thumb" src="../liv-portrait.jpg" alt="Liv main photo" onerror="this.style.visibility='hidden'"><span class="mp-cam"><svg viewBox="0 0 24 24" width="16" height="16" fill="#fff" aria-hidden="true"><path d="M9 3.5 7.6 5.5H4A1.5 1.5 0 0 0 2.5 7v10A1.5 1.5 0 0 0 4 18.5h16A1.5 1.5 0 0 0 21.5 17V7A1.5 1.5 0 0 0 20 5.5h-3.6L15 3.5H9zM12 8a4.3 4.3 0 1 1 0 8.6A4.3 4.3 0 0 1 12 8z"/></svg></span><input class="mp-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif" hidden></label><div><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">MAIN PHOTO</div><div style="font-size:12.5px;color:#8a8a92;margin-top:3px">Tap the photo to change it</div></div></div><div class="soc-wrap" style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">SOCIAL LINKS</div><div class="soc-list" data-artist="liv"><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option selected>Instagram</option><option>Facebook</option><option>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="@Inked.by_liv" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option>Instagram</option><option>Facebook</option><option selected>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="@Oliviaaaa._" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div></div><button class="btn soc-add" type="button" style="margin-top:8px">Add a link</button></div></div>
+            <div class="pf-wrap" style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">WORK PHOTOS</div><div class="pf-grid"></div><label class="btn pf-add" style="margin-top:8px;display:inline-block;cursor:pointer">Add photos<input class="pf-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden></label><span class="pf-status" style="margin-left:8px;color:#5c5c66;font-size:12.5px"></span></div>
             <label class="f" style="display:block;margin-top:8px">About them<textarea rows="2">Hello! I'm Olivia but everyone calls me Liv! I'm a tattoo artist who loves all things whimsical, soft, and a little out of the ordinary. If you have an idea for a tattoo but aren't sure how to bring it to life, come see me. I love florals, cute little characters, and anything that feels like it belongs in a fairytale. My goal is to turn your ideas into a piece of art that's uniquely yours. Whether you come in with a fully formed idea or just a bunch of screenshots, I'm always excited to create something together!</textarea></label>
             <div style="margin-top:8px"><button class="btn" type="button">Remove artist</button> <span style="color:#5c5c66;font-size:13px">Removing an artist takes their page down at the next publish. Their photos are kept for 30 days in case they come back.</span></div>
           </div>
@@ -519,18 +532,20 @@
             <div class="addgrid">
               <label class="f">Name<input type="text" value="Diana"></label>
               <label class="f">What they do<input type="text" value="Tattoo"></label>
-              </div><div class="artist-side"><div class="mp-row" style="display:flex;gap:12px;align-items:center"><label class="mp-pick" title="Change photo"><img class="mp-thumb" src="../diana-portrait.jpg" alt="Diana main photo" onerror="this.style.visibility='hidden'"><span class="mp-cam"><svg viewBox="0 0 24 24" width="16" height="16" fill="#fff" aria-hidden="true"><path d="M9 3.5 7.6 5.5H4A1.5 1.5 0 0 0 2.5 7v10A1.5 1.5 0 0 0 4 18.5h16A1.5 1.5 0 0 0 21.5 17V7A1.5 1.5 0 0 0 20 5.5h-3.6L15 3.5H9zM12 8a4.3 4.3 0 1 1 0 8.6A4.3 4.3 0 0 1 12 8z"/></svg></span><input class="mp-file" type="file" accept="image/*" hidden></label><div><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">MAIN PHOTO</div><div style="font-size:12.5px;color:#8a8a92;margin-top:3px">Tap the photo to change it</div></div></div><div class="soc-wrap" style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">SOCIAL LINKS</div><div class="soc-list" data-artist="diana"><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option selected>Instagram</option><option>Facebook</option><option>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="@excommunicated_af" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option>Instagram</option><option>Facebook</option><option selected>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="@excommunicated_pos" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div></div><button class="btn soc-add" type="button" style="margin-top:8px">Add a link</button></div></div>
+              </div><div class="artist-side"><div class="mp-row" style="display:flex;gap:12px;align-items:center"><label class="mp-pick" title="Change photo"><img class="mp-thumb" src="../diana-portrait.jpg" alt="Diana main photo" onerror="this.style.visibility='hidden'"><span class="mp-cam"><svg viewBox="0 0 24 24" width="16" height="16" fill="#fff" aria-hidden="true"><path d="M9 3.5 7.6 5.5H4A1.5 1.5 0 0 0 2.5 7v10A1.5 1.5 0 0 0 4 18.5h16A1.5 1.5 0 0 0 21.5 17V7A1.5 1.5 0 0 0 20 5.5h-3.6L15 3.5H9zM12 8a4.3 4.3 0 1 1 0 8.6A4.3 4.3 0 0 1 12 8z"/></svg></span><input class="mp-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif" hidden></label><div><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">MAIN PHOTO</div><div style="font-size:12.5px;color:#8a8a92;margin-top:3px">Tap the photo to change it</div></div></div><div class="soc-wrap" style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">SOCIAL LINKS</div><div class="soc-list" data-artist="diana"><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option selected>Instagram</option><option>Facebook</option><option>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="@excommunicated_af" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option>Instagram</option><option>Facebook</option><option selected>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="@excommunicated_pos" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div></div><button class="btn soc-add" type="button" style="margin-top:8px">Add a link</button></div></div>
+            <div class="pf-wrap" style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">WORK PHOTOS</div><div class="pf-grid"></div><label class="btn pf-add" style="margin-top:8px;display:inline-block;cursor:pointer">Add photos<input class="pf-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden></label><span class="pf-status" style="margin-left:8px;color:#5c5c66;font-size:12.5px"></span></div>
             <label class="f" style="display:block;margin-top:8px">About them<textarea rows="2">I enjoy doing tattoos ranging from realism, characters of all sorts, dark gothic art, to detailed designs of all natures. I as well love to tattoo cover up tattoos</textarea></label>
             <div style="margin-top:8px"><button class="btn" type="button">Remove artist</button> <span style="color:#5c5c66;font-size:13px">Removing an artist takes their page down at the next publish. Their photos are kept for 30 days in case they come back.</span></div>
           </div>
           <div style="border-top:1px solid #ececea;padding-top:12px;margin-top:12px">
             <div class="roleline"><strong>Add an artist</strong><span>Their page is built at the next publish, from these basics. You can fill in the rest any time.</span></div>
-            <div class="mp-row" style="display:flex;gap:12px;align-items:center;margin-bottom:10px"><label class="mp-pick" title="Add a photo"><img class="mp-thumb-new" alt="New artist main photo" style="visibility:hidden;width:100%;height:100%;object-fit:cover;display:block"><span class="mp-empty"><svg viewBox="0 0 24 24" width="26" height="26" fill="#8a8a92" aria-hidden="true"><path d="M9 3.5 7.6 5.5H4A1.5 1.5 0 0 0 2.5 7v10A1.5 1.5 0 0 0 4 18.5h16A1.5 1.5 0 0 0 21.5 17V7A1.5 1.5 0 0 0 20 5.5h-3.6L15 3.5H9zM12 8a4.3 4.3 0 1 1 0 8.6A4.3 4.3 0 0 1 12 8z"/></svg><span>Add photo</span></span><input class="mp-file-new" type="file" accept="image/*" hidden></label><div><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">MAIN PHOTO</div><div style="font-size:12.5px;color:#8a8a92;margin-top:3px">Tap the box to add their photo</div></div></div>
+            <div class="mp-row" style="display:flex;gap:12px;align-items:center;margin-bottom:10px"><label class="mp-pick" title="Add a photo"><img class="mp-thumb-new" alt="New artist main photo" style="visibility:hidden;width:100%;height:100%;object-fit:cover;display:block"><span class="mp-empty"><svg viewBox="0 0 24 24" width="26" height="26" fill="#8a8a92" aria-hidden="true"><path d="M9 3.5 7.6 5.5H4A1.5 1.5 0 0 0 2.5 7v10A1.5 1.5 0 0 0 4 18.5h16A1.5 1.5 0 0 0 21.5 17V7A1.5 1.5 0 0 0 20 5.5h-3.6L15 3.5H9zM12 8a4.3 4.3 0 1 1 0 8.6A4.3 4.3 0 0 1 12 8z"/></svg><span>Add photo</span></span><input class="mp-file-new" type="file" accept="image/jpeg,image/png,image/webp,image/gif" hidden></label><div><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">MAIN PHOTO</div><div style="font-size:12.5px;color:#8a8a92;margin-top:3px">Tap the box to add their photo</div></div></div>
             <div class="addgrid">
               <label class="f">Name<input type="text" placeholder="Full name"></label>
               <label class="f">What they do<input type="text" placeholder="Like Tattoo, or Piercing"></label>
               </div><div style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">SOCIAL LINKS</div><div class="soc-list" data-artist="new"></div><button class="btn soc-add" type="button" style="margin-top:8px">Add a link</button></div>
             <label class="f" style="display:block;margin-top:10px">About them<textarea class="new-about" rows="3" placeholder="Their words about their work, in their voice"></textarea></label>
+            <div class="pf-wrap" style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">WORK PHOTOS</div><div class="pf-grid"></div><label class="btn pf-add" style="margin-top:8px;display:inline-block;cursor:pointer">Add photos<input class="pf-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden></label><span class="pf-status" style="margin-left:8px;color:#5c5c66;font-size:12.5px"></span></div>
             <button class="btn" type="button" style="margin-top:10px">Add artist</button>
           </div>
         </div>
@@ -613,7 +628,7 @@
         <div class="shead" style="display:flex;justify-content:space-between;gap:14px;align-items:flex-start">
           <div><h3 style="font-size:17px">Recent work book</h3><p style="color:#5c5c66;font-size:14px;margin:4px 0 0">The book updates as soon as you change something here. Drag a photo by its handle to change the order.</p></div>
           <label class="btn btn--accent" for="p-photo-file">Add photos</label>
-          <input id="p-photo-file" type="file" accept="image/*" multiple hidden>
+          <input id="p-photo-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden>
         </div>
         <div class="pgrid" id="p-photo-grid"></div>
         <p class="status" id="p-photo-status"></p>
@@ -934,7 +949,25 @@ var DEFAULTS = {
  if (artistsPanel) { artistsPanel.addEventListener('click', function(e){ var add = e.target.closest('.soc-add'); if (add) { var list = add.parentElement.querySelector('.soc-list'); if (list) list.appendChild(socRow('Instagram', '')); return; } var rm = e.target.closest('.soc-rm'); if (rm) { var row = rm.closest('.soc-row'); if (row) row.remove(); } });
  artistsPanel.addEventListener('change', function(e){ if (!e.target.classList || !e.target.classList.contains('mp-file')) return; var file = e.target.files && e.target.files[0]; if (!file) return; var wrap = e.target.closest('.mp-row'); var img = wrap ? wrap.querySelector('.mp-thumb') : null; if (!img) return; var rd = new FileReader(); rd.onload = function(){ img.src = rd.result; img.style.display = ''; }; rd.readAsDataURL(file); }); }
  var saveArtistsBtn = $('#p-save-artists');
- if (saveArtistsBtn) saveArtistsBtn.addEventListener('click', function(){ var out = {}; $$('.soc-list').forEach(function(list){ var key = list.getAttribute('data-artist'); if (!key || key === 'new') return; var rows = []; list.querySelectorAll('.soc-row').forEach(function(r){ var h = r.querySelector('.soc-handle').value.trim(); if (h) rows.push({ platform: r.querySelector('.soc-platform').value, handle: h }); }); out[key] = rows; }); state.artistsSocial = out; save(); toast('Artists saved.'); }); var savePolBtn = $('#p-save-policies'); if (savePolBtn) savePolBtn.addEventListener('click', function(){ state.policies = { deposit: $('#p-pol-deposit').value.trim(), age: $('#p-pol-age').value.trim(), aftercare: $('#p-pol-after').value.trim() }; save(); setEditStatus('Policies saved.'); toast('Policies saved.'); });
+ if (saveArtistsBtn) saveArtistsBtn.addEventListener('click', function(){ var out = {}; $$('.soc-list').forEach(function(list){ var key = list.getAttribute('data-artist'); if (!key || key === 'new') return; var rows = []; list.querySelectorAll('.soc-row').forEach(function(r){ var h = r.querySelector('.soc-handle').value.trim(); if (h) rows.push({ platform: r.querySelector('.soc-platform').value, handle: h }); }); out[key] = rows; }); var roster = [], pfAll = {};
+  $$('[data-panel="artists"] .soc-list[data-artist]').forEach(function(list){
+    var key = list.getAttribute('data-artist');
+    if (key === 'new') return;
+    var blk = list.closest('div[style*="border-top"]');
+    if (!blk) return;
+    var gi = blk.querySelectorAll('.addgrid input');
+    var soc = [];
+    list.querySelectorAll('.soc-row').forEach(function(r){ var h = r.querySelector('.soc-handle').value.trim(); if (h) soc.push({ p: r.querySelector('.soc-platform').value, h: h }); });
+    var photo = '';
+    var th = blk.querySelector('.mp-thumb');
+    if (th) { var raw = th.getAttribute('src') || ''; if (raw.indexOf('data:') === 0 && th.complete && th.naturalWidth) { try { var mx = 800, w = th.naturalWidth, h = th.naturalHeight, sc = Math.max(w, h) > mx ? mx / Math.max(w, h) : 1; var cv = document.createElement('canvas'); cv.width = Math.round(w * sc); cv.height = Math.round(h * sc); cv.getContext('2d').drawImage(th, 0, 0, cv.width, cv.height); photo = cv.toDataURL('image/jpeg', 0.85); } catch (e) { photo = raw; } } else if (raw) { photo = raw.replace(/^\.\.\//, ''); } }
+    roster.push({ slug: key, name: gi[0] ? gi[0].value.trim() : key, what: gi[1] ? gi[1].value.trim() : 'Tattoo', about: blk.querySelector('textarea') ? blk.querySelector('textarea').value : '', socials: soc, photo: photo });
+    var items = [];
+    blk.querySelectorAll('.pf-item').forEach(function(it){ var im = it.querySelector('img'); var cap = it.querySelector('.pf-cap'); var src = im ? (im.getAttribute('src') || '') : ''; if (src) items.push({ src: src.replace(/^\.\.\//, ''), cap: cap ? cap.value : '' }); });
+    pfAll[key] = items;
+  });
+  state.artists = roster; state.portfolio = pfAll;
+  state.artistsSocial = out; save(); toast('Artists saved.'); }); var savePolBtn = $('#p-save-policies'); if (savePolBtn) savePolBtn.addEventListener('click', function(){ state.policies = { deposit: $('#p-pol-deposit').value.trim(), age: $('#p-pol-age').value.trim(), aftercare: $('#p-pol-after').value.trim() }; save(); setEditStatus('Policies saved.'); toast('Policies saved.'); });
   $('#p-save-hours').addEventListener('click', function(){
     var updated = [];
     var rows = $$('.hrow');
@@ -1394,6 +1427,7 @@ var DEFAULTS = {
       if (rm) rm.addEventListener('click', function(){ nr.remove(); });
       list.appendChild(nr);
     });
+    if (window.__oaWirePf) window.__oaWirePf(blk);
     var file = blk.querySelector('.mp-file');
     var thumb = blk.querySelector('.mp-thumb');
     if (file && thumb) file.addEventListener('change', function(){
@@ -1436,6 +1470,7 @@ var DEFAULTS = {
     if (thumb) { thumb.alt = name + ' main photo'; if (newPhotoData) { thumb.src = newPhotoData; thumb.style.visibility = 'visible'; } else { thumb.removeAttribute('src'); thumb.style.visibility = 'hidden'; } }
     var ta = clone.querySelector('textarea');
     if (ta) ta.value = aboutVal;
+    var pfg = clone.querySelector('.pf-grid'); if (pfg) pfg.innerHTML = '';
     var list = clone.querySelector('.soc-list');
     list.setAttribute('data-artist', slug);
     list.innerHTML = '';
@@ -1458,6 +1493,9 @@ var DEFAULTS = {
       var tplRow = template.querySelector('.soc-row');
       if (tplRow) { var nr2 = tplRow.cloneNode(true); nr2.querySelector('.soc-handle').value = ''; var rm2 = nr2.querySelector('.soc-rm'); if (rm2) rm2.addEventListener('click', function(){ nr2.remove(); }); list.appendChild(nr2); }
     }
+    var addPf = addBlock.querySelector('.pf-grid');
+    var clonePf = clone.querySelector('.pf-grid');
+    if (addPf && clonePf) { clonePf.innerHTML = ''; addPf.querySelectorAll('.pf-item').forEach(function(it){ var n = it.cloneNode(true); var cap = it.querySelector('.pf-cap'); var ncap = n.querySelector('.pf-cap'); if (cap && ncap) ncap.value = cap.value; var rm = n.querySelector('.pf-rm'); if (rm) rm.addEventListener('click', function(){ n.remove(); }); clonePf.appendChild(n); }); addPf.innerHTML = ''; }
     wireBlock(clone);
     addBlock.parentNode.insertBefore(clone, addBlock);
     if (inputs[0]) inputs[0].value = '';
@@ -1466,7 +1504,132 @@ var DEFAULTS = {
     newPhotoData = ''; if (newThumb) { newThumb.removeAttribute('src'); newThumb.style.visibility = 'hidden'; } if (newEmpty) newEmpty.style.display = ''; if (newFile) newFile.value = ''; var nab = addBlock.querySelector('.new-about'); if (nab) nab.value = '';
     status.textContent = 'Added ' + name + '. Tap their photo to add one, write their About, then Save artists.';
     clone.scrollIntoView({block: 'center'});
+    if (window.__oaArtistAdded) window.__oaArtistAdded(clone);
   });
+})();
+</script>
+<script>
+(function(){
+  var SEEDS = {"lex": [{"src": "lex-work-01.jpg", "cap": "Hello Kitty Jason, cartoon horror"}, {"src": "lex-work-02.jpg", "cap": "Snoopy pumpkin, cartoon"}, {"src": "lex-work-03.jpg", "cap": "Ghostface knife"}, {"src": "lex-work-04.jpg", "cap": "Sun and moon with florals"}, {"src": "lex-work-05.jpg", "cap": "Rose wreath and infinity heart"}, {"src": "lex-work-06.jpg", "cap": "Finger script"}, {"src": "lex-work-07.jpg", "cap": "Flamingo, ankle"}, {"src": "lex-work-08.jpg", "cap": "Deathly Hallows symbol"}, {"src": "lex-work-09.jpg", "cap": "Script lettering"}, {"src": "lex-work-10.jpg", "cap": "Psalm 46:10 script"}, {"src": "lex-work-11.jpg", "cap": "Rose with name script"}, {"src": "lex-work-12.jpg", "cap": "Daisy stem"}, {"src": "lex-work-13.jpg", "cap": "666, bold numbers"}, {"src": "lex-work-14.jpg", "cap": "Paw print"}], "liv": [{"src": "liv-work-01.jpg", "cap": "Bunny with a flower"}, {"src": "liv-work-02.jpg", "cap": "Character piece"}, {"src": "liv-work-03.jpg", "cap": "Lilies with swirls"}, {"src": "liv-work-04.jpg", "cap": "Heart with wings, memorial piece"}, {"src": "liv-work-05.jpg", "cap": "Three cat faces"}, {"src": "liv-work-06.jpg", "cap": "Daisy with a face"}, {"src": "liv-work-07.jpg", "cap": "Florals"}, {"src": "liv-work-08.jpg", "cap": "Baby footprints"}, {"src": "liv-work-09.jpg", "cap": "Eagle with sword and scales"}, {"src": "liv-work-10.jpg", "cap": "Skull and crossbones"}, {"src": "liv-work-11.jpg", "cap": "Script lettering"}, {"src": "liv-work-12.jpg", "cap": "Small piece, upper back"}], "diana": [{"src": "diana-work-01.jpg", "cap": "French bulldog character piece"}, {"src": "diana-work-02.jpg", "cap": "Detailed hand piece"}, {"src": "diana-work-03.jpg", "cap": "Dark hooded figure, black and grey"}, {"src": "diana-work-04.jpg", "cap": "Monarch butterfly"}, {"src": "diana-work-05.jpg", "cap": "Stag beetle"}, {"src": "diana-work-06.jpg", "cap": "Blue fish with script"}, {"src": "diana-work-07.jpg", "cap": "Color piece, forearm"}, {"src": "diana-work-08.jpg", "cap": "Phoenix, shoulder"}, {"src": "diana-work-09.jpg", "cap": "Sleeve in progress"}, {"src": "diana-work-10.jpg", "cap": "Red and black design"}, {"src": "diana-work-11.jpg", "cap": "Woman's face in an ornate frame"}, {"src": "diana-work-12.jpg", "cap": "Lizard"}, {"src": "diana-work-13.jpg", "cap": "Creature silhouette"}, {"src": "diana-work-14.jpg", "cap": "Cartoon character with script"}, {"src": "diana-work-15.jpg", "cap": "Character in a dress"}, {"src": "diana-work-16.jpg", "cap": "Orange florals"}, {"src": "diana-work-17.jpg", "cap": "Hearts and florals"}, {"src": "diana-work-18.jpg", "cap": "Small daisies"}, {"src": "diana-work-19.jpg", "cap": "Cherries"}, {"src": "diana-work-20.jpg", "cap": "Balloon dog, ankle"}, {"src": "diana-work-21.jpg", "cap": "Skull design, forearm"}, {"src": "diana-work-22.jpg", "cap": "Fine line wrist piece"}, {"src": "diana-work-23.jpg", "cap": "Ornamental script"}, {"src": "diana-work-24.jpg", "cap": "Small script with a bird"}]};
+  var ALLOWED = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+  function fileOk(f){ if (ALLOWED.indexOf(f.type) >= 0) return true; if (!f.type) return /\.(jpe?g|png|webp|gif)$/i.test(f.name || ''); return false; }
+  function oaToast(msg){ var t = document.getElementById('oa-file-toast'); if (!t) { t = document.createElement('div'); t.id = 'oa-file-toast'; t.style.cssText = 'position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#17171a;color:#fff;padding:10px 16px;border-radius:10px;font-size:13.5px;z-index:999;box-shadow:0 8px 24px rgba(0,0,0,.35);max-width:88vw;text-align:center'; document.body.appendChild(t); } t.textContent = msg; t.style.display = 'block'; clearTimeout(t.__h); t.__h = setTimeout(function(){ t.style.display = 'none'; }, 3600); }
+  document.addEventListener('change', function(e){ var t = e.target; if (!t || t.type !== 'file' || !t.files || !t.files.length) return; for (var i = 0; i < t.files.length; i++) { if (!fileOk(t.files[i])) { e.stopPropagation(); t.value = ''; oaToast('That file is not a photo. Photos must be JPG, PNG, WebP, or GIF.'); return; } } }, true);
+  function downscale(file, cb){ if (file.type === 'image/gif' && file.size < 1500000) { var r0 = new FileReader(); r0.onload = function(){ cb(r0.result); }; r0.readAsDataURL(file); return; } var url = URL.createObjectURL(file); var img = new Image(); img.onload = function(){ var w = img.naturalWidth, h = img.naturalHeight, m = Math.max(w, h), sc = m > 1000 ? 1000 / m : 1; var c = document.createElement('canvas'); c.width = Math.max(1, Math.round(w * sc)); c.height = Math.max(1, Math.round(h * sc)); c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url); cb(c.toDataURL('image/jpeg', 0.85)); }; img.onerror = function(){ URL.revokeObjectURL(url); cb(null); }; img.src = url; }
+  function disp(src){ if (!src || src.indexOf('data:') === 0 || src.indexOf('../') === 0 || src.indexOf('http') === 0) return src; return '../' + src; }
+  function pfItem(it){ var d = document.createElement('div'); d.className = 'pf-item'; var im = document.createElement('img'); im.alt = ''; im.setAttribute('src', disp(it.src)); d.appendChild(im); var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'pf-rm'; rm.textContent = '\u00d7'; rm.setAttribute('aria-label', 'Remove photo'); rm.addEventListener('click', function(){ d.remove(); }); d.appendChild(rm); var cap = document.createElement('input'); cap.type = 'text'; cap.className = 'pf-cap'; cap.placeholder = 'Caption'; cap.value = it.cap || ''; d.appendChild(cap); return d; }
+  var stored = null; try { stored = JSON.parse(localStorage.getItem('oa-state-v3') || 'null'); } catch (e) {}
+  var PF = (stored && stored.portfolio) ? stored.portfolio : SEEDS;
+  window.__oaWirePf = function(blk){ var input = blk.querySelector('.pf-file'); var grid = blk.querySelector('.pf-grid'); if (!input || !grid) return; var status = blk.querySelector('.pf-status'); input.addEventListener('change', function(){ var files = Array.prototype.slice.call(input.files || []); input.value = ''; var added = 0, rejected = 0, pending = files.length; if (!pending) return; files.forEach(function(f){ if (!fileOk(f)) { rejected++; if (--pending === 0 && status) status.textContent = added + ' added' + (rejected ? ', ' + rejected + ' not a photo' : ''); return; } downscale(f, function(url){ if (url) { grid.appendChild(pfItem({ src: url, cap: '' })); added++; } if (--pending === 0 && status) status.textContent = added + ' added' + (rejected ? ', ' + rejected + ' not a photo' : ''); }); }); }); };
+  document.querySelectorAll('[data-panel="artists"] .soc-list[data-artist]').forEach(function(list){ var key = list.getAttribute('data-artist'); if (key === 'new') return; var blk = list.closest('div[style*="border-top"]'); if (!blk) return; var grid = blk.querySelector('.pf-grid'); if (grid && PF[key]) PF[key].forEach(function(it){ grid.appendChild(pfItem(it)); }); if (window.__oaWirePf) window.__oaWirePf(blk); });
+})();
+</script>
+<script>
+(function(){
+  var saveBtn = document.getElementById('p-save-artists');
+  if (!saveBtn) return;
+  var section = saveBtn.closest('.section');
+  var panel = document.querySelector('[data-panel="artists"]');
+  if (!section || !panel) return;
+  function blocks(){ return Array.prototype.slice.call(section.querySelectorAll('.soc-list[data-artist]')).filter(function(l){ return l.getAttribute('data-artist') !== 'new'; }).map(function(l){ return l.closest('div[style*="border-top"]'); }).filter(Boolean); }
+  function addBlockEl(){ var b = Array.prototype.slice.call(panel.querySelectorAll('button')).filter(function(x){ return x.textContent.trim() === 'Add artist'; })[0]; return b ? b.closest('div[style*="border-top"]') : null; }
+  var listView = document.createElement('div'); listView.className = 'artist-list';
+  var backBar = document.createElement('div'); backBar.className = 'artist-backbar'; backBar.style.display = 'none';
+  backBar.innerHTML = '<button class="btn" type="button" id="oa-artist-back">&larr; All artists</button><strong id="oa-artist-editing" style="font-size:15px"></strong>';
+  var firstBlock = blocks()[0];
+  if (firstBlock) { section.insertBefore(listView, firstBlock); section.insertBefore(backBar, firstBlock); }
+  function rowFor(blk){
+    var list = blk.querySelector('.soc-list'); var slug = list ? list.getAttribute('data-artist') : '';
+    var nameEl = blk.querySelector('.roleline strong');
+    var gi = blk.querySelectorAll('.addgrid input');
+    var th = blk.querySelector('.mp-thumb');
+    var row = document.createElement('button'); row.type = 'button'; row.className = 'artist-row'; row.setAttribute('data-slug', slug);
+    var img = document.createElement('img'); img.alt = ''; var src = th ? (th.getAttribute('src') || '') : ''; if (src) img.setAttribute('src', src); row.appendChild(img);
+    var mid = document.createElement('span');
+    var nm = document.createElement('span'); nm.className = 'ar-name'; nm.textContent = nameEl ? nameEl.textContent : slug;
+    var wt = document.createElement('span'); wt.className = 'ar-what'; wt.textContent = gi[1] ? gi[1].value : '';
+    mid.appendChild(nm); mid.appendChild(document.createElement('br')); mid.appendChild(wt);
+    row.appendChild(mid);
+    var ch = document.createElement('span'); ch.className = 'ar-chev'; ch.textContent = '\u203a'; row.appendChild(ch);
+    row.addEventListener('click', function(){ openArtist(blk); });
+    return row;
+  }
+  function refreshList(){ listView.innerHTML = ''; blocks().forEach(function(blk){ listView.appendChild(rowFor(blk)); }); }
+  function showList(){ try { sessionStorage.removeItem('oa-artist-view'); } catch (e) {} backBar.style.display = 'none'; listView.style.display = ''; var ab = addBlockEl(); if (ab) ab.style.display = ''; blocks().forEach(function(blk){ blk.style.display = 'none'; }); }
+  function openArtist(blk){ try { sessionStorage.setItem('oa-artist-view', blk.querySelector('.soc-list').getAttribute('data-artist')); } catch (e) {} listView.style.display = 'none'; var ab = addBlockEl(); if (ab) ab.style.display = 'none'; blocks().forEach(function(b){ b.style.display = (b === blk) ? '' : 'none'; }); backBar.style.display = ''; var nm = blk.querySelector('.roleline strong'); var ed = document.getElementById('oa-artist-editing'); if (ed) ed.textContent = nm ? nm.textContent : ''; }
+  window.__oaArtistAdded = function(blk){ refreshList(); openArtist(blk); };
+  backBar.querySelector('#oa-artist-back').addEventListener('click', function(){ refreshList(); showList(); });
+  panel.addEventListener('click', function(e){ var b = e.target.closest ? e.target.closest('button') : null; if (b && b.textContent.trim() === 'Remove artist') setTimeout(function(){ refreshList(); showList(); }, 0); });
+  var __sv = null; try { __sv = sessionStorage.getItem('oa-artist-view'); } catch (e) {}
+  refreshList(); showList();
+  try { var sv = __sv; if (sv) { var tgt = null; blocks().forEach(function(b2){ if (b2.querySelector('.soc-list').getAttribute('data-artist') === sv) tgt = b2; }); if (tgt) openArtist(tgt); } } catch (e) {}
+})();
+</script>
+<script>
+(function(){
+  var panel = document.querySelector('[data-panel="artists"]');
+  if (!panel) return;
+  var addBtn = null;
+  panel.querySelectorAll('button').forEach(function(b){ if (b.textContent.trim() === 'Add artist') addBtn = b; });
+  if (!addBtn) return;
+  var addBlock = addBtn.closest('div[style*="border-top"]');
+  if (!addBlock) return;
+  if (window.__oaWirePf) window.__oaWirePf(addBlock);
+  var grid = addBlock.querySelector('.addgrid');
+  var mpRow = addBlock.querySelector('.mp-row');
+  var socList = addBlock.querySelector('.soc-list[data-artist="new"]');
+  var socWrap = socList ? socList.parentElement : null;
+  var aboutTa = addBlock.querySelector('.new-about');
+  var aboutLab = aboutTa ? aboutTa.closest('label') : null;
+  var pfWrap = addBlock.querySelector('.pf-wrap');
+  var roleline = addBlock.querySelector('.roleline');
+  var groups = [[grid], [mpRow], [socWrap], [aboutLab, pfWrap]];
+  var names = ['The basics', 'Photo', 'Social links', 'About and work photos'];
+  var steps = groups.map(function(els){ var d = document.createElement('div'); d.className = 'ob-step'; var first = els.filter(Boolean)[0]; if (first) first.parentNode.insertBefore(d, first); els.forEach(function(el){ if (el) d.appendChild(el); }); return d; });
+  var head = document.createElement('div');
+  head.innerHTML = '<span class="ob-prog" style="font-size:13px;color:#5c5c66;font-weight:600"></span>';
+  if (roleline) roleline.after(head);
+  var startBtn = document.createElement('button');
+  startBtn.type = 'button'; startBtn.className = 'btn btn--primary ob-start'; startBtn.style.marginTop = '10px'; startBtn.textContent = 'Add an artist';
+  head.after(startBtn);
+  var nav = document.createElement('div');
+  nav.style.cssText = 'display:flex;gap:8px;align-items:center;margin-top:14px';
+  nav.innerHTML = '<button class="btn ob-back" type="button">Back</button><button class="btn btn--primary ob-next" type="button">Next</button><span class="ob-status" style="color:#b3261e;font-size:13px"></span>';
+  addBlock.appendChild(nav);
+  var backBtn = nav.querySelector('.ob-back'), nextBtn = nav.querySelector('.ob-next'), obStatus = nav.querySelector('.ob-status'), prog = head.querySelector('.ob-prog');
+  var listView = panel.querySelector('.artist-list');
+  var step = 0, active = false;
+  function render(){
+    steps.forEach(function(d, i){ d.style.display = (active && i === step) ? '' : 'none'; });
+    head.style.display = active ? '' : 'none';
+    nav.style.display = active ? '' : 'none';
+    startBtn.style.display = active ? 'none' : '';
+    addBtn.style.display = (active && step === steps.length - 1) ? '' : 'none';
+    prog.textContent = 'Step ' + (step + 1) + ' of ' + steps.length + ' \u00b7 ' + names[step];
+    backBtn.textContent = step === 0 ? 'Cancel' : 'Back';
+    nextBtn.style.display = (active && step < steps.length - 1) ? '' : 'none';
+    obStatus.textContent = '';
+  }
+  function expand(){ active = true; step = 0; if (listView) listView.style.display = 'none'; render(); }
+  function collapse(restore){ active = false; step = 0; if (restore && listView) listView.style.display = ''; render(); }
+  startBtn.addEventListener('click', expand);
+  backBtn.addEventListener('click', function(){ if (step === 0) { collapse(true); } else { step--; render(); } });
+  nextBtn.addEventListener('click', function(){
+    if (step === 0) { var inputs = addBlock.querySelectorAll('.addgrid input'); var nm = inputs[0] ? inputs[0].value.trim() : ''; if (!nm) { obStatus.textContent = 'Give the artist a name first.'; if (inputs[0]) inputs[0].focus(); return; } }
+    if (step < steps.length - 1) { step++; render(); }
+  });
+  addBtn.addEventListener('click', function(){ setTimeout(function(){ collapse(false); }, 60); });
+  render();
+})();
+</script>
+<script>
+(function(){
+  try {
+    document.querySelectorAll('[data-tab]').forEach(function(b){ b.addEventListener('click', function(){ try { sessionStorage.setItem('oa-tab', b.getAttribute('data-tab')); } catch (e) {} }); });
+    var saved = null;
+    try { saved = sessionStorage.getItem('oa-tab'); } catch (e) {}
+    if (saved) { var btn = document.querySelector('[data-tab="' + saved + '"]'); if (btn) btn.click(); }
+  } catch (e) {}
 })();
 </script>
 </body>
