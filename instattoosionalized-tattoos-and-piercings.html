@@ -1064,7 +1064,7 @@ const MODULES = {
           T.el("p", { class: "s-rail__does", text: a.does.slice(0, 3).join(" \u00b7 ") }),
           T.el("div", { class: "s-rail__quick" }, [
             T.el("p", { text: a.quick }),
-            a.sample ? T.el("span", { class: "s-rail__ig" }, [igSvgEl(), "@" + a.ig]) : T.el("a", { class: "s-rail__ig", href: "https://www.instagram.com/" + a.ig, target: "_blank", rel: "noopener" }, [igSvgEl(), "@" + a.ig])
+            !a.ig ? null : (a.sample ? T.el("span", { class: "s-rail__ig" }, [igSvgEl(), "@" + a.ig]) : T.el("a", { class: "s-rail__ig", href: "https://www.instagram.com/" + a.ig, target: "_blank", rel: "noopener" }, [igSvgEl(), "@" + a.ig]))
           ]),
           T.el("div", { class: "s-rail__actions" }, [seeBtn, reqBtn])
         ])
@@ -1116,7 +1116,7 @@ const MODULES = {
               T.el("h3", { text: a.name }),
               T.el("p", { class: "s-aview__role" }, [a.role, a.sample ? T.el("span", { class: "s-sample", text: "Sample" }) : null])
             ]),
-            a.sample ? T.el("span", { class: "s-aview__ig" }, [igSvgEl(), "@" + a.ig]) : T.el("a", { class: "s-aview__ig", href: "https://www.instagram.com/" + a.ig, target: "_blank", rel: "noopener" }, [igSvgEl(), "@" + a.ig])
+            !a.ig ? null : (a.sample ? T.el("span", { class: "s-aview__ig" }, [igSvgEl(), "@" + a.ig]) : T.el("a", { class: "s-aview__ig", href: "https://www.instagram.com/" + a.ig, target: "_blank", rel: "noopener" }, [igSvgEl(), "@" + a.ig]))
           ]),
           T.el("p", { class: "s-aview__bio", text: a.bio }),
           T.el("div", { class: "s-aview__actions" }, [
