@@ -477,15 +477,13 @@
       <h1>Artists</h1>
       <p class="sub">The roster on your site, and what each artist’s page says.</p>
       <div class="section">
-          <div class="shead"><div><h3>Your artists</h3><p>Add, edit, or remove the artists on your site. Each artist gets their own page, built from what is here. Their work photos live under Photos.</p></div><button class="btn btn--primary" type="button">Save artists</button></div>
+          <div class="shead"><div><h3>Your artists</h3><p>Add, edit, or remove the artists on your site. Each artist gets their own page, built from what is here. Their work photos live under Photos.</p></div><button class="btn btn--primary" type="button" id="p-save-artists">Save artists</button></div>
           <div style="border-top:1px solid #ececea;padding-top:12px;margin-top:12px">
             <div class="roleline"><strong>Alexis "lex"</strong><span>Tattoo &middot; Shows on the site, on their own page, and in the request form</span></div>
             <div class="addgrid">
               <label class="f">Name<input type="text" value="Alexis &quot;lex&quot;"></label>
               <label class="f">What they do<input type="text" value="Tattoo"></label>
-              <label class="f">Instagram<input type="text" value="@lextattss"></label>
-              <label class="f">Portrait<input type="text" value="On file" readonly></label>
-            </div>
+              </div><div class="mp-row" style="display:flex;align-items:center;gap:10px;margin-top:10px"><img class="mp-thumb" src="../lex-portrait.jpg" alt="" style="width:44px;height:44px;object-fit:cover;border-radius:10px" onerror="this.style.display='none'"><div><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">MAIN PHOTO</div><label class="btn" style="cursor:pointer;margin-top:2px;display:inline-block">Change photo<input type="file" accept="image/*" class="mp-file" hidden></label></div></div><div style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">SOCIAL LINKS</div><div class="soc-list" data-artist="lex"><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option selected>Instagram</option><option>Facebook</option><option>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="@lextattss" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option>Instagram</option><option selected>Facebook</option><option>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="lextatts" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div></div><button class="btn soc-add" type="button" style="margin-top:8px">Add a link</button></div>
             <label class="f" style="display:block;margin-top:8px">About them<textarea rows="2">Hi, I'm lex! I'm a freshly new tattoo artist! i love all things horror and whimsical. I love to tattoo things like cartoon characters, spooky, and high contrast!</textarea></label>
             <div style="margin-top:8px"><button class="btn" type="button">Remove artist</button> <span style="color:#5c5c66;font-size:13px">Removing an artist takes their page down at the next publish. Their photos are kept for 30 days in case they come back.</span></div>
           </div>
@@ -494,9 +492,7 @@
             <div class="addgrid">
               <label class="f">Name<input type="text" value="Liv"></label>
               <label class="f">What they do<input type="text" value="Tattoo"></label>
-              <label class="f">Instagram<input type="text" value="@Inked.by_liv"></label>
-              <label class="f">Portrait<input type="text" value="On file" readonly></label>
-            </div>
+              </div><div class="mp-row" style="display:flex;align-items:center;gap:10px;margin-top:10px"><img class="mp-thumb" src="../liv-portrait.jpg" alt="" style="width:44px;height:44px;object-fit:cover;border-radius:10px" onerror="this.style.display='none'"><div><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">MAIN PHOTO</div><label class="btn" style="cursor:pointer;margin-top:2px;display:inline-block">Change photo<input type="file" accept="image/*" class="mp-file" hidden></label></div></div><div style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">SOCIAL LINKS</div><div class="soc-list" data-artist="liv"><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option selected>Instagram</option><option>Facebook</option><option>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="@Inked.by_liv" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option>Instagram</option><option>Facebook</option><option selected>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="@Oliviaaaa._" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div></div><button class="btn soc-add" type="button" style="margin-top:8px">Add a link</button></div>
             <label class="f" style="display:block;margin-top:8px">About them<textarea rows="2">Hello! I'm Olivia but everyone calls me Liv! I'm a tattoo artist who loves all things whimsical, soft, and a little out of the ordinary. If you have an idea for a tattoo but aren't sure how to bring it to life, come see me. I love florals, cute little characters, and anything that feels like it belongs in a fairytale. My goal is to turn your ideas into a piece of art that's uniquely yours. Whether you come in with a fully formed idea or just a bunch of screenshots, I'm always excited to create something together!</textarea></label>
             <div style="margin-top:8px"><button class="btn" type="button">Remove artist</button> <span style="color:#5c5c66;font-size:13px">Removing an artist takes their page down at the next publish. Their photos are kept for 30 days in case they come back.</span></div>
           </div>
@@ -505,9 +501,7 @@
             <div class="addgrid">
               <label class="f">Name<input type="text" value="Diana"></label>
               <label class="f">What they do<input type="text" value="Tattoo"></label>
-              <label class="f">Instagram<input type="text" value="@excommunicated_af"></label>
-              <label class="f">Portrait<input type="text" value="On file" readonly></label>
-            </div>
+              </div><div class="mp-row" style="display:flex;align-items:center;gap:10px;margin-top:10px"><img class="mp-thumb" src="../diana-portrait.jpg" alt="" style="width:44px;height:44px;object-fit:cover;border-radius:10px" onerror="this.style.display='none'"><div><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">MAIN PHOTO</div><label class="btn" style="cursor:pointer;margin-top:2px;display:inline-block">Change photo<input type="file" accept="image/*" class="mp-file" hidden></label></div></div><div style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">SOCIAL LINKS</div><div class="soc-list" data-artist="diana"><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option selected>Instagram</option><option>Facebook</option><option>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="@excommunicated_af" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div><div class="soc-row" style="display:flex;gap:8px;align-items:center;margin-top:6px"><select class="soc-platform" aria-label="Platform"><option>Instagram</option><option>Facebook</option><option selected>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" value="@excommunicated_pos" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button></div></div><button class="btn soc-add" type="button" style="margin-top:8px">Add a link</button></div>
             <label class="f" style="display:block;margin-top:8px">About them<textarea rows="2">I enjoy doing tattoos ranging from realism, characters of all sorts, dark gothic art, to detailed designs of all natures. I as well love to tattoo cover up tattoos</textarea></label>
             <div style="margin-top:8px"><button class="btn" type="button">Remove artist</button> <span style="color:#5c5c66;font-size:13px">Removing an artist takes their page down at the next publish. Their photos are kept for 30 days in case they come back.</span></div>
           </div>
@@ -516,8 +510,7 @@
             <div class="addgrid">
               <label class="f">Name<input type="text" placeholder="Full name"></label>
               <label class="f">What they do<input type="text" placeholder="Like Tattoo, or Piercing"></label>
-              <label class="f">Instagram<input type="text" placeholder="@handle"></label>
-            </div>
+              </div><div style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">SOCIAL LINKS</div><div class="soc-list" data-artist="new"></div><button class="btn soc-add" type="button" style="margin-top:8px">Add a link</button></div>
             <button class="btn" type="button" style="margin-top:10px">Add artist</button>
           </div>
         </div>
@@ -562,13 +555,13 @@
           <div id="p-prices"></div>
         </div>
         <p class="status" id="p-edit-status"></p>        <div class="section">
-          <div class="shead"><div><h3>Your policies</h3><p>These words show on your website word for word. Change them here and the site follows.</p></div></div>
+          <div class="shead"><div><h3>Your policies</h3><p>These words show on your website word for word. Change them here and the site follows. Leave one blank and it does not show.</p></div><button class="btn btn--primary" type="button" id="p-save-policies">Save policies</button></div>
           <label class="f" for="p-pol-deposit">Deposit policy</label>
-          <textarea id="p-pol-deposit" rows="3">A $50 deposit holds your spot, and it comes off your total on the day. No-shows and same-day cancels lose the deposit.</textarea>
+          <textarea id="p-pol-deposit" rows="3">The shop's deposit is $40 and holds your spot.</textarea>
           <label class="f" for="p-pol-age">Age and ID</label>
-          <textarea id="p-pol-age" rows="2">You must be 18 or older with a photo ID for tattoos and piercings. No exceptions.</textarea>
+          <textarea id="p-pol-age" rows="2" placeholder="The shop's age and ID policy, in their own words."></textarea>
           <label class="f" for="p-pol-after">Aftercare</label>
-          <textarea id="p-pol-after" rows="3">Keep the wrap on for the first few hours, wash gently once a day, and use a thin layer of ointment twice a day while it heals. The full sheet is handed out at the shop.</textarea>
+          <textarea id="p-pol-after" rows="3" placeholder="The shop's aftercare words, once they write them."></textarea>
         </div>
         <p class="status" id="p-edit-status"></p>
       </div>
@@ -584,13 +577,14 @@
           <button class="btn" type="button" style="margin-top:10px">Add guest artist</button>
         </div>
 <div class="panel" style="margin-top:14px">
-          <div class="head"><h3>Booked out until</h3></div>
-          <p style="color:#5c5c66;font-size:14px;line-height:1.55;margin-bottom:10px">If an artist is booked solid for a while, set the date here. The request calendar for that artist starts on that date. Nobody gets turned away, the earlier days just do not show for them. Leave it blank when they have room now.</p>
-          <div class="roleline"><strong>Lex</strong><span><input type="date" aria-label="Lex booked out until"></span></div>
-          <div class="roleline"><strong>Liv</strong><span><input type="date" aria-label="Liv booked out until"></span></div>
-          <div class="roleline"><strong>Diana</strong><span><input type="date" aria-label="Diana booked out until"></span></div>
-        </div>
-</section>
+        <div class="head"><h3>Booked out</h3></div>
+        <p style="color:#5c5c66;font-size:14px;line-height:1.55;margin-bottom:10px">If an artist is booked solid for a stretch, set the start and end dates here. On the request form, those days do not show for that artist. Leave both blank when they have room.</p>
+        <div class="roleline"><strong>Lex</strong><span>From <input type="date" id="p-bk-lex-from" aria-label="Lex booked out from"> to <input type="date" id="p-bk-lex-to" aria-label="Lex booked out to"></span></div>
+        <div class="roleline"><strong>Liv</strong><span>From <input type="date" id="p-bk-liv-from" aria-label="Liv booked out from"> to <input type="date" id="p-bk-liv-to" aria-label="Liv booked out to"></span></div>
+        <div class="roleline"><strong>Diana</strong><span>From <input type="date" id="p-bk-diana-from" aria-label="Diana booked out from"> to <input type="date" id="p-bk-diana-to" aria-label="Diana booked out to"></span></div>
+        <div style="margin-top:10px;display:flex;gap:10px;align-items:center"><button class="btn btn--primary" type="button" id="p-save-bookedout">Save booked out dates</button><span class="status" id="p-bookedout-status"></span></div>
+      </div>
+    </section>
 
     <section data-panel="photos" class="hidden">
       <h1>Photos</h1>
@@ -718,7 +712,7 @@ var DEFAULTS = {
     {group:'Tattoos', sample:true, items:[['Shop minimum','$60'],['Small flash tattoo','$80']]},
     {group:'Piercing', sample:true, items:[['Standard body piercing','$45']]}
   ],
-  photos: PHOTOS0.slice(),
+  photos: PHOTOS0.slice(), bookedOut: { lex: { from: '', to: '' }, liv: { from: '', to: '' }, diana: { from: '', to: '' } }, artistsSocial: null, policies: { deposit: "The shop's deposit is $40 and holds your spot.", age: '', aftercare: '' },
   requests: [
     {text:'Update Saturday hours', when:'Oct 24', status:'Completed'},
     {text:'Add the fall special to the scrolling message', when:'Oct 20', status:'Completed'}
@@ -737,7 +731,7 @@ var DEFAULTS = {
   var state;
   try { state = JSON.parse(localStorage.getItem(KEY)) || null; } catch (e) { state = null; }
   if (!state || !state.photos) state = JSON.parse(JSON.stringify(DEFAULTS));
-  if (!state.people) state.people = JSON.parse(JSON.stringify(DEFAULTS.people));
+  if (!state.people) state.people = JSON.parse(JSON.stringify(DEFAULTS.people)); if (!state.bookedOut) state.bookedOut = JSON.parse(JSON.stringify(DEFAULTS.bookedOut)); if (!state.policies) state.policies = JSON.parse(JSON.stringify(DEFAULTS.policies));
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
   function toast(msg){ var t = $('#p-toast'); t.textContent = msg; t.classList.remove('hidden'); clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.add('hidden'); }, 3200); }
   var pn2 = location.pathname;
@@ -893,7 +887,7 @@ var DEFAULTS = {
   function formatTime(v){ var p = v.split(':'); var hh = parseInt(p[0], 10); var suf = hh >= 12 ? 'PM' : 'AM'; hh = hh % 12 || 12; return hh + ':' + p[1] + ' ' + suf; }
   function populateEdit(){
     $('#p-ticker').value = state.ticker.join('\n'); if (state.banner) { $('#p-banner-on').checked = !!state.banner.on; $('#p-banner-text').value = state.banner.text || ''; $('#p-banner-from').value = state.banner.from || ''; $('#p-banner-to').value = state.banner.to || ''; }
-    $('#p-phone').value = state.phoneDisplay;
+    if (state.bookedOut) { ['lex', 'liv', 'diana'].forEach(function(k){ var r = state.bookedOut[k] || {}; var f1 = $('#p-bk-' + k + '-from'), f2 = $('#p-bk-' + k + '-to'); if (f1) f1.value = r.from || ''; if (f2) f2.value = r.to || ''; }); } if (state.policies) { $('#p-pol-deposit').value = state.policies.deposit || ''; $('#p-pol-age').value = state.policies.age || ''; $('#p-pol-after').value = state.policies.aftercare || ''; } if (state.artistsSocial && typeof socRow === 'function') { $$('.soc-list').forEach(function(list){ var key = list.getAttribute('data-artist'); var rows = state.artistsSocial[key]; if (!rows) return; list.innerHTML = ''; rows.forEach(function(r){ list.appendChild(socRow(r.platform, r.handle)); }); }); } $('#p-phone').value = state.phoneDisplay;
     var wrap = $('#p-hours'); wrap.innerHTML = '';
     state.hours.forEach(function(pair, idx){
       var row = document.createElement('div'); row.className = 'hrow'; row.dataset.index = idx;
@@ -915,7 +909,12 @@ var DEFAULTS = {
     var lines = $('#p-ticker').value.split('\n').map(function(x){ return x.trim(); }).filter(Boolean);
     if (!lines.length) { setEditStatus('Add at least one line for the scrolling message.'); return; }
     state.ticker = lines; save(); setEditStatus('Scrolling message saved.'); toast('Scrolling message saved.');
-  }); $('#p-save-banner').addEventListener('click', function(){ state.banner = { on: $('#p-banner-on').checked, text: $('#p-banner-text').value.trim(), from: $('#p-banner-from').value, to: $('#p-banner-to').value }; save(); setEditStatus('Banner saved.'); toast('Banner saved.'); });
+  }); $('#p-save-banner').addEventListener('click', function(){ state.banner = { on: $('#p-banner-on').checked, text: $('#p-banner-text').value.trim(), from: $('#p-banner-from').value, to: $('#p-banner-to').value }; save(); setEditStatus('Banner saved.'); toast('Banner saved.'); }); $('#p-save-bookedout').addEventListener('click', function(){ var out = {}; var bad = ''; ['lex', 'liv', 'diana'].forEach(function(k){ var fr = $('#p-bk-' + k + '-from').value, to = $('#p-bk-' + k + '-to').value; if (fr && to && fr > to) bad = k; out[k] = { from: fr, to: to }; }); if (bad) { $('#p-bookedout-status').textContent = 'The end date is before the start date for ' + bad + '. Fix that row first.'; return; } state.bookedOut = out; save(); $('#p-bookedout-status').textContent = 'Booked out dates saved.'; toast('Booked out dates saved.'); }); function socRow(platform, handle) { var row = document.createElement('div'); row.className = 'soc-row'; row.style.cssText = 'display:flex;gap:8px;align-items:center;margin-top:6px'; var sel = document.createElement('select'); sel.className = 'soc-platform'; sel.setAttribute('aria-label', 'Platform'); ['Instagram', 'Facebook', 'TikTok', 'YouTube', 'X', 'Other'].forEach(function(p){ var o = document.createElement('option'); o.textContent = p; if (p === platform) o.selected = true; sel.appendChild(o); }); var inp = document.createElement('input'); inp.type = 'text'; inp.className = 'soc-handle'; inp.value = handle || ''; inp.placeholder = '@handle or link'; inp.style.flex = '1'; var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'btn soc-rm'; rm.textContent = 'Remove'; row.appendChild(sel); row.appendChild(inp); row.appendChild(rm); return row; }
+ var artistsPanel = document.querySelector('[data-panel="artists"]');
+ if (artistsPanel) { artistsPanel.addEventListener('click', function(e){ var add = e.target.closest('.soc-add'); if (add) { var list = add.parentElement.querySelector('.soc-list'); if (list) list.appendChild(socRow('Instagram', '')); return; } var rm = e.target.closest('.soc-rm'); if (rm) { var row = rm.closest('.soc-row'); if (row) row.remove(); } });
+ artistsPanel.addEventListener('change', function(e){ if (!e.target.classList || !e.target.classList.contains('mp-file')) return; var file = e.target.files && e.target.files[0]; if (!file) return; var wrap = e.target.closest('.mp-row'); var img = wrap ? wrap.querySelector('.mp-thumb') : null; if (!img) return; var rd = new FileReader(); rd.onload = function(){ img.src = rd.result; img.style.display = ''; }; rd.readAsDataURL(file); }); }
+ var saveArtistsBtn = $('#p-save-artists');
+ if (saveArtistsBtn) saveArtistsBtn.addEventListener('click', function(){ var out = {}; $$('.soc-list').forEach(function(list){ var key = list.getAttribute('data-artist'); if (!key || key === 'new') return; var rows = []; list.querySelectorAll('.soc-row').forEach(function(r){ var h = r.querySelector('.soc-handle').value.trim(); if (h) rows.push({ platform: r.querySelector('.soc-platform').value, handle: h }); }); out[key] = rows; }); state.artistsSocial = out; save(); toast('Artists saved.'); }); var savePolBtn = $('#p-save-policies'); if (savePolBtn) savePolBtn.addEventListener('click', function(){ state.policies = { deposit: $('#p-pol-deposit').value.trim(), age: $('#p-pol-age').value.trim(), aftercare: $('#p-pol-after').value.trim() }; save(); setEditStatus('Policies saved.'); toast('Policies saved.'); });
   $('#p-save-hours').addEventListener('click', function(){
     var updated = [];
     var rows = $$('.hrow');

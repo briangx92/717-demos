@@ -558,7 +558,19 @@
         </div>
       </div>
     </div>
-  </div>
+    <div class="c-card" id="policies-card" style="margin-top:var(--sp-4)">
+      <h3>Good to know</h3>
+      <div data-pol="deposit">
+        <p style="margin-top:10px"><strong>Deposit.</strong> <span data-pol-text>The shop's deposit is $40 and holds your spot.</span></p>
+      </div>
+      <div data-pol="age" hidden>
+        <p style="margin-top:10px"><strong>Age and ID.</strong> <span data-pol-text></span></p>
+      </div>
+      <div data-pol="aftercare" hidden>
+        <p style="margin-top:10px"><strong>Aftercare.</strong> <span data-pol-text></span></p>
+      </div>
+    </div>
+      </div>
 </section>
 
 <section class="l-section s-ask" id="ask" data-module="ask">
@@ -1258,6 +1270,8 @@ const MODULES = {
       if (k < T.key(n) || k > T.key(T.add(n.y, n.m, n.d, L.bookingDays))) return false;
       const fo = firstOpen();
       if (fo && k < T.key(fo)) return false;
+      const ra = st.artist ? artistBySlug[st.artist] : null;
+      if (ra && ra.bookedOutFrom && ra.bookedOutTo && k >= ra.bookedOutFrom.replace(/-/g, '') && k <= ra.bookedOutTo.replace(/-/g, '')) return false;
       return slotsFor(o).length > 0;
     }
     function partsFor(o){
@@ -1399,6 +1413,8 @@ const MODULES = {
         const fo = firstOpen();
         if (fo && a.date && T.key(a.date) < T.key(fo)) { a.date = null; a.part = null; a.time = null; }
         body.append(...q("When works?", "Flexible is fine.").filter(Boolean));
+        const rb = st.artist ? artistBySlug[st.artist] : null;
+        if (rb && rb.bookedOutFrom && rb.bookedOutTo) { if (a.date && T.key(a.date) >= rb.bookedOutFrom.replace(/-/g, '') && T.key(a.date) <= rb.bookedOutTo.replace(/-/g, '')) { a.date = null; a.part = null; a.time = null; } const pf = rb.bookedOutFrom.split("-"), pt = rb.bookedOutTo.split("-"); body.append(T.el("p", { class: "c-field__hint", text: rb.first + " is booked out from " + T.fmtDate({ y: +pf[0], m: +pf[1], d: +pf[2] }, { weekday: "short", month: "short", day: "numeric" }) + " to " + T.fmtDate({ y: +pt[0], m: +pt[1], d: +pt[2] }, { weekday: "short", month: "short", day: "numeric" }) + ". Those days do not show for " + rb.first + "." })); }
         if (fo) body.append(T.el("p", { class: "c-field__hint", text: artistBySlug[st.artist].first + " is booked out until " + T.fmtDate(fo, { weekday: "short", month: "short", day: "numeric" }) + ". The calendar starts there." }));
         const flex = T.el("button", { type: "button", class: "c-choice c-choice--wide", "data-key": "when-flex", "aria-pressed": String(a.whenMode === "flex"), text: "Flexible",
           onclick: () => { a.whenMode = "flex"; a.date = null; a.part = null; a.time = null; st.calOpen = false; renderStep("when-flex", false, true); recheck(); } });
@@ -1797,6 +1813,7 @@ const MODULES = {
       var work = document.querySelector('[data-module="work"]');
       if (work) work.dispatchEvent(new CustomEvent('pv-rebuild-work'));
     }
+    if (st.policies) { Object.keys(st.policies).forEach(function(k){ var row = document.querySelector('[data-pol="' + k + '"]'); if (!row) return; var t = (st.policies[k] || '').trim(); var span = row.querySelector('[data-pol-text]'); if (t) { if (span) span.textContent = t; row.hidden = false; } else { row.hidden = true; } }); var pc = document.getElementById('policies-card'); if (pc && !pc.querySelector('[data-pol]:not([hidden])')) pc.hidden = true; } if (st.bookedOut) { Object.keys(st.bookedOut).forEach(function(slug){ var r = st.bookedOut[slug] || {}; (SITE.artists || []).forEach(function(ar){ if (ar.slug === slug) { ar.bookedOutFrom = r.from || ''; ar.bookedOutTo = r.to || ''; } }); }); }
     if (st.banner && st.banner.on && st.banner.text) {
       var isoToday = new Date().toISOString().slice(0, 10);
       if ((!st.banner.from || st.banner.from <= isoToday) && (!st.banner.to || st.banner.to >= isoToday)) {
