@@ -944,7 +944,7 @@ var DEFAULTS = {
     var lines = $('#p-ticker').value.split('\n').map(function(x){ return x.trim(); }).filter(Boolean);
     if (!lines.length) { setEditStatus('Add at least one line for the scrolling message.'); return; }
     state.ticker = lines; save(); setEditStatus('Scrolling message saved.'); toast('Scrolling message saved.');
-  }); $('#p-save-banner').addEventListener('click', function(){ state.banner = { on: $('#p-banner-on').checked, text: $('#p-banner-text').value.trim(), from: $('#p-banner-from').value, to: $('#p-banner-to').value }; save(); setEditStatus('Banner saved.'); toast('Banner saved.'); }); $('#p-save-bookedout').addEventListener('click', function(){ var out = {}; var bad = ''; ['lex', 'liv', 'diana'].forEach(function(k){ var fr = $('#p-bk-' + k + '-from').value, to = $('#p-bk-' + k + '-to').value; if (fr && to && fr > to) bad = k; out[k] = { from: fr, to: to }; }); if (bad) { $('#p-bookedout-status').textContent = 'The end date is before the start date for ' + bad + '. Fix that row first.'; return; } state.bookedOut = out; save(); $('#p-bookedout-status').textContent = 'Booked out dates saved.'; toast('Booked out dates saved.'); }); function socRow(platform, handle) { var row = document.createElement('div'); row.className = 'soc-row'; row.style.cssText = 'display:flex;gap:8px;align-items:center;margin-top:6px'; var sel = document.createElement('select'); sel.className = 'soc-platform'; sel.setAttribute('aria-label', 'Platform'); ['Instagram', 'Facebook', 'TikTok', 'YouTube', 'X', 'Other'].forEach(function(p){ var o = document.createElement('option'); o.textContent = p; if (p === platform) o.selected = true; sel.appendChild(o); }); var inp = document.createElement('input'); inp.type = 'text'; inp.className = 'soc-handle'; inp.value = handle || ''; inp.placeholder = '@handle or link'; inp.style.flex = '1'; var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'btn soc-rm'; rm.textContent = 'Remove'; row.appendChild(sel); row.appendChild(inp); row.appendChild(rm); return row; }
+  }); $('#p-save-banner').addEventListener('click', function(){ state.banner = { on: $('#p-banner-on').checked, text: $('#p-banner-text').value.trim(), from: $('#p-banner-from').value, to: $('#p-banner-to').value }; save(); setEditStatus('Banner saved.'); toast('Banner saved.'); }); $('#p-save-bookedout').addEventListener('click', function(){ var out = {}; var bad = ''; Array.from(document.querySelectorAll('input[id^="p-bk-"][id$="-from"]')).map(function(el){ return el.id.slice(5, -5); }).forEach(function(k){ var fr = $('#p-bk-' + k + '-from').value, to = $('#p-bk-' + k + '-to').value; if (fr && to && fr > to) bad = k; out[k] = { from: fr, to: to }; }); if (bad) { $('#p-bookedout-status').textContent = 'The end date is before the start date for ' + bad + '. Fix that row first.'; return; } state.bookedOut = out; save(); $('#p-bookedout-status').textContent = 'Booked out dates saved.'; toast('Booked out dates saved.'); }); function socRow(platform, handle) { var row = document.createElement('div'); row.className = 'soc-row'; row.style.cssText = 'display:flex;gap:8px;align-items:center;margin-top:6px'; var sel = document.createElement('select'); sel.className = 'soc-platform'; sel.setAttribute('aria-label', 'Platform'); ['Instagram', 'Facebook', 'TikTok', 'YouTube', 'X', 'Other'].forEach(function(p){ var o = document.createElement('option'); o.textContent = p; if (p === platform) o.selected = true; sel.appendChild(o); }); var inp = document.createElement('input'); inp.type = 'text'; inp.className = 'soc-handle'; inp.value = handle || ''; inp.placeholder = '@handle or link'; inp.style.flex = '1'; var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'btn soc-rm'; rm.textContent = 'Remove'; row.appendChild(sel); row.appendChild(inp); row.appendChild(rm); return row; }
  var artistsPanel = document.querySelector('[data-panel="artists"]');
  if (artistsPanel) { artistsPanel.addEventListener('click', function(e){ var add = e.target.closest('.soc-add'); if (add) { var list = add.parentElement.querySelector('.soc-list'); if (list) list.appendChild(socRow('Instagram', '')); return; } var rm = e.target.closest('.soc-rm'); if (rm) { var row = rm.closest('.soc-row'); if (row) row.remove(); } });
  artistsPanel.addEventListener('change', function(e){ if (!e.target.classList || !e.target.classList.contains('mp-file')) return; var file = e.target.files && e.target.files[0]; if (!file) return; var wrap = e.target.closest('.mp-row'); var img = wrap ? wrap.querySelector('.mp-thumb') : null; if (!img) return; var rd = new FileReader(); rd.onload = function(){ img.src = rd.result; img.style.display = ''; }; rd.readAsDataURL(file); }); }
@@ -1561,6 +1561,46 @@ var DEFAULTS = {
   window.__oaArtistAdded = function(blk){ refreshList(); openArtist(blk); };
   backBar.querySelector('#oa-artist-back').addEventListener('click', function(){ refreshList(); showList(); });
   panel.addEventListener('click', function(e){ var b = e.target.closest ? e.target.closest('button') : null; if (b && b.textContent.trim() === 'Remove artist') setTimeout(function(){ refreshList(); showList(); }, 0); });
+  try {
+    var st0 = JSON.parse(localStorage.getItem('oa-state-v3') || 'null');
+    if (st0 && Array.isArray(st0.artists)) {
+      var have = {};
+      blocks().forEach(function(b){ var l = b.querySelector('.soc-list'); if (l) have[l.getAttribute('data-artist')] = true; });
+      var tmpl = blocks()[0];
+      var ab0 = addBlockEl();
+      st0.artists.forEach(function(sa){
+        if (!sa.slug || have[sa.slug] || !tmpl || !ab0) return;
+        var blk = tmpl.cloneNode(true);
+        delete blk.dataset.pfWired;
+        var pg0 = blk.querySelector('.pf-grid'); if (pg0) pg0.innerHTML = '';
+        var list = blk.querySelector('.soc-list'); if (list) list.setAttribute('data-artist', sa.slug);
+        var strong = blk.querySelector('.roleline strong'); if (strong) strong.textContent = sa.name || sa.slug;
+        var gi = blk.querySelectorAll('.addgrid input'); if (gi[0]) gi[0].value = sa.name || ''; if (gi[1]) gi[1].value = sa.what || 'Tattoo';
+        var ta = blk.querySelector('textarea'); if (ta) ta.value = sa.about || '';
+        var th = blk.querySelector('.mp-thumb');
+        if (th) { if (sa.photo) { th.src = /^(data:|https?:)/.test(sa.photo) ? sa.photo : '../' + sa.photo; th.style.visibility = 'visible'; th.style.display = ''; } else { th.removeAttribute('src'); th.style.visibility = 'hidden'; } }
+        if (list) {
+          var rows = blk.querySelectorAll('.soc-row');
+          var socs = (sa.socials && sa.socials.length) ? sa.socials : [{ p: 'Instagram', h: '' }];
+          var firstRow = rows[0];
+          if (firstRow) {
+            for (var k = rows.length - 1; k >= 1; k--) rows[k].remove();
+            socs.forEach(function(so, ix){
+              var r = ix === 0 ? firstRow : firstRow.cloneNode(true);
+              var sel = r.querySelector('.soc-platform'); if (sel) sel.value = so.p || 'Instagram';
+              var hIn = r.querySelector('.soc-handle'); if (hIn) hIn.value = so.h || '';
+              if (ix > 0) list.appendChild(r);
+            });
+          }
+        }
+        var grid2 = blk.querySelector('.pf-grid');
+        if (grid2) { var pfs = (st0.portfolio && st0.portfolio[sa.slug]) || []; pfs.forEach(function(it){ var d = document.createElement('div'); d.className = 'pf-item'; var im = document.createElement('img'); im.alt = ''; im.setAttribute('src', /^(data:|https?:|\.\.\/)/.test(it.src) ? it.src : '../' + it.src); d.appendChild(im); var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'pf-rm'; rm.textContent = '\u00d7'; rm.setAttribute('aria-label', 'Remove photo'); rm.addEventListener('click', function(){ d.remove(); }); d.appendChild(rm); var cap = document.createElement('input'); cap.type = 'text'; cap.className = 'pf-cap'; cap.placeholder = 'Caption'; cap.value = it.cap || ''; d.appendChild(cap); grid2.appendChild(d); }); }
+        ab0.parentNode.insertBefore(blk, ab0);
+        if (window.__oaWirePf) window.__oaWirePf(blk);
+        have[sa.slug] = true;
+      });
+    }
+  } catch (e) {}
   var __sv = null; try { __sv = localStorage.getItem('oa-artist-view'); } catch (e) {}
   refreshList(); showList();
   try { var sv = __sv; if (sv) { var tgt = null; blocks().forEach(function(b2){ if (b2.querySelector('.soc-list').getAttribute('data-artist') === sv) tgt = b2; }); if (tgt) openArtist(tgt); } } catch (e) {}
@@ -1649,6 +1689,81 @@ var DEFAULTS = {
     if ((t.closest && t.closest('.soc-add, .soc-rm, .pf-rm')) || (b && /Remove artist|Add artist/.test(b.textContent))) dirty();
   }, true);
   btn.addEventListener('click', function(){ setTimeout(function(){ btn.style.display = 'none'; }, 50); });
+})();
+</script>
+<script>
+(function(){
+  function loadState(){ try { return JSON.parse(localStorage.getItem('oa-state-v3') || 'null'); } catch (e) { return null; } }
+  function storeState(st){ try { localStorage.setItem('oa-state-v3', JSON.stringify(st)); } catch (e) {} try { if (window.state) { window.state.guest = st.guest; window.state.bookedOut = st.bookedOut; } } catch (e) {} }
+  /* Booked out: a row for every artist */
+  try {
+    var st = loadState();
+    var artists = (st && Array.isArray(st.artists)) ? st.artists : [];
+    var firstBk = document.querySelector('input[id^="p-bk-"][id$="-from"]');
+    if (firstBk && artists.length) {
+      var row0 = firstBk.closest('.roleline');
+      var saveBtn = document.getElementById('p-save-bookedout');
+      var anchor = saveBtn ? saveBtn.closest('div') : null;
+      artists.forEach(function(a){
+        if (!a.slug || document.getElementById('p-bk-' + a.slug + '-from')) return;
+        var row = row0.cloneNode(true);
+        var strong = row.querySelector('strong'); if (strong) strong.textContent = a.name || a.slug;
+        var f1 = row.querySelector('input[id$="-from"]'); var f2 = row.querySelector('input[id$="-to"]');
+        if (f1) { f1.id = 'p-bk-' + a.slug + '-from'; f1.setAttribute('aria-label', (a.name || a.slug) + ' booked out from'); }
+        if (f2) { f2.id = 'p-bk-' + a.slug + '-to'; f2.setAttribute('aria-label', (a.name || a.slug) + ' booked out to'); }
+        var saved = (st.bookedOut && st.bookedOut[a.slug]) || {};
+        if (f1) f1.value = saved.from || ''; if (f2) f2.value = saved.to || '';
+        if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(row, anchor); else row0.parentNode.appendChild(row);
+      });
+    }
+  } catch (e) {}
+  /* Guest artists: add, show, remove */
+  try {
+    var heads = Array.from(document.querySelectorAll('h3'));
+    var gh = heads.filter(function(h){ return h.textContent.trim() === 'Guest artists'; })[0];
+    var panel = gh ? gh.closest('.panel') : null;
+    if (panel) {
+      var role = panel.querySelector('.roleline');
+      var strong = role ? role.querySelector('strong') : null;
+      var span = role ? role.querySelector('span') : null;
+      var inputs = panel.querySelectorAll('.addgrid input');
+      var addBtn = Array.from(panel.querySelectorAll('button')).filter(function(b){ return b.textContent.trim() === 'Add guest artist'; })[0];
+      var rmBtn = document.createElement('button');
+      rmBtn.type = 'button'; rmBtn.className = 'btn'; rmBtn.style.marginTop = '10px'; rmBtn.style.marginLeft = '8px'; rmBtn.textContent = 'Remove guest artist'; rmBtn.style.display = 'none';
+      if (addBtn) addBtn.after(rmBtn);
+      var status = document.createElement('span');
+      status.style.cssText = 'margin-left:10px;color:#5c5c66;font-size:13px';
+      rmBtn.after(status);
+      function showGuest(g){
+        if (g && g.name) { if (strong) strong.textContent = g.name; if (span) span.textContent = ((g.what || '') + (g.dates ? ' \u00b7 ' + g.dates : '')).trim(); rmBtn.style.display = ''; }
+        else { if (strong) strong.textContent = 'No guest artist right now'; if (span) span.textContent = 'When a guest artist is scheduled, they show up here'; rmBtn.style.display = 'none'; }
+      }
+      var st2 = loadState();
+      showGuest(st2 ? st2.guest : null);
+      var myGuest = st2 ? (st2.guest || null) : null;
+      document.addEventListener('click', function(e){
+        var b = e.target && e.target.closest ? e.target.closest('button[id^="p-save"]') : null;
+        if (!b) return;
+        setTimeout(function(){ var cur = loadState() || {}; cur.guest = myGuest; storeState(cur); }, 120);
+      }, true);
+      if (addBtn) addBtn.addEventListener('click', function(){
+        var name = inputs[0] ? inputs[0].value.trim() : '';
+        if (!name) { status.textContent = 'Type the guest artist name first.'; return; }
+        var g = { name: name, what: inputs[1] ? inputs[1].value.trim() : '', dates: inputs[2] ? inputs[2].value.trim() : '' };
+        myGuest = g;
+        var cur = loadState() || {}; cur.guest = g; storeState(cur);
+        showGuest(g);
+        if (inputs[0]) inputs[0].value = ''; if (inputs[1]) inputs[1].value = ''; if (inputs[2]) inputs[2].value = '';
+        status.textContent = 'Guest artist added.';
+      });
+      rmBtn.addEventListener('click', function(){
+        myGuest = null;
+        var cur = loadState() || {}; cur.guest = null; storeState(cur);
+        showGuest(null);
+        status.textContent = 'Guest artist removed.';
+      });
+    }
+  } catch (e) {}
 })();
 </script>
 </body>
