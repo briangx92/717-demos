@@ -530,6 +530,7 @@
               <label class="f">Name<input type="text" placeholder="Full name"></label>
               <label class="f">What they do<input type="text" placeholder="Like Tattoo, or Piercing"></label>
               </div><div style="margin-top:12px"><div style="font-size:12px;letter-spacing:.06em;color:#5c5c66">SOCIAL LINKS</div><div class="soc-list" data-artist="new"></div><button class="btn soc-add" type="button" style="margin-top:8px">Add a link</button></div>
+            <label class="f" style="display:block;margin-top:10px">About them<textarea class="new-about" rows="3" placeholder="Their words about their work, in their voice"></textarea></label>
             <button class="btn" type="button" style="margin-top:10px">Add artist</button>
           </div>
         </div>
@@ -1418,6 +1419,8 @@ var DEFAULTS = {
     var inputs = addBlock.querySelectorAll('.addgrid input');
     var name = inputs[0] ? inputs[0].value.trim() : '';
     var what = (inputs[1] && inputs[1].value.trim()) || 'Tattoo';
+    var aboutTa = addBlock.querySelector('.new-about');
+    var aboutVal = aboutTa ? aboutTa.value : '';
     if (!name) { status.textContent = 'Type the artist’s name first, then tap Add artist.'; if (inputs[0]) inputs[0].focus(); return; }
     var firstList = panel.querySelector('.soc-list[data-artist]:not([data-artist="new"])');
     if (!firstList) { status.textContent = 'Could not add right now.'; return; }
@@ -1432,7 +1435,7 @@ var DEFAULTS = {
     var thumb = clone.querySelector('.mp-thumb');
     if (thumb) { thumb.alt = name + ' main photo'; if (newPhotoData) { thumb.src = newPhotoData; thumb.style.visibility = 'visible'; } else { thumb.removeAttribute('src'); thumb.style.visibility = 'hidden'; } }
     var ta = clone.querySelector('textarea');
-    if (ta) ta.value = '';
+    if (ta) ta.value = aboutVal;
     var list = clone.querySelector('.soc-list');
     list.setAttribute('data-artist', slug);
     list.innerHTML = '';
@@ -1460,7 +1463,7 @@ var DEFAULTS = {
     if (inputs[0]) inputs[0].value = '';
     if (inputs[1]) inputs[1].value = '';
     if (addList) addList.innerHTML = '';
-    newPhotoData = ''; if (newThumb) { newThumb.removeAttribute('src'); newThumb.style.visibility = 'hidden'; } if (newEmpty) newEmpty.style.display = ''; if (newFile) newFile.value = '';
+    newPhotoData = ''; if (newThumb) { newThumb.removeAttribute('src'); newThumb.style.visibility = 'hidden'; } if (newEmpty) newEmpty.style.display = ''; if (newFile) newFile.value = ''; var nab = addBlock.querySelector('.new-about'); if (nab) nab.value = '';
     status.textContent = 'Added ' + name + '. Tap their photo to add one, write their About, then Save artists.';
     clone.scrollIntoView({block: 'center'});
   });
