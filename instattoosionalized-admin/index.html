@@ -1360,6 +1360,98 @@ var DEFAULTS = {
   document.getElementById('crm-add').addEventListener('submit', function(ev){ ev.preventDefault(); var name = document.getElementById('crm-name').value.trim(); if (!name) return; clients.unshift({ id: 'c' + Date.now(), name: name, artist: document.getElementById('crm-artist').value, piece: document.getElementById('crm-piece').value.trim() || 'Not noted yet', last: 'Today', visits: 1, phone: document.getElementById('crm-phone').value.trim() || 'Not on file', status: 'Booked' }); this.reset(); persist(); render(); });
 })();
 </script>
+<script>
+(function(){
+  var panel = document.querySelector('[data-panel="artists"]');
+  if (!panel) return;
+  function blockOf(el){ return el.closest ? el.closest('div[style*="border-top"]') : null; }
+  panel.addEventListener('click', function(e){
+    var t = e.target;
+    var b = (t && t.closest) ? t.closest('button') : null;
+    if (!b || b.textContent.trim() !== 'Remove artist') return;
+    var blk = blockOf(b);
+    if (blk) blk.remove();
+  });
+  var addBtn = null;
+  panel.querySelectorAll('button').forEach(function(b){ if (b.textContent.trim() === 'Add artist') addBtn = b; });
+  if (!addBtn) return;
+  var addBlock = blockOf(addBtn);
+  var status = document.createElement('span');
+  status.style.cssText = 'margin-left:10px;color:#5c5c66;font-size:13px';
+  addBtn.after(status);
+  function wireBlock(blk){
+    var add = blk.querySelector('.soc-add');
+    var list = blk.querySelector('.soc-list');
+    if (add && list) add.addEventListener('click', function(){
+      var row = list.querySelector('.soc-row');
+      var nr;
+      if (row) { nr = row.cloneNode(true); var h = nr.querySelector('.soc-handle'); if (h) h.value = ''; }
+      else { nr = document.createElement('div'); nr.className = 'soc-row'; nr.innerHTML = '<select class="soc-platform" aria-label="Platform"><option>Instagram</option><option>Facebook</option><option>TikTok</option><option>YouTube</option><option>X</option><option>Other</option></select><input type="text" class="soc-handle" placeholder="@handle or link" style="flex:1"><button class="btn soc-rm" type="button">Remove</button>'; }
+      var rm = nr.querySelector('.soc-rm');
+      if (rm) rm.addEventListener('click', function(){ nr.remove(); });
+      list.appendChild(nr);
+    });
+    var file = blk.querySelector('.mp-file');
+    var thumb = blk.querySelector('.mp-thumb');
+    if (file && thumb) file.addEventListener('change', function(){
+      var f = file.files && file.files[0];
+      if (!f) return;
+      var r = new FileReader();
+      r.onload = function(){ thumb.src = r.result; thumb.style.visibility = 'visible'; };
+      r.readAsDataURL(f);
+    });
+  }
+  addBtn.addEventListener('click', function(){
+    var inputs = addBlock.querySelectorAll('.addgrid input');
+    var name = inputs[0] ? inputs[0].value.trim() : '';
+    var what = (inputs[1] && inputs[1].value.trim()) || 'Tattoo';
+    if (!name) { status.textContent = 'Type the artist’s name first, then tap Add artist.'; if (inputs[0]) inputs[0].focus(); return; }
+    var firstList = panel.querySelector('.soc-list[data-artist]:not([data-artist="new"])');
+    if (!firstList) { status.textContent = 'Could not add right now.'; return; }
+    var template = blockOf(firstList);
+    var clone = template.cloneNode(true);
+    var slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'artist';
+    var strong = clone.querySelector('.roleline strong');
+    if (strong) strong.textContent = name;
+    var gi = clone.querySelectorAll('.addgrid input');
+    if (gi[0]) gi[0].value = name;
+    if (gi[1]) gi[1].value = what;
+    var thumb = clone.querySelector('.mp-thumb');
+    if (thumb) { thumb.removeAttribute('src'); thumb.style.visibility = 'hidden'; thumb.alt = name + ' main photo'; }
+    var ta = clone.querySelector('textarea');
+    if (ta) ta.value = '';
+    var list = clone.querySelector('.soc-list');
+    list.setAttribute('data-artist', slug);
+    list.innerHTML = '';
+    var addList = addBlock.querySelector('.soc-list');
+    var copied = 0;
+    if (addList) addList.querySelectorAll('.soc-row').forEach(function(r){
+      var h = r.querySelector('.soc-handle');
+      var p = r.querySelector('.soc-platform');
+      if (h && h.value.trim()) {
+        var nr = r.cloneNode(true);
+        nr.querySelector('.soc-handle').value = h.value.trim();
+        nr.querySelector('.soc-platform').value = p ? p.value : 'Instagram';
+        var rm = nr.querySelector('.soc-rm');
+        if (rm) rm.addEventListener('click', function(){ nr.remove(); });
+        list.appendChild(nr);
+        copied++;
+      }
+    });
+    if (!copied) {
+      var tplRow = template.querySelector('.soc-row');
+      if (tplRow) { var nr2 = tplRow.cloneNode(true); nr2.querySelector('.soc-handle').value = ''; var rm2 = nr2.querySelector('.soc-rm'); if (rm2) rm2.addEventListener('click', function(){ nr2.remove(); }); list.appendChild(nr2); }
+    }
+    wireBlock(clone);
+    addBlock.parentNode.insertBefore(clone, addBlock);
+    if (inputs[0]) inputs[0].value = '';
+    if (inputs[1]) inputs[1].value = '';
+    if (addList) addList.innerHTML = '';
+    status.textContent = 'Added ' + name + '. Tap their photo to add one, write their About, then Save artists.';
+    clone.scrollIntoView({block: 'center'});
+  });
+})();
+</script>
 </body>
 
 </html>
