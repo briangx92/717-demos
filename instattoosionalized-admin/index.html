@@ -1833,9 +1833,21 @@ var DEFAULTS = {
     if (!bad) return;
     e.preventDefault();
     e.stopPropagation();
-    var st = panel.querySelector('.ob-status');
-    if (st) st.textContent = 'A social link needs its handle. Fill it in or remove the link.';
-    if (bad) bad.focus();
+    bad.setAttribute('data-ob-warn', '1');
+    bad.setAttribute('data-ob-ph', bad.placeholder || '');
+    bad.placeholder = 'Needs a handle, or remove the link';
+    bad.style.borderColor = '#c0392b';
+    bad.style.backgroundColor = 'rgba(192,57,43,.08)';
+    bad.focus();
+  }, true);
+  panel.addEventListener('input', function(e){
+    var t = e.target;
+    if (t && t.getAttribute && t.getAttribute('data-ob-warn') && t.value.trim()) {
+      t.placeholder = t.getAttribute('data-ob-ph') || '@handle or link';
+      t.style.borderColor = '';
+      t.style.backgroundColor = '';
+      t.removeAttribute('data-ob-warn');
+    }
   }, true);
   var evT = null;
   var mo = new MutationObserver(function(){ if (evT) return; evT = setTimeout(function(){ evT = null; evaluate(); }, 60); });
