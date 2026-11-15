@@ -297,9 +297,9 @@
     <div class="shop"><img class="mark" src="instattoosionalized-logo.jpg" alt="Instattoosionalized logo"><div><strong>Instattoosionalized</strong><span id="p-who">Owner page</span></div><button type="button" class="menu-btn" id="p-menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
     <nav aria-label="Owner page">
       <button type="button" data-tab="home" aria-selected="true"><span class="dot"></span>Home</button>
-      <button type="button" data-tab="requests" aria-selected="false"><span class="dot"></span>Site requests</button>
-        <button type="button" data-tab="book" aria-selected="false"><span class="dot"></span>Book</button>
-      <button type="button" data-tab="crm" aria-selected="false"><span class="dot"></span>CRM</button>
+      <button type="button" data-tab="requests" aria-selected="false"><span class="dot"></span>Requests</button>
+        <button type="button" data-tab="book" aria-selected="false"><span class="dot"></span>The book</button>
+      
         <button type="button" data-tab="artists" aria-selected="false"><span class="dot"></span>Artists</button>
       <button type="button" data-tab="edit" aria-selected="false"><span class="dot"></span>Edit site</button>
       <button type="button" data-tab="photos" aria-selected="false"><span class="dot"></span>Photos</button>
@@ -360,7 +360,7 @@
       <p class="demofoot">Demo page for Instattoosionalized. Changes you save here are kept in this browser and appear on the website demo.</p>
     </section>
     <section data-panel="requests" class="hidden">
-      <h1>Site requests</h1>
+      <h1>Requests</h1>
       <p class="sub">Every request sent from your website lands here, and also goes out by text like it does now. Move each one along as you work it.</p>
       <div class="panel">
         <div class="head"><h3>Requests</h3><span class="chip">Sample rows</span></div>
@@ -410,11 +410,8 @@
         <div class="roleline"><strong>Mike K.</strong><span>Wants Lex &middot; cartoon piece</span></div>
         <div class="roleline"><strong>Ana P.</strong><span>Wants Liv &middot; florals</span></div>
       </div>
-    </section>
-
-    
-    <section data-panel="crm" class="hidden">
-      <h1>Clients</h1>
+      <div class="panel" style="margin-top:14px">
+      <h3 style="font-size:17px;margin:0 0 2px">Clients</h3>
       <p class="sub">Everyone who has booked or asked about work, in one list. It builds itself from the shop's requests and the book. Search it, or add someone by hand.</p>
       <style>
         .crm-stats{ display:flex; gap:10px; flex-wrap:wrap; margin:14px 0; }
@@ -455,7 +452,11 @@
         <input id="crm-piece" placeholder="Piece (e.g. Floral half sleeve)">
         <button type="submit">Add client</button>
       </form>
+      </div>
     </section>
+
+    
+    
     <section data-panel="reviews" class="hidden">
       <h1>Reviews</h1>
       <p class="sub">Your Google rating is 5.0 from 98 reviews. New reviews show up here so you can answer them in one place.</p>
