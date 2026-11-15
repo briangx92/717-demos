@@ -439,10 +439,10 @@
         <div class="crm-stat"><b id="crm-waiting">0</b><span>On the waitlist</span></div>
       </div>
       <div class="crm-bar">
-        <input type="search" id="crm-search" placeholder="Search by name, artist, or piece">
+        <input type="search" id="crm-search" placeholder="Search by name, artist, or piece"> <select id="crm-group" aria-label="Group clients by"><option value="">No grouping</option><option value="artist">Group by artist</option><option value="status">Group by status</option></select> <span style="color:#5c5c66;font-size:13px">Tap a heading to sort</span>
       </div>
       <table class="crm-table">
-        <thead><tr><th>Client</th><th>Artist</th><th>Last piece</th><th>Last visit</th><th>Visits</th><th>Phone</th><th>Status</th></tr></thead>
+        <thead><tr><th data-sort="name">Client</th><th data-sort="artist">Artist</th><th>Last piece</th><th data-sort="last">Last visit</th><th data-sort="visits">Visits</th><th>Phone</th><th data-sort="status">Status</th><th></th></tr></thead>
         <tbody id="crm-body"></tbody>
       </table>
       <form class="crm-add" id="crm-add">
@@ -1274,40 +1274,73 @@ var DEFAULTS = {
 (function(){
   var body = document.getElementById('crm-body');
   if (!body) return;
-  var clients = [
-    { name:'Sam R.',   artist:'Lex',   piece:'Hello Kitty Jason',    last:'Today',     visits:1, phone:'(610) 555-0142', status:'Booked' },
-    { name:'Mia T.',   artist:'Liv',   piece:'Bunny and florals',    last:'Today',     visits:1, phone:'(484) 555-0117', status:'Booked' },
-    { name:'Sarah M.', artist:'Diana', piece:'Waiting on a consult', last:'Nov 12',    visits:1, phone:'(610) 555-0193', status:'Waiting' },
-    { name:'Mike K.',  artist:'Lex',   piece:'Waiting on a spot',    last:'Nov 11',    visits:2, phone:'(717) 555-0128', status:'Waiting' },
-    { name:'Ana P.',   artist:'Liv',   piece:'Waiting on a spot',    last:'Nov 10',    visits:1, phone:'(484) 555-0161', status:'Waiting' },
-    { name:'Jess P.',  artist:'Diana', piece:'Bulldog portrait',     last:'Oct 28',    visits:3, phone:'(610) 555-0139', status:'Repeat' },
-    { name:'Tom H.',   artist:'Lex',   piece:'Spooky cartoon',       last:'Nov 2',     visits:2, phone:'(717) 555-0174', status:'Repeat' },
-    { name:'Kayla D.', artist:'Liv',   piece:'Fairytale sleeve, session 3', last:'Nov 9', visits:4, phone:'(484) 555-0123', status:'Repeat' }
-  ];
-  function chip(st){ return '<span class="crm-chip ' + st.toLowerCase() + '">' + st + '</span>'; }
-  function render(list){
-    body.innerHTML = list.map(function(c){
-      return '<tr><td><b>' + c.name + '</b></td><td>' + c.artist + '</td><td>' + c.piece + '</td><td>' + c.last + '</td><td>' + c.visits + '</td><td>' + c.phone + '</td><td>' + chip(c.status) + '</td></tr>';
-    }).join('') || '<tr><td colspan="7">No clients match.</td></tr>';
-    document.getElementById('crm-total').textContent = clients.length;
-    document.getElementById('crm-repeat').textContent = clients.filter(function(c){ return c.visits > 1; }).length;
-    document.getElementById('crm-waiting').textContent = clients.filter(function(c){ return c.status === 'Waiting'; }).length;
+  var KEY = 'oa-clients-v1';
+  var seed = [
+    { id:'c1', name:'Sam R.', artist:'Lex', piece:'Hello Kitty Jason', last:'Today', visits:1, phone:'(610) 555-0142', status:'Booked' },
+    { id:'c2', name:'Mia T.', artist:'Liv', piece:'Bunny and florals', last:'Today', visits:1, phone:'(484) 555-0117', status:'Booked' },
+    { id:'c3', name:'Sarah M.', artist:'Diana', piece:'Waiting on a consult', last:'Nov 12', visits:1, phone:'(610) 555-0193', status:'Waiting' },
+    { id:'c4', name:'Mike K.', artist:'Lex', piece:'Waiting on a spot', last:'Nov 11', visits:2, phone:'(717) 555-0128', status:'Waiting' },
+    { id:'c5', name:'Ana P.', artist:'Liv', piece:'Waiting on a spot', last:'Nov 10', visits:1, phone:'(484) 555-0161', status:'Waiting' },
+    { id:'c6', name:'Jess P.', artist:'Diana', piece:'Bulldog portrait', last:'Oct 28', visits:3, phone:'(610) 555-0139', status:'Repeat' },
+    { id:'c7', name:'Tom H.', artist:'Lex', piece:'Spooky cartoon', last:'Nov 2', visits:2, phone:'(717) 555-0174', status:'Repeat' },
+    { id:'c8', name:'Kayla D.', artist:'Liv', piece:'Fairytale sleeve, session 3', last:'Nov 9', visits:4, phone:'(484) 555-0123', status:'Repeat' } ];
+  var clients = null;
+  try { clients = JSON.parse(localStorage.getItem(KEY)); } catch (e) { clients = null; }
+  if (!Array.isArray(clients)) clients = seed.slice();
+  var sortKey = 'name', sortDir = 1, groupBy = '', query = '', editingId = null;
+  function persist(){ try { localStorage.setItem(KEY, JSON.stringify(clients)); } catch (e) {} }
+  function esc(t){ return String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function chip(st){ return '<span class="crm-chip ' + String(st).toLowerCase() + '">' + esc(st) + '</span>'; }
+  var MONTHS = { Jan:1, Feb:2, Mar:3, Apr:4, May:5, Jun:6, Jul:7, Aug:8, Sep:9, Oct:10, Nov:11, Dec:12 };
+  function lastVal(v){ if (!v || v === 'Today') return 9999; var m = String(v).match(/([A-Za-z]{3})\s+(\d+)/); if (!m) return 0; return (MONTHS[m[1]] || 0) * 100 + parseInt(m[2], 10); }
+  function keyVal(c, k){ if (k === 'visits') return c.visits || 0; if (k === 'last') return lastVal(c.last); return String(c[k] || '').toLowerCase(); }
+  function stats(){ document.getElementById('crm-total').textContent = clients.length; document.getElementById('crm-repeat').textContent = clients.filter(function(c){ return c.visits > 1; }).length; document.getElementById('crm-waiting').textContent = clients.filter(function(c){ return c.status === 'Waiting'; }).length; }
+  function rowHtml(c){
+    if (c.id === editingId) {
+      var artists = ['Lex', 'Liv', 'Diana'].map(function(a){ return '<option' + (a === c.artist ? ' selected' : '') + '>' + a + '</option>'; }).join('');
+      var sts = ['Booked', 'Waiting', 'Repeat'].map(function(st){ return '<option' + (st === c.status ? ' selected' : '') + '>' + st + '</option>'; }).join('');
+      return '<tr>'
+        + '<td><input class="ce-name" value="' + esc(c.name) + '"></td>'
+        + '<td><select class="ce-artist">' + artists + '</select></td>'
+        + '<td><input class="ce-piece" value="' + esc(c.piece) + '"></td>'
+        + '<td><input class="ce-last" value="' + esc(c.last) + '"></td>'
+        + '<td><input class="ce-visits" type="number" min="0" value="' + c.visits + '" style="width:56px"></td>'
+        + '<td><input class="ce-phone" value="' + esc(c.phone) + '"></td>'
+        + '<td><select class="ce-status">' + sts + '</select></td>'
+        + '<td style="white-space:nowrap"><button type="button" class="btn crm-save" data-id="' + c.id + '">Save</button> <button type="button" class="btn crm-cancel">Cancel</button></td></tr>';
+    }
+    return '<tr><td><b>' + esc(c.name) + '</b></td><td>' + esc(c.artist) + '</td><td>' + esc(c.piece) + '</td><td>' + esc(c.last) + '</td><td>' + c.visits + '</td><td>' + esc(c.phone) + '</td><td>' + chip(c.status) + '</td>'
+      + '<td style="white-space:nowrap"><button type="button" class="btn crm-edit" data-id="' + c.id + '">Edit</button> <button type="button" class="btn crm-rm" data-id="' + c.id + '">Remove</button></td></tr>';
   }
-  render(clients);
-  document.getElementById('crm-search').addEventListener('input', function(){
-    var q = this.value.toLowerCase();
-    render(clients.filter(function(c){ return (c.name + ' ' + c.artist + ' ' + c.piece).toLowerCase().indexOf(q) >= 0; }));
+  function render(){
+    var list = clients.filter(function(c){ return !query || (c.name + ' ' + c.artist + ' ' + c.piece + ' ' + c.status).toLowerCase().indexOf(query) >= 0; });
+    list = list.slice().sort(function(a, b){ var x = keyVal(a, sortKey), y = keyVal(b, sortKey); if (x < y) return -1 * sortDir; if (x > y) return 1 * sortDir; return 0; });
+    var html = '';
+    if (groupBy) {
+      var order = groupBy === 'artist' ? ['Lex', 'Liv', 'Diana'] : ['Booked', 'Waiting', 'Repeat'];
+      var groups = {};
+      list.forEach(function(c){ var g = c[groupBy] || 'Other'; (groups[g] = groups[g] || []).push(c); });
+      var keys = Object.keys(groups).sort(function(a, b){ var ia = order.indexOf(a), ib = order.indexOf(b); ia = ia < 0 ? 99 : ia; ib = ib < 0 ? 99 : ib; return (ia - ib) || (a < b ? -1 : 1); });
+      keys.forEach(function(g){ html += '<tr class="crm-group"><td colspan="8" style="background:#f4f1ea;font-weight:700">' + esc(g) + ' <span style="color:#5c5c66;font-weight:400">(' + groups[g].length + ')</span></td></tr>'; groups[g].forEach(function(c){ html += rowHtml(c); }); });
+    } else {
+      list.forEach(function(c){ html += rowHtml(c); });
+    }
+    body.innerHTML = html || '<tr><td colspan="8">No clients match.</td></tr>';
+    stats();
+    Array.prototype.forEach.call(document.querySelectorAll('.crm-table th[data-sort]'), function(th){ var k = th.getAttribute('data-sort'); var base = th.getAttribute('data-label') || th.textContent.replace(/\s*[\u25b2\u25bc]$/, ''); th.setAttribute('data-label', base); th.textContent = base + (k === sortKey ? (sortDir === 1 ? ' \u25b2' : ' \u25bc') : ''); th.style.cursor = 'pointer'; });
+  }
+  render();
+  document.getElementById('crm-search').addEventListener('input', function(){ query = this.value.toLowerCase(); render(); });
+  var grp = document.getElementById('crm-group');
+  if (grp) grp.addEventListener('change', function(){ groupBy = this.value; render(); });
+  document.querySelector('.crm-table thead').addEventListener('click', function(e){ var th = e.target.closest('th[data-sort]'); if (!th) return; var k = th.getAttribute('data-sort'); if (k === sortKey) sortDir = -sortDir; else { sortKey = k; sortDir = 1; } render(); });
+  body.addEventListener('click', function(e){
+    var edit = e.target.closest('.crm-edit'); if (edit) { editingId = edit.getAttribute('data-id'); render(); return; }
+    var rm = e.target.closest('.crm-rm'); if (rm) { var id = rm.getAttribute('data-id'); clients = clients.filter(function(c){ return c.id !== id; }); if (editingId === id) editingId = null; persist(); render(); return; }
+    if (e.target.closest('.crm-cancel')) { editingId = null; render(); return; }
+    var save = e.target.closest('.crm-save'); if (save) { var id2 = save.getAttribute('data-id'); var tr = save.closest('tr'); var c = clients.filter(function(x){ return x.id === id2; })[0]; if (c && tr) { c.name = tr.querySelector('.ce-name').value.trim() || c.name; c.artist = tr.querySelector('.ce-artist').value; c.piece = tr.querySelector('.ce-piece').value.trim(); c.last = tr.querySelector('.ce-last').value.trim(); c.visits = Math.max(0, parseInt(tr.querySelector('.ce-visits').value, 10) || 0); c.phone = tr.querySelector('.ce-phone').value.trim(); c.status = tr.querySelector('.ce-status').value; } editingId = null; persist(); render(); }
   });
-  document.getElementById('crm-add').addEventListener('submit', function(ev){
-    ev.preventDefault();
-    var name = document.getElementById('crm-name').value.trim();
-    if (!name) return;
-    clients.unshift({ name:name, artist:document.getElementById('crm-artist').value,
-      piece:document.getElementById('crm-piece').value.trim() || 'Not noted yet', last:'Today', visits:1,
-      phone:document.getElementById('crm-phone').value.trim() || 'Not on file', status:'Booked' });
-    this.reset();
-    render(clients);
-  });
+  document.getElementById('crm-add').addEventListener('submit', function(ev){ ev.preventDefault(); var name = document.getElementById('crm-name').value.trim(); if (!name) return; clients.unshift({ id: 'c' + Date.now(), name: name, artist: document.getElementById('crm-artist').value, piece: document.getElementById('crm-piece').value.trim() || 'Not noted yet', last: 'Today', visits: 1, phone: document.getElementById('crm-phone').value.trim() || 'Not on file', status: 'Booked' }); this.reset(); persist(); render(); });
 })();
 </script>
 </body>
