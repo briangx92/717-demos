@@ -598,8 +598,18 @@ footer.site p a{color:var(--acc-bright);text-decoration:none;font-weight:600}
     b.setAttribute("aria-pressed", "false");
     b.addEventListener("click", function(){
       var on = b.getAttribute("aria-pressed") === "true";
-      b.setAttribute("aria-pressed", on ? "false" : "true");
       var label = b.textContent.trim();
+      var isEscape = (label === "Not sure yet");
+      if (!on && isEscape) {
+        document.querySelectorAll("#svcPick button").forEach(function(x){ x.setAttribute("aria-pressed", "false"); });
+        state.services = [];
+      } else if (!on) {
+        document.querySelectorAll("#svcPick button").forEach(function(x){
+          if (x.textContent.trim() === "Not sure yet") x.setAttribute("aria-pressed", "false");
+        });
+        state.services = state.services.filter(function(x){ return x !== "Not sure yet"; });
+      }
+      b.setAttribute("aria-pressed", on ? "false" : "true");
       if (on) state.services = state.services.filter(function(x){ return x !== label; });
       else state.services.push(label);
     });
