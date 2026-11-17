@@ -81,7 +81,7 @@ section{padding-top:4rem;padding-bottom:4rem}
 .hint{color:var(--ink2);font-size:.92rem;margin:.3rem 0 1rem}
 .pick{display:flex;flex-wrap:wrap;gap:.55rem}
 .pick button{background:#fff;border:1.5px solid var(--line);color:var(--ink);border-radius:999px;padding:.55rem 1.05rem;font:600 .92rem 'Inter',sans-serif;cursor:pointer}
-.pick button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.pick button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}.svc-zone{margin-top:.95rem;border:1.5px solid var(--line);background:#fff;border-radius:16px;padding:.85rem}.svc-glabel{font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink);opacity:.6;font-weight:700;margin:.9rem 0 .5rem}.svc-glabel:first-child{margin-top:.15rem}.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}.svc-grid button{background:#fff;color:var(--ink);border:1.5px solid var(--line);border-radius:12px;padding:.72rem .5rem;font:600 .92rem 'Inter',sans-serif;cursor:pointer;text-align:center}.svc-zone button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .cards{display:grid;grid-template-columns:1fr;gap:.6rem}
 @media(min-width:560px){.cards{grid-template-columns:1fr 1fr}}
 .cards button{background:#fff;border:1.5px solid var(--line);color:var(--ink);border-radius:12px;padding:.85rem 1rem;text-align:left;cursor:pointer;font-family:'Inter',sans-serif}
@@ -206,15 +206,17 @@ footer .fname{font-family:'Libre Franklin',sans-serif;font-weight:900;text-trans
       <div class="bstep on" data-step="1">
         <div class="q">What would you like done?</div>
         <div class="hint">Pick any that apply.</div>
-        <div class="pick" id="svcPick">
-          <button type="button" data-v="Haircut" aria-pressed="false">Haircut</button>
-          <button type="button" data-v="Fade" aria-pressed="false">Fade</button>
-          <button type="button" data-v="Scissor cut" aria-pressed="false">Scissor cut</button>
-          <button type="button" data-v="Long haircut" aria-pressed="false">Long haircut</button>
-          <button type="button" data-v="Kids' cut" aria-pressed="false">Kids' cut</button>
-          <button type="button" data-v="Beard cut" aria-pressed="false">Beard cut</button>
-          <button type="button" data-v="Straight razor shave" aria-pressed="false">Straight razor shave</button>
-        </div>
+        <div class="svc-zone" id="svcPick">
+              <div class="svc-grid">
+                <button type="button" data-v="Haircut" aria-pressed="false">Haircut</button>
+                <button type="button" data-v="Fade" aria-pressed="false">Fade</button>
+                <button type="button" data-v="Scissor cut" aria-pressed="false">Scissor cut</button>
+                <button type="button" data-v="Long haircut" aria-pressed="false">Long haircut</button>
+                <button type="button" data-v="Kids' cut" aria-pressed="false">Kids' cut</button>
+                <button type="button" data-v="Beard cut" aria-pressed="false">Beard cut</button>
+                <button type="button" data-v="Straight razor shave" aria-pressed="false">Straight razor shave</button>
+              </div>
+          </div>
         <div class="bnav"><button type="button" class="btn btn-acc" data-next>Continue</button></div>
       </div>
       <div class="bstep" data-step="2">

@@ -112,7 +112,7 @@ section{padding-top:3.4rem;padding-bottom:.4rem}
 .bstep .hint{font-size:.86rem;color:rgba(243,238,225,.7);margin-top:.25rem}
 .pick{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.9rem}
 .pick button{background:rgba(243,238,225,.06);color:#f3eee1;border:1px solid rgba(243,238,225,.35);border-radius:999px;padding:.55rem 1rem;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer;transition:background .2s,border-color .2s}
-.pick button[aria-pressed="true"]{background:#e9c979;border-color:#e9c979;color:#23301f}
+.pick button[aria-pressed="true"]{background:#e9c979;border-color:#e9c979;color:#23301f}.svc-zone{margin-top:.95rem;border:1px solid rgba(243,238,225,.22);background:rgba(243,238,225,.04);border-radius:16px;padding:.85rem}.svc-glabel{font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(243,238,225,.55);font-weight:700;margin:.9rem 0 .5rem}.svc-glabel:first-child{margin-top:.15rem}.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}.svc-grid button{background:rgba(243,238,225,.06);color:#f3eee1;border:1px solid rgba(243,238,225,.35);border-radius:12px;padding:.72rem .5rem;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer;text-align:center;transition:background .2s,border-color .2s}.svc-zone button[aria-pressed="true"]{background:#e9c979;border-color:#e9c979;color:#23301f}
 .cards{display:grid;grid-template-columns:1fr;gap:.55rem;margin-top:.9rem}
 .cards button{background:rgba(243,238,225,.06);color:#f3eee1;border:1px solid rgba(243,238,225,.35);border-radius:14px;padding:.85rem 1rem;font:inherit;text-align:left;cursor:pointer}
 .cards button .ct{font-weight:700;font-size:.98rem;display:block}
@@ -304,11 +304,13 @@ footer.site a:hover{text-decoration:underline}
         <div class="bstep on" data-step="1">
           <div class="q">What would you like done?</div>
           <div class="hint">Pick any that apply.</div>
-          <div class="pick" id="svcPick">
-<button type="button" data-v="Minor repairs" aria-pressed="false">Minor repairs</button>
-            <button type="button" data-v="State inspection" aria-pressed="false">State inspection</button>
-            <button type="button" data-v="Towing" aria-pressed="false">Towing</button>
-            <button type="button" data-v="Oil change" aria-pressed="false">Oil change</button>
+          <div class="svc-zone" id="svcPick">
+              <div class="svc-grid">
+                <button type="button" data-v="Minor repairs" aria-pressed="false">Minor repairs</button>
+                <button type="button" data-v="State inspection" aria-pressed="false">State inspection</button>
+                <button type="button" data-v="Towing" aria-pressed="false">Towing</button>
+                <button type="button" data-v="Oil change" aria-pressed="false">Oil change</button>
+              </div>
           </div>
           <div class="bnav"><button type="button" class="btn btn-acc" data-next>Continue</button></div>
         </div>
