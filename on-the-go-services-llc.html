@@ -110,9 +110,9 @@ section{padding-top:3.4rem}
 .bstep.on{display:block}
 .bstep .q{font-weight:600;font-size:1.02rem}
 .bstep .hint{font-size:.86rem;color:rgba(234,244,236,.65);margin-top:.25rem}
-.pick{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.9rem}
-.pick button{background:rgba(234,244,236,.05);color:#EAF4EC;border:1px solid rgba(234,244,236,.32);border-radius:999px;padding:.55rem 1rem;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
-.pick button[aria-pressed="true"]{background:var(--acc-bright);border-color:var(--acc-bright);color:#0A1F10}
+.svc-zone{margin-top:.95rem;border:1px solid rgba(234,244,236,.18);background:rgba(234,244,236,.03);border-radius:16px;padding:.85rem}.svc-glabel{font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(234,244,236,.5);font-weight:700;margin:.15rem 0 .5rem}.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.9rem}.svc-grid:last-child{margin-bottom:0}.svc-grid button{background:rgba(234,244,236,.05);color:#EAF4EC;border:1px solid rgba(234,244,236,.28);border-radius:12px;padding:.72rem .5rem;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer;text-align:center}.svc-grid button.svc-wide{grid-column:1/-1;justify-self:stretch;width:100%}
+
+.svc-zone button[aria-pressed="true"]{background:var(--acc-bright);border-color:var(--acc-bright);color:#0A1F10}
 .cards{display:grid;grid-template-columns:1fr;gap:.55rem;margin-top:.9rem}
 .cards button{background:rgba(234,244,236,.05);color:#EAF4EC;border:1px solid rgba(234,244,236,.32);border-radius:14px;padding:.85rem 1rem;font:inherit;text-align:left;cursor:pointer}
 .cards button .ct{font-weight:700;font-size:.98rem;display:block}
@@ -394,18 +394,24 @@ footer.site p a{color:var(--acc-bright);text-decoration:none;font-weight:600}
         <div class="bstep" data-step="2">
           <div class="q">What does it need?</div>
           <div class="hint">Tap everything that fits. Not sure? Tap "Not sure yet" and describe it in the next step.</div>
-          <div class="pick" id="svcPick">
-            <button type="button">Oil change</button>
-            <button type="button">Brakes</button>
-            <button type="button">Check engine light</button>
-            <button type="button">Tires</button>
-            <button type="button">PA state inspection</button>
-            <button type="button">Transmission</button>
-            <button type="button">AC</button>
-            <button type="button">Battery</button>
-            <button type="button">Fluids</button>
-            <button type="button">Suspension or steering</button>
-            <button type="button">Not sure yet</button>
+          <div class="svc-zone" id="svcPick">
+            <div class="svc-glabel">Upkeep</div>
+            <div class="svc-grid">
+              <button type="button">Oil change</button>
+              <button type="button">PA state inspection</button>
+              <button type="button">Tires</button>
+              <button type="button">Battery</button>
+              <button type="button">Fluids</button>
+              <button type="button">Brakes</button>
+            </div>
+            <div class="svc-glabel">Something's wrong</div>
+            <div class="svc-grid">
+              <button type="button">Check engine light</button>
+              <button type="button">Transmission</button>
+              <button type="button">AC</button>
+              <button type="button">Suspension or steering</button>
+              <button type="button" class="svc-wide">Not sure yet</button>
+            </div>
           </div>
           <div class="bnav"><button type="button" class="btn-ghost2" data-back>Back</button><button type="button" class="btn btn-acc" data-next>Next</button></div>
         </div>
