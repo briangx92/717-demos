@@ -233,6 +233,16 @@ footer.site p a{color:var(--acc-bright);text-decoration:none;font-weight:600}
 .radial.open .rbook{opacity:1;pointer-events:auto;transform:translateY(0)}
 @media (prefers-reduced-motion: reduce){.ritem,.rbook,.rback{transition:none}}
 .tm .thead{display:flex;gap:.9rem;align-items:center}.tp{width:76px;height:76px;border-radius:50%;object-fit:cover;border:2px solid var(--acc);cursor:pointer;flex:none}.tsoc{display:flex;gap:.5rem;margin-top:.75rem}.tsoc a{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink);text-decoration:none}.tsoc a svg{width:18px;height:18px}.tsoc a:active{transform:scale(.95)}.lbx.solo .lnav,.lbx.solo .lcount{display:none}</style>
+<style>
+/* Desktop composition (Brian, 2026-11-18): on desktop the page uses its full width like a desktop site. Sections align to the main wrap, services run two columns, and reviews sit in a grid instead of a sideways rail. Mobile keeps its own layout. */
+@media (min-width:900px){
+  .wrap.narrow,.wrap.wide{max-width:1140px}
+  #svcList{display:grid;grid-template-columns:1fr 1fr;gap:0 2.5rem;align-items:start}
+  .rev-grid.rail{display:grid;grid-template-columns:repeat(3,1fr);overflow:visible;scroll-snap-type:none}
+  .rev-grid.rail .rev{flex:none}
+  .railhint{display:none}
+}
+</style>
 </head>
 <body>
 <header class="site">
@@ -585,7 +595,6 @@ footer.site p a{color:var(--acc-bright);text-decoration:none;font-weight:600}
     prog.textContent = "Step " + shown + " of 4";
     bar.style.width = (shown * 25) + "%";
     err.style.display = "none";
-    document.getElementById("builder").scrollIntoView({ behavior: "smooth", block: "start" });
   }
   document.querySelectorAll("#locCards button").forEach(function(b){
     b.addEventListener("click", function(){
@@ -697,7 +706,8 @@ footer.site p a{color:var(--acc-bright);text-decoration:none;font-weight:600}
     b.addEventListener("click", function(){
       var step = parseInt(b.closest(".bstep").getAttribute("data-step"), 10);
       if (step === 1 && !state.loc){
-        document.getElementById("locCards").scrollIntoView({ behavior: "smooth", block: "center" });
+        err.textContent = "Choose a shop first, so we know where to send your request.";
+        err.style.display = "block";
         return;
       }
       goTo(step + 1);
