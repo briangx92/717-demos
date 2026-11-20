@@ -327,6 +327,32 @@
 html.dark .oa-pf .oa-fld input,html.dark .oa-pf .oa-fld textarea,html.dark .oa-pf .oa-fld select{background:#232329;border-color:#3a3a42;color:#f4f4f5}
 html.dark .oa-pf .oa-dchip{background:#1d1d21;border-color:#2e2e34;color:#f4f4f5}
 html.dark .oa-pf .oa-pstory{color:#d4d4d8}
+.oa-pf .oa-chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 4px}
+.oa-pf .oa-chip{border:1.5px solid #d8d8d2;background:#fff;border-radius:999px;padding:7px 14px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;color:#3f3f46}
+.oa-pf .oa-chip.on{background:#17171a;color:#fff;border-color:#17171a}
+.oa-pf .oa-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin-top:12px}
+.oa-pf .oa-card{border:1px solid #e7e2d9;border-radius:12px;padding:8px;background:#fdfcf9;min-width:0}
+.oa-pf .oa-card.wide{grid-column:span 2}
+@media (max-width:560px){.oa-pf .oa-card.wide{grid-column:span 1}}
+.oa-pf .oa-card.off{opacity:.55}
+.oa-pf .oa-card.dragging{opacity:.4}
+.oa-pf .oa-card.over{outline:2px dashed #f4682a;outline-offset:-4px}
+.oa-pf .oa-card>img{width:100%;height:118px;object-fit:cover;border-radius:8px;display:block}
+.oa-pf .oa-card .oa-cap{margin-top:6px;width:100%;font-size:12.5px;padding:6px 8px;border:1px solid #d8d8d2;border-radius:8px;font:inherit;background:#fff}
+.oa-pf .oa-cardrow{display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.oa-pf .oa-handle{cursor:grab;color:#8a8578;font-size:15px;padding:2px 4px;user-select:none;line-height:1}
+.oa-pf .oa-tgl{margin-left:auto;display:inline-flex;align-items:center;gap:7px;border:0;background:none;font:inherit;font-size:12px;font-weight:600;color:#71717a;cursor:pointer;padding:2px}
+.oa-pf .oa-tgl .tk{width:34px;height:19px;border-radius:999px;background:#d8d8d2;position:relative;flex:none;transition:background .15s}
+.oa-pf .oa-tgl .tk::after{content:"";position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;background:#fff;transition:left .15s}
+.oa-pf .oa-tgl.on{color:#2e6b3e}
+.oa-pf .oa-tgl.on .tk{background:#2e6b3e}
+.oa-pf .oa-tgl.on .tk::after{left:17px}
+.oa-pf .oa-splitwrap{position:relative}
+.oa-pf .oa-bapill{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(20,20,20,.78);color:#fff;font-size:11px;font-weight:700;letter-spacing:.04em;padding:4px 10px;border-radius:999px;z-index:3;white-space:nowrap}
+html.dark .oa-pf .oa-card{background:#1d1d21;border-color:#2e2e34}
+html.dark .oa-pf .oa-chip{background:#1d1d21;border-color:#2e2e34;color:#d4d4d8}
+html.dark .oa-pf .oa-chip.on{background:#f4f4f5;color:#17171a;border-color:#f4f4f5}
+html.dark .oa-pf .oa-card .oa-cap{background:#232329;border-color:#3a3a42;color:#f4f4f5}
 html.dark .oa-pf .oa-chlist,html.dark .oa-pf .oa-chlist button{background:#1d1d21;color:#f4f4f5;border-color:#2e2e34}
 html.dark .oa-pf .oa-pair,html.dark .oa-pf .oa-bapair{background:#1d1d21;border-color:#2e2e34}
 html.dark .oa-pf .oa-empty,html.dark .oa-pf .oa-babox,html.dark .oa-pf .oa-drop{background:#232329;color:#a1a1aa}
@@ -2164,28 +2190,29 @@ var DEFAULTS = {
 
     /* harvest the portal's seeded/persisted singles from its own grid */
     var grid = blk.querySelector('.pf-grid');
-    var harvested = [], harvestedPairs = [];
+    var harvested = [], harvestedPairs = [], hseq = 0;
     if (grid) grid.querySelectorAll('.pf-item').forEach(function(it){
       var im = it.querySelector('img'); var cap = it.querySelector('.pf-cap');
       var src = im ? raw(im.getAttribute('src') || '') : '';
       if (!src) return;
       var dp = it.getAttribute('data-pair');
-      if (dp) { try { var pj = JSON.parse(dp); if (pj && pj.b && pj.a) { harvestedPairs.push({ id: pj.id || nid('p'), bsrc: raw(pj.b), asrc: raw(pj.a), bcap: pj.bcap || '', acap: pj.acap || '', title: pj.title || '', story: pj.story || '', tags: pj.tags || '', medium: pj.medium || '', dims: pj.dims || '', sec: pj.sec || '', ord: uid }); return; } } catch (e) {} }
-      harvested.push({ src: src, cap: cap ? cap.value : '' });
+      if (dp) { try { var pj = JSON.parse(dp); if (pj && pj.b && pj.a) { harvestedPairs.push({ id: pj.id || nid('p'), bsrc: raw(pj.b), asrc: raw(pj.a), bcap: pj.bcap || '', acap: pj.acap || '', title: pj.title || '', story: pj.story || '', tags: pj.tags || '', medium: pj.medium || '', dims: pj.dims || '', sec: pj.sec || '', ord: (hseq++) * 10 }); return; } } catch (e) {} }
+      harvested.push({ src: src, cap: cap ? cap.value : '', ord: (hseq++) * 10 });
     });
 
     var store = loadStore();
     var model = store[slug];
     if (!model || !model.sections) {
       model = { sections: DEFSECS.slice(), singles: [], pairs: [], drafts: [] };
-      harvested.forEach(function(h){ model.singles.push({ id: nid('s'), src: h.src, cap: h.cap, sec: model.sections[0], onSite: true, ord: uid }); });
+      harvested.forEach(function(h){ model.singles.push({ id: nid('s'), src: h.src, cap: h.cap, sec: model.sections[0], onSite: true, ord: h.ord }); });
       harvestedPairs.forEach(function(p){ if (model.sections.indexOf(p.sec) < 0) p.sec = model.sections[0]; model.pairs.push(p); });
     } else {
       if (!model.drafts) model.drafts = [];
+      var nextOrd = 0; model.singles.concat(model.pairs).forEach(function(x){ if ((x.ord || 0) >= nextOrd) nextOrd = (x.ord || 0) + 1; });
       var have = {}; model.singles.forEach(function(s){ have[s.src] = 1; });
-      harvested.forEach(function(h){ if (!have[h.src]) model.singles.push({ id: nid('s'), src: h.src, cap: h.cap, sec: model.sections[0], onSite: true, ord: uid }); });
+      harvested.forEach(function(h){ if (!have[h.src]) model.singles.push({ id: nid('s'), src: h.src, cap: h.cap, sec: model.sections[0], onSite: true, ord: nextOrd + h.ord + 1 }); });
       var haveP = {}; model.pairs.forEach(function(p){ haveP[p.id] = 1; });
-      harvestedPairs.forEach(function(p){ if (!haveP[p.id]) { if (model.sections.indexOf(p.sec) < 0) p.sec = model.sections[0]; model.pairs.push(p); } });
+      harvestedPairs.forEach(function(p){ if (!haveP[p.id]) { if (model.sections.indexOf(p.sec) < 0) p.sec = model.sections[0]; p.ord = nextOrd + p.ord + 1; model.pairs.push(p); } });
     }
 
     /* hide the old furniture, keep the portal grid as a hidden mirror for Save */
@@ -2198,7 +2225,7 @@ var DEFAULTS = {
     var root = document.createElement('div'); root.className = 'oa-pf';
     wrap.insertBefore(root, wrap.firstChild);
 
-    var view = 'portfolio', page = 0, sortMode = 'new', cur = null, formTarget = null, note = '', noteWarn = false, syncing = false, armDelSec = false;
+    var view = 'portfolio', page = 0, sortMode = 'new', filter = 'all', cur = null, formTarget = null, note = '', noteWarn = false, syncing = false, armDelSec = false;
 
     function persist(){ var st = loadStore(); st[slug] = model; saveStore(st); }
     function commit(){
@@ -2206,17 +2233,21 @@ var DEFAULTS = {
       if (!grid) return;
       syncing = true;
       grid.innerHTML = '';
-      model.pairs.forEach(function(p){
+      var merged = [];
+      model.pairs.forEach(function(p){ if (p.onSite !== false) merged.push({ ord: p.ord || 0, pair: p }); });
+      model.singles.forEach(function(s){ if (s.onSite) merged.push({ ord: s.ord || 0, single: s }); });
+      merged.sort(function(x, y){ return x.ord - y.ord; });
+      merged.forEach(function(m){
         var d = document.createElement('div'); d.className = 'pf-item';
-        var im = document.createElement('img'); im.alt = ''; im.setAttribute('src', p.asrc); d.appendChild(im);
-        var cap = document.createElement('input'); cap.type = 'text'; cap.className = 'pf-cap'; cap.value = p.title || p.acap || ''; d.appendChild(cap);
-        try { d.setAttribute('data-pair', JSON.stringify({ id: p.id, b: p.bsrc, a: p.asrc, bcap: p.bcap || '', acap: p.acap || '', title: p.title || '', story: p.story || '', tags: p.tags || '', medium: p.medium || '', dims: p.dims || '', sec: p.sec })); } catch (e) {}
-        grid.appendChild(d);
-      });
-      model.singles.filter(function(s){ return s.onSite; }).forEach(function(s){
-        var d = document.createElement('div'); d.className = 'pf-item';
-        var im = document.createElement('img'); im.alt = ''; im.setAttribute('src', s.src); d.appendChild(im);
-        var cap = document.createElement('input'); cap.type = 'text'; cap.className = 'pf-cap'; cap.value = s.cap || ''; d.appendChild(cap);
+        var im = document.createElement('img'); im.alt = '';
+        var cap = document.createElement('input'); cap.type = 'text'; cap.className = 'pf-cap';
+        if (m.pair) {
+          im.setAttribute('src', m.pair.asrc); cap.value = m.pair.title || m.pair.acap || '';
+          try { d.setAttribute('data-pair', JSON.stringify({ id: m.pair.id, b: m.pair.bsrc, a: m.pair.asrc, bcap: m.pair.bcap || '', acap: m.pair.acap || '', title: m.pair.title || '', story: m.pair.story || '', tags: m.pair.tags || '', medium: m.pair.medium || '', dims: m.pair.dims || '', sec: m.pair.sec })); } catch (e) {}
+        } else {
+          im.setAttribute('src', m.single.src); cap.value = m.single.cap || '';
+        }
+        d.appendChild(im); d.appendChild(cap);
         grid.appendChild(d);
       });
       syncing = false;
@@ -2230,29 +2261,70 @@ var DEFAULTS = {
     }
     function noteHTML(){ return note ? '<p class="oa-note' + (noteWarn ? ' warn' : '') + '">' + esc(note) + '</p>' : ''; }
 
+    function displayList(){
+      var out = [];
+      model.pairs.forEach(function(p){ if (filter === 'all' || filter === '__ba' || p.sec === filter) out.push({ kind: 'pair', it: p }); });
+      if (filter !== '__ba') model.singles.forEach(function(s){ if (filter === 'all' || s.sec === filter) out.push({ kind: 'single', it: s }); });
+      out.sort(function(x, y){ return (x.it.ord || 0) - (y.it.ord || 0); });
+      return out;
+    }
+    function tglHTML(kind, it){
+      var on = kind === 'pair' ? it.onSite !== false : !!it.onSite;
+      return '<button type="button" class="oa-tgl' + (on ? ' on' : '') + '" data-vis="' + kind + ':' + it.id + '"><span class="tk"></span>Visible on Site</button>';
+    }
+    function cardHTML(m){
+      if (m.kind === 'pair') {
+        var p = m.it;
+        return '<div class="oa-card wide' + (p.onSite === false ? ' off' : '') + '" data-card="pair:' + p.id + '"><div class="oa-splitwrap"><div class="oa-split"><div class="half"><img src="' + esc(disp(p.bsrc)) + '" alt=""><span class="tag">BEFORE</span></div><div class="mid"></div><div class="half"><img src="' + esc(disp(p.asrc)) + '" alt=""><span class="tag">AFTER</span></div></div><span class="oa-bapill">Before &amp; After</span></div>' +
+          '<input class="oa-cap" type="text" data-pcap="' + p.id + ':title" value="' + esc(p.title || '') + '" placeholder="Project title / caption">' +
+          (p.story ? '<div class="oa-pstory">' + esc(p.story) + '</div>' : '') + ((p.tags || p.medium || p.dims) ? '<div class="oa-pmeta">' + esc([p.tags, p.medium, p.dims].filter(Boolean).join(' · ')) + '</div>' : '') +
+          '<div class="oa-cardrow"><span class="oa-handle" data-drag title="Drag to reorder">&#10265;</span><button class="btn" type="button" data-pedit="' + p.id + '">Edit</button><button class="btn" type="button" data-prm="' + p.id + '">Remove</button>' + tglHTML('pair', p) + '</div></div>';
+      }
+      var s = m.it;
+      return '<div class="oa-card' + (s.onSite ? '' : ' off') + '" data-card="single:' + s.id + '"><img src="' + esc(disp(s.src)) + '" alt="">' +
+        '<input class="oa-cap" type="text" data-cap="' + s.id + '" value="' + esc(s.cap) + '" placeholder="Caption">' +
+        '<div class="oa-cardrow"><span class="oa-handle" data-drag title="Drag to reorder">&#10265;</span>' + tglHTML('single', s) + '</div></div>';
+    }
+    function wireCards(){
+      var dragEl = null;
+      root.querySelectorAll('.oa-card').forEach(function(card){
+        var handle = card.querySelector('[data-drag]');
+        if (handle) {
+          handle.addEventListener('mousedown', function(){ card.setAttribute('draggable', 'true'); });
+          handle.addEventListener('mouseup', function(){ card.removeAttribute('draggable'); });
+        }
+        card.addEventListener('dragstart', function(e){ dragEl = card; card.classList.add('dragging'); try { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', card.getAttribute('data-card')); } catch (err) {} });
+        card.addEventListener('dragend', function(){ card.classList.remove('dragging'); card.removeAttribute('draggable'); root.querySelectorAll('.oa-card.over').forEach(function(c){ c.classList.remove('over'); }); });
+        card.addEventListener('dragover', function(e){ if (dragEl && dragEl !== card) { e.preventDefault(); card.classList.add('over'); } });
+        card.addEventListener('dragleave', function(){ card.classList.remove('over'); });
+        card.addEventListener('drop', function(e){
+          e.preventDefault(); card.classList.remove('over');
+          if (!dragEl || dragEl === card) return;
+          var list = displayList();
+          var from = -1, to = -1;
+          list.forEach(function(m, ix){ var k = m.kind + ':' + m.it.id; if (k === dragEl.getAttribute('data-card')) from = ix; if (k === card.getAttribute('data-card')) to = ix; });
+          if (from < 0 || to < 0) { dragEl = null; return; }
+          var moved = list.splice(from, 1)[0]; list.splice(to, 0, moved);
+          list.forEach(function(m, ix){ m.it.ord = (ix + 1) * 10; });
+          dragEl = null;
+          commit(); render();
+        });
+      });
+    }
     function renderPortfolio(){
-      var sec = secName();
-      var pairs = model.pairs.filter(function(p){ return p.sec === sec; });
-      var singles = sortedItems(model.singles.filter(function(s){ return s.onSite && s.sec === sec; }), sortMode);
-      var h = '<div class="oa-head"><span class="oa-lab">PORTFOLIO</span><button class="btn btn--primary" type="button" data-act="upload">Upload</button></div>';
+      var h = '<div class="oa-head"><span class="oa-lab">PORTFOLIO &amp; SUBMISSIONS</span><button class="btn btn--primary" type="button" data-act="upload">Upload</button></div>';
       h += '<div class="oa-chlist" data-role="choose" style="display:none"><button type="button" data-act="ch-add">Add work: photos + before / after project</button><button type="button" data-act="ch-cancel">Cancel</button></div>';
       h += noteHTML();
-      h += '<p style="color:#5c5c66;font-size:13px;margin:10px 0 0">This is what appears on the site. Captions change here, and only here.</p>';
-      h += barHTML();
-      if (!pairs.length && !singles.length) h += '<div class="oa-empty">Nothing on the site in this section yet. Upload photos, or publish a before / after project.</div>';
-      pairs.forEach(function(p){
-        h += '<div class="oa-pair"><div class="oa-split"><div class="half"><img src="' + esc(disp(p.bsrc)) + '" alt=""><span class="tag">BEFORE</span></div><div class="mid"></div><div class="half"><img src="' + esc(disp(p.asrc)) + '" alt=""><span class="tag">AFTER</span></div></div>' +
-          (p.title ? '<div class="oa-ptitle">' + esc(p.title) + '</div>' : '') + (p.story ? '<div class="oa-pstory">' + esc(p.story) + '</div>' : '') + ((p.tags || p.medium || p.dims) ? '<div class="oa-pmeta">' + esc([p.tags, p.medium, p.dims].filter(Boolean).join(' · ')) + '</div>' : '') +
-          '<div class="oa-caplab">Before caption</div><input type="text" data-pcap="' + p.id + ':bcap" value="' + esc(p.bcap) + '" placeholder="No caption yet" style="width:100%;border:1px solid #d8d8d2;border-radius:8px;padding:8px 10px;font:inherit;font-size:14px;background:#fff">' +
-          '<div class="oa-caplab">After caption</div><input type="text" data-pcap="' + p.id + ':acap" value="' + esc(p.acap) + '" placeholder="No caption yet" style="width:100%;border:1px solid #d8d8d2;border-radius:8px;padding:8px 10px;font:inherit;font-size:14px;background:#fff">' +
-          '<div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" type="button" data-pedit="' + p.id + '">Edit project</button><button class="btn" type="button" data-prm="' + p.id + '">Remove pair from the site</button></div></div>';
-      });
-      if (singles.length) {
-        h += '<div class="oa-pgrid">' + singles.map(function(s){
-          return '<figure class="oa-fig"><img src="' + esc(disp(s.src)) + '" alt=""><button class="oa-rm" type="button" data-off="' + s.id + '" aria-label="Remove from site">&times;</button><input class="oa-cap" type="text" data-cap="' + s.id + '" value="' + esc(s.cap) + '" placeholder="Caption"></figure>';
-        }).join('') + '</div>';
-      }
+      h += '<p style="color:#5c5c66;font-size:13px;margin:10px 0 0">This is what appears on the site, in this order. Drag the handle to reorder; the switch hides a piece without deleting it.</p>';
+      h += '<div class="oa-chips"><button type="button" class="oa-chip' + (filter === 'all' ? ' on' : '') + '" data-chip="all">All</button>' + model.sections.map(function(s){ return '<button type="button" class="oa-chip' + (filter === s ? ' on' : '') + '" data-chip="' + esc(s) + '">' + esc(s) + '</button>'; }).join('') + '<button type="button" class="oa-chip' + (filter === '__ba' ? ' on' : '') + '" data-chip="__ba">Before &amp; After</button></div>';
+      h += '<div class="oa-drop" data-role="drop">Drop photo files here, or click to upload</div>';
+      var list = displayList();
+      if (!list.length) h += '<div class="oa-empty" style="margin-top:12px">Nothing here yet. Drop photos above, or publish a before / after project.</div>';
+      else h += '<div class="oa-cards">' + list.map(cardHTML).join('') + '</div>';
+      h += '<input type="file" data-role="pfile" accept="image/*" multiple hidden>';
       root.innerHTML = h;
+      wireDrop(true);
+      wireCards();
     }
 
     function galleryInner(){
@@ -2274,10 +2346,11 @@ var DEFAULTS = {
       h += '<input type="file" data-role="gfile" accept="image/*" multiple hidden>';
       return h;
     }
-    function wireDrop(){
+    function wireDrop(onSite){
       var dz = root.querySelector('[data-role="drop"]');
       if (!dz) return;
-      ['dragover', 'dragleave', 'drop'].forEach(function(ev){ dz.addEventListener(ev, function(e){ e.preventDefault(); dz.classList.toggle('over', ev === 'dragover'); if (ev === 'drop') addFiles(secName(), e.dataTransfer.files); }); });
+      ['dragover', 'dragleave', 'drop'].forEach(function(ev){ dz.addEventListener(ev, function(e){ e.preventDefault(); dz.classList.toggle('over', ev === 'dragover'); if (ev === 'drop') addFiles(secName(), e.dataTransfer.files, onSite); }); });
+      dz.addEventListener('click', function(){ var fi = root.querySelector('[data-role="pfile"],[data-role="gfile"]'); if (fi) fi.click(); });
     }
     function renderGallery(){
       var h = '<div class="oa-head"><span class="oa-lab">GALLERY</span><button class="btn" type="button" data-act="done">Done</button></div>';
@@ -2350,13 +2423,13 @@ var DEFAULTS = {
     }
 
     function render(){ if (view !== 'gallery') armDelSec = false; if (view === 'portfolio') renderPortfolio(); else if (view === 'gallery') renderGallery(); else renderAdd(); }
-    function addFiles(sec, files){
+    function addFiles(sec, files, onSite){
       Array.prototype.forEach.call(files, function(f){
-        readFile(f, function(src){ model.singles.push({ id: nid('s'), src: src, cap: '', sec: sec, onSite: false, ord: uid }); commit(); render(); });
+        readFile(f, function(src){ model.singles.push({ id: nid('s'), src: src, cap: '', sec: sec, onSite: !!onSite, ord: uid }); commit(); render(); });
       });
     }
     root.addEventListener('click', function(e){
-      var t = e.target.closest('[data-act],[data-site],[data-del],[data-off],[data-prm],[data-pedit],[data-fbox],[data-resume],[data-ddel]');
+      var t = e.target.closest('[data-act],[data-site],[data-del],[data-off],[data-prm],[data-pedit],[data-fbox],[data-resume],[data-ddel],[data-chip],[data-vis]');
       if (!t) return;
       var act = t.getAttribute('data-act');
       if (act === 'upload') { var c = root.querySelector('[data-role="choose"]'); if (c) c.style.display = c.style.display === 'none' ? '' : 'none'; return; }
@@ -2414,6 +2487,17 @@ var DEFAULTS = {
         if (s2) { s2.onSite = false; note = 'Removed from the site. The photo is still in Gallery.'; noteWarn = false; commit(); render(); }
         return;
       }
+      if (t.hasAttribute('data-chip')) {
+        filter = t.getAttribute('data-chip');
+        var ci = model.sections.indexOf(filter); if (ci >= 0) page = ci;
+        render(); return;
+      }
+      if (t.hasAttribute('data-vis')) {
+        var vp = t.getAttribute('data-vis').split(':');
+        if (vp[0] === 'pair') { var pv = model.pairs.filter(function(x){ return x.id === vp[1]; })[0]; if (pv) { pv.onSite = pv.onSite === false; commit(); render(); } }
+        else { var sv = model.singles.filter(function(x){ return x.id === vp[1]; })[0]; if (sv) { sv.onSite = !sv.onSite; commit(); render(); } }
+        return;
+      }
       if (t.hasAttribute('data-prm')) {
         model.pairs = model.pairs.filter(function(x){ return x.id !== t.getAttribute('data-prm'); });
         commit(); render(); return;
@@ -2458,7 +2542,8 @@ var DEFAULTS = {
         render(); return;
       }
       if (t.hasAttribute('data-fsec')) { if (cur) { cur.sec = t.value; persist(); } return; }
-      if (t.getAttribute('data-role') === 'gfile') { addFiles(secName(), t.files); t.value = ''; return; }
+      if (t.getAttribute('data-role') === 'gfile') { addFiles(secName(), t.files, false); t.value = ''; return; }
+      if (t.getAttribute('data-role') === 'pfile') { addFiles(secName(), t.files, true); t.value = ''; return; }
       if (t.getAttribute('data-role') === 'ffile') {
         var f = t.files && t.files[0];
         if (f && formTarget && cur) readFile(f, function(src){ cur[formTarget] = { src: src, t: f.name.replace(/\.[^.]+$/, '') }; persist(); renderAdd(); });
