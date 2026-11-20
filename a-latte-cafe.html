@@ -220,6 +220,26 @@ section[id]{scroll-margin-top:calc(var(--head-h) + 8px)}
 .radial-pill{position:absolute;right:72px;bottom:-4px;height:40px;padding:0 1.15rem;border-radius:999px;display:flex;align-items:center;background:var(--brick);color:#fff8ef;font-size:.9rem;font-weight:600;text-decoration:none;white-space:nowrap;box-shadow:0 4px 12px rgba(32,27,22,.22);opacity:0;visibility:hidden;transform:translateX(12px);transition:transform .22s ease,opacity .18s ease,visibility 0s linear .22s}
 .radial.open .radial-pill{opacity:1;visibility:visible;transform:none;transition:transform .22s ease,opacity .18s ease,visibility 0s}
 
+body.menu-locked{overflow:hidden}
+.mov{position:fixed;inset:0;z-index:200;background:var(--cream);display:flex;flex-direction:column;visibility:hidden;opacity:0;transform:translateY(14px);transition:opacity .3s ease,transform .3s ease,visibility 0s linear .3s}
+.mov.open{visibility:visible;opacity:1;transform:none;transition:opacity .3s ease,transform .3s ease}
+.mov-inner{width:min(100% - 2.5rem,760px);margin-inline:auto}
+.mov-head{flex:none;border-bottom:1px solid var(--line);background:var(--cream)}
+.mov-head-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 0}
+.mov-title{font-family:var(--serif);font-size:1.45rem;font-weight:600}
+.mov-close{display:flex;align-items:center;justify-content:center;width:48px;height:48px;min-width:48px;border-radius:50%;background:var(--paper);border:1px solid var(--line-strong);font-size:1.5rem;line-height:1;color:var(--ink);cursor:pointer;font-family:var(--sans);transition:background-color .2s ease,color .2s ease}
+.mov-close:hover{background:var(--ink);color:var(--cream)}
+.mov-tabs{flex:none;background:var(--paper);border-bottom:1px solid var(--line)}
+.mov-tabs-row{display:flex;gap:.5rem;overflow-x:auto;padding:.65rem 0;scrollbar-width:none}
+.mov-tabs-row::-webkit-scrollbar{display:none}
+.mov-tab{flex:none;min-height:48px;padding:.4rem .95rem;border-radius:var(--radius);border:1px solid var(--ink);background:transparent;color:var(--ink);font:600 .9rem/1.2 var(--sans);cursor:pointer;transition:background-color .15s ease,color .15s ease}
+.mov-tab:hover{background:var(--cream-2)}
+.mov-tab.active{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.mov-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:.5rem 0 2.5rem}
+.mov-part{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--brick);margin:1.1rem 0 .4rem}
+.mov-note{margin-top:2.25rem;padding-top:1.25rem;border-top:1px solid var(--line);color:var(--ink-2);font-size:.95rem}
+.mov-note a{font-weight:600;color:var(--ink)}
+
 @media (min-width:760px){
   .menu-grid{grid-template-columns:1fr 1fr;gap:3rem 4rem}
   .reviews{grid-template-columns:repeat(2,1fr)}
@@ -264,7 +284,7 @@ section[id]{scroll-margin-top:calc(var(--head-h) + 8px)}
     <nav class="site-nav" aria-label="Main">
 
       <a class="nav-link" href="#story">Story</a>
-      <a class="nav-link" href="#menu">Menu</a>
+      <a class="nav-link" href="#menu" data-mov-open>Menu</a>
       <a class="nav-link" href="#photos">Photos</a>
       <a class="nav-link" href="#reviews">Reviews</a>
       <a class="nav-link" href="#visit">Visit</a>
@@ -385,7 +405,7 @@ section[id]{scroll-margin-top:calc(var(--head-h) + 8px)}
       </div>
 
       <div class="menu-foot">
-        <a class="btn btn-line" href="a-latte-cafe-menu.html">See the full menu</a>
+        <button type="button" class="btn btn-line" data-mov-open>See the full menu</button>
         <a class="btn btn-order" href="https://toast.app/r/a-latte-cafe/order?utm_medium=redirect" target="_blank" rel="noopener">Order Online</a>
       </div>
     </div>
@@ -577,7 +597,7 @@ section[id]{scroll-margin-top:calc(var(--head-h) + 8px)}
 <nav class="radial" data-radial aria-label="Quick jump">
   <div id="radial-items">
     <a class="radial-item is-call" href="tel:+12678750709" style="--x:0px;--y:-160px">Call</a>
-    <a class="radial-item" href="#menu" style="--x:-52px;--y:-151px">Menu</a>
+    <a class="radial-item" href="#menu" data-mov-open style="--x:-52px;--y:-151px">Menu</a>
     <a class="radial-item" href="#photos" style="--x:-98px;--y:-126px">Photos</a>
     <a class="radial-item" href="#reviews" style="--x:-134px;--y:-87px">Reviews</a>
     <a class="radial-item" href="#visit" style="--x:-155px;--y:-39px">Visit</a>
@@ -794,6 +814,169 @@ section[id]{scroll-margin-top:calc(var(--head-h) + 8px)}
   initRadial();
   initRequestForm();
   markToday();
+})();
+</script>
+<div class="mov" id="menu-overlay" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="mov-head">
+    <div class="mov-inner mov-head-row">
+      <span class="mov-title">Menu</span>
+      <button type="button" class="mov-close" data-mov-close aria-label="Close menu">&times;</button>
+    </div>
+  </div>
+  <div class="mov-tabs">
+    <div class="mov-inner mov-tabs-row" id="mov-tabs" role="tablist" aria-label="Menu categories"></div>
+  </div>
+  <div class="mov-scroll" id="mov-scroll">
+    <div class="mov-inner">
+      <div id="mov-panels"></div>
+      <p class="mov-note">Prices appear where listed. See the <a href="a-latte-cafe-menu.html">full menu page</a> or <a href="https://toast.app/r/a-latte-cafe/order?utm_medium=redirect" target="_blank" rel="noopener">order online</a> for pickup.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var MENU = [
+    { part: "Cafe", cats: [
+      { name: "Coffee", items: [
+        ["Cortado", "$4.00"],
+        ["Honey Cinnamon Latte", "$5.50+"],
+        ["Banana Bread Iced Latte", "$5.75+"],
+        ["Cinnamon Latte"],
+        ["Salted Caramel Latte"],
+        ["Salted Maple Cold Brew"]
+      ]},
+      { name: "Drink Specials", items: [
+        ["Pumpkin Mocha Macchiato"],
+        ["Pumpkin Cheesecake Iced Latte"],
+        ["Pumpkin Pancake Shaken Espresso"],
+        ["Caramel Apple Chai Latte"],
+        ["Golden Spice Latte"]
+      ]},
+      { name: "Teas", items: [
+        ["Blueberry Matcha"],
+        ["Blueberry Chai"]
+      ]},
+      { name: "Hot Chocolate", items: [
+        ["Hot Chocolate"]
+      ]},
+      { name: "Refreshers", items: [
+        ["Refreshers", "$5.00+"]
+      ]},
+      { name: "Baked Goods and Breakfast", items: [
+        ["Avocado Toast", "$3.00"],
+        ["Jalapeno Cheddar Sourdough Avocado Toast", null, "Sourdough from All You Knead"],
+        ["Spinach, Egg and Cheese Quiche", "$5.00", "Gluten free"],
+        ["Ham, Egg and Cheese Quiche", "$5.00"],
+        ["Pumpkin Chocolate Chip Sourdough", null, "With sweet cream cheese spread"]
+      ]}
+    ]},
+    { part: "a' latte ice cream", cats: [
+      { name: "Sundaes", items: [
+        ["Sundaes", "$6.95 to $9.95"]
+      ]},
+      { name: "Milkshakes", items: [
+        ["Milkshakes", "$7.95+"]
+      ]},
+      { name: "Ice Cream Treats", items: [
+        ["Affogato", "$6.00"],
+        ["Pumpkin Affogato"]
+      ]},
+      { name: "Ice Cream", items: [
+        ["One scoop", "$3.95"],
+        ["Two scoops", "$5.95"],
+        ["Three scoops", "$7.95"]
+      ]},
+      { name: "Shareables", items: [
+        ["Ice Cream Flight", "$8.95", "Up to four flavors"]
+      ]}
+    ]}
+  ];
+
+  function dishHTML(item) {
+    var note = item[2] ? '<span class="dish-note">' + item[2] + "</span>" : "";
+    var price = item[1] ? '<span class="price">' + item[1] + "</span>" : "";
+    return '<li class="dish"><span class="dish-name">' + item[0] + note + "</span>" + price + "</li>";
+  }
+
+  function catHTML(cat) {
+    var rows = cat.items.map(dishHTML).join("");
+    return '<div class="menu-group"><h3>' + cat.name + '</h3><ul class="dish-list">' + rows + "</ul></div>";
+  }
+
+  function flatCats() {
+    var out = [];
+    MENU.forEach(function (part) {
+      part.cats.forEach(function (cat) { out.push({ part: part.part, cat: cat }); });
+    });
+    return out;
+  }
+
+  var overlay = document.getElementById("menu-overlay");
+  var tabsEl = document.getElementById("mov-tabs");
+  var panelsEl = document.getElementById("mov-panels");
+  var scrollEl = document.getElementById("mov-scroll");
+  var closeBtn = overlay.querySelector("[data-mov-close]");
+  var lastFocus = null;
+
+  function buildMenu() {
+    var cats = flatCats();
+    tabsEl.innerHTML = cats.map(function (entry, i) {
+      return '<button type="button" class="mov-tab' + (i === 0 ? " active" : "") + '" role="tab" aria-selected="' + (i === 0 ? "true" : "false") + '" data-mov-tab="' + i + '">' + entry.cat.name + "</button>";
+    }).join("");
+    panelsEl.innerHTML = cats.map(function (entry, i) {
+      return '<div class="mov-panel" data-mov-panel="' + i + '"' + (i === 0 ? "" : " hidden") + '><p class="mov-part">' + entry.part + "</p>" + catHTML(entry.cat) + "</div>";
+    }).join("");
+  }
+
+  function selectTab(i) {
+    Array.prototype.forEach.call(tabsEl.querySelectorAll(".mov-tab"), function (t) {
+      var on = Number(t.getAttribute("data-mov-tab")) === i;
+      t.classList.toggle("active", on);
+      t.setAttribute("aria-selected", String(on));
+    });
+    Array.prototype.forEach.call(panelsEl.querySelectorAll(".mov-panel"), function (p) {
+      p.hidden = Number(p.getAttribute("data-mov-panel")) !== i;
+    });
+    scrollEl.scrollTop = 0;
+    var active = tabsEl.querySelector(".mov-tab.active");
+    if (active) { active.scrollIntoView({ block: "nearest", inline: "center" }); }
+  }
+
+  function openMenu() {
+    lastFocus = document.activeElement;
+    overlay.classList.add("open");
+    document.body.classList.add("menu-locked");
+    closeBtn.focus();
+  }
+
+  function closeMenu() {
+    overlay.classList.remove("open");
+    document.body.classList.remove("menu-locked");
+    if (lastFocus && lastFocus.focus) { lastFocus.focus(); }
+  }
+
+  buildMenu();
+
+  tabsEl.addEventListener("click", function (ev) {
+    var btn = ev.target.closest("[data-mov-tab]");
+    if (btn) { selectTab(Number(btn.getAttribute("data-mov-tab"))); }
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-mov-open]"), function (el) {
+    el.addEventListener("click", function (ev) {
+      ev.preventDefault();
+      openMenu();
+    });
+  });
+
+  closeBtn.addEventListener("click", closeMenu);
+
+  document.addEventListener("keydown", function (ev) {
+    if (ev.key === "Escape" && overlay.classList.contains("open")) { closeMenu(); }
+  });
 })();
 </script>
 <img src="https://abacus.jasoncameron.dev/hit/717digitalstudio-demos/a-latte-cafe" alt="" width="1" height="1" style="position:absolute;opacity:0;pointer-events:none" aria-hidden="true">

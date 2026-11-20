@@ -70,8 +70,9 @@ p{margin:0}
 .jump{position:sticky;top:var(--head-h);z-index:40;background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .jump ul{list-style:none;margin:0;padding:.65rem 0;display:flex;gap:.5rem;overflow-x:auto;scrollbar-width:none}
 .jump ul::-webkit-scrollbar{display:none}
-.jump a{display:inline-block;white-space:nowrap;padding:.45rem .85rem;border:1px solid var(--line);border-radius:var(--radius);font-size:.88rem;font-weight:500;text-decoration:none;background:var(--paper)}
-.jump a:hover{border-color:var(--ink)}
+.jump button{display:inline-flex;align-items:center;min-height:48px;white-space:nowrap;padding:.45rem .9rem;border:1px solid var(--line);border-radius:var(--radius);font:500 .9rem/1.2 var(--sans);color:var(--ink);background:var(--paper);cursor:pointer}
+.jump button:hover{border-color:var(--ink)}
+.jump button:active{background:var(--ink);color:var(--cream)}
 
 .menu-part{padding:clamp(3rem,6vw,4.5rem) 0;border-top:1px solid var(--line)}
 .menu-part:first-of-type{border-top:0}
@@ -172,17 +173,17 @@ p{margin:0}
   <nav class="jump" aria-label="Menu sections">
     <div class="wrap">
       <ul>
-        <li><a href="#coffee">Coffee</a></li>
-        <li><a href="#specials">Drink Specials</a></li>
-        <li><a href="#teas">Teas</a></li>
-        <li><a href="#hot-chocolate">Hot Chocolate</a></li>
-        <li><a href="#refreshers">Refreshers</a></li>
-        <li><a href="#bakery">Baked Goods and Breakfast</a></li>
-        <li><a href="#sundaes">Sundaes</a></li>
-        <li><a href="#milkshakes">Milkshakes</a></li>
-        <li><a href="#treats">Ice Cream Treats</a></li>
-        <li><a href="#ice-cream">Ice Cream</a></li>
-        <li><a href="#shareables">Shareables</a></li>
+        <li><button type="button" data-chip-target="coffee">Coffee</button></li>
+        <li><button type="button" data-chip-target="specials">Drink Specials</button></li>
+        <li><button type="button" data-chip-target="teas">Teas</button></li>
+        <li><button type="button" data-chip-target="hot-chocolate">Hot Chocolate</button></li>
+        <li><button type="button" data-chip-target="refreshers">Refreshers</button></li>
+        <li><button type="button" data-chip-target="bakery">Baked Goods and Breakfast</button></li>
+        <li><button type="button" data-chip-target="sundaes">Sundaes</button></li>
+        <li><button type="button" data-chip-target="milkshakes">Milkshakes</button></li>
+        <li><button type="button" data-chip-target="treats">Ice Cream Treats</button></li>
+        <li><button type="button" data-chip-target="ice-cream">Ice Cream</button></li>
+        <li><button type="button" data-chip-target="shareables">Shareables</button></li>
       </ul>
     </div>
   </nav>
@@ -350,5 +351,18 @@ p{margin:0}
   <a class="btn btn-line" href="a-latte-cafe.html">Home</a>
   <a class="btn btn-order" href="https://toast.app/r/a-latte-cafe/order?utm_medium=redirect" target="_blank" rel="noopener">Order Online</a>
 </div>
+
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  Array.prototype.forEach.call(document.querySelectorAll("[data-chip-target]"), function (chip) {
+    chip.addEventListener("click", function () {
+      var el = document.getElementById(chip.getAttribute("data-chip-target"));
+      if (el) { el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" }); }
+    });
+  });
+})();
+</script>
 </body>
 </html>
