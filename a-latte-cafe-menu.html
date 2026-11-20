@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu | A' Latte Cafe, Quakertown, PA</title>
+<meta name="description" content="The A' Latte Cafe menu: coffee, drink specials, teas, hot chocolate, refreshers, baked goods and breakfast, plus a' latte ice cream.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Menu | A' Latte Cafe, Quakertown, PA">
+<meta property="og:description" content="Coffee, drink specials, teas, baked goods, breakfast and a' latte ice cream at the Trolley Barn Public Market in Quakertown.">
+<meta name="theme-color" content="#f4ecdd">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%23f4ecdd'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' font-weight='700' text-anchor='middle' fill='%23201b16'%3Ea%27%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f4ecdd;
+  --cream-2:#ebe0cc;
+  --paper:#fbf7f0;
+  --ink:#201b16;
+  --ink-2:#4b4138;
+  --brick:#9c3a30;
+  --brick-d:#82302a;
+  --line:rgba(32,27,22,.16);
+  --radius:4px;
+  --head-h:64px;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+
+body{margin:0;background:var(--cream);color:var(--ink);font:400 1rem/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.08;letter-spacing:-.012em;margin:0}
+p{margin:0}
+:focus-visible{outline:2px solid var(--brick);outline-offset:3px}
+.skip{position:absolute;left:1rem;top:-4rem;z-index:100;background:var(--ink);color:var(--cream);padding:.6rem 1rem;border-radius:var(--radius);text-decoration:none}
+.skip:focus{top:1rem}
+.wrap{width:min(100% - 2.5rem,1180px);margin-inline:auto}
+.kicker{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--ink-2);margin:0 0 .9rem}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 1.35rem;border-radius:var(--radius);border:1px solid transparent;font:600 .98rem/1 var(--sans);text-decoration:none;cursor:pointer;transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+.btn-order{background:var(--brick);color:#fff8ef}
+.btn-order:hover{background:var(--brick-d)}
+.btn-line{background:transparent;border-color:var(--ink);color:var(--ink)}
+.btn-line:hover{background:var(--ink);color:var(--cream)}
+.btn-sm{min-height:40px;padding:0 1rem;font-size:.9rem}
+
+.banner{background:var(--ink);color:var(--cream);font-size:.9rem}
+.banner .wrap{display:flex;align-items:center;justify-content:center;min-height:42px;text-align:center}
+.banner a{font-weight:600;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+
+.site-head{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:1px solid var(--line)}
+.head-row{display:flex;align-items:center;justify-content:space-between;gap:1.25rem;height:var(--head-h)}
+.wordmark{font-family:var(--serif);font-size:1.55rem;font-weight:600;letter-spacing:-.015em;text-decoration:none;white-space:nowrap}
+.wordmark .tick{color:var(--brick)}
+.head-actions{display:flex;align-items:center;gap:1.25rem}
+.back-link{font-size:.94rem;font-weight:500;text-decoration:none;border-bottom:1px solid transparent;padding:.4rem 0}
+.back-link:hover{border-bottom-color:var(--ink)}
+
+.intro{padding:clamp(3rem,7vw,5.5rem) 0 clamp(2rem,4vw,3rem)}
+.intro-grid{display:grid;gap:1.25rem}
+.intro h1{font-size:clamp(2.6rem,6vw,5rem);line-height:1.02}
+
+.intro .lede{color:var(--ink-2);font-size:1.075rem;max-width:36rem}
+.intro-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem}
+
+.jump{position:sticky;top:var(--head-h);z-index:40;background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.jump ul{list-style:none;margin:0;padding:.65rem 0;display:flex;gap:.5rem;overflow-x:auto;scrollbar-width:none}
+.jump ul::-webkit-scrollbar{display:none}
+.jump a{display:inline-block;white-space:nowrap;padding:.45rem .85rem;border:1px solid var(--line);border-radius:var(--radius);font-size:.88rem;font-weight:500;text-decoration:none;background:var(--paper)}
+.jump a:hover{border-color:var(--ink)}
+
+.menu-part{padding:clamp(3rem,6vw,4.5rem) 0;border-top:1px solid var(--line)}
+.menu-part:first-of-type{border-top:0}
+.part-head{display:grid;gap:.75rem;margin-bottom:clamp(2rem,4vw,2.75rem)}
+.part-head h2{font-size:clamp(2rem,4vw,3rem)}
+.part-head p{color:var(--ink-2);max-width:34rem}
+.ice-mark{font-style:italic;font-weight:400}
+
+.cat-grid{display:grid;gap:2.5rem}
+.cat{scroll-margin-top:calc(var(--head-h) + 70px)}
+.cat h3{font-size:1.5rem;padding-bottom:.8rem;border-bottom:1px solid var(--ink)}
+.dish-list{list-style:none;margin:0;padding:0}
+.dish{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line)}
+.dish-name{font-weight:500}
+.dish-note{display:block;font-size:.85rem;font-weight:400;color:var(--ink-2)}
+.price{color:var(--brick);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+.menu-note{margin-top:2.5rem;padding:1.5rem;background:var(--paper);border:1px solid var(--line);border-radius:6px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem}
+.menu-note p{color:var(--ink-2);max-width:40rem}
+
+.site-foot{background:var(--ink);color:var(--cream);padding:clamp(3rem,6vw,4.5rem) 0 2rem}
+.foot-grid{display:grid;gap:2rem}
+.foot-mark{font-family:var(--serif);font-size:2rem;font-weight:600;letter-spacing:-.015em}
+.foot-mark .tick{color:#e08a7e}
+
+.foot-tag{margin-top:.5rem;color:rgba(244,236,221,.82);max-width:24rem}
+.foot-h{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:rgba(244,236,221,.78);margin-bottom:.75rem}
+.foot-list{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+.foot-list a{text-decoration:none;border-bottom:1px solid rgba(244,236,221,.35)}
+.foot-list a:hover{border-bottom-color:var(--cream)}
+.foot-base{margin-top:3rem;padding-top:1.25rem;border-top:1px solid rgba(244,236,221,.2);display:flex;flex-wrap:wrap;justify-content:space-between;gap:.75rem;font-size:.86rem;color:rgba(244,236,221,.78)}
+
+.order-bar{display:none}
+
+@media (min-width:760px){
+  .cat-grid{grid-template-columns:1fr 1fr;gap:3rem 4rem}
+  .foot-grid{grid-template-columns:1.4fr 1fr 1fr}
+}
+@media (min-width:900px){
+  .intro-grid{grid-template-columns:1.1fr .9fr;gap:4rem;align-items:end}
+  .part-head{grid-template-columns:1fr 1fr;gap:4rem;align-items:end}
+}
+@media (min-width:1100px){
+  .cat-grid.three{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:640px){
+  .back-link{display:none}
+  .wordmark{font-size:1.35rem}
+}
+@media (max-width:760px){
+  body{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
+  .order-bar{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;position:fixed;left:0;right:0;bottom:0;z-index:55;padding:.6rem .75rem calc(.6rem + env(safe-area-inset-bottom));background:var(--cream);border-top:1px solid var(--line);box-shadow:0 -4px 16px rgba(32,27,22,.12)}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#cafe-menu">Skip to the menu</a>
+
+<div class="banner">
+  <div class="wrap">
+    <p><a href="a-latte-cafe.html">Back to the A' Latte Cafe home page</a></p>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="wordmark" href="a-latte-cafe.html" aria-label="A' Latte Cafe home">a<span class="tick">'</span> latte cafe</a>
+    <div class="head-actions">
+      <a class="back-link" href="a-latte-cafe.html">Home</a>
+      <a class="btn btn-order btn-sm" href="https://toast.app/r/a-latte-cafe/order?utm_medium=redirect" target="_blank" rel="noopener">Order Online</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="intro" aria-labelledby="menu-title">
+    <div class="wrap intro-grid">
+      <div>
+        <p class="kicker">Trolley Barn Public Market, Quakertown</p>
+        <h1 id="menu-title">The menu.</h1>
+      </div>
+      <div>
+        <p class="lede">Coffee and espresso, seasonal lattes, teas, breakfast and baked goods, plus a' latte ice cream. Prices appear where listed; order online for the full current menu and pricing.</p>
+        <div class="intro-actions">
+          <a class="btn btn-order" href="https://toast.app/r/a-latte-cafe/order?utm_medium=redirect" target="_blank" rel="noopener">Order Online</a>
+
+          <a class="btn btn-line" href="a-latte-cafe.html">Back to home</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="jump" aria-label="Menu sections">
+    <div class="wrap">
+      <ul>
+        <li><a href="#coffee">Coffee</a></li>
+        <li><a href="#specials">Drink Specials</a></li>
+        <li><a href="#teas">Teas</a></li>
+        <li><a href="#hot-chocolate">Hot Chocolate</a></li>
+        <li><a href="#refreshers">Refreshers</a></li>
+        <li><a href="#bakery">Baked Goods and Breakfast</a></li>
+        <li><a href="#sundaes">Sundaes</a></li>
+        <li><a href="#milkshakes">Milkshakes</a></li>
+        <li><a href="#treats">Ice Cream Treats</a></li>
+        <li><a href="#ice-cream">Ice Cream</a></li>
+        <li><a href="#shareables">Shareables</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="menu-part" id="cafe-menu" aria-labelledby="cafe-title">
+    <div class="wrap">
+      <div class="part-head">
+        <h2 id="cafe-title">Cafe</h2>
+        <p>Espresso drinks, lattes, teas and breakfast from the counter in the Red Mercantile building.</p>
+      </div>
+
+      <div class="cat-grid">
+
+        <div class="cat" id="coffee">
+          <h3>Coffee</h3>
+          <ul class="dish-list">
+            <li class="dish"><span class="dish-name">Cortado</span><span class="price">$4.00</span></li>
+            <li class="dish"><span class="dish-name">Honey Cinnamon Latte</span><span class="price">$5.50+</span></li>
+            <li class="dish"><span class="dish-name">Banana Bread Iced Latte</span><span class="price">$5.75+</span></li>
+            <li class="dish"><span class="dish-name">Cinnamon Latte</span></li>
+            <li class="dish"><span class="dish-name">Salted Caramel Latte</span></li>
+            <li class="dish"><span class="dish-name">Salted Maple Cold Brew</span></li>
+          </ul>
+        </div>
+
+        <div class="cat" id="specials">
+          <h3>Drink Specials</h3>
+          <ul class="dish-list">
+            <li class="dish"><span class="dish-name">Pumpkin Mocha Macchiato</span></li>
+            <li class="dish"><span class="dish-name">Pumpkin Cheesecake Iced Latte</span></li>
+            <li class="dish"><span class="dish-name">Pumpkin Pancake Shaken Espresso</span></li>
+            <li class="dish"><span class="dish-name">Caramel Apple Chai Latte</span></li>
+            <li class="dish"><span class="dish-name">Golden Spice Latte</span></li>
+          </ul>
+        </div>
+
+        <div class="cat" id="teas">
+          <h3>Teas</h3>
+          <ul class="dish-list">
+            <li class="dish"><span class="dish-name">Blueberry Matcha</span></li>
+            <li class="dish"><span class="dish-name">Blueberry Chai</span></li>
+          </ul>
+        </div>
+
+        <div class="cat" id="hot-chocolate">
+
+          <h3>Hot Chocolate</h3>
+          <ul class="dish-list">
+            <li class="dish"><span class="dish-name">Hot Chocolate</span></li>
+          </ul>
+        </div>
+
+        <div class="cat" id="refreshers">
+          <h3>Refreshers</h3>
+          <ul class="dish-list">
+            <li class="dish"><span class="dish-name">Refreshers</span><span class="price">$5.00+</span></li>
+          </ul>
+        </div>
+
+        <div class="cat" id="bakery">
+          <h3>Baked Goods and Breakfast</h3>
+          <ul class="dish-list">
+            <li class="dish"><span class="dish-name">Avocado Toast</span><span class="price">$3.00</span></li>
+            <li class="dish"><span class="dish-name">Jalapeno Cheddar Sourdough Avocado Toast<span class="dish-note">Sourdough from All You Knead</span></span></li>
+            <li class="dish"><span class="dish-name">Spinach, Egg and Cheese Quiche<span class="dish-note">Gluten free</span></span><span class="price">$5.00</span></li>
+            <li class="dish"><span class="dish-name">Ham, Egg and Cheese Quiche</span><span class="price">$5.00</span></li>
+            <li class="dish"><span class="dish-name">Pumpkin Chocolate Chip Sourdough<span class="dish-note">With sweet cream cheese spread</span></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu-part" aria-labelledby="ice-title">
+    <div class="wrap">
+      <div class="part-head">
+        <h2 id="ice-title"><span class="ice-mark">a' latte</span> ice cream</h2>
+        <p>Scoops, sundaes, milkshakes and affogato from the ice cream counter.</p>
+
+      </div>
+
+      <div class="cat-grid three">
+        <div class="cat" id="sundaes">
+          <h3>Sundaes</h3>
+          <ul class="dish-list">
+            <li class="dish"><span class="dish-name">Sundaes</span><span class="price">$6.95 to $9.95</span></li>
+          </ul>
+        </div>
+
+        <div class="cat" id="milkshakes">
+          <h3>Milkshakes</h3>
+          <ul class="dish-list">
+            <li class="dish"><span class="dish-name">Milkshakes</span><span class="price">$7.95+</span></li>
+          </ul>
+        </div>
+
+        <div class="cat" id="treats">
+          <h3>Ice Cream Treats</h3>
+          <ul class="dish-list">
+            <li class="dish"><span class="dish-name">Affogato</span><span class="price">$6.00</span></li>
+            <li class="dish"><span class="dish-name">Pumpkin Affogato</span></li>
+          </ul>
+        </div>
+
+        <div class="cat" id="ice-cream">
+          <h3>Ice Cream</h3>
+          <ul class="dish-list">
+            <li class="dish"><span class="dish-name">One scoop</span><span class="price">$3.95</span></li>
+            <li class="dish"><span class="dish-name">Two scoops</span><span class="price">$5.95</span></li>
+            <li class="dish"><span class="dish-name">Three scoops</span><span class="price">$7.95</span></li>
+          </ul>
+
+        </div>
+
+        <div class="cat" id="shareables">
+          <h3>Shareables</h3>
+          <ul class="dish-list">
+            <li class="dish"><span class="dish-name">Ice Cream Flight<span class="dish-note">Up to four flavors</span></span><span class="price">$8.95</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="menu-note">
+        <p>Order ahead for pickup or delivery through the cafe's online ordering, where the full current menu and prices are listed.</p>
+        <a class="btn btn-order" href="https://toast.app/r/a-latte-cafe/order?utm_medium=redirect" target="_blank" rel="noopener">Order Online</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p class="foot-mark">a<span class="tick">'</span> latte cafe</p>
+        <p class="foot-tag">Coffee, baked goods and ice cream in the Trolley Barn Public Market.</p>
+      </div>
+      <div>
+        <p class="foot-h">Find us</p>
+        <ul class="foot-list">
+          <li>116 E Broad St, Quakertown, PA 18951</li>
+          <li><a href="tel:+12678750709">(267) 875-0709</a></li>
+          <li><a href="mailto:info@alattecafe.com">info@alattecafe.com</a></li>
+        </ul>
+
+      </div>
+      <div>
+        <p class="foot-h">Follow and order</p>
+        <ul class="foot-list">
+          <li><a href="https://www.facebook.com/profile.php?id=61567323691933" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.instagram.com/alattecafeqtown" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://toast.app/r/a-latte-cafe/order?utm_medium=redirect" target="_blank" rel="noopener">Order Online</a></li>
+          <li><a href="a-latte-cafe.html">Home page</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>A' Latte Cafe, Quakertown, PA</span>
+      <span>Demo site by 717 Digital Studio</span>
+    </div>
+  </div>
+</footer>
+
+<div class="order-bar" aria-label="Quick actions">
+  <a class="btn btn-line" href="a-latte-cafe.html">Home</a>
+  <a class="btn btn-order" href="https://toast.app/r/a-latte-cafe/order?utm_medium=redirect" target="_blank" rel="noopener">Order Online</a>
+</div>
+</body>
+</html>
