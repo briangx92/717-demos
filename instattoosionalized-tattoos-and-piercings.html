@@ -418,6 +418,14 @@
   .s-aview__figwrap{ position:relative; }
   .s-aview__grid img{ width:100%; aspect-ratio:4 / 3; object-fit:cover; }
   .s-aview__grid figcaption{ padding:var(--sp-1) var(--sp-2); color:var(--ink-soft); font-size:var(--text-small); }
+  .ba-stage{ position:relative; overflow:hidden; cursor:ew-resize; --split:50%; touch-action:pan-y; }
+  .ba-stage img{ display:block; width:100%; }
+  .ba-stage .ba-before{ position:absolute; inset:0; height:100%; aspect-ratio:auto; object-fit:cover; clip-path:inset(0 calc(100% - var(--split)) 0 0); }
+  .ba-stage .ba-lab{ position:absolute; top:8px; font-size:10.5px; font-weight:700; letter-spacing:.06em; padding:3px 7px; border-radius:6px; background:rgba(20,20,20,.72); color:#fff; z-index:3; pointer-events:none; text-transform:uppercase; }
+  .ba-stage .ba-lab.b{ left:8px; }
+  .ba-stage .ba-lab.a{ right:8px; }
+  .ba-stage .ba-handle{ position:absolute; top:0; bottom:0; left:var(--split); width:2px; background:#fff; transform:translateX(-1px); z-index:2; pointer-events:none; box-shadow:0 0 6px rgba(0,0,0,.45); }
+  .ba-stage .ba-handle::after{ content:""; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:26px; height:26px; border-radius:50%; background:#fff; border:2px solid rgba(20,20,20,.55); box-shadow:0 1px 5px rgba(0,0,0,.4); }
   .s-aview__profile{ margin-top:var(--sp-4); border-top:1px solid var(--line); padding-top:var(--sp-3); display:grid; grid-template-columns:230px minmax(0,1fr); gap:var(--sp-3); align-items:start; }
   .s-aview__profile > a{ display:block; border-radius:var(--radius); }
   .s-aview__profile .pf{ width:100%; aspect-ratio:4 / 3; object-fit:cover; border-radius:var(--radius); border:1px solid var(--line); display:block; }
@@ -866,6 +874,32 @@ const SITE = {
   S.copy.footerLine = S.name + " · " + S.town + ", " + S.region;
   S.copy.footerInfo = S.address + " · " + S.phoneDisplay;
 })(SITE);
+function baStageEl(w){
+  const stage = T.el("div", { class: "ba-stage" });
+  const after = T.el("img", { src: w.ba.a, alt: w.ba.acap || w.cap || "" });
+  after.draggable = false;
+  const before = T.el("img", { class: "ba-before", src: w.ba.b, alt: w.ba.bcap || "" });
+  before.draggable = false;
+  stage.append(after, before,
+    T.el("span", { class: "ba-lab b", text: "Before" }),
+    T.el("span", { class: "ba-lab a", text: "After" }),
+    T.el("span", { class: "ba-handle" }));
+  wireBaStage(stage);
+  return stage;
+}
+function wireBaStage(stage){
+  function setSplit(e){ const r = stage.getBoundingClientRect(); let p = (e.clientX - r.left) / r.width * 100; p = Math.max(4, Math.min(96, p)); stage.style.setProperty("--split", p + "%"); }
+  stage.addEventListener("pointerdown", e => {
+    e.preventDefault();
+    try { stage.setPointerCapture(e.pointerId); } catch (err) {}
+    setSplit(e);
+    const mv = ev => setSplit(ev);
+    const up = () => { stage.removeEventListener("pointermove", mv); stage.removeEventListener("pointerup", up); stage.removeEventListener("pointercancel", up); };
+    stage.addEventListener("pointermove", mv);
+    stage.addEventListener("pointerup", up);
+    stage.addEventListener("pointercancel", up);
+  });
+}
 let _artistOrder = null;
 function artistDisplayList(){
   const list = (SITE.artists || []).slice();
@@ -1151,10 +1185,10 @@ const MODULES = {
       overlay.setAttribute("aria-label", "Artist profile: " + a.name);
       grid.replaceChildren(...a.work.slice(0, 3).map(w => T.el("figure", {}, [
         T.el("div", { class: "s-aview__figwrap" }, [
-          T.el("img", { src: w.src, alt: w.alt }),
+          w.ba ? baStageEl(w) : T.el("img", { src: w.src, alt: w.alt }),
           a.sample ? T.el("span", { class: "s-wm", text: "your photo here" }) : null
         ]),
-        T.el("figcaption", { text: w.cap })
+        T.el("figcaption", { text: w.ba ? ((w.ba.title || w.cap) + (w.ba.story ? " · " + w.ba.story : "")) : w.cap })
       ])));
       profile.replaceChildren(
         T.el("a", { href: artistPageHref(a), "aria-label": "See " + a.name + "'s full page" }, [
@@ -1762,7 +1796,7 @@ const MODULES = {
   }
 };
 
-try { var __st = null; try { __st = JSON.parse(localStorage.getItem('oa-state-v3') || 'null'); } catch (e) {} if (__st) { if (Array.isArray(__st.artists) && __st.artists.length) { var orig = {}; (SITE.artists || []).forEach(function(a){ orig[a.slug] = a; }); var built = __st.artists.map(function(sa){ var base = orig[sa.slug] || null; var first = ((sa.name || sa.slug).replace(/["\u201c\u201d]/g, '').split(/\s+/)[0]) || sa.slug; var igE = (sa.socials || []).filter(function(x){ return x.p === 'Instagram'; })[0]; var work = (__st.portfolio && __st.portfolio[sa.slug]) ? __st.portfolio[sa.slug].map(function(w){ return { src: w.src, alt: w.cap || '', cap: w.cap || '' }; }) : (base ? base.work : []); var obj = base || { slug: sa.slug, families: ['tattoo'], does: [], quick: '', featuredCap: '', work: [], sample: false }; if (!base) { obj.__noPage = true; obj.first = first; obj.portraitAlt = 'Portrait of ' + first + ' at Instattoosionalized'; obj.families = /pierc/i.test(sa.what || '') ? ['piercing'] : ['tattoo']; obj.does = [sa.what || 'Tattoo']; obj.note = ['Send the shop request form with ' + first + ' picked. Tell them the idea, where it is going, and roughly how big.', "The shop's deposit is $40 and holds your spot."]; } obj.name = sa.name || obj.name; obj.role = sa.what || obj.role || 'Tattoo'; if (sa.about) { obj.about = [sa.about]; obj.bio = sa.about; } if (sa.photo) obj.portrait = sa.photo; if (igE) obj.ig = (igE.h || '').replace(/^@/, ''); obj.work = work; return obj; }); SITE.artists.splice(0, SITE.artists.length, ...built); try { if (window.artistPageHref) { var oh = window.artistPageHref; window.artistPageHref = function(a){ return a && a.__noPage ? 'instattoosionalized-gallery.html' : oh(a); }; } } catch (e) {} }
+try { var __st = null; try { __st = JSON.parse(localStorage.getItem('oa-state-v3') || 'null'); } catch (e) {} if (__st) { if (Array.isArray(__st.artists) && __st.artists.length) { var orig = {}; (SITE.artists || []).forEach(function(a){ orig[a.slug] = a; }); var built = __st.artists.map(function(sa){ var base = orig[sa.slug] || null; var first = ((sa.name || sa.slug).replace(/["\u201c\u201d]/g, '').split(/\s+/)[0]) || sa.slug; var igE = (sa.socials || []).filter(function(x){ return x.p === 'Instagram'; })[0]; var work = (__st.portfolio && __st.portfolio[sa.slug]) ? __st.portfolio[sa.slug].map(function(w){ return w.ba ? { src: w.src, alt: w.ba.title || w.cap || '', cap: w.ba.title || w.cap || '', ba: w.ba } : { src: w.src, alt: w.cap || '', cap: w.cap || '' }; }) : (base ? base.work : []); var obj = base || { slug: sa.slug, families: ['tattoo'], does: [], quick: '', featuredCap: '', work: [], sample: false }; if (!base) { obj.__noPage = true; obj.first = first; obj.portraitAlt = 'Portrait of ' + first + ' at Instattoosionalized'; obj.families = /pierc/i.test(sa.what || '') ? ['piercing'] : ['tattoo']; obj.does = [sa.what || 'Tattoo']; obj.note = ['Send the shop request form with ' + first + ' picked. Tell them the idea, where it is going, and roughly how big.', "The shop's deposit is $40 and holds your spot."]; } obj.name = sa.name || obj.name; obj.role = sa.what || obj.role || 'Tattoo'; if (sa.about) { obj.about = [sa.about]; obj.bio = sa.about; } if (sa.photo) obj.portrait = sa.photo; if (igE) obj.ig = (igE.h || '').replace(/^@/, ''); obj.work = work; return obj; }); SITE.artists.splice(0, SITE.artists.length, ...built); try { if (window.artistPageHref) { var oh = window.artistPageHref; window.artistPageHref = function(a){ return a && a.__noPage ? 'instattoosionalized-gallery.html' : oh(a); }; } } catch (e) {} }
    } } catch (e) {}
 (function boot(){
   try {

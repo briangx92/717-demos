@@ -94,6 +94,14 @@
     .p-grid .fw{ position:relative; }
     .p-grid img{ width:100%; aspect-ratio:4 / 3; object-fit:cover; }
     .p-grid figcaption{ padding:.6rem .9rem; color:var(--ink-soft); font-size:.95rem; }
+    .ba-stage{ position:relative; overflow:hidden; cursor:ew-resize; --split:50%; touch-action:pan-y; }
+    .ba-stage .ba-before{ position:absolute; inset:0; height:100%; aspect-ratio:auto; object-fit:cover; clip-path:inset(0 calc(100% - var(--split)) 0 0); }
+    .ba-stage .ba-lab{ position:absolute; top:8px; font-size:10.5px; font-weight:700; letter-spacing:.06em; padding:3px 7px; border-radius:6px; background:rgba(20,20,20,.72); color:#fff; z-index:3; pointer-events:none; text-transform:uppercase; }
+    .ba-stage .ba-lab.b{ left:8px; }
+    .ba-stage .ba-lab.a{ right:8px; }
+    .p-grid .ba-stage .ba-lab.a{ right:54px; }
+    .ba-stage .ba-handle{ position:absolute; top:0; bottom:0; left:var(--split); width:2px; background:#fff; transform:translateX(-1px); z-index:2; pointer-events:none; box-shadow:0 0 6px rgba(0,0,0,.45); }
+    .ba-stage .ba-handle::after{ content:""; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:26px; height:26px; border-radius:50%; background:#fff; border:2px solid rgba(20,20,20,.55); box-shadow:0 1px 5px rgba(0,0,0,.4); }
     .p-about p{ color:var(--ink-soft); max-width:65ch; }
     .p-about p + p{ margin-top:.8rem; }
     .p-chips{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.1rem; }
@@ -256,7 +264,7 @@
   <div class="lbx-strip" id="lbx-strip"></div>
 </div>
 <script>
-(function(){ try { var raw = localStorage.getItem('oa-state-v3'); if (!raw) return; var st = JSON.parse(raw); var items = st.portfolio && st.portfolio['liv']; if (!items || !items.length) return; var grid = document.querySelector('.p-grid'); if (!grid) return; grid.innerHTML = ''; items.forEach(function(w){ var f = document.createElement('figure'); var img = document.createElement('img'); img.loading = 'lazy'; img.src = w.src; img.alt = w.cap || ''; f.appendChild(img); var c = document.createElement('figcaption'); c.textContent = w.cap || ''; f.appendChild(c); grid.appendChild(f); }); } catch (e) {} })();
+(function(){ try { var raw = localStorage.getItem('oa-state-v3'); if (!raw) return; var st = JSON.parse(raw); var items = st.portfolio && st.portfolio['liv']; if (!items || !items.length) return; var grid = document.querySelector('.p-grid'); if (!grid) return; grid.innerHTML = ''; function wireBa(stage){ function setSplit(e){ var r = stage.getBoundingClientRect(); var p = (e.clientX - r.left) / r.width * 100; p = Math.max(4, Math.min(96, p)); stage.style.setProperty('--split', p + '%'); } stage.addEventListener('pointerdown', function(e){ e.preventDefault(); try { stage.setPointerCapture(e.pointerId); } catch (err) {} setSplit(e); var mv = function(ev){ setSplit(ev); }; var up = function(){ stage.removeEventListener('pointermove', mv); stage.removeEventListener('pointerup', up); stage.removeEventListener('pointercancel', up); }; stage.addEventListener('pointermove', mv); stage.addEventListener('pointerup', up); stage.addEventListener('pointercancel', up); }); } items.forEach(function(w){ var f = document.createElement('figure'); if (w.ba) { var stage = document.createElement('div'); stage.className = 'ba-stage'; var aft = document.createElement('img'); aft.loading = 'lazy'; aft.src = w.ba.a; aft.alt = w.ba.acap || w.ba.title || ''; aft.draggable = false; var bef = document.createElement('img'); bef.className = 'ba-before'; bef.src = w.ba.b; bef.alt = w.ba.bcap || ''; bef.draggable = false; var lb = document.createElement('span'); lb.className = 'ba-lab b'; lb.textContent = 'Before'; var la = document.createElement('span'); la.className = 'ba-lab a'; la.textContent = 'After'; var hd = document.createElement('span'); hd.className = 'ba-handle'; stage.appendChild(aft); stage.appendChild(bef); stage.appendChild(lb); stage.appendChild(la); stage.appendChild(hd); wireBa(stage); f.appendChild(stage); var c2 = document.createElement('figcaption'); c2.textContent = (w.ba.title || w.cap || '') + (w.ba.story ? ' \u00b7 ' + w.ba.story : ''); f.appendChild(c2); } else { var img = document.createElement('img'); img.loading = 'lazy'; img.src = w.src; img.alt = w.cap || ''; f.appendChild(img); var c = document.createElement('figcaption'); c.textContent = w.cap || ''; f.appendChild(c); } grid.appendChild(f); }); } catch (e) {} })();
 </script>
 <script>
 (function(){

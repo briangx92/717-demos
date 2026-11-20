@@ -226,6 +226,114 @@
     #p-login{background:#e7e6e2}
   }
 </style>
+
+<style>
+  .brandbtn{display:flex;gap:11px;align-items:center;background:none;border:0;color:inherit;text-align:left;padding:0;cursor:pointer;flex:1;min-width:0;font:inherit}
+  .brandbtn>div{min-width:0}
+  html.dark body{background:#131316;color:#f4f4f5}
+  html.dark .sub,html.dark .card p,html.dark .login-card p,html.dark .section p,html.dark .stat .s,html.dark .listrow small,html.dark .thumbs figcaption,html.dark .req span,html.dark .bk-hint,html.dark .demofoot,html.dark .fineprint{color:#a1a1aa}
+  html.dark .card,html.dark .panel,html.dark .stat,html.dark .login-card,html.dark .pfig{background:#1d1d21;border-color:#2e2e34;box-shadow:none}
+  html.dark input[type=email],html.dark input[type=text],html.dark input[type=tel],html.dark input[type=time],html.dark input[type=password],html.dark textarea,html.dark select{background:#17171a;color:#f4f4f5;border-color:#3a3a41}
+  html.dark .btn{background:#1d1d21;color:#f4f4f5;border-color:#3a3a41}
+  html.dark .btn--primary{background:#f4f4f5;color:#111113;border-color:#f4f4f5}
+  html.dark .btn--accent{background:#f4682a;color:#fff;border-color:#f4682a}
+  html.dark .note{background:#1d1d21;border-color:#2e2e34;color:#d4d4d8}
+  html.dark .section{border-top-color:#2a2a2f}
+  html.dark .req{border-top-color:#26262b}
+  html.dark .hrow,html.dark .listrow{background:#1d1d21;border-color:#2e2e34}
+  html.dark .bk-navbtn{background:#1d1d21;border-color:#3a3a41;color:#f4f4f5}
+  html.dark .bk-col{background:repeating-linear-gradient(to bottom,#1d1d21 0,#1d1d21 69px,#2c2c31 69px,#2c2c31 70px);border-color:#2e2e34}
+  html.dark .bk-closed{background:#1d1d21;border-color:#3a3a41;color:#a1a1aa}
+  html.dark .bk-now{border-top-color:#f4f4f5}
+  html.dark .crm-table{background:#1d1d21;border-color:#2e2e34}
+  html.dark .crm-table th,html.dark .crm-table td{border-bottom-color:#2a2a2f;color:#f4f4f5}
+  html.dark .crm-table th{color:#a1a1aa}
+  html.dark .pactions button{background:#1d1d21;border-color:#3a3a41;color:#f4f4f5}
+  html.dark .pactions button:last-child{background:#1d1d21}
+  html.dark .bar{background:#2c2c31}
+  html.dark [data-panel="artists"] .artist-row{background:#1d1d21;border-color:#2e2e34;color:#f4f4f5}
+  html.dark .rm{background:#1d1d21}
+  html.dark .login-brand{background:#111113;color:#f4f4f5}
+  html.dark .login-brand p{color:#a1a1aa}
+  @media(max-width:900px){ html.dark .login-brand{background:transparent;color:#f4f4f5} html.dark #p-login{background:#131316} }
+</style>
+<script>try { if (localStorage.getItem('oa-theme') === 'dark') document.documentElement.classList.add('dark'); } catch (e) {}</script>
+<style>
+/* ---- Artist Portfolio + Upload (fork build) ---- */
+.oa-pf{margin-top:12px}
+.oa-pf .oa-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.oa-pf .oa-lab{font-size:12px;letter-spacing:.06em;color:#5c5c66;font-weight:700}
+.oa-pf .oa-chlist{border:1.5px solid #e7e2d9;border-radius:11px;overflow:hidden;margin-top:10px;background:#fff}
+.oa-pf .oa-chlist button{display:block;width:100%;background:#fff;border:none;border-bottom:1px solid #eee9dd;padding:12px 13px;font:inherit;font-size:14.5px;font-weight:600;text-align:left;cursor:pointer;color:#191919}
+.oa-pf .oa-chlist button:last-child{border-bottom:none}
+.oa-pf .oa-bar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:12px 0 10px}
+.oa-pf .oa-bar select{border:1px solid #d8d8d2;border-radius:8px;padding:7px 9px;font:inherit;font-size:13.5px;background:#fff}
+.oa-pf .oa-pager{display:flex;gap:8px;align-items:center;font-size:13px;color:#5c5c66}
+.oa-pf .oa-pager button{border:1px solid #d8d8d2;background:#fff;border-radius:8px;padding:7px 11px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.oa-pf .oa-pager button:disabled{opacity:.4;cursor:default}
+.oa-pf .oa-note{font-size:13px;color:#2e6b3e;font-weight:600;margin:8px 0 0}
+.oa-pf .oa-note.warn{color:#b34a17}
+.oa-pf .oa-empty{border:2px dashed #d8d8d2;border-radius:10px;padding:16px;text-align:center;color:#8a8578;font-size:13.5px;background:#faf8f3}
+.oa-pf .oa-pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:14px}
+.oa-pf .oa-fig{margin:0;min-width:0;position:relative}
+.oa-pf .oa-fig img{width:100%;height:118px;object-fit:cover;border-radius:14px;display:block;border:1px solid #d9d4c7}
+.oa-pf .oa-fig .oa-rm{position:absolute;top:5px;right:5px;width:22px;height:22px;border-radius:50%;border:0;background:rgba(20,20,24,.82);color:#fff;cursor:pointer;line-height:1;font-size:14px}
+.oa-pf .oa-fig .oa-cap{margin-top:5px;width:100%;font-size:12.5px;padding:6px 8px;border:1px solid #d8d8d2;border-radius:8px;font:inherit;background:#fff}
+.oa-pf .oa-pair{border:1px solid #e7e2d9;border-radius:12px;padding:10px;margin-bottom:12px;background:#fdfcf9}
+.oa-pf .oa-split{display:flex;border-radius:10px;overflow:hidden;min-height:118px}
+.oa-pf .oa-split .half{flex:1;position:relative;min-height:118px;background:#eee}
+.oa-pf .oa-split .half img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.oa-pf .oa-split .tag{position:absolute;top:6px;left:6px;background:rgba(20,20,20,.72);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:3px 7px;border-radius:6px;z-index:2}
+.oa-pf .oa-split .mid{width:2px;background:#fff;flex:none}
+.oa-pf .oa-caplab{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#71717a;margin:8px 0 4px}
+.oa-pf .oa-sechead{display:flex;gap:9px;align-items:center;margin-bottom:10px}
+.oa-pf .oa-sechead input{flex:1;border:1px solid transparent;border-radius:8px;padding:7px 9px;font:inherit;font-size:16px;font-weight:700;background:#faf8f3}
+.oa-pf .oa-sechead .cnt{font-size:12.5px;color:#8a8578;white-space:nowrap}
+.oa-pf .oa-tile{position:relative;border-radius:14px;min-height:104px;overflow:hidden;border:1px solid #d9d4c7}
+.oa-pf .oa-tile img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+.oa-pf .oa-tile .oa-tx{position:absolute;top:5px;right:5px;width:20px;height:20px;border-radius:50%;background:rgba(20,20,20,.78);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:0;z-index:2}
+.oa-pf .oa-tile .oa-tsite{position:absolute;top:5px;left:5px;border:0;border-radius:999px;padding:4px 10px;font-size:11px;font-weight:700;background:rgba(255,255,255,.93);color:#3f3f46;cursor:pointer;z-index:2}
+.oa-pf .oa-tile .oa-tsite.on{background:#2e6b3e;color:#fff}
+.oa-pf .oa-tile .oa-tcap{position:absolute;left:0;right:0;bottom:0;background:rgba(255,255,255,.93);font-size:11.5px;padding:4px 7px;color:#3f3f46;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.oa-pf .oa-upopts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.oa-pf .oa-bapair{border:1.5px solid #e7e2d9;border-radius:10px;padding:12px 10px 10px;margin-bottom:10px;background:#fdfcf9}
+.oa-pf .oa-bapair .cols{display:flex;gap:10px}
+.oa-pf .oa-bapair .cell{flex:1}
+.oa-pf .oa-babox{position:relative;width:100%;height:104px;border:2px dashed #b9b2a2;border-radius:8px;background:#faf8f3;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;letter-spacing:.05em;color:#8a8578;cursor:pointer;overflow:hidden;text-align:center}
+.oa-pf .oa-babox.filled{border-style:solid;border-color:#d8d8d2}
+.oa-pf .oa-babox img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.oa-pf .oa-babox .blab{position:absolute;left:0;right:0;bottom:0;background:rgba(255,255,255,.93);color:#3f3f46;font-size:11px;font-weight:600;padding:3px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.oa-pf .oa-babox.over{border-color:#f4682a}
+.oa-pf .oa-bameta{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.oa-pf .oa-bameta select{border:1px solid #d8d8d2;border-radius:8px;padding:7px 9px;font:inherit;font-size:13.5px;background:#fff}
+.oa-pf .oa-bastatus{font-size:12.5px;color:#8a8578}
+.oa-pf .oa-drop{border:2px dashed #b9b2a2;border-radius:10px;padding:10px;margin-top:10px;text-align:center;font-size:12.5px;color:#8a8578;background:#faf8f3}
+.oa-pf .oa-drop.over{border-color:#f4682a;background:#fff4ec;color:#b34a17}
+.oa-pf .oa-add{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:18px;align-items:start;margin-top:12px}
+@media (max-width:860px){.oa-pf .oa-add{grid-template-columns:1fr}}
+.oa-pf .oa-fld{display:block;margin-top:10px}
+.oa-pf .oa-fld>span{display:block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#71717a;margin-bottom:4px}
+.oa-pf .oa-fld input,.oa-pf .oa-fld textarea,.oa-pf .oa-fld select{width:100%;border:1px solid #d8d8d2;border-radius:8px;padding:8px 10px;font:inherit;font-size:14px;background:#fff;color:#17171a}
+.oa-pf .oa-fld textarea{min-height:74px;resize:vertical}
+.oa-pf .oa-meta3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.oa-pf .oa-drafts{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.oa-pf .oa-dchip{border:1.5px solid #e7e2d9;background:#fff;border-radius:999px;padding:5px 6px 5px 12px;font-size:12.5px;font-weight:600;display:flex;gap:7px;align-items:center;color:#17171a}
+.oa-pf .oa-dchip button{border:0;border-radius:999px;padding:4px 10px;font:inherit;font-size:12px;font-weight:700;cursor:pointer;background:#17171a;color:#fff}
+.oa-pf .oa-dchip button.del{background:#ececea;color:#3f3f46}
+.oa-pf .oa-pubrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.oa-pf .oa-ptitle{font-size:16px;font-weight:700;margin-top:8px}
+.oa-pf .oa-pstory{font-size:13.5px;color:#3f3f46;margin-top:2px}
+.oa-pf .oa-pmeta{font-size:12px;color:#8a8578;margin-top:2px}
+html.dark .oa-pf .oa-fld input,html.dark .oa-pf .oa-fld textarea,html.dark .oa-pf .oa-fld select{background:#232329;border-color:#3a3a42;color:#f4f4f5}
+html.dark .oa-pf .oa-dchip{background:#1d1d21;border-color:#2e2e34;color:#f4f4f5}
+html.dark .oa-pf .oa-pstory{color:#d4d4d8}
+html.dark .oa-pf .oa-chlist,html.dark .oa-pf .oa-chlist button{background:#1d1d21;color:#f4f4f5;border-color:#2e2e34}
+html.dark .oa-pf .oa-pair,html.dark .oa-pf .oa-bapair{background:#1d1d21;border-color:#2e2e34}
+html.dark .oa-pf .oa-empty,html.dark .oa-pf .oa-babox,html.dark .oa-pf .oa-drop{background:#232329;color:#a1a1aa}
+html.dark .oa-pf .oa-sechead input{background:#232329;color:#f4f4f5}
+html.dark .oa-pf .oa-fig .oa-cap{background:#232329;border-color:#3a3a42;color:#f4f4f5}
+</style>
+
 </head>
 <body>
 
@@ -294,7 +402,7 @@
 
 <div id="p-app" class="hidden">
   <aside class="side">
-    <div class="shop"><img class="mark" src="instattoosionalized-logo.jpg" alt="Instattoosionalized logo"><div><strong>Instattoosionalized</strong><span id="p-who">Owner page</span></div><button type="button" class="menu-btn" id="p-menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
+    <div class="shop"><button type="button" class="brandbtn" id="p-brand-home" aria-label="Go to the portal home page"><img class="mark" src="instattoosionalized-logo.jpg" alt="Instattoosionalized logo"><div><strong>Instattoosionalized</strong><span id="p-who">Owner page</span></div></button><button type="button" class="menu-btn" id="p-menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
     <nav aria-label="Owner page">
       <button type="button" data-tab="home" aria-selected="true"><span class="dot"></span>Home</button>
       <button type="button" data-tab="requests" aria-selected="false"><span class="dot"></span>Requests</button>
@@ -309,6 +417,7 @@
       <button type="button" data-tab="reviews" aria-selected="false"><span class="dot"></span>Reviews</button>
     </nav>
     <div class="side-foot">
+      <button type="button" id="p-theme">Dark mode</button>
       <a class="js-site-link" href="https://briangx92.github.io/instattoosionalized/instattoosionalized-tattoos-and-piercings.html" target="_blank" rel="noopener">View live website</a>
       <button type="button" id="p-signout">Sign out</button>
     </div>
@@ -362,11 +471,8 @@
     <section data-panel="requests" class="hidden">
       <h1>Requests</h1>
       <p class="sub">Every request sent from your website lands here, and also goes out by text like it does now. Move each one along as you work it.</p>
-      <div class="panel">
-        <div class="head"><h3>Requests</h3><span class="chip">Sample rows</span></div>
-        <div class="roleline"><strong>Sam K.</strong><span>Tattoo with Lex &middot; Sat, Nov 14, afternoon &middot; Small forearm piece</span><select aria-label="Status for Sam K."><option>New</option><option>Contacted</option><option>Booked</option><option>Done</option></select></div>
-        <div class="roleline"><strong>Jess M.</strong><span>Tattoo with Diana &middot; Flexible &middot; Forward helix</span><select aria-label="Status for Jess M."><option>New</option><option selected>Contacted</option><option>Booked</option><option>Done</option></select></div>
-        <div class="roleline"><strong>Priya S.</strong><span>Tattoo, no preference &middot; Mon, Nov 16, evening &middot; Cover-up, has photos</span><select aria-label="Status for Priya S."><option>New</option><option>Contacted</option><option selected>Booked</option><option>Done</option></select></div>
+            <div class="panel">
+        <div class="oa-req" id="oa-req"></div>
       </div>
       <div class="panel" style="margin-top:14px">
         <div class="head"><h3>Waitlist</h3><span class="chip">Sample rows</span></div>
@@ -387,7 +493,7 @@
             <button type="button" class="bk-navbtn" id="bk-next">Next day &rarr;</button>
             <span class="bk-day" id="bk-day-label"></span>
           </div>
-          <span class="chip">Sample rows</span>
+          <span class="chip" id="bk-chip">Sample rows</span>
         </div>
         <div class="bk-board" id="bk-board"></div>
         <p class="bk-hint">One artist, one client at a time. If a new booking overlaps one already in the book, it will not go in.</p>
@@ -424,6 +530,21 @@
         .crm-table{ width:100%; border-collapse:collapse; background:#fff; border:1px solid #e7e2d9; border-radius:12px; overflow:hidden; }
         .crm-table th, .crm-table td{ text-align:left; padding:10px 12px; border-bottom:1px solid #efece4; font-size:14.5px; }
         .crm-table th{ font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:#8a8578; }
+        @media(max-width:700px){
+          .crm-table{ border:none; background:transparent; overflow:visible; }
+          .crm-table thead{ display:none; }
+          .crm-table, .crm-table tbody, .crm-table tr, .crm-table td{ display:block; width:100%; }
+          .crm-table tr{ background:#fff; border:1px solid #e7e2d9; border-radius:12px; padding:10px 14px; margin-bottom:10px; }
+          .crm-table td{ border-bottom:none; padding:2px 0; }
+          .crm-table td:nth-child(1){ font-size:16px; font-weight:700; padding-bottom:4px; }
+          .crm-table td:nth-child(2)::before{ content:"Artist: "; color:#8a8578; }
+          .crm-table td:nth-child(3)::before{ content:"Piece: "; color:#8a8578; }
+          .crm-table td:nth-child(4)::before{ content:"Last visit: "; color:#8a8578; }
+          .crm-table td:nth-child(5)::before{ content:"Visits: "; color:#8a8578; }
+          .crm-table td:nth-child(6)::before{ content:"Phone: "; color:#8a8578; }
+          .crm-table td:nth-child(8){ padding-top:8px; }
+          .crm-bar span{ display:none; }
+        }
         .crm-chip{ display:inline-block; padding:2px 9px; border-radius:999px; font-size:12px; font-weight:700; background:#f1eee5; color:#6d675a; }
         .crm-chip.booked{ background:#e4f0e6; color:#2e6b3e; }
         .crm-chip.waiting{ background:#fdf0d9; color:#8a6414; }
@@ -431,7 +552,7 @@
         .crm-add{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
         .crm-add input, .crm-add select{ padding:9px 11px; border:1px solid #d9d4c7; border-radius:9px; font:inherit; }
         .crm-add button{ padding:9px 16px; border:none; border-radius:9px; background:#f4682a; color:#fff; font-weight:700; cursor:pointer; }
-        @media(max-width:700px){ .crm-table th:nth-child(5), .crm-table td:nth-child(5){ display:none; } }
+
       </style>
       <div class="crm-stats">
         <div class="crm-stat"><b id="crm-total">0</b><span>Clients</span></div>
@@ -894,6 +1015,20 @@ var DEFAULTS = {
   $$('[data-tab]').forEach(function(b){ b.addEventListener('click', function(){ setTab(b.dataset.tab); }); });
   $$('[data-goto]').forEach(function(b){ b.addEventListener('click', function(ev){ ev.preventDefault(); setTab(b.dataset.goto); }); });
 
+  /* logo goes home */
+  var brandBtn = $('#p-brand-home');
+  if (brandBtn) brandBtn.addEventListener('click', function(){ setTab('home'); });
+
+  /* dark mode */
+  var themeBtn = $('#p-theme');
+  function paintThemeBtn(){ if (themeBtn) themeBtn.textContent = document.documentElement.classList.contains('dark') ? 'Light mode' : 'Dark mode'; }
+  if (themeBtn) themeBtn.addEventListener('click', function(){
+    var d = document.documentElement.classList.toggle('dark');
+    try { localStorage.setItem('oa-theme', d ? 'dark' : 'light'); } catch (e) {}
+    paintThemeBtn();
+  });
+  paintThemeBtn();
+
   function renderAll(){ renderHome(); populateEdit(); renderPhotos(); renderPeople(); }
   function renderHome(){
     var thumbs = $('#p-home-thumbs'); thumbs.innerHTML = '';
@@ -963,7 +1098,7 @@ var DEFAULTS = {
     if (th) { var raw = th.getAttribute('src') || ''; if (raw.indexOf('data:') === 0 && th.complete && th.naturalWidth) { try { var mx = 800, w = th.naturalWidth, h = th.naturalHeight, sc = Math.max(w, h) > mx ? mx / Math.max(w, h) : 1; var cv = document.createElement('canvas'); cv.width = Math.round(w * sc); cv.height = Math.round(h * sc); cv.getContext('2d').drawImage(th, 0, 0, cv.width, cv.height); photo = cv.toDataURL('image/jpeg', 0.85); } catch (e) { photo = raw; } } else if (raw) { photo = raw.replace(/^\.\.\//, ''); } }
     roster.push({ slug: key, name: gi[0] ? gi[0].value.trim() : key, what: gi[1] ? gi[1].value.trim() : 'Tattoo', about: blk.querySelector('textarea') ? blk.querySelector('textarea').value : '', socials: soc, photo: photo });
     var items = [];
-    blk.querySelectorAll('.pf-item').forEach(function(it){ var im = it.querySelector('img'); var cap = it.querySelector('.pf-cap'); var src = im ? (im.getAttribute('src') || '') : ''; if (src) items.push({ src: src.replace(/^\.\.\//, ''), cap: cap ? cap.value : '' }); });
+    blk.querySelectorAll('.pf-item').forEach(function(it){ var im = it.querySelector('img'); var cap = it.querySelector('.pf-cap'); var src = im ? (im.getAttribute('src') || '') : ''; if (!src) return; var dp = it.getAttribute('data-pair'); if (dp) { try { items.push({ src: src.replace(/^\.\.\//, ''), cap: cap ? cap.value : '', ba: JSON.parse(dp) }); return; } catch (e) {} } items.push({ src: src.replace(/^\.\.\//, ''), cap: cap ? cap.value : '' }); });
     pfAll[key] = items;
   });
   state.artists = roster; state.portfolio = pfAll;
@@ -1205,11 +1340,33 @@ var DEFAULTS = {
     }
   };
   var added = {}, removed = {}, counter = 0, offset = 0;
+  var PORTAL_API = { bookings: 'https://portal.instattoosionalized.net/bookings', requests: 'https://portal.instattoosionalized.net/requests' };
+  var remote = {}, remoteState = {};
+  function pad2(n){ return (n < 10 ? '0' : '') + n; }
+  function isoOf(d){ return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); }
+  function hhmm(m){ return pad2(Math.floor(m / 60)) + ':' + pad2(m % 60); }
+  function mins(t){ var p = String(t || '').split(':'); return (parseInt(p[0], 10) || 0) * 60 + (parseInt(p[1], 10) || 0); }
+  function setChip(){
+    var chip = document.getElementById('bk-chip'); if (!chip) return;
+    var st = remoteState[isoOf(dayAt(offset))];
+    chip.textContent = st === 'live' ? 'Live \u00b7 Google Calendar' : st === 'loading' ? 'Loading calendar\u2026' : 'Sample rows';
+  }
+  function loadDay(d){
+    var key = isoOf(d);
+    if (remoteState[key] === 'loading' || remoteState[key] === 'live') return;
+    remoteState[key] = 'loading'; setChip();
+    fetch(PORTAL_API.bookings + '?date=' + key).then(function(r){ if (!r.ok) throw new Error('bad'); return r.json(); }).then(function(data){
+      remote[key] = (data.appointments || []).map(function(a){ return {id: 'g' + a.id, gid: a.id, artist: a.artist, s: mins(a.start), e: mins(a.end), t: a.title, c: a.client}; });
+      remoteState[key] = 'live'; render();
+    }).catch(function(){ remoteState[key] = 'down'; setChip(); });
+  }
   function dstr(d){ return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
   function dayAt(off){ var d = new Date(); d.setDate(d.getDate()+off); return d; }
   function isOpen(d){ var g = d.getDay(); return g >= 2 && g <= 6; }
   function fmt(m){ var h = Math.floor(m/60), mm = m%60, ap = h >= 12 ? 'PM' : 'AM'; var h12 = h%12; if (h12 === 0) h12 = 12; return h12 + ':' + (mm < 10 ? '0' : '') + mm + ' ' + ap; }
   function dayList(d){
+    if (remoteState[isoOf(d)] === 'live') return (remote[isoOf(d)] || []).slice();
+    if (remoteState[isoOf(d)] !== 'down') return [];
     var base = (offset === 0 ? SETS.today : SETS.other), key = dstr(d), out = [];
     ARTISTS.forEach(function(a){
       (base[a] || []).forEach(function(ap, i){
@@ -1224,6 +1381,7 @@ var DEFAULTS = {
     var d = dayAt(offset);
     var label = d.toLocaleDateString('en-US',{weekday:'short', month:'short', day:'numeric'});
     document.getElementById('bk-day-label').textContent = (offset===0 ? 'Today - ' : offset===1 ? 'Tomorrow - ' : offset===-1 ? 'Yesterday - ' : '') + label;
+    loadDay(d); setChip();
     var board = document.getElementById('bk-board');
     board.innerHTML = '';
     if (!isOpen(d)) {
@@ -1231,6 +1389,13 @@ var DEFAULTS = {
       note.className = 'bk-closed';
       note.textContent = 'Closed. The shop is shut on Sundays and Mondays.';
       board.appendChild(note);
+      return;
+    }
+    if (remoteState[isoOf(d)] === 'loading') {
+      var lnote = document.createElement('div');
+      lnote.className = 'bk-closed';
+      lnote.textContent = 'Loading the calendar\u2026';
+      board.appendChild(lnote);
       return;
     }
     var corner = document.createElement('div'); board.appendChild(corner);
@@ -1261,6 +1426,17 @@ var DEFAULTS = {
         x.type = 'button'; x.className = 'bk-x'; x.textContent = '×'; x.title = 'Remove from the book';
         x.setAttribute('aria-label', 'Remove ' + ap.t);
         x.addEventListener('click', function(){
+          if (ap.gid) {
+            var stEl = document.getElementById('bk-status');
+            stEl.textContent = 'Removing from Google Calendar\u2026';
+            fetch(PORTAL_API.bookings, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({action: 'cancel', id: ap.gid, artist: ap.artist, date: isoOf(dayAt(offset))})}).then(function(r){ if (!r.ok) throw new Error('bad'); return r.json(); }).then(function(){
+              var k3 = isoOf(dayAt(offset));
+              remote[k3] = (remote[k3] || []).filter(function(z){ return z.gid !== ap.gid; });
+              stEl.textContent = 'Removed. ' + ap.t + ' is out of the book.';
+              render();
+            }).catch(function(){ stEl.textContent = 'The calendar did not answer, so nothing was removed. Try again.'; });
+            return;
+          }
           var key = dstr(dayAt(offset));
           if (ap.id.charAt(0) === 'a') {
             var k2 = key + '|' + ap.artist;
@@ -1312,6 +1488,20 @@ var DEFAULTS = {
     var clash = null;
     dayList(d).forEach(function(ap){ if (ap.artist === artist && sv < ap.e && ap.s < ev && !clash) clash = ap; });
     if (clash) { st.textContent = 'Can not book that. ' + artist + ' already has "' + clash.t + '" from ' + fmt(clash.s) + ' to ' + fmt(clash.e) + ' that day.'; return; }
+    if (remoteState[isoOf(d)] === 'live') {
+      st.textContent = 'Booking on Google Calendar\u2026';
+      var rid = 'bk-' + Date.now() + '-' + Math.floor(Math.random() * 100000);
+      fetch(PORTAL_API.bookings, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({action: 'add', id: rid, date: isoOf(d), artist: artist, start: hhmm(sv), end: hhmm(ev), client: name, piece: piece})}).then(function(r){ return r.json().then(function(j){ return {ok: r.ok, j: j}; }); }).then(function(res){
+        if (!res.ok) { st.textContent = (res.j && res.j.error === 'overlap') ? 'Can not book that. ' + artist + ' is already booked then on the calendar.' : 'The calendar did not take that booking. Nothing was added. Try again.'; return; }
+        var k4 = isoOf(d);
+        (remote[k4] = remote[k4] || []).push({id: 'g' + res.j.id, gid: res.j.id, artist: artist, s: sv, e: ev, t: piece, c: name});
+        render();
+        st.textContent = 'Booked on Google Calendar. ' + name + ' is with ' + artist + ' from ' + fmt(sv) + ' to ' + fmt(ev) + '.';
+        document.getElementById('bk-name').value = '';
+        document.getElementById('bk-piece').value = '';
+      }).catch(function(){ st.textContent = 'The calendar did not answer, so nothing was booked. Try again.'; });
+      return;
+    }
     var key = dstr(d) + '|' + artist;
     (added[key] = added[key] || []).push({id:'a' + (++counter), s:sv, e:ev, t:piece, c:name});
     render();
@@ -1595,7 +1785,7 @@ var DEFAULTS = {
           }
         }
         var grid2 = blk.querySelector('.pf-grid');
-        if (grid2) { var pfs = (st0.portfolio && st0.portfolio[sa.slug]) || []; pfs.forEach(function(it){ var d = document.createElement('div'); d.className = 'pf-item'; var im = document.createElement('img'); im.alt = ''; im.setAttribute('src', /^(data:|https?:|\.\.\/)/.test(it.src) ? it.src : '../' + it.src); d.appendChild(im); var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'pf-rm'; rm.textContent = '\u00d7'; rm.setAttribute('aria-label', 'Remove photo'); rm.addEventListener('click', function(){ d.remove(); }); d.appendChild(rm); var cap = document.createElement('input'); cap.type = 'text'; cap.className = 'pf-cap'; cap.placeholder = 'Caption'; cap.value = it.cap || ''; d.appendChild(cap); grid2.appendChild(d); }); }
+        if (grid2) { var pfs = (st0.portfolio && st0.portfolio[sa.slug]) || []; pfs.forEach(function(it){ var d = document.createElement('div'); d.className = 'pf-item'; if (it.ba) { try { d.setAttribute('data-pair', JSON.stringify(it.ba)); } catch (e) {} } var im = document.createElement('img'); im.alt = ''; im.setAttribute('src', /^(data:|https?:|\.\.\/)/.test(it.src) ? it.src : '../' + it.src); d.appendChild(im); var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'pf-rm'; rm.textContent = '\u00d7'; rm.setAttribute('aria-label', 'Remove photo'); rm.addEventListener('click', function(){ d.remove(); }); d.appendChild(rm); var cap = document.createElement('input'); cap.type = 'text'; cap.className = 'pf-cap'; cap.placeholder = 'Caption'; cap.value = it.cap || ''; d.appendChild(cap); grid2.appendChild(d); }); }
         ab0.parentNode.insertBefore(blk, ab0);
         if (window.__oaWirePf) window.__oaWirePf(blk);
         have[sa.slug] = true;
@@ -1929,6 +2119,775 @@ var DEFAULTS = {
       });
     }
   } catch (e) {}
+})();
+</script>
+<script>
+/* Artist Portfolio + Upload — fork build.
+   Portfolio is the only surface; Upload opens one Add work screen: a before/after
+   project form (Publish, or Save smart draft, which autosaves half-finished work)
+   beside the standard gallery. Published singles and pairs mirror into the portal's
+   own .pf-grid (pairs ride a data-pair attribute) so Save artists keeps working.
+   Workspace structure (sections, pairs, drafts, off-site photos) persists in
+   localStorage oa-gallery-v1. */
+(function(){
+  'use strict';
+  var SKEY = 'oa-gallery-v1';
+  var DEFSECS = ['Healed work', 'Fresh work', 'Flash designs'];
+  var uid = Date.now() % 100000;
+  function nid(p){ return p + (++uid); }
+  function loadStore(){ try { return JSON.parse(localStorage.getItem(SKEY) || '{}'); } catch(e){ return {}; } }
+  function saveStore(st){ try { localStorage.setItem(SKEY, JSON.stringify(st)); } catch(e){} }
+  function esc(s){ return (s == null ? '' : String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;'); }
+  function disp(src){ if (!src || src.indexOf('data:') === 0 || src.indexOf('../') === 0 || src.indexOf('http') === 0) return src; return '../' + src; }
+  function raw(src){ return (src || '').replace(/^\.\.\//, ''); }
+  function nameOf(s){ if (s.cap) return s.cap; var f = raw(s.src).split('/').pop().replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' '); return f || 'Photo'; }
+  function sortedItems(arr, mode){
+    var a = arr.slice();
+    if (mode === 'new') a.sort(function(x, y){ return y.ord - x.ord; });
+    if (mode === 'old') a.sort(function(x, y){ return x.ord - y.ord; });
+    if (mode === 'az') a.sort(function(x, y){ return nameOf(x).localeCompare(nameOf(y)); });
+    return a;
+  }
+  function readFile(f, cb){
+    if (!f || !/^image\//.test(f.type || '')) return;
+    var r = new FileReader(); r.onload = function(){ cb(r.result); }; r.readAsDataURL(f);
+  }
+
+  function initBlock(blk){
+    var list = blk.querySelector('.soc-list[data-artist]');
+    if (!list) return;
+    var slug = list.getAttribute('data-artist');
+    if (!slug || slug === 'new') return;
+    var wrap = blk.querySelector('.pf-wrap');
+    if (!wrap || wrap.getAttribute('data-oa-init')) return;
+    wrap.setAttribute('data-oa-init', '1');
+
+    /* harvest the portal's seeded/persisted singles from its own grid */
+    var grid = blk.querySelector('.pf-grid');
+    var harvested = [], harvestedPairs = [];
+    if (grid) grid.querySelectorAll('.pf-item').forEach(function(it){
+      var im = it.querySelector('img'); var cap = it.querySelector('.pf-cap');
+      var src = im ? raw(im.getAttribute('src') || '') : '';
+      if (!src) return;
+      var dp = it.getAttribute('data-pair');
+      if (dp) { try { var pj = JSON.parse(dp); if (pj && pj.b && pj.a) { harvestedPairs.push({ id: pj.id || nid('p'), bsrc: raw(pj.b), asrc: raw(pj.a), bcap: pj.bcap || '', acap: pj.acap || '', title: pj.title || '', story: pj.story || '', tags: pj.tags || '', medium: pj.medium || '', dims: pj.dims || '', sec: pj.sec || '', ord: uid }); return; } } catch (e) {} }
+      harvested.push({ src: src, cap: cap ? cap.value : '' });
+    });
+
+    var store = loadStore();
+    var model = store[slug];
+    if (!model || !model.sections) {
+      model = { sections: DEFSECS.slice(), singles: [], pairs: [], drafts: [] };
+      harvested.forEach(function(h){ model.singles.push({ id: nid('s'), src: h.src, cap: h.cap, sec: model.sections[0], onSite: true, ord: uid }); });
+      harvestedPairs.forEach(function(p){ if (model.sections.indexOf(p.sec) < 0) p.sec = model.sections[0]; model.pairs.push(p); });
+    } else {
+      if (!model.drafts) model.drafts = [];
+      var have = {}; model.singles.forEach(function(s){ have[s.src] = 1; });
+      harvested.forEach(function(h){ if (!have[h.src]) model.singles.push({ id: nid('s'), src: h.src, cap: h.cap, sec: model.sections[0], onSite: true, ord: uid }); });
+      var haveP = {}; model.pairs.forEach(function(p){ haveP[p.id] = 1; });
+      harvestedPairs.forEach(function(p){ if (!haveP[p.id]) { if (model.sections.indexOf(p.sec) < 0) p.sec = model.sections[0]; model.pairs.push(p); } });
+    }
+
+    /* hide the old furniture, keep the portal grid as a hidden mirror for Save */
+    Array.prototype.forEach.call(wrap.children, function(ch){
+      if (ch === grid) { ch.style.display = 'none'; return; }
+      if (ch.classList && (ch.classList.contains('pf-add') || ch.classList.contains('pf-status'))) { ch.style.display = 'none'; return; }
+      if (ch.tagName === 'DIV' && /WORK PHOTOS/.test(ch.textContent || '')) ch.style.display = 'none';
+    });
+
+    var root = document.createElement('div'); root.className = 'oa-pf';
+    wrap.insertBefore(root, wrap.firstChild);
+
+    var view = 'portfolio', page = 0, sortMode = 'new', cur = null, formTarget = null, note = '', noteWarn = false, syncing = false, armDelSec = false;
+
+    function persist(){ var st = loadStore(); st[slug] = model; saveStore(st); }
+    function commit(){
+      persist();
+      if (!grid) return;
+      syncing = true;
+      grid.innerHTML = '';
+      model.pairs.forEach(function(p){
+        var d = document.createElement('div'); d.className = 'pf-item';
+        var im = document.createElement('img'); im.alt = ''; im.setAttribute('src', p.asrc); d.appendChild(im);
+        var cap = document.createElement('input'); cap.type = 'text'; cap.className = 'pf-cap'; cap.value = p.title || p.acap || ''; d.appendChild(cap);
+        try { d.setAttribute('data-pair', JSON.stringify({ id: p.id, b: p.bsrc, a: p.asrc, bcap: p.bcap || '', acap: p.acap || '', title: p.title || '', story: p.story || '', tags: p.tags || '', medium: p.medium || '', dims: p.dims || '', sec: p.sec })); } catch (e) {}
+        grid.appendChild(d);
+      });
+      model.singles.filter(function(s){ return s.onSite; }).forEach(function(s){
+        var d = document.createElement('div'); d.className = 'pf-item';
+        var im = document.createElement('img'); im.alt = ''; im.setAttribute('src', s.src); d.appendChild(im);
+        var cap = document.createElement('input'); cap.type = 'text'; cap.className = 'pf-cap'; cap.value = s.cap || ''; d.appendChild(cap);
+        grid.appendChild(d);
+      });
+      syncing = false;
+    }
+    function secName(){ return model.sections[Math.min(page, model.sections.length - 1)]; }
+    function pagerHTML(){
+      return '<span class="oa-pager"><button type="button" data-act="prev"' + (page === 0 ? ' disabled' : '') + '>&larr; Prev</button><span>Section ' + (page + 1) + ' of ' + model.sections.length + ' · ' + esc(secName()) + '</span><button type="button" data-act="next"' + (page >= model.sections.length - 1 ? ' disabled' : '') + '>Next &rarr;</button></span>';
+    }
+    function barHTML(){
+      return '<div class="oa-bar"><label style="font-size:13px;color:#5c5c66">Sort <select data-role="sort"><option value="new"' + (sortMode === 'new' ? ' selected' : '') + '>Newest first</option><option value="old"' + (sortMode === 'old' ? ' selected' : '') + '>Oldest first</option><option value="az"' + (sortMode === 'az' ? ' selected' : '') + '>A to Z</option></select></label>' + pagerHTML() + '</div>';
+    }
+    function noteHTML(){ return note ? '<p class="oa-note' + (noteWarn ? ' warn' : '') + '">' + esc(note) + '</p>' : ''; }
+
+    function renderPortfolio(){
+      var sec = secName();
+      var pairs = model.pairs.filter(function(p){ return p.sec === sec; });
+      var singles = sortedItems(model.singles.filter(function(s){ return s.onSite && s.sec === sec; }), sortMode);
+      var h = '<div class="oa-head"><span class="oa-lab">PORTFOLIO</span><button class="btn btn--primary" type="button" data-act="upload">Upload</button></div>';
+      h += '<div class="oa-chlist" data-role="choose" style="display:none"><button type="button" data-act="ch-add">Add work: photos + before / after project</button><button type="button" data-act="ch-cancel">Cancel</button></div>';
+      h += noteHTML();
+      h += '<p style="color:#5c5c66;font-size:13px;margin:10px 0 0">This is what appears on the site. Captions change here, and only here.</p>';
+      h += barHTML();
+      if (!pairs.length && !singles.length) h += '<div class="oa-empty">Nothing on the site in this section yet. Upload photos, or publish a before / after project.</div>';
+      pairs.forEach(function(p){
+        h += '<div class="oa-pair"><div class="oa-split"><div class="half"><img src="' + esc(disp(p.bsrc)) + '" alt=""><span class="tag">BEFORE</span></div><div class="mid"></div><div class="half"><img src="' + esc(disp(p.asrc)) + '" alt=""><span class="tag">AFTER</span></div></div>' +
+          (p.title ? '<div class="oa-ptitle">' + esc(p.title) + '</div>' : '') + (p.story ? '<div class="oa-pstory">' + esc(p.story) + '</div>' : '') + ((p.tags || p.medium || p.dims) ? '<div class="oa-pmeta">' + esc([p.tags, p.medium, p.dims].filter(Boolean).join(' · ')) + '</div>' : '') +
+          '<div class="oa-caplab">Before caption</div><input type="text" data-pcap="' + p.id + ':bcap" value="' + esc(p.bcap) + '" placeholder="No caption yet" style="width:100%;border:1px solid #d8d8d2;border-radius:8px;padding:8px 10px;font:inherit;font-size:14px;background:#fff">' +
+          '<div class="oa-caplab">After caption</div><input type="text" data-pcap="' + p.id + ':acap" value="' + esc(p.acap) + '" placeholder="No caption yet" style="width:100%;border:1px solid #d8d8d2;border-radius:8px;padding:8px 10px;font:inherit;font-size:14px;background:#fff">' +
+          '<div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" type="button" data-pedit="' + p.id + '">Edit project</button><button class="btn" type="button" data-prm="' + p.id + '">Remove pair from the site</button></div></div>';
+      });
+      if (singles.length) {
+        h += '<div class="oa-pgrid">' + singles.map(function(s){
+          return '<figure class="oa-fig"><img src="' + esc(disp(s.src)) + '" alt=""><button class="oa-rm" type="button" data-off="' + s.id + '" aria-label="Remove from site">&times;</button><input class="oa-cap" type="text" data-cap="' + s.id + '" value="' + esc(s.cap) + '" placeholder="Caption"></figure>';
+        }).join('') + '</div>';
+      }
+      root.innerHTML = h;
+    }
+
+    function galleryInner(){
+      var sec = secName();
+      var items = sortedItems(model.singles.filter(function(s){ return s.sec === sec; }), sortMode);
+      var h = barHTML();
+      h += '<div class="oa-sechead"><input type="text" data-role="secname" value="' + esc(sec) + '"><span class="cnt">' + items.length + (items.length === 1 ? ' photo' : ' photos') + '</span></div>';
+      if (model.sections.length > 1) {
+        var tgt = model.sections.filter(function(x){ return x !== sec; })[0];
+        h += '<div style="margin-bottom:10px"><button class="btn" type="button" data-act="delsec">' + (armDelSec ? 'Tap again to confirm remove' : 'Remove section') + '</button>' + (armDelSec ? ' <span style="font-size:12.5px;color:#5c5c66">Photos and pairs in it move to ' + esc(tgt) + '. Nothing is deleted.</span>' : '') + '</div>';
+      }
+      if (!items.length) h += '<div class="oa-empty">No photos in this section yet. Add some below.</div>';
+      else h += '<div class="oa-pgrid" data-role="ggrid">' + items.map(function(s){
+        return '<div class="oa-tile"><img src="' + esc(disp(s.src)) + '" alt=""><button class="oa-tsite' + (s.onSite ? ' on' : '') + '" type="button" data-site="' + s.id + '">' + (s.onSite ? 'On site' : '+ Site') + '</button><button class="oa-tx" type="button" data-del="' + s.id + '" aria-label="Delete photo">&times;</button><span class="oa-tcap">' + esc(nameOf(s)) + '</span></div>';
+      }).join('') + '</div>';
+      h += '<div class="oa-drop" data-role="drop">Drop photo files here, or use Upload below.</div>';
+      h += '<div style="margin-top:12px"><button class="btn btn--primary" type="button" data-act="gupload">Upload</button></div>';
+      h += '<div class="oa-upopts" data-role="gupopts" style="display:none"><button class="btn" type="button" data-act="g-photos">Photos, into this section</button><button class="btn" type="button" data-act="g-section">New section</button><button class="btn" type="button" data-act="g-cancel">Cancel</button></div>';
+      h += '<input type="file" data-role="gfile" accept="image/*" multiple hidden>';
+      return h;
+    }
+    function wireDrop(){
+      var dz = root.querySelector('[data-role="drop"]');
+      if (!dz) return;
+      ['dragover', 'dragleave', 'drop'].forEach(function(ev){ dz.addEventListener(ev, function(e){ e.preventDefault(); dz.classList.toggle('over', ev === 'dragover'); if (ev === 'drop') addFiles(secName(), e.dataTransfer.files); }); });
+    }
+    function renderGallery(){
+      var h = '<div class="oa-head"><span class="oa-lab">GALLERY</span><button class="btn" type="button" data-act="done">Done</button></div>';
+      h += noteHTML();
+      h += '<p style="color:#5c5c66;font-size:13px;margin:10px 0 0">The working shelf. Tap On site to put a photo on the artist\u2019s page; it shows in Portfolio right away.</p>';
+      h += galleryInner();
+      root.innerHTML = h;
+      wireDrop();
+    }
+
+    function blankDraft(){ return { id: nid('d'), sec: secName(), b: null, a: null, title: '', story: '', tags: '', medium: '', dims: '', pairId: '' }; }
+    function ensureCur(){
+      if (!cur) { cur = model.drafts[0] || blankDraft(); if (model.drafts.indexOf(cur) < 0) { model.drafts.unshift(cur); persist(); } }
+      return cur;
+    }
+    function dropBlankDraft(){
+      if (cur && !cur.pairId && !cur.b && !cur.a && !cur.title && !cur.story && !cur.tags && !cur.medium && !cur.dims) {
+        model.drafts = model.drafts.filter(function(x){ return x.id !== cur.id; });
+        persist();
+      }
+      cur = null;
+    }
+    function boxHTML2(d, side){
+      var v = d[side]; var lab = side === 'b' ? 'BEFORE' : 'AFTER'; var num = side === 'b' ? '1. UPLOAD BEFORE' : '2. UPLOAD AFTER';
+      if (!v) return '<div class="oa-babox" data-fbox="' + side + '">' + num + '</div>';
+      return '<div class="oa-babox filled" data-fbox="' + side + '"><img src="' + esc(v.src) + '" alt=""><span class="blab">' + lab + ' · ' + esc(v.t) + '</span></div>';
+    }
+    function draftsHTML(){
+      if (!model.drafts.length) return '';
+      var h = '<div class="oa-caplab" style="margin-top:14px">Smart drafts</div><div class="oa-drafts">';
+      model.drafts.forEach(function(dr){
+        h += '<span class="oa-dchip">' + esc(dr.title || 'Untitled project') + '<button type="button" data-resume="' + dr.id + '">' + (cur && dr.id === cur.id ? 'Open' : 'Resume') + '</button><button type="button" class="del" data-ddel="' + dr.id + '">Delete</button></span>';
+      });
+      return h + '</div>';
+    }
+    function wireFormBoxes(){
+      root.querySelectorAll('.oa-babox[data-fbox]').forEach(function(box){
+        box.addEventListener('dragover', function(e){ e.preventDefault(); box.classList.add('over'); });
+        box.addEventListener('dragleave', function(){ box.classList.remove('over'); });
+        box.addEventListener('drop', function(e){
+          e.preventDefault(); box.classList.remove('over');
+          var side = box.getAttribute('data-fbox');
+          var f = e.dataTransfer.files && e.dataTransfer.files[0];
+          if (f && cur) readFile(f, function(src){ cur[side] = { src: src, t: f.name.replace(/\.[^.]+$/, '') }; persist(); renderAdd(); });
+        });
+      });
+    }
+    function renderAdd(){
+      var d = ensureCur();
+      var h = '<div class="oa-head"><span class="oa-lab">ADD WORK</span><button class="btn" type="button" data-act="done">Done</button></div>';
+      h += noteHTML();
+      h += '<div class="oa-add"><div class="oa-formcol">';
+      h += '<div class="oa-lab">BEFORE &amp; AFTER</div>';
+      h += '<div style="display:flex;gap:10px;margin-top:8px"><div style="flex:1">' + boxHTML2(d, 'b') + '</div><div style="flex:1">' + boxHTML2(d, 'a') + '</div></div>';
+      h += '<label class="oa-fld"><span>Project title</span><input type="text" data-f="title" value="' + esc(d.title) + '" placeholder="e.g., The Willow"></label>';
+      h += '<label class="oa-fld"><span>Caption / description</span><textarea data-f="story" placeholder="Shared transformation story">' + esc(d.story) + '</textarea></label>';
+      h += '<div class="oa-meta3"><label class="oa-fld"><span>Tags</span><input type="text" data-f="tags" value="' + esc(d.tags) + '"></label><label class="oa-fld"><span>Medium</span><input type="text" data-f="medium" value="' + esc(d.medium) + '"></label><label class="oa-fld"><span>Dimensions</span><input type="text" data-f="dims" value="' + esc(d.dims) + '"></label></div>';
+      h += '<label class="oa-fld"><span>Section</span><select data-fsec>' + model.sections.map(function(s){ return '<option' + (s === d.sec ? ' selected' : '') + '>' + esc(s) + '</option>'; }).join('') + '</select></label>';
+      h += '<div class="oa-pubrow"><button class="btn btn--primary" type="button" data-act="pub">Publish project</button><button class="btn" type="button" data-act="draft">Save smart draft</button><button class="btn" type="button" data-act="deldraft">Delete draft</button></div>';
+      h += '<p class="oa-bastatus" style="margin-top:8px">' + (d.pairId ? 'Editing a published project. The live version stays up until you publish the update.' : 'Drafts save on their own as you work, half-finished is fine. Publish needs both photos.') + '</p>';
+      h += draftsHTML();
+      h += '<input type="file" data-role="ffile" accept="image/*" hidden>';
+      h += '</div><div class="oa-galcol">';
+      h += '<div class="oa-lab">STANDARD GALLERY</div>';
+      h += galleryInner();
+      h += '</div></div>';
+      root.innerHTML = h;
+      wireDrop();
+      wireFormBoxes();
+    }
+
+    function render(){ if (view !== 'gallery') armDelSec = false; if (view === 'portfolio') renderPortfolio(); else if (view === 'gallery') renderGallery(); else renderAdd(); }
+    function addFiles(sec, files){
+      Array.prototype.forEach.call(files, function(f){
+        readFile(f, function(src){ model.singles.push({ id: nid('s'), src: src, cap: '', sec: sec, onSite: false, ord: uid }); commit(); render(); });
+      });
+    }
+    root.addEventListener('click', function(e){
+      var t = e.target.closest('[data-act],[data-site],[data-del],[data-off],[data-prm],[data-pedit],[data-fbox],[data-resume],[data-ddel]');
+      if (!t) return;
+      var act = t.getAttribute('data-act');
+      if (act === 'upload') { var c = root.querySelector('[data-role="choose"]'); if (c) c.style.display = c.style.display === 'none' ? '' : 'none'; return; }
+      if (act === 'ch-cancel') { root.querySelector('[data-role="choose"]').style.display = 'none'; return; }
+      if (act === 'ch-add') { view = 'add'; note = ''; ensureCur(); render(); return; }
+      if (act === 'done') { dropBlankDraft(); view = 'portfolio'; note = ''; render(); return; }
+      if (act === 'pub') {
+        if (!cur) return;
+        if (!cur.b || !cur.a) { note = 'A project needs both a before photo and an after photo to publish. Everything so far is saved in the draft.'; noteWarn = true; render(); return; }
+        var np = { id: cur.pairId || nid('p'), bsrc: cur.b.src, asrc: cur.a.src, bcap: '', acap: '', title: (cur.title || '').trim(), story: (cur.story || '').trim(), tags: (cur.tags || '').trim(), medium: (cur.medium || '').trim(), dims: (cur.dims || '').trim(), sec: cur.sec, ord: uid };
+        var oi = -1; model.pairs.forEach(function(p, ix){ if (p.id === np.id) oi = ix; });
+        if (oi >= 0) { np.bcap = model.pairs[oi].bcap || ''; np.acap = model.pairs[oi].acap || ''; model.pairs[oi] = np; } else model.pairs.push(np);
+        model.drafts = model.drafts.filter(function(x){ return x.id !== cur.id; });
+        cur = null;
+        page = model.sections.indexOf(np.sec); if (page < 0) page = 0;
+        view = 'portfolio'; note = 'Project published to Portfolio' + (np.title ? ': ' + np.title : '') + '. Save artists sends it to the site.'; noteWarn = false;
+        commit(); render(); return;
+      }
+      if (act === 'draft') { persist(); cur = null; view = 'portfolio'; note = 'Smart draft saved. It waits here, half-finished is fine, until you publish it.'; noteWarn = false; render(); return; }
+      if (act === 'deldraft') { if (cur) { model.drafts = model.drafts.filter(function(x){ return x.id !== cur.id; }); cur = null; persist(); } note = 'Draft deleted.'; noteWarn = false; render(); return; }
+      if (act === 'prev') { if (page > 0) { page--; armDelSec = false; render(); } return; }
+      if (act === 'next') { if (page < model.sections.length - 1) { page++; armDelSec = false; render(); } return; }
+      if (act === 'gupload') { var o = root.querySelector('[data-role="gupopts"]'); if (o) o.style.display = o.style.display === 'none' ? '' : 'none'; return; }
+      if (act === 'g-cancel') { root.querySelector('[data-role="gupopts"]').style.display = 'none'; return; }
+      if (act === 'g-photos') { root.querySelector('[data-role="gfile"]').click(); return; }
+      if (act === 'g-section') {
+        var name = 'New section', n = 2;
+        while (model.sections.indexOf(name) >= 0) { name = 'New section ' + (n++); }
+        model.sections.push(name); page = model.sections.length - 1; commit(); render(); return;
+      }
+      if (act === 'delsec') {
+        if (!armDelSec) { armDelSec = true; render(); return; }
+        var old = secName();
+        var target = model.sections.filter(function(x){ return x !== old; })[0];
+        model.singles.forEach(function(s){ if (s.sec === old) s.sec = target; });
+        model.pairs.forEach(function(p){ if (p.sec === old) p.sec = target; });
+        model.drafts.forEach(function(p){ if (p.sec === old) p.sec = target; });
+        model.sections.splice(page, 1);
+        if (page >= model.sections.length) page = model.sections.length - 1;
+        armDelSec = false;
+        note = 'Section removed. Its photos and pairs moved to ' + target + '.'; noteWarn = false;
+        commit(); render(); return;
+      }
+      if (t.hasAttribute('data-site')) {
+        var s1 = model.singles.filter(function(x){ return x.id === t.getAttribute('data-site'); })[0];
+        if (s1) { s1.onSite = !s1.onSite; commit(); render(); }
+        return;
+      }
+      if (t.hasAttribute('data-del')) {
+        model.singles = model.singles.filter(function(x){ return x.id !== t.getAttribute('data-del'); });
+        commit(); render(); return;
+      }
+      if (t.hasAttribute('data-off')) {
+        var s2 = model.singles.filter(function(x){ return x.id === t.getAttribute('data-off'); })[0];
+        if (s2) { s2.onSite = false; note = 'Removed from the site. The photo is still in Gallery.'; noteWarn = false; commit(); render(); }
+        return;
+      }
+      if (t.hasAttribute('data-prm')) {
+        model.pairs = model.pairs.filter(function(x){ return x.id !== t.getAttribute('data-prm'); });
+        commit(); render(); return;
+      }
+      if (t.hasAttribute('data-pedit')) {
+        var pp = model.pairs.filter(function(x){ return x.id === t.getAttribute('data-pedit'); })[0];
+        if (pp) {
+          cur = { id: nid('d'), pairId: pp.id, sec: pp.sec, b: { src: pp.bsrc, t: '' }, a: { src: pp.asrc, t: '' }, title: pp.title || '', story: pp.story || '', tags: pp.tags || '', medium: pp.medium || '', dims: pp.dims || '' };
+          view = 'add'; note = ''; render();
+        }
+        return;
+      }
+      if (t.hasAttribute('data-resume')) {
+        var rd = model.drafts.filter(function(x){ return x.id === t.getAttribute('data-resume'); })[0];
+        if (rd) { cur = rd; render(); }
+        return;
+      }
+      if (t.hasAttribute('data-ddel')) {
+        var did = t.getAttribute('data-ddel');
+        model.drafts = model.drafts.filter(function(x){ return x.id !== did; });
+        if (cur && cur.id === did) cur = null;
+        persist(); render(); return;
+      }
+      if (t.hasAttribute('data-fbox')) {
+        formTarget = t.getAttribute('data-fbox');
+        var ff = root.querySelector('[data-role="ffile"]'); if (ff) ff.click();
+        return;
+      }
+    });
+    root.addEventListener('change', function(e){
+      var t = e.target;
+      if (t.getAttribute('data-role') === 'sort') { sortMode = t.value; render(); return; }
+      if (t.getAttribute('data-role') === 'secname') {
+        var nn = t.value.trim(); var old = secName();
+        if (nn && nn !== old && model.sections.indexOf(nn) < 0) {
+          model.sections[page] = nn;
+          model.singles.forEach(function(s){ if (s.sec === old) s.sec = nn; });
+          model.pairs.forEach(function(p){ if (p.sec === old) p.sec = nn; });
+          model.drafts.forEach(function(p){ if (p.sec === old) p.sec = nn; });
+          commit();
+        }
+        render(); return;
+      }
+      if (t.hasAttribute('data-fsec')) { if (cur) { cur.sec = t.value; persist(); } return; }
+      if (t.getAttribute('data-role') === 'gfile') { addFiles(secName(), t.files); t.value = ''; return; }
+      if (t.getAttribute('data-role') === 'ffile') {
+        var f = t.files && t.files[0];
+        if (f && formTarget && cur) readFile(f, function(src){ cur[formTarget] = { src: src, t: f.name.replace(/\.[^.]+$/, '') }; persist(); renderAdd(); });
+        t.value = ''; return;
+      }
+    });
+    root.addEventListener('input', function(e){
+      var t = e.target;
+      if (t.hasAttribute('data-f')) {
+        if (cur) { cur[t.getAttribute('data-f')] = t.value; persist(); }
+        return;
+      }
+      if (t.hasAttribute('data-cap')) {
+        var s = model.singles.filter(function(x){ return x.id === t.getAttribute('data-cap'); })[0];
+        if (s) { s.cap = t.value; commit(); }
+        return;
+      }
+      if (t.hasAttribute('data-pcap')) {
+        var parts = t.getAttribute('data-pcap').split(':');
+        var p = model.pairs.filter(function(x){ return x.id === parts[0]; })[0];
+        if (p) { p[parts[1]] = t.value; commit(); }
+      }
+    });
+
+    /* if the portal re-renders its grid (restore after save), reconcile singles */
+    if (grid) {
+      new MutationObserver(function(){
+        if (syncing) return;
+        var items = mirrorList();
+        var have = {}; model.singles.forEach(function(s){ have[s.src] = s; });
+        var changed = false;
+        items.forEach(function(it){
+          if (!have[it.src]) { model.singles.push({ id: nid('s'), src: it.src, cap: it.cap, sec: model.sections[0], onSite: true, ord: uid }); changed = true; }
+        });
+        if (changed) { var st = loadStore(); st[slug] = model; saveStore(st); render(); }
+      }).observe(grid, { childList: true });
+    }
+    function mirrorList(){
+      var out = [];
+      grid.querySelectorAll('.pf-item').forEach(function(it){
+        if (it.getAttribute('data-pair')) return;
+        var im = it.querySelector('img'); var cap = it.querySelector('.pf-cap');
+        var src = im ? raw(im.getAttribute('src') || '') : '';
+        if (src) out.push({ src: src, cap: cap ? cap.value : '' });
+      });
+      return out;
+    }
+
+    commit();
+    render();
+  }
+
+  function scan(){
+    document.querySelectorAll('[data-panel="artists"] .soc-list[data-artist]').forEach(function(list){
+      var blk = list.closest('div[style*="border-top"]');
+      if (blk) initBlock(blk);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', scan); else scan();
+  new MutationObserver(function(){ scan(); }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-artist'] });
+})();
+</script>
+</script>
+
+<script>
+/* Requests board: kanban of website requests in the owner admin.
+   Data is live from the portal API (GET /requests); a move POSTs
+   {action:'status', id, status} with the column label as the status.
+   Request fields come from a public form, so every one of them is
+   rendered through textContent, never innerHTML. */
+(function(){
+  var STATUSES = [
+    { label: 'New', dot: '' },
+    { label: 'Contacted', dot: 'c' },
+    { label: 'Consultation Scheduled', dot: 's' },
+    { label: 'Awaiting Deposit', dot: 'd' },
+    { label: 'Booked', dot: 'b' },
+    { label: 'Closed', dot: 'x' }
+  ];
+  var ARTIST_FILTERS = ['All', 'Lex', 'Liv', 'Diana', 'No preference'];
+  var root = document.getElementById('oa-req');
+  if (!root) return;
+  var API = (typeof PORTAL_API !== 'undefined' && PORTAL_API.requests) || 'https://portal.instattoosionalized.net/requests';
+
+  var style = document.createElement('style');
+  style.textContent = [
+    '.oa-req .oar-head{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap}',
+    '.oa-req .oar-head h3{margin:0}',
+    '.oa-req .oar-counts{color:#5c5c66;font-size:13.5px;margin-top:4px}',
+    '.oa-req .oar-counts b{color:#17171a}',
+    '.oa-req .oar-refresh{margin-left:auto}',
+    '.oa-req .oar-filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0 12px}',
+    '.oa-req .oar-chip{border:1.5px solid #d8d8d2;background:#fff;border-radius:999px;padding:7px 14px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;color:#17171a}',
+    '.oa-req .oar-chip.on{background:#17171a;color:#fff;border-color:#17171a}',
+    '.oa-req .oar-filters input{flex:1;min-width:150px;border:1px solid #d8d8d2;border-radius:11px;padding:10px 12px;font:inherit;font-size:14px;background:#fff;color:#17171a}',
+    '.oa-req .oar-note{font-size:13.5px;margin:0 0 10px;color:#5c5c66}',
+    '.oa-req .oar-note.err{color:#b3261e;font-weight:600}',
+    '.oa-req .oar-board{display:grid;grid-template-columns:repeat(6,minmax(180px,1fr));gap:10px;align-items:start;overflow-x:auto;padding-bottom:8px}',
+    '.oa-req .oar-col{background:#ececea;border:1px solid #e0e0da;border-radius:14px;padding:10px;min-height:120px}',
+    '.oa-req .oar-col.over{outline:2px dashed #f4682a;outline-offset:-4px}',
+    '.oa-req .oar-col h3{font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;margin:2px 2px 10px;color:#17171a}',
+    '.oa-req .oar-col h3 .n{background:#17171a;color:#fff;border-radius:999px;font-size:11.5px;padding:1px 8px}',
+    '.oa-req .oar-card{background:#fff;border:1px solid #e4e4e0;border-radius:13px;padding:12px;margin-bottom:9px;cursor:grab;box-shadow:0 3px 10px rgba(20,20,30,.05)}',
+    '.oa-req .oar-card:active{cursor:grabbing}',
+    '.oa-req .oar-st{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#71717a}',
+    '.oa-req .oar-dot{width:8px;height:8px;border-radius:50%;background:#f4682a;flex:none;display:inline-block}',
+    '.oa-req .oar-dot.c{background:#2563eb}.oa-req .oar-dot.s{background:#7c3aed}.oa-req .oar-dot.d{background:#d97706}.oa-req .oar-dot.b{background:#15803d}.oa-req .oar-dot.x{background:#a1a1aa}',
+    '.oa-req .oar-card h4{margin:7px 0 4px;font-size:15.5px;color:#17171a}',
+    '.oa-req .oar-meta{font-size:13px;color:#3f3f46;line-height:1.45}',
+    '.oa-req .oar-idea{font-size:13px;color:#5c5c66;font-style:italic;margin-top:5px;line-height:1.4;white-space:pre-wrap}',
+    '.oa-req .oar-when{font-size:12px;color:#8a8a93;margin-top:7px}',
+    '.oa-req .oar-rev{margin-top:9px;width:100%;border:1px solid #d8d8d2;background:#fafafa;border-radius:9px;padding:7px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;color:#17171a}',
+    '.oa-req .oar-empty{font-size:12.5px;color:#8a8a93;text-align:center;padding:10px 4px}',
+    '.oar-scrim{position:fixed;inset:0;background:rgba(15,15,20,.45);z-index:900}',
+    '.oar-drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,100vw);background:#fff;color:#17171a;z-index:901;box-shadow:-18px 0 50px rgba(0,0,0,.25);padding:22px;overflow-y:auto}',
+    '.oar-drawer h2{font-size:21px;margin:0}',
+    '.oar-drawer .oar-x{position:absolute;top:14px;right:14px;border:1px solid #d8d8d2;background:#fff;border-radius:9px;width:36px;height:36px;font-size:16px;cursor:pointer;color:#17171a}',
+    '.oar-drawer .oar-frow{display:grid;grid-template-columns:110px 1fr;gap:8px;padding:7px 0;border-top:1px solid #f0f0ec;font-size:14px}',
+    '.oar-drawer .oar-frow b{color:#71717a;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;padding-top:2px}',
+    '.oar-drawer .oar-note-full{white-space:pre-wrap}',
+    '.oar-drawer select{width:100%;border:1px solid #d8d8d2;border-radius:11px;padding:11px;font:inherit;font-size:14px;background:#fff;color:#17171a}',
+    '.oar-drawer .oar-acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}',
+    '.oar-drawer .oar-acts .btn{justify-content:center;text-align:center}',
+    '.oar-drawer .oar-acts .wide{grid-column:1/-1}',
+    '.oar-hidden{display:none!important}',
+    '@media(max-width:820px){.oa-req .oar-board{grid-template-columns:1fr;overflow:visible}.oa-req .oar-refresh{margin-left:0}}',
+    'html.dark .oa-req .oar-counts{color:#a1a1aa}html.dark .oa-req .oar-counts b{color:#f4f4f5}',
+    'html.dark .oa-req .oar-chip{background:#1d1d21;color:#f4f4f5;border-color:#3a3a41}html.dark .oa-req .oar-chip.on{background:#f4f4f5;color:#111113;border-color:#f4f4f5}',
+    'html.dark .oa-req .oar-filters input{background:#17171a;color:#f4f4f5;border-color:#3a3a41}',
+    'html.dark .oa-req .oar-note{color:#a1a1aa}html.dark .oa-req .oar-note.err{color:#f28b82}',
+    'html.dark .oa-req .oar-col{background:#17171a;border-color:#2e2e34}html.dark .oa-req .oar-col h3{color:#f4f4f5}html.dark .oa-req .oar-col h3 .n{background:#f4f4f5;color:#111113}',
+    'html.dark .oa-req .oar-card{background:#1d1d21;border-color:#2e2e34}html.dark .oa-req .oar-card h4{color:#f4f4f5}',
+    'html.dark .oa-req .oar-meta{color:#d4d4d8}html.dark .oa-req .oar-idea{color:#a1a1aa}html.dark .oa-req .oar-rev{background:#1d1d21;border-color:#3a3a41;color:#f4f4f5}',
+    'html.dark .oar-drawer{background:#1d1d21;color:#f4f4f5}html.dark .oar-drawer .oar-x{background:#1d1d21;border-color:#3a3a41;color:#f4f4f5}',
+    'html.dark .oar-drawer .oar-frow{border-top-color:#2a2a2f}html.dark .oar-drawer select{background:#17171a;color:#f4f4f5;border-color:#3a3a41}'
+  ].join('\n');
+  document.head.appendChild(style);
+
+  function el(tag, cls, text){
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function dotClass(label){
+    for (var i = 0; i < STATUSES.length; i++) if (STATUSES[i].label === label) return STATUSES[i].dot;
+    return '';
+  }
+  function normalizeStatus(raw){
+    var s = String(raw == null ? '' : raw).replace(/\s+/g, ' ').trim().toLowerCase();
+    for (var i = 0; i < STATUSES.length; i++) if (STATUSES[i].label.toLowerCase() === s) return STATUSES[i].label;
+    if (s === 'done' || s === 'complete' || s === 'completed') return 'Closed';
+    return 'New';
+  }
+
+  var reqs = [];
+  var artistFilter = 'All';
+  var query = '';
+  var loading = false;
+  var drawerReq = null;
+
+  /* skeleton */
+  var head = el('div', 'oar-head');
+  var headLeft = el('div');
+  headLeft.appendChild(el('h3', null, 'Requests'));
+  var counts = el('div', 'oar-counts');
+  headLeft.appendChild(counts);
+  head.appendChild(headLeft);
+  var refreshBtn = el('button', 'btn oar-refresh', 'Refresh');
+  refreshBtn.type = 'button';
+  head.appendChild(refreshBtn);
+  root.appendChild(head);
+
+  var filters = el('div', 'oar-filters');
+  ARTIST_FILTERS.forEach(function(name){
+    var chip = el('button', 'oar-chip' + (name === 'All' ? ' on' : ''), name === 'All' ? 'All artists' : name);
+    chip.type = 'button';
+    chip.setAttribute('data-af', name);
+    chip.addEventListener('click', function(){
+      artistFilter = name;
+      filters.querySelectorAll('.oar-chip').forEach(function(c){ c.classList.toggle('on', c === chip); });
+      render();
+    });
+    filters.appendChild(chip);
+  });
+  var search = document.createElement('input');
+  search.type = 'text';
+  search.placeholder = 'Search name or request...';
+  search.setAttribute('aria-label', 'Search requests');
+  search.addEventListener('input', function(){ query = search.value.toLowerCase(); render(); });
+  filters.appendChild(search);
+  root.appendChild(filters);
+
+  var note = el('p', 'oar-note oar-hidden');
+  root.appendChild(note);
+  var board = el('div', 'oar-board');
+  root.appendChild(board);
+
+  var scrim = el('div', 'oar-scrim oar-hidden');
+  var drawer = el('aside', 'oar-drawer oar-hidden');
+  drawer.setAttribute('aria-label', 'Request details');
+  document.body.appendChild(scrim);
+  document.body.appendChild(drawer);
+  scrim.addEventListener('click', closeDrawer);
+
+  function setNote(text, isErr, withRetry){
+    note.textContent = '';
+    note.classList.remove('oar-hidden', 'err');
+    if (isErr) note.classList.add('err');
+    note.appendChild(document.createTextNode(text));
+    if (withRetry) {
+      var b = el('button', 'btn', 'Retry');
+      b.type = 'button';
+      b.style.marginLeft = '10px';
+      b.addEventListener('click', load);
+      note.appendChild(b);
+    }
+  }
+  function clearNote(){ note.classList.add('oar-hidden'); note.textContent = ''; }
+
+  function passes(r){
+    if (artistFilter === 'No preference' && r.artist) return false;
+    if (artistFilter !== 'All' && artistFilter !== 'No preference' && r.artist !== artistFilter) return false;
+    if (query && (r.name + ' ' + r.note + ' ' + r.artist).toLowerCase().indexOf(query) === -1) return false;
+    return true;
+  }
+  function countFor(label){ return reqs.filter(function(r){ return r.col === label; }).length; }
+
+  function render(){
+    counts.textContent = '';
+    STATUSES.slice(0, 5).forEach(function(st, i){
+      if (i) counts.appendChild(document.createTextNode(' · '));
+      counts.appendChild(document.createTextNode(st.label === 'Consultation Scheduled' ? 'Consults' : st.label));
+      counts.appendChild(document.createTextNode(': '));
+      var b = el('b', null, String(countFor(st.label)));
+      counts.appendChild(b);
+    });
+    board.textContent = '';
+    STATUSES.forEach(function(st){
+      var col = el('div', 'oar-col');
+      col.setAttribute('data-col', st.label);
+      var h = el('h3');
+      h.appendChild(document.createTextNode(st.label));
+      h.appendChild(el('span', 'n', String(countFor(st.label))));
+      col.appendChild(h);
+      var items = reqs.filter(function(r){ return r.col === st.label && passes(r); });
+      if (!items.length) col.appendChild(el('div', 'oar-empty', 'Nothing here'));
+      items.forEach(function(r){ col.appendChild(card(r)); });
+      col.addEventListener('dragover', function(ev){ ev.preventDefault(); col.classList.add('over'); });
+      col.addEventListener('dragleave', function(){ col.classList.remove('over'); });
+      col.addEventListener('drop', function(ev){
+        ev.preventDefault(); col.classList.remove('over');
+        var id = ev.dataTransfer.getData('text/plain');
+        var r = reqs.filter(function(x){ return String(x.id) === id; })[0];
+        if (r) move(r, st.label);
+      });
+      board.appendChild(col);
+    });
+    if (!reqs.length) setNote('No requests yet. When someone sends one from your website, it lands here.');
+  }
+
+  function card(r){
+    var c = el('div', 'oar-card');
+    c.draggable = true;
+    c.setAttribute('data-id', String(r.id));
+    var st = el('div', 'oar-st');
+    st.appendChild(el('span', 'oar-dot ' + dotClass(r.col)));
+    st.appendChild(document.createTextNode(r.col));
+    c.appendChild(st);
+    c.appendChild(el('h4', null, r.name));
+    c.appendChild(el('div', 'oar-meta', r.artist ? 'with ' + r.artist : 'No artist preference'));
+    if (r.note) {
+      var idea = el('div', 'oar-idea', r.note.length > 140 ? r.note.slice(0, 140) + '...' : r.note);
+      c.appendChild(idea);
+    }
+    if (r.when) c.appendChild(el('div', 'oar-when', r.when));
+    var rev = el('button', 'oar-rev', 'Review');
+    rev.type = 'button';
+    rev.addEventListener('click', function(ev){ ev.stopPropagation(); openDrawer(r); });
+    c.appendChild(rev);
+    c.addEventListener('click', function(){ openDrawer(r); });
+    c.addEventListener('dragstart', function(ev){ ev.dataTransfer.setData('text/plain', String(r.id)); });
+    return c;
+  }
+
+  function move(r, label){
+    if (!r || r.col === label) return;
+    var prev = r.col;
+    r.col = label;
+    render();
+    if (drawerReq === r) buildDrawer(r);
+    fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'status', id: r.id, status: label }) })
+      .then(function(resp){ if (!resp.ok) throw new Error('bad'); r.status = label; })
+      .catch(function(){
+        r.col = prev;
+        render();
+        if (drawerReq === r) buildDrawer(r);
+        setNote('Could not save that move, so it was put back. Check the connection and try again.', true);
+      });
+  }
+
+  function frow(label, value){
+    var row = el('div', 'oar-frow');
+    row.appendChild(el('b', null, label));
+    row.appendChild(el('div', null, value));
+    return row;
+  }
+  function buildDrawer(r){
+    drawer.textContent = '';
+    var x = el('button', 'oar-x', 'X');
+    x.type = 'button';
+    x.setAttribute('aria-label', 'Close');
+    x.addEventListener('click', closeDrawer);
+    drawer.appendChild(x);
+    drawer.appendChild(el('h2', null, r.name));
+    var st = el('div', 'oar-st');
+    st.style.marginTop = '4px';
+    st.appendChild(el('span', 'oar-dot ' + dotClass(r.col)));
+    st.appendChild(document.createTextNode(r.col));
+    drawer.appendChild(st);
+    if (r.phone) drawer.appendChild(frow('Phone', r.phone));
+    drawer.appendChild(frow('Artist', r.artist || 'No preference'));
+    if (r.when) drawer.appendChild(frow('When', r.when));
+    if (r.note) {
+      var row = el('div', 'oar-frow');
+      row.appendChild(el('b', null, 'Request'));
+      row.appendChild(el('div', 'oar-note-full', r.note));
+      drawer.appendChild(row);
+    }
+    var lab = el('p', null, 'Move to');
+    lab.style.cssText = 'font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#71717a;margin:18px 0 7px';
+    drawer.appendChild(lab);
+    var sel = document.createElement('select');
+    sel.setAttribute('aria-label', 'Status');
+    STATUSES.forEach(function(s){
+      var o = document.createElement('option');
+      o.value = s.label; o.textContent = s.label;
+      if (s.label === r.col) o.selected = true;
+      sel.appendChild(o);
+    });
+    sel.addEventListener('change', function(){ move(r, sel.value); });
+    drawer.appendChild(sel);
+    var acts = el('div', 'oar-acts');
+    if (r.phone) {
+      var tel = el('a', 'btn', 'Contact Client');
+      tel.href = 'tel:' + r.phone.replace(/[^0-9+]/g, '');
+      acts.appendChild(tel);
+    }
+    [['Schedule Consultation', 'Consultation Scheduled'], ['Request Deposit', 'Awaiting Deposit'], ['Mark Booked', 'Booked']].forEach(function(pair){
+      var b = el('button', 'btn', pair[0]);
+      b.type = 'button';
+      b.addEventListener('click', function(){ move(r, pair[1]); });
+      acts.appendChild(b);
+    });
+    var close = el('button', 'btn wide', 'Close Request');
+    close.type = 'button';
+    close.addEventListener('click', function(){ move(r, 'Closed'); });
+    acts.appendChild(close);
+    drawer.appendChild(acts);
+  }
+  function openDrawer(r){
+    drawerReq = r;
+    buildDrawer(r);
+    scrim.classList.remove('oar-hidden');
+    drawer.classList.remove('oar-hidden');
+  }
+  function closeDrawer(){
+    drawerReq = null;
+    scrim.classList.add('oar-hidden');
+    drawer.classList.add('oar-hidden');
+  }
+
+  function load(){
+    if (loading) return;
+    loading = true;
+    fetch(API)
+      .then(function(resp){ if (!resp.ok) throw new Error('bad'); return resp.json(); })
+      .then(function(data){
+        loading = false;
+        reqs = (data.requests || []).map(function(r){
+          return { id: r.id, name: r.name || '(no name)', artist: r.artist || '', when: r.when || '', phone: r.phone || '', note: r.note || '', status: r.status || '', col: normalizeStatus(r.status) };
+        });
+        clearNote();
+        render();
+      })
+      .catch(function(){
+        loading = false;
+        setNote('Requests could not be loaded. Check the connection and try again.', true, true);
+      });
+  }
+
+  refreshBtn.addEventListener('click', load);
+  var tabBtn = document.querySelector('[data-tab="requests"]');
+  if (tabBtn) tabBtn.addEventListener('click', load);
+  var panel = root.closest ? root.closest('[data-panel="requests"]') : null;
+  if (panel && !panel.classList.contains('hidden')) load();
+})();
+</script>
+
+<script>
+/* Unsaved-changes guard (fork only): prompt before leaving a page with pending edits */
+(function(){
+  var dirty = false;
+  function inScope(el){
+    if (!el || !el.closest) return false;
+    if (el.closest('.oa-pf')) return false;                 /* portfolio module saves instantly */
+    if (el.closest('[data-panel="book"]')) return false;    /* bookings write live to the calendar */
+    if (el.closest('.oa-req')) return false;                 /* requests board writes live to the API */
+    return !!el.closest('[data-panel]');
+  }
+  document.addEventListener('input', function(e){ if (inScope(e.target)) dirty = true; }, true);
+  document.addEventListener('change', function(e){ if (inScope(e.target)) dirty = true; }, true);
+  document.addEventListener('click', function(e){
+    var b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (b && /^save\b/i.test((b.textContent || '').trim())) setTimeout(function(){ dirty = false; }, 0);
+  }, true);
+  window.addEventListener('beforeunload', function(e){ if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+  document.addEventListener('click', function(e){
+    if (!dirty) return;
+    var t = e.target;
+    var nav = t.closest ? (t.closest('[data-tab]') || t.closest('[data-goto]') || t.closest('#p-brand-home') || t.closest('#oa-artist-back') || t.closest('.artist-row')) : null;
+    if (!nav) return;
+    if (nav.hasAttribute && nav.hasAttribute('data-tab')) {
+      var cur = document.querySelector('[data-panel]:not(.hidden)');
+      if (cur && cur.getAttribute('data-panel') === nav.getAttribute('data-tab')) return;
+    }
+    if (!window.confirm('You have unsaved changes. Leave without saving?')) { e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation(); }
+  }, true);
+  window.__oaDirty = function(){ return dirty; };
 })();
 </script>
 </body>
