@@ -214,6 +214,9 @@ a.ledger-row:hover { background: var(--surface); }
 .weekday.today { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); } .weekday.closed { background: transparent; border-style: dashed; opacity: .75; }
 .weekday header { display: grid; gap: 0; } .wd-link { display: flex; gap: .4rem; align-items: baseline; text-decoration: none; color: var(--ink); } .wd-link span { font-size: 1.25rem; font-weight: 700; font-stretch: 112%; } header small { color: var(--ink2); }
 .cal-appt { display: grid; min-width: 0; width: 100%; overflow-wrap: anywhere; gap: .05rem; text-align: left; padding: .4rem .5rem; border: 1px solid var(--line2); border-left: 4px solid var(--c0); border-radius: 6px; background: var(--paper); cursor: pointer; }
+.cal-appt { grid-template-columns: minmax(0, 1fr); }
+.cal-appt .chips { min-width: 0; }
+.cal-appt .chip { white-space: normal; max-width: 100%; border-radius: 10px; line-height: 1.25; padding: .12rem .5rem; overflow-wrap: anywhere; }
 .cal-appt.c1 { border-left-color: var(--c1); } .cal-appt.c2 { border-left-color: var(--c2); } .cal-appt.c3 { border-left-color: var(--c3); } .cal-appt.c4 { border-left-color: var(--c4); }
 .cal-appt.consult { border-style: dashed; border-left-style: solid; } .cal-appt.st-done { opacity: .65; } .cal-appt.st-noshow { background: var(--badbg); } .cal-appt.st-arrived { background: var(--okbg); }
 .ca-time { font-size: .78rem; color: var(--ink2); font-variant-numeric: tabular-nums; } .ca-name { font-weight: 700; } .ca-meta, .ca-piece { font-size: .8rem; color: var(--ink2); }
