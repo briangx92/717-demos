@@ -100,3 +100,12 @@ The booking dialog (Set up a consultation, Book the session, New appointment, an
 - **One tap** fills the date, start and end. The typed fields stay below for odd cases, and the clash warning still runs as a backstop.
 - **First five days show; "Show more days"** adds five at a time.
 - **Limit:** it only knows what is in the portal's calendar. Anything the artist books only in their own Google Calendar is not seen as busy.
+
+## View live site and Preview site changes (new)
+
+- **View live site** is in the top bar on every screen. It opens the public website in a new tab.
+- **Preview site changes** is on the Site page header and on the Publish tab. It opens the website in a new tab showing the draft, with a yellow bar saying it is unpublished.
+- A preview is saved apart from the live copy (`oa2:preview:v1`), so looking never publishes anything and visitors never see it. Each click saves the latest draft first. If that save fails, no tab opens and the portal says why.
+- The preview shows what would be live today, so an announcement that starts later stays hidden until its date. A preview link opened with nothing saved says so on the page and in the browser console.
+- Only the banner and announcements are on the demo website so far, so only they appear in a preview.
+- **Real build:** `OA.LIVE_URL` becomes the shop's address, and the preview is served by the API to the signed-in owner instead of read from this browser.

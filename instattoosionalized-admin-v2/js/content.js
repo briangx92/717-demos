@@ -6,6 +6,9 @@
   var OA = window.OA;
 
   OA.PUBLIC_KEY = 'oa2:published:v1';
+  OA.PREVIEW_KEY = 'oa2:preview:v1';
+  /* The demo website, relative to the portal. The real build points this at the shop's live address. */
+  OA.LIVE_URL = '../instattoosionalized-tattoos-and-piercings.html';
   OA.LIMITS = { bannerText: 140, annTitle: 80, annBody: 400, annLink: 300, annMax: 20 };
   OA.ANN_KINDS = [['notice', 'News'], ['closure', 'Closure'], ['special', 'Special']];
 
@@ -68,5 +71,28 @@
     } catch (e) { return 'This browser would not keep the live copy, so nothing was published.'; }
     return '';
   };
-  OA.clearLive = function () { try { localStorage.removeItem(OA.PUBLIC_KEY); } catch (e) { /* nothing to clear */ } };
+  OA.clearLive = function () { try { localStorage.removeItem(OA.PUBLIC_KEY); localStorage.removeItem(OA.PREVIEW_KEY); } catch (e) { /* nothing to clear */ } };
+
+  /* A preview is the draft, saved apart from the live copy, so looking never changes what visitors see. */
+  OA.writePreview = function (content) {
+    var json = JSON.stringify(content);
+    try {
+      localStorage.setItem(OA.PREVIEW_KEY, json);
+      if (localStorage.getItem(OA.PREVIEW_KEY) !== json) return 'The preview did not save, so it was not opened.';
+    } catch (e) { return 'This browser would not keep the preview, so it was not opened.'; }
+    return '';
+  };
+
+  /* Links to the website. Real links, so they open in a new tab like any link and stay keyboard friendly. */
+  OA.liveLink = function (cls) {
+    return OA.h('a', { class: cls || 'btn small quiet', href: OA.LIVE_URL, target: '_blank', rel: 'noopener noreferrer', text: 'View live site', title: 'Opens the public website in a new tab' });
+  };
+  OA.previewLink = function (cls) {
+    var a = OA.h('a', { class: cls || 'btn small', href: OA.LIVE_URL + '?preview=1', target: '_blank', rel: 'noopener noreferrer', text: 'Preview site changes', title: 'Opens the website in a new tab with your unpublished changes. Visitors do not see this.' });
+    a.addEventListener('click', function (e) {
+      var bad = OA.writePreview(OA.publicContent(OA.store.state.site, Date.now()));
+      if (bad) { e.preventDefault(); OA.ui.fail(bad); }
+    });
+    return a;
+  };
 })();

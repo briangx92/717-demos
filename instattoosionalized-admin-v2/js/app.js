@@ -70,7 +70,7 @@
     app.appendChild(h('header', { class: 'top' },
       h('div', { class: 'top-in' },
         h('a', { class: 'brand', href: '#/today' }, h('img', { src: '../instattoosionalized-logo.jpg', alt: '' }), h('span', { class: 'brand-name' }, h('b', { text: shop.short || shop.name }), h('i', { text: 'Owner portal' }))),
-        h('div', { class: 'top-tools' }, chrome.publish, h('label', { class: 'who' }, h('span', { text: 'Preview as' }), chrome.who), theme, out)),
+        h('div', { class: 'top-tools' }, OA.liveLink('btn small quiet'), chrome.publish, h('label', { class: 'who' }, h('span', { text: 'Preview as' }), chrome.who), theme, out)),
       nav));
     app.appendChild(main);
     syncTheme();

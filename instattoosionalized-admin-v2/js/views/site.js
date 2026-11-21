@@ -193,8 +193,9 @@
         }, 'primary', bl.length ? { disabled: 'disabled' } : {});
         row.appendChild(btn); row.appendChild(ui.btn('Discard everything', function () { ui.confirm('Discard all draft changes?', 'The draft goes back to what is live. This cannot be undone.', 'Discard all', true).then(function (ok) { if (ok) { act.discard(); ui.toast('Draft reset to the live version'); OA.rerender(); } }); }, 'quiet danger-quiet'));
       } else row.appendChild(h('p', { class: 'note', text: 'Only the shop owner can publish.' }));
+      row.appendChild(OA.previewLink('btn'));
       card.appendChild(row);
-      card.appendChild(h('p', { class: 'note', text: 'Demo: publishing updates the public demo website in this browser, for the banner and announcements only. Hours, prices, services and the rest stay as they are until the real publish path is built. Nothing reaches the real site. On the real portal, one publish rebuilds the site once, however many edits are in it.' }));
+      card.appendChild(h('p', { class: 'note', text: 'Demo: publishing updates the public demo website in this browser, for the banner and announcements only. Hours, prices, services and the rest stay as they are until the real publish path is built. Nothing reaches the real site. Preview site changes opens the demo website with your draft banner and announcements in a new tab. Visitors never see a preview. On the real portal, one publish rebuilds the site once, however many edits are in it.' }));
       root.appendChild(card);
     }
     var hist = S.state.history;
@@ -211,7 +212,7 @@
     render: function (parts) {
       var tab = parts[0] || 'hours', known = TABS.some(function (t) { return t[0] === tab; });
       var root = h('div', { class: 'page' }), n = OA.pendingChanges().length;
-      root.appendChild(ui.pageHead('Site', 'What the public website says. Edit freely: nothing goes live until you publish.', null));
+      root.appendChild(ui.pageHead('Site', 'What the public website says. Edit freely: nothing goes live until you publish.', [OA.previewLink('btn small')]));
       var sub = h('nav', { class: 'subtabs', 'aria-label': 'Site sections' });
       TABS.forEach(function (t) { sub.appendChild(ui.link(t[1] + (t[0] === 'publish' && n ? ' (' + n + ')' : ''), '#/site/' + t[0], 'subtab' + (tab === t[0] ? ' on' : ''))); });
       root.appendChild(sub);

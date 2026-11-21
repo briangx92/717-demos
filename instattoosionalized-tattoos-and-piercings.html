@@ -161,6 +161,7 @@
   .s-header .c-btn{ font-size:var(--text-body); padding-inline:var(--sp-2); flex:none; }
 
   .s-banner{ background:var(--accent); color:var(--accent-ink); text-align:center; padding:9px var(--sp-2); font-size:14.5px; font-weight:600; }
+  .s-preview{ position:sticky; top:0; z-index:200; background:#f2c200; color:#1a1400; text-align:center; padding:8px var(--sp-2); font-size:14px; font-weight:600; }
   .s-news{ background:var(--bg); padding:var(--sp-3) 0; border-bottom:1px solid var(--line); }
   .s-news[hidden]{ display:none; }
   .s-news__list{ display:grid; gap:var(--sp-2); list-style:none; margin:0; padding:0; }
@@ -2026,7 +2027,7 @@ try { var __st = null; try { __st = JSON.parse(localStorage.getItem('oa-state-v3
 /* Banner and announcements published from the owner portal. Everything is checked again here and drawn as text only. */
 (function(){
   'use strict';
-  var KEY = 'oa2:published:v1', KINDS = { notice: 'News', closure: 'Closed', special: 'Special' }, ISO = /^\d{4}-\d{2}-\d{2}$/;
+  var PREVIEW = /[?&]preview=1(&|$)/.test(location.search), KEY = PREVIEW ? 'oa2:preview:v1' : 'oa2:published:v1', KINDS = { notice: 'News', closure: 'Closed', special: 'Special' }, ISO = /^\d{4}-\d{2}-\d{2}$/;
   function warn(msg){ try { console.error('[site-content] ' + msg); } catch (e) {} }
   function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
   function shopToday(){
@@ -2061,8 +2062,13 @@ try { var __st = null; try { __st = JSON.parse(localStorage.getItem('oa-state-v3
   }
   function active(x, today){ return (!x.start || x.start <= today) && (!x.end || x.end >= today); }
   try {
-    var c = clean(load());
-    if (!c) return;
+    if (PREVIEW) {
+      var pv = el('div', 's-preview'); pv.setAttribute('role', 'status');
+      pv.textContent = 'Preview of unpublished changes. Visitors do not see this page. It shows what would be live today: announcements that start later stay hidden until their date.';
+      document.body.insertBefore(pv, document.body.firstChild);
+    }
+    var data = load(), c = data == null ? null : clean(data);
+    if (!c) { if (PREVIEW) { pv.textContent = 'No preview was found, so this is the built-in site. Open the preview again from the portal.'; warn('No preview content found.'); } return; }
     var today = shopToday();
     if (c.banner && active(c.banner, today)) {
       var bar = el('div', 's-banner', c.banner.text.trim()); bar.setAttribute('role', 'status');
