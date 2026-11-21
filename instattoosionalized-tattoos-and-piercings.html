@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Limits where this page can load code from and send data to (Cloudflare Web Analytics is allowed). If you set request-api below, add its origin to connect-src here too. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://abacus.jasoncameron.dev; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'">
+<!-- Origin of the request server, for example https://portal.example.com. Empty means the form cannot send; it only prepares a text message. -->
+<meta name="request-api" content="">
 <meta name="case-tag" content="instattoosionalized-tattoos-and-piercings·z62">
 <title>Instattoosionalized Tattoos and Piercings | Tattoo Studio in Northampton, PA</title>
 <meta name="description" content="Tattoos and body piercing at 1852 Main St in Northampton, PA. Call (610) 440-2700.">
@@ -143,6 +147,7 @@
   .c-tile.is-on .c-tile__dot{ background:var(--accent); border-color:var(--accent); }
   .c-tile.is-on .c-tile__dot::after{ content:""; width:8px; height:12px; border:solid var(--accent-ink); border-width:0 3px 3px 0; transform:translateY(-2px) rotate(45deg); }
   .c-stars{ color:var(--accent-bright); letter-spacing:.12em; }
+  .s-hp{ position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden; }
   .u-sr{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 }
 
@@ -602,6 +607,7 @@
       <p class="s-ask__call" id="ask-call"></p>
     </div>
     <div class="c-card">
+      <div class="s-hp" aria-hidden="true"><label>Leave this empty<input type="text" id="hp-check" name="hp_check" tabindex="-1" autocomplete="off"></label></div>
       <div class="s-paths" id="paths" role="tablist" aria-label="How do you want to reach the shop?">
         <button type="button" role="tab" id="tab-quick" data-path="quick" aria-controls="panel-quick" aria-selected="true" tabindex="0"><span class="s-paths__label">Get in touch</span><span class="s-paths__sub">Name and number</span></button>
         <button type="button" role="tab" id="tab-guided" data-path="guided" aria-controls="panel-guided" aria-selected="false" tabindex="-1"><span class="s-paths__label">Build my request</span><span class="s-paths__sub">Step by step</span></button>
@@ -611,12 +617,12 @@
         <form class="s-quick" id="quick-form" novalidate>
           <div class="c-field">
             <label class="c-field__label" for="q-name">Name</label>
-            <input class="c-input" id="q-name" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" aria-describedby="q-name-err" required>
+            <input class="c-input" id="q-name" type="text" maxlength="80" autocomplete="name" autocapitalize="words" enterkeyhint="next" aria-describedby="q-name-err" required>
             <p class="c-field__err" id="q-name-err"></p>
           </div>
           <div class="c-field">
             <label class="c-field__label" for="q-phone">Phone</label>
-            <input class="c-input" id="q-phone" type="tel" inputmode="tel" autocomplete="tel" enterkeyhint="next" aria-describedby="q-phone-hint" required>
+            <input class="c-input" id="q-phone" type="tel" maxlength="20" inputmode="tel" autocomplete="tel" enterkeyhint="next" aria-describedby="q-phone-hint" required>
             <p class="c-field__hint" id="q-phone-hint">At least 7 digits so the shop can reach you.</p>
           </div>
           <div class="c-field" id="q-artist-field">
@@ -626,10 +632,10 @@
           </div>
           <div class="c-field">
             <label class="c-field__label" for="q-note">What do you need? (optional)</label>
-            <textarea class="c-input" id="q-note" placeholder="A quick line is plenty" autocapitalize="sentences"></textarea>
+            <textarea class="c-input" id="q-note" maxlength="600" placeholder="A quick line is plenty" autocapitalize="sentences"></textarea>
           </div>
           <button class="c-btn c-btn--big" id="q-send" type="button" aria-describedby="q-phone-hint" disabled>Send request</button>
-          <p class="s-quick__fine">Send it right here. The shop confirms your time and puts it on their calendar.</p>
+          <p class="s-quick__fine" id="q-fine">Send it right here. The shop confirms your time and puts it on their calendar.</p>
         </form>
       </div>
 
@@ -653,6 +659,7 @@
         <h3 id="result-title" tabindex="-1">Your request is ready</h3>
         <div class="s-result__text" id="result-text"></div>
         <div class="s-result__actions">
+          <button class="c-btn" id="result-retry" type="button" hidden>Try again</button>
           <a class="c-btn" id="result-sms">Text it to the shop</a>
           <button class="c-btn c-btn--ghost" id="result-copy" type="button">Copy</button>
           <button class="c-btn c-btn--ghost" id="result-edit" type="button">Edit</button>
@@ -1412,7 +1419,7 @@ const MODULES = {
       return [T.el("h3", { class: "s-step__q", id: "step-q", tabindex: "-1", text }), sub ? T.el("p", { class: "s-step__sub", text: sub }) : null];
     }
     function textField(id, label, value, onInput, extra){
-      const input = T.el("input", Object.assign({ class: "c-input", id, type: "text", "data-key": id, enterkeyhint: "next", autocapitalize: "sentences", value: value || "" }, extra || {}));
+      const input = T.el("input", Object.assign({ class: "c-input", id, type: "text", maxlength: id === "c-name" ? 80 : id === "c-note" ? 600 : 120, "data-key": id, enterkeyhint: "next", autocapitalize: "sentences", value: value || "" }, extra || {}));
       input.addEventListener("input", () => { onInput(input.value); recheck(); renderSummary(); });
       return T.el("div", { class: "c-field" }, [T.el("label", { class: "c-field__label", for: id, text: label }), input]);
     }
@@ -1693,27 +1700,117 @@ const MODULES = {
     }
 
     const overlay = $("send-overlay");
+    // ---- sending: nothing says "sent" unless the shop's server answered 201 with an id
+    const API = (() => {
+      const m = document.querySelector('meta[name="request-api"]');
+      const v = m ? (m.getAttribute("content") || "").trim() : "";
+      if (!v) return "";
+      try {
+        const u = new URL(v);
+        const local = u.hostname === "localhost" || u.hostname === "127.0.0.1";
+        return (u.protocol === "https:" || (u.protocol === "http:" && local)) ? u.origin : "";
+      } catch (e) { return ""; }
+    })();
+    const hex = buf => [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, "0")).join("");
+    const Captcha = {
+      p: null, started: 0,
+      warm(){
+        if (!API) return;
+        if (!this.p || Date.now() - this.started > 6 * 60 * 1000) { this.started = Date.now(); this.p = this.solve(); this.p.catch(() => {}); }
+      },
+      async solve(){
+        const r = await fetch(API + "/api/challenge", { cache: "no-store" });
+        if (!r.ok) throw new Error("The shop's server would not start the spam check (" + r.status + ").");
+        const c = await r.json(), got = Date.now();
+        if (!window.crypto || !crypto.subtle) throw new Error("This browser cannot run the spam check.");
+        const enc = new TextEncoder(), B = 500;
+        for (let n0 = 0; n0 <= c.maxnumber; n0 += B) {
+          const n = Math.min(B, c.maxnumber - n0 + 1);
+          const hs = await Promise.all(Array.from({ length: n }, (_, i) => crypto.subtle.digest("SHA-256", enc.encode(c.salt + (n0 + i)))));
+          for (let i = 0; i < n; i++) {
+            if (hex(hs[i]) === c.challenge) return { got, token: { challenge: c.challenge, salt: c.salt, iat: c.iat, expires: c.expires, number: n0 + i, signature: c.signature } };
+          }
+        }
+        throw new Error("The spam check could not be solved. Reload the page and try again.");
+      },
+      async take(){
+        this.warm();
+        const p = this.p; this.p = null;           // each answer is single-use
+        let t;
+        try { t = await p; } catch (e) { this.warm(); const p2 = this.p; this.p = null; t = await p2; }
+        const wait = t.got + 1200 - Date.now();    // the server refuses answers that come back faster than a person could
+        if (wait > 0) await new Promise(r => setTimeout(r, wait));
+        return t.token;
+      }
+    };
+    ["quick-form", "request-form"].forEach(id => $(id).addEventListener("focusin", () => Captcha.warm()));
+    if (!API) {
+      $("q-send").textContent = "Write my request";
+      $("q-fine").textContent = "This builds a text message to the shop with your details. Nothing is sent until you send that text.";
+    }
+
+    function payloadFor(path){
+      if (path === "quick") {
+        const a = st.artist ? artistBySlug[st.artist] : null;
+        return { source: "quick", kind: a && a.families.length === 1 ? a.families[0] : "general", artist: st.artist || "", services: [],
+          name: qName.value.trim(), phone: T.fmtPhone(qPhone.value), note: qNote.value.trim() };
+      }
+      const a = st.a, fams = families(), fam = a.fam;
+      const t = fam.tattoo || {}, pc = fam.piercing || {};
+      const place = [t.place, pc.place ? (fams.includes("tattoo") ? "Piercing: " : "") + pc.place : ""].map(x => (x || "").trim()).filter(Boolean).join("; ");
+      return { source: "guided", kind: fams.length === 1 ? fams[0] : "general", artist: st.artist || "",
+        services: [...st.picked].map(id => byId[id].name), size: (t.size || "").trim(), place, idea: (t.idea || "").trim(),
+        when: whenText(), name: a.name.trim(), phone: a.phone, note: a.note.trim() };
+    }
+    function retryKey(payload){
+      const sig = JSON.stringify(payload);
+      if (st.keySig !== sig) { st.keySig = sig; st.key = [...crypto.getRandomValues(new Uint8Array(12))].map(b => b.toString(16).padStart(2, "0")).join(""); }
+      return st.key;
+    }
+    async function postRequest(payload){
+      const body = Object.assign({}, payload, { client_key: retryKey(payload), hp: $("hp-check").value, captcha: await Captcha.take() });
+      let r;
+      try { r = await fetch(API + "/api/requests", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), cache: "no-store" }); }
+      catch (e) { throw new Error("Could not reach the shop's server. Check your connection and try again, or text the shop."); }
+      let j = null; try { j = await r.json(); } catch (e) {}
+      if (r.status === 201 && j && j.ok === true && typeof j.id === "string" && j.id) return j.id;
+      throw new Error(j && typeof j.error === "string" ? j.error : "The shop's server did not save the request (error " + r.status + ").");
+    }
+
+    function showResult(kind, text, message){
+      pathsBox.hidden = true; panels.quick.hidden = true; panels.guided.hidden = true;
+      result.hidden = false;
+      $("result-text").textContent = text;
+      $("result-sms").href = S.smsBase + "?&body=" + encodeURIComponent(text);
+      const sent = kind === "sent", failed = kind === "failed";
+      $("result-title").textContent = sent ? "Request sent" : failed ? "Your request was not sent" : "Your request is ready";
+      $("result-sms").hidden = sent; $("result-copy").hidden = sent; $("result-retry").hidden = !failed;
+      $("result-status").textContent = message;
+      $("result").dataset.text = text;
+      $("ask").scrollIntoView({ block: "start", behavior: "auto" });
+      $("result-title").focus({ preventScroll: true });
+    }
+
     function finish(path, text){
-      st.lastPath = path;
+      if (st.sending) return;
+      st.lastPath = path; st.lastText = text;
+      const payload = API ? payloadFor(path) : null;
       overlay.hidden = false;
       overlay.classList.remove("is-run");
       void overlay.offsetWidth;
       overlay.classList.add("is-run");
-      setTimeout(() => {
+      const minShow = new Promise(r => setTimeout(r, T.reduced() ? 900 : 2000));
+      const work = API ? (st.sending = true, postRequest(payload).then(id => ({ ok: true, id }), e => ({ ok: false, msg: e.message }))) : Promise.resolve({ ok: null });
+      Promise.all([work, minShow]).then(([res]) => {
+        st.sending = false;
         overlay.hidden = true;
         overlay.classList.remove("is-run");
-        pathsBox.hidden = true;
-        panels.quick.hidden = true;
-        panels.guided.hidden = true;
-        result.hidden = false;
-        $("result-text").textContent = text;
-        $("result-sms").href = S.smsBase + "?&body=" + encodeURIComponent(text);
-        $("result-title").textContent = "Request sent"; $("result-sms").hidden = true; $("result-copy").hidden = true; $("result-status").textContent = "The shop got your request. They will confirm your time by text, and once they do it goes on their calendar. Here is what you sent:";
-        $("result").dataset.text = text;
-        $("ask").scrollIntoView({ block: "start", behavior: "auto" });
-        $("result-title").focus({ preventScroll: true });
-      }, T.reduced() ? 900 : 2000);
+        if (res.ok === true) showResult("sent", text, "The shop got your request. They will confirm your time by text, and once they do it goes on their calendar. Here is what you sent:");
+        else if (res.ok === false) showResult("failed", text, res.msg + " Nothing was saved. You can try again, or text the shop with the button below.");
+        else showResult("ready", text, "Nothing has been sent yet. Tap Text it to the shop to send this from your phone.");
+      });
     }
+    $("result-retry").addEventListener("click", () => { result.hidden = true; finish(st.lastPath, st.lastText); });
     $("result-copy").addEventListener("click", async () => {
       const text = $("result").dataset.text || "";
       let ok = false;
