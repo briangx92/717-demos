@@ -47,12 +47,12 @@
     actions.push(ui.btn('New appointment', function () { OA.apptDialog(null, { client: c.name, phone: c.phone }).then(function (r) { if (r) rer(); }); }, 'small primary'));
     root.appendChild(ui.pageHead(c.name, c.phone ? OA.fmtPhone(c.phone) : 'No phone number on file', actions));
 
-    var f = { name: ui.input(c.name), phone: ui.input(c.phone, { type: 'tel', inputmode: 'tel' }), email: ui.input(c.email, { type: 'email' }), notes: ui.area(c.notes, { rows: 4, placeholder: 'Allergies the client told you about, preferences, what to remember. Only the shop sees this.' }) };
+    var f = { name: ui.input(c.name), phone: OA.phoneInput(c.phone), email: ui.input(c.email, { type: 'email' }), notes: ui.area(c.notes, { rows: 4, placeholder: 'Allergies the client told you about, preferences, what to remember. Only the shop sees this.' }) };
     var saved = h('div', { class: 'saved', 'aria-live': 'polite' });
     function save() {
       var errs = [];
       if (!f.name.value.trim()) errs.push('A client needs a name.');
-      if (f.phone.value && !OA.phoneOk(f.phone.value)) errs.push('The phone number needs at least 7 digits.');
+      if (f.phone.value && !OA.phoneOk(f.phone.value, c.phone)) errs.push(OA.PHONE_MSG);
       if (f.email.value && !/^\S+@\S+\.\S+$/.test(f.email.value)) errs.push('That email address does not look right.');
       if (errs.length) { saved.className = 'saved bad'; saved.textContent = errs[0] + ' Not saved.'; return; }
       act.saveClient(c, { name: f.name.value.trim(), phone: f.phone.value.trim(), email: f.email.value.trim(), notes: f.notes.value });

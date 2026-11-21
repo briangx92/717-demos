@@ -86,12 +86,49 @@
     return ((p[0] || '?')[0] + (p.length > 1 ? p[p.length - 1][0] : '')).toUpperCase();
   };
   OA.digits = function (s) { return String(s || '').replace(/\D/g, ''); };
+  /* US numbers: ten digits, with a leading 1 (country code) dropped. Area codes never start with 0 or 1. */
+  OA.phoneDigits = function (s) {
+    var d = OA.digits(s); if (d.length >= 11 && d[0] === '1') d = d.slice(1);
+    while (d && (d[0] === '0' || d[0] === '1')) d = d.slice(1);
+    return d.slice(0, 10);
+  };
+  OA.phoneFormat = function (d) {
+    if (!d) return '';
+    return d.length <= 3 ? '(' + d : d.length <= 6 ? '(' + d.slice(0, 3) + ') ' + d.slice(3) : '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6);
+  };
   OA.fmtPhone = function (s) {
     var d = OA.digits(s); if (d.length === 11 && d[0] === '1') d = d.slice(1);
     return d.length === 10 ? '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6) : String(s || '');
   };
-  OA.phoneOk = function (s) { return OA.digits(s).length >= 7; };
+  /* A phone is good when it has ten digits. A number saved earlier that has not been changed is left alone (pass what was saved as prev). */
+  OA.phoneOk = function (s, prev) { return OA.phoneDigits(s).length === 10 || (prev != null && prev !== '' && String(s).trim() === String(prev).trim()); };
+  OA.PHONE_MSG = 'The phone number needs 10 digits, like (610) 555-0100.';
+  /* An input that takes digits only, formats as you type, stops at ten digits, and copes with pasted +1 numbers and deleting over the dashes. */
+  OA.phoneInput = function (value, attrs) {
+    var el = OA.h('input', Object.assign({ type: 'tel', inputmode: 'tel', autocomplete: 'tel', maxlength: 18, placeholder: '(610) 555-0100', spellcheck: 'false', value: value == null ? '' : value }, attrs || {}));
+    var prev = OA.phoneDigits(el.value);
+    el.addEventListener('input', function (e) {
+      var raw = el.value, pos = el.selectionStart == null ? raw.length : el.selectionStart, atEnd = pos >= raw.length;
+      var before = OA.digits(raw.slice(0, pos)).length, d = OA.phoneDigits(raw);
+      if (e.inputType && e.inputType.indexOf('delete') === 0 && d.length === prev.length && d.length) {   /* deleted a dash or bracket: take the digit beside it */
+        var i = Math.max(0, Math.min(d.length, before) - 1); d = d.slice(0, i) + d.slice(i + 1); before = i;
+      }
+      var out = OA.phoneFormat(d); el.value = out; prev = d;
+      if (!atEnd && el.setSelectionRange) { var n = Math.min(before, d.length), at = 0, seen = 0; while (at < out.length && seen < n) { if (/\d/.test(out[at])) seen++; at++; } el.setSelectionRange(at, at); }
+    });
+    el.addEventListener('blur', function () { var d = OA.phoneDigits(el.value); if (d.length === 10) el.value = OA.phoneFormat(d); });
+    return el;
+  };
   OA.e164 = function (s) { var d = OA.digits(s); if (d.length === 10) d = '1' + d; return '+' + d; };
+  /* RFC 3339 timestamp with the zone's offset on that date, as the Google Calendar API wants it (timeMin, timeMax, dateTime). */
+  OA.rfc3339 = function (date, time, tz) {
+    var p = date.split('-'), t = time.split(':'), guess = Date.UTC(+p[0], +p[1] - 1, +p[2], +t[0], +(t[1] || 0));
+    function off(ms) { var o = {}; new Intl.DateTimeFormat('en-US', { timeZone: tz, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).formatToParts(new Date(ms)).forEach(function (x) { o[x.type] = +x.value; }); return Date.UTC(o.year, o.month - 1, o.day, o.hour, o.minute, o.second) - Math.floor(ms / 1000) * 1000; }
+    var o1 = off(guess), utc = guess - o1, o2 = off(utc); if (o2 !== o1) utc = guess - o2;
+    var m = Math.round(off(utc) / 60000), a = Math.abs(m);
+    function z(n) { return (n < 10 ? '0' : '') + n; }
+    return date + 'T' + z(+t[0]) + ':' + z(+(t[1] || 0)) + ':00' + (m < 0 ? '-' : '+') + z(Math.floor(a / 60)) + ':' + z(a % 60);
+  };
   OA.telHref = function (s) { return 'tel:' + OA.e164(s); };
   OA.smsHref = function (s, body) { return 'sms:' + OA.e164(s) + '?&body=' + encodeURIComponent(body || ''); };
   OA.slug = function (s) { return String(s || '').toLowerCase().replace(/["“”']/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'artist'; };

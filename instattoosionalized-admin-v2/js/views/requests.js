@@ -95,26 +95,29 @@
     var grid = h('div', { class: 'two' });
     /* left: the details, saved as you go */
     var f = {
-      name: ui.input(r.name), phone: ui.input(r.phone, { type: 'tel', inputmode: 'tel' }),
+      name: ui.input(r.name), phone: OA.phoneInput(r.phone),
       kind: ui.select([['tattoo', 'Tattoo'], ['piercing', 'Piercing']], r.kind),
       artist: ui.select([['', 'No preference']].concat(OA.chairs().filter(function (x) { return x.slug !== 'piercing'; }).map(function (x) { return [x.slug, x.name]; })), r.artist),
       size: ui.select([['', 'Not sure'], ['Small', 'Small'], ['Medium', 'Medium'], ['Large', 'Large']], r.size), place: ui.input(r.place),
-      idea: ui.area(r.idea, { rows: 4 }), when: ui.input(r.when), note: ui.area(r.note, { rows: 3, placeholder: 'Only the shop sees this' })
+      idea: ui.area(r.idea, { rows: 4 }), note: ui.area(r.note, { rows: 3, placeholder: 'Only the shop sees this' })
     };
     var saved = h('div', { class: 'saved', 'aria-live': 'polite' });
+    var timing = OA.timingField({ pref: r.pref, legacyText: r.pref ? '' : r.when, ignoreReqId: r.id, ignoreApptId: r.apptId, onChange: function () { save(); }, ctx: function () { return { artist: f.artist.value, kind: f.kind.value, size: f.size.value }; } });
+    [f.artist, f.kind, f.size].forEach(function (x) { x.addEventListener('change', function () { timing.refresh(); }); });
     function save() {
       var errs = [];
       if (!f.name.value.trim()) errs.push('A request needs a name.');
-      if (f.phone.value && !OA.phoneOk(f.phone.value)) errs.push('The phone number needs at least 7 digits.');
+      if (f.phone.value && !OA.phoneOk(f.phone.value, r.phone)) errs.push(OA.PHONE_MSG);
+      if (timing.touched()) timing.validate().forEach(function (m) { errs.push(m); });
       if (errs.length) { saved.className = 'saved bad'; saved.textContent = errs[0] + ' Not saved.'; return; }
-      var ch = act.updateReq(r, { name: f.name.value.trim(), phone: f.phone.value.trim(), kind: f.kind.value, artist: f.artist.value, size: f.size.value, place: f.place.value.trim(), idea: f.idea.value.trim(), when: f.when.value.trim(), note: f.note.value }, null);
+      var ch = act.updateReq(r, { name: f.name.value.trim(), phone: f.phone.value.trim(), kind: f.kind.value, artist: f.artist.value, size: f.size.value, place: f.place.value.trim(), idea: f.idea.value.trim(), when: timing.touched() ? timing.text() : r.when, pref: timing.touched() ? timing.get() : (r.pref || null), note: f.note.value }, null);
       saved.className = 'saved'; saved.textContent = ch ? 'Saved' : '';
       if (ch && c && f.phone.value && c.phone !== f.phone.value.trim()) { c.phone = f.phone.value.trim(); S.commit(); }
       if (ch) { OA.updateChrome(); }
     }
     Object.keys(f).forEach(function (k) { f[k].addEventListener('change', save); });
     grid.appendChild(h('section', { class: 'card' }, h('h2', { text: 'The request' }),
-      h('div', { class: 'form-grid' }, ui.field('Name', f.name), ui.field('Phone', f.phone), ui.field('What', f.kind), ui.field('Artist', f.artist), ui.field('Size', f.size), ui.field('Where', f.place), ui.field('The idea', f.idea, null, 'span2'), ui.field('Best days or times', f.when, null, 'span2'), ui.field('Shop notes', f.note, null, 'span2')), saved));
+      h('div', { class: 'form-grid' }, ui.field('Name', f.name), ui.field('Phone', f.phone), ui.field('What', f.kind), ui.field('Artist', f.artist), ui.field('Size', f.size), ui.field('Where', f.place), ui.field('The idea', f.idea, null, 'span2'), ui.field('Best days or times', timing.el, null, 'span2'), ui.field('Shop notes', f.note, null, 'span2')), saved));
 
     /* right: what to do next */
     grid.appendChild(nextPanel(r, rer));

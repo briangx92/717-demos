@@ -47,7 +47,7 @@
   OA.logReq = log;
   act.addRequest = function (d) {
     var c = act.ensureClient(d.name, d.phone);
-    var r = { id: OA.uid('r'), name: d.name.trim(), clientId: c.id, phone: d.phone || '', email: '', artist: d.artist || '', kind: d.kind || 'tattoo', size: d.size || '', place: d.place || '', idea: d.idea || '', when: d.when || '', note: '', status: 'New', created: Date.now(), log: [], quote: '', askedAt: null, paidAt: null, consentAt: null, closedReason: '', apptId: '', waitlist: !!d.waitlist, repliedAt: null };
+    var r = { id: OA.uid('r'), name: d.name.trim(), clientId: c.id, phone: d.phone || '', email: '', artist: d.artist || '', kind: d.kind || 'tattoo', size: d.size || '', place: d.place || '', idea: d.idea || '', when: d.when || '', pref: d.pref ? OA.cleanPref(d.pref) : null, note: '', status: 'New', created: Date.now(), log: [], quote: '', askedAt: null, paidAt: null, consentAt: null, closedReason: '', apptId: '', waitlist: !!d.waitlist, repliedAt: null };
     log(r, d.source || 'Added by hand (phone call or walk-in)');
     st().requests.unshift(r); S.commit(); return r;
   };
@@ -132,7 +132,12 @@
     if (!OA.validISO(d.date)) errs.push('Pick a date.');
     if (!d.start || !d.end) errs.push('Set a start and end time.');
     else if (OA.mins(d.end) <= OA.mins(d.start)) errs.push('The end time has to be after the start time.');
-    if (d.phone && !OA.phoneOk(d.phone)) errs.push('The phone number needs at least 7 digits.');
+    if (d.phone && !OA.phoneOk(d.phone, ignoreId && OA.appt(ignoreId) && (OA.client(OA.appt(ignoreId).clientId) || {}).phone)) errs.push(OA.PHONE_MSG);
+    if (!errs.length && !ignoreId && OA.validISO(d.date) && d.date < OA.todayISO()) errs.push('That date has already passed. Pick today or later.');
+    if (!errs.length) {
+      var dup = st().appts.filter(function (x) { return x.id !== ignoreId && x.date === d.date && x.status !== 'cancelled' && x.artist !== d.artist && OA.mins(d.start) < OA.mins(x.end) && OA.mins(d.end) > OA.mins(x.start) && ((d.clientId && x.clientId === d.clientId) || (d.phone && OA.digits(x.client && OA.client(x.clientId) && OA.client(x.clientId).phone) === OA.digits(d.phone) && OA.digits(d.phone).length >= 7)); })[0];
+      if (dup) errs.push('This client is already booked then, with ' + OA.chairName(dup.artist) + ' (' + OA.fmtRange(dup.start, dup.end) + ').');
+    }
     if (!errs.length) { var c = OA.apptConflicts(d, ignoreId); if (c.length) errs.push((OA.chairName(d.artist)) + ' is already busy then: ' + c.join('; ') + '.'); }
     return errs;
   };
@@ -300,7 +305,7 @@
     var s = st().site, out = [];
     s.hours.forEach(function (x) { if (x.open && (!x.close || OA.mins(x.close) <= OA.mins(x.open))) out.push(x.day + ' closes before it opens.'); });
     if (s.prices.some(function (g) { return g.sample; })) out.push('The prices are still the sample prices from the demo. Check them on Site, Prices, then tick \u201cThese prices are correct\u201d.');
-    if (!OA.phoneOk(s.shop.phone)) out.push('The shop phone number needs at least 7 digits.');
+    if (!OA.phoneOk(s.shop.phone)) out.push('The shop phone number needs 10 digits, like (610) 555-0100.');
     if (s.banner.on && !s.banner.text.trim()) out.push('The banner is on but has no message.');
     if (s.banner.on && s.banner.start && s.banner.end && s.banner.end < s.banner.start) out.push('The banner ends before it starts.');
     s.artists.forEach(function (a) { if (!a.removedAt && a.visible && !a.name.trim()) out.push('An artist page has no name.'); });

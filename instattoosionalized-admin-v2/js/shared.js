@@ -22,7 +22,7 @@
     var dl = h('datalist', { id: 'client-names' }); S.state.clients.forEach(function (c) { dl.appendChild(h('option', { value: c.name })); });
     var f = {
       client: ui.input(d.client, { list: 'client-names', required: true, autofocus: true }),
-      phone: ui.input(d.phone, { type: 'tel', inputmode: 'tel', placeholder: '(610) 555-0100' }),
+      phone: OA.phoneInput(d.phone),
       type: ui.select(Object.keys(OA.APPT_TYPES).map(function (k) { return [k, OA.APPT_TYPES[k]]; }), d.type),
       artist: ui.select(chairOptions(), d.artist),
       date: ui.input(d.date, { type: 'date' }), start: ui.input(d.start, { type: 'time', step: 900 }), end: ui.input(d.end, { type: 'time', step: 900 }),
@@ -88,20 +88,24 @@
   OA.newRequestDialog = function () {
     var chairs = [['', 'No preference']].concat(OA.chairs().filter(function (c) { return c.slug !== 'piercing'; }).map(function (c) { return [c.slug, c.name]; }));
     var f = {
-      name: ui.input('', { required: true, autofocus: true }), phone: ui.input('', { type: 'tel', inputmode: 'tel' }),
+      name: ui.input('', { required: true, autofocus: true }), phone: OA.phoneInput(''),
       kind: ui.select([['tattoo', 'Tattoo'], ['piercing', 'Piercing']], 'tattoo'), artist: ui.select(chairs, ''),
-      size: ui.select([['', 'Not sure'], ['Small', 'Small'], ['Medium', 'Medium'], ['Large', 'Large']], ''), place: ui.input(''), idea: ui.area('', { rows: 3 }), when: ui.input('', { placeholder: 'e.g. weekends' })
+      size: ui.select([['', 'Not sure'], ['Small', 'Small'], ['Medium', 'Medium'], ['Large', 'Large']], ''), place: ui.input(''), idea: ui.area('', { rows: 3 })
     };
+    var timing = OA.timingField({ pref: { mode: 'flex' }, ctx: function () { return { artist: f.artist.value, kind: f.kind.value, size: f.size.value }; } });
+    [f.artist, f.kind, f.size].forEach(function (x) { x.addEventListener('change', function () { timing.refresh(); }); });
     return ui.dialog({
       title: 'Add a request', lead: 'For someone who called, texted or walked in. Requests from the website form arrive on their own.',
-      body: h('div', { class: 'form-grid' }, ui.field('Name', f.name), ui.field('Phone', f.phone, 'So you can text them from here.'), ui.field('What', f.kind), ui.field('Artist', f.artist), ui.field('Size', f.size), ui.field('Where on the body', f.place), ui.field('The idea', f.idea, null, 'span2'), ui.field('Best days or times', f.when, null, 'span2')),
+      body: h('div', { class: 'form-grid' }, ui.field('Name', f.name), ui.field('Phone', f.phone, 'Ten digits, so you can text them from here.'), ui.field('What', f.kind), ui.field('Artist', f.artist), ui.field('Size', f.size), ui.field('Where on the body', f.place), ui.field('The idea', f.idea, null, 'span2'), ui.field('Best days or times', timing.el, null, 'span2')),
       wide: true,
       actions: [{ label: 'Cancel', kind: 'quiet', value: null }, { label: 'Add request', kind: 'primary', run: function () {
         var errs = [];
         if (!f.name.value.trim()) errs.push('Add a name.');
-        if (f.phone.value && !OA.phoneOk(f.phone.value)) errs.push('The phone number needs at least 7 digits.');
+        if (f.phone.value && !OA.phoneOk(f.phone.value)) errs.push(OA.PHONE_MSG);
+        timing.validate().forEach(function (m) { errs.push(m); });
         if (errs.length) return { error: errs };
-        var r = act.addRequest({ name: f.name.value, phone: f.phone.value, kind: f.kind.value, artist: f.artist.value, size: f.size.value, place: f.place.value, idea: f.idea.value, when: f.when.value });
+        var pref = timing.get();
+        var r = act.addRequest({ name: f.name.value, phone: f.phone.value, kind: f.kind.value, artist: f.artist.value, size: f.size.value, place: f.place.value, idea: f.idea.value, when: OA.prefText(pref), pref: pref });
         ui.toast('Request added'); return r;
       } }]
     });

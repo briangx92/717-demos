@@ -20,11 +20,11 @@
       }
       [on, o, c].forEach(function (x) { x.addEventListener('change', save); }); sync(); rows.appendChild(row);
     });
-    var shop = site.shop, f = { phone: ui.input(shop.phone, { type: 'tel' }), street: ui.input(shop.street), town: ui.input(shop.town), region: ui.input(shop.region), zip: ui.input(shop.zip), facebook: ui.input(shop.facebook, { type: 'url', placeholder: 'https://facebook.com/...' }) };
+    var shop = site.shop, f = { phone: OA.phoneInput(shop.phone), street: ui.input(shop.street), town: ui.input(shop.town), region: ui.input(shop.region), zip: ui.input(shop.zip), facebook: ui.input(shop.facebook, { type: 'url', placeholder: 'https://facebook.com/...' }) };
     var saved2 = h('div', { class: 'saved', 'aria-live': 'polite' });
     function saveShop() {
       var errs = [];
-      if (!OA.phoneOk(f.phone.value)) errs.push('The phone number needs at least 7 digits.');
+      if (!OA.phoneOk(f.phone.value, shop.phone)) errs.push(OA.PHONE_MSG);
       if (!f.street.value.trim() || !f.town.value.trim()) errs.push('The address needs a street and a town.');
       if (f.facebook.value && !/^https?:\/\/\S+\.\S+/.test(f.facebook.value)) errs.push('The Facebook link has to start with https://');
       if (errs.length) { draftNote(saved2, errs[0] + ' Not saved.', true); return; }

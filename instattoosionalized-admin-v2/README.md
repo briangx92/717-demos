@@ -52,3 +52,11 @@ Wiring already in place so the real version is a small change: `OA.gcal.onChange
 - **Analytics** (owner only): page views, top pages, referrers, devices, countries, Core Web Vitals (loading, response to taps, layout jumping, rated with Google's thresholds), Cloudflare caching, requests from the form and requests per 100 views, and spam stopped.
   Cloudflare numbers come through the shop server (see `../instattoosionalized-api/README.md`). With no server set, the screen says so; "Show sample numbers" draws made-up numbers under a banner, for judging the layout only.
 - The portal address of the server is the `portal-api` meta tag in `index.html` and must also be added to `connect-src` in the Content-Security-Policy tag. Scripts are locked to this folder.
+
+## Phone numbers and when a client wants to come in (new)
+
+- Every phone box (Add a request, request details, client, appointment, shop phone) uses one input: digits only, formats as you type, stops at ten digits, cleans a pasted `+1 (610) 555-0100`, and lets you delete over the dashes. Area codes cannot start with 0 or 1. Saving needs ten digits. A number saved earlier that you did not touch is not blocked.
+- "Best days or times" is data, not a sentence: Flexible, Certain days (Mon to Sun chips), or A specific date and time, plus a time of day or a length. The sentence in lists is built from the data.
+- A specific slot is checked against the calendar as you pick it. It is blocked, with the reason and nearby free times, if the date or time has passed, the shop is closed or outside its hours, or the artist is busy (booked or time off). With "No preference" it is blocked only when every chair for that kind of work is busy. Another request for the same slot is a warning, not a block.
+- New appointments also refuse a date in the past, and a client who is already booked with another chair at the same time.
+- Google Calendar format: exact slots and wishes become `freebusy.query` windows (`timeMin`/`timeMax` as RFC 3339 with the shop zone's offset, DST-correct). Open "How this goes to Google Calendar" under the field to see the exact body. Nothing is sent until the Google connection exists.
