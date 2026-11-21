@@ -18,6 +18,13 @@
     svg.appendChild(bg); svg.appendChild(p); return svg;
   };
 
+  /* The same code, big enough to scan from across a desk. */
+  function enlarge(title, help, link) {
+    var big = OA.qr(link, title); if (!big) return;
+    big.setAttribute('class', 'qr qr-big');
+    OA.ui.dialog({ title: title, lead: help, body: h('div', { class: 'qr-bigwrap' }, big), actions: [{ label: 'Close', kind: 'primary', value: null }] });
+  }
+
   /* A labelled code. href() returns the link to encode, or null; why() says why there is none. Call update() when the text changes. */
   OA.qrPanel = function (o) {
     var holder = h('div', { class: 'qr-holder' }), el = h('div', { class: 'qrp' }, h('strong', { text: o.title }), holder, h('p', { class: 'note', text: o.help }));
@@ -26,7 +33,9 @@
       var link = o.href();
       if (!link) { holder.appendChild(h('p', { class: 'hint warn', text: o.why() })); return; }
       var svg = OA.qr(link, o.title);
-      if (!svg) holder.appendChild(h('p', { class: 'hint warn', text: 'This text is too long for a code. Shorten it, or use Copy text.' })); else holder.appendChild(svg);
+      if (!svg) { holder.appendChild(h('p', { class: 'hint warn', text: 'This text is too long for a code. Shorten it, or use Copy text.' })); return; }
+      holder.appendChild(h('button', { type: 'button', class: 'qr-open', title: 'Click to enlarge', 'aria-label': 'Enlarge the code: ' + o.title, on: { click: function () { enlarge(o.title, o.help, link); } } }, svg));
+      holder.appendChild(h('span', { class: 'qr-zoom', text: 'Click the code to enlarge it' }));
     };
     el.update(); return el;
   };

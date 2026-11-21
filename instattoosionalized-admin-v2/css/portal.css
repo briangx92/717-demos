@@ -299,4 +299,10 @@ a.ledger-row:hover { background: var(--surface); }
 .qrp strong { font-size: .9rem; } .qrp .note { font-size: .8rem; }
 .qr { width: 160px; height: 160px; display: block; border-radius: 6px; }
 .qr-holder { min-height: 60px; display: grid; place-items: center; }
+.qr-open { all: unset; display: block; cursor: zoom-in; border-radius: 8px; line-height: 0; }
+.qr-open:hover .qr { box-shadow: 0 0 0 3px var(--accent); }
+.qr-open:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.qr-zoom { font-size: .75rem; color: var(--ink2); margin-top: .3rem; }
+.qr-bigwrap { display: grid; place-items: center; padding: .5rem 0 .2rem; }
+.qr.qr-big { width: min(78vw, 420px); height: auto; aspect-ratio: 1; }
 @media (max-width: 640px) { .msg-grid { grid-template-columns: 1fr; } }

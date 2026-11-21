@@ -21,9 +21,11 @@
   ui.fail = function (msg) { return ui.toast(msg, { kind: 'bad' }); };
 
   /* ---------- dialogs ---------- */
+  var dlgCount = 0;
   ui.dialog = function (o) {
     return new Promise(function (resolve) {
-      var dlg = h('dialog', { class: 'dlg' + (o.wide ? ' wide' : ''), 'aria-labelledby': 'dlg-t' });
+      var tid = 'dlg-t' + (++dlgCount);
+      var dlg = h('dialog', { class: 'dlg' + (o.wide ? ' wide' : ''), 'aria-labelledby': tid });
       var err = h('div', { class: 'form-error', role: 'alert', hidden: true });
       var body = typeof o.body === 'function' ? o.body(dlg) : o.body;
       var foot = h('div', { class: 'dlg-foot' });
@@ -40,7 +42,7 @@
         }));
       });
       dlg.appendChild(h('form', { method: 'dialog', on: { submit: function (e) { e.preventDefault(); var p = (o.actions || []).filter(function (a) { return a.kind === 'primary' || a.kind === 'danger'; })[0]; if (p) foot.querySelector('.btn.primary,.btn.danger').click(); } } },
-        h('h2', { id: 'dlg-t', text: o.title }), o.lead ? h('p', { class: 'lead', text: o.lead }) : null, body, err, foot));
+        h('h2', { id: tid, text: o.title }), o.lead ? h('p', { class: 'lead', text: o.lead }) : null, body, err, foot));
       dlg.addEventListener('cancel', function (e) { e.preventDefault(); finish(null); });
       dlg.addEventListener('click', function (e) { if (e.target === dlg) finish(null); });
       document.body.appendChild(dlg);
