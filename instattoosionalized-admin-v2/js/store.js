@@ -170,7 +170,7 @@
     var seed = window.OA_SEED_SITE, today = OA.todayISO(), hours = hoursFromSeed(seed);
     var artists = [], portfolio = {};
     seed.artists.forEach(function (a) {
-      artists.push({ slug: a.slug, name: a.name, role: a.role || 'Tattoo', ig: a.ig || '', bio: a.about.join('\n\n'), portrait: a.portrait, books: a.slug === 'liv' ? 'closed' : 'open', until: a.slug === 'liv' ? OA.addDays(today, 21) : '', untilSample: a.slug === 'liv', visible: true, removedAt: null });
+      artists.push({ slug: a.slug, name: a.name, role: a.role || 'Tattoo', ig: OA.igOf(a.socials) || a.ig || '', socials: OA.seedSocials(a), bio: a.about.join('\n\n'), portrait: a.portrait, books: a.slug === 'liv' ? 'closed' : 'open', until: a.slug === 'liv' ? OA.addDays(today, 21) : '', untilSample: a.slug === 'liv', visible: true, removedAt: null });
       portfolio[a.slug] = a.work.map(function (w, i) { return { id: a.slug + '-' + (i + 1), src: w.src, cap: w.cap, sec: '', onSite: true, ord: (i + 1) * 10 }; });
     });
     var site = {

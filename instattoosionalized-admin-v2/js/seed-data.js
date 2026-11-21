@@ -103,6 +103,7 @@ window.OA_SEED_SITE = {
    "first": "lex",
    "role": "Tattoo",
    "ig": "lextattss",
+   "socials": [{"p": "Instagram", "h": "lextattss"}, {"p": "Facebook", "h": "https://www.facebook.com/people/lextatts/61593932873434/"}],
    "portrait": "lex-portrait.jpg",
    "about": [
     "Hi, I'm lex! I'm a freshly new tattoo artist! i love all things horror and whimsical. I love to tattoo things like cartoon characters, spooky, and high contrast!"
@@ -193,6 +194,7 @@ window.OA_SEED_SITE = {
    "first": "Liv",
    "role": "Tattoo",
    "ig": "Inked.by_liv",
+   "socials": [{"p": "Instagram", "h": "Inked.by_liv"}, {"p": "TikTok", "h": "Oliviaaaa._"}],
    "portrait": "liv-portrait.jpg",
    "about": [
     "Hello! I'm Olivia but everyone calls me Liv! I'm a tattoo artist who loves all things whimsical, soft, and a little out of the ordinary. If you have an idea for a tattoo but aren't sure how to bring it to life, come see me.",
@@ -274,6 +276,7 @@ window.OA_SEED_SITE = {
    "first": "Diana",
    "role": "Tattoo",
    "ig": "excommunicated_af",
+   "socials": [{"p": "Instagram", "h": "excommunicated_af"}, {"p": "TikTok", "h": "excommunicated_pos"}],
    "portrait": "diana-portrait.jpg",
    "about": [
     "I enjoy doing tattoos ranging from realism, characters of all sorts, dark gothic art, to detailed designs of all natures. I as well love to tattoo cover up tattoos"

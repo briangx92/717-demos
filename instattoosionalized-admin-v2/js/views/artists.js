@@ -37,7 +37,7 @@
     ui.dialog({ title: 'Add an artist', lead: 'They get a profile page and a chair on the calendar once you publish.', body: h('div', { class: 'form-grid' }, ui.field('Name', name, 'As it should show on the site.'), ui.field('What they do', role)), actions: [{ label: 'Cancel', kind: 'quiet', value: null }, { label: 'Add artist', kind: 'primary', run: function () {
       var n = name.value.trim(); if (!n) return { error: 'Add a name.' };
       var slug = OA.slug(OA.first(n)), k = 2; while (OA.artist(slug) || slug === 'piercing') slug = OA.slug(OA.first(n)) + '-' + (k++);
-      S.state.site.artists.push({ slug: slug, name: n, role: role.value.trim() || 'Tattoo', ig: '', bio: '', portrait: '', books: 'open', until: '', visible: false, removedAt: null });
+      S.state.site.artists.push({ slug: slug, name: n, role: role.value.trim() || 'Tattoo', ig: '', socials: [], bio: '', portrait: '', books: 'open', until: '', visible: false, removedAt: null });
       S.state.site.portfolio[slug] = []; S.commit(); return slug;
     } }] }).then(function (slug) { if (slug) { ui.toast('Artist added. Their page stays hidden until you are ready.'); OA.go('artists/' + slug + '/profile'); } });
   }
@@ -58,17 +58,15 @@
   function profile(a) {
     var edit = canEditProfile(a.slug), saved = h('div', { class: 'saved', 'aria-live': 'polite' });
     var f = {
-      name: ui.input(a.name, { disabled: !edit }), role: ui.input(a.role, { disabled: !edit }), ig: ui.input(a.ig, { disabled: !edit, placeholder: 'handle without the @' }),
-      bio: ui.area(a.bio, { rows: 9, disabled: !edit }),
+      name: ui.input(a.name, { disabled: !edit, maxlength: OA.LIMITS.artistName }), role: ui.input(a.role, { disabled: !edit, maxlength: OA.LIMITS.artistRole }),
+      bio: ui.area(a.bio, { rows: 9, disabled: !edit, maxlength: OA.LIMITS.artistBio }),
       books: ui.select([['open', 'Open'], ['closed', 'Booked out']], a.books), until: ui.input(a.until, { type: 'date' }), visible: h('input', { type: 'checkbox', checked: a.visible, disabled: !edit })
     };
     function mark(msg, bad) { saved.className = 'saved' + (bad ? ' bad' : ''); saved.textContent = msg; }
     function save() {
       if (!f.name.value.trim()) { mark('The name cannot be empty. Not saved.', true); return; }
-      var ig = f.ig.value.trim().replace(/^https?:\/\/(www\.)?instagram\.com\//i, '').replace(/^@/, '').replace(/\/.*$/, '');
-      if (ig && !/^[A-Za-z0-9._]{1,30}$/.test(ig)) { mark('Instagram handles use letters, numbers, dots and underscores. Not saved.', true); return; }
       if (f.books.value === 'closed' && f.until.value && !OA.validISO(f.until.value)) { mark('Pick a valid date. Not saved.', true); return; }
-      if (edit) { a.name = f.name.value.trim(); a.role = f.role.value.trim(); a.ig = ig; a.bio = f.bio.value.trim(); a.visible = f.visible.checked; f.ig.value = ig; }
+      if (edit) { a.name = f.name.value.trim(); a.role = f.role.value.trim(); a.bio = f.bio.value.trim(); a.visible = f.visible.checked; }
       a.books = f.books.value; a.until = f.books.value === 'closed' ? f.until.value : ''; a.untilSample = false;
       S.commit(); mark('Saved to the draft. Not on the live site until you publish.');
       untilField.hidden = f.books.value !== 'closed';
@@ -80,7 +78,7 @@
       var file = up.files[0]; if (!file) return;
       OA.img.compress(file, 1000).then(OA.img.put).then(function (id) { a.portrait = id; S.commit(); ui.toast('Main photo changed in the draft'); OA.rerender(); }).catch(function (e) { ui.fail(e.message); });
     } } });
-    var left = h('section', { class: 'card' }, h('h2', { text: 'On the website' }), h('div', { class: 'form-grid' }, ui.field('Name', f.name, 'Nicknames in quotes are fine.', 'span2'), ui.field('What they do', f.role), ui.field('Instagram', f.ig), ui.field('Bio', f.bio, 'Plain paragraphs. A blank line starts a new paragraph.', 'span2')), saved);
+    var left = h('section', { class: 'card' }, h('h2', { text: 'On the website' }), h('div', { class: 'form-grid' }, ui.field('Name', f.name, 'Nicknames in quotes are fine.', 'span2'), ui.field('What they do', f.role, null, 'span2'), ui.field('Bio', f.bio, 'Plain paragraphs. A blank line starts a new paragraph.', 'span2')), saved);
     var right = h('div', {}, h('section', { class: 'card' }, h('h2', { text: 'Books' }), h('div', { class: 'form-grid' }, ui.field('Taking new clients', f.books), untilField)),
       h('section', { class: 'card' }, h('h2', { text: 'Main photo' }), portraitBox, edit ? h('label', { class: 'btn small', for: 'portrait-up', text: 'Replace photo' }) : null, edit ? (up.id = 'portrait-up', up) : null),
       h('section', { class: 'card' }, h('h2', { text: 'Page' }), h('label', { class: 'check' }, f.visible, h('span', { text: 'Show this artist’s page on the site' })),
@@ -89,7 +87,52 @@
           ui.confirm('Remove ' + OA.nick(a) + '?', (up ? OA.plural(up, 'upcoming appointment') + ' with them stay on the calendar. ' : '') + 'The page and chair leave the draft site. Photos are kept, and you can restore them from the Artists list. Nothing is live until you publish.', 'Remove artist', true).then(function (ok) { if (!ok) return; a.removedAt = Date.now(); S.commit(); ui.toast(OA.nick(a) + ' removed from the draft', { action: { label: 'Undo', run: function () { a.removedAt = null; S.commit(); OA.go('artists/' + a.slug + '/profile'); } } }); OA.go('artists'); });
         }, 'danger-quiet small')) : null));
     if (!edit) left.appendChild(h('p', { class: 'note', text: 'Only the owner or this artist can change the profile. You can change whether their books are open.' }));
-    return h('div', { class: 'two' }, left, right);
+    return h('div', { class: 'two' }, h('div', {}, left, socialsCard()), right);
+
+    /* Social links: any platform, any number up to the limit. Each row saves on its own and says why when it cannot. */
+    function socialsCard() {
+      var list = h('div', { class: 'socials' }), msg = h('div', { class: 'saved', 'aria-live': 'polite' });
+      function note(t, bad) { msg.className = 'saved' + (bad ? ' bad' : ''); msg.textContent = t; }
+      function persist() { a.ig = OA.igOf(a.socials); S.commit(); OA.updateChrome(); }
+      function dupOf(p, url, skip) { return a.socials.some(function (y, j) { var n = OA.socialNorm(y.p, y.h); return j !== skip && y.p === p && n.ok && n.url.toLowerCase() === url.toLowerCase(); }); }
+      function row(x, i) {
+        var sel = ui.select(OA.SOCIALS.map(function (q) { return [q.p, q.p]; }), x.p, { 'aria-label': 'Platform', disabled: !edit });
+        var inp = ui.input(x.h, { 'aria-label': x.p + ' handle or link', disabled: !edit });
+        function change() {
+          var n = OA.socialNorm(sel.value, inp.value);
+          if (!n.ok) { note(n.msg + ' Not saved.', true); return; }
+          if (dupOf(sel.value, n.url, i)) { note(sel.value + ' ' + n.label + ' is already listed. Not saved.', true); return; }
+          x.p = sel.value; x.h = n.h; inp.value = n.h; persist(); note('Saved to the draft. Not on the live site until you publish.');
+        }
+        sel.addEventListener('change', change); inp.addEventListener('change', change);
+        return h('div', { class: 'social-row' }, sel, inp, edit ? ui.btn('Remove', function () { a.socials.splice(i, 1); persist(); paint(); note('Removed from the draft. Not on the live site until you publish.'); }, 'small quiet') : null);
+      }
+      function paint() {
+        OA.clear(list);
+        if (!a.socials.length) list.appendChild(h('p', { class: 'hint', text: 'No social links yet.' }));
+        a.socials.forEach(function (x, i) { list.appendChild(row(x, i)); });
+      }
+      paint();
+      var card = h('section', { class: 'card' }, h('h2', { text: 'Social media' }),
+        h('p', { class: 'note', text: 'Shown as buttons on ' + OA.nick(a) + '’s page. Paste a handle or a link. Up to ' + OA.SOCIAL_MAX + ' links.' }), list);
+      if (edit) {
+        var sel2 = ui.select(OA.SOCIALS.map(function (q) { return [q.p, q.p]; }), 'TikTok', { 'aria-label': 'Platform for a new link' });
+        var inp2 = ui.input('', { 'aria-label': 'Handle or link for a new link', placeholder: OA.socialSpec('TikTok').ph });
+        sel2.addEventListener('change', function () { inp2.placeholder = OA.socialSpec(sel2.value).ph; });
+        function add() {
+          if (a.socials.length >= OA.SOCIAL_MAX) { note('That is the most links the page can hold (' + OA.SOCIAL_MAX + '). Remove one first.', true); return; }
+          var n = OA.socialNorm(sel2.value, inp2.value);
+          if (!n.ok) { note(n.msg + ' Not added.', true); return; }
+          if (dupOf(sel2.value, n.url, -1)) { note(sel2.value + ' ' + n.label + ' is already listed. Not added.', true); return; }
+          a.socials.push({ id: OA.uid('so'), p: sel2.value, h: n.h }); persist(); inp2.value = ''; paint();
+          note('Added to the draft. Not on the live site until you publish.');
+        }
+        inp2.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); add(); } });
+        card.appendChild(h('div', { class: 'social-row social-add' }, sel2, inp2, ui.btn('Add link', add, 'small')));
+      }
+      card.appendChild(msg);
+      return card;
+    }
   }
 
   /* ---------- portfolio ---------- */

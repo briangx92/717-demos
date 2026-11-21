@@ -109,3 +109,11 @@ The booking dialog (Set up a consultation, Book the session, New appointment, an
 - The preview shows what would be live today, so an announcement that starts later stays hidden until its date. A preview link opened with nothing saved says so on the page and in the browser console.
 - Only the banner and announcements are on the demo website so far, so only they appear in a preview.
 - **Real build:** `OA.LIVE_URL` becomes the shop's address, and the preview is served by the API to the signed-in owner instead of read from this browser.
+
+## Artist names, bios and social links on the site (new)
+
+- **Social links per artist.** On an artist's Profile, the Social media card lists their links. Pick a platform (Instagram, Facebook, TikTok, YouTube, X, Threads, Bluesky, Snapchat or a website), paste a handle or a link, press Add link. Up to 8 per artist. Each row saves on its own, and a bad one says why and is not saved. The older single Instagram box is gone. The Instagram link is still what the homepage card shows.
+- **What reaches the website now.** Publishing carries each artist's name, nickname, what they do, bio, show/hide, and links into the same shared content (`artists` next to `banner` and `announcements`). The homepage cards and each artist page read it through `instattoosionalized-site-content.js`, which checks every field again, draws text only, and skips anything invalid with a console error.
+- **What the artist page changes.** The name, page title, the buttons of links, the "In ___'s words" paragraphs (a blank line starts a paragraph), the booking note, and the request button. The nickname (the part in quotes, else the first name) is used in headings and buttons. Hiding an artist removes them from the homepage and shows "This page is not available right now" on their page.
+- **Not carried yet.** Portrait and work photos, "what they do" chips, and artists added in the portal. New artists need the photo publish path first, so they stay out of the public site until then.
+- **Preview.** `?preview=1` works on the artist pages too, and the homepage artist links keep preview mode.

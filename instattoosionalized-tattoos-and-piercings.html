@@ -732,6 +732,7 @@
   <div id="book"></div>
 </div>
 
+<script src="instattoosionalized-site-content.js"></script>
 <script>
 const SITE = {
   slug: "instattoosionalized-tattoos-and-piercings",
@@ -1908,6 +1909,7 @@ const MODULES = {
 
 try { var __st = null; try { __st = JSON.parse(localStorage.getItem('oa-state-v3') || 'null'); } catch (e) {} if (__st) { if (Array.isArray(__st.artists) && __st.artists.length) { var orig = {}; (SITE.artists || []).forEach(function(a){ orig[a.slug] = a; }); var built = __st.artists.map(function(sa){ var base = orig[sa.slug] || null; var first = ((sa.name || sa.slug).replace(/["\u201c\u201d]/g, '').split(/\s+/)[0]) || sa.slug; var igE = (sa.socials || []).filter(function(x){ return x.p === 'Instagram'; })[0]; var work = (__st.portfolio && __st.portfolio[sa.slug]) ? __st.portfolio[sa.slug].map(function(w){ return w.ba ? { src: w.src, alt: w.ba.title || w.cap || '', cap: w.ba.title || w.cap || '', ba: w.ba } : { src: w.src, alt: w.cap || '', cap: w.cap || '' }; }) : (base ? base.work : []); var obj = base || { slug: sa.slug, families: ['tattoo'], does: [], quick: '', featuredCap: '', work: [], sample: false }; if (!base) { obj.__noPage = true; obj.first = first; obj.portraitAlt = 'Portrait of ' + first + ' at Instattoosionalized'; obj.families = /pierc/i.test(sa.what || '') ? ['piercing'] : ['tattoo']; obj.does = [sa.what || 'Tattoo']; obj.note = ['Send the shop request form with ' + first + ' picked. Tell them the idea, where it is going, and roughly how big.', "The shop's deposit is $40 and holds your spot."]; } obj.name = sa.name || obj.name; obj.role = sa.what || obj.role || 'Tattoo'; if (sa.about) { obj.about = [sa.about]; obj.bio = sa.about; } if (sa.photo) obj.portrait = sa.photo; if (igE) obj.ig = (igE.h || '').replace(/^@/, ''); obj.work = work; return obj; }); SITE.artists.splice(0, SITE.artists.length, ...built); try { if (window.artistPageHref) { var oh = window.artistPageHref; window.artistPageHref = function(a){ return a && a.__noPage ? 'instattoosionalized-gallery.html' : oh(a); }; } } catch (e) {} }
    } } catch (e) {}
+try { if (window.SiteContent) SiteContent.mergeHome(SITE.artists); } catch (e) { console.error('[site-content] could not apply the published artists: ' + e.message); }
 (function boot(){
   try {
     document.querySelectorAll("[data-fill]").forEach(n => { const v = T.pathGet(SITE, n.dataset.fill); if (v != null) n.textContent = v; });
@@ -2024,58 +2026,21 @@ try { var __st = null; try { __st = JSON.parse(localStorage.getItem('oa-state-v3
 </script>
 
 <script id="site-content">
-/* Banner and announcements published from the owner portal. Everything is checked again here and drawn as text only. */
+/* Banner and announcements published from the owner portal. The checking lives in instattoosionalized-site-content.js. */
 (function(){
   'use strict';
-  var PREVIEW = /[?&]preview=1(&|$)/.test(location.search), KEY = PREVIEW ? 'oa2:preview:v1' : 'oa2:published:v1', KINDS = { notice: 'News', closure: 'Closed', special: 'Special' }, ISO = /^\d{4}-\d{2}-\d{2}$/;
-  function warn(msg){ try { console.error('[site-content] ' + msg); } catch (e) {} }
-  function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
-  function shopToday(){
-    var p = {}; new Intl.DateTimeFormat('en-US', { timeZone: SITE.timeZone, year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date()).forEach(function(x){ p[x.type] = x.value; });
-    return p.year + '-' + p.month + '-' + p.day;
-  }
-  function str(v, max){ return typeof v === 'string' && v.length <= max; }
-  function okDate(s){ return s == null || s === '' || (typeof s === 'string' && ISO.test(s)); }
-  function okLink(s){
-    if (s == null || s === '') return true;
-    if (typeof s !== 'string' || s.length > 300 || /\s/.test(s)) return false;
-    try { var u = new URL(s); return u.protocol === 'https:' && !!u.hostname; } catch (e) { return false; }
-  }
-  /* The one place content comes from. The real site will fetch it from the API here instead. */
-  function load(){
-    var raw = null;
-    try { raw = localStorage.getItem(KEY); } catch (e) { return null; }
-    if (!raw) return null;
-    try { return JSON.parse(raw); } catch (e) { warn('The published content could not be read. Showing the built-in content.'); return null; }
-  }
-  function clean(c){
-    if (!c || c.v !== 1) { warn('The published content has an unknown version. Showing the built-in content.'); return null; }
-    var out = { banner: null, items: [] }, b = c.banner;
-    if (b && b.on === true) {
-      if (str(b.text, 140) && b.text.trim() && okDate(b.start) && okDate(b.end)) out.banner = b; else warn('The banner was skipped because it is not valid.');
-    }
-    (Array.isArray(c.announcements) ? c.announcements : []).slice(0, 20).forEach(function(a, i){
-      var ok = a && str(a.title, 80) && a.title.trim() && str(a.body == null ? '' : a.body, 400) && typeof a.kind === 'string' && Object.prototype.hasOwnProperty.call(KINDS, a.kind) && okDate(a.start) && okDate(a.end) && okLink(a.link);
-      if (ok) out.items.push(a); else warn('Announcement ' + (i + 1) + ' was skipped because it is not valid.');
-    });
-    return out;
-  }
-  function active(x, today){ return (!x.start || x.start <= today) && (!x.end || x.end >= today); }
+  var SC = window.SiteContent; if (!SC) return;
   try {
-    if (PREVIEW) {
-      var pv = el('div', 's-preview'); pv.setAttribute('role', 'status');
-      pv.textContent = 'Preview of unpublished changes. Visitors do not see this page. It shows what would be live today: announcements that start later stay hidden until their date.';
-      document.body.insertBefore(pv, document.body.firstChild);
-    }
-    var data = load(), c = data == null ? null : clean(data);
-    if (!c) { if (PREVIEW) { pv.textContent = 'No preview was found, so this is the built-in site. Open the preview again from the portal.'; warn('No preview content found.'); } return; }
-    var today = shopToday();
-    if (c.banner && active(c.banner, today)) {
+    var data = SC.read(), el = SC.el;
+    SC.previewBar(!!data);
+    if (!data) return;
+    var c = SC.cleanNews(data), today = SC.shopToday(SITE.timeZone);
+    if (c.banner && SC.active(c.banner, today)) {
       var bar = el('div', 's-banner', c.banner.text.trim()); bar.setAttribute('role', 'status');
       var before = document.getElementById('news') || document.querySelector('[data-module="hero"]');
       if (before && before.parentNode) before.parentNode.insertBefore(bar, before);
     }
-    var show = c.items.filter(function(a){ return active(a, today); }).sort(function(a, b){
+    var show = c.items.filter(function(a){ return SC.active(a, today); }).sort(function(a, b){
       if (!!a.pinned !== !!b.pinned) return a.pinned ? -1 : 1;
       return (b.start || '') < (a.start || '') ? -1 : (b.start || '') > (a.start || '') ? 1 : 0;
     }).slice(0, 3);
@@ -2083,14 +2048,14 @@ try { var __st = null; try { __st = JSON.parse(localStorage.getItem('oa-state-v3
     if (box && list && show.length) {
       show.forEach(function(a){
         var li = el('li'), art = el('article', 's-news__item s-news__item--' + a.kind);
-        art.append(el('p', 'c-kicker', KINDS[a.kind]), el('h2', 's-news__title', a.title.trim()));
+        art.append(el('p', 'c-kicker', SC.KINDS[a.kind]), el('h2', 's-news__title', a.title.trim()));
         if (a.body && a.body.trim()) art.append(el('p', 's-news__body', a.body.trim()));
         if (a.link) { var l = el('a', 's-news__link', 'More details'); l.href = a.link; l.target = '_blank'; l.rel = 'noopener noreferrer'; art.append(l); }
         li.append(art); list.append(li);
       });
       box.hidden = false;
     }
-  } catch (e) { warn('Could not show the published content: ' + e.message); }
+  } catch (e) { SC.warn('Could not show the published content: ' + e.message); }
 })();
 </script>
 

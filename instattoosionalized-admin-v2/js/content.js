@@ -9,14 +9,25 @@
   OA.PREVIEW_KEY = 'oa2:preview:v1';
   /* The demo website, relative to the portal. The real build points this at the shop's live address. */
   OA.LIVE_URL = '../instattoosionalized-tattoos-and-piercings.html';
-  OA.LIMITS = { bannerText: 140, annTitle: 80, annBody: 400, annLink: 300, annMax: 20 };
+  OA.LIMITS = { artistName: 80, artistRole: 40, artistBio: 1500, bannerText: 140, annTitle: 80, annBody: 400, annLink: 300, annMax: 20 };
   OA.ANN_KINDS = [['notice', 'News'], ['closure', 'Closure'], ['special', 'Special']];
 
   var ISO = /^\d{4}-\d{2}-\d{2}$/;
 
   /* Saved data from before announcements existed gets an empty list, so nothing downstream has to ask. */
+  /* The seed has each artist's links; an artist with only a handle gets that as an Instagram link. */
+  OA.seedSocials = function (a) {
+    var src = a.socials;
+    if (!Array.isArray(src)) { var seed = (window.OA_SEED_SITE && window.OA_SEED_SITE.artists || []).filter(function (x) { return x.slug === a.slug; })[0]; src = seed && seed.socials; }
+    if (!Array.isArray(src)) src = a.ig ? [{ p: 'Instagram', h: a.ig }] : [];
+    return src.map(function (x, i) { return { id: x.id || 'so_' + a.slug + '_' + i, p: x.p, h: x.h }; });
+  };
+
   OA.migrate = function (st) {
     if (!st || !st.site) return st;
+    [st.site, st.published && st.published.site].forEach(function (site) {
+      if (site && Array.isArray(site.artists)) site.artists.forEach(function (a) { if (!Array.isArray(a.socials)) a.socials = OA.seedSocials(a); });
+    });
     if (!Array.isArray(st.site.announcements)) st.site.announcements = [];
     if (st.published && st.published.site && !Array.isArray(st.published.site.announcements)) st.published.site.announcements = [];
     return st;
@@ -49,11 +60,21 @@
     return 'live';
   };
 
+  /* What the website needs to know about each artist. Photos are not here: they need the real publish path. */
+  OA.artistsContent = function (site) {
+    return (site.artists || []).map(function (a) {
+      var socials = [];
+      (a.socials || []).forEach(function (x) { var n = OA.socialNorm(x.p, x.h); if (n.ok) socials.push({ p: x.p, label: n.label, url: n.url }); });
+      return { slug: a.slug, name: a.name, nick: OA.nick(a), role: a.role || '', bio: a.bio || '', visible: !!a.visible && !a.removedAt, socials: socials };
+    });
+  };
+
   OA.publicContent = function (site, at) {
     var b = site.banner || {};
     return {
       v: 1,
       at: at,
+      artists: OA.artistsContent(site),
       banner: { on: !!b.on, text: String(b.text || ''), start: b.start || '', end: b.end || '' },
       announcements: (site.announcements || []).map(function (a) {
         return { id: a.id, kind: a.kind, title: a.title, body: a.body || '', link: a.link || '', start: a.start || '', end: a.end || '', pinned: !!a.pinned };

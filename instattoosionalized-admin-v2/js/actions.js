@@ -276,7 +276,7 @@
       if (o.removedAt && !n.removedAt) out.push({ key: 'artists', area: 'Artists', text: 'Artist restored: ' + n.name });
       if (o.name !== n.name) out.push({ key: 'artists', area: 'Artists', text: 'Name changed: ' + o.name + ' → ' + n.name });
       if (o.role !== n.role) out.push({ key: 'artists', area: 'Artists', text: who + ': what they do changed' });
-      if (o.ig !== n.ig) out.push({ key: 'artists', area: 'Artists', text: who + ': Instagram changed' });
+      if (OA.socialSig(o.socials) !== OA.socialSig(n.socials)) out.push({ key: 'artists', area: 'Artists', text: who + ': social links changed' });
       if (o.bio !== n.bio) out.push({ key: 'artists', area: 'Artists', text: who + ': bio changed' });
       if (o.portrait !== n.portrait) out.push({ key: 'artists', area: 'Artists', text: who + ': main photo changed' });
       if (o.books !== n.books || o.until !== n.until) out.push({ key: 'artists', area: 'Artists', text: who + ': books ' + (n.books === 'open' ? 'open' : 'booked out' + (n.until ? ' until ' + OA.fmtShort(n.until) : '')) });
@@ -319,6 +319,13 @@
     s.artists.forEach(function (a) { if (!a.removedAt && a.visible && !a.name.trim()) out.push('An artist page has no name.'); });
     if (s.banner.text.length > OA.LIMITS.bannerText) out.push('The banner message is over ' + OA.LIMITS.bannerText + ' characters.');
     if (s.announcements.length > OA.LIMITS.annMax) out.push('There are more than ' + OA.LIMITS.annMax + ' announcements. Remove some.');
+    s.artists.forEach(function (x) {
+      if (x.removedAt) return;
+      var who = OA.nick(x), p = OA.socialsProblem(x.socials || []);
+      if (p) out.push(who + ': ' + p);
+      if ((x.bio || '').length > OA.LIMITS.artistBio) out.push(who + ': the bio is over ' + OA.LIMITS.artistBio + ' characters.');
+      if (x.name.length > OA.LIMITS.artistName) out.push(who + ': the name is over ' + OA.LIMITS.artistName + ' characters.');
+    });
     s.announcements.forEach(function (a) { var p = OA.annProblem(a); if (p) out.push('Announcement \u201c' + (a.title || 'Untitled') + '\u201d: ' + p); });
     Object.keys(s.portfolio).forEach(function (slug) {
       var a = OA.artist(slug); if (!a || a.removedAt) return;

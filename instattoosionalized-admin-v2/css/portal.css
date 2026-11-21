@@ -322,3 +322,9 @@ a.ledger-row:hover { background: var(--surface); }
 .slot[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .slot:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 @media (max-width: 640px) { .ot-picks, .ot-day { grid-template-columns: 1fr; } .ot-label { padding-top: 0; } }
+
+/* Social links editor */
+.socials { display: grid; gap: .5rem; margin-bottom: .75rem; }
+.social-row { display: grid; grid-template-columns: 9rem minmax(0, 1fr) auto; gap: .5rem; align-items: center; }
+.social-add { padding-top: .75rem; border-top: 1px solid var(--line2); }
+@media (max-width: 640px) { .social-row { grid-template-columns: 1fr; } }
