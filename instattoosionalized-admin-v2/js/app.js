@@ -5,9 +5,9 @@
   var SESSION = 'oa2:session', THEME = 'oa2:theme';
   var TABS = [
     { key: 'today', label: 'Today' }, { key: 'requests', label: 'Requests' }, { key: 'calendar', label: 'Calendar' },
-    { key: 'clients', label: 'Clients' }, { key: 'artists', label: 'Artists' }, { key: 'site', label: 'Site' }, { key: 'settings', label: 'Settings' }
+    { key: 'clients', label: 'Clients' }, { key: 'artists', label: 'Artists' }, { key: 'analytics', label: 'Analytics' }, { key: 'site', label: 'Site' }, { key: 'settings', label: 'Settings' }
   ];
-  var PERMS = { today: 1, requests: 1, calendar: 1, clients: 1, artists: 1, site: 'owner', settings: 'owner' };
+  var PERMS = { today: 1, requests: 1, calendar: 1, clients: 1, artists: 1, analytics: 'owner', site: 'owner', settings: 'owner' };
   var main, nav, chrome = {}, current = { parts: [], q: {} }, firstRender = true;
 
   OA.can = function (tab) { var p = PERMS[tab]; return p === 1 || p === OA.role.kind; };
@@ -139,5 +139,6 @@
     if (S.error) console.warn(S.error);
     try { var t = localStorage.getItem(THEME) || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); document.documentElement.setAttribute('data-theme', t); } catch (e) { /* default theme */ }
     start();
+    OA.api.startPolling();
   });
 })();

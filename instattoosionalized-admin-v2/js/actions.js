@@ -51,6 +51,24 @@
     log(r, d.source || 'Added by hand (phone call or walk-in)');
     st().requests.unshift(r); S.commit(); return r;
   };
+  /* Requests from the website form. Each carries the server's id, so pulling twice never makes a second copy. */
+  act.importRemote = function (list, nextAfter) {
+    var have = {}; st().requests.forEach(function (r) { if (r.remoteId) have[r.remoteId] = 1; });
+    var artists = {}; st().site.artists.forEach(function (a) { artists[a.slug] = 1; });
+    var n = 0;
+    list.slice().sort(function (a, b) { return a.created_at - b.created_at; }).forEach(function (d) {
+      if (!d || typeof d.id !== 'string' || have[d.id]) return;
+      var c = act.ensureClient(String(d.name || 'Website visitor'), String(d.phone || ''));
+      var picked = Array.isArray(d.services) && d.services.length ? ' Picked: ' + d.services.join(', ') + '.' : '';
+      var r = { id: OA.uid('r'), remoteId: d.id, name: String(d.name || '').trim() || 'Website visitor', clientId: c.id, phone: String(d.phone || ''), email: '', artist: artists[d.artist] ? d.artist : '',
+        kind: d.kind === 'piercing' ? 'piercing' : 'tattoo', size: String(d.size || ''), place: String(d.place || ''), idea: String(d.idea || ''), when: String(d.when || ''), note: String(d.note || ''),
+        status: 'New', created: Number(d.created_at) || Date.now(), log: [], quote: '', askedAt: null, paidAt: null, consentAt: null, closedReason: '', apptId: '', waitlist: false, repliedAt: null };
+      log(r, 'Came in from the website (' + (d.source === 'guided' ? 'full request' : 'call-back request') + ').' + picked + (d.artist && !artists[d.artist] ? ' Asked for an artist who is not on the roster: ' + d.artist + '.' : ''));
+      st().requests.unshift(r); have[d.id] = 1; n++;
+    });
+    if (typeof nextAfter === 'number') { var a = OA.api.state(); if (nextAfter > (a.after || 0)) a.after = nextAfter; }
+    S.commit(); return n;
+  };
   act.setStatus = function (r, status, why) {
     if (r.status === status) return false;
     var from = r.status; r.status = status;

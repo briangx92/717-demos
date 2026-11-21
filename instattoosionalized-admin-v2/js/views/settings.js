@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   var OA = window.OA, h = OA.h, S = OA.store, ui = OA.ui, act = OA.act;
-  var TABS = [['messages', 'Messages'], ['people', 'People and roles'], ['integrations', 'Google Calendar'], ['data', 'Data and backup']];
+  var TABS = [['messages', 'Messages'], ['people', 'People and roles'], ['connection', 'Website connection'], ['integrations', 'Google Calendar'], ['data', 'Data and backup']];
   var VARS = ['first', 'shop', 'artist', 'quote', 'deposit', 'depositHow', 'date', 'time', 'address', 'reviewLink'];
   var ROLE = { owner: 'Shop owner', frontdesk: 'Front desk', artist: 'Artist' };
 
@@ -62,6 +62,28 @@
     return root;
   }
 
+
+  function connection() {
+    var root = h('div', {}), api = OA.api, st = api.state(), out = h('div', { class: 'saved', 'aria-live': 'polite' });
+    var card = h('section', { class: 'card narrow' }, h('h2', { text: 'Website connection' }),
+      h('p', { text: 'The shop server saves what people send through the website form and reads Cloudflare for traffic and speed. This portal asks it for both.' }));
+    card.appendChild(h('div', { class: 'row' }, ui.chip(api.configured() ? 'Server set' : 'No server set', api.configured() ? 'ok' : 'quiet'), h('span', { class: 'note', text: api.configured() ? api.base() : 'The server address is set when the portal is deployed (the portal-api line in index.html). It is empty in this demo.' })));
+    var tok = ui.input('', { type: 'password', autocomplete: 'off', spellcheck: 'false', 'aria-label': 'Access token', placeholder: api.hasToken() ? 'A token is saved for this tab' : 'Paste the access token' });
+    card.appendChild(ui.field('Access token', tok, 'Kept only while this tab is open. It is never saved on the computer or shown on the page. Ask whoever runs the server for it.'));
+    var row = h('div', { class: 'row' });
+    row.appendChild(ui.btn('Save and test', function () {
+      if (!api.configured()) { note(out, 'There is no server address to test. Nothing was saved.', true); return; }
+      var v = tok.value.trim(); if (!v && !api.hasToken()) { note(out, 'Paste the token first.', true); return; }
+      if (v) { if (!api.setToken(v)) { note(out, 'This browser would not keep the token for the tab. Nothing was saved.', true); return; } tok.value = ''; }
+      note(out, 'Testing\u2026'); 
+      api.call('/api/requests?limit=1').then(function () { note(out, 'Connected. The token works.'); }, function (e) { api.clearToken(); note(out, e.message + ' The token was not kept.', true); });
+    }, 'primary'));
+    row.appendChild(ui.btn('Forget the token', function () { api.clearToken(); tok.value = ''; note(out, 'The token was forgotten.'); }, ''));
+    card.appendChild(row); card.appendChild(out);
+    card.appendChild(h('p', { class: 'note', text: st.lastOk ? 'Last checked for new requests ' + OA.ago(st.lastOk) + '.' : 'Not checked for new requests yet.' }));
+    if (st.lastError) card.appendChild(h('p', { class: 'note', text: 'Last problem: ' + st.lastError }));
+    root.appendChild(card); return root;
+  }
 
   function integrations() {
     var g = OA.gcalSettings(), st = OA.gcal.status(), root = h('div', {});
@@ -145,7 +167,7 @@
       var sub = h('nav', { class: 'subtabs', 'aria-label': 'Settings sections' });
       TABS.forEach(function (t) { sub.appendChild(ui.link(t[1], '#/settings/' + t[0], 'subtab' + (tab === t[0] ? ' on' : ''))); });
       root.appendChild(sub);
-      var v = { messages: messages, people: people, integrations: integrations, data: data }[tab];
+      var v = { messages: messages, people: people, connection: connection, integrations: integrations, data: data }[tab];
       root.appendChild(v ? v() : ui.empty('That section does not exist', null, ui.link('Messages', '#/settings/messages', 'btn primary')));
       return root;
     }

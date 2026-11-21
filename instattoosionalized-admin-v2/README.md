@@ -44,3 +44,11 @@ What exists: a per-chair calendar ID field (saved, unused), a choice of how much
 What a real version needs: OAuth on the server with the `calendar.events` scope and tokens stored server-side only; one-way push on create, change and cancel using the stored event ID so retries update instead of duplicating; a visible "not on Google Calendar" flag on any appointment whose push failed; no phone numbers, notes or deposit status in events. Reading Google back into the portal (to block double-booking against personal calendars) is a second step.
 
 Wiring already in place so the real version is a small change: `OA.gcal.onChange(appt)` runs on every add, change, cancel and status change (a no-op while disconnected); an appointment whose push fails carries `sync: {state:'failed', error}`, which shows a red "Not on Google Calendar" chip, a Retry button in the appointment dialog, and an item in Today's "Needs you" list; the shop time zone is a setting (default America/New_York). Backups and restores carry the calendar IDs and time zone along with the rest of the settings.
+
+## Website requests and analytics (new)
+
+- **Check for new requests** (Requests screen) pulls what the website form saved on the shop server. Every request keeps the server's id, so pulling twice, or after a failed pull, never makes a copy. The portal also checks every 90 seconds while open. A failed check shows a red chip on the Requests screen, not just a toast.
+- **Settings, Website connection:** paste the access token. It lives in this tab only (session storage), is never written to the computer or shown on the page, and is forgotten when the tab closes.
+- **Analytics** (owner only): page views, top pages, referrers, devices, countries, Core Web Vitals (loading, response to taps, layout jumping, rated with Google's thresholds), Cloudflare caching, requests from the form and requests per 100 views, and spam stopped.
+  Cloudflare numbers come through the shop server (see `../instattoosionalized-api/README.md`). With no server set, the screen says so; "Show sample numbers" draws made-up numbers under a banner, for judging the layout only.
+- The portal address of the server is the `portal-api` meta tag in `index.html` and must also be added to `connect-src` in the Content-Security-Policy tag. Scripts are locked to this folder.

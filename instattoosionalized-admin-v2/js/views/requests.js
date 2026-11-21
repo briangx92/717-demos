@@ -29,6 +29,12 @@
     var counts = {}; OA.STATUSES.forEach(function (k) { counts[k] = all.filter(function (r) { return r.status === k; }).length; });
     var open = all.filter(function (r) { return r.status !== 'Closed' && r.status !== 'Booked'; }).length;
     root.appendChild(ui.pageHead('Requests', 'Every ask from the website form, calls and walk-ins, in order of what needs doing.', [ui.btn('Add a request', function () { OA.newRequestDialog().then(function (r) { if (r) OA.go('requests/' + r.id); }); }, 'primary')]));
+    var feed = OA.api.status(), feedRow = h('div', { class: 'row tight feed' }, ui.chip(feed.text, feed.kind), feed.detail ? h('span', { class: 'note', text: feed.detail }) : null);
+    if (OA.api.ready()) feedRow.appendChild(ui.btn('Check for new requests', function (ev) {
+      var b = ev.currentTarget; b.disabled = true; b.textContent = 'Checking\u2026';
+      OA.api.pull().then(function (r) { ui.toast(r.added ? OA.plural(r.added, 'new website request') + ' came in.' : 'No new requests from the website.'); }, function (e) { ui.fail(e.message); }).then(function () { OA.rerender(); });
+    }, ''));
+    root.appendChild(feedRow);
     var pips = h('nav', { class: 'pips', 'aria-label': 'Filter by stage' });
     function pip(label, val, n, extra) { pips.appendChild(h('a', { class: 'pip' + ((status === val && !wait) ? ' on' : ''), href: '#/requests' + OA.query(Object.assign({ status: val, artist: artist }, extra || {})), 'aria-current': (status === val && !wait) ? 'true' : null }, h('span', { text: label }), h('b', { text: String(n) }))); }
     pip('Needs action', '', open);

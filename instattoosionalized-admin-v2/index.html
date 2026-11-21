@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
+<!-- Scripts may only come from this folder. If you set portal-api below, add its origin to connect-src here too. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'">
+<!-- Address of the shop server (for example https://portal.example.com). Empty means the portal runs on its own data only. -->
+<meta name="portal-api" content="">
 <title>Owner portal | Instattoosionalized</title>
 <link rel="icon" href="../instattoosionalized-logo.jpg">
 <link rel="preload" href="fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -19,11 +23,13 @@
 <script src="js/ui.js"></script>
 <script src="js/shared.js"></script>
 <script src="js/gcal.js"></script>
+<script src="js/api.js"></script>
 <script src="js/views/today.js"></script>
 <script src="js/views/requests.js"></script>
 <script src="js/views/calendar.js"></script>
 <script src="js/views/clients.js"></script>
 <script src="js/views/artists.js"></script>
+<script src="js/views/analytics.js"></script>
 <script src="js/views/site.js"></script>
 <script src="js/views/settings.js"></script>
 <script src="js/app.js"></script>
