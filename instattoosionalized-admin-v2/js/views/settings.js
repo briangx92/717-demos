@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   var OA = window.OA, h = OA.h, S = OA.store, ui = OA.ui, act = OA.act;
-  var TABS = [['messages', 'Messages'], ['people', 'People and roles'], ['data', 'Data and backup']];
+  var TABS = [['messages', 'Messages'], ['people', 'People and roles'], ['integrations', 'Google Calendar'], ['data', 'Data and backup']];
   var VARS = ['first', 'shop', 'artist', 'quote', 'deposit', 'depositHow', 'date', 'time', 'address', 'reviewLink'];
   var ROLE = { owner: 'Shop owner', frontdesk: 'Front desk', artist: 'Artist' };
 
@@ -62,6 +62,40 @@
     return root;
   }
 
+
+  function integrations() {
+    var g = OA.gcalSettings(), st = OA.gcal.status(), root = h('div', {});
+    var head = h('section', { class: 'card narrow' }, h('h2', { text: 'Google Calendar' }), h('div', { class: 'row' }, ui.chip(st.text, 'quiet'), h('span', { class: 'note', text: 'Placeholder' })),
+      h('p', { text: 'The plan is a one-way push: appointments added here show up as events in each artist\u2019s Google calendar, and changes or cancellations here update the same event. Nothing is read back from Google yet.' }),
+      h('p', { class: 'note', text: st.reason }));
+    var btn = ui.btn('Connect Google Calendar', function () { OA.gcal.connect().catch(function (e) { ui.fail(e.message); }); }, 'primary', { 'aria-describedby': 'gc-why' });
+    head.appendChild(h('div', { class: 'row' }, btn, h('span', { id: 'gc-why', class: 'note', text: 'Not available in the demo. Signing in to Google has to happen on a server.' })));
+    root.appendChild(head);
+
+    var saved = h('div', { class: 'saved', 'aria-live': 'polite' }), card = h('section', { class: 'card narrow' }, h('h2', { text: 'Which calendar each chair uses' }), h('p', { class: 'note', text: 'Paste the calendar ID from Google Calendar settings, under Integrate calendar. These are saved now so setup is ready later. They are not used yet.' }));
+    OA.chairs().forEach(function (c) {
+      var inp = ui.input(g.calendars[c.slug] || '', { placeholder: 'e.g. abc123@group.calendar.google.com', 'aria-label': c.name + ' calendar ID' });
+      inp.addEventListener('change', function () {
+        var v = inp.value.trim();
+        if (v && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { note(saved, 'A calendar ID looks like name@group.calendar.google.com, or an email address. Not saved.', true); return; }
+        g.calendars[c.slug] = v; S.commit(); note(saved, 'Saved. Not used until Google Calendar is connected.');
+      });
+      card.appendChild(ui.field(c.name, inp));
+    });
+    var detail = ui.select([['minimal', 'First name, last initial and type only'], ['full', 'Also include what is being done']], g.detail, { 'aria-label': 'What goes in the event' });
+    detail.addEventListener('change', function () { g.detail = detail.value; S.commit(); note(saved, 'Saved. Not used until Google Calendar is connected.'); });
+    card.appendChild(ui.field('What goes in each event', detail, 'Phone numbers, notes and deposit status are never sent. Calendars are often shared, and clients\u2019 details should stay in the portal.'));
+    card.appendChild(saved); root.appendChild(card);
+
+    var prev = ui.btn('Preview what would be sent', function () {
+      var a = OA.scopeAppts(S.state.appts).filter(function (x) { return x.status !== 'cancelled' && x.date >= OA.todayISO(); }).sort(function (x, y) { return x.date < y.date ? -1 : 1; })[0];
+      if (!a) { ui.fail('There is no upcoming appointment to preview.'); return; }
+      ui.dialog({ title: 'Example calendar event', lead: 'This is the event for ' + a.client + '\u2019s next appointment. It is only shown here; nothing was sent.', body: h('pre', { class: 'code', text: JSON.stringify(OA.gcal.toEvent(a), null, 2) }), wide: true });
+    }, '');
+    root.appendChild(h('section', { class: 'card narrow' }, h('h2', { text: 'For the developer' }), h('p', { class: 'note', text: 'Server-side OAuth with the calendar.events scope. Each event carries the portal\u2019s appointment ID in a private extended property so a retry updates the event instead of duplicating it. If a push fails, the appointment must show a visible \u201cnot on Google Calendar\u201d flag, never a silent success. Details in this folder\u2019s README.' }), h('div', { class: 'row' }, prev)));
+    return root;
+  }
+
   function data() {
     var root = h('div', {}), size = 0; try { size = JSON.stringify(S.state).length; } catch (e) { size = 0; }
     var photos = h('span', { text: 'checking...' });
@@ -104,7 +138,7 @@
       var sub = h('nav', { class: 'subtabs', 'aria-label': 'Settings sections' });
       TABS.forEach(function (t) { sub.appendChild(ui.link(t[1], '#/settings/' + t[0], 'subtab' + (tab === t[0] ? ' on' : ''))); });
       root.appendChild(sub);
-      var v = { messages: messages, people: people, data: data }[tab];
+      var v = { messages: messages, people: people, integrations: integrations, data: data }[tab];
       root.appendChild(v ? v() : ui.empty('That section does not exist', null, ui.link('Messages', '#/settings/messages', 'btn primary')));
       return root;
     }

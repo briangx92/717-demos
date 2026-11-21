@@ -36,3 +36,9 @@ Existing endpoints this maps onto: `GET/POST /requests`, `GET/POST /bookings` wi
 New endpoints needed: `/appointments`, `/clients`, `/timeoff`, `/site` (draft + publish), `/photos` (signed uploads), `/people`.
 Publish should write one JSON snapshot the public site reads at build time, so many edits trigger one rebuild.
 Also needed for real use: server-side validation of every field, an audit log of who changed what, and the website request form writing into `/requests`.
+
+## Google Calendar (placeholder)
+
+`js/gcal.js` and Settings, Google Calendar hold the placeholder. Nothing connects to Google, and the Connect button fails with a plain message.
+What exists: a per-chair calendar ID field (saved, unused), a choice of how much goes in each event, and `OA.gcal.toEvent(appt)`, which builds the Google event resource (time zone America/New_York, shop address as location, the portal appointment ID in `extendedProperties.private.portalApptId`).
+What a real version needs: OAuth on the server with the `calendar.events` scope and tokens stored server-side only; one-way push on create, change and cancel using the stored event ID so retries update instead of duplicating; a visible "not on Google Calendar" flag on any appointment whose push failed; no phone numbers, notes or deposit status in events. Reading Google back into the portal (to block double-booking against personal calendars) is a second step.
