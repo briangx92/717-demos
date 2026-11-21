@@ -915,6 +915,7 @@ var DEFAULTS = {
   if (!state || !state.photos) state = JSON.parse(JSON.stringify(DEFAULTS));
   if (!state.people) state.people = JSON.parse(JSON.stringify(DEFAULTS.people)); if (!state.bookedOut) state.bookedOut = JSON.parse(JSON.stringify(DEFAULTS.bookedOut)); if (!state.policies) state.policies = JSON.parse(JSON.stringify(DEFAULTS.policies));
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  window.__oaToast = function(m){ toast(m); };
   function toast(msg){ var t = $('#p-toast'); t.textContent = msg; t.classList.remove('hidden'); clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.add('hidden'); }, 3200); }
   var pn2 = location.pathname;
   var siteTarget = pn2.indexOf('insta-portal.html') >= 0 ? 'insta-onsite-admin.html' : (pn2.indexOf('instattoosionalized-owner.html') >= 0 ? 'instattoosionalized-tattoos-and-piercings.html' : 'https://briangx92.github.io/instattoosionalized/instattoosionalized-tattoos-and-piercings.html');
@@ -926,6 +927,7 @@ var DEFAULTS = {
     $('#p-app').classList.remove('hidden');
     $('#p-who').textContent = 'Signed in as ' + email;
     renderAll();
+    if (window.__oaRouteApply) window.__oaRouteApply();
   }
   function getPw(){ try { return localStorage.getItem('oa-pw') || 'demo1234'; } catch (e) { return 'demo1234'; } }
   function setPw(v){ try { localStorage.setItem('oa-pw', v); } catch (e) {} }
@@ -1773,8 +1775,8 @@ var DEFAULTS = {
     return row;
   }
   function refreshList(){ listView.innerHTML = ''; var bs = blocks().slice(); bs.sort(function(x, y){ var nx = (x.querySelector('.roleline strong') ? x.querySelector('.roleline strong').textContent : '').toLowerCase(); var ny = (y.querySelector('.roleline strong') ? y.querySelector('.roleline strong').textContent : '').toLowerCase(); return nx < ny ? -1 : nx > ny ? 1 : 0; }); bs.forEach(function(blk){ listView.appendChild(rowFor(blk)); }); }
-  function showList(){ try { localStorage.removeItem('oa-artist-view'); } catch (e) {} backBar.style.display = 'none'; listView.style.display = ''; var ab = addBlockEl(); if (ab) ab.style.display = ''; blocks().forEach(function(blk){ blk.style.display = 'none'; }); }
-  function openArtist(blk){ try { localStorage.setItem('oa-artist-view', blk.querySelector('.soc-list').getAttribute('data-artist')); } catch (e) {} listView.style.display = 'none'; var ab = addBlockEl(); if (ab) ab.style.display = 'none'; blocks().forEach(function(b){ b.style.display = (b === blk) ? '' : 'none'; }); backBar.style.display = ''; var nm = blk.querySelector('.roleline strong'); var ed = document.getElementById('oa-artist-editing'); if (ed) ed.textContent = nm ? nm.textContent : ''; }
+  function showList(){ backBar.style.display = 'none'; listView.style.display = ''; var ab = addBlockEl(); if (ab) ab.style.display = ''; blocks().forEach(function(blk){ blk.style.display = 'none'; }); }
+  function openArtist(blk){ listView.style.display = 'none'; var ab = addBlockEl(); if (ab) ab.style.display = 'none'; blocks().forEach(function(b){ b.style.display = (b === blk) ? '' : 'none'; }); backBar.style.display = ''; var nm = blk.querySelector('.roleline strong'); var ed = document.getElementById('oa-artist-editing'); if (ed) ed.textContent = nm ? nm.textContent : ''; }
   window.__oaArtistAdded = function(blk){ if (window.__oaSaveArtists) window.__oaSaveArtists(); refreshList(); showList(); };
   backBar.querySelector('#oa-artist-back').addEventListener('click', function(){ refreshList(); showList(); });
   panel.addEventListener('click', function(e){ var b = e.target.closest ? e.target.closest('button') : null; if (b && b.textContent.trim() === 'Remove artist') setTimeout(function(){ refreshList(); showList(); }, 0); });
@@ -1819,9 +1821,7 @@ var DEFAULTS = {
     }
   } catch (e) {}
   window.__oaRefreshList = refreshList;
-  var __sv = null; try { __sv = localStorage.getItem('oa-artist-view'); } catch (e) {}
   refreshList(); showList();
-  try { var sv = __sv; if (sv) { var tgt = null; blocks().forEach(function(b2){ if (b2.querySelector('.soc-list').getAttribute('data-artist') === sv) tgt = b2; }); if (tgt) openArtist(tgt); } } catch (e) {}
 })();
 </script>
 <script>
@@ -1881,17 +1881,6 @@ var DEFAULTS = {
   });
   addBtn.addEventListener('click', function(){ setTimeout(function(){ collapse(false); }, 60); });
   render();
-})();
-</script>
-<script>
-(function(){
-  function apply(){ try { var saved = localStorage.getItem('oa-tab'); if (saved) { var btn = document.querySelector('[data-tab="' + saved + '"]'); if (btn) btn.click(); } } catch (e) {} }
-  try {
-    document.querySelectorAll('[data-tab]').forEach(function(b){ b.addEventListener('click', function(){ try { localStorage.setItem('oa-tab', b.getAttribute('data-tab')); } catch (e) {} }); });
-    apply();
-    var sb = document.getElementById('p-signin');
-    if (sb) sb.addEventListener('click', function(){ setTimeout(apply, 600); });
-  } catch (e) {}
 })();
 </script>
 <script>
@@ -2973,6 +2962,111 @@ var DEFAULTS = {
     if (!window.confirm('You have unsaved changes. Leave without saving?')) { e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation(); }
   }, true);
   window.__oaDirty = function(){ return dirty; };
+})();
+</script>
+<script>
+/* oa-router: every view has its own URL, e.g. #/requests or #/artists/lex.
+   The URL is the only record of which view is open. Navigation still goes through the
+   real buttons, so the unsaved-changes and onboarding guards keep working; if a guard
+   stops the move, the URL is put back to the view that is actually showing. */
+(function(){
+  'use strict';
+  var ROUTES = { 'home': 'home', 'requests': 'requests', 'book': 'book', 'artists': 'artists',
+    'edit-site': 'edit', 'photos': 'photos', 'site-visits': 'visits', 'help': 'help',
+    'security': 'people', 'reviews': 'reviews' };
+  var NAME = {}; Object.keys(ROUTES).forEach(function(k){ NAME[ROUTES[k]] = k; });
+  var BASE_TITLE = document.title;
+
+  function navBtn(tab){ return document.querySelector('nav [data-tab="' + tab + '"]'); }
+  function appShown(){ var a = document.getElementById('p-app'); return !!a && !a.classList.contains('hidden'); }
+  function say(m){ if (window.__oaToast) window.__oaToast(m); }
+  function curTab(){ var p = document.querySelector('[data-panel]:not(.hidden)'); return p ? p.getAttribute('data-panel') : 'home'; }
+  function backBtn(){ return document.getElementById('oa-artist-back'); }
+  function openSlug(){
+    var back = backBtn();
+    if (!back || back.parentNode.style.display === 'none') return '';
+    var panel = document.querySelector('[data-panel="artists"]'), found = '';
+    if (!panel) return '';
+    panel.querySelectorAll('.soc-list[data-artist]').forEach(function(l){
+      var s = l.getAttribute('data-artist');
+      if (found || s === 'new') return;
+      var blk = l.closest('div[style*="border-top"]');
+      if (blk && blk.style.display !== 'none') found = s;
+    });
+    return found;
+  }
+  function rowFor(slug){
+    var rows = document.querySelectorAll('[data-panel="artists"] .artist-row');
+    for (var i = 0; i < rows.length; i++) if (rows[i].getAttribute('data-slug') === slug) return rows[i];
+    return null;
+  }
+  function domRoute(){
+    var tab = curTab(), r = '/' + (NAME[tab] || 'home');
+    if (tab === 'artists') { var s = openSlug(); if (s) r += '/' + encodeURIComponent(s); }
+    return r;
+  }
+  function setTitle(){
+    var b = navBtn(curTab()), t = b ? b.textContent.trim() : '';
+    var s = curTab() === 'artists' ? openSlug() : '';
+    if (s) { var ed = document.getElementById('oa-artist-editing'); t += ': ' + ((ed && ed.textContent.trim()) || s); }
+    document.title = t ? t + ' | ' + BASE_TITLE : BASE_TITLE;
+  }
+  function writeUrl(push){
+    var r = '#' + domRoute();
+    if (location.hash !== r) history[push ? 'pushState' : 'replaceState'](null, '', r);
+    setTitle();
+  }
+  function go(tab){
+    if (curTab() === tab) return true;
+    var b = navBtn(tab);
+    if (b) b.click();
+    return curTab() === tab;
+  }
+  function parse(){
+    var h = location.hash.replace(/^#\/?/, '');
+    if (!h) return { tab: 'home', empty: true };
+    var parts = h.split('/').filter(Boolean), out = [];
+    for (var i = 0; i < parts.length; i++) { try { out.push(decodeURIComponent(parts[i])); } catch (e) { return null; } }
+    var tab = ROUTES[out[0]];
+    if (!tab || out.length > 2 || (out.length === 2 && tab !== 'artists')) return null;
+    return { tab: tab, slug: out[1] || '' };
+  }
+  function apply(){
+    if (!appShown()) return;              /* signed out: keep the link, open it after sign-in */
+    var r = parse();
+    if (!r) {
+      go('home'); writeUrl(false);
+      say('That link doesn’t match a page in the portal, so you’re on Home.');
+      return;
+    }
+    if (!go(r.tab)) { writeUrl(false); return; }   /* a guard kept the current view */
+    if (r.tab === 'artists') {
+      var open = openSlug();
+      if (r.slug && r.slug !== open) {
+        var row = rowFor(r.slug);
+        if (!row) {
+          if (open && backBtn()) backBtn().click();
+          writeUrl(false);
+          say('That artist isn’t in the portal anymore.');
+          return;
+        }
+        row.click();
+      } else if (!r.slug && open && backBtn()) {
+        backBtn().click();
+      }
+    }
+    writeUrl(false);
+  }
+
+  /* Any click that changed the view gets its own history entry. Runs after the
+     click's own handlers (and their setTimeout 0 follow-ups) have finished. */
+  document.addEventListener('click', function(){
+    setTimeout(function(){ if (appShown()) writeUrl(true); }, 0);
+  });
+  window.addEventListener('popstate', apply);
+  window.addEventListener('hashchange', apply);
+  window.__oaRouteApply = apply;
+  apply();
 })();
 </script>
 </body>
