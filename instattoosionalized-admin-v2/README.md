@@ -60,3 +60,14 @@ Wiring already in place so the real version is a small change: `OA.gcal.onChange
 - A specific slot is checked against the calendar as you pick it. It is blocked, with the reason and nearby free times, if the date or time has passed, the shop is closed or outside its hours, or the artist is busy (booked or time off). With "No preference" it is blocked only when every chair for that kind of work is busy. Another request for the same slot is a warning, not a block.
 - New appointments also refuse a date in the past, and a client who is already booked with another chair at the same time.
 - Google Calendar format: exact slots and wishes become `freebusy.query` windows (`timeMin`/`timeMax` as RFC 3339 with the shop zone's offset, DST-correct). Open "How this goes to Google Calendar" under the field to see the exact body. Nothing is sent until the Google connection exists.
+
+## Scan to call or text (new)
+
+On a computer, the portal can't dial or text. So the text dialog and the client page show a QR code. The person scans it with a phone camera and finishes there.
+
+- **Text dialog:** "Scan to text from your phone". Messages opens with the number and the typed message filled in. You press send.
+- **Client page:** the "Scan to call or text" button shows two codes, one to call and one to text. It only appears when the client has a valid phone number.
+- **When no code can be made:** a blank left in the message, an empty message, a message too long for a code, or no valid number. The panel says why instead of showing a bad code.
+- **Nothing is sent from the portal.** The phone does the sending.
+- The code is drawn with DOM calls only, no HTML strings. The generator is `js/vendor/qrcode.js` (qrcode-generator 2.0.4, MIT).
+- Tested by decoding the rendered codes and checking the number and the message come back exactly. Not yet tested on a real phone.

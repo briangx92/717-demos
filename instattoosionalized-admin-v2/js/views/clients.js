@@ -44,6 +44,13 @@
     var actions = [];
     if (c.phone && OA.phoneOk(c.phone)) actions.push(h('a', { class: 'btn small', href: OA.telHref(c.phone), text: 'Call' }));
     actions.push(ui.btn('Write a text', function () { ui.message({ key: 'blank', ctx: { name: c.name }, phone: c.phone, title: 'Text ' + OA.first(c.name) }); }, 'small'));
+    if (c.phone && OA.phoneOk(c.phone)) actions.push(ui.btn('Scan to call or text', function () {
+      ui.dialog({ title: 'Call or text ' + OA.first(c.name) + ' from your phone', lead: 'On a computer? Scan a code with your phone\u2019s camera and finish there. Nothing is dialed or sent until you press the button on the phone.', wide: true,
+        body: h('div', { class: 'qr-pair' },
+          OA.qrPanel({ title: 'Scan to call from your phone', help: 'Your dialer opens with ' + OA.fmtPhone(c.phone) + ' filled in. You press call.', href: function () { return OA.telHref(c.phone); }, why: function () { return ''; } }),
+          OA.qrPanel({ title: 'Scan to text from your phone', help: 'Messages opens to ' + OA.fmtPhone(c.phone) + ' with an empty message.', href: function () { return OA.smsHref(c.phone, ''); }, why: function () { return ''; } })),
+        actions: [{ label: 'Close', kind: 'primary', value: null }] });
+    }, 'small'));
     actions.push(ui.btn('New appointment', function () { OA.apptDialog(null, { client: c.name, phone: c.phone }).then(function (r) { if (r) rer(); }); }, 'small primary'));
     root.appendChild(ui.pageHead(c.name, c.phone ? OA.fmtPhone(c.phone) : 'No phone number on file', actions));
 

@@ -291,3 +291,12 @@ a.ledger-row:hover { background: var(--surface); }
 .daychip input:checked + span { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
 .daychip input:focus-visible + span { outline: 3px solid var(--accent-line); outline-offset: 2px; }
 .hint.ok { color: var(--ok); }
+
+/* Scan-to-phone codes */
+.msg-grid { display: grid; grid-template-columns: minmax(0, 1fr) 190px; gap: 1rem; align-items: start; }
+.qr-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.2rem; justify-items: center; }
+.qrp { display: grid; gap: .45rem; justify-items: center; text-align: center; padding: .7rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.qrp strong { font-size: .9rem; } .qrp .note { font-size: .8rem; }
+.qr { width: 160px; height: 160px; display: block; border-radius: 6px; }
+.qr-holder { min-height: 60px; display: grid; place-items: center; }
+@media (max-width: 640px) { .msg-grid { grid-template-columns: 1fr; } }

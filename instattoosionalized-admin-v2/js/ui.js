@@ -101,10 +101,16 @@
     }
     area.addEventListener('input', recheck);
     var phone = o.phone || '';
+    var qrp = OA.qrPanel({
+      title: 'Scan to text from your phone', help: 'Point your phone\u2019s camera at the code. Messages opens with this text and the number filled in. You press send.',
+      href: function () { return phone && OA.phoneOk(phone) && !OA.blanks(area.value).length && area.value.trim() ? OA.smsHref(phone, area.value) : null; },
+      why: function () { return !phone || !OA.phoneOk(phone) ? 'Add a phone number for this client to get a code.' : OA.blanks(area.value).length ? 'Fill in the blanks first, then the code appears.' : 'Write a message to get a code.'; }
+    });
+    area.addEventListener('input', function () { qrp.update(); });
     var body = h('div', {},
       h('div', { class: 'to', text: 'To: ' + (o.ctx.name || 'client') + (phone ? ', ' + OA.fmtPhone(phone) : ', no phone number on file') }),
-      area, warn,
-      h('div', { class: 'hint', text: 'This opens your phone’s messaging app with the words filled in. Nothing is sent from this page.' })
+      h('div', { class: 'msg-grid' }, h('div', {}, area, warn), qrp),
+      h('div', { class: 'hint', text: 'On a computer, scan the code to finish on your phone. On a phone, use Open in messages. Nothing is sent from this page.' })
     );
     recheck();
     return ui.dialog({
