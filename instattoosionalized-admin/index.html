@@ -653,7 +653,7 @@ html.dark .oa-pf .oa-fig .oa-cap{background:#232329;border-color:#3a3a42;color:#
 </style>
 
       <div class="section">
-          <div class="shead"><div><h3>Your artists</h3><p>Add, edit, or remove the artists on your site. Each artist gets their own page, built from what is here. Their work photos live under Photos.</p></div><button class="btn btn--primary" type="button" id="p-save-artists">Save artists</button></div>
+          <div class="shead"><div><h3>Your artists</h3><p>Add, edit, or remove the artists on your site. Each artist gets their own page, built from what is here. Their work photos live under Photos.</p></div><button class="btn btn--primary" type="button" id="p-save-artists">Save changes</button></div>
           <div style="border-top:1px solid #ececea;padding-top:12px;margin-top:12px">
             <div class="roleline"><strong>Alexis "lex"</strong><span>Tattoo &middot; Shows on the site, on their own page, and in the request form</span></div>
             <div class="addgrid">
@@ -2266,13 +2266,13 @@ var DEFAULTS = {
         var p = m.it;
         return '<div class="oa-card wide' + (p.onSite === false ? ' off' : '') + '" data-card="pair:' + p.id + '"><div class="oa-splitwrap"><div class="oa-split"><div class="half"><img src="' + esc(disp(p.bsrc)) + '" alt=""><span class="tag">BEFORE</span></div><div class="mid"></div><div class="half"><img src="' + esc(disp(p.asrc)) + '" alt=""><span class="tag">AFTER</span></div></div><span class="oa-bapill">Before &amp; After</span></div>' +
           '<input class="oa-cap" type="text" data-pcap="' + p.id + ':title" value="' + esc(p.title || '') + '" placeholder="Project title / caption">' +
-          (p.story ? '<div class="oa-pstory">' + esc(p.story) + '</div>' : '') + ((p.tags || p.medium || p.dims) ? '<div class="oa-pmeta">' + esc([p.tags, p.medium, p.dims].filter(Boolean).join(' · ')) + '</div>' : '') +
           '<div class="oa-cardrow"><span class="oa-handle" data-drag title="Drag to reorder">&#10265;</span><button class="btn" type="button" data-pedit="' + p.id + '">Edit</button><button class="btn" type="button" data-prm="' + p.id + '">Remove</button>' + tglHTML('pair', p) + '</div></div>';
       }
       var s = m.it;
-      return '<div class="oa-card' + (s.onSite ? '' : ' off') + '" data-card="single:' + s.id + '"><img src="' + esc(disp(s.src)) + '" alt="">' +
-        '<input class="oa-cap" type="text" data-cap="' + s.id + '" value="' + esc(s.cap) + '" placeholder="Caption">' +
-        '<div class="oa-cardrow"><span class="oa-handle" data-drag title="Drag to reorder">&#10265;</span>' + tglHTML('single', s) + '</div></div>';
+      return '<div class="oa-card' + (s.onSite ? '' : ' off') + '" data-card="single:' + s.id + '">' +
+        '<div class="oa-cardrow"><span class="oa-handle" data-drag title="Drag to reorder">&#10265;</span>' + tglHTML('single', s) + '</div>' +
+        '<img src="' + esc(disp(s.src)) + '" alt="">' +
+        '<input class="oa-cap" type="text" data-cap="' + s.id + '" value="' + esc(s.cap) + '" placeholder="Caption"></div>';
     }
     function wireCards(){
       var dragEl = null;
@@ -2305,8 +2305,8 @@ var DEFAULTS = {
       h += '<div class="oa-chlist" data-role="choose" style="display:none"><button type="button" data-act="ch-add">Add work: photos + before / after project</button><button type="button" data-act="ch-cancel">Cancel</button></div>';
       h += noteHTML();
       h += '<p style="color:#5c5c66;font-size:13px;margin:10px 0 0">This is what appears on the site, in this order. Drag the handle to reorder; the switch hides a piece without deleting it.</p>';
-      h += '<div class="oa-chips"><button type="button" class="oa-chip' + (filter === 'all' ? ' on' : '') + '" data-chip="all">All</button>' + model.sections.map(function(s){ return '<button type="button" class="oa-chip' + (filter === s ? ' on' : '') + '" data-chip="' + esc(s) + '">' + esc(s) + '</button>'; }).join('') + '<button type="button" class="oa-chip' + (filter === '__ba' ? ' on' : '') + '" data-chip="__ba">Before &amp; After</button></div>';
-      h += '<div class="oa-drop" data-role="drop">Drop photo files here, or click to upload</div>';
+      h += '<div class="oa-chips"><button type="button" class="oa-addproj" data-act="upload">+ Before &amp; after project</button><span class="oa-chipset"><button type="button" class="oa-chip' + (filter === 'all' ? ' on' : '') + '" data-chip="all">All</button>' + model.sections.map(function(s){ return '<button type="button" class="oa-chip' + (filter === s ? ' on' : '') + '" data-chip="' + esc(s) + '">' + esc(s) + '</button>'; }).join('') + '<button type="button" class="oa-chip' + (filter === '__ba' ? ' on' : '') + '" data-chip="__ba">Before &amp; After</button></span></div>';
+      h += '<div class="oa-drop" data-role="drop"><svg class="oa-upic" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg><span>Drop photo files here, or click to upload</span></div>';
       var list = displayList();
       if (!list.length) h += '<div class="oa-empty" style="margin-top:12px">Nothing here yet. Drop photos above, or publish a before / after project.</div>';
       else h += '<div class="oa-cards">' + list.map(cardHTML).join('') + '</div>';
@@ -2434,7 +2434,7 @@ var DEFAULTS = {
         model.drafts = model.drafts.filter(function(x){ return x.id !== cur.id; });
         cur = null;
         page = model.sections.indexOf(np.sec); if (page < 0) page = 0;
-        view = 'portfolio'; note = 'Project published to Portfolio' + (np.title ? ': ' + np.title : '') + '. Save artists sends it to the site.'; noteWarn = false;
+        view = 'portfolio'; note = 'Project published to Portfolio' + (np.title ? ': ' + np.title : '') + '. Tap Save changes to keep it.'; noteWarn = false;
         commit(); render(); return;
       }
       if (act === 'draft') { persist(); cur = null; view = 'portfolio'; note = 'Smart draft saved. It waits here, half-finished is fine, until you publish it.'; noteWarn = false; render(); return; }
@@ -2964,6 +2964,210 @@ var DEFAULTS = {
   window.__oaDirty = function(){ return dirty; };
 })();
 </script>
+<style>
+/* oa-studio: artist detail layout */
+.as-hide{display:none !important}
+.as-tabs{display:flex;justify-content:center;gap:34px;border-bottom:1px solid #e3e1da;margin:6px 0 22px}
+.as-tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 2px 11px;font:inherit;font-size:17px;font-weight:500;color:#6b6b73;cursor:pointer;margin-bottom:-1px}
+.as-tabs button.on{color:#1e2f55;border-bottom-color:#1e2f55}
+.as-body{display:grid;grid-template-columns:232px minmax(0,1fr);gap:22px;align-items:start}
+.as-card{background:#fff;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.12);padding:14px 12px 16px}
+.as-id{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.as-ava{width:44px;height:44px;border-radius:50%;object-fit:cover;background:#e9e6de;flex:none}
+.as-name{font-size:15px;font-weight:600;line-height:1.2;word-break:break-word}
+.as-role{font-size:11.5px;color:#6b6b73}
+.as-lab{font-size:11.5px;font-weight:500;color:#2a2a30;margin:12px 0 5px}
+.as-card label.f{display:block;margin:0;font-size:0;letter-spacing:0;color:transparent}
+.as-card textarea{width:100%;font-size:11.5px;line-height:1.45;min-height:64px;border:1px solid #cfcfd4;border-radius:5px;padding:6px 8px;resize:vertical}
+.as-card .soc-wrap{margin-top:0 !important}
+.as-card .soc-wrap > div:first-child{display:none}
+.as-card .soc-row{gap:5px !important;margin-top:6px !important;border:1px solid #cfcfd4;border-radius:5px;padding:2px 4px;background:#fff}
+.as-card .soc-row select.soc-platform{flex:0 0 82px !important;width:82px !important;font-size:11px;border:0;padding:4px 2px;background:transparent}
+.as-card .soc-row input.soc-handle{font-size:11.5px;border:0;padding:4px 2px;min-width:0}
+.as-card .soc-row .soc-rm{font-size:0;width:22px;height:22px;padding:0;border:0;background:none;color:#8a8a92;flex:none}
+.as-card .soc-row .soc-rm::before{content:"\00d7";font-size:16px}
+.as-card .soc-add{margin-top:6px !important;font-size:11.5px;padding:4px 8px}
+.as-acts{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+.as-save{display:inline-flex;align-items:center;gap:6px;border:1px solid #cfcfd4;background:#fff;border-radius:5px;padding:5px 10px;font:inherit;font-size:12px;cursor:pointer}
+.as-status{display:inline-flex;align-items:center;gap:7px;border:0;background:none;font:inherit;font-size:12px;color:#8a8a92;cursor:pointer;padding:0}
+.as-status .tk{width:28px;height:16px;border-radius:999px;background:#cfcfd4;position:relative}
+.as-status .tk::after{content:"";position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:#fff;transition:left .15s}
+.as-status.on .tk{background:#3aa39a}
+.as-status.on .tk::after{left:14px}
+.as-card .as-rm{display:block;margin-top:12px}
+.as-card .as-rm > span{display:none}
+.as-card .as-rm .btn{width:100%;background:#fdecec;border:1px solid #e3a3a3;color:#b3261e;border-radius:5px;padding:7px;font-size:12.5px;font-weight:500}
+.as-pane .mp-row{margin-top:14px}
+.as-wrap .oa-pf{margin-top:0}
+.as-wrap .oa-pf .oa-head{display:none}
+.as-wrap .oa-pf > p{display:none}
+.as-wrap .oa-chips{display:flex;justify-content:space-between;align-items:center;margin:0 0 6px;gap:10px}
+.as-wrap .oa-chipset{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end;margin-left:auto}
+.as-wrap .oa-chip{border:0;background:none;padding:2px 0;border-radius:0;font-size:12px;font-weight:400;color:#2a2a30}
+.as-wrap .oa-chip::before{content:"[ "}
+.as-wrap .oa-chip::after{content:" ]"}
+.as-wrap .oa-chip.on{background:none;color:#1e2f55;font-weight:600}
+.as-wrap .oa-addproj{border:0;background:none;padding:2px 0;font:inherit;font-size:12px;color:#6b6b73;cursor:pointer;text-decoration:underline}
+.as-wrap .oa-drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:56px;border:1.5px dashed #b9b9bf;border-radius:8px;background:transparent;color:#3a3a40;font-size:11.5px;padding:8px;margin-top:6px;cursor:pointer}
+.as-wrap .oa-upic{color:#8a8a92}
+.as-wrap .oa-cards{grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:12px;margin-top:14px}
+.as-wrap .oa-card{background:#fff;border:0;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,.14);padding:0 0 7px;overflow:hidden;display:flex;flex-direction:column}
+.as-wrap .oa-card.wide{grid-column:span 2}
+.as-wrap .oa-card > img{height:105px;border-radius:0}
+.as-wrap .oa-cardrow{margin:0;padding:5px 7px;gap:4px;flex-wrap:nowrap;min-height:28px}
+.as-wrap .oa-card.wide .oa-cardrow{order:3}
+.as-wrap .oa-card.wide .oa-cardrow .btn{font-size:11px;padding:3px 7px}
+.as-wrap .oa-handle{font-size:13px}
+.as-wrap .oa-tgl{font-size:10.5px;font-weight:400;color:#2a2a30;gap:5px;flex-direction:row-reverse;white-space:nowrap}
+.as-wrap .oa-tgl .tk{width:26px;height:15px}
+.as-wrap .oa-tgl .tk::after{width:11px;height:11px}
+.as-wrap .oa-tgl.on{color:#2a2a30}
+.as-wrap .oa-tgl.on .tk{background:#3aa39a}
+.as-wrap .oa-tgl.on .tk::after{left:13px}
+.as-wrap .oa-card .oa-cap{margin:7px 7px 0;width:calc(100% - 14px);font-size:11.5px;padding:4px 7px;border:1px solid #cfcfd4;border-radius:4px}
+.as-wrap .oa-splitwrap{padding:7px 7px 0}
+.as-wrap .oa-split{gap:7px;min-height:122px}
+.as-wrap .oa-split .mid{display:none}
+.as-wrap .oa-split .half{border-radius:4px;overflow:hidden;min-height:122px}
+.as-wrap .oa-split .tag{top:auto;bottom:6px;left:50%;transform:translateX(-50%);background:none;font-size:11px;text-shadow:0 1px 3px rgba(0,0,0,.8)}
+.as-wrap .oa-bapill{background:#fff;color:#2a2a30;font-weight:400;font-size:10.5px;border:1px solid #d4d4d8;letter-spacing:0}
+.as-on .oa-edit-actions{position:sticky;bottom:0;z-index:5;display:flex;justify-content:flex-end;gap:10px;margin:22px -4px 0;padding:12px 4px;background:#fff;border-top:1px solid #e3e1da}
+.as-on .oa-edit-actions .btn{flex:0 0 auto;min-width:0;padding:8px 14px;border-radius:5px;font-size:13.5px}
+.as-on .oa-edit-actions #p-save-artists{display:inline-flex !important;background:#2a8a82;border-color:#2a8a82;color:#fff}
+html.dark .as-card,html.dark .as-wrap .oa-card,html.dark .as-on .oa-edit-actions{background:#1d1d21;border-color:#2e2e34}
+html.dark .as-tabs{border-color:#2e2e34}
+html.dark .as-tabs button.on{color:#f4f4f5;border-bottom-color:#f4f4f5}
+html.dark .as-lab,html.dark .as-wrap .oa-chip,html.dark .as-wrap .oa-tgl,html.dark .as-wrap .oa-drop{color:#d4d4d8}
+html.dark .as-wrap .oa-chip.on{color:#fff}
+html.dark .as-card textarea,html.dark .as-card .soc-row,html.dark .as-save{background:#232329;border-color:#3a3a42;color:#f4f4f5}
+html.dark .as-card .as-rm .btn{background:#3a1d1d;border-color:#7a3a3a;color:#f4b4b4}
+@media (max-width:820px){ .as-body{grid-template-columns:1fr} .as-tabs{gap:18px} .as-tabs button{font-size:15px} }
+</style>
+<script>
+/* oa-studio: artist detail layout. Re-homes each artist's existing fields (so their
+   handlers, save and cancel keep working) into: tabs on top, profile card left,
+   portfolio or profile fields right, Cancel / Save changes footer. */
+(function(){
+  'use strict';
+  var panel = document.querySelector('[data-panel="artists"]');
+  if (!panel) return;
+  var SKEY = 'oa-artist-status-v1';
+  function loadStatus(){ try { return JSON.parse(localStorage.getItem(SKEY) || '{}') || {}; } catch (e) { return {}; } }
+  function storeStatus(st){ try { localStorage.setItem(SKEY, JSON.stringify(st)); return true; } catch (e) { return false; } }
+  function say(m){ if (window.__oaToast) window.__oaToast(m); }
+  function el(tag, cls, txt){ var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+  function slugOf(blk){ var l = blk.querySelector('.soc-list[data-artist]'); return l ? l.getAttribute('data-artist') : ''; }
+  function blocks(){ return Array.prototype.slice.call(panel.querySelectorAll('.soc-list[data-artist]')).filter(function(l){ return l.getAttribute('data-artist') !== 'new'; }).map(function(l){ return l.closest('div[style*="border-top"]'); }).filter(Boolean); }
+
+  function build(blk){
+    if (blk.getAttribute('data-as')) return;
+    var slug = slugOf(blk);
+    var grid = blk.querySelector('.addgrid'), side = blk.querySelector('.artist-side'), pf = blk.querySelector('.pf-wrap');
+    var ta = blk.querySelector('textarea'), about = ta ? ta.closest('label') : null;
+    var rmBtn = null; blk.querySelectorAll('button').forEach(function(b){ if (!rmBtn && b.textContent.trim() === 'Remove artist') rmBtn = b; });
+    if (!grid || !side || !pf || !about || !rmBtn) return;      /* unknown shape: leave it alone */
+    blk.setAttribute('data-as', '1');
+    var mp = side.querySelector('.mp-row'), soc = side.querySelector('.soc-wrap');
+    var gi = grid.querySelectorAll('input');
+
+    var wrap = el('div', 'as-wrap');
+    var tabs = el('div', 'as-tabs'); tabs.setAttribute('role', 'tablist');
+    var tProf = el('button', '', 'Profile Information'), tPort = el('button', 'on', 'Portfolio & Submissions');
+    [tProf, tPort].forEach(function(t){ t.type = 'button'; t.setAttribute('role', 'tab'); tabs.appendChild(t); });
+    tProf.setAttribute('data-astab', 'profile'); tPort.setAttribute('data-astab', 'portfolio');
+    var body = el('div', 'as-body');
+    var card = el('aside', 'as-card');
+
+    var id = el('div', 'as-id'), ava = el('img', 'as-ava'), idt = el('div'), nm = el('div', 'as-name'), role = el('div', 'as-role');
+    ava.alt = ''; idt.appendChild(nm); idt.appendChild(role); id.appendChild(ava); id.appendChild(idt); card.appendChild(id);
+    card.appendChild(el('div', 'as-lab', 'About the Artist')); card.appendChild(about);
+    card.appendChild(el('div', 'as-lab', 'Social Links')); if (soc) card.appendChild(soc);
+
+    var acts = el('div', 'as-acts');
+    var save = el('button', 'as-save', 'Save'); save.type = 'button';
+    save.addEventListener('click', function(){ var sb = document.getElementById('p-save-artists'); if (sb) sb.click(); });
+    var stat = el('button', 'as-status'); stat.type = 'button';
+    stat.innerHTML = '<span class="lbl">Status</span><span class="tk"></span>';
+    function paintStatus(){ var on = loadStatus()[slug] !== false; stat.classList.toggle('on', on); stat.setAttribute('aria-pressed', String(on)); stat.title = on ? 'Shown on the site. Tap to hide this artist.' : 'Hidden from the site. Tap to show this artist.'; }
+    stat.addEventListener('click', function(){
+      var st = loadStatus(), on = st[slug] !== false; st[slug] = !on;
+      if (!storeStatus(st)) { say('Couldn’t save the status. Your browser storage is full or blocked.'); return; }
+      paintStatus(); say(!on ? 'Artist shown on the site.' : 'Artist hidden from the site.');
+      if (window.__oaRefreshList) window.__oaRefreshList();
+    });
+    paintStatus();
+    acts.appendChild(save); acts.appendChild(stat); card.appendChild(acts);
+    var rmRow = rmBtn.parentNode; rmRow.classList.add('as-rm'); card.appendChild(rmRow);
+
+    var main = el('div', 'as-main');
+    var pPort = el('div', 'as-pane'); pPort.setAttribute('data-pane', 'portfolio'); pPort.appendChild(pf);
+    var pProf = el('div', 'as-pane as-hide'); pProf.setAttribute('data-pane', 'profile'); pProf.appendChild(grid); if (mp) pProf.appendChild(mp);
+    main.appendChild(pPort); main.appendChild(pProf);
+    body.appendChild(card); body.appendChild(main);
+    wrap.appendChild(tabs); wrap.appendChild(body);
+    var rl = blk.querySelector('.roleline'); if (rl) rl.classList.add('as-hide');
+    side.classList.add('as-hide');
+    blk.insertBefore(wrap, blk.firstChild);
+    blk.classList.add('as-on');
+
+    function sync(){
+      nm.textContent = (gi[0] && gi[0].value.trim()) || slug;
+      role.textContent = ((gi[1] && gi[1].value.trim()) || 'Tattoo') + ' Artist';
+      var th = blk.querySelector('.mp-thumb'), s = th ? th.getAttribute('src') : '';
+      if (s) { ava.src = s; ava.style.visibility = ''; } else { ava.removeAttribute('src'); ava.style.visibility = 'hidden'; }
+    }
+    blk.addEventListener('input', sync); blk.addEventListener('change', function(){ setTimeout(sync, 50); });
+    var th0 = blk.querySelector('.mp-thumb');
+    if (th0 && window.MutationObserver) new MutationObserver(sync).observe(th0, { attributes: true, attributeFilter: ['src'] });
+    sync();
+
+    function show(which){
+      tProf.classList.toggle('on', which === 'profile'); tPort.classList.toggle('on', which !== 'profile');
+      tProf.setAttribute('aria-selected', String(which === 'profile')); tPort.setAttribute('aria-selected', String(which !== 'profile'));
+      pProf.classList.toggle('as-hide', which !== 'profile'); pPort.classList.toggle('as-hide', which === 'profile');
+    }
+    tProf.addEventListener('click', function(){ show('profile'); });
+    tPort.addEventListener('click', function(){ show('portfolio'); });
+    blk.__asShow = show;
+    blk.__asTab = function(){ return tProf.classList.contains('on') ? 'profile' : 'portfolio'; };
+  }
+  function buildAll(){ blocks().forEach(build); }
+
+  /* "Your artists" intro hides while one artist is open */
+  function syncChrome(){
+    var back = document.getElementById('oa-artist-back');
+    var editing = !!(back && back.parentNode.style.display !== 'none');
+    var shead = panel.querySelector('.section > .shead'); if (shead) shead.classList.toggle('as-hide', editing);
+  }
+
+  /* Remove artist acts at once today; ask first. Capture phase runs before the remove handlers. */
+  panel.addEventListener('click', function(e){
+    var b = e.target && e.target.closest ? e.target.closest('button') : null;
+    if (!b || b.textContent.trim() !== 'Remove artist') return;
+    var blk = b.closest('[data-as]'); var n = blk ? (blk.querySelector('.as-name') || {}).textContent : '';
+    if (!window.confirm('Remove ' + (n || 'this artist') + '? Their page comes down at the next publish.')) { e.preventDefault(); e.stopImmediatePropagation(); e.stopPropagation(); }
+  }, true);
+
+  /* Artist list rows show hidden artists */
+  var _refresh = window.__oaRefreshList;
+  if (_refresh) window.__oaRefreshList = function(){ _refresh(); markRows(); };
+  function markRows(){
+    var st = loadStatus();
+    panel.querySelectorAll('.artist-row').forEach(function(r){
+      var w = r.querySelector('.ar-what'), slug = r.getAttribute('data-slug');
+      if (!w) return;
+      var base = w.getAttribute('data-base'); if (base == null) { base = w.textContent; w.setAttribute('data-base', base); }
+      w.textContent = st[slug] === false ? base + ' · Hidden from site' : base;
+    });
+  }
+
+  window.__oaStudioTab = function(slug, which){ var b = null; blocks().forEach(function(x){ if (slugOf(x) === slug) b = x; }); if (b && b.__asShow) { b.__asShow(which); return true; } return false; };
+  window.__oaStudioCurrent = function(slug){ var b = null; blocks().forEach(function(x){ if (slugOf(x) === slug) b = x; }); return b && b.__asTab ? b.__asTab() : 'portfolio'; };
+
+  document.addEventListener('click', function(){ setTimeout(function(){ buildAll(); syncChrome(); }, 0); });
+  buildAll(); syncChrome(); markRows();
+})();
+</script>
 <script>
 /* oa-router: every view has its own URL, e.g. #/requests or #/artists/lex.
    The URL is the only record of which view is open. Navigation still goes through the
@@ -3002,13 +3206,13 @@ var DEFAULTS = {
   }
   function domRoute(){
     var tab = curTab(), r = '/' + (NAME[tab] || 'home');
-    if (tab === 'artists') { var s = openSlug(); if (s) r += '/' + encodeURIComponent(s); }
+    if (tab === 'artists') { var s = openSlug(); if (s) { r += '/' + encodeURIComponent(s); if (window.__oaStudioCurrent && window.__oaStudioCurrent(s) === 'profile') r += '/profile'; } }
     return r;
   }
   function setTitle(){
     var b = navBtn(curTab()), t = b ? b.textContent.trim() : '';
     var s = curTab() === 'artists' ? openSlug() : '';
-    if (s) { var ed = document.getElementById('oa-artist-editing'); t += ': ' + ((ed && ed.textContent.trim()) || s); }
+    if (s) { var ed = document.getElementById('oa-artist-editing'); t += ': ' + ((ed && ed.textContent.trim()) || s); if (window.__oaStudioCurrent && window.__oaStudioCurrent(s) === 'profile') t += ', profile'; }
     document.title = t ? t + ' | ' + BASE_TITLE : BASE_TITLE;
   }
   function writeUrl(push){
@@ -3028,8 +3232,9 @@ var DEFAULTS = {
     var parts = h.split('/').filter(Boolean), out = [];
     for (var i = 0; i < parts.length; i++) { try { out.push(decodeURIComponent(parts[i])); } catch (e) { return null; } }
     var tab = ROUTES[out[0]];
-    if (!tab || out.length > 2 || (out.length === 2 && tab !== 'artists')) return null;
-    return { tab: tab, slug: out[1] || '' };
+    if (!tab || out.length > 3 || (out.length >= 2 && tab !== 'artists')) return null;
+    if (out.length === 3 && out[2] !== 'profile' && out[2] !== 'portfolio') return null;
+    return { tab: tab, slug: out[1] || '', sub: out[2] || 'portfolio' };
   }
   function apply(){
     if (!appShown()) return;              /* signed out: keep the link, open it after sign-in */
@@ -3051,7 +3256,9 @@ var DEFAULTS = {
           return;
         }
         row.click();
-      } else if (!r.slug && open && backBtn()) {
+      }
+      if (r.slug && openSlug() === r.slug && window.__oaStudioTab) window.__oaStudioTab(r.slug, r.sub);
+      if (!r.slug && open && backBtn()) {
         backBtn().click();
       }
     }
