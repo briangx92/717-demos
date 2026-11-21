@@ -319,6 +319,7 @@
     s.artists.forEach(function (a) { if (!a.removedAt && a.visible && !a.name.trim()) out.push('An artist page has no name.'); });
     if (s.banner.text.length > OA.LIMITS.bannerText) out.push('The banner message is over ' + OA.LIMITS.bannerText + ' characters.');
     if (s.announcements.length > OA.LIMITS.annMax) out.push('There are more than ' + OA.LIMITS.annMax + ' announcements. Remove some.');
+    [['deposit', 'Deposit'], ['age', 'Age and ID'], ['aftercare', 'Aftercare']].forEach(function (p) { if (((s.policies || {})[p[0]] || '').length > OA.LIMITS.policy) out.push('The ' + p[1] + ' policy is over ' + OA.LIMITS.policy + ' characters.'); });
     s.artists.forEach(function (x) {
       if (x.removedAt) return;
       var who = OA.nick(x), p = OA.socialsProblem(x.socials || []);

@@ -292,6 +292,9 @@
   .s-ask__intro p{ margin-top:var(--sp-2); color:var(--ink-soft); font-size:var(--text-h3); }
   .s-ask__intro .s-ask__call{ font-size:var(--text-body); color:var(--ink); }
   .s-ask__intro a{ font-weight:700; color:var(--accent-bright); }
+  .s-ask__intro .s-ask__pol{ margin-top:var(--sp-2); font-size:.875rem; }
+  .s-ask__intro .s-ask__pol a{ font-weight:400; color:var(--ink-soft); text-underline-offset:3px; }
+  .s-ask__intro .s-ask__pol a:hover{ color:var(--ink); }
   .s-ask .c-card{ width:100%; max-width:640px; padding:var(--sp-3) var(--sp-2); }
   @media (min-width:720px){ .s-ask .c-card{ padding:var(--sp-4); } }
   @media (min-width:1024px){ .s-ask__grid{ grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:var(--sp-8); align-items:start; } .s-ask__intro{ position:sticky; top:var(--sp-10); } .s-ask .c-card{ justify-self:end; } }
@@ -618,6 +621,7 @@
       <h2 id="ask-title">Start a request</h2>
       <p id="ask-lede">Leave your number for a call back, or build the full request in a few taps.</p>
       <p class="s-ask__call" id="ask-call"></p>
+      <p class="s-ask__pol"><a data-pol-link href="instattoosionalized-policies.html">Shop policies</a></p>
     </div>
     <div class="c-card">
       <div class="s-hp" aria-hidden="true"><label>Leave this empty<input type="text" id="hp-check" name="hp_check" tabindex="-1" autocomplete="off"></label></div>
@@ -703,6 +707,7 @@
       <a href="#services">Services</a>
       <a href="#visit">Visit</a>
       <a href="instattoosionalized-gallery.html">Gallery</a>
+      <a data-pol-link href="instattoosionalized-policies.html">Policies</a>
       <a data-href="facebook" target="_blank" rel="noopener">Facebook</a>
       <a href="https://briangx92.github.io/instattoosionalized/admin/" id="oa-footer-login" class="oa-footer-link">Owner login</a>
     </nav>
@@ -2033,6 +2038,7 @@ try { if (window.SiteContent) SiteContent.mergeHome(SITE.artists); } catch (e) {
   try {
     var data = SC.read(), el = SC.el;
     SC.previewBar(!!data);
+    SC.homePolicies();
     if (!data) return;
     var c = SC.cleanNews(data), today = SC.shopToday(SITE.timeZone);
     if (c.banner && SC.active(c.banner, today)) {

@@ -9,7 +9,7 @@
   OA.PREVIEW_KEY = 'oa2:preview:v1';
   /* The demo website, relative to the portal. The real build points this at the shop's live address. */
   OA.LIVE_URL = '../instattoosionalized-tattoos-and-piercings.html';
-  OA.LIMITS = { artistName: 80, artistRole: 40, artistBio: 1500, bannerText: 140, annTitle: 80, annBody: 400, annLink: 300, annMax: 20 };
+  OA.LIMITS = { policy: 800, artistName: 80, artistRole: 40, artistBio: 1500, bannerText: 140, annTitle: 80, annBody: 400, annLink: 300, annMax: 20 };
   OA.ANN_KINDS = [['notice', 'News'], ['closure', 'Closure'], ['special', 'Special']];
 
   var ISO = /^\d{4}-\d{2}-\d{2}$/;
@@ -75,6 +75,7 @@
       v: 1,
       at: at,
       artists: OA.artistsContent(site),
+      policies: { deposit: String((site.policies || {}).deposit || '').trim(), age: String((site.policies || {}).age || '').trim(), aftercare: String((site.policies || {}).aftercare || '').trim() },
       banner: { on: !!b.on, text: String(b.text || ''), start: b.start || '', end: b.end || '' },
       announcements: (site.announcements || []).map(function (a) {
         return { id: a.id, kind: a.kind, title: a.title, body: a.body || '', link: a.link || '', start: a.start || '', end: a.end || '', pinned: !!a.pinned };
