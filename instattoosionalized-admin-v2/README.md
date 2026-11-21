@@ -88,3 +88,15 @@ On a computer, the portal can't dial or text. So the text dialog and the client 
 - **Only the banner and announcements reach the public demo page so far.** Hours, prices, services, artists and photos join as they get a real publish path.
 - **Fixed:** the portal banner dates were saved as start/end but the old public code read from/to, and compared against the UTC date. The old v1 portal still uses its own key; the new content takes over whenever it exists.
 - **Reset demo data** removes the published copy.
+
+## Open times in the booking dialog (new)
+
+The booking dialog (Set up a consultation, Book the session, New appointment, and changing an appointment) now lists the free start times, so nobody has to guess and leave for the calendar.
+
+- **What it shows:** the next two weeks of open days for the chosen artist, with each free start time as a button. Only starts where the whole appointment fits are listed. Shop hours, closed days, time off, bookings, and times already past today are all respected.
+- **Length:** from the kind of appointment, or from the Ends field if you set it by hand. Changing the kind, the artist or the length redraws the list.
+- **Client's picks:** if the request asked for certain days or a time of day, matching times are marked and the first few appear at the top as "{first name} asked for weekends, afternoons". If nothing open matches, it says so and shows everything.
+- **A specific time asked for:** the dialog opens on that date and time.
+- **One tap** fills the date, start and end. The typed fields stay below for odd cases, and the clash warning still runs as a backstop.
+- **First five days show; "Show more days"** adds five at a time.
+- **Limit:** it only knows what is in the portal's calendar. Anything the artist books only in their own Google Calendar is not seen as busy.

@@ -86,6 +86,35 @@
     return out.slice(0, 5);
   };
 
+  /* Does a slot match what the client asked for? Only true when they actually asked for something:
+     a specific time, certain days, or a time of day. "Flexible, any time" matches nothing, because everything is fine. */
+  OA.prefFits = function (pref, date, m, dur) {
+    if (!pref) return false;
+    var p = OA.cleanPref(pref);
+    if (p.mode === 'exact') return p.date === date && !!p.start && OA.mins(p.start) === m;
+    if (p.mode === 'days' && (!p.days.length || p.days.indexOf(OA.dow(date)) < 0)) return false;
+    if (p.mode === 'flex' && p.part === 'any') return false;
+    var w = PARTS[p.part], to = w.to === '24:00' ? 1440 : OA.mins(w.to);
+    return m >= OA.mins(w.from) && m < to;
+  };
+
+  /* Every free start time over the next stretch of days, for the booking dialog's list.
+     Only starts where the whole appointment fits: shop hours, time off, and who is already booked are all respected. */
+  OA.openTimes = function (o) {
+    var cands = candidates(o.artist, o.kind || 'tattoo'), out = [], d = OA.todayISO(), now = nowParts(), span = o.span || 14;
+    for (var n = 0; n < span; n++, d = OA.addDays(d, 1)) {
+      if (!OA.isOpenDay(d)) continue;
+      var hr = OA.hoursFor(d), slots = [];
+      for (var m = OA.mins(hr.open); m + o.dur <= OA.mins(hr.close); m += 30) {
+        if (d === now.date && m <= now.mins) continue;
+        var t = OA.hhmm(m), e = OA.hhmm(m + o.dur);
+        if (cands.some(function (slug) { return !OA.apptConflicts({ date: d, start: t, end: e, artist: slug }, o.ignoreApptId).length; })) slots.push({ date: d, start: t, end: e, pick: OA.prefFits(o.pref, d, m, o.dur) });
+      }
+      if (slots.length) out.push({ date: d, slots: slots });
+    }
+    return out;
+  };
+
   /* The shape Google Calendar's freebusy.query wants: one window per day it could happen, with offsets, in the shop's zone. */
   OA.prefWindows = function (p, max) {
     p = OA.cleanPref(p); var tz = OA.gcalSettings().tz, out = [];

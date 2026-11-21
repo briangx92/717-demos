@@ -31,6 +31,37 @@
       price: ui.input(d.price, { placeholder: 'e.g. $140' }), note: ui.area(d.note, { rows: 2 })
     };
     var live = h('div', { class: 'form-live', 'aria-live': 'polite' });
+    var times = h('div', { class: 'opentimes' }), shown = 5, pref = defaults.pref || null;
+    function durText(m) { var hrs = Math.floor(m / 60), r = m % 60; return (hrs ? hrs + (hrs > 1 ? ' hours' : ' hour') : '') + (hrs && r ? ' ' : '') + (r ? r + ' minutes' : ''); }
+    function slotBtn(sl, v, label) {
+      var on = v.date === sl.date && v.start === sl.start;
+      return h('button', { type: 'button', class: 'slot' + (sl.pick ? ' pick' : ''), 'aria-pressed': on ? 'true' : 'false', 'aria-label': OA.fmtDow(sl.date) + ', ' + OA.fmtRange(sl.start, sl.end),
+        on: { click: function () { f.date.value = sl.date; f.start.value = sl.start; f.end.value = sl.end; check(); } } }, label);
+    }
+    function paintTimes() {
+      OA.clear(times); var v = read();
+      var dur = endTouched && v.start && v.end && OA.mins(v.end) > OA.mins(v.start) ? OA.mins(v.end) - OA.mins(v.start) : DUR[v.type] || 60;
+      var days = OA.openTimes({ artist: v.artist, dur: dur, pref: pref, ignoreApptId: a.id });
+      times.appendChild(h('strong', { text: 'Open times with ' + OA.chairName(v.artist) + ' (' + durText(dur) + ' each)' }));
+      if (!days.length) { times.appendChild(h('p', { class: 'hint warn', text: 'Nothing is open in the next two weeks for ' + durText(dur) + '. Try a shorter length or another artist, or set a date yourself below.' })); return; }
+      if (pref && OA.prefText(pref) !== 'Flexible') {
+        var picks = [];
+        days.forEach(function (dy) { dy.slots.filter(function (x) { return x.pick; }).slice(0, 2).forEach(function (x) { picks.push(x); }); });
+        picks = picks.slice(0, 6);
+        var first = (v.client || 'The client').split(' ')[0];
+        if (picks.length) {
+          var row = h('div', { class: 'ot-row' });
+          picks.forEach(function (x) { row.appendChild(slotBtn(x, v, OA.fmtDow(x.date) + ' ' + OA.fmtTime(x.start))); });
+          times.appendChild(h('div', { class: 'ot-picks' }, h('span', { class: 'ot-label', text: first + ' asked for ' + OA.prefText(pref).toLowerCase() }), row));
+        } else times.appendChild(h('p', { class: 'hint warn', text: 'Nothing open matches what ' + first + ' asked for (' + OA.prefText(pref).toLowerCase() + ') in the next two weeks. All open times are below.' }));
+      }
+      days.slice(0, shown).forEach(function (dy) {
+        var row = h('div', { class: 'ot-row' });
+        dy.slots.forEach(function (x) { row.appendChild(slotBtn(x, v, OA.fmtTime(x.start))); });
+        times.appendChild(h('div', { class: 'ot-day' }, h('span', { class: 'ot-label', text: (dy.date === OA.todayISO() ? 'Today, ' : '') + OA.fmtDow(dy.date) }), row));
+      });
+      if (days.length > shown) times.appendChild(ui.btn('Show more days', function () { shown += 5; paintTimes(); }, 'small quiet'));
+    }
     function read() { return { client: f.client.value, phone: f.phone.value, type: f.type.value, artist: f.artist.value, date: f.date.value, start: f.start.value, end: f.end.value, piece: f.piece.value, deposit: f.deposit.value, price: f.price.value, note: f.note.value, requestId: a.requestId || defaults.requestId || '' }; }
     function check() {
       OA.clear(live); var v = read(), msgs = [];
@@ -40,15 +71,16 @@
         else { var hr = OA.hoursFor(v.date); if (OA.mins(v.start) < OA.mins(hr.open) || OA.mins(v.end) > OA.mins(hr.close)) msgs.push(['warn', 'That runs outside the shop’s hours that day (' + OA.fmtRange(hr.open, hr.close) + ').']); }
       }
       msgs.forEach(function (m) { live.appendChild(h('div', { class: 'hint ' + m[0], text: m[1] })); });
+      paintTimes();
     }
-    f.type.addEventListener('change', function () { if (!endTouched) { f.end.value = OA.hhmm(OA.mins(f.start.value || '12:00') + DUR[f.type.value]); } check(); });
+    f.type.addEventListener('change', function () { shown = 5; if (!endTouched) { f.end.value = OA.hhmm(OA.mins(f.start.value || '12:00') + DUR[f.type.value]); } check(); });
     f.start.addEventListener('change', function () { if (!endTouched && f.start.value) f.end.value = OA.hhmm(Math.min(23 * 60 + 45, OA.mins(f.start.value) + DUR[f.type.value])); check(); });
     f.end.addEventListener('change', function () { endTouched = true; check(); });
-    [f.artist, f.date].forEach(function (x) { x.addEventListener('change', check); });
+    f.artist.addEventListener('change', function () { shown = 5; check(); }); f.date.addEventListener('change', check);
     f.client.addEventListener('change', function () { var c = OA.findClient(f.client.value, ''); if (c && !f.phone.value) f.phone.value = c.phone; });
     var body = h('div', { class: 'form-grid' }, dl,
       ui.field('Client', f.client, null, 'span2'), ui.field('Phone', f.phone, a.clientId ? null : 'Needed to text them from the portal.'),
-      ui.field('What kind', f.type), ui.field('With', f.artist), ui.field('Date', f.date), ui.field('Starts', f.start), ui.field('Ends', f.end),
+      ui.field('What kind', f.type), ui.field('With', f.artist, null, 'span2'), h('div', { class: 'span2' }, times), h('p', { class: 'hint span2', text: 'Or set the date and time yourself:' }), ui.field('Date', f.date), ui.field('Starts', f.start), ui.field('Ends', f.end),
       ui.field('Piece', f.piece, null, 'span2'), ui.field('Deposit', f.deposit), ui.field('Price', f.price), ui.field('Note', f.note, null, 'span2'), live);
     check();
     if (existing && existing.sync && existing.sync.state === 'failed') {

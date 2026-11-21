@@ -141,7 +141,8 @@
       } }).then(function (v) { if (v) rer(); });
     }
     function book(type) {
-      OA.apptDialog(null, { type: type, artist: r.artist, client: r.name, phone: r.phone, piece: r.idea, price: type === 'consult' ? '' : r.quote, deposit: type === 'consult' ? 'none' : (r.paidAt ? 'paid' : r.askedAt ? 'asked' : 'none'), requestId: r.id }).then(function (ap) { if (ap && ap.id) { act.linkAppt(r, ap); rer(); } });
+      var ex = r.pref && r.pref.mode === 'exact' && OA.validISO(r.pref.date) && r.pref.date >= OA.todayISO() ? { date: r.pref.date, start: r.pref.start } : {};
+      OA.apptDialog(null, { type: type, artist: r.artist, client: r.name, phone: r.phone, pref: r.pref, date: ex.date, start: ex.start, piece: r.idea, price: type === 'consult' ? '' : r.quote, deposit: type === 'consult' ? 'none' : (r.paidAt ? 'paid' : r.askedAt ? 'asked' : 'none'), requestId: r.id }).then(function (ap) { if (ap && ap.id) { act.linkAppt(r, ap); rer(); } });
     }
     function apptBlock() {
       if (!a || a.status === 'cancelled') return null;
