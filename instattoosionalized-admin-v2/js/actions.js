@@ -126,11 +126,12 @@
     else { a = Object.assign({ id: OA.uid('a'), status: 'booked', requestId: d.requestId || '', followUp: null }, rec); st().appts.push(a); }
     var r = a.requestId && OA.req(a.requestId);
     if (r && !r.apptId) r.apptId = a.id;
+    if (OA.gcal) OA.gcal.onChange(a);
     S.commit(); return { ok: true, appt: a };
   };
   act.setApptStatus = function (a, status) {
     if (a.status === status) return false;
-    a.status = status;
+    a.status = status; if (OA.gcal) OA.gcal.onChange(a);
     var r = a.requestId && OA.req(a.requestId);
     if (r) {
       log(r, 'Appointment ' + OA.APPT_STATUS[status].toLowerCase() + ' (' + OA.fmtShort(a.date) + ')');

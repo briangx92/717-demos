@@ -4,15 +4,18 @@
 (function () {
   'use strict';
   var OA = window.OA, S = OA.store;
-  var TZ = 'America/New_York';
+  var DEFAULT_TZ = 'America/New_York';
   var NOT_CONNECTED = 'Google Calendar is not connected. This demo has no Google sign-in, so nothing is sent to or read from any calendar.';
 
   OA.gcalSettings = function () {
     var s = S.state.settings;
-    if (!s.gcal) s.gcal = { calendars: {}, detail: 'minimal' };
+    if (!s.gcal) s.gcal = { calendars: {}, detail: 'minimal', tz: DEFAULT_TZ };
+    if (!s.gcal.tz) s.gcal.tz = DEFAULT_TZ;
     if (!s.gcal.calendars) s.gcal.calendars = {};
     return s.gcal;
   };
+
+  OA.gcalValidTz = function (tz) { try { new Intl.DateTimeFormat('en-US', { timeZone: tz }); return true; } catch (e) { return false; } };
 
   OA.gcal = {
     connected: false,
@@ -21,9 +24,15 @@
     connect: function () { return Promise.reject(new Error(NOT_CONNECTED)); },
     push: function () { return Promise.reject(new Error(NOT_CONNECTED)); },
     remove: function () { return Promise.reject(new Error(NOT_CONNECTED)); },
+    /* Called by every action that adds, changes or cancels an appointment. When a real connection exists this is where the
+       appointment is marked a.sync = {state:'pending'} and handed to the server; the answer then sets 'ok' or 'failed' with a reason.
+       With no connection it does nothing, on purpose: appointments carry no sync state until sync exists. */
+    onChange: function (a) { if (!OA.gcal.connected) return; a.sync = { state: 'pending', at: Date.now() }; },
+    /* Appointments whose last push did not reach Google. Always empty until the real version exists. */
+    needsAttention: function () { return S.state.appts.filter(function (a) { return a.sync && (a.sync.state === 'failed') && a.status !== 'cancelled'; }); },
     /* Pure mapping from a portal appointment to a Google Calendar event resource. Safe to call and to test today. */
     toEvent: function (a) {
-      var detail = OA.gcalSettings().detail, shop = S.state.site.shop, c = OA.client(a.clientId);
+      var TZ = OA.gcalSettings().tz, detail = OA.gcalSettings().detail, shop = S.state.site.shop, c = OA.client(a.clientId);
       var who = OA.first(a.client) + (a.client.split(/\s+/)[1] ? ' ' + a.client.split(/\s+/)[1].charAt(0) + '.' : '');
       var ev = {
         summary: who + ', ' + OA.APPT_TYPES[a.type].toLowerCase() + ' with ' + OA.chairName(a.artist),

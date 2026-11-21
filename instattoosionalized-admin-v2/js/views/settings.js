@@ -82,6 +82,13 @@
       });
       card.appendChild(ui.field(c.name, inp));
     });
+    var tz = ui.input(g.tz, { 'aria-label': 'Time zone' });
+    tz.addEventListener('change', function () {
+      var v = tz.value.trim();
+      if (!OA.gcalValidTz(v)) { note(saved, 'That is not a time zone name. Use a name like America/New_York. Not saved.', true); return; }
+      g.tz = v; S.commit(); note(saved, 'Saved. Not used until Google Calendar is connected.');
+    });
+    card.appendChild(ui.field('Shop time zone', tz, 'Events are created in this zone so a 1 PM tattoo is 1 PM on every phone.'));
     var detail = ui.select([['minimal', 'First name, last initial and type only'], ['full', 'Also include what is being done']], g.detail, { 'aria-label': 'What goes in the event' });
     detail.addEventListener('change', function () { g.detail = detail.value; S.commit(); note(saved, 'Saved. Not used until Google Calendar is connected.'); });
     card.appendChild(ui.field('What goes in each event', detail, 'Phone numbers, notes and deposit status are never sent. Calendars are often shared, and clients\u2019 details should stay in the portal.'));

@@ -21,6 +21,9 @@
     OA.scopeAppts(OA.followUpsDue()).forEach(function (a) {
       items.push({ pri: 4, kind: 'care', text: 'Check how ' + a.client + '’s ' + (a.piece || 'tattoo').toLowerCase() + ' healed', meta: 'Done ' + OA.diffDays(today, a.date) + ' days ago. A healed photo is good for the portfolio.', cta: 'Write check-in', run: function (done) { OA.sendFollowUp(a, done); } });
     });
+    OA.scopeAppts(OA.gcal.needsAttention()).forEach(function (a) {
+      items.push({ pri: 2, kind: 'warn', text: a.client + '\u2019s appointment is not on Google Calendar', meta: OA.fmtDow(a.date) + ' at ' + OA.fmtTime(a.start) + ' with ' + OA.chairName(a.artist) + '. ' + ((a.sync && a.sync.error) || 'The last push failed.'), cta: 'Open', run: function (done) { OA.apptDialog(a).then(function () { done(); }); } });
+    });
     s.site.artists.filter(function (a) { return !a.removedAt && a.books === 'open'; }).forEach(function (a) {
       if (OA.role.kind === 'artist' && OA.role.slug !== a.slug) return;
       var n = s.requests.filter(function (r) { return r.waitlist && r.artist === a.slug && r.status !== 'Closed' && r.status !== 'Booked'; }).length;

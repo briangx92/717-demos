@@ -51,6 +51,10 @@
       ui.field('What kind', f.type), ui.field('With', f.artist), ui.field('Date', f.date), ui.field('Starts', f.start), ui.field('Ends', f.end),
       ui.field('Piece', f.piece, null, 'span2'), ui.field('Deposit', f.deposit), ui.field('Price', f.price), ui.field('Note', f.note, null, 'span2'), live);
     check();
+    if (existing && existing.sync && existing.sync.state === 'failed') {
+      body.appendChild(h('div', { class: 'form-live' }, h('div', { class: 'hint bad', text: 'This appointment is not on Google Calendar: ' + (existing.sync.error || 'the last push failed') + '. Tell the artist, or retry.' }),
+        ui.btn('Retry Google Calendar', function () { OA.gcal.push(existing).then(function () { ui.toast('Sent to Google Calendar'); }, function (e) { ui.fail(e.message); }); }, 'small')));
+    }
     var actions = [{ label: 'Cancel', kind: 'quiet', value: null }];
     if (existing && existing.status !== 'cancelled') {
       actions.push({ label: 'Cancel appointment', kind: 'danger-quiet', run: function () {
@@ -137,6 +141,7 @@
       if (a.deposit !== 'paid') flags.push(['warn', a.deposit === 'asked' ? 'Deposit not paid' : 'No deposit']);
       if (!c || !c.consentAt) flags.push(['warn', 'No consent form on file']);
     }
+    if (a.sync && a.sync.state === 'failed') flags.push(['bad', 'Not on Google Calendar']);
     if (a.status === 'arrived') flags.push(['ok', 'In the chair']);
     if (a.status === 'done') flags.push(['ok', 'Done']);
     if (a.status === 'noshow') flags.push(['bad', 'No-show']);
