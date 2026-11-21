@@ -33,14 +33,14 @@
       }
     }
     if (!st || st.v !== 1) { st = OA.freshState(); S.state = st; S.save(); }
-    S.state = st;
+    S.state = OA.migrate(st);
     if (!st.touched && st.anchor !== OA.todayISO()) { OA.refreshSamples(true); }
   };
-  S.reset = function () { S.state = OA.freshState(); S.error = null; S.save(); S.emit(); };
-  S.replace = function (st) { S.state = st; S.save(); S.emit(); };
+  S.reset = function () { S.state = OA.freshState(); S.error = null; OA.clearLive(); S.save(); S.emit(); };
+  S.replace = function (st) { S.state = OA.migrate(st); S.save(); S.emit(); };
   window.addEventListener('storage', function (e) {
     if (e.key !== KEY || !e.newValue) return;
-    try { S.state = JSON.parse(e.newValue); S.emit(); } catch (err) { /* ignore a half-written value */ }
+    try { S.state = OA.migrate(JSON.parse(e.newValue)); S.emit(); } catch (err) { /* ignore a half-written value */ }
   });
 
   /* ---------- sample data ---------- */
@@ -177,6 +177,7 @@
       shop: { name: seed.name, short: seed.shortName, phone: seed.phoneDisplay, street: seed.street, town: seed.town, region: seed.region, zip: seed.zip, facebook: seed.facebook },
       hours: hours,
       banner: { on: false, text: '', start: '', end: '' },
+      announcements: [],
       policies: { deposit: 'The shop’s deposit is $40 and holds your spot.', age: '', aftercare: '' },
       services: [].concat.apply([], seed.pickGroups.map(function (g) { return g.items.map(function (it) { return { id: it.id, family: g.family, name: it.name, blurb: it.blurb }; }); })),
       prices: seed.prices.map(function (g) { return { group: g.group, sample: !!g.sample, items: g.items.map(function (x) { return [x[0], x[1]]; }) }; }),

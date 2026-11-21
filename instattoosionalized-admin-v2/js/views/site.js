@@ -1,8 +1,8 @@
-/* Site: the public website's hours, banner, prices, services, policies and reviews. Edits are a draft until published. */
+/* Site: the public website's hours, banner, announcements, prices, services, policies and reviews. Edits are a draft until published. */
 (function () {
   'use strict';
   var OA = window.OA, h = OA.h, S = OA.store, ui = OA.ui, act = OA.act;
-  var TABS = [['hours', 'Hours and contact'], ['banner', 'Banner'], ['prices', 'Prices'], ['services', 'Services'], ['policies', 'Policies'], ['reviews', 'Reviews'], ['publish', 'Publish']];
+  var TABS = [['hours', 'Hours and contact'], ['banner', 'Banner'], ['announcements', 'Announcements'], ['prices', 'Prices'], ['services', 'Services'], ['policies', 'Policies'], ['reviews', 'Reviews'], ['publish', 'Publish']];
 
   function draftNote(el, msg, bad) { el.className = 'saved' + (bad ? ' bad' : ''); el.textContent = msg; }
   var SAVED = 'Saved to the draft. Not on the live site until you publish.';
@@ -51,6 +51,47 @@
     [on, text, s, e].forEach(function (x) { x.addEventListener('change', save); }); text.addEventListener('input', paint); paint();
     return h('section', { class: 'card narrow' }, h('h2', { text: 'Site banner' }), h('p', { class: 'note', text: 'A short notice across the top of every page: holidays, closures, walk-in days.' }),
       h('label', { class: 'check' }, on, h('span', { text: 'Show the banner' })), ui.field('Message', text), count, h('div', { class: 'form-grid' }, ui.field('Start showing', s, 'Optional'), ui.field('Stop showing', e, 'Optional. Leave blank to keep it up until you turn it off.')), h('h3', { text: 'Preview' }), prev, saved);
+  }
+
+  /* ---------- announcements ---------- */
+  function announcements(site) {
+    var list = site.announcements, root = h('div', {});
+    root.appendChild(h('section', { class: 'card narrow' }, h('h2', { text: 'Announcements' }),
+      h('p', { class: 'note', text: 'Short notices near the top of the home page: a closure, a guest artist, a flash day. Each one shows from its start date to its end date. Leave the end date blank to keep it up until you remove it. The site shows up to 3 at a time, pinned ones first.' })));
+    if (!list.length) root.appendChild(ui.empty('No announcements yet', 'Add one when the shop has something visitors should see before they ask.'));
+    list.forEach(function (a, i) {
+      var saved = h('div', { class: 'saved', 'aria-live': 'polite' }), L = OA.LIMITS;
+      var kind = ui.select(OA.ANN_KINDS, a.kind, { 'aria-label': 'Kind' }), title = ui.input(a.title, { maxlength: L.annTitle, 'aria-label': 'Title', placeholder: 'e.g. Closed for the Allentown convention' });
+      var body = ui.area(a.body, { rows: 3, maxlength: L.annBody, 'aria-label': 'Message', placeholder: 'A sentence or two. Plain text only.' });
+      var link = ui.input(a.link, { type: 'url', maxlength: L.annLink, 'aria-label': 'Link', placeholder: 'https://' });
+      var start = ui.input(a.start, { type: 'date', 'aria-label': 'Start showing' }), end = ui.input(a.end, { type: 'date', 'aria-label': 'Stop showing' });
+      var pin = h('input', { type: 'checkbox', checked: !!a.pinned }), count = h('div', { class: 'hint' }), chip = h('span', {});
+      function paint() {
+        count.textContent = body.value.length + ' of ' + L.annBody + ' characters';
+        var st = OA.annStatus({ start: start.value, end: end.value }, OA.todayISO()), c = ui.chip(st === 'live' ? 'Showing now' : st === 'soon' ? 'Starts ' + OA.fmtShort(start.value) : 'Ended', st === 'live' ? 'ok' : st === 'soon' ? 'warn' : '');
+        chip.className = c.className; chip.textContent = c.textContent;
+      }
+      function save() {
+        var d = { id: a.id, kind: kind.value, title: title.value.trim(), body: body.value.trim(), link: link.value.trim(), start: start.value, end: end.value, pinned: pin.checked };
+        var p = d.title ? OA.annProblem(d) : '';
+        if (p) { draftNote(saved, p + ' Not saved.', true); return; }
+        Object.assign(a, d); S.commit(); OA.updateChrome(); paint();
+        draftNote(saved, d.title ? SAVED : 'Saved to the draft. Add a title before you publish.');
+      }
+      [kind, title, body, link, start, end, pin].forEach(function (x) { x.addEventListener('change', save); });
+      body.addEventListener('input', paint); paint();
+      root.appendChild(h('section', { class: 'card narrow ann' },
+        h('div', { class: 'row' }, h('h3', { text: a.title || 'New announcement' }), chip),
+        h('div', { class: 'form-grid' }, ui.field('Kind', kind), ui.field('Title', title, null, 'span2'), ui.field('Message', body, null, 'span2'), count,
+          ui.field('Link', link, 'Optional. Has to start with https://', 'span2'), ui.field('Start showing', start), ui.field('Stop showing', end, 'Optional')),
+        h('label', { class: 'check' }, pin, h('span', { text: 'Pin to the top' })),
+        h('div', { class: 'row' }, ui.btn('Remove', function () { list.splice(i, 1); S.commit(); OA.updateChrome(); OA.rerender(); }, 'small quiet'), saved)));
+    });
+    root.appendChild(ui.btn('Add an announcement', function () {
+      if (list.length >= OA.LIMITS.annMax) { ui.fail('That is the most the site can hold (' + OA.LIMITS.annMax + '). Remove one first.'); return; }
+      list.push({ id: OA.uid('an'), kind: 'notice', title: '', body: '', link: '', start: OA.todayISO(), end: '', pinned: false }); S.commit(); OA.updateChrome(); OA.rerender();
+    }, 'primary'));
+    return root;
   }
 
   /* ---------- prices ---------- */
@@ -148,12 +189,12 @@
         var btn = ui.btn('Publish ' + OA.plural(ch.length, 'change'), function () {
           var r = act.publish('Shop owner'); if (!r.ok) { ui.fail(r.reason); return; }
           OA.gcImages && OA.gcImages();
-          ui.toast('Published ' + OA.plural(r.count, 'change') + ' in the demo. The real portal would update the live site here.'); OA.rerender();
+          ui.toast('Published ' + OA.plural(r.count, 'change') + '. The demo website in this browser now shows the banner and announcements. The real site is not touched.'); OA.rerender();
         }, 'primary', bl.length ? { disabled: 'disabled' } : {});
         row.appendChild(btn); row.appendChild(ui.btn('Discard everything', function () { ui.confirm('Discard all draft changes?', 'The draft goes back to what is live. This cannot be undone.', 'Discard all', true).then(function (ok) { if (ok) { act.discard(); ui.toast('Draft reset to the live version'); OA.rerender(); } }); }, 'quiet danger-quiet'));
       } else row.appendChild(h('p', { class: 'note', text: 'Only the shop owner can publish.' }));
       card.appendChild(row);
-      card.appendChild(h('p', { class: 'note', text: 'Demo: publishing updates this portal’s record of what is live. The public demo website does not change. On the real portal, one publish rebuilds the site once, however many edits are in it.' }));
+      card.appendChild(h('p', { class: 'note', text: 'Demo: publishing updates the public demo website in this browser, for the banner and announcements only. Hours, prices, services and the rest stay as they are until the real publish path is built. Nothing reaches the real site. On the real portal, one publish rebuilds the site once, however many edits are in it.' }));
       root.appendChild(card);
     }
     var hist = S.state.history;
@@ -175,7 +216,7 @@
       TABS.forEach(function (t) { sub.appendChild(ui.link(t[1] + (t[0] === 'publish' && n ? ' (' + n + ')' : ''), '#/site/' + t[0], 'subtab' + (tab === t[0] ? ' on' : ''))); });
       root.appendChild(sub);
       if (!known) { root.appendChild(ui.empty('That section does not exist', null, ui.link('Hours and contact', '#/site/hours', 'btn primary'))); return root; }
-      var s = S.state.site, view = { hours: hours, banner: banner, prices: prices, services: services, policies: policies, reviews: reviews }[tab];
+      var s = S.state.site, view = { hours: hours, banner: banner, announcements: announcements, prices: prices, services: services, policies: policies, reviews: reviews }[tab];
       root.appendChild(tab === 'publish' ? publish() : view(s));
       return root;
     }

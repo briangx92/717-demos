@@ -259,6 +259,14 @@
     if ([sh.street, sh.town, sh.region, sh.zip].join('|') !== [ch.street, ch.town, ch.region, ch.zip].join('|')) out.push({ key: 'shop', area: 'Contact', text: 'Address changed' });
     if (sh.facebook !== ch.facebook) out.push({ key: 'shop', area: 'Contact', text: 'Facebook link changed' });
     if (!OA.eq(pub.quotes, cur.quotes)) { var dq = cur.quotes.length - pub.quotes.length; out.push({ key: 'quotes', area: 'Reviews', text: dq > 0 ? OA.plural(dq, 'review quote') + ' added' : dq < 0 ? OA.plural(-dq, 'review quote') + ' removed' : 'Review quotes edited' }); }
+    var pn = byKey(pub.announcements || [], 'id'), cn = byKey(cur.announcements || [], 'id');
+    function nm(a) { return '\u201c' + (a.title || 'Untitled') + '\u201d'; }
+    Object.keys(cn).forEach(function (k) {
+      var n = cn[k], o = pn[k];
+      if (!o) { out.push({ key: 'announcements', area: 'Announcements', text: 'Announcement added: ' + nm(n) }); return; }
+      if (!OA.eq(o, n)) out.push({ key: 'announcements', area: 'Announcements', text: 'Announcement changed: ' + nm(n) });
+    });
+    Object.keys(pn).forEach(function (k) { if (!cn[k]) out.push({ key: 'announcements', area: 'Announcements', text: 'Announcement removed: ' + nm(pn[k]) + ' (it will stop showing)' }); });
     var pa = byKey(pub.artists, 'slug'), ca = byKey(cur.artists, 'slug');
     Object.keys(ca).forEach(function (k) {
       var n = ca[k], o = pa[k];
@@ -309,6 +317,9 @@
     if (s.banner.on && !s.banner.text.trim()) out.push('The banner is on but has no message.');
     if (s.banner.on && s.banner.start && s.banner.end && s.banner.end < s.banner.start) out.push('The banner ends before it starts.');
     s.artists.forEach(function (a) { if (!a.removedAt && a.visible && !a.name.trim()) out.push('An artist page has no name.'); });
+    if (s.banner.text.length > OA.LIMITS.bannerText) out.push('The banner message is over ' + OA.LIMITS.bannerText + ' characters.');
+    if (s.announcements.length > OA.LIMITS.annMax) out.push('There are more than ' + OA.LIMITS.annMax + ' announcements. Remove some.');
+    s.announcements.forEach(function (a) { var p = OA.annProblem(a); if (p) out.push('Announcement \u201c' + (a.title || 'Untitled') + '\u201d: ' + p); });
     Object.keys(s.portfolio).forEach(function (slug) {
       var a = OA.artist(slug); if (!a || a.removedAt) return;
       var n = s.portfolio[slug].filter(function (p) { return p.onSite && !String(p.cap || '').trim(); }).length;
@@ -320,14 +331,16 @@
     var s = st(), ch = OA.pendingChanges();
     if (!ch.length) return { ok: false, reason: 'There is nothing to publish.' };
     var bl = OA.publishBlockers(); if (bl.length) return { ok: false, reason: bl[0], blockers: bl };
-    s.history.unshift({ id: OA.uid('h'), at: Date.now(), by: who, summary: ch.map(function (c) { return c.text; }) });
+    var at = Date.now(), bad = OA.writeLive(OA.publicContent(s.site, at));
+    if (bad) return { ok: false, reason: bad };
+    s.history.unshift({ id: OA.uid('h'), at: at, by: who, summary: ch.map(function (c) { return c.text; }) });
     s.history = s.history.slice(0, 30);
-    s.published = { at: Date.now(), by: who, site: OA.clone(s.site) };
+    s.published = { at: at, by: who, site: OA.clone(s.site) };
     S.commit(); return { ok: true, count: ch.length };
   };
   act.discard = function (key) {
     var s = st(), p = s.published.site;
-    var map = { hours: 'hours', banner: 'banner', policies: 'policies', prices: 'prices', services: 'services', shop: 'shop', quotes: 'quotes', artists: 'artists', portfolio: 'portfolio' };
+    var map = { hours: 'hours', banner: 'banner', policies: 'policies', prices: 'prices', services: 'services', shop: 'shop', quotes: 'quotes', artists: 'artists', portfolio: 'portfolio', announcements: 'announcements' };
     var keys = key ? [key] : Object.keys(map);
     keys.forEach(function (k) { if (map[k]) s.site[map[k]] = OA.clone(p[map[k]]); });
     S.commit();

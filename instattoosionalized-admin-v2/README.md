@@ -71,3 +71,20 @@ On a computer, the portal can't dial or text. So the text dialog and the client 
 - **Nothing is sent from the portal.** The phone does the sending.
 - The code is drawn with DOM calls only, no HTML strings. The generator is `js/vendor/qrcode.js` (qrcode-generator 2.0.4, MIT).
 - Tested by decoding the rendered codes and checking the number and the message come back exactly. Not yet tested on a real phone.
+
+## Announcements and the public content format (new)
+
+**Site, Announcements** holds short notices for the top of the home page: a closure, a guest artist, a flash day.
+
+- Each has a kind (News, Closure, Special), a title (80 characters), a message (400, plain text), an optional https link, a start date, an optional end date, and a pin.
+- The website shows the ones that are active today, up to 3, pinned first and then newest start. They sit above the hero image so a closure is not missed.
+- Dates are judged in the shop's time zone (America/New_York), not UTC. A banner that ends Friday stays up until Friday midnight, shop time.
+- A blank title, an end before the start, a link that is not https, or more than 20 announcements blocks publishing, with the reason on the Publish tab.
+
+**One content format.** Publishing builds `{ v: 1, at, banner, announcements }` (`js/content.js`, `OA.publicContent`). The website reads that and nothing else. The real site will be served the same shape by the API, so only the source changes.
+
+- **Demo:** the published copy is the key `oa2:published:v1` in this browser. The public demo page reads it. It is written, read back and compared before the portal says "Published". If the write fails, nothing is published and the history is not touched.
+- **Public page:** checks everything again (version, lengths, kinds, dates, https links) and draws text only. An invalid item is skipped and named in the browser console. Unreadable or unknown-version content is ignored, also with a console message.
+- **Only the banner and announcements reach the public demo page so far.** Hours, prices, services, artists and photos join as they get a real publish path.
+- **Fixed:** the portal banner dates were saved as start/end but the old public code read from/to, and compared against the UTC date. The old v1 portal still uses its own key; the new content takes over whenever it exists.
+- **Reset demo data** removes the published copy.
