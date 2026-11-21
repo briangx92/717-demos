@@ -84,10 +84,17 @@
       h('section', { class: 'card' }, h('h2', { text: 'Page' }), h('label', { class: 'check' }, f.visible, h('span', { text: 'Show this artist’s page on the site' })),
         edit && OA.role.kind === 'owner' ? h('div', { class: 'row' }, ui.btn('Remove this artist', function () {
           var up = OA.appt && S.state.appts.filter(function (x) { return x.artist === a.slug && x.date >= OA.todayISO() && x.status === 'booked'; }).length;
-          ui.confirm('Remove ' + OA.nick(a) + '?', (up ? OA.plural(up, 'upcoming appointment') + ' with them stay on the calendar. ' : '') + 'The page and chair leave the draft site. Photos are kept, and you can restore them from the Artists list. Nothing is live until you publish.', 'Remove artist', true).then(function (ok) { if (!ok) return; a.removedAt = Date.now(); S.commit(); ui.toast(OA.nick(a) + ' removed from the draft', { action: { label: 'Undo', run: function () { a.removedAt = null; S.commit(); OA.go('artists/' + a.slug + '/profile'); } } }); OA.go('artists'); });
+          ui.confirm('Remove ' + OA.nick(a) + '?', (up ? OA.plural(up, 'upcoming appointment') + ' with them will show on Today as needing a new artist until you reassign or cancel each one. ' : '') + 'The page and chair leave the draft site. Photos are kept, and you can restore them from the Artists list. Nothing is live until you publish.', 'Remove artist', true).then(function (ok) { if (!ok) return; a.removedAt = Date.now(); S.commit(); ui.toast(OA.nick(a) + ' removed from the draft', { action: { label: 'Undo', run: function () { a.removedAt = null; S.commit(); OA.go('artists/' + a.slug + '/profile'); } } }); OA.go('artists'); });
         }, 'danger-quiet small')) : null));
     if (!edit) left.appendChild(h('p', { class: 'note', text: 'Only the owner or this artist can change the profile. You can change whether their books are open.' }));
-    return h('div', { class: 'two' }, h('div', {}, left, socialsCard()), right);
+    return h('div', { class: 'two' }, h('div', {}, left, socialsCard()), h('div', {}, right, scheduleCard()));
+
+    function scheduleCard() {
+      var n = OA.notify(a.slug), label = OA.NOTIFY_MODES.filter(function (m) { return m[0] === n.mode; })[0][1];
+      return h('section', { class: 'card' }, h('h2', { text: 'Their schedule' }), h('p', { text: 'Hears about appointments: ' + label + '.' }),
+        OA.NOTIFY_LIVE[n.mode] ? null : h('p', { class: 'hint warn', text: OA.NOTIFY_WHY }),
+        h('div', { class: 'row' }, ui.btn('Send schedule', function () { OA.sendScheduleDialog(a.slug); }, 'small'), ui.link('Change how', '#/settings/integrations', 'btn small quiet')));
+    }
 
     /* Social links: any platform, any number up to the limit. Each row saves on its own and says why when it cannot. */
     function socialsCard() {

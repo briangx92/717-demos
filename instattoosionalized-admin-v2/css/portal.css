@@ -328,3 +328,7 @@ a.ledger-row:hover { background: var(--surface); }
 .social-row { display: grid; grid-template-columns: 9rem minmax(0, 1fr) auto; gap: .5rem; align-items: center; }
 .social-add { padding-top: .75rem; border-top: 1px solid var(--line2); }
 @media (max-width: 640px) { .social-row { grid-template-columns: 1fr; } }
+
+/* Schedule delivery */
+.deliv { padding: .75rem 0; border-top: 1px solid var(--line2); }
+.deliv h3 { margin: 0 0 .5rem; font-size: 1rem; }

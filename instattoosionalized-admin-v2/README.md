@@ -117,3 +117,11 @@ The booking dialog (Set up a consultation, Book the session, New appointment, an
 - **What the artist page changes.** The name, page title, the buttons of links, the "In ___'s words" paragraphs (a blank line starts a paragraph), the booking note, and the request button. The nickname (the part in quotes, else the first name) is used in headings and buttons. Hiding an artist removes them from the homepage and shows "This page is not available right now" on their page.
 - **Not carried yet.** Portrait and work photos, "what they do" chips, and artists added in the portal. New artists need the photo publish path first, so they stay out of the public site until then.
 - **Preview.** `?preview=1` works on the artist pages too, and the homepage artist links keep preview mode.
+
+## How artists get their schedule (new)
+
+- **The portal calendar is the schedule.** Everyone on the team can see it. Settings > Schedules sets how each artist hears about their own appointments: Manager tells them (default, no account needed), Calendar link on their phone, Their Google Calendar, or Automatic daily or weekly text or email. New artists start on Manager tells them.
+- **What works today:** Send schedule, on the Calendar page, an artist's profile and Settings. It builds a message from their next 7 or 14 days (first name and last initial and type only, plus the piece if the event detail setting is Full; never phone numbers or notes) and opens your own text or email app with it filled in. The portal cannot send it or tell whether you did, and says so. Copy message is there too.
+- **What needs the server:** the phone calendar link, Google Calendar and automatic digests are saved as a choice and marked "Needs the server". Nothing pretends to send.
+- **Contacts are private.** Each artist's phone and email live in settings, not in the site content that gets published.
+- **Removing an artist:** their upcoming appointments are listed on Today as "needs a new artist" until each is reassigned or cancelled. Reassign opens the appointment with no artist chosen, so it cannot quietly go to someone else.

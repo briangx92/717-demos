@@ -16,6 +16,8 @@
       start: a.start || defaults.start || '13:00', end: a.end || defaults.end || '', piece: a.piece || defaults.piece || '',
       deposit: a.deposit || defaults.deposit || 'none', price: a.price || defaults.price || '', note: a.note || ''
     };
+    var artistOpts = chairOptions();
+    if (a.artist && !artistOpts.some(function (o) { return o[0] === a.artist; })) { artistOpts = [['', 'Choose an artist (' + OA.chairName(a.artist) + ' is no longer here)']].concat(artistOpts); d.artist = ''; }
     var cl = a.clientId ? OA.client(a.clientId) : null; if (cl) d.phone = cl.phone; else if (defaults.phone) d.phone = defaults.phone;
     var endTouched = !!(a.end || defaults.end);
     if (!d.end) d.end = OA.hhmm(OA.mins(d.start) + DUR[d.type]);
@@ -24,7 +26,7 @@
       client: ui.input(d.client, { list: 'client-names', required: true, autofocus: true }),
       phone: OA.phoneInput(d.phone),
       type: ui.select(Object.keys(OA.APPT_TYPES).map(function (k) { return [k, OA.APPT_TYPES[k]]; }), d.type),
-      artist: ui.select(chairOptions(), d.artist),
+      artist: ui.select(artistOpts, d.artist),
       date: ui.input(d.date, { type: 'date' }), start: ui.input(d.start, { type: 'time', step: 900 }), end: ui.input(d.end, { type: 'time', step: 900 }),
       piece: ui.input(d.piece, { placeholder: 'What is being done' }),
       deposit: ui.select([['none', 'No deposit asked'], ['asked', 'Deposit asked, not paid'], ['paid', 'Deposit paid']], d.deposit),

@@ -24,6 +24,9 @@
     OA.scopeAppts(OA.gcal.needsAttention()).forEach(function (a) {
       items.push({ pri: 2, kind: 'warn', text: a.client + '\u2019s appointment is not on Google Calendar', meta: OA.fmtDow(a.date) + ' at ' + OA.fmtTime(a.start) + ' with ' + OA.chairName(a.artist) + '. ' + ((a.sync && a.sync.error) || 'The last push failed.'), cta: 'Open', run: function (done) { OA.apptDialog(a).then(function () { done(); }); } });
     });
+    if (OA.role.kind !== 'artist') OA.orphanAppts().forEach(function (a) {
+      items.push({ pri: 0, kind: 'bad', text: a.client + '\u2019s appointment needs a new artist', meta: OA.fmtDow(a.date) + ' at ' + OA.fmtTime(a.start) + '. ' + OA.chairName(a.artist) + ' is no longer here.', cta: 'Reassign', run: function (rer) { OA.apptDialog(a).then(function (r) { if (r) rer(); }); } });
+    });
     s.site.artists.filter(function (a) { return !a.removedAt && a.books === 'open'; }).forEach(function (a) {
       if (OA.role.kind === 'artist' && OA.role.slug !== a.slug) return;
       var n = s.requests.filter(function (r) { return r.waitlist && r.artist === a.slug && r.status !== 'Closed' && r.status !== 'Booked'; }).length;

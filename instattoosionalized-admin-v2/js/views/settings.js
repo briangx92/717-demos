@@ -2,7 +2,7 @@
 (function () {
   'use strict';
   var OA = window.OA, h = OA.h, S = OA.store, ui = OA.ui, act = OA.act;
-  var TABS = [['messages', 'Messages'], ['people', 'People and roles'], ['connection', 'Website connection'], ['integrations', 'Google Calendar'], ['data', 'Data and backup']];
+  var TABS = [['messages', 'Messages'], ['people', 'People and roles'], ['connection', 'Website connection'], ['integrations', 'Schedules'], ['data', 'Data and backup']];
   var VARS = ['first', 'shop', 'artist', 'quote', 'deposit', 'depositHow', 'date', 'time', 'address', 'reviewLink'];
   var ROLE = { owner: 'Shop owner', frontdesk: 'Front desk', artist: 'Artist' };
 
@@ -85,16 +85,40 @@
     root.appendChild(card); return root;
   }
 
+  /* How each artist hears about their appointments. The manager's own route works today; the rest are saved choices that need the server. */
+  function delivery() {
+    var saved = h('div', { class: 'saved', 'aria-live': 'polite' }), card = h('section', { class: 'card narrow' }, h('h2', { text: 'How each artist gets their schedule' }),
+      h('p', { class: 'note', text: 'The calendar in this portal is the schedule. Everyone on the team can see it. This is only how an artist hears about their own appointments. New artists start with Manager tells them, so nobody needs a calendar account. Phone numbers and emails here stay in the portal and never go on the website.' }));
+    var chairs = OA.chairs().filter(function (c) { return c.slug !== 'piercing'; });
+    if (!chairs.length) card.appendChild(ui.empty('No artists yet', 'Add an artist and they show up here.'));
+    chairs.forEach(function (c) {
+      var n = OA.notify(c.slug);
+      var mode = ui.select(OA.NOTIFY_MODES, n.mode, { 'aria-label': c.name + ' schedule delivery' });
+      var phone = ui.input(n.phone, { 'aria-label': c.name + ' phone', placeholder: '10 digits', inputmode: 'tel' });
+      var email = ui.input(n.email, { 'aria-label': c.name + ' email', placeholder: 'name@example.com', type: 'email' });
+      var why = h('p', { class: 'hint' });
+      function paintWhy() { why.textContent = OA.NOTIFY_LIVE[mode.value] ? 'Works now: use Send schedule on the Calendar page.' : OA.NOTIFY_WHY; why.className = 'hint' + (OA.NOTIFY_LIVE[mode.value] ? '' : ' warn'); }
+      mode.addEventListener('change', function () { OA.setNotify(c.slug, { mode: mode.value }); paintWhy(); note(saved, 'Saved.'); });
+      phone.addEventListener('change', function () { var v = phone.value.trim(); if (v && !OA.phoneOk(v)) { note(saved, OA.PHONE_MSG + ' Not saved.', true); return; } OA.setNotify(c.slug, { phone: v }); note(saved, 'Saved.'); });
+      email.addEventListener('change', function () { var v = email.value.trim(); if (v && !OA.emailOk(v)) { note(saved, 'That does not look like an email address. Not saved.', true); return; } OA.setNotify(c.slug, { email: v }); note(saved, 'Saved.'); });
+      paintWhy();
+      card.appendChild(h('div', { class: 'deliv' }, h('h3', { text: c.name }), h('div', { class: 'form-grid' }, ui.field('How they hear', mode, null, 'span2'), ui.field('Phone for texts', phone), ui.field('Email', email), h('div', { class: 'span2' }, why))));
+    });
+    card.appendChild(h('div', { class: 'row' }, ui.btn('Send a schedule', function () { OA.sendScheduleDialog(); }, 'primary')));
+    card.appendChild(saved); return card;
+  }
+
   function integrations() {
     var g = OA.gcalSettings(), st = OA.gcal.status(), root = h('div', {});
-    var head = h('section', { class: 'card narrow' }, h('h2', { text: 'Google Calendar' }), h('div', { class: 'row' }, ui.chip(st.text, 'quiet'), h('span', { class: 'note', text: 'Placeholder' })),
+    root.appendChild(delivery());
+    var head = h('section', { class: 'card narrow' }, h('h2', { text: 'Google Calendar (optional)' }), h('div', { class: 'row' }, ui.chip(st.text, 'quiet'), h('span', { class: 'note', text: 'Placeholder. Only for artists who choose it.' })),
       h('p', { text: 'The plan is a one-way push: appointments added here show up as events in each artist\u2019s Google calendar, and changes or cancellations here update the same event. Nothing is read back from Google yet.' }),
       h('p', { class: 'note', text: st.reason }));
     var btn = ui.btn('Connect Google Calendar', function () { OA.gcal.connect().catch(function (e) { ui.fail(e.message); }); }, 'primary', { 'aria-describedby': 'gc-why' });
     head.appendChild(h('div', { class: 'row' }, btn, h('span', { id: 'gc-why', class: 'note', text: 'Not available in the demo. Signing in to Google has to happen on a server.' })));
     root.appendChild(head);
 
-    var saved = h('div', { class: 'saved', 'aria-live': 'polite' }), card = h('section', { class: 'card narrow' }, h('h2', { text: 'Which calendar each chair uses' }), h('p', { class: 'note', text: 'Paste the calendar ID from Google Calendar settings, under Integrate calendar. These are saved now so setup is ready later. They are not used yet.' }));
+    var saved = h('div', { class: 'saved', 'aria-live': 'polite' }), card = h('section', { class: 'card narrow' }, h('h2', { text: 'Google calendar for each chair' }), h('p', { class: 'note', text: 'Paste the calendar ID from Google Calendar settings, under Integrate calendar. These are saved now so setup is ready later. They are not used yet.' }));
     OA.chairs().forEach(function (c) {
       var inp = ui.input(g.calendars[c.slug] || '', { placeholder: 'e.g. abc123@group.calendar.google.com', 'aria-label': c.name + ' calendar ID' });
       inp.addEventListener('change', function () {

@@ -36,7 +36,7 @@
 
   function weekView(start, q) {
     var root = h('div', { class: 'page wide' }), shown = chairsShown(q), slugs = shown.map(function (c) { return c.slug; });
-    root.appendChild(ui.pageHead('Calendar', null, [ui.btn('Block time off', function () { OA.timeoffDialog({}).then(function (v) { if (v) OA.rerender(); }); }), ui.btn('New appointment', function () { OA.apptDialog(null, { date: OA.todayISO() }).then(function (r) { if (r) OA.rerender(); }); }, 'primary')]));
+    root.appendChild(ui.pageHead('Calendar', null, [ui.btn('Send schedule', function () { OA.sendScheduleDialog(); }), ui.btn('Block time off', function () { OA.timeoffDialog({}).then(function (v) { if (v) OA.rerender(); }); }), ui.btn('New appointment', function () { OA.apptDialog(null, { date: OA.todayISO() }).then(function (r) { if (r) OA.rerender(); }); }, 'primary')]));
     root.appendChild(toolbar('week', start, q)); root.appendChild(gcalNote());
     var grid = h('div', { class: 'weekgrid' }), today = OA.todayISO(), any = 0;
     for (var i = 0; i < 7; i++) {
@@ -65,7 +65,7 @@
     var root = h('div', { class: 'page wide' }), shown = chairsShown(q), open = OA.isOpenDay(day), hr = OA.hoursFor(day);
     var list = OA.scopeAppts(S.state.appts).filter(function (a) { return a.date === day && a.status !== 'cancelled'; });
     var off = S.state.timeoff.filter(function (t) { return t.date === day; });
-    root.appendChild(ui.pageHead('Calendar', null, [ui.btn('Block time off', function () { OA.timeoffDialog({ date: day }).then(function (v) { if (v) OA.rerender(); }); }), ui.btn('New appointment', function () { OA.apptDialog(null, { date: day, artist: shown[0] && shown[0].slug }).then(function (r) { if (r) OA.rerender(); }); }, 'primary')]));
+    root.appendChild(ui.pageHead('Calendar', null, [ui.btn('Send schedule', function () { OA.sendScheduleDialog(); }), ui.btn('Block time off', function () { OA.timeoffDialog({ date: day }).then(function (v) { if (v) OA.rerender(); }); }), ui.btn('New appointment', function () { OA.apptDialog(null, { date: day, artist: shown[0] && shown[0].slug }).then(function (r) { if (r) OA.rerender(); }); }, 'primary')]));
     root.appendChild(toolbar('day', day, q)); root.appendChild(gcalNote());
     var lo = open ? OA.mins(hr.open) : 12 * 60, hi = open ? OA.mins(hr.close) : 17 * 60;
     list.concat(off).forEach(function (a) { lo = Math.min(lo, OA.mins(a.start)); hi = Math.max(hi, OA.mins(a.end)); });
