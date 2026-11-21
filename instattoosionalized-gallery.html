@@ -121,6 +121,17 @@
 </style>
 
 <style>
+  .p-drop{ position:relative; }
+  .p-drop__btn{ width:100%; display:flex; justify-content:space-between; align-items:center; gap:.5rem; background:transparent; border:0; color:var(--ink); font:inherit; font-weight:600; padding:.65rem .8rem; border-radius:10px; cursor:pointer; text-align:left; }
+  .p-drop__btn:hover{ background:var(--mid); }
+  .p-drop__btn::after{ content:""; width:.45em; height:.45em; border:solid currentColor; border-width:0 2px 2px 0; transform:rotate(45deg) translateY(-2px); flex:none; }
+  .p-drop__btn[aria-expanded="true"]::after{ transform:rotate(-135deg); }
+  .p-drop__list{ max-height:min(60vh,22rem); overflow-y:auto; padding-left:.5rem; }
+  .p-menu .p-drop__list a{ display:block; }
+  @media (min-width:900px){
+    .p-drop__btn{ width:auto; display:inline-flex; padding:.55rem .75rem; }
+    .p-drop__list{ position:absolute; top:calc(100% + 6px); left:0; min-width:200px; padding:.4rem; background:var(--surface); border:1px solid var(--line-2); border-radius:14px; box-shadow:0 18px 40px rgba(0,0,0,.5); z-index:60; }
+  }
   @media (min-width:900px){
     .p-burger{ display:none; }
     .p-menu{ display:flex; position:static; margin-left:auto; background:transparent; border:0; box-shadow:none; padding:0; min-width:0; animation:none; align-items:center; gap:.25rem; }
@@ -145,7 +156,7 @@
 <main class="l-wrap">
   <section class="g-head">
     <h1>The Gallery</h1>
-    <p class="g-intro">Recent work from all three artists, mixed together. Tap a photo to see it full screen and step through the rest. Tap an artist's name under any piece to visit their page.</p>
+    <p class="g-intro">Recent work from all the artists, mixed together. Tap a photo to see it full screen and step through the rest. Tap an artist's name under any piece to visit their page.</p>
   </section>
   <section class="p-sec" aria-label="Gallery">
     <div class="p-grid">

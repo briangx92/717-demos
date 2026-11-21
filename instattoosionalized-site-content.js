@@ -111,16 +111,32 @@
     });
     var card = document.getElementById('policies-card'); if (card) card.hidden = !card.querySelector('[data-pol]:not([hidden])');
   }
-  /* Menu and footer links to artist pages show the artist's current name. A hidden artist's link is hidden too. */
+  /* Menu: the artist links become one "Artists" dropdown, built from the published artists (hidden ones left out),
+     or from the links already on the page when nothing is published. Works for any number of artists. */
   function navNames() {
     try {
-      var by = cleanArtists(read()); if (!by) return;
-      Array.prototype.forEach.call(document.querySelectorAll('a[href^="instattoosionalized-artist-"]'), function (a) {
-        if (a.children.length) return;
-        var m = /^instattoosionalized-artist-([a-z0-9-]+)\.html/.exec(a.getAttribute('href') || ''), p = m && by[m[1]]; if (!p) return;
-        a.textContent = p.nick; a.hidden = !p.visible;
-      });
-    } catch (e) { warn('menu names not updated', e); }
+      var nav = document.querySelector('.p-menu'); if (!nav || nav.querySelector('.p-drop')) return;
+      var found = Array.prototype.filter.call(nav.querySelectorAll('a[href^="instattoosionalized-artist-"]'), function (a) { return !a.children.length; });
+      if (!found.length) return;
+      var by = cleanArtists(read()), items = [];
+      if (by) {
+        var order = (read() && read().artists) || [];
+        order.forEach(function (a) { var q = a && by[a.slug]; if (q && q.visible) items.push({ href: 'instattoosionalized-artist-' + q.slug + '.html', text: q.nick }); });
+      } else {
+        found.forEach(function (a) { items.push({ href: a.getAttribute('href'), text: a.textContent }); });
+      }
+      var wrap = el('div', 'p-drop'), btn = el('button', 'p-drop__btn', 'Artists'), list = el('div', 'p-drop__list');
+      btn.type = 'button'; btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-controls', 'p-drop-list'); list.id = 'p-drop-list'; list.hidden = true;
+      items.forEach(function (it) { var a = el('a', null, it.text); a.href = withPreview(it.href); list.appendChild(a); });
+      wrap.append(btn, list);
+      function close() { list.hidden = true; btn.setAttribute('aria-expanded', 'false'); }
+      btn.addEventListener('click', function (e) { e.stopPropagation(); var open = list.hidden; list.hidden = !open; btn.setAttribute('aria-expanded', String(open)); });
+      document.addEventListener('click', function (e) { if (!list.hidden && !wrap.contains(e.target)) close(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !list.hidden) { close(); btn.focus(); } });
+      found[0].parentNode.insertBefore(wrap, found[0]);
+      found.forEach(function (a) { if (a.parentNode) a.parentNode.removeChild(a); });
+      if (!items.length) wrap.hidden = true;
+    } catch (e) { warn('menu names not updated'); }
   }
   /* Policies page. */
   function policiesPage() {
