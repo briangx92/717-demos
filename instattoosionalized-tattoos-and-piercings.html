@@ -295,6 +295,12 @@
   .s-ask__intro .s-ask__pol{ margin-top:var(--sp-2); font-size:.875rem; }
   .s-ask__intro .s-ask__pol a{ font-weight:400; color:var(--ink-soft); text-underline-offset:3px; }
   .s-ask__intro .s-ask__pol a:hover{ color:var(--ink); }
+  .s-ask__faq{ margin-top:var(--sp-6); }
+  .s-ask__faq h3{ font-size:var(--text-h3); margin-bottom:var(--sp-1); }
+  .s-ask__faq details{ border-top:1px solid var(--line); padding:var(--sp-1) 0; }
+  .s-ask__faq details:last-child{ border-bottom:1px solid var(--line); }
+  .s-ask__faq summary{ cursor:pointer; font-weight:700; min-height:var(--tap); display:flex; align-items:center; }
+  .s-ask__faq details p{ margin-top:var(--sp-1); color:var(--ink-soft); max-width:62ch; }
   .s-ask .c-card{ width:100%; max-width:640px; padding:var(--sp-3) var(--sp-2); }
   @media (min-width:720px){ .s-ask .c-card{ padding:var(--sp-4); } }
   @media (min-width:1024px){ .s-ask__grid{ grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:var(--sp-8); align-items:start; } .s-ask__intro{ position:sticky; top:var(--sp-10); } .s-ask .c-card{ justify-self:end; } }
@@ -683,6 +689,23 @@
         </div>
         <p class="s-result__status" id="result-status" role="status"></p>
       </div>
+    </div>
+  </div>
+  <div class="l-wrap">
+    <div class="s-ask__faq">
+      <h3>Before you send it</h3>
+      <details>
+        <summary>How does booking work?</summary>
+        <p>Send a request right here. The shop gets back to you, confirms your time, and puts it on their calendar.</p>
+      </details>
+      <details>
+        <summary>What does the deposit cover?</summary>
+        <p>The shop's deposit is $40 and holds your spot.</p>
+      </details>
+      <details>
+        <summary>How much will my tattoo cost?</summary>
+        <p>It depends on size, placement, and detail. The prices on this page are starting points; your artist gives you a real quote once they have seen your request.</p>
+      </details>
     </div>
   </div>
   <div class="s-send" id="send-overlay" hidden aria-hidden="true">
