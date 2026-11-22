@@ -138,6 +138,17 @@
       if (!items.length) wrap.hidden = true;
     } catch (e) { warn('menu names not updated'); }
   }
+  /* Artist page: a request button that stays on screen while scrolling, and steps aside once the page's own request section is in view. */
+  function stickyRequest() {
+    try {
+      var src = document.querySelector('.p-req a'), end = document.querySelector('.p-req'); if (!src || !end || document.querySelector('.p-sticky')) return;
+      var bar = el('div', 'p-sticky'), a = el('a', 'c-btn c-btn--solid', src.textContent); a.href = src.getAttribute('href'); bar.appendChild(a); document.body.appendChild(bar);
+      var endSeen = false;
+      function sync() { bar.classList.toggle('on', (window.scrollY || 0) > 360 && !endSeen); a.textContent = src.textContent; a.href = src.getAttribute('href'); }
+      if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { endSeen = e[0].isIntersecting; sync(); }).observe(end);
+      window.addEventListener('scroll', sync, { passive: true }); sync();
+    } catch (e) { warn('request button not added'); }
+  }
   /* Policies page. */
   function policiesPage() {
     try {
@@ -280,6 +291,6 @@
   }
   if (me && me.getAttribute('data-artist')) {
     var slug = me.getAttribute('data-artist');
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { applyArtistPage(slug); }); else applyArtistPage(slug);
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { applyArtistPage(slug); stickyRequest(); }); else { applyArtistPage(slug); stickyRequest(); }
   }
 })();
