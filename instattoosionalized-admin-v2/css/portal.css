@@ -179,7 +179,7 @@ a.ledger-row:hover { background: var(--surface); }
 .portrait.big { width: 100%; height: auto; aspect-ratio: 1; max-width: 240px; }
 .img-missing { background: var(--line2); min-height: 60px; }
 .subtabs { display: flex; gap: .25rem; border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
-.tabs::-webkit-scrollbar, .subtabs::-webkit-scrollbar { display: none; }
+.tabs::-webkit-scrollbar, .subtabs::-webkit-scrollbar, .weekgrid::-webkit-scrollbar { display: none; }
 .subtab { padding: .5rem .9rem; color: var(--ink2); text-decoration: none; font-weight: 600; border-bottom: 3px solid transparent; white-space: nowrap; margin-bottom: -1px; }
 .subtab.on { color: var(--accent); border-bottom-color: var(--accent); }
 .dropzone { display: grid; gap: .1rem; padding: .9rem 1.2rem; border: 2px dashed var(--accent-line); border-radius: 10px; background: var(--accent-soft); cursor: pointer; color: var(--ink); flex: 1; min-width: 260px; } .dropzone span { color: var(--ink2); font-size: .86rem; } .dropzone.over { border-color: var(--accent); background: var(--accent-line); }
@@ -210,7 +210,7 @@ a.ledger-row:hover { background: var(--surface); }
 
 /* ---------- calendar ---------- */
 .page.wide { max-width: none; } .cal-label { font-stretch: 108%; padding: 0 .4rem; }
-.weekgrid { display: grid; grid-template-columns: repeat(7, minmax(150px, 1fr)); gap: .6rem; overflow-x: auto; padding-bottom: .4rem; }
+.weekgrid { display: grid; grid-template-columns: repeat(7, minmax(150px, 1fr)); gap: .6rem; overflow-x: auto; padding-bottom: .4rem; scrollbar-width: none; }
 .weekday { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .55rem; display: grid; gap: .4rem; align-content: start; min-height: 150px; }
 .weekday.today { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); } .weekday.closed { background: transparent; border-style: dashed; opacity: .75; }
 .weekday header { display: grid; gap: 0; } .wd-link { display: flex; gap: .4rem; align-items: baseline; text-decoration: none; color: var(--ink); } .wd-link span { font-size: 1.25rem; font-weight: 700; font-stretch: 112%; } header small { color: var(--ink2); }
