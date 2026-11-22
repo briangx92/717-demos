@@ -1,6 +1,6 @@
 /* The public content format: what the portal publishes and the website reads.
    One shape for both the demo (kept in this browser) and the real site (served by the API later).
-   Today it carries the banner and announcements. Other sections join it as they get a real publish path. */
+   It carries the banner, announcements, artists, policies, shop phone, hours, prices and services. */
 (function () {
   'use strict';
   var OA = window.OA;
@@ -69,6 +69,10 @@
     });
   };
 
+  /* 24h "17:00" to the site's "5:00 PM", and a display phone number to its +1 form. */
+  function fmtTime(t) { var p = String(t).split(':'), h = +p[0], m = p[1] || '00', ap = h >= 12 ? 'PM' : 'AM'; h = h % 12; if (!h) h = 12; return h + ':' + m + ' ' + ap; }
+  function e164(display) { var d = String(display || '').replace(/\D/g, ''); if (d.length === 10) return '+1' + d; if (d.length === 11 && d[0] === '1') return '+' + d; return ''; }
+
   OA.publicContent = function (site, at) {
     var b = site.banner || {};
     return {
@@ -79,6 +83,16 @@
       banner: { on: !!b.on, text: String(b.text || ''), start: b.start || '', end: b.end || '' },
       announcements: (site.announcements || []).map(function (a) {
         return { id: a.id, kind: a.kind, title: a.title, body: a.body || '', link: a.link || '', start: a.start || '', end: a.end || '', pinned: !!a.pinned };
+      }),
+      shop: { phone: String((site.shop || {}).phone || ''), phoneE164: e164((site.shop || {}).phone) },
+      hours: (site.hours || []).map(function (x) {
+        return [x.day, (x.open && x.close) ? fmtTime(x.open) + ' \u2013 ' + fmtTime(x.close) : null];
+      }),
+      prices: (site.prices || []).map(function (g) {
+        return { group: g.group, sample: !!g.sample, items: (g.items || []).map(function (p) { return [String(p[0] || ''), String(p[1] || '')]; }) };
+      }),
+      services: (site.services || []).map(function (s) {
+        return { id: s.id, family: s.family, name: s.name, blurb: s.blurb || '' };
       })
     };
   };

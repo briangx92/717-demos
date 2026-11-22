@@ -2054,7 +2054,7 @@ try { if (window.SiteContent) SiteContent.mergeHome(SITE.artists); } catch (e) {
 </script>
 
 <script id="site-content">
-/* Banner and announcements published from the owner portal. The checking lives in instattoosionalized-site-content.js. */
+/* Content published from the owner portal: banner, announcements, phone, hours, prices, services, policies. The checking lives in instattoosionalized-site-content.js. */
 (function(){
   'use strict';
   var SC = window.SiteContent; if (!SC) return;
@@ -2062,6 +2062,7 @@ try { if (window.SiteContent) SiteContent.mergeHome(SITE.artists); } catch (e) {
     var data = SC.read(), el = SC.el;
     SC.previewBar(!!data);
     SC.homePolicies();
+    SC.mergeSite(SITE);
     if (!data) return;
     var c = SC.cleanNews(data), today = SC.shopToday(SITE.timeZone);
     if (c.banner && SC.active(c.banner, today)) {

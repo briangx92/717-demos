@@ -276,7 +276,115 @@
     } catch (e) { warn('Could not show the published artist content: ' + e.message); }
   }
 
-  window.SiteContent = { navNames: navNames, homePolicies: homePolicies, cleanPolicies: cleanPolicies, withPreview: withPreview, PREVIEW: PREVIEW, KINDS: KINDS, read: read, shopToday: shopToday, active: active, cleanNews: cleanNews, cleanArtists: cleanArtists, mergeHome: mergeHome, applyArtistPage: applyArtistPage, previewBar: previewBar, el: el, warn: warn };
+  /* Shop phone, hours, prices, services: validated into the exact shapes the homepage renders. */
+  function cleanShop(c) {
+    if (!c || !c.shop || typeof c.shop !== 'object') return null;
+    if (!str(c.shop.phone, 30) || !c.shop.phone.trim()) return null;
+    if (typeof c.shop.phoneE164 !== 'string' || !/^\+1\d{10}$/.test(c.shop.phoneE164)) return null;
+    return { phone: c.shop.phone, phoneE164: c.shop.phoneE164 };
+  }
+  function cleanHours(c) {
+    if (!c || !Array.isArray(c.hours) || c.hours.length !== 7) return null;
+    var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], out = [];
+    for (var i = 0; i < 7; i++) {
+      var h = c.hours[i];
+      if (!Array.isArray(h) || h[0] !== days[i]) return null;
+      if (h[1] !== null && !str(h[1], 40)) return null;
+      out.push([h[0], h[1]]);
+    }
+    return out;
+  }
+  function cleanPrices(c) {
+    if (!c || !Array.isArray(c.prices) || !c.prices.length || c.prices.length > 8) return null;
+    var out = [];
+    for (var i = 0; i < c.prices.length; i++) {
+      var g = c.prices[i];
+      if (!g || !str(g.group, 60) || !Array.isArray(g.items) || !g.items.length || g.items.length > 30) return null;
+      var items = [];
+      for (var j = 0; j < g.items.length; j++) {
+        var p = g.items[j];
+        if (!Array.isArray(p) || !str(p[0], 80) || !str(p[1], 30)) return null;
+        items.push([p[0], p[1]]);
+      }
+      out.push({ group: g.group, sample: !!g.sample, items: items });
+    }
+    return out;
+  }
+  function cleanServices(c) {
+    if (!c || !Array.isArray(c.services) || !c.services.length || c.services.length > 40) return null;
+    var out = [];
+    for (var i = 0; i < c.services.length; i++) {
+      var s = c.services[i];
+      if (!s || !str(s.id, 60) || !str(s.name, 80) || !str(s.family, 30)) return null;
+      out.push({ id: s.id, family: s.family, name: s.name, blurb: typeof s.blurb === 'string' ? s.blurb.slice(0, 300) : '' });
+    }
+    return out;
+  }
+
+  /* Apply the published phone, hours, prices and services to the homepage, rebuilding the same
+     sections the page renders from its built-in copy. Runs after the page's own render. */
+  function mergeSite(SITE) {
+    var c = read(); if (!c) return;
+    var shop = cleanShop(c);
+    if (shop) {
+      SITE.phoneDisplay = shop.phone; SITE.phoneE164 = shop.phoneE164;
+      SITE.phoneHref = 'tel:' + shop.phoneE164; SITE.smsBase = 'sms:' + shop.phoneE164;
+      Array.prototype.forEach.call(document.querySelectorAll('[data-fill="phoneDisplay"]'), function (e) { e.textContent = shop.phone; });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-href="phoneHref"]'), function (e) { e.setAttribute('href', SITE.phoneHref); });
+      Array.prototype.forEach.call(document.querySelectorAll('a[href^="tel:"]'), function (e) { e.setAttribute('href', SITE.phoneHref); });
+      var ac = document.querySelector('#ask-call a'); if (ac) ac.textContent = shop.phone;
+    }
+    var hours = cleanHours(c);
+    if (hours) {
+      SITE.hours.length = 0; hours.forEach(function (h) { SITE.hours.push(h); });
+      var table = document.getElementById('hours-table');
+      if (table) {
+        table.innerHTML = ''; var tb = el('tbody');
+        var today = new Intl.DateTimeFormat('en-US', { timeZone: SITE.timeZone, weekday: 'long' }).format(new Date());
+        if (SITE.hours.every(function (x) { return x[1] === null; })) { var tr0 = el('tr'); tr0.append(el('td', null, 'Hours'), el('td', null, 'Call for hours')); tb.append(tr0); }
+        else SITE.hours.forEach(function (x) { var tr = el('tr'); if (x[0] === today) tr.className = 'is-today'; tr.append(el('td', null, x[0]), el('td', null, x[1] === null ? 'Closed' : x[1])); tb.append(tr); });
+        table.append(tb);
+      }
+    }
+    var services = cleanServices(c);
+    if (services) {
+      var labels = { tattoo: 'Tattoos', piercing: 'Piercing' }, groups = [];
+      services.forEach(function (s) {
+        var g = null;
+        for (var k = 0; k < groups.length; k++) if (groups[k].family === s.family) g = groups[k];
+        if (!g) { g = { family: s.family, label: labels[s.family] || s.family, items: [] }; groups.push(g); }
+        g.items.push({ id: s.id, name: s.name, blurb: s.blurb });
+      });
+      SITE.pickGroups.length = 0; groups.forEach(function (g) { SITE.pickGroups.push(g); });
+      var grid = document.getElementById('service-cards');
+      if (grid) {
+        grid.innerHTML = ''; var n = 0;
+        SITE.pickGroups.forEach(function (g) { g.items.forEach(function (item) {
+          n++;
+          var art = el('article', 'c-card');
+          var num = el('span', 's-services__num', String(n).padStart(2, '0')); num.setAttribute('aria-hidden', 'true');
+          var b = el('button', 'c-btn c-btn--ghost', 'Add'); b.type = 'button'; b.dataset.add = item.id; b.setAttribute('aria-pressed', 'false');
+          (function (it, btn) { b.addEventListener('click', function () { if (window.__form) window.__form.toggleService(it.id, btn); }); })(item, b);
+          art.append(num, el('h3', null, item.name), el('p', null, item.blurb), b); grid.append(art);
+        }); });
+      }
+    }
+    var prices = cleanPrices(c);
+    if (prices) {
+      SITE.prices.length = 0; prices.forEach(function (g) { SITE.prices.push(g); });
+      var pbox = document.getElementById('price-groups');
+      if (pbox) {
+        pbox.innerHTML = '';
+        SITE.prices.forEach(function (g) {
+          var grp = el('div', 's-prices__group'); grp.append(el('h3', null, g.group));
+          g.items.forEach(function (pair) { var row = el('div', 's-prices__row'); var right = el('span'); right.append(el('b', null, pair[1])); if (g.sample) right.append(el('small', null, 'sample')); row.append(el('span', null, pair[0]), el('span', 's-prices__lead'), right); row.children[1].setAttribute('aria-hidden', 'true'); grp.append(row); });
+          pbox.append(grp);
+        });
+      }
+    }
+  }
+
+  window.SiteContent = { navNames: navNames, homePolicies: homePolicies, cleanPolicies: cleanPolicies, withPreview: withPreview, PREVIEW: PREVIEW, KINDS: KINDS, read: read, shopToday: shopToday, active: active, cleanNews: cleanNews, cleanArtists: cleanArtists, mergeHome: mergeHome, mergeSite: mergeSite, cleanShop: cleanShop, cleanHours: cleanHours, cleanPrices: cleanPrices, cleanServices: cleanServices, applyArtistPage: applyArtistPage, previewBar: previewBar, el: el, warn: warn };
 
   var me = document.currentScript;
   function navPage() {

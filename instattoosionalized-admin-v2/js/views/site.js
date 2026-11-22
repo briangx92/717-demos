@@ -190,13 +190,13 @@
         var btn = ui.btn('Publish ' + OA.plural(ch.length, 'change'), function () {
           var r = act.publish('Shop owner'); if (!r.ok) { ui.fail(r.reason); return; }
           OA.gcImages && OA.gcImages();
-          ui.toast('Published ' + OA.plural(r.count, 'change') + '. The demo website in this browser now shows the banner and announcements. The real site is not touched.'); OA.rerender();
+          ui.toast('Published ' + OA.plural(r.count, 'change') + '. The demo website in this browser now shows your changes. The real site is not touched.'); OA.rerender();
         }, 'primary', blLive.length ? { disabled: 'disabled' } : {});
         row.appendChild(btn); row.appendChild(ui.btn('Discard everything', function () { ui.confirm('Discard all draft changes?', 'The draft goes back to what is live. This cannot be undone.', 'Discard all', true).then(function (ok) { if (ok) { act.discard(); ui.toast('Draft reset to the live version'); OA.rerender(); } }); }, 'quiet danger-quiet'));
       } else row.appendChild(h('p', { class: 'note', text: 'Only the shop owner can publish.' }));
       row.appendChild(OA.previewLink('btn'));
       card.appendChild(row);
-      card.appendChild(h('p', { class: 'note', text: 'Demo: publishing updates the public demo website in this browser, for the banner and announcements only. Hours, prices, services and the rest stay as they are until the real publish path is built. Nothing reaches the real site. Preview site changes opens the demo website with your draft banner and announcements in a new tab. Visitors never see a preview. On the real portal, one publish rebuilds the site once, however many edits are in it.' }));
+      card.appendChild(h('p', { class: 'note', text: 'Demo: publishing updates the public demo website in this browser: the banner, announcements, hours, prices, services, phone, policies and artist details. Nothing reaches the real site. Preview site changes opens the demo website with your draft changes in a new tab. Visitors never see a preview. On the real portal, one publish rebuilds the site once, however many edits are in it.' }));
       root.appendChild(card);
     }
     var hist = S.state.history;
