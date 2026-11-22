@@ -93,7 +93,7 @@
       b.hidden = !n; b.textContent = n || ''; b.setAttribute('aria-label', n + ' new');
     });
     var pend = OA.role.kind === 'owner' ? OA.pendingChanges().length : 0;
-    chrome.publish.hidden = !pend; chrome.publish.textContent = 'Publish ' + OA.plural(pend, 'change');
+    chrome.publish.hidden = !pend; chrome.publish.textContent = 'Review & publish · ' + OA.plural(pend, 'change');
     chrome.err.hidden = !S.error; chrome.err.textContent = S.error || '';
   }
   OA.updateChrome = updateChrome;

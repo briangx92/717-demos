@@ -169,7 +169,7 @@
 
   /* ---------- publish ---------- */
   function publish() {
-    var root = h('div', {}), ch = OA.pendingChanges(), bl = OA.publishBlockers(), owner = OA.role.kind === 'owner';
+    var root = h('div', {}), ch = OA.pendingChanges(), bl = OA.publishBlockers(), blLive = OA.liveBlockers(), blOther = bl.filter(function (b) { return blLive.indexOf(b) < 0; }), owner = OA.role.kind === 'owner';
     var pub = S.state.published;
     root.appendChild(h('p', { class: 'sub', text: 'Last published ' + OA.fmtStamp(pub.at) + ' by ' + pub.by + '.' }));
     if (!ch.length) root.appendChild(ui.empty('Nothing waiting to publish', 'The live site matches the draft. Changes you make on the other Site tabs and on Artists appear here first.'));
@@ -183,14 +183,15 @@
           ui.confirm('Discard ' + area.toLowerCase() + ' changes?', 'The draft goes back to what is live. This cannot be undone.', 'Discard', true).then(function (ok) { if (ok) { act.discard(by[area][0].key); ui.toast(area + ' changes discarded'); OA.rerender(); } });
         }, 'small quiet') : null), ul));
       });
-      if (bl.length) card.appendChild(h('div', { class: 'blockers', role: 'alert' }, h('strong', { text: 'Fix these before publishing:' }), h('ul', {}, bl.map(function (b) { return h('li', { text: b }); }))));
+      if (blLive.length) card.appendChild(h('div', { class: 'blockers', role: 'alert' }, h('strong', { text: 'Fix these before publishing:' }), h('ul', {}, blLive.map(function (b) { return h('li', { text: b }); }))));
+      if (blOther.length) card.appendChild(h('p', { class: 'note', text: 'Worth fixing, but not blocking this publish: ' + blOther.join(' ') }));
       var row = h('div', { class: 'row' });
       if (owner) {
         var btn = ui.btn('Publish ' + OA.plural(ch.length, 'change'), function () {
           var r = act.publish('Shop owner'); if (!r.ok) { ui.fail(r.reason); return; }
           OA.gcImages && OA.gcImages();
           ui.toast('Published ' + OA.plural(r.count, 'change') + '. The demo website in this browser now shows the banner and announcements. The real site is not touched.'); OA.rerender();
-        }, 'primary', bl.length ? { disabled: 'disabled' } : {});
+        }, 'primary', blLive.length ? { disabled: 'disabled' } : {});
         row.appendChild(btn); row.appendChild(ui.btn('Discard everything', function () { ui.confirm('Discard all draft changes?', 'The draft goes back to what is live. This cannot be undone.', 'Discard all', true).then(function (ok) { if (ok) { act.discard(); ui.toast('Draft reset to the live version'); OA.rerender(); } }); }, 'quiet danger-quiet'));
       } else row.appendChild(h('p', { class: 'note', text: 'Only the shop owner can publish.' }));
       row.appendChild(OA.previewLink('btn'));

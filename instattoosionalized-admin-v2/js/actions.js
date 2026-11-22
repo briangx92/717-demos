@@ -309,16 +309,23 @@
   };
   OA.diffPairs = function (po, pc) { var n = 0; pc.forEach(function (p) { var o = po[p.id]; if (!!p.pair !== !!(o && o.pair) || (o && o.pair && p.pair && !OA.eq(o.pair, p.pair))) n++; }); return n; };
   OA.pendingChanges = function () { return OA.diffSite(st().published.site, st().site); };
+  /* Blockers for the content a demo publish actually writes: the banner and the announcements.
+     Everything else in publishBlockers is worth fixing, but it must not hold the banner hostage. */
+  OA.liveBlockers = function () {
+    var s = st().site, out = [];
+    if (s.banner.on && !s.banner.text.trim()) out.push('The banner is on but has no message.');
+    if (s.banner.on && s.banner.start && s.banner.end && s.banner.end < s.banner.start) out.push('The banner ends before it starts.');
+    if (s.banner.text.length > OA.LIMITS.bannerText) out.push('The banner message is over ' + OA.LIMITS.bannerText + ' characters.');
+    if (s.announcements.length > OA.LIMITS.annMax) out.push('There are more than ' + OA.LIMITS.annMax + ' announcements. Remove some.');
+    s.announcements.forEach(function (a) { var p = OA.annProblem(a); if (p) out.push('Announcement \u201c' + (a.title || 'Untitled') + '\u201d: ' + p); });
+    return out;
+  };
   OA.publishBlockers = function () {
     var s = st().site, out = [];
     s.hours.forEach(function (x) { if (x.open && (!x.close || OA.mins(x.close) <= OA.mins(x.open))) out.push(x.day + ' closes before it opens.'); });
     if (s.prices.some(function (g) { return g.sample; })) out.push('The prices are still the sample prices from the demo. Check them on Site, Prices, then tick \u201cThese prices are correct\u201d.');
     if (!OA.phoneOk(s.shop.phone)) out.push('The shop phone number needs 10 digits, like (610) 555-0100.');
-    if (s.banner.on && !s.banner.text.trim()) out.push('The banner is on but has no message.');
-    if (s.banner.on && s.banner.start && s.banner.end && s.banner.end < s.banner.start) out.push('The banner ends before it starts.');
     s.artists.forEach(function (a) { if (!a.removedAt && a.visible && !a.name.trim()) out.push('An artist page has no name.'); });
-    if (s.banner.text.length > OA.LIMITS.bannerText) out.push('The banner message is over ' + OA.LIMITS.bannerText + ' characters.');
-    if (s.announcements.length > OA.LIMITS.annMax) out.push('There are more than ' + OA.LIMITS.annMax + ' announcements. Remove some.');
     [['deposit', 'Deposit'], ['age', 'Age and ID'], ['aftercare', 'Aftercare']].forEach(function (p) { if (((s.policies || {})[p[0]] || '').length > OA.LIMITS.policy) out.push('The ' + p[1] + ' policy is over ' + OA.LIMITS.policy + ' characters.'); });
     s.artists.forEach(function (x) {
       if (x.removedAt) return;
@@ -327,18 +334,17 @@
       if ((x.bio || '').length > OA.LIMITS.artistBio) out.push(who + ': the bio is over ' + OA.LIMITS.artistBio + ' characters.');
       if (x.name.length > OA.LIMITS.artistName) out.push(who + ': the name is over ' + OA.LIMITS.artistName + ' characters.');
     });
-    s.announcements.forEach(function (a) { var p = OA.annProblem(a); if (p) out.push('Announcement \u201c' + (a.title || 'Untitled') + '\u201d: ' + p); });
     Object.keys(s.portfolio).forEach(function (slug) {
       var a = OA.artist(slug); if (!a || a.removedAt) return;
       var n = s.portfolio[slug].filter(function (p) { return p.onSite && !String(p.cap || '').trim(); }).length;
       if (n) out.push(OA.first(a.name) + ' has ' + OA.plural(n, 'shown photo') + ' without a caption.');
     });
-    return out;
+    return out.concat(OA.liveBlockers());
   };
   act.publish = function (who) {
     var s = st(), ch = OA.pendingChanges();
     if (!ch.length) return { ok: false, reason: 'There is nothing to publish.' };
-    var bl = OA.publishBlockers(); if (bl.length) return { ok: false, reason: bl[0], blockers: bl };
+    var bl = OA.liveBlockers(); if (bl.length) return { ok: false, reason: bl[0], blockers: bl };
     var at = Date.now(), bad = OA.writeLive(OA.publicContent(s.site, at));
     if (bad) return { ok: false, reason: bad };
     s.history.unshift({ id: OA.uid('h'), at: at, by: who, summary: ch.map(function (c) { return c.text; }) });
