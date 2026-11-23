@@ -76,7 +76,14 @@
       var socials = [];
       (a.socials || []).forEach(function (x) { var n = OA.socialNorm(x.p, x.h); if (n.ok) socials.push({ p: x.p, label: n.label, url: n.url }); });
       var v = OA.pageVar(a, taken); taken[v] = 1;
-      return { slug: v, key: a.slug, name: a.name, nick: OA.nick(a), role: a.role || '', bio: a.bio || '', visible: !!a.visible && !a.removedAt, socials: socials };
+      var work = [];
+      ((site.portfolio || {})[a.slug] || []).forEach(function (w) {
+        if (!w || w.onSite === false || !w.src) return;
+        var item = { src: w.src, cap: w.cap || '', date: w.date || '' };
+        if (w.pair) item.ba = { a: w.pair.a || '', b: w.pair.b || '', acap: w.pair.acap || '', bcap: w.pair.bcap || '', title: w.cap || '', story: '' };
+        work.push(item);
+      });
+      return { slug: v, key: a.slug, name: a.name, nick: OA.nick(a), role: a.role || '', bio: a.bio || '', visible: !!a.visible && !a.removedAt, socials: socials, photo: a.portrait || '', work: work };
     });
   };
 

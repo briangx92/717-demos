@@ -67,6 +67,14 @@
   }
 
   /* Artists: returns a map of slug to a checked record, or null when the content has no artists. */
+  /* A photo reference the site can use: an upload id from the portal's photo store,
+     or a plain relative path inside the repo. */
+  function refOk(r) {
+    if (typeof r !== 'string' || !r || r.length > 320) return false;
+    if (/^idb:[a-z0-9_-]+$/i.test(r)) return true;
+    return /^[a-z0-9][a-z0-9._/-]*$/i.test(r) && r.indexOf('..') < 0;
+  }
+
   function cleanArtists(c) {
     if (!c || !Array.isArray(c.artists)) return null;
     var by = {};
@@ -86,7 +94,16 @@
         if (u && hostOk(u, x.p) && str(x.label, MAX.label) && x.label.trim()) socials.push({ p: x.p, label: x.label.trim(), url: u.href });
         else warn(tag + ': a social link was skipped because it is not valid.');
       });
-      by[a.slug] = { slug: a.slug, key: key, name: a.name.trim(), nick: a.nick.trim(), role: (a.role || '').trim(), bio: (a.bio || '').trim(), visible: a.visible, socials: socials };
+      var photo = refOk(a.photo) ? a.photo : '';
+      var work = [];
+      (Array.isArray(a.work) ? a.work : []).slice(0, 80).forEach(function (w) {
+        if (!w || !refOk(w.src)) return;
+        var cap = str(w.cap == null ? '' : w.cap, 300) ? w.cap.trim() : '';
+        var item = { src: w.src, cap: cap, alt: cap, date: /^\d{4}-\d{2}-\d{2}$/.test(w.date || '') ? w.date : '' };
+        if (w.ba && refOk(w.ba.a) && refOk(w.ba.b)) item.ba = { a: w.ba.a, b: w.ba.b, acap: String(w.ba.acap || '').slice(0, 300), bcap: String(w.ba.bcap || '').slice(0, 300), title: String(w.ba.title || '').slice(0, 300), story: String(w.ba.story || '').slice(0, 1000) };
+        work.push(item);
+      });
+      by[a.slug] = { slug: a.slug, key: key, name: a.name.trim(), nick: a.nick.trim(), role: (a.role || '').trim(), bio: (a.bio || '').trim(), visible: a.visible, socials: socials, photo: photo, work: work };
     });
     return by;
   }
@@ -161,7 +178,8 @@
   /* Artist page: a request button that stays on screen while scrolling, and steps aside once the page's own request section is in view. */
   function stickyRequest() {
     try {
-      var src = document.querySelector('.p-req a'), end = document.querySelector('.p-req'); if (!src || !end || document.querySelector('.p-sticky')) return;
+      var scope = document.querySelector('[data-block]:not([hidden])') || document;
+      var src = scope.querySelector('.p-req a'), end = scope.querySelector('.p-req'); if (!src || !end || document.querySelector('.p-sticky')) return;
       var bar = el('div', 'p-sticky'), a = el('a', 'c-btn c-btn--solid', src.textContent); a.href = src.getAttribute('href'); bar.appendChild(a); document.body.appendChild(bar);
       var endSeen = false;
       function sync() { bar.classList.toggle('on', (window.scrollY || 0) > 360 && !endSeen); a.textContent = src.textContent; a.href = src.getAttribute('href'); }
@@ -253,7 +271,7 @@
         a.portraitAlt = 'Portrait of ' + p.nick + ' at Instattoosionalized';
       }
       /* Artists the portal added since the site was built join the list, so their card and page
-         link exist. They have no built-in photos yet; the profile page carries what is published. */
+         link exist, carrying the photos the portal published for them. */
       var order = (read() && read().artists) || [];
       order.forEach(function (raw) {
         var q = raw && by[raw.slug];
@@ -263,9 +281,9 @@
         list.push({
           slug: q.key, pageVar: q.slug, name: q.name, first: q.nick, role: q.role || 'Tattoo',
           families: [/pierc/i.test(q.role || '') ? 'piercing' : 'tattoo'], does: q.role ? [q.role] : [],
-          quick: '', featuredCap: '', work: [], sample: false, __noPage: true,
+          quick: '', featuredCap: '', work: q.work || [], sample: false, __noPage: true,
           bio: q.bio, about: paragraphs(q.bio), socials: q.socials,
-          ig: ig2 ? ig2.label.replace(/^@/, '') : '', portrait: '',
+          ig: ig2 ? ig2.label.replace(/^@/, '') : '', portrait: q.photo || '',
           portraitAlt: 'Portrait of ' + q.nick + ' at Instattoosionalized',
           note: ['Send the shop request form with ' + q.nick + ' picked. Tell them the idea, where it is going, and roughly how big.', POLICY_DEFAULTS.deposit]
         });
@@ -458,7 +476,36 @@
     }
   }
 
-  window.SiteContent = { navNames: navNames, homePolicies: homePolicies, cleanPolicies: cleanPolicies, withPreview: withPreview, PREVIEW: PREVIEW, KINDS: KINDS, read: read, shopToday: shopToday, active: active, cleanNews: cleanNews, cleanArtists: cleanArtists, mergeHome: mergeHome, mergeSite: mergeSite, cleanShop: cleanShop, cleanHours: cleanHours, cleanPrices: cleanPrices, cleanServices: cleanServices, applyArtistPage: applyArtistPage, applyDepositLine: applyDepositLine, applyReviews: applyReviews, previewBar: previewBar, stickyRequest: stickyRequest, el: el, warn: warn };
+  /* Portal uploads live in the portal's IndexedDB photo store ('oa2-images'). A page on
+     this origin can read the same store, so an owner's browser shows uploaded photos on
+     the site too. Renderers mark such photos data-idb (or leave the id in src); this
+     resolves them to object URLs. Browsers without the store simply keep the alt text. */
+  function sweepIdbImgs(root) {
+    Array.prototype.slice.call((root || document).querySelectorAll('img')).forEach(function (img) {
+      var src = img.getAttribute('src');
+      if (src && src.indexOf('idb:') === 0) { img.setAttribute('data-idb', src); img.removeAttribute('src'); }
+    });
+  }
+  function resolveIdbImgs(root) {
+    sweepIdbImgs(root);
+    var imgs = Array.prototype.slice.call((root || document).querySelectorAll('img[data-idb]'));
+    if (!imgs.length || !window.indexedDB) return;
+    try {
+      var rq = indexedDB.open('oa2-images', 1);
+      rq.onupgradeneeded = function () { if (!rq.result.objectStoreNames.contains('blobs')) rq.result.createObjectStore('blobs'); };
+      rq.onsuccess = function () {
+        var db = rq.result;
+        if (!db.objectStoreNames.contains('blobs')) return;
+        imgs.forEach(function (img) {
+          var g = db.transaction('blobs', 'readonly').objectStore('blobs').get(img.getAttribute('data-idb'));
+          g.onsuccess = function () { if (g.result) img.src = URL.createObjectURL(g.result); };
+        });
+      };
+    } catch (e) { /* photos stay as their alt text */ }
+  }
+  window.addEventListener('load', function () { resolveIdbImgs(document); });
+
+  window.SiteContent = { navNames: navNames, homePolicies: homePolicies, cleanPolicies: cleanPolicies, withPreview: withPreview, PREVIEW: PREVIEW, KINDS: KINDS, read: read, shopToday: shopToday, active: active, cleanNews: cleanNews, cleanArtists: cleanArtists, mergeHome: mergeHome, mergeSite: mergeSite, cleanShop: cleanShop, cleanHours: cleanHours, cleanPrices: cleanPrices, cleanServices: cleanServices, applyArtistPage: applyArtistPage, applyDepositLine: applyDepositLine, applyReviews: applyReviews, previewBar: previewBar, stickyRequest: stickyRequest, el: el, warn: warn, resolveIdbImgs: resolveIdbImgs };
 
   var me = document.currentScript;
   function navPage() {

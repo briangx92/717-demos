@@ -396,7 +396,7 @@ const MODULES = {
       seeBtn.addEventListener("click", () => { location.href = artistPageHref(a); });
       reqBtn.addEventListener("click", () => requestArtist(a));
       const photoLink = T.el("a", { class: "s-rail__photo", href: artistPageHref(a), "aria-label": a.name + "'s page" }, [
-        T.el("img", { src: a.portrait, alt: a.portraitAlt, loading: "lazy" })
+        a.portrait ? T.el("img", { src: a.portrait, alt: a.portraitAlt, loading: "lazy" }) : T.el("span", { class: "s-rail__mono", text: (a.first || a.name || "?").charAt(0).toUpperCase(), "aria-hidden": "true" })
       ]);
       const card = T.el("article", { class: "s-rail__card", "data-slug": a.slug }, [
         photoLink,

@@ -364,6 +364,21 @@
     return ROOT + src;
   }
 
+  /* Before/after slider wiring (the same interaction the homepage stages use). */
+  function wireBa(stage) {
+    function setSplit(e) { var r = stage.getBoundingClientRect(); var p = (e.clientX - r.left) / r.width * 100; p = Math.max(4, Math.min(96, p)); stage.style.setProperty('--split', p + '%'); }
+    stage.addEventListener('pointerdown', function (e) {
+      e.preventDefault();
+      try { stage.setPointerCapture(e.pointerId); } catch (err) { /* capture is a nicety */ }
+      setSplit(e);
+      function mv(ev) { setSplit(ev); }
+      function up() { stage.removeEventListener('pointermove', mv); stage.removeEventListener('pointerup', up); stage.removeEventListener('pointercancel', up); }
+      stage.addEventListener('pointermove', mv);
+      stage.addEventListener('pointerup', up);
+      stage.addEventListener('pointercancel', up);
+    });
+  }
+
   var ICONS = {
     Instagram: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>',
     Facebook: '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M13.5 21.9v-7.2h2.42l.36-2.8H13.5V10.1c0-.81.23-1.36 1.4-1.36h1.5V6.25c-.26-.04-1.15-.11-2.19-.11-2.17 0-3.65 1.32-3.65 3.75v2.01H8.13v2.8h2.43v7.2a10.03 10.03 0 0 0 2.94 0z"/></svg>',
@@ -387,7 +402,8 @@
       if (!r.visible) return;
       var b = ROSTER[r.key] || null;
       var card = document.createElement('a'); card.className = 'p-roster-card'; card.href = 'artist.html?artist=' + r.slug;
-      if (b && b.portrait) { var im = document.createElement('img'); im.src = srcFor(b.portrait); im.alt = 'Portrait of ' + r.name; im.loading = 'lazy'; card.appendChild(im); }
+      var pimg = (b && b.portrait) || r.photo || '';
+      if (pimg) { var im = document.createElement('img'); if (pimg.indexOf('idb:') === 0) im.setAttribute('data-idb', pimg); else im.src = srcFor(pimg); im.alt = 'Portrait of ' + r.name; im.loading = 'lazy'; card.appendChild(im); }
       var nm = document.createElement('span'); nm.className = 'p-roster-name'; nm.textContent = r.name;
       card.appendChild(nm);
       if (r.role) { var rl = document.createElement('span'); rl.className = 'p-roster-role'; rl.textContent = r.role; card.appendChild(rl); }
@@ -409,8 +425,15 @@
     var bioParas = rec ? paras(rec.bio) : baked.bioParas;
     var socials = rec ? rec.socials : baked.socials;
     var does = baked ? baked.does : (rec && rec.role ? [rec.role] : []);
-    var portrait = baked ? baked.portrait : '';
+    var portrait = (rec && rec.photo) || (baked ? baked.portrait : '');
     var work = baked ? baked.work.map(function (w) { return { src: w.src, cap: w.cap, alt: w.alt, date: w.date || '' }; }) : [];
+    /* An artist who exists only in the portal data brings the photos it published. */
+    if (!baked && rec && Array.isArray(rec.work) && rec.work.length) {
+      work = rec.work.map(function (w) {
+        if (w.ba) return { ba: { a: srcFor(w.ba.a), b: srcFor(w.ba.b), acap: w.ba.acap, bcap: w.ba.bcap, title: w.ba.title, story: w.ba.story }, cap: w.cap || '', date: w.date || '' };
+        return { src: srcFor(w.src), cap: w.cap || '', alt: w.cap || '', date: w.date || '' };
+      });
+    }
 
     /* The portal's draft portfolio in this browser overrides the built-in photos. */
     try {
@@ -436,15 +459,21 @@
     var md = document.querySelector('meta[name="description"]'); if (md) md.setAttribute('content', desc);
     var ogT = document.querySelector('meta[property="og:title"]'); if (ogT) ogT.setAttribute('content', document.title);
     var ogD = document.querySelector('meta[property="og:description"]'); if (ogD) ogD.setAttribute('content', desc);
-    if (portrait) {
-      var ogI = document.querySelector('meta[property="og:image"]');
-      if (ogI) ogI.setAttribute('content', location.href.split('/view/pages/')[0] + '/' + portrait);
-    }
+    var rootUrl = location.href.split('/view/pages/')[0];
+    var ogImg = (portrait && portrait.indexOf('idb:') !== 0) ? rootUrl + '/' + portrait : rootUrl + '/instattoosionalized-logo.jpg';
+    var ogI = document.querySelector('meta[property="og:image"]');
+    if (ogI) ogI.setAttribute('content', ogImg);
+    var twT = document.querySelector('meta[name="twitter:title"]'); if (twT) twT.setAttribute('content', document.title);
+    var twD = document.querySelector('meta[name="twitter:description"]'); if (twD) twD.setAttribute('content', desc);
+    var twI = document.querySelector('meta[name="twitter:image"]'); if (twI) twI.setAttribute('content', ogImg);
 
     var img = block.querySelector('.p-portrait');
     if (img) {
-      if (portrait) { img.src = srcFor(portrait); img.alt = 'Portrait of ' + nick + ', tattoo artist at Instattoosionalized'; }
-      else img.hidden = true;
+      /* No portrait of their own: clear whatever the template carried, so one artist's
+         face never stands in for another's. */
+      if (portrait && portrait.indexOf('idb:') === 0) { img.removeAttribute('src'); img.setAttribute('data-idb', portrait); img.hidden = false; img.alt = 'Portrait of ' + nick + ', tattoo artist at Instattoosionalized'; }
+      else if (portrait) { img.src = srcFor(portrait); img.removeAttribute('data-idb'); img.hidden = false; img.alt = 'Portrait of ' + nick + ', tattoo artist at Instattoosionalized'; }
+      else { img.removeAttribute('src'); img.removeAttribute('data-idb'); img.hidden = true; }
     }
     var nameEl = block.querySelector('.p-name'); if (nameEl) nameEl.textContent = name;
 
@@ -539,8 +568,9 @@
       showBlock(bakedKey);
       applyToBlock(block, rec, ROSTER[bakedKey], rec ? rec.slug : varName);
     } else {
-      showBlock('dynamic');
-      applyToBlock(document.querySelector('[data-block="dynamic"]'), rec, null, rec.slug);
+      var dyn = document.querySelector('[data-block="dynamic"]');
+      if (dyn) { showBlock('dynamic'); applyToBlock(dyn, rec, null, rec.slug); }
+      else { fillRoster(by); showBlock('roster'); document.title = 'Our artists | Instattoosionalized Tattoos and Piercings'; }
     }
   }
 
@@ -548,4 +578,5 @@
      window.SiteContent are ready; it runs at once, before the lightbox script below it
      collects the photos. */
   main();
+  if (window.SiteContent && window.SiteContent.resolveIdbImgs) window.SiteContent.resolveIdbImgs(document);
 })();

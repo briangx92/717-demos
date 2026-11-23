@@ -4,21 +4,26 @@
   var items = figs.map(function(f){
     var img = f.querySelector('img');
     var cap = f.querySelector('figcaption');
-    return { src: img.getAttribute('src'), cap: cap ? cap.textContent.trim().replace(/\s+/g,' ') : '' };
+    return { img: img, cap: cap ? cap.textContent.trim().replace(/\s+/g,' ') : '' };
   });
+  function srcOf(it) { return it.img ? (it.img.src || '') : ''; }
   var ZOOM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>';
   var lbx = document.getElementById('lbx'), im = document.getElementById('lbx-img'),
       capEl = document.getElementById('lbx-cap'), cntEl = document.getElementById('lbx-count'),
       strip = document.getElementById('lbx-strip'), idx = 0, lastWheel = 0;
-  items.forEach(function(it, i){
-    var t = document.createElement('img');
-    t.src = it.src; t.alt = '';
-    t.addEventListener('click', function(){ show(i); });
-    strip.appendChild(t);
-  });
+  var stripBuilt = false;
+  function buildStrip(){
+    if (stripBuilt) return; stripBuilt = true;
+    items.forEach(function(it, i){
+      var t = document.createElement('img');
+      t.src = srcOf(it); t.alt = '';
+      t.addEventListener('click', function(){ show(i); });
+      strip.appendChild(t);
+    });
+  }
   function show(i){
     idx = (i + items.length) % items.length;
-    im.src = items[idx].src;
+    im.src = srcOf(items[idx]);
     capEl.textContent = items[idx].cap;
     cntEl.textContent = (idx + 1) + ' of ' + items.length;
     Array.prototype.forEach.call(strip.children, function(t, j){ t.classList.toggle('on', j === idx); });
@@ -26,6 +31,7 @@
     if (on) on.scrollIntoView({ block:'nearest', inline:'center' });
   }
   function open(i){
+    buildStrip();
     show(i);
     lbx.classList.add('open');
     document.body.style.overflow = 'hidden';
