@@ -368,85 +368,33 @@
     return a;
   }
 
-  function roster(by) {
-    document.title = 'Our artists | Instattoosionalized Tattoos and Piercings';
-    var main = document.querySelector('main');
-    if (!main) return;
-    while (main.firstChild) main.removeChild(main.firstChild);
-    var list = [];
-    if (by) {
-      Object.keys(by).forEach(function (k) {
-        var r = by[k];
-        if (!r.visible) return;
-        var b = ROSTER[r.key] || null;
-        list.push({ varName: r.slug, name: r.name, role: r.role || '', portrait: b ? b.portrait : '' });
-      });
-    }
-    if (!list.length) {
-      Object.keys(ROSTER).forEach(function (k) {
-        var b = ROSTER[k];
-        list.push({ varName: b.var, name: b.name, role: '', portrait: b.portrait });
-      });
-    }
-    var box = document.createElement('section'); box.className = 'p-sec';
-    var h1 = document.createElement('h1'); h1.className = 'p-name'; h1.textContent = 'Our artists';
-    var grid = document.createElement('div'); grid.className = 'p-roster';
-    list.forEach(function (a) {
-      var card = document.createElement('a'); card.className = 'p-roster-card'; card.href = 'artist.html?artist=' + a.varName;
-      if (a.portrait) { var im = document.createElement('img'); im.src = srcFor(a.portrait); im.alt = 'Portrait of ' + a.name; im.loading = 'lazy'; card.appendChild(im); }
-      var nm = document.createElement('span'); nm.className = 'p-roster-name'; nm.textContent = a.name;
+  function fillRoster(by) {
+    if (!by) return;
+    var grid = document.querySelector('[data-block="roster"] .p-roster');
+    if (!grid) return;
+    while (grid.firstChild) grid.removeChild(grid.firstChild);
+    Object.keys(by).forEach(function (k) {
+      var r = by[k];
+      if (!r.visible) return;
+      var b = ROSTER[r.key] || null;
+      var card = document.createElement('a'); card.className = 'p-roster-card'; card.href = 'artist.html?artist=' + r.slug;
+      if (b && b.portrait) { var im = document.createElement('img'); im.src = srcFor(b.portrait); im.alt = 'Portrait of ' + r.name; im.loading = 'lazy'; card.appendChild(im); }
+      var nm = document.createElement('span'); nm.className = 'p-roster-name'; nm.textContent = r.name;
       card.appendChild(nm);
-      if (a.role) { var rl = document.createElement('span'); rl.className = 'p-roster-role'; rl.textContent = a.role; card.appendChild(rl); }
+      if (r.role) { var rl = document.createElement('span'); rl.className = 'p-roster-role'; rl.textContent = r.role; card.appendChild(rl); }
       grid.appendChild(card);
     });
-    box.append(h1, grid); main.appendChild(box);
   }
 
-  function unavailable() {
-    document.title = 'Instattoosionalized Tattoos and Piercings';
-    var main = document.querySelector('main');
-    if (!main) return;
-    while (main.firstChild) main.removeChild(main.firstChild);
-    var box = document.createElement('section'); box.className = 'p-sec';
-    var h1 = document.createElement('h1'); h1.className = 'p-name'; h1.textContent = 'This page is not available right now';
-    var p = document.createElement('p'); p.textContent = 'The shop has taken this page down for now.';
-    var back = document.createElement('a'); back.className = 'c-btn c-btn--solid'; back.href = ROOT + 'instattoosionalized-tattoos-and-piercings.html'; back.textContent = 'Back to the shop';
-    box.append(h1, p, back); main.appendChild(box);
-  }
-
-  function wireBa(stage) {
-    function setSplit(e) {
-      var r = stage.getBoundingClientRect();
-      var p = (e.clientX - r.left) / r.width * 100;
-      p = Math.max(4, Math.min(96, p));
-      stage.style.setProperty('--split', p + '%');
-    }
-    stage.addEventListener('pointerdown', function (e) {
-      e.preventDefault();
-      try { stage.setPointerCapture(e.pointerId); } catch (err) { /* no capture */ }
-      setSplit(e);
-      var mv = function (ev) { setSplit(ev); };
-      var up = function () { stage.removeEventListener('pointermove', mv); stage.removeEventListener('pointerup', up); stage.removeEventListener('pointercancel', up); };
-      stage.addEventListener('pointermove', mv); stage.addEventListener('pointerup', up); stage.addEventListener('pointercancel', up);
+  function showBlock(name) {
+    Array.prototype.slice.call(document.querySelectorAll('[data-block]')).forEach(function (el) {
+      el.hidden = el.getAttribute('data-block') !== name;
     });
   }
 
-  function main() {
+  function applyToBlock(block, rec, baked, curVar) {
     var SC = window.SiteContent;
-    var varName = '';
-    try { varName = new URLSearchParams(location.search).get('artist') || ''; } catch (e) { /* no variable: the roster */ }
-
-    var by = SC ? SC.cleanArtists(SC.read()) : null;
-    var rec = null;
-    if (by) {
-      if (by[varName]) rec = by[varName];
-      else Object.keys(by).forEach(function (k) { if (by[k].key === varName) rec = by[k]; });
-    }
-    var baked = ROSTER[varName] || (rec && ROSTER[rec.key]) || null;
-    if ((rec && !rec.visible) || (!rec && !baked)) { roster(by); return; }
-
     var key = rec ? rec.key : baked.key;
-    var curVar = rec ? rec.slug : varName;
     var name = rec ? rec.name : baked.name;
     var nick = rec ? rec.nick : nickOf(baked.name);
     var bioParas = rec ? paras(rec.bio) : baked.bioParas;
@@ -477,21 +425,21 @@
       if (ogI) ogI.setAttribute('content', location.href.split('/view/pages/')[0] + '/' + portrait);
     }
 
-    var img = document.querySelector('.p-portrait');
+    var img = block.querySelector('.p-portrait');
     if (img) {
       if (portrait) { img.src = srcFor(portrait); img.alt = 'Portrait of ' + nick + ', tattoo artist at Instattoosionalized'; }
       else img.hidden = true;
     }
-    var nameEl = document.querySelector('.p-name'); if (nameEl) nameEl.textContent = name;
+    var nameEl = block.querySelector('.p-name'); if (nameEl) nameEl.textContent = name;
 
-    var links = document.querySelector('.p-links');
+    var links = block.querySelector('.p-links');
     if (links) {
       while (links.firstChild) links.removeChild(links.firstChild);
       socials.forEach(function (s) { links.appendChild(chip(s)); });
       links.hidden = !socials.length;
     }
 
-    var about = document.querySelector('.p-about');
+    var about = block.querySelector('.p-about');
     if (about) {
       var h2 = about.querySelector('h2'); if (h2) h2.textContent = 'In ' + nick + '\u2019s words';
       Array.prototype.slice.call(about.querySelectorAll('p')).forEach(function (n) { n.remove(); });
@@ -499,14 +447,14 @@
       about.hidden = !bioParas.length;
     }
 
-    var chipsBox = document.querySelector('.p-chips');
+    var chipsBox = block.querySelector('.p-chips');
     if (chipsBox) {
       while (chipsBox.firstChild) chipsBox.removeChild(chipsBox.firstChild);
       does.forEach(function (d) { var s = document.createElement('span'); s.className = 'c-chip'; s.textContent = d; chipsBox.appendChild(s); });
       var sec = chipsBox.closest('section'); if (sec) sec.hidden = !does.length;
     }
 
-    var grid = document.querySelector('.p-grid');
+    var grid = block.querySelector('.p-grid');
     if (grid) {
       while (grid.firstChild) grid.removeChild(grid.firstChild);
       work.forEach(function (w) {
@@ -530,7 +478,7 @@
       var wsec = grid.closest('section'); if (wsec) wsec.hidden = !work.length;
     }
 
-    var note = document.querySelector('.p-note');
+    var note = block.querySelector('.p-note');
     if (note) {
       var nh = note.querySelector('h2'); if (nh) nh.textContent = 'Booking with ' + nick;
       var first = note.querySelector('p');
@@ -542,7 +490,7 @@
       }
     }
 
-    var req = document.querySelector('.p-req');
+    var req = block.querySelector('.p-req');
     if (req) {
       var rh = req.querySelector('h2'); if (rh) rh.textContent = 'Want work by ' + nick + '?';
       var rp = req.querySelector('p'); if (rp) rp.textContent = 'Send a request and pick ' + nick + ' by name. The shop writes back to set it up.';
@@ -551,6 +499,33 @@
     }
 
     if (SC) { SC.applyDepositLine(); SC.stickyRequest(); }
+  }
+
+  function main() {
+    var SC = window.SiteContent;
+    var varName = '';
+    try { varName = new URLSearchParams(location.search).get('artist') || ''; } catch (e) { /* no variable: the roster */ }
+    var by = SC ? SC.cleanArtists(SC.read()) : null;
+    var rec = null;
+    if (by && varName) {
+      if (by[varName]) rec = by[varName];
+      else Object.keys(by).forEach(function (k) { if (by[k].key === varName) rec = by[k]; });
+    }
+    var bakedKey = rec ? rec.key : (ROSTER[varName] ? varName : null);
+    if (!varName || (!rec && !bakedKey) || (rec && !rec.visible)) {
+      fillRoster(by);
+      showBlock('roster');
+      document.title = 'Our artists | Instattoosionalized Tattoos and Piercings';
+      return;
+    }
+    var block = bakedKey ? document.querySelector('[data-block="' + bakedKey + '"]') : null;
+    if (block) {
+      showBlock(bakedKey);
+      applyToBlock(block, rec, ROSTER[bakedKey], rec ? rec.slug : varName);
+    } else {
+      showBlock('dynamic');
+      applyToBlock(document.querySelector('[data-block="dynamic"]'), rec, null, rec.slug);
+    }
   }
 
   /* This script sits after the page content and after the reader, so the whole page and

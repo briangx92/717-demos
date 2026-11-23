@@ -393,7 +393,7 @@ const MODULES = {
     list.forEach(a => {
       const seeBtn = T.el("button", { class: "c-btn", type: "button", text: "See " + a.first + "'s work" });
       const reqBtn = T.el("button", { class: "c-btn c-btn--ghost", type: "button", text: "Request with " + a.first });
-      seeBtn.addEventListener("click", () => openArtist(a, seeBtn));
+      seeBtn.addEventListener("click", () => { location.href = artistPageHref(a); });
       reqBtn.addEventListener("click", () => requestArtist(a));
       const photoLink = T.el("a", { class: "s-rail__photo", href: artistPageHref(a), "aria-label": a.name + "'s page" }, [
         T.el("img", { src: a.portrait, alt: a.portraitAlt, loading: "lazy" })
@@ -411,14 +411,6 @@ const MODULES = {
           T.el("div", { class: "s-rail__actions" }, [seeBtn, reqBtn])
         ])
       ]);
-      photoLink.addEventListener("click", e => {
-        if (!card.classList.contains("is-focused")) { e.preventDefault(); centerCard(card); }
-      });
-      card.addEventListener("click", e => {
-        if (card.classList.contains("is-focused")) return;
-        if (e.target.closest("a, button")) return;
-        centerCard(card);
-      });
       cards.push(card);
       rail.append(card);
     });

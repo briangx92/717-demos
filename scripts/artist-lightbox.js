@@ -1,5 +1,5 @@
 (function(){
-  var figs = Array.prototype.slice.call(document.querySelectorAll('figure.p-feat, .p-grid figure'));
+  var figs = Array.prototype.slice.call(document.querySelectorAll('figure.p-feat, .p-grid figure')).filter(function (f) { return !f.closest('[hidden]'); });
   if (!figs.length) return;
   var items = figs.map(function(f){
     var img = f.querySelector('img');
