@@ -4,18 +4,22 @@
   var OA = window.OA, h = OA.h, S = OA.store;
   var ui = OA.ui = {};
 
-  /* ---------- toasts: one live region, an optional action (Undo), and failures that stay until dismissed ---------- */
-  var toastBox;
+  /* ---------- toasts: one live region, an optional action (Undo), and failures that fade on their own after 8 seconds ---------- */
+  var toastBox, openBad = {};
   ui.toast = function (msg, o) {
     o = o || {};
     if (!toastBox) { toastBox = h('div', { class: 'toasts', 'aria-live': 'polite', role: 'status' }); document.body.appendChild(toastBox); }
+    /* The same failure never stacks: re-triggering it just restarts its 8 seconds. */
+    if (o.kind === 'bad' && openBad[msg]) { openBad[msg].refresh(); return openBad[msg].close; }
     var t = h('div', { class: 'toast' + (o.kind === 'bad' ? ' bad' : '') }, h('span', { text: msg }));
     var timer;
-    function close() { clearTimeout(timer); if (t.parentNode) t.parentNode.removeChild(t); }
+    function close() { clearTimeout(timer); if (o.kind === 'bad') delete openBad[msg]; if (t.parentNode) t.parentNode.removeChild(t); }
+    function arm() { clearTimeout(timer); timer = setTimeout(close, o.kind === 'bad' ? 8000 : (o.action ? 9000 : 4500)); }
     if (o.action) t.appendChild(h('button', { class: 'link', type: 'button', text: o.action.label, on: { click: function () { close(); o.action.run(); } } }));
     if (o.kind === 'bad') t.appendChild(h('button', { class: 'link', type: 'button', text: 'Dismiss', on: { click: close } }));
     toastBox.appendChild(t);
-    if (o.kind !== 'bad') timer = setTimeout(close, o.action ? 9000 : 4500);
+    if (o.kind === 'bad') openBad[msg] = { close: close, refresh: arm };
+    arm();
     return close;
   };
   ui.fail = function (msg) { return ui.toast(msg, { kind: 'bad' }); };
