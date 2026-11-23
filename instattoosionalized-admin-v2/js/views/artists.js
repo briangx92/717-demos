@@ -180,7 +180,21 @@
       el.addEventListener('dragover', function (e) { if (dragId && dragId !== p.id) { e.preventDefault(); el.classList.add('over'); } });
       el.addEventListener('dragleave', function () { el.classList.remove('over'); });
       el.addEventListener('drop', function (e) { e.preventDefault(); el.classList.remove('over'); if (dragId && dragId !== p.id) { act.reorder(slug, dragId, p.id); OA.rerender(); } });
+      var fnIn = ui.input(p.fileName || '', { placeholder: 'hello-kitty-jason-mask-tattoo.jpg', 'aria-label': 'File name for the site' });
+      var fnRow = h('label', { class: 'fnrow' }, h('span', { text: 'File name' }), fnIn);
+      if (!p.fileName) fnRow.style.display = 'none';
+      fnIn.addEventListener('change', function () { p.fileName = fnIn.value.trim(); S.commit(); OA.updateChrome(); });
+      var aiBtn = (OA.api && OA.api.ready()) ? ui.btn('Describe with AI', function () {
+        aiBtn.disabled = true; var old = aiBtn.textContent; aiBtn.textContent = 'Describing...';
+        OA.api.describe(p).then(function (r) {
+          cap.value = r.description; p.cap = r.description;
+          if (r.fileName) { p.fileName = r.fileName; fnIn.value = r.fileName; fnRow.style.display = ''; }
+          S.commit(); counts_(); OA.updateChrome();
+          ui.toast('AI drafted the description. Read it over, it is yours to edit.');
+        }).catch(function (e) { ui.fail(e.message); }).then(function () { aiBtn.disabled = false; aiBtn.textContent = old; });
+      }, 'small') : null;
       var tools = h('div', { class: 'row tight wrap' },
+        aiBtn,
         ui.btn('Earlier', function () { act.moveBy(slug, p.id, -1); OA.rerender(); }, 'small quiet', idx === 0 ? { disabled: 'disabled' } : {}),
         ui.btn('Later', function () { act.moveBy(slug, p.id, 1); OA.rerender(); }, 'small quiet', idx === all.length - 1 ? { disabled: 'disabled' } : {}),
         p.pair ? ui.btn('Split pair', function () { act.splitPair(slug, p.id); OA.rerender(); }, 'small quiet') : (all[idx + 1] && !all[idx + 1].pair ? ui.btn('Pair with next', function () {
@@ -188,7 +202,7 @@
         }, 'small quiet') : null),
         ui.btn('Delete', function () { var rec = act.removePhoto(slug, p.id); if (!rec) return; ui.toast('Photo deleted from the draft', { action: { label: 'Undo', run: function () { act.restorePhoto(slug, rec); OA.rerender(); } } }); OA.rerender(); }, 'small danger-quiet'));
       el.appendChild(media);
-      el.appendChild(h('div', { class: 'tile-body' }, h('label', { class: 'check' }, show, h('span', { text: 'Show on the site' })), cap, sec, tools));
+      el.appendChild(h('div', { class: 'tile-body' }, h('label', { class: 'check' }, show, h('span', { text: 'Show on the site' })), cap, fnRow, sec, tools));
       return el;
     }
     function counts_() { var n = counts(slug); info.textContent = OA.plural(n.on, 'photo') + ' on the site, ' + n.off + ' hidden. Drag tiles to reorder, or use Earlier and Later. Order here is the order on the site.'; }

@@ -347,3 +347,5 @@ a.ledger-row:hover { background: var(--surface); }
 /* Schedule delivery */
 .deliv { padding: .75rem 0; border-top: 1px solid var(--line2); }
 .deliv h3 { margin: 0 0 .5rem; font-size: 1rem; }
+.tile .fnrow { display: flex; gap: .5rem; align-items: center; font-size: .8rem; }
+.tile .fnrow input { flex: 1; }

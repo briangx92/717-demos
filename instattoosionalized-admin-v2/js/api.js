@@ -56,6 +56,48 @@
 
     analytics: function (days) { return api.call('/api/analytics?days=' + encodeURIComponent(days)); },
 
+    callPost: function (path, body) {
+      if (!api.configured()) return Promise.reject(new Error('This portal is not pointed at a shop server yet.'));
+      var t = getToken();
+      if (!t) return Promise.reject(new Error('Enter the access token in Settings first.'));
+      return fetch(base() + path, { method: 'POST', headers: { Authorization: 'Bearer ' + t, 'Content-Type': 'application/json' }, body: JSON.stringify(body || {}), cache: 'no-store' }).then(function (r) {
+        return r.json().catch(function () { return null; }).then(function (j) {
+          if (r.ok && j) return j;
+          if (r.status === 401) throw new Error('The access token was not accepted. Check it in Settings.');
+          if (r.status === 429) throw new Error('Too many tries. Wait a few minutes.');
+          throw new Error((j && typeof j.error === 'string' && j.error) || 'The shop server answered with an error (' + r.status + ').');
+        });
+      }, function () { throw new Error('Could not reach the shop server. Check the connection, then try again.'); });
+    },
+
+    /* Ask the shop server to draft a description (and an SEO file name) for one
+       portfolio photo. The server holds the Vision key; the owner always reads
+       and edits the draft before the photo can be shown. */
+    describe: function (item) {
+      function photoBlob() {
+        if (!item || !item.src) return Promise.resolve(null);
+        if (String(item.src).indexOf('idb:') === 0) return OA.img.blob(item.src.slice(4));
+        return fetch(OA.img.src(item.src), { cache: 'no-store' }).then(function (r) { return r.ok ? r.blob() : null; }).catch(function () { return null; });
+      }
+      function toB64(blob) {
+        return new Promise(function (res, rej) {
+          var fr = new FileReader();
+          fr.onload = function () { res(String(fr.result).split(',')[1] || ''); };
+          fr.onerror = function () { rej(new Error('That photo could not be read.')); };
+          fr.readAsDataURL(blob);
+        });
+      }
+      return photoBlob().then(function (blob) {
+        if (!blob) throw new Error('That photo could not be read.');
+        return toB64(blob);
+      }).then(function (b64) {
+        return api.callPost('/api/describe', { image: b64 });
+      }).then(function (j) {
+        if (!j || typeof j.description !== 'string' || !j.description) throw new Error('The description service sent something this portal does not recognize.');
+        return { description: j.description, fileName: typeof j.fileName === 'string' ? j.fileName : '' };
+      });
+    },
+
     /* One line for the Requests header. Never says all is well unless the last check worked. */
     status: function () {
       var st = state();

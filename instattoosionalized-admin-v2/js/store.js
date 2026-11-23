@@ -253,6 +253,7 @@
       if (urlCache[id]) return Promise.resolve(urlCache[id]);
       return tx('readonly', function (s) { return s.get(id); }).then(function (b) { if (!b) return ''; urlCache[id] = URL.createObjectURL(b); return urlCache[id]; });
     },
+    blob: function (id) { return tx('readonly', function (s) { return s.get(id); }).then(function (b) { return b || null; }); },
     all: function () { return tx('readonly', function (s) { return s.getAllKeys(); }); },
     /* Plain repo photos live one folder up from this page. */
     src: function (ref) { if (!ref) return ''; if (/^(idb:)/.test(ref)) return ''; if (/^(https?:|data:|blob:)/.test(ref)) return ref; var m = /^(?:\.\.\/)?([a-z0-9-]+)-((?:portrait|work-\d+)\.jpg)$/.exec(ref); if (m) ref = 'portfolio/' + m[1] + '/images/' + m[1] + '-' + m[2]; return '../' + ref; },
