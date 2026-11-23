@@ -10,6 +10,18 @@
   function pendingFor(slug) { return OA.pendingChanges().filter(function (c) { return c.key === 'artists' || c.key === 'portfolio'; }).filter(function (c) { var a = OA.artist(slug); return a && c.text.indexOf(OA.first(a.name) + ':') === 0; }).length; }
   function booksText(a) { return a.books === 'open' ? 'Books open' : 'Booked out' + (a.until ? ' until ' + OA.fmtShort(a.until) : ''); }
 
+  /* Soft delete: the artist leaves the draft site, photos and records are
+     kept, and Restore on the Artists list brings them back. Owner only. */
+  function removeArtist(a) {
+    var up = OA.appt && S.state.appts.filter(function (x) { return x.artist === a.slug && x.date >= OA.todayISO() && x.status === 'booked'; }).length;
+    ui.confirm('Remove ' + OA.nick(a) + '?', (up ? OA.plural(up, 'upcoming appointment') + ' with them will show on Today as needing a new artist until you reassign or cancel each one. ' : '') + 'The page and chair leave the draft site. Photos are kept, and you can restore them from the Artists list. Nothing is live until you publish.', 'Remove artist', true).then(function (ok) {
+      if (!ok) return;
+      a.removedAt = Date.now(); S.commit();
+      ui.toast(OA.nick(a) + ' removed from the draft', { action: { label: 'Undo', run: function () { a.removedAt = null; S.commit(); OA.rerender(); } } });
+      if (location.hash.indexOf('#/artists/' + a.slug) === 0) OA.go('artists'); else OA.rerender();
+    });
+  }
+
   /* ---------- roster ---------- */
   function roster() {
     var root = h('div', { class: 'page' }), arts = S.state.site.artists.filter(function (a) { return !a.removedAt && canOpen(a.slug); });
@@ -24,7 +36,7 @@
           h('p', { class: 'sub', text: a.role + (a.ig ? ' · @' + a.ig : '') }),
           h('div', { class: 'chips' }, ui.chip(booksText(a), a.books === 'open' ? 'ok' : 'warn'), a.visible ? null : ui.chip('Page hidden from the site', 'quiet'), unsaved ? ui.chip(OA.plural(unsaved, 'unpublished change'), 'draft') : null),
           h('p', { class: 'sub', text: OA.plural(n.on, 'photo') + ' on the site' + (n.off ? ', ' + n.off + ' hidden' : '') })),
-        h('div', { class: 'row end wrap' }, ui.link('Portfolio', '#/artists/' + a.slug + '/portfolio', 'btn small'), ui.link('Profile', '#/artists/' + a.slug + '/profile', 'btn small primary'))));
+        h('div', { class: 'row end wrap' }, ui.link('Portfolio', '#/artists/' + a.slug + '/portfolio', 'btn small'), ui.link('Profile', '#/artists/' + a.slug + '/profile', 'btn small primary'), OA.role.kind === 'owner' ? ui.btn('Remove', function () { removeArtist(a); }, 'small danger-quiet') : null)));
     });
     if (!arts.length) list.appendChild(ui.empty('No artists yet', 'Add the first artist to give them a page and a chair.'));
     root.appendChild(list);
@@ -82,10 +94,7 @@
     var right = h('div', {}, h('section', { class: 'card' }, h('h2', { text: 'Books' }), h('div', { class: 'form-grid' }, ui.field('Taking new clients', f.books, null, null, 'Open: the website offers this artist in the request form. Booked out: the site shows them as booked out instead, with the date below, so people know when to ask again.'), untilField)),
       h('section', { class: 'card' }, h('h2', { text: 'Main photo' }), portraitBox, edit ? h('label', { class: 'btn small', for: 'portrait-up', text: 'Replace photo' }) : null, edit ? (up.id = 'portrait-up', up) : null),
       h('section', { class: 'card' }, h('h2', { text: 'Page' }), h('label', { class: 'check' }, f.visible, h('span', { text: 'Show this artist’s page on the site' })),
-        edit && OA.role.kind === 'owner' ? h('div', { class: 'row' }, ui.btn('Remove this artist', function () {
-          var up = OA.appt && S.state.appts.filter(function (x) { return x.artist === a.slug && x.date >= OA.todayISO() && x.status === 'booked'; }).length;
-          ui.confirm('Remove ' + OA.nick(a) + '?', (up ? OA.plural(up, 'upcoming appointment') + ' with them will show on Today as needing a new artist until you reassign or cancel each one. ' : '') + 'The page and chair leave the draft site. Photos are kept, and you can restore them from the Artists list. Nothing is live until you publish.', 'Remove artist', true).then(function (ok) { if (!ok) return; a.removedAt = Date.now(); S.commit(); ui.toast(OA.nick(a) + ' removed from the draft', { action: { label: 'Undo', run: function () { a.removedAt = null; S.commit(); OA.go('artists/' + a.slug + '/profile'); } } }); OA.go('artists'); });
-        }, 'danger-quiet small')) : null));
+        edit && OA.role.kind === 'owner' ? h('div', { class: 'row' }, ui.btn('Remove this artist', function () { removeArtist(a); }, 'danger-quiet small')) : null));
     if (!edit) left.appendChild(h('p', { class: 'note', text: 'Only the owner or this artist can change the profile. You can change whether their books are open.' }));
     return h('div', { class: 'two' }, h('div', {}, left, socialsCard()), h('div', {}, right, scheduleCard()));
 
