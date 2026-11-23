@@ -33,36 +33,59 @@
       price: ui.input(d.price, { placeholder: 'e.g. $140' }), note: ui.area(d.note, { rows: 2 })
     };
     var live = h('div', { class: 'form-live', 'aria-live': 'polite' });
-    var times = h('div', { class: 'opentimes' }), shown = 5, pref = defaults.pref || null;
+    var times = h('div', { class: 'opentimes' }), pref = defaults.pref || null, agendaDays = null, onlyMatch = false;
     function durText(m) { var hrs = Math.floor(m / 60), r = m % 60; return (hrs ? hrs + (hrs > 1 ? ' hours' : ' hour') : '') + (hrs && r ? ' ' : '') + (r ? r + ' minutes' : ''); }
-    function slotBtn(sl, v, label) {
-      var on = v.date === sl.date && v.start === sl.start;
-      return h('button', { type: 'button', class: 'slot' + (sl.pick ? ' pick' : ''), 'aria-pressed': on ? 'true' : 'false', 'aria-label': OA.fmtDow(sl.date) + ', ' + OA.fmtRange(sl.start, sl.end),
-        on: { click: function () { f.date.value = sl.date; f.start.value = sl.start; f.end.value = sl.end; check(); } } }, label);
+    function agendaDur() { var v = read(); return endTouched && v.start && v.end && OA.mins(v.end) > OA.mins(v.start) ? OA.mins(v.end) - OA.mins(v.start) : DUR[v.type] || 60; }
+    /* The sliding 30-minute candidate starts become discrete session blocks: tile each unbroken
+       free window with dur-length blocks, stepping dur + 30 minutes, Gemini's session agenda. */
+    function fetchAgenda() {
+      var v = read(), dur = agendaDur();
+      var days = OA.openTimes({ artist: v.artist, dur: dur, pref: pref, ignoreApptId: a.id });
+      agendaDays = days.map(function (dy) {
+        var pickAt = {}; dy.slots.forEach(function (s) { pickAt[s.start] = s.pick; });
+        var blocks = [], winStart = null, winEnd = null;
+        function tile() {
+          if (winStart === null) return;
+          for (var s = winStart; s + dur <= winEnd; s += dur + 30) blocks.push({ date: dy.date, start: OA.hhmm(s), end: OA.hhmm(s + dur), pick: !!pickAt[OA.hhmm(s)] });
+          winStart = null;
+        }
+        dy.slots.forEach(function (s) { var st = OA.mins(s.start), en = OA.mins(s.end); if (winStart === null) { winStart = st; winEnd = en; } else if (st <= winEnd) { winEnd = Math.max(winEnd, en); } else { tile(); winStart = st; winEnd = en; } });
+        tile();
+        return { date: dy.date, blocks: blocks };
+      }).filter(function (dy) { return dy.blocks.length; });
+      return dur;
+    }
+    function slotBtn(b) {
+      return h('button', { type: 'button', class: 'slot' + (b.pick ? ' pick' : ''), 'data-d': b.date, 'data-s': b.start, 'data-e': b.end, 'aria-pressed': 'false', 'aria-label': OA.fmtDow(b.date) + ', ' + OA.fmtRange(b.start, b.end),
+        on: { click: function () { f.date.value = b.date; f.start.value = b.start; f.end.value = b.end; endTouched = true; check(); } } }, (b.pick && pref ? '★ ' : '') + OA.fmtRange(b.start, b.end));
+    }
+    function syncSel() {
+      var v = read();
+      OA.$$('.slot', times).forEach(function (el) { el.setAttribute('aria-pressed', el.getAttribute('data-d') === v.date && el.getAttribute('data-s') === v.start && el.getAttribute('data-e') === v.end ? 'true' : 'false'); });
     }
     function paintTimes() {
-      OA.clear(times); var v = read();
-      var dur = endTouched && v.start && v.end && OA.mins(v.end) > OA.mins(v.start) ? OA.mins(v.end) - OA.mins(v.start) : DUR[v.type] || 60;
-      var days = OA.openTimes({ artist: v.artist, dur: dur, pref: pref, ignoreApptId: a.id });
+      OA.clear(times); var v = read(), dur = fetchAgenda();
       times.appendChild(h('strong', { text: 'Open times with ' + OA.chairName(v.artist) + ' (' + durText(dur) + ' each)' }));
-      if (!days.length) { times.appendChild(h('p', { class: 'hint warn', text: 'Nothing is open in the next two weeks for ' + durText(dur) + '. Try a shorter length or another artist, or set a date yourself below.' })); return; }
-      if (pref && OA.prefText(pref) !== 'Flexible') {
-        var picks = [];
-        days.forEach(function (dy) { dy.slots.filter(function (x) { return x.pick; }).slice(0, 2).forEach(function (x) { picks.push(x); }); });
-        picks = picks.slice(0, 6);
-        var first = (v.client || 'The client').split(' ')[0];
-        if (picks.length) {
-          var row = h('div', { class: 'ot-row' });
-          picks.forEach(function (x) { row.appendChild(slotBtn(x, v, OA.fmtDow(x.date) + ' ' + OA.fmtTime(x.start))); });
-          times.appendChild(h('div', { class: 'ot-picks' }, h('span', { class: 'ot-label', text: first + ' asked for ' + OA.prefText(pref).toLowerCase() }), row));
-        } else times.appendChild(h('p', { class: 'hint warn', text: 'Nothing open matches what ' + first + ' asked for (' + OA.prefText(pref).toLowerCase() + ') in the next two weeks. All open times are below.' }));
+      if (!agendaDays.length) { times.appendChild(h('p', { class: 'hint warn', text: 'Nothing is open in the next two weeks for ' + durText(dur) + '. Try a shorter length or another artist, or set a date yourself below.' })); return; }
+      var hasPref = pref && OA.prefText(pref) !== 'Flexible';
+      if (hasPref) {
+        var cb = h('input', { type: 'checkbox', 'aria-label': 'Only show times matching the preference' });
+        cb.checked = onlyMatch;
+        cb.addEventListener('change', function () { onlyMatch = cb.checked; paintTimes(); });
+        times.appendChild(h('div', { class: 'ot-filter' }, h('span', { text: (v.client || 'The client').split(' ')[0] + ' prefers ' + OA.prefText(pref).toLowerCase() }), h('label', { class: 'ot-only' }, cb, ' Only matching')));
       }
-      days.slice(0, shown).forEach(function (dy) {
+      var box = h('div', { class: 'agenda' }), anyShown = false, tomorrow = OA.addDays(OA.todayISO(), 1);
+      agendaDays.forEach(function (dy) {
+        var blocks = onlyMatch ? dy.blocks.filter(function (b) { return b.pick; }) : dy.blocks;
+        if (!blocks.length) return;
+        anyShown = true;
         var row = h('div', { class: 'ot-row' });
-        dy.slots.forEach(function (x) { row.appendChild(slotBtn(x, v, OA.fmtTime(x.start))); });
-        times.appendChild(h('div', { class: 'ot-day' }, h('span', { class: 'ot-label', text: (dy.date === OA.todayISO() ? 'Today, ' : '') + OA.fmtDow(dy.date) }), row));
+        blocks.forEach(function (b) { row.appendChild(slotBtn(b)); });
+        box.appendChild(h('div', { class: 'agenda-day' }, h('span', { class: 'ot-label', text: OA.fmtDow(dy.date) + (dy.date === OA.todayISO() ? ' · Today' : dy.date === tomorrow ? ' · Tomorrow' : '') }), row));
       });
-      if (days.length > shown) times.appendChild(ui.btn('Show more days', function () { shown += 5; paintTimes(); }, 'small quiet'));
+      if (!anyShown) box.appendChild(h('p', { class: 'hint warn', text: 'Nothing open matches that preference in the next two weeks. Untick “Only matching” to see everything.' }));
+      times.appendChild(box);
+      syncSel();
     }
     function read() { return { client: f.client.value, phone: f.phone.value, type: f.type.value, artist: f.artist.value, date: f.date.value, start: f.start.value, end: f.end.value, piece: f.piece.value, deposit: f.deposit.value, price: f.price.value, note: f.note.value, requestId: a.requestId || defaults.requestId || '' }; }
     function check() {
@@ -73,18 +96,22 @@
         else { var hr = OA.hoursFor(v.date); if (OA.mins(v.start) < OA.mins(hr.open) || OA.mins(v.end) > OA.mins(hr.close)) msgs.push(['warn', 'That runs outside the shop’s hours that day (' + OA.fmtRange(hr.open, hr.close) + ').']); }
       }
       msgs.forEach(function (m) { live.appendChild(h('div', { class: 'hint ' + m[0], text: m[1] })); });
-      paintTimes();
+      syncSel();
     }
-    f.type.addEventListener('change', function () { shown = 5; if (!endTouched) { f.end.value = OA.hhmm(OA.mins(f.start.value || '12:00') + DUR[f.type.value]); } check(); });
-    f.start.addEventListener('change', function () { if (!endTouched && f.start.value) f.end.value = OA.hhmm(Math.min(23 * 60 + 45, OA.mins(f.start.value) + DUR[f.type.value])); check(); });
-    f.end.addEventListener('change', function () { endTouched = true; check(); });
-    f.artist.addEventListener('change', function () { shown = 5; check(); }); f.date.addEventListener('change', check);
+    f.type.addEventListener('change', function () { if (!endTouched) { f.end.value = OA.hhmm(OA.mins(f.start.value || '12:00') + DUR[f.type.value]); } paintTimes(); check(); });
+    f.start.addEventListener('change', function () { if (!endTouched && f.start.value) f.end.value = OA.hhmm(Math.min(23 * 60 + 45, OA.mins(f.start.value) + DUR[f.type.value])); if (endTouched) paintTimes(); check(); });
+    f.end.addEventListener('change', function () { endTouched = true; paintTimes(); check(); });
+    f.artist.addEventListener('change', function () { paintTimes(); check(); }); f.date.addEventListener('change', check);
     f.client.addEventListener('change', function () { var c = OA.findClient(f.client.value, ''); if (c && !f.phone.value) f.phone.value = c.phone; });
+    var customOpen = !!existing;
+    var customBox = h('div', { class: 'form-grid span2 custom-times' }, ui.field('Date', f.date), ui.field('Starts', f.start), ui.field('Ends', f.end));
+    customBox.hidden = !customOpen;
+    var customToggle = h('button', { type: 'button', class: 'btn small quiet span2', 'aria-expanded': String(customOpen), text: (customOpen ? '▾' : '▸') + ' Or set the date and time yourself', on: { click: function () { customOpen = !customOpen; customBox.hidden = !customOpen; customToggle.textContent = (customOpen ? '▾' : '▸') + ' Or set the date and time yourself'; customToggle.setAttribute('aria-expanded', String(customOpen)); } } });
     var body = h('div', { class: 'form-grid' }, dl,
       ui.field('Client', f.client, null, 'span2'), ui.field('Phone', f.phone, a.clientId ? null : 'Needed to text them from the portal.'),
-      ui.field('What kind', f.type), ui.field('With', f.artist, null, 'span2'), h('div', { class: 'span2' }, times), h('p', { class: 'hint span2', text: 'Or set the date and time yourself:' }), ui.field('Date', f.date), ui.field('Starts', f.start), ui.field('Ends', f.end),
+      ui.field('What kind', f.type), ui.field('With', f.artist, null, 'span2'), h('div', { class: 'span2' }, times), customToggle, customBox,
       ui.field('Piece', f.piece, null, 'span2'), ui.field('Deposit', f.deposit), ui.field('Price', f.price), ui.field('Note', f.note, null, 'span2'), live);
-    check();
+    paintTimes(); check();
     if (existing && existing.sync && existing.sync.state === 'failed') {
       body.appendChild(h('div', { class: 'form-live' }, h('div', { class: 'hint bad', text: 'This appointment is not on Google Calendar: ' + (existing.sync.error || 'the last push failed') + '. Tell the artist, or retry.' }),
         ui.btn('Retry Google Calendar', function () { OA.gcal.push(existing).then(function () { ui.toast('Sent to Google Calendar'); }, function (e) { ui.fail(e.message); }); }, 'small')));
