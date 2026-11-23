@@ -171,7 +171,7 @@
     var artists = [], portfolio = {};
     seed.artists.forEach(function (a) {
       artists.push({ slug: a.slug, name: a.name, role: a.role || 'Tattoo', ig: OA.igOf(a.socials) || a.ig || '', socials: OA.seedSocials(a), bio: a.about.join('\n\n'), portrait: a.portrait, books: a.slug === 'liv' ? 'closed' : 'open', until: a.slug === 'liv' ? OA.addDays(today, 21) : '', untilSample: a.slug === 'liv', visible: true, removedAt: null });
-      portfolio[a.slug] = a.work.map(function (w, i) { return { id: a.slug + '-' + (i + 1), src: w.src, cap: w.cap, sec: '', onSite: true, ord: (i + 1) * 10 }; });
+      portfolio[a.slug] = a.work.map(function (w, i) { return { id: a.slug + '-' + (i + 1), src: w.src, cap: w.cap, sec: '', onSite: true, ord: (i + 1) * 10, date: w.date || '', dateSource: w.dateSource || '' }; });
     });
     var site = {
       shop: { name: seed.name, short: seed.shortName, phone: seed.phoneDisplay, street: seed.street, town: seed.town, region: seed.region, zip: seed.zip, facebook: seed.facebook },
@@ -256,6 +256,55 @@
     all: function () { return tx('readonly', function (s) { return s.getAllKeys(); }); },
     /* Plain repo photos live one folder up from this page. */
     src: function (ref) { if (!ref) return ''; if (/^(idb:)/.test(ref)) return ''; if (/^(https?:|data:|blob:)/.test(ref)) return ref; var m = /^(?:\.\.\/)?([a-z0-9-]+)-((?:portrait|work-\d+)\.jpg)$/.exec(ref); if (m) ref = 'portfolio/' + m[1] + '/images/' + m[1] + '-' + m[2]; return '../' + ref; },
+    /* The date a photo was taken, from its EXIF block (DateTimeOriginal, else the
+       file's DateTime), as YYYY-MM-DD. Null when the photo carries none, which is
+       most photos that passed through Instagram or Facebook. Read the ORIGINAL
+       file: compress() re-encodes and strips EXIF. */
+    exifDate: function (file) {
+      if (!file) return Promise.resolve(null);
+      return file.slice(0, 262144).arrayBuffer().then(function (buf) {
+        var v = new DataView(buf);
+        if (v.byteLength < 4 || v.getUint16(0) !== 0xFFD8) return null;
+        var off = 2;
+        while (off + 4 <= v.byteLength) {
+          var marker = v.getUint16(off);
+          if ((marker & 0xFF00) !== 0xFF00) return null;
+          var len = v.getUint16(off + 2);
+          if (marker === 0xFFE1 && v.getUint32(off + 4) === 0x45786966) return readTiff(v, off + 10);
+          if (marker === 0xFFDA) return null;
+          off += 2 + len;
+        }
+        return null;
+      }).catch(function () { return null; });
+      function readTiff(v, t) {
+        var le = v.getUint16(t) === 0x4949;
+        function u16(o) { return v.getUint16(o, le); }
+        function u32(o) { return v.getUint32(o, le); }
+        function tagVal(ifd, tag) {
+          var n = u16(ifd), i, e;
+          for (i = 0; i < n; i++) {
+            e = ifd + 2 + i * 12;
+            if (u16(e) === tag) return e;
+          }
+          return 0;
+        }
+        function ascii(e) {
+          var cnt = u32(e + 4), o = cnt <= 4 ? e + 8 : t + u32(e + 8), s = '', i;
+          for (i = 0; i < cnt && o + i < v.byteLength; i++) { var c = v.getUint8(o + i); if (!c) break; s += String.fromCharCode(c); }
+          return s;
+        }
+        function dateAt(ifd, tag) {
+          var e = tagVal(ifd, tag);
+          if (!e) return null;
+          var m = /^(\d{4}):(\d{2}):(\d{2})/.exec(ascii(e));
+          return m ? m[1] + '-' + m[2] + '-' + m[3] : null;
+        }
+        var ifd0 = t + u32(t + 4);
+        var ex = tagVal(ifd0, 0x8769);
+        if (ex) { var d = dateAt(t + u32(ex + 8), 0x9003); if (d) return d; }
+        return dateAt(ifd0, 0x0132);
+      }
+    },
     el: function (ref, alt, cls) {
       var im = OA.h('img', { alt: alt || '', class: cls || '', loading: 'lazy', decoding: 'async' });
       if (/^idb:/.test(ref || '')) {

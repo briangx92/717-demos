@@ -194,7 +194,13 @@
     function counts_() { var n = counts(slug); info.textContent = OA.plural(n.on, 'photo') + ' on the site, ' + n.off + ' hidden. Drag tiles to reorder, or use Earlier and Later. Order here is the order on the site.'; }
     function draw() {
       OA.clear(grid); counts_();
-      var all = OA.items(slug).slice().sort(function (x, y) { return x.ord - y.ord; });
+      var all = OA.items(slug).slice().sort(function (x, y) {
+        var da = x.date || '', db = y.date || '';
+        if (da && db && da !== db) return da < db ? 1 : -1;
+        if (da && !db) return -1;
+        if (!da && db) return 1;
+        return (x.ord || 0) - (y.ord || 0);
+      });
       var rows = all.filter(function (p) { return filter === 'all' || (filter === 'on' ? p.onSite : !p.onSite); });
       if (!rows.length) { grid.appendChild(ui.empty(all.length ? 'Nothing in this view' : 'No photos yet', all.length ? 'Switch the filter above.' : 'Add the first photos with the box above.')); return; }
       rows.forEach(function (p) { grid.appendChild(tile(p, all.indexOf(p), all)); });

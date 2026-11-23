@@ -119,72 +119,100 @@ window.OA_SEED_SITE = {
     {
      "src": "portfolio/lex/images/lex-work-01.jpg",
      "cap": "Hello Kitty Jason, cartoon horror",
-     "alt": "Hello Kitty wearing a Jason mask, holding a knife, tattoo"
+     "alt": "Hello Kitty wearing a Jason mask, holding a knife, tattoo",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/lex/images/lex-work-02.jpg",
      "cap": "Snoopy pumpkin, cartoon",
-     "alt": "Snoopy in a pumpkin costume tattoo"
+     "alt": "Snoopy in a pumpkin costume tattoo",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/lex/images/lex-work-03.jpg",
      "cap": "Ghostface knife",
-     "alt": "Ghostface knife tattoo on a forearm"
+     "alt": "Ghostface knife tattoo on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/lex/images/lex-work-04.jpg",
      "cap": "Sun and moon with florals",
-     "alt": "Sun and moon with florals tattoo on an upper arm"
+     "alt": "Sun and moon with florals tattoo on an upper arm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/lex/images/lex-work-05.jpg",
      "cap": "Rose wreath and infinity heart",
-     "alt": "Rose wreath and infinity heart tattoos on a forearm"
+     "alt": "Rose wreath and infinity heart tattoos on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/lex/images/lex-work-06.jpg",
      "cap": "Finger script",
-     "alt": "The word secrets tattooed down a finger"
+     "alt": "The word secrets tattooed down a finger",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/lex/images/lex-work-07.jpg",
      "cap": "Flamingo, ankle",
-     "alt": "Small flamingo tattoo on an ankle"
+     "alt": "Small flamingo tattoo on an ankle",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/lex/images/lex-work-08.jpg",
      "cap": "Deathly Hallows symbol",
-     "alt": "Deathly Hallows symbol tattoo on a forearm"
+     "alt": "Deathly Hallows symbol tattoo on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/lex/images/lex-work-09.jpg",
      "cap": "Script lettering",
-     "alt": "The word Unbothered in script on a forearm"
+     "alt": "The word Unbothered in script on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/lex/images/lex-work-10.jpg",
      "cap": "Psalm 46:10 script",
-     "alt": "Script tattoo reading be still and know, Psalm 46:10"
+     "alt": "Script tattoo reading be still and know, Psalm 46:10",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/lex/images/lex-work-11.jpg",
      "cap": "Rose with name script",
-     "alt": "Rose tattoo with the name kaya in script"
+     "alt": "Rose tattoo with the name kaya in script",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/lex/images/lex-work-12.jpg",
      "cap": "Daisy stem",
-     "alt": "Daisy stem tattoo on a leg"
+     "alt": "Daisy stem tattoo on a leg",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/lex/images/lex-work-13.jpg",
      "cap": "666, bold numbers",
-     "alt": "The numbers 666 tattooed on an arm"
+     "alt": "The numbers 666 tattooed on an arm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/lex/images/lex-work-14.jpg",
      "cap": "Paw print",
-     "alt": "Paw print tattoo with a galaxy fill"
+     "alt": "Paw print tattoo with a galaxy fill",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     }
    ]
   },
@@ -211,62 +239,86 @@ window.OA_SEED_SITE = {
     {
      "src": "portfolio/liv/images/liv-work-01.jpg",
      "cap": "Bunny with a flower",
-     "alt": "Bunny with a flower tattoo on an upper arm"
+     "alt": "Bunny with a flower tattoo on an upper arm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/liv/images/liv-work-02.jpg",
      "cap": "Character piece",
-     "alt": "Character tattoo on a thigh"
+     "alt": "Character tattoo on a thigh",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/liv/images/liv-work-03.jpg",
      "cap": "Lilies with swirls",
-     "alt": "Lily tattoos with swirls on a forearm"
+     "alt": "Lily tattoos with swirls on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/liv/images/liv-work-04.jpg",
      "cap": "Heart with wings, memorial piece",
-     "alt": "Heart with wings memorial tattoo on a calf"
+     "alt": "Heart with wings memorial tattoo on a calf",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/liv/images/liv-work-05.jpg",
      "cap": "Three cat faces",
-     "alt": "Three small cat face tattoos on a forearm"
+     "alt": "Three small cat face tattoos on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/liv/images/liv-work-06.jpg",
      "cap": "Daisy with a face",
-     "alt": "Daisy tattoo with a face on a calf"
+     "alt": "Daisy tattoo with a face on a calf",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/liv/images/liv-work-07.jpg",
      "cap": "Florals",
-     "alt": "Floral tattoos on a forearm"
+     "alt": "Floral tattoos on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/liv/images/liv-work-08.jpg",
      "cap": "Baby footprints",
-     "alt": "Baby footprint tattoos on a forearm"
+     "alt": "Baby footprint tattoos on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/liv/images/liv-work-09.jpg",
      "cap": "Eagle with sword and scales",
-     "alt": "Eagle tattoo with a sword and scales on a forearm"
+     "alt": "Eagle tattoo with a sword and scales on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/liv/images/liv-work-10.jpg",
      "cap": "Skull and crossbones",
-     "alt": "Skull and crossbones tattoo on an arm"
+     "alt": "Skull and crossbones tattoo on an arm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/liv/images/liv-work-11.jpg",
      "cap": "Script lettering",
-     "alt": "Script lettering tattoo on a chest"
+     "alt": "Script lettering tattoo on a chest",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/liv/images/liv-work-12.jpg",
      "cap": "Small piece, upper back",
-     "alt": "Small tattoo on an upper back"
+     "alt": "Small tattoo on an upper back",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     }
    ]
   },
@@ -292,122 +344,170 @@ window.OA_SEED_SITE = {
     {
      "src": "portfolio/diana/images/diana-work-01.jpg",
      "cap": "French bulldog character piece",
-     "alt": "French bulldog character tattoo with Jack the Ripper lettering"
+     "alt": "French bulldog character tattoo with Jack the Ripper lettering",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-02.jpg",
      "cap": "Detailed hand piece",
-     "alt": "Detailed tattoo covering a hand"
+     "alt": "Detailed tattoo covering a hand",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-03.jpg",
      "cap": "Dark hooded figure, black and grey",
-     "alt": "Dark hooded figure tattoo, black and grey"
+     "alt": "Dark hooded figure tattoo, black and grey",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-04.jpg",
      "cap": "Monarch butterfly",
-     "alt": "Monarch butterfly tattoo on a forearm"
+     "alt": "Monarch butterfly tattoo on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-05.jpg",
      "cap": "Stag beetle",
-     "alt": "Stag beetle tattoo on a forearm"
+     "alt": "Stag beetle tattoo on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-06.jpg",
      "cap": "Blue fish with script",
-     "alt": "Blue fish tattoo with script on a forearm"
+     "alt": "Blue fish tattoo with script on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-07.jpg",
      "cap": "Color piece, forearm",
-     "alt": "Color tattoo on a forearm"
+     "alt": "Color tattoo on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-08.jpg",
      "cap": "Phoenix, shoulder",
-     "alt": "Phoenix tattoo on a shoulder"
+     "alt": "Phoenix tattoo on a shoulder",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-09.jpg",
      "cap": "Sleeve in progress",
-     "alt": "Sleeve tattoo in progress on a forearm"
+     "alt": "Sleeve tattoo in progress on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-10.jpg",
      "cap": "Red and black design",
-     "alt": "Red and black tattoo design on a forearm"
+     "alt": "Red and black tattoo design on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-11.jpg",
      "cap": "Woman's face in an ornate frame",
-     "alt": "Woman's face tattoo in an ornate frame on a forearm"
+     "alt": "Woman's face tattoo in an ornate frame on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-12.jpg",
      "cap": "Lizard",
-     "alt": "Lizard tattoo on a forearm"
+     "alt": "Lizard tattoo on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-13.jpg",
      "cap": "Creature silhouette",
-     "alt": "Creature silhouette tattoo on a forearm"
+     "alt": "Creature silhouette tattoo on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-14.jpg",
      "cap": "Cartoon character with script",
-     "alt": "Cartoon character tattoo with script on a leg"
+     "alt": "Cartoon character tattoo with script on a leg",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-15.jpg",
      "cap": "Character in a dress",
-     "alt": "Character in a dress tattoo on a side"
+     "alt": "Character in a dress tattoo on a side",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-16.jpg",
      "cap": "Orange florals",
-     "alt": "Orange floral tattoo on a forearm"
+     "alt": "Orange floral tattoo on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-17.jpg",
      "cap": "Hearts and florals",
-     "alt": "Hearts and florals tattoo on a forearm"
+     "alt": "Hearts and florals tattoo on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-18.jpg",
      "cap": "Small daisies",
-     "alt": "Small daisy tattoo on a forearm"
+     "alt": "Small daisy tattoo on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-19.jpg",
      "cap": "Cherries",
-     "alt": "Cherry tattoo on a leg"
+     "alt": "Cherry tattoo on a leg",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-20.jpg",
      "cap": "Balloon dog, ankle",
-     "alt": "Balloon dog tattoo on an ankle"
+     "alt": "Balloon dog tattoo on an ankle",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-21.jpg",
      "cap": "Skull design, forearm",
-     "alt": "Skull tattoo on a forearm"
+     "alt": "Skull tattoo on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-22.jpg",
      "cap": "Fine line wrist piece",
-     "alt": "Fine line tattoo on a wrist"
+     "alt": "Fine line tattoo on a wrist",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-23.jpg",
      "cap": "Ornamental script",
-     "alt": "Ornamental script tattoo on a forearm"
+     "alt": "Ornamental script tattoo on a forearm",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     },
     {
      "src": "portfolio/diana/images/diana-work-24.jpg",
      "cap": "Small script with a bird",
-     "alt": "Small script tattoo with a bird on a wrist"
+     "alt": "Small script tattoo with a bird on a wrist",
+     "date": "2026-11-21",
+     "dateSource": "upload"
     }
    ]
   }

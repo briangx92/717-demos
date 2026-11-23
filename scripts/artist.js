@@ -410,7 +410,7 @@
     var socials = rec ? rec.socials : baked.socials;
     var does = baked ? baked.does : (rec && rec.role ? [rec.role] : []);
     var portrait = baked ? baked.portrait : '';
-    var work = baked ? baked.work.map(function (w) { return { src: w.src, cap: w.cap, alt: w.alt }; }) : [];
+    var work = baked ? baked.work.map(function (w) { return { src: w.src, cap: w.cap, alt: w.alt, date: w.date || '' }; }) : [];
 
     /* The portal's draft portfolio in this browser overrides the built-in photos. */
     try {
@@ -418,12 +418,19 @@
       var items = st && st.portfolio && st.portfolio[key];
       if (items && items.length) {
         work = items.map(function (w) {
-          if (w.ba) return { ba: { a: srcFor(w.ba.a), b: srcFor(w.ba.b), acap: w.ba.acap, bcap: w.ba.bcap, title: w.ba.title, story: w.ba.story }, cap: w.cap };
-          return { src: srcFor(w.src), cap: w.cap || '', alt: w.cap || '' };
+          if (w.ba) return { ba: { a: srcFor(w.ba.a), b: srcFor(w.ba.b), acap: w.ba.acap, bcap: w.ba.bcap, title: w.ba.title, story: w.ba.story }, cap: w.cap, date: w.date || '' };
+          return { src: srcFor(w.src), cap: w.cap || '', alt: w.cap || '', date: w.date || '' };
         });
       }
     } catch (e) { /* built-in photos stay */ }
 
+    work = work.map(function (w, i) { return [w, i]; }).sort(function (a, b) {
+      var da = a[0].date || '', db = b[0].date || '';
+      if (da && db && da !== db) return da < db ? 1 : -1;
+      if (da && !db) return -1;
+      if (!da && db) return 1;
+      return a[1] - b[1];
+    }).map(function (x) { return x[0]; });
     document.title = name + ' | Instattoosionalized Tattoos and Piercings';
     var desc = (baked && baked.name === name) ? baked.desc : (nick + ' is an artist at Instattoosionalized in Northampton, PA. See their work and send a request.');
     var md = document.querySelector('meta[name="description"]'); if (md) md.setAttribute('content', desc);
