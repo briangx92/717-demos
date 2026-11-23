@@ -159,6 +159,18 @@
   .s-header__name{ font-family:var(--font-display); font-size:var(--text-h3); text-transform:uppercase; letter-spacing:.04em; text-decoration:none; min-width:0; }
   .s-header__name span{ color:var(--accent-bright); }
   .s-header .c-btn{ font-size:var(--text-body); padding-inline:var(--sp-2); flex:none; }
+  .s-nav{ display:flex; align-items:center; gap:var(--sp-2); flex:none; }
+  .s-nav__item{ position:relative; }
+  .s-nav__btn{ display:inline-flex; align-items:center; gap:6px; background:none; border:0; font:inherit; font-weight:600; color:var(--ink); cursor:pointer; padding:8px 4px; }
+  .s-nav__btn svg{ transition:transform .15s; flex:none; }
+  .s-nav__btn[aria-expanded="true"] svg{ transform:rotate(180deg); }
+  .s-nav__menu{ position:absolute; right:0; top:calc(100% + 8px); min-width:200px; background:var(--surface); border:1px solid var(--line); border-radius:10px; box-shadow:0 14px 34px rgba(0,0,0,.45); padding:6px; display:grid; z-index:60; }
+  .s-nav__menu[hidden]{ display:none; }
+  .s-nav__menu a{ padding:10px; border-radius:7px; text-decoration:none; color:var(--ink); font-weight:600; }
+  .s-nav__menu a:hover{ background:rgba(255,255,255,.06); }
+  @media (max-width:640px){ .s-nav{ gap:var(--sp-1); } .s-nav__btn{ padding:8px 2px; } .s-header .c-btn{ padding-inline:var(--sp-1); } }
+  .s-header__name{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  @media (max-width:640px){ .s-header .l-wrap{ flex-wrap:wrap; } .s-nav{ order:3; width:100%; } .s-nav .c-btn{ flex:1; text-align:center; } .s-header__name{ font-size:15px; letter-spacing:.02em; } .s-header__brand{ gap:7px; } .s-header__logo{ width:30px; height:30px; } }
 
   .s-banner{ background:var(--accent); color:var(--accent-ink); text-align:center; padding:9px var(--sp-2); font-size:14.5px; font-weight:600; }
   .s-preview{ position:sticky; top:0; z-index:200; background:#f2c200; color:#1a1400; text-align:center; padding:8px var(--sp-2); font-size:14px; font-weight:600; }
@@ -489,7 +501,19 @@
 <header class="s-header" data-module="header">
   <div class="l-wrap">
     <span class="s-header__brand"><img class="s-header__logo" src="instattoosionalized-logo.jpg" alt="Instattoosionalized logo"><a class="s-header__name" href="#top" data-fill="shortName"></a></span>
-    <a class="c-btn" data-href="phoneHref">Call<span class="u-hide-sm" data-fill="phoneDisplay"></span></a>
+    <nav class="s-nav" aria-label="Site">
+      <div class="s-nav__item">
+        <button class="s-nav__btn" id="artists-btn" type="button" aria-expanded="false" aria-haspopup="true">Artists <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M6 9 L12 15 L18 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="s-nav__menu" id="artists-menu" hidden>
+          <a data-nav-artist="lex" href="instattoosionalized-artist-lex.html">Lex</a>
+          <a data-nav-artist="liv" href="instattoosionalized-artist-liv.html">Liv</a>
+          <a data-nav-artist="diana" href="instattoosionalized-artist-diana.html">Diana</a>
+          <a href="#artists">All artists</a>
+        </div>
+      </div>
+      <a class="c-btn" href="#ask">Start a request</a>
+    </nav>
+    <a class="c-btn c-btn--ghost" data-href="phoneHref">Call<span class="u-hide-sm" data-fill="phoneDisplay"></span></a>
   </div>
 </header>
 
@@ -996,7 +1020,16 @@ const T = {
 };
 
 const MODULES = {
-  header(){},
+  header(root){
+    const btn = root.querySelector("#artists-btn"), menu = root.querySelector("#artists-menu");
+    if (!btn || !menu) return;
+    SITE.artists.forEach(a => { const link = menu.querySelector('[data-nav-artist="' + a.slug + '"]'); if (link) { var nm = a.first || a.name || ""; link.textContent = nm.charAt(0).toUpperCase() + nm.slice(1); link.href = artistPageHref(a); } });
+    const set = open => { menu.hidden = !open; btn.setAttribute("aria-expanded", String(open)); };
+    btn.addEventListener("click", () => set(menu.hidden));
+    menu.addEventListener("click", e => { if (e.target.closest("a")) set(false); });
+    document.addEventListener("click", e => { if (!root.contains(e.target)) set(false); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") set(false); });
+  },
   hero(root){
     const r = SITE.rating;
     const line = root.querySelector("#hero-rating");

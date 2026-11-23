@@ -60,7 +60,7 @@ p { margin: 0 0 .7rem; }
 .badge { min-width: 1.35rem; padding: 0 .4rem; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-size: .74rem; font-weight: 700; text-align: center; line-height: 1.35rem; }
 
 main { max-width: 1180px; margin: 0 auto; padding: 1.4rem 1rem 4rem; outline: 0; }
-.page { display: grid; gap: 1.4rem; }
+.page { display: grid; gap: .8rem; }
 .pagehead { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap; }
 .crumbs { margin-bottom: -.6rem; font-size: .88rem; }
 .sec > h2 { margin-bottom: .7rem; }
@@ -271,10 +271,9 @@ a.ledger-row:hover { background: var(--surface); }
 .an-bars { display: flex; align-items: flex-end; gap: 3px; height: 150px; padding: .4rem 0; border-bottom: 1px solid var(--line); }
 .an-col { flex: 1 1 0; min-width: 0; height: 100%; display: flex; align-items: flex-end; }
 .an-fill { display: block; width: 100%; background: var(--accent); border-radius: 3px 3px 0 0; min-height: 0; }
-.an-bars.reqs .an-fill { background: var(--ok); }
 .an-axis { display: flex; justify-content: space-between; font-size: .78rem; color: var(--ink2); margin-top: .25rem; }
 .an-table { margin-top: .5rem; font-size: .88rem; } .an-table summary { cursor: pointer; color: var(--ink2); }
-.an-table table { border-collapse: collapse; margin-top: .4rem; min-width: 240px; } .an-table th, .an-table td { padding: .2rem .8rem .2rem 0; text-align: left; border-bottom: 1px solid var(--line2); } .an-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.an-tables { display: flex; gap: 2.5rem; flex-wrap: wrap; } .an-table table { border-collapse: collapse; margin-top: .4rem; min-width: 210px; } .an-table th, .an-table td { padding: .2rem .8rem .2rem 0; text-align: left; border-bottom: 1px solid var(--line2); } .an-table .num { text-align: right; font-variant-numeric: tabular-nums; }
 .an-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; margin-top: .6rem; } .an-grid h3 { font-size: .95rem; margin-bottom: .4rem; }
 .an-rank { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; }
 .an-rank li { display: grid; grid-template-columns: minmax(0, 1fr) 70px auto; gap: .6rem; align-items: center; font-size: .9rem; }

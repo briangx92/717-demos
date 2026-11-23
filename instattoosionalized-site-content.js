@@ -200,6 +200,7 @@
     var pol = cleanPolicies(read());
     if (pol && pol.deposit) list.forEach(function (a) { if (a && Array.isArray(a.note)) a.note = a.note.map(function (n) { return (typeof n === 'string' && /deposit is \$/i.test(n)) ? pol.deposit : n; }); });
     if (!by) return;
+    document.querySelectorAll('[data-nav-artist]').forEach(function (link) { var pa = by[link.getAttribute('data-nav-artist')]; if (pa && pa.name) link.textContent = pa.name.replace(/["\u201c\u201d]/g, '').split(/\s+/)[0]; });
     for (var i = list.length - 1; i >= 0; i--) {
       var a = list[i], p = by[a.slug];
       if (!p) continue;

@@ -44,9 +44,13 @@
     series.forEach(function (x) {
       chart.appendChild(h('div', { class: 'an-col', title: OA.fmtDow(x.date) + ': ' + fmt(x.count) }, h('span', { class: 'an-fill', style: 'height:' + Math.max(x.count ? 3 : 0, Math.round(x.count / max * 100)) + '%' })));
     });
-    var rows = series.map(function (x) { return h('tr', {}, h('td', { text: OA.fmtDow(x.date) }), h('td', { class: 'num', text: fmt(x.count) })); });
+    var tables = [];
+    for (var i = 0; i < series.length; i += 7) {
+      var chunk = series.slice(i, i + 7).map(function (x) { return h('tr', {}, h('td', { text: OA.fmtDow(x.date) }), h('td', { class: 'num', text: fmt(x.count) })); });
+      tables.push(h('table', {}, h('thead', {}, h('tr', {}, h('th', { text: 'Day' }), h('th', { class: 'num', text: noun }))), h('tbody', {}, chunk)));
+    }
     return h('div', {}, chart, h('div', { class: 'an-axis' }, h('span', { text: OA.fmtDow(series[0].date) }), h('span', { text: OA.fmtDow(series[series.length - 1].date) })),
-      h('details', { class: 'an-table' }, h('summary', { text: 'See the numbers' }), h('table', {}, h('thead', {}, h('tr', {}, h('th', { text: 'Day' }), h('th', { class: 'num', text: noun }))), h('tbody', {}, rows))));
+      h('details', { class: 'an-table' }, h('summary', { text: 'See the numbers' }), h('div', { class: 'an-tables' }, tables)));
   }
 
   function ranked(rows, empty0) {
