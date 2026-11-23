@@ -141,3 +141,8 @@
   .lbx-strip img{ width:58px; height:58px; object-fit:cover; border-radius:8px; opacity:.45; cursor:pointer; flex:none; border:2px solid transparent; }
   .lbx-strip img.on{ opacity:1; border-color:#ff5964; }
   @media(max-width:700px){ .lbx-cap{ display:none; } .lbx-nav{ width:40px; height:56px; } }
+.p-roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem;margin-top:1rem}
+.p-roster-card{display:flex;flex-direction:column;gap:.4rem;text-decoration:none;color:inherit}
+.p-roster-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px}
+.p-roster-name{font-weight:700}
+.p-roster-role{opacity:.75;font-size:.9em}

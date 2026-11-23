@@ -1,4 +1,4 @@
-/* Facts copied from the public site (index.html): name, address, phone,
+/* Facts copied from the public demo site (instattoosionalized-tattoos-and-piercings.html): name, address, phone,
    hours, deposit line, prices (marked sample there), artists, bios, Instagram handles, and work-photo captions. */
 window.OA_SEED_SITE = {
  "name": "Instattoosionalized Tattoos and Piercings",

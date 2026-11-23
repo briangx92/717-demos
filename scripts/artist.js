@@ -368,6 +368,40 @@
     return a;
   }
 
+  function roster(by) {
+    document.title = 'Our artists | Instattoosionalized Tattoos and Piercings';
+    var main = document.querySelector('main');
+    if (!main) return;
+    while (main.firstChild) main.removeChild(main.firstChild);
+    var list = [];
+    if (by) {
+      Object.keys(by).forEach(function (k) {
+        var r = by[k];
+        if (!r.visible) return;
+        var b = ROSTER[r.key] || null;
+        list.push({ varName: r.slug, name: r.name, role: r.role || '', portrait: b ? b.portrait : '' });
+      });
+    }
+    if (!list.length) {
+      Object.keys(ROSTER).forEach(function (k) {
+        var b = ROSTER[k];
+        list.push({ varName: b.var, name: b.name, role: '', portrait: b.portrait });
+      });
+    }
+    var box = document.createElement('section'); box.className = 'p-sec';
+    var h1 = document.createElement('h1'); h1.className = 'p-name'; h1.textContent = 'Our artists';
+    var grid = document.createElement('div'); grid.className = 'p-roster';
+    list.forEach(function (a) {
+      var card = document.createElement('a'); card.className = 'p-roster-card'; card.href = 'artist.html?artist=' + a.varName;
+      if (a.portrait) { var im = document.createElement('img'); im.src = srcFor(a.portrait); im.alt = 'Portrait of ' + a.name; im.loading = 'lazy'; card.appendChild(im); }
+      var nm = document.createElement('span'); nm.className = 'p-roster-name'; nm.textContent = a.name;
+      card.appendChild(nm);
+      if (a.role) { var rl = document.createElement('span'); rl.className = 'p-roster-role'; rl.textContent = a.role; card.appendChild(rl); }
+      grid.appendChild(card);
+    });
+    box.append(h1, grid); main.appendChild(box);
+  }
+
   function unavailable() {
     document.title = 'Instattoosionalized Tattoos and Piercings';
     var main = document.querySelector('main');
@@ -400,8 +434,7 @@
   function main() {
     var SC = window.SiteContent;
     var varName = '';
-    try { varName = new URLSearchParams(location.search).get('artist') || ''; } catch (e) { /* no variable: the built-in page */ }
-    if (!varName) varName = 'lex';
+    try { varName = new URLSearchParams(location.search).get('artist') || ''; } catch (e) { /* no variable: the roster */ }
 
     var by = SC ? SC.cleanArtists(SC.read()) : null;
     var rec = null;
@@ -410,7 +443,7 @@
       else Object.keys(by).forEach(function (k) { if (by[k].key === varName) rec = by[k]; });
     }
     var baked = ROSTER[varName] || (rec && ROSTER[rec.key]) || null;
-    if ((rec && !rec.visible) || (!rec && !baked)) { unavailable(); return; }
+    if ((rec && !rec.visible) || (!rec && !baked)) { roster(by); return; }
 
     var key = rec ? rec.key : baked.key;
     var curVar = rec ? rec.slug : varName;
