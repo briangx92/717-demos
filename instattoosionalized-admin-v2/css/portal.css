@@ -266,6 +266,7 @@ a.ledger-row:hover { background: var(--surface); }
 .qr-spot { display: flex; justify-content: center; padding: .4rem 0; } .qr-spot .qr { width: 148px; height: 148px; }
 .counter-head { display: grid; gap: .15rem; text-align: center; } .counter-head strong { font-size: 1.15rem; }
 .counter-url { text-align: center; font-size: .82rem; color: var(--ink2); overflow-wrap: anywhere; }
+.refgrid { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: .6rem; } .reftile { width: 148px; } .refimg { width: 148px; height: 148px; object-fit: cover; border-radius: 10px; cursor: zoom-in; display: block; } .reftile select { flex: 1; min-width: 0; } .refbig { max-width: 100%; max-height: 70vh; display: block; margin: 0 auto; border-radius: 10px; }
 @media print { body.pc-print * { visibility: hidden; } body.pc-print .counter-card, body.pc-print .counter-card * { visibility: visible; } body.pc-print .counter-card .no-print { display: none; } body.pc-print .counter-card { position: fixed; top: 0; left: 0; width: 3.8in; box-shadow: none; } }
 
 /* Analytics and the website feed */

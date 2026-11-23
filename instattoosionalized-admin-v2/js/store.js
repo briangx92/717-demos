@@ -269,6 +269,8 @@
     var used = {};
     function scan(site) { Object.keys(site.portfolio).forEach(function (k) { site.portfolio[k].forEach(function (p) { [p.src, p.pair && p.pair.b, p.pair && p.pair.a].forEach(function (x) { if (x) used[x] = 1; }); }); site.artists.forEach(function (a) { if (a.portrait) used[a.portrait] = 1; }); }); }
     scan(S.state.site); scan(S.state.published.site);
+    (S.state.requests || []).forEach(function (r) { (r.refs || []).forEach(function (x) { if (x.img) used[x.img] = 1; }); });
+    (S.state.appts || []).forEach(function (a) { (a.refs || []).forEach(function (x) { if (x.img) used[x.img] = 1; }); });
     return OA.img.all().then(function (keys) { return Promise.all(keys.filter(function (k) { return !used[k]; }).map(function (k) { return OA.img.del(k); })); }).catch(function () { /* leftovers are harmless */ });
   };
 })();

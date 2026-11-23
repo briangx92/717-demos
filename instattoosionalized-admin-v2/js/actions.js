@@ -382,6 +382,43 @@
       return { added: added.length, failed: failed };
     });
   };
+  /* ---------- reference art locker ----------
+     Photos attached to a request or an appointment: the client's references, a placement photo
+     (for a cover-up, the piece being covered), and the stencil. Blobs live in OA.img storage;
+     the record holds only {img, kind}. An appointment booked from a request shares the request's
+     locker, so the artist sees the same photos at the chair. */
+  OA.REF_KINDS = [['reference', 'Reference'], ['placement', 'Placement'], ['stencil', 'Stencil']];
+  OA.refsOf = function (rec) { if (!rec.refs) rec.refs = []; return rec.refs; };
+  OA.refLocker = function (rec) {
+    var h = OA.h, ui = OA.ui, grid = h('div', { class: 'refgrid' }), box = h('div', { class: 'locker' });
+    function tile(ref) {
+      var kind = ui.select(OA.REF_KINDS, ref.kind || 'reference', { 'aria-label': 'What kind of photo' });
+      kind.addEventListener('change', function () { ref.kind = kind.value; S.commit(); });
+      var img = OA.img.el(ref.img, 'Reference photo', 'refimg');
+      img.addEventListener('click', function () { ui.dialog({ title: kind.options[kind.selectedIndex].text + ' photo', body: OA.img.el(ref.img, 'Reference photo', 'refbig'), actions: [{ label: 'Close', kind: 'primary', value: null }] }); });
+      var t = h('div', { class: 'reftile' }, img, h('div', { class: 'row tight' }, kind, ui.btn('Remove', function () { var refs = OA.refsOf(rec), i = refs.indexOf(ref); if (i >= 0) refs.splice(i, 1); S.commit(); OA.img.del(ref.img); t.remove(); if (!OA.refsOf(rec).length) draw(); }, 'small quiet')));
+      return t;
+    }
+    function draw() {
+      OA.clear(grid);
+      var refs = OA.refsOf(rec);
+      if (!refs.length) grid.appendChild(h('p', { class: 'note', text: 'No photos yet. Add the client’s reference pictures, a photo of where it goes (for a cover-up, the piece being covered), and the stencil when it exists.' }));
+      refs.forEach(function (ref) { grid.appendChild(tile(ref)); });
+    }
+    var fid = OA.uid('refs'), fileIn = h('input', { type: 'file', accept: 'image/*', multiple: true, class: 'sr', id: fid, 'aria-label': 'Choose photos to add' });
+    fileIn.addEventListener('change', function () {
+      var files = Array.prototype.slice.call(fileIn.files || []); fileIn.value = ''; if (!files.length) return;
+      var t = ui.toast('Adding ' + OA.plural(files.length, 'photo') + '...');
+      files.reduce(function (p, f) {
+        return p.then(function () { return OA.img.compress(f).then(OA.img.put).then(function (id) { var ref = { img: id, kind: 'reference' }; OA.refsOf(rec).push(ref); S.commit(); if (grid.querySelector('.note')) draw(); else grid.appendChild(tile(ref)); }); }).catch(function (e) { ui.fail(e.message); });
+      }, Promise.resolve()).then(function () { t(); });
+    });
+    box.appendChild(h('div', { class: 'row' }, h('label', { class: 'btn small', for: fid, text: 'Add photos' }), fileIn, h('span', { class: 'note', text: 'Photos save as you add them.' })));
+    box.appendChild(grid);
+    draw();
+    return box;
+  };
+
   act.reorder = function (slug, fromId, toId) {
     var items = OA.items(slug).slice().sort(function (a, b) { return a.ord - b.ord; });
     var fi = items.findIndex(function (p) { return p.id === fromId; }), ti = items.findIndex(function (p) { return p.id === toId; });

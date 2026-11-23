@@ -89,6 +89,10 @@
       body.appendChild(h('div', { class: 'form-live' }, h('div', { class: 'hint bad', text: 'This appointment is not on Google Calendar: ' + (existing.sync.error || 'the last push failed') + '. Tell the artist, or retry.' }),
         ui.btn('Retry Google Calendar', function () { OA.gcal.push(existing).then(function () { ui.toast('Sent to Google Calendar'); }, function (e) { ui.fail(e.message); }); }, 'small')));
     }
+    if (existing && existing.id) {
+      var liveAppt = OA.appt(existing.id), owner = (liveAppt && liveAppt.requestId && OA.req(liveAppt.requestId)) || liveAppt;
+      if (owner) body.appendChild(h('div', { class: 'span2' }, h('h3', { text: 'Reference art' }), h('p', { class: 'note', text: owner === liveAppt ? 'Photos for this appointment.' : 'Shared with the request this appointment came from.' }), OA.refLocker(owner)));
+    }
     var actions = [{ label: 'Cancel', kind: 'quiet', value: null }];
     if (existing && existing.status !== 'cancelled') {
       actions.push({ label: 'Cancel appointment', kind: 'danger-quiet', run: function () {

@@ -123,6 +123,9 @@
     grid.appendChild(nextPanel(r, rer));
     root.appendChild(grid);
 
+    /* reference art locker */
+    root.appendChild(ui.section('Reference art', OA.refLocker(r)));
+
     /* history */
     var log = h('ol', { class: 'log' });
     r.log.forEach(function (e) { log.appendChild(h('li', {}, h('time', { text: OA.fmtStamp(e.t) }), h('span', { text: e.text }))); });
