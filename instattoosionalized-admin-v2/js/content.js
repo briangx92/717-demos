@@ -60,12 +60,23 @@
     return 'live';
   };
 
+  /* The page variable an artist's profile lives at. It follows the artist's name, so a rename
+     in the roster moves the page; the roster key (slug) stays put underneath and ties the
+     record to its built-in photos. */
+  OA.pageVar = function (a, taken) {
+    var base = OA.slug(OA.first(a.name)) || 'artist', v = base, k = 2;
+    while ((taken && taken[v]) || v === 'piercing') v = base + '-' + (k++);
+    return v;
+  };
+
   /* What the website needs to know about each artist. Photos are not here: they need the real publish path. */
   OA.artistsContent = function (site) {
+    var taken = {};
     return (site.artists || []).map(function (a) {
       var socials = [];
       (a.socials || []).forEach(function (x) { var n = OA.socialNorm(x.p, x.h); if (n.ok) socials.push({ p: x.p, label: n.label, url: n.url }); });
-      return { slug: a.slug, name: a.name, nick: OA.nick(a), role: a.role || '', bio: a.bio || '', visible: !!a.visible && !a.removedAt, socials: socials };
+      var v = OA.pageVar(a, taken); taken[v] = 1;
+      return { slug: v, key: a.slug, name: a.name, nick: OA.nick(a), role: a.role || '', bio: a.bio || '', visible: !!a.visible && !a.removedAt, socials: socials };
     });
   };
 

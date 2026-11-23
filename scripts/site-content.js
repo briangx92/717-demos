@@ -5,7 +5,11 @@
   'use strict';
   var PREVIEW = /[?&]preview=1(&|$)/.test(location.search);
   var KEY = PREVIEW ? 'oa2:preview:v1' : 'oa2:published:v1';
-  var HOME = 'instattoosionalized-tattoos-and-piercings.html';
+  /* Pages live at the root (the homepage file) and in view/pages/. The reader's own path back to the
+     root is whatever prefix its script tag carries, so links it builds work from either depth. */
+  var ROOT = '';
+  try { var mySrc = (document.currentScript && document.currentScript.getAttribute('src')) || ''; var cut = mySrc.indexOf('scripts/site-content.js'); if (cut > 0) ROOT = mySrc.slice(0, cut); } catch (e) { /* links fall back to root-relative */ }
+  var HOME = ROOT + 'instattoosionalized-tattoos-and-piercings.html';
   var KINDS = { notice: 'News', closure: 'Closed', special: 'Special' };
   var ISO = /^\d{4}-\d{2}-\d{2}$/;
   var HOSTS = { Instagram: ['instagram.com'], Facebook: ['facebook.com'], TikTok: ['tiktok.com'], YouTube: ['youtube.com'], X: ['x.com'], Threads: ['threads.net', 'threads.com'], Bluesky: ['bsky.app'], Snapchat: ['snapchat.com'], Website: null };
@@ -70,6 +74,9 @@
       var tag = 'Artist ' + (i + 1);
       if (!a || typeof a.slug !== 'string' || !/^[a-z0-9-]{1,40}$/.test(a.slug)) { warn(tag + ' was skipped: the slug is not valid.'); return; }
       tag = 'Artist ' + a.slug;
+      /* The stable roster key, when the payload carries one. The page variable (slug) follows the
+         artist's name; the key is what ties a record to its built-in photos and page data. */
+      var key = (typeof a.key === 'string' && /^[a-z0-9-]{1,40}$/.test(a.key)) ? a.key : a.slug;
       if (!str(a.name, MAX.name) || !a.name.trim() || !str(a.nick, MAX.name) || !a.nick.trim() || !str(a.role == null ? '' : a.role, MAX.role) || !str(a.bio == null ? '' : a.bio, MAX.bio) || typeof a.visible !== 'boolean') {
         warn(tag + ' was skipped because it is not valid.'); return;
       }
@@ -79,7 +86,7 @@
         if (u && hostOk(u, x.p) && str(x.label, MAX.label) && x.label.trim()) socials.push({ p: x.p, label: x.label.trim(), url: u.href });
         else warn(tag + ': a social link was skipped because it is not valid.');
       });
-      by[a.slug] = { slug: a.slug, name: a.name.trim(), nick: a.nick.trim(), role: (a.role || '').trim(), bio: (a.bio || '').trim(), visible: a.visible, socials: socials };
+      by[a.slug] = { slug: a.slug, key: key, name: a.name.trim(), nick: a.nick.trim(), role: (a.role || '').trim(), bio: (a.bio || '').trim(), visible: a.visible, socials: socials };
     });
     return by;
   }
@@ -116,12 +123,12 @@
   function navNames() {
     try {
       var nav = document.querySelector('.p-menu'); if (!nav || nav.querySelector('.p-drop')) return;
-      var found = Array.prototype.filter.call(nav.querySelectorAll('a[href^="instattoosionalized-artist-"]'), function (a) { return !a.children.length; });
+      var found = Array.prototype.filter.call(nav.querySelectorAll('a[href*="artist.html"]'), function (a) { return !a.children.length; });
       if (!found.length) return;
       var by = cleanArtists(read()), items = [];
       if (by) {
         var order = (read() && read().artists) || [];
-        order.forEach(function (a) { var q = a && by[a.slug]; if (q && q.visible) items.push({ href: 'instattoosionalized-artist-' + q.slug + '.html', text: q.nick }); });
+        order.forEach(function (a) { var q = a && by[a.slug]; if (q && q.visible) items.push({ href: 'artist.html?artist=' + q.slug, text: q.nick }); });
       } else {
         found.forEach(function (a) { items.push({ href: a.getAttribute('href'), text: a.textContent }); });
       }
@@ -137,6 +144,19 @@
       found.forEach(function (a) { if (a.parentNode) a.parentNode.removeChild(a); });
       if (!items.length) wrap.hidden = true;
     } catch (e) { warn('menu names not updated'); }
+  }
+  /* Baked artist links carry the roster key; when the portal has published, point them at the
+     artist's current page variable, which follows their name. */
+  function rewriteArtistLinks() {
+    try {
+      var by = cleanArtists(read()); if (!by) return;
+      var byKey = {};
+      Object.keys(by).forEach(function (k) { byKey[by[k].key] = by[k]; });
+      document.querySelectorAll('a[data-artist-key]').forEach(function (a) {
+        var q = byKey[a.getAttribute('data-artist-key')];
+        if (q) a.setAttribute('href', 'artist.html?artist=' + q.slug);
+      });
+    } catch (e) { warn('artist links not updated'); }
   }
   /* Artist page: a request button that stays on screen while scrolling, and steps aside once the page's own request section is in view. */
   function stickyRequest() {
@@ -168,8 +188,9 @@
 
   function paragraphs(bio) { return bio.split(/\n\s*\n/).map(function (p) { return p.replace(/\s*\n\s*/g, ' ').trim(); }).filter(Boolean); }
   function withPreview(href) {
-    if (!PREVIEW || typeof href !== 'string' || !/^instattoosionalized-[a-z-]+\.html/.test(href)) return href;
+    if (!PREVIEW || typeof href !== 'string' || href.indexOf('.html') < 0 || /^(https?:|\/\/|#|mailto:|tel:)/.test(href)) return href;
     var hash = '', i = href.indexOf('#'); if (i >= 0) { hash = href.slice(i); href = href.slice(0, i); }
+    if (/[?&]preview=1(&|$)/.test(href)) return href + hash;
     return href + (href.indexOf('?') >= 0 ? '&' : '?') + 'preview=1' + hash;
   }
 
@@ -215,20 +236,43 @@
   function mergeHome(list) {
     var by = cleanArtists(read());
     if (PREVIEW) { try { var old = window.artistPageHref; if (old) window.artistPageHref = function (a) { return withPreview(old(a)); }; } catch (e) { /* link stays as it is */ } }
+    if (by) {
+      var byKey = {};
+      Object.keys(by).forEach(function (k) { byKey[by[k].key] = by[k]; });
+      document.querySelectorAll('[data-nav-artist]').forEach(function (link) { var pa = byKey[link.getAttribute('data-nav-artist')]; if (pa && pa.name) link.textContent = pa.name.replace(/["\u201c\u201d]/g, '').split(/\s+/)[0]; });
+      var seen = {};
+      for (var i = list.length - 1; i >= 0; i--) {
+        var a = list[i], p = byKey[a.slug];
+        if (!p) continue;
+        seen[p.key] = 1;
+        if (!p.visible) { list.splice(i, 1); continue; }
+        var ig = p.socials.filter(function (x) { return x.p === 'Instagram'; })[0];
+        a.name = p.name; a.first = p.nick; a.role = p.role || a.role; a.pageVar = p.slug;
+        a.bio = p.bio; a.about = paragraphs(p.bio); a.socials = p.socials;
+        a.ig = ig ? ig.label.replace(/^@/, '') : '';
+        a.portraitAlt = 'Portrait of ' + p.nick + ' at Instattoosionalized';
+      }
+      /* Artists the portal added since the site was built join the list, so their card and page
+         link exist. They have no built-in photos yet; the profile page carries what is published. */
+      var order = (read() && read().artists) || [];
+      order.forEach(function (raw) {
+        var q = raw && by[raw.slug];
+        if (!q || !q.visible || seen[q.key]) return;
+        seen[q.key] = 1;
+        var ig2 = q.socials.filter(function (x) { return x.p === 'Instagram'; })[0];
+        list.push({
+          slug: q.key, pageVar: q.slug, name: q.name, first: q.nick, role: q.role || 'Tattoo',
+          families: [/pierc/i.test(q.role || '') ? 'piercing' : 'tattoo'], does: q.role ? [q.role] : [],
+          quick: '', featuredCap: '', work: [], sample: false, __noPage: true,
+          bio: q.bio, about: paragraphs(q.bio), socials: q.socials,
+          ig: ig2 ? ig2.label.replace(/^@/, '') : '', portrait: '',
+          portraitAlt: 'Portrait of ' + q.nick + ' at Instattoosionalized',
+          note: ['Send the shop request form with ' + q.nick + ' picked. Tell them the idea, where it is going, and roughly how big.', POLICY_DEFAULTS.deposit]
+        });
+      });
+    }
     var pol = cleanPolicies(read());
     if (pol && pol.deposit) list.forEach(function (a) { if (a && Array.isArray(a.note)) a.note = a.note.map(function (n) { return (typeof n === 'string' && /deposit is \$/i.test(n)) ? pol.deposit : n; }); });
-    if (!by) return;
-    document.querySelectorAll('[data-nav-artist]').forEach(function (link) { var pa = by[link.getAttribute('data-nav-artist')]; if (pa && pa.name) link.textContent = pa.name.replace(/["\u201c\u201d]/g, '').split(/\s+/)[0]; });
-    for (var i = list.length - 1; i >= 0; i--) {
-      var a = list[i], p = by[a.slug];
-      if (!p) continue;
-      if (!p.visible) { list.splice(i, 1); continue; }
-      var ig = p.socials.filter(function (x) { return x.p === 'Instagram'; })[0];
-      a.name = p.name; a.first = p.nick; a.role = p.role || a.role;
-      a.bio = p.bio; a.about = paragraphs(p.bio); a.socials = p.socials;
-      a.ig = ig ? ig.label.replace(/^@/, '') : '';
-      a.portraitAlt = 'Portrait of ' + p.nick + ' at Instattoosionalized';
-    }
   }
 
   var ICONS = {
@@ -414,11 +458,11 @@
     }
   }
 
-  window.SiteContent = { navNames: navNames, homePolicies: homePolicies, cleanPolicies: cleanPolicies, withPreview: withPreview, PREVIEW: PREVIEW, KINDS: KINDS, read: read, shopToday: shopToday, active: active, cleanNews: cleanNews, cleanArtists: cleanArtists, mergeHome: mergeHome, mergeSite: mergeSite, cleanShop: cleanShop, cleanHours: cleanHours, cleanPrices: cleanPrices, cleanServices: cleanServices, applyArtistPage: applyArtistPage, applyDepositLine: applyDepositLine, applyReviews: applyReviews, previewBar: previewBar, el: el, warn: warn };
+  window.SiteContent = { navNames: navNames, homePolicies: homePolicies, cleanPolicies: cleanPolicies, withPreview: withPreview, PREVIEW: PREVIEW, KINDS: KINDS, read: read, shopToday: shopToday, active: active, cleanNews: cleanNews, cleanArtists: cleanArtists, mergeHome: mergeHome, mergeSite: mergeSite, cleanShop: cleanShop, cleanHours: cleanHours, cleanPrices: cleanPrices, cleanServices: cleanServices, applyArtistPage: applyArtistPage, applyDepositLine: applyDepositLine, applyReviews: applyReviews, previewBar: previewBar, stickyRequest: stickyRequest, el: el, warn: warn };
 
   var me = document.currentScript;
   function navPage() {
-    previewBar(!!read()); navNames();
+    previewBar(!!read()); navNames(); rewriteArtistLinks();
     if (PREVIEW) Array.prototype.forEach.call(document.querySelectorAll('a[href]'), function (a) { var h = a.getAttribute('href'), n = withPreview(h); if (n !== h) a.setAttribute('href', n); });
   }
   if (me && me.getAttribute('data-nav')) {
