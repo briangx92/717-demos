@@ -1087,7 +1087,7 @@ const MODULES = {
       document.getElementById("proof-count").textContent = "from " + r.count + " " + r.source + " reviews";
     } else document.querySelector(".s-proof__score").remove();
     const box = document.getElementById("proof-quotes");
-    SITE.reviews.forEach(rv => box.append(T.el("blockquote", { text: rv.text }, [T.el("footer", { text: rv.name })])));
+    if (!box.dataset.pub) SITE.reviews.forEach(rv => box.append(T.el("blockquote", { text: rv.text }, [T.el("footer", { text: rv.name })])));
   },
   work(){
     const photos = SITE.photos;
@@ -2097,6 +2097,7 @@ try { if (window.SiteContent) SiteContent.mergeHome(SITE.artists); } catch (e) {
     SC.homePolicies();
     SC.mergeSite(SITE);
     SC.applyDepositLine();
+    SC.applyReviews();
     if (!data) return;
     var c = SC.cleanNews(data), today = SC.shopToday(SITE.timeZone);
     if (c.banner && SC.active(c.banner, today)) {

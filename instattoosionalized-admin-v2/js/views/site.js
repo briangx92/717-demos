@@ -144,27 +144,61 @@
 
   /* ---------- reviews ---------- */
   function reviews(site) {
+    var set = S.state.settings, page = h('div', {});
+
+    /* The link is the hub: clients land on it to leave a review, texts fill {reviewLink} from it,
+       and the website's reviews button points at it. One key (settings.reviewLink), edited here. */
+    var linkSaved = h('div', { class: 'saved', 'aria-live': 'polite' });
+    var linkIn = ui.input(set.reviewLink, { type: 'url', placeholder: 'https://g.page/r/...', 'aria-label': 'Google review link' });
+    linkIn.addEventListener('change', function () {
+      var v = linkIn.value.trim();
+      if (v && !/^https:\/\/\S+\.\S+/.test(v)) { draftNote(linkSaved, 'The review link has to start with https://. Not saved.', true); return; }
+      set.reviewLink = v;
+      var m = /[?&]placeid=([\w-]+)/.exec(v); if (m) set.googlePlaceId = m[1];
+      S.commit(); draftNote(linkSaved, SAVED); OA.updateChrome(); setTimeout(function () { OA.rerender(); }, 0);
+    });
+    var hub = h('section', { class: 'card narrow' }, h('h2', { text: 'Your Google review link' }),
+      h('p', { class: 'note', text: 'This is where clients land to leave the shop a review. It fills the {reviewLink} blank in texts, and the “Read the reviews on Google” button on the website points at it too.' }),
+      ui.field('Review link', linkIn, 'Find it in Google Search or Maps: open the shop’s Business Profile, choose “Ask for reviews”, and copy the link.'), linkSaved,
+      h('div', { class: 'row' }, h('a', { class: 'btn', href: 'https://business.google.com/reviews', target: '_blank', rel: 'noopener', text: 'Read and reply on Google' }),
+        h('span', { class: 'note', text: 'Replies happen on Google for now. Sign in there as the shop and every review is listed with a Reply button.' })));
+    page.appendChild(hub);
+
+    /* Ask for a review: the counter card (also the print target) plus the text version. */
+    var ask = h('section', { class: 'card narrow counter-card' }, h('h2', { class: 'no-print', text: 'Ask for a review' }));
+    if (set.reviewLink) {
+      var qrHolder = h('div', { class: 'qr-spot' }), qr = OA.qr(set.reviewLink, 'QR code for the shop’s Google review page');
+      if (qr) qrHolder.appendChild(qr);
+      var askText = OA.compose('review', { name: 'Alex' });
+      var ta = ui.area(askText, { rows: 3, readonly: true, 'aria-label': 'Example review request text' });
+      ask.appendChild(h('div', { class: 'counter-head' }, h('strong', { text: site.shop.name || site.shop.short || 'The shop' }), h('span', { text: 'Loved your ink? Review us on Google' })));
+      ask.appendChild(qrHolder);
+      ask.appendChild(h('p', { class: 'counter-url', text: set.reviewLink }));
+      ask.appendChild(h('div', { class: 'no-print' }, h('p', { class: 'note', text: 'The text version, ready to send. The name fills in with the client’s when you send it from a request.' }), ta,
+        h('div', { class: 'row' }, ui.btn('Copy text', function () { ta.select(); if (navigator.clipboard) navigator.clipboard.writeText(ta.value).then(function () { ui.toast('Copied'); }, function () { document.execCommand('copy'); ui.toast('Copied'); }); else { document.execCommand('copy'); ui.toast('Copied'); } }, 'small'),
+          ui.btn('Print counter card', function () { document.body.classList.add('pc-print'); var done = function () { document.body.classList.remove('pc-print'); window.removeEventListener('afterprint', done); }; window.addEventListener('afterprint', done); setTimeout(done, 1500); window.print(); }, 'small quiet'))));
+    } else {
+      ask.appendChild(h('p', { class: 'note', text: 'Add the review link above and this card becomes a counter card: a QR code clients can scan on their way out, plus the text version to send after a session.' }));
+    }
+    page.appendChild(ask);
+
+    /* Quotes: hand-picked, word for word, and now actually published to the site's proof section. */
     var root = h('section', { class: 'card narrow' }, h('h2', { text: 'Review quotes' })), saved = h('div', { class: 'saved', 'aria-live': 'polite' });
-    root.appendChild(h('p', { class: 'note', text: 'Only add reviews real people wrote, word for word, with their permission or from a public review. The site shows the star rating from Google separately.' }));
+    root.appendChild(h('p', { class: 'note', text: 'These show on the website under the rating, up to 6. Only add reviews real people wrote, word for word, with their permission or from a public review. First name or initial only.' }));
     function save() { S.commit(); draftNote(saved, SAVED); OA.updateChrome(); }
     site.quotes.forEach(function (qt, i) {
-      var t = ui.area(qt.text, { rows: 2, 'aria-label': 'Review text' }), who = ui.input(qt.who, { 'aria-label': 'Who wrote it', placeholder: 'First name and initial' });
+      var t = ui.area(qt.text, { rows: 2, maxlength: 280, 'aria-label': 'Review text' }), who = ui.input(qt.who, { maxlength: 40, 'aria-label': 'Who wrote it', placeholder: 'First name and initial' });
       function upd() { if (!t.value.trim()) { draftNote(saved, 'A review quote cannot be empty. Not saved.', true); return; } qt.text = t.value.trim(); qt.who = who.value.trim(); save(); }
       t.addEventListener('change', upd); who.addEventListener('change', upd);
       root.appendChild(h('div', { class: 'qrow' }, t, who, ui.btn('Remove', function () { site.quotes.splice(i, 1); save(); OA.rerender(); }, 'small quiet')));
     });
-    if (!site.quotes.length) root.appendChild(ui.empty('No review quotes yet', 'Add a few from the shop’s Google or Facebook reviews.'));
-    root.appendChild(ui.btn('Add a review quote', function () { site.quotes.push({ id: OA.uid('q'), text: 'New review', who: '' }); save(); OA.rerender(); }, 'small'));
-    var rt = S.state.settings.rating, stars = ui.input(rt.stars, { type: 'number', min: 0, max: 5, step: 0.1, 'aria-label': 'Star rating' }), cnt = ui.input(rt.count, { type: 'number', min: 0, step: 1, 'aria-label': 'Number of reviews' });
-    var rs = h('div', { class: 'saved', 'aria-live': 'polite' });
-    function saveRating() {
-      var s = parseFloat(stars.value), c = parseInt(cnt.value, 10);
-      if (!(s >= 0 && s <= 5) || !(c >= 0)) { draftNote(rs, 'Stars go from 0 to 5, and the count has to be a whole number. Not saved.', true); return; }
-      rt.stars = s; rt.count = c; S.commit(); draftNote(rs, 'Saved. This is only used in the portal for now.');
-    }
-    stars.addEventListener('change', saveRating); cnt.addEventListener('change', saveRating);
+    if (!site.quotes.length) root.appendChild(ui.empty('No review quotes yet', 'Add a few from the shop’s Google or Facebook reviews. They appear on the website once published.'));
+    if (site.quotes.length < 6) root.appendChild(ui.btn('Add a review quote', function () { site.quotes.push({ id: OA.uid('q'), text: 'New review', who: '' }); save(); OA.rerender(); }, 'small'));
     root.appendChild(saved);
-    return h('div', {}, root, h('section', { class: 'card narrow' }, h('h2', { text: 'Google rating' }), h('p', { class: 'note', text: 'Copy these from the shop’s Google listing now and then. The portal cannot look them up.' }), h('div', { class: 'form-grid' }, ui.field('Stars', stars), ui.field('Number of reviews', cnt)), rs));
+    page.appendChild(root);
+
+    page.appendChild(h('p', { class: 'note', text: 'The star rating and the review count on the website come from Google itself. Once the Google connection is set up at launch they refresh on their own, so there is nothing to type in here.' }));
+    return page;
   }
 
   /* ---------- publish ---------- */

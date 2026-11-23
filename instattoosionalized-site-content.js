@@ -194,6 +194,24 @@
     Array.prototype.forEach.call(document.querySelectorAll('[data-deposit-line]'), function (e) { e.textContent = p.deposit; });
   }
 
+  function cleanQuotes(c) {
+    if (!c || !Array.isArray(c.quotes)) return null;
+    return c.quotes.map(function (q) { return { text: String((q && q.text) || '').trim().slice(0, 280), who: String((q && q.who) || '').trim().slice(0, 40) }; }).filter(function (q) { return q.text; }).slice(0, 6);
+  }
+
+  /* Published review quotes replace the page's baked ones in the proof section, and the published
+     review link drives its Google button. An old payload with no quotes key leaves the page alone. */
+  function applyReviews() {
+    var c = read(); if (!c) return;
+    var link = document.getElementById('proof-link');
+    if (link && c.reviewLink) link.href = withPreview(c.reviewLink);
+    var box = document.getElementById('proof-quotes'); if (!box) return;
+    var qs = cleanQuotes(c); if (!qs) return;
+    box.dataset.pub = '1';
+    while (box.firstChild) box.removeChild(box.firstChild);
+    qs.forEach(function (q) { var bq = el('blockquote', null, q.text); if (q.who) bq.appendChild(el('footer', null, q.who)); box.appendChild(bq); });
+  }
+
   function mergeHome(list) {
     var by = cleanArtists(read());
     if (PREVIEW) { try { var old = window.artistPageHref; if (old) window.artistPageHref = function (a) { return withPreview(old(a)); }; } catch (e) { /* link stays as it is */ } }
@@ -396,7 +414,7 @@
     }
   }
 
-  window.SiteContent = { navNames: navNames, homePolicies: homePolicies, cleanPolicies: cleanPolicies, withPreview: withPreview, PREVIEW: PREVIEW, KINDS: KINDS, read: read, shopToday: shopToday, active: active, cleanNews: cleanNews, cleanArtists: cleanArtists, mergeHome: mergeHome, mergeSite: mergeSite, cleanShop: cleanShop, cleanHours: cleanHours, cleanPrices: cleanPrices, cleanServices: cleanServices, applyArtistPage: applyArtistPage, applyDepositLine: applyDepositLine, previewBar: previewBar, el: el, warn: warn };
+  window.SiteContent = { navNames: navNames, homePolicies: homePolicies, cleanPolicies: cleanPolicies, withPreview: withPreview, PREVIEW: PREVIEW, KINDS: KINDS, read: read, shopToday: shopToday, active: active, cleanNews: cleanNews, cleanArtists: cleanArtists, mergeHome: mergeHome, mergeSite: mergeSite, cleanShop: cleanShop, cleanHours: cleanHours, cleanPrices: cleanPrices, cleanServices: cleanServices, applyArtistPage: applyArtistPage, applyDepositLine: applyDepositLine, applyReviews: applyReviews, previewBar: previewBar, el: el, warn: warn };
 
   var me = document.currentScript;
   function navPage() {

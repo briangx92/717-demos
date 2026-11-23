@@ -214,7 +214,7 @@
     return body.replace(/\{(\w+)\}/g, function (m, k) { return map[k] ? map[k] : m; }).replace(/\s+$/g, '');
   };
   OA.blanks = function (text) { var m = text.match(/\{\w+\}/g) || []; return m.filter(function (x, i) { return m.indexOf(x) === i; }); };
-  OA.BLANK_HINT = { '{depositHow}': 'how you take deposits (Settings, Messages)', '{reviewLink}': 'your Google review link (Settings, Messages)', '{quote}': 'the quote', '{date}': 'the date', '{time}': 'the time' };
+  OA.BLANK_HINT = { '{depositHow}': 'how you take deposits (Settings, Messages)', '{reviewLink}': 'your Google review link (Site > Reviews)', '{quote}': 'the quote', '{date}': 'the date', '{time}': 'the time' };
 
   /* ---------- numbers shown on Today ---------- */
   OA.metrics = function () {
@@ -266,6 +266,7 @@
     if ([sh.street, sh.town, sh.region, sh.zip].join('|') !== [ch.street, ch.town, ch.region, ch.zip].join('|')) out.push({ key: 'shop', area: 'Contact', text: 'Address changed' });
     if (sh.facebook !== ch.facebook) out.push({ key: 'shop', area: 'Contact', text: 'Facebook link changed' });
     if (!OA.eq(pub.quotes, cur.quotes)) { var dq = cur.quotes.length - pub.quotes.length; out.push({ key: 'quotes', area: 'Reviews', text: dq > 0 ? OA.plural(dq, 'review quote') + ' added' : dq < 0 ? OA.plural(-dq, 'review quote') + ' removed' : 'Review quotes edited' }); }
+    if (((st().published || {}).reviewLink || '') !== (st().settings.reviewLink || '')) out.push({ key: 'quotes', area: 'Reviews', text: 'Google review link changed' });
     var pn = byKey(pub.announcements || [], 'id'), cn = byKey(cur.announcements || [], 'id');
     function nm(a) { return '\u201c' + (a.title || 'Untitled') + '\u201d'; }
     Object.keys(cn).forEach(function (k) {
@@ -356,7 +357,7 @@
     if (bad) return { ok: false, reason: bad };
     s.history.unshift({ id: OA.uid('h'), at: at, by: who, summary: ch.map(function (c) { return c.text; }) });
     s.history = s.history.slice(0, 30);
-    s.published = { at: at, by: who, site: OA.clone(s.site) };
+    s.published = { at: at, by: who, site: OA.clone(s.site), reviewLink: s.settings.reviewLink || '' };
     S.commit(); return { ok: true, count: ch.length };
   };
   act.discard = function (key) {
@@ -364,6 +365,7 @@
     var map = { hours: 'hours', banner: 'banner', policies: 'policies', prices: 'prices', services: 'services', shop: 'shop', quotes: 'quotes', artists: 'artists', portfolio: 'portfolio', announcements: 'announcements' };
     var keys = key ? [key] : Object.keys(map);
     keys.forEach(function (k) { if (map[k]) s.site[map[k]] = OA.clone(p[map[k]]); });
+    if (!key || key === 'quotes') { if (s.published && s.published.reviewLink != null) s.settings.reviewLink = s.published.reviewLink; }
     S.commit();
   };
 

@@ -93,7 +93,11 @@
       }),
       services: (site.services || []).map(function (s) {
         return { id: s.id, family: s.family, name: s.name, blurb: s.blurb || '' };
-      })
+      }),
+      quotes: (site.quotes || []).slice(0, 6).map(function (q) {
+        return { text: String(q.text || '').trim().slice(0, 280), who: String(q.who || '').trim().slice(0, 40) };
+      }).filter(function (q) { return q.text; }),
+      reviewLink: String(((OA.store.state || {}).settings || {}).reviewLink || '')
     };
   };
 

@@ -263,6 +263,10 @@ a.ledger-row:hover { background: var(--surface); }
 }
 @media (prefers-reduced-motion: no-preference) { dialog.dlg[open] { animation: pop .14s ease-out; } @keyframes pop { from { transform: translateY(6px); opacity: 0; } to { transform: none; opacity: 1; } } }
 @media print { .top, .bar, .toasts { display: none; } }
+.qr-spot { display: flex; justify-content: center; padding: .4rem 0; } .qr-spot .qr { width: 148px; height: 148px; }
+.counter-head { display: grid; gap: .15rem; text-align: center; } .counter-head strong { font-size: 1.15rem; }
+.counter-url { text-align: center; font-size: .82rem; color: var(--ink2); overflow-wrap: anywhere; }
+@media print { body.pc-print * { visibility: hidden; } body.pc-print .counter-card, body.pc-print .counter-card * { visibility: visible; } body.pc-print .counter-card .no-print { display: none; } body.pc-print .counter-card { position: fixed; top: 0; left: 0; width: 3.8in; box-shadow: none; } }
 
 /* Analytics and the website feed */
 .feed { margin: -.2rem 0 .2rem; }
