@@ -67,11 +67,16 @@
     .p-feat img{ width:100%; aspect-ratio:16 / 10; object-fit:cover; }
     .p-feat figcaption{ padding:1.1rem 1.2rem 1.2rem; }
     .p-feat .who{ color:var(--accent-bright); font-family:var(--font-display); text-transform:uppercase; letter-spacing:.1em; font-size:.85rem; margin-top:.6rem; }
-    .p-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .p-grid{ display:grid; grid-template-columns:repeat(4, 1fr); grid-auto-rows:195px; grid-auto-flow:dense; gap:.75rem; }
     .p-grid figure{ margin:0; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--surface); }
-    .p-grid .fw{ position:relative; }
-    .p-grid img{ width:100%; aspect-ratio:4 / 3; object-fit:cover; }
-    .p-grid figcaption{ padding:.6rem .9rem; color:var(--ink-soft); font-size:.95rem; }
+    .p-grid figure:nth-child(12n+1){ grid-column:span 2; grid-row:span 2; }
+    .p-grid figure:nth-child(12n+4){ grid-column:span 2; }
+    .p-grid figure:nth-child(12n+6){ grid-row:span 2; }
+    .p-grid figure:nth-child(12n+9){ grid-column:span 2; }
+    .p-grid figure:nth-child(12n+11){ grid-row:span 2; }
+    .p-grid img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .p-grid figcaption{ position:absolute; left:0; right:0; bottom:0; padding:1.5rem .8rem .55rem; color:#fff; font-size:.88rem; line-height:1.35; background:linear-gradient(transparent, rgba(0,0,0,.78)); }
+    .p-grid figcaption a{ color:#fff; }
     .p-about p{ color:var(--ink-soft); max-width:65ch; }
     .p-about p + p{ margin-top:.8rem; }
     .p-chips{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.1rem; }
@@ -88,7 +93,7 @@
     .p-band{ background:var(--mid); border-top:1px solid var(--line); }
     .p-band__in{ max-width:1060px; margin-inline:auto; padding:1.2rem 1rem; display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content:space-between; }
     .p-band p{ color:var(--ink-soft); }
-    @media (max-width:720px){ .p-id{ grid-template-columns:1fr; margin-top:-64px; justify-items:center; text-align:center; } .p-role, .p-status, .p-actions{ justify-content:center; } .p-grid{ grid-template-columns:1fr; } .p-band__in{ justify-content:center; text-align:center; } }
+    @media (max-width:720px){ .p-id{ grid-template-columns:1fr; margin-top:-64px; justify-items:center; text-align:center; } .p-role, .p-status, .p-actions{ justify-content:center; } .p-grid{ grid-template-columns:repeat(2, 1fr); grid-auto-rows:150px; gap:.5rem; } .p-grid figcaption{ font-size:.8rem; padding:1.1rem .6rem .45rem; } .p-band__in{ justify-content:center; text-align:center; } }
   }
 
   /* desktop proportion fix (Brian, 2026-11-14): the page content rides in one centered column, same width as the frame bar and footer */
