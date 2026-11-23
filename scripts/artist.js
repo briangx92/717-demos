@@ -350,7 +350,16 @@
     var first = (qn ? qn[1].trim() : String(name || '').replace(/["\u201c\u201d]/g, '').split(/\s+/)[0]) || '';
     return first;
   }
+  /* Photo refs saved before the 2026-11-23 restructure point at the repo root
+     ("lex-work-02.jpg", "../diana-portrait.jpg"); the files now live under
+     portfolio/<artist>/images/. Rewrite the old form wherever it surfaces. */
+  function fixImg(p) {
+    if (typeof p !== 'string') return p;
+    var m = /^(?:\.\.\/)?([a-z0-9-]+)-((?:portrait|work-\d+)\.jpg)$/.exec(p);
+    return m ? 'portfolio/' + m[1] + '/images/' + m[1] + '-' + m[2] : p;
+  }
   function srcFor(src) {
+    src = fixImg(src);
     if (!src || /^(idb:|https?:|data:|blob:|\/|\.\.)/.test(src)) return src;
     return ROOT + src;
   }
