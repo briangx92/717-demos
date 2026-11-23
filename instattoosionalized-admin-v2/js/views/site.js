@@ -138,8 +138,8 @@
   function policies(site) {
     var p = site.policies, saved = h('div', { class: 'saved', 'aria-live': 'polite' });
     var f = { deposit: ui.area(p.deposit, { rows: 3, maxlength: OA.LIMITS.policy }), age: ui.area(p.age, { rows: 3, maxlength: OA.LIMITS.policy, placeholder: 'e.g. Clients must be 18 or older with a valid photo ID.' }), aftercare: ui.area(p.aftercare, { rows: 4, maxlength: OA.LIMITS.policy, placeholder: 'A few lines on caring for a new tattoo or piercing.' }) };
-    Object.keys(f).forEach(function (k) { f[k].addEventListener('change', function () { p[k] = f[k].value.trim(); S.commit(); draftNote(saved, SAVED); OA.updateChrome(); }); });
-    return h('section', { class: 'card narrow' }, h('h2', { text: 'Policies on the site' }), h('p', { class: 'note', text: 'Shown on the Policies page and in the Good to know box on the homepage. Blank boxes do not show. Say only what the shop actually does. A blank line starts a new paragraph.' }), ui.field('Deposit', f.deposit, 'The deposit amount used in texts is set under Settings, Messages.'), ui.field('Age and ID', f.age), ui.field('Aftercare', f.aftercare), saved);
+    Object.keys(f).forEach(function (k) { f[k].addEventListener('change', function () { p[k] = f[k].value.trim(); if (k === 'deposit') OA.syncDepositFromPolicy(); S.commit(); draftNote(saved, SAVED); OA.updateChrome(); }); });
+    return h('section', { class: 'card narrow' }, h('h2', { text: 'Policies on the site' }), h('p', { class: 'note', text: 'Shown on the Policies page and in the Good to know box on the homepage. Blank boxes do not show. Say only what the shop actually does. A blank line starts a new paragraph.' }), ui.field('Deposit', f.deposit, 'The amount in this text and the Deposit amount under Settings stay in sync. Change either one and the other follows, so the site never shows two different deposits.'), ui.field('Age and ID', f.age), ui.field('Aftercare', f.aftercare), saved);
   }
 
   /* ---------- reviews ---------- */

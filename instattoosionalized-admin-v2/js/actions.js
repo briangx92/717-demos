@@ -19,6 +19,13 @@
   OA.client = function (id) { return st().clients.filter(function (c) { return c.id === id; })[0] || null; };
   OA.depositAmount = function () { return st().settings.depositAmount || ''; };
 
+  /* One deposit, two doors: the amount in Settings and the amount named in the Deposit policy
+     text are the same fact, shown on the site in several places. Editing either one rewrites
+     the other, so the policy, the FAQ and the booking notes can never disagree. */
+  OA.depositInText = function (text) { var m = /\$\s?\d+(?:\.\d{2})?/.exec(text || ''); return m ? m[0].replace(/\s/g, '') : ''; };
+  OA.syncDepositFromPolicy = function () { var s = st(), amt = OA.depositInText((s.site.policies || {}).deposit); if (amt && s.settings.depositAmount !== amt) s.settings.depositAmount = amt; };
+  OA.syncPolicyFromAmount = function () { var s = st(), amt = s.settings.depositAmount, t = (s.site.policies || {}).deposit || '', cur = OA.depositInText(t); if (amt && cur && cur !== amt) s.site.policies.deposit = t.replace(/\$\s?\d+(?:\.\d{2})?/, amt); };
+
   /* ---------- who sees what ---------- */
   OA.scopeAppts = function (list) { return OA.role.kind === 'artist' ? list.filter(function (a) { return a.artist === OA.role.slug; }) : list; };
   OA.scopeReqs = function (list) { return OA.role.kind === 'artist' ? list.filter(function (r) { return r.artist === OA.role.slug || (!r.artist && r.kind === 'tattoo'); }) : list; };

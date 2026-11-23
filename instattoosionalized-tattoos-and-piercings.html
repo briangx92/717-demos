@@ -700,7 +700,7 @@
       </details>
       <details>
         <summary>What does the deposit cover?</summary>
-        <p>The shop's deposit is $40 and holds your spot.</p>
+        <p data-deposit-line>The shop's deposit is $40 and holds your spot.</p>
       </details>
       <details>
         <summary>How much will my tattoo cost?</summary>
@@ -2063,6 +2063,7 @@ try { if (window.SiteContent) SiteContent.mergeHome(SITE.artists); } catch (e) {
     SC.previewBar(!!data);
     SC.homePolicies();
     SC.mergeSite(SITE);
+    SC.applyDepositLine();
     if (!data) return;
     var c = SC.cleanNews(data), today = SC.shopToday(SITE.timeZone);
     if (c.banner && SC.active(c.banner, today)) {

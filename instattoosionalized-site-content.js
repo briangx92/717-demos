@@ -185,9 +185,20 @@
   }
 
   /* Homepage: updates the built-in artist list in place. Call once, before the page draws the artist cards. */
+  /* The deposit sentence is one fact with many copies: the policy card, the FAQ answer and each
+     artist's note all carry it. The published policy text is the source; tagged copies and note
+     entries are rewritten from it, so one edit in the portal reaches every copy. */
+  function applyDepositLine() {
+    var c = read(); if (!c) return;
+    var p = cleanPolicies(c); if (!p || !p.deposit) return;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-deposit-line]'), function (e) { e.textContent = p.deposit; });
+  }
+
   function mergeHome(list) {
     var by = cleanArtists(read());
     if (PREVIEW) { try { var old = window.artistPageHref; if (old) window.artistPageHref = function (a) { return withPreview(old(a)); }; } catch (e) { /* link stays as it is */ } }
+    var pol = cleanPolicies(read());
+    if (pol && pol.deposit) list.forEach(function (a) { if (a && Array.isArray(a.note)) a.note = a.note.map(function (n) { return (typeof n === 'string' && /deposit is \$/i.test(n)) ? pol.deposit : n; }); });
     if (!by) return;
     for (var i = list.length - 1; i >= 0; i--) {
       var a = list[i], p = by[a.slug];
@@ -231,7 +242,7 @@
   function applyArtistPage(slug) {
     try {
       var c = read(), by = cleanArtists(c), p = by && by[slug];
-      previewBar(!!c); navNames();
+      previewBar(!!c); navNames(); applyDepositLine();
       if (PREVIEW) {
         Array.prototype.forEach.call(document.querySelectorAll('a[href]'), function (a) { var h = a.getAttribute('href'); var n = withPreview(h); if (n !== h) a.setAttribute('href', n); });
       }
@@ -384,7 +395,7 @@
     }
   }
 
-  window.SiteContent = { navNames: navNames, homePolicies: homePolicies, cleanPolicies: cleanPolicies, withPreview: withPreview, PREVIEW: PREVIEW, KINDS: KINDS, read: read, shopToday: shopToday, active: active, cleanNews: cleanNews, cleanArtists: cleanArtists, mergeHome: mergeHome, mergeSite: mergeSite, cleanShop: cleanShop, cleanHours: cleanHours, cleanPrices: cleanPrices, cleanServices: cleanServices, applyArtistPage: applyArtistPage, previewBar: previewBar, el: el, warn: warn };
+  window.SiteContent = { navNames: navNames, homePolicies: homePolicies, cleanPolicies: cleanPolicies, withPreview: withPreview, PREVIEW: PREVIEW, KINDS: KINDS, read: read, shopToday: shopToday, active: active, cleanNews: cleanNews, cleanArtists: cleanArtists, mergeHome: mergeHome, mergeSite: mergeSite, cleanShop: cleanShop, cleanHours: cleanHours, cleanPrices: cleanPrices, cleanServices: cleanServices, applyArtistPage: applyArtistPage, applyDepositLine: applyDepositLine, previewBar: previewBar, el: el, warn: warn };
 
   var me = document.currentScript;
   function navPage() {

@@ -13,7 +13,7 @@
     var f = { dep: ui.input(set.depositAmount, { placeholder: '$40' }), how: ui.input(set.depositHow, { placeholder: 'e.g. Pay by Venmo @shop or at the counter.' }), rev: ui.input(set.reviewLink, { type: 'url', placeholder: 'https://g.page/r/...' }) };
     function save() {
       if (f.rev.value && !/^https?:\/\/\S+\.\S+/.test(f.rev.value)) { note(saved, 'The review link has to start with https://. Not saved.', true); return; }
-      set.depositAmount = f.dep.value.trim(); set.depositHow = f.how.value.trim(); set.reviewLink = f.rev.value.trim(); S.commit(); note(saved, 'Saved');
+      set.depositAmount = f.dep.value.trim(); set.depositHow = f.how.value.trim(); set.reviewLink = f.rev.value.trim(); OA.syncPolicyFromAmount(); S.commit(); note(saved, 'Saved');
     }
     Object.keys(f).forEach(function (k) { f[k].addEventListener('change', save); });
     root.appendChild(h('section', { class: 'card narrow' }, h('h2', { text: 'Deposit and review link' }), h('div', { class: 'form-grid' }, ui.field('Deposit amount', f.dep, 'Fills {deposit} in texts.'), ui.field('How clients pay it', f.how, 'Fills {depositHow}. The portal does not take payments.', 'span2'), ui.field('Google review link', f.rev, 'Fills {reviewLink}.', 'span2')), saved));
