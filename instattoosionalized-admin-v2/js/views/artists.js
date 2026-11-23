@@ -79,7 +79,7 @@
       OA.img.compress(file, 1000).then(OA.img.put).then(function (id) { a.portrait = id; S.commit(); ui.toast('Main photo changed in the draft'); OA.rerender(); }).catch(function (e) { ui.fail(e.message); });
     } } });
     var left = h('section', { class: 'card' }, h('h2', { text: 'On the website' }), h('div', { class: 'form-grid' }, ui.field('Name', f.name, 'Nicknames in quotes are fine.', 'span2'), ui.field('What they do', f.role, null, 'span2'), ui.field('Bio', f.bio, 'Plain paragraphs. A blank line starts a new paragraph.', 'span2')), saved);
-    var right = h('div', {}, h('section', { class: 'card' }, h('h2', { text: 'Books' }), h('div', { class: 'form-grid' }, ui.field('Taking new clients', f.books), untilField)),
+    var right = h('div', {}, h('section', { class: 'card' }, h('h2', { text: 'Books' }), h('div', { class: 'form-grid' }, ui.field('Taking new clients', f.books, null, null, 'Open: the website offers this artist in the request form. Booked out: the site shows them as booked out instead, with the date below, so people know when to ask again.'), untilField)),
       h('section', { class: 'card' }, h('h2', { text: 'Main photo' }), portraitBox, edit ? h('label', { class: 'btn small', for: 'portrait-up', text: 'Replace photo' }) : null, edit ? (up.id = 'portrait-up', up) : null),
       h('section', { class: 'card' }, h('h2', { text: 'Page' }), h('label', { class: 'check' }, f.visible, h('span', { text: 'Show this artist’s page on the site' })),
         edit && OA.role.kind === 'owner' ? h('div', { class: 'row' }, ui.btn('Remove this artist', function () {

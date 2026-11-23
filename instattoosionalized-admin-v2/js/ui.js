@@ -61,9 +61,13 @@
 
   /* ---------- form bits ---------- */
   var fid = 0;
-  ui.field = function (label, input, hint, cls) {
+  ui.field = function (label, input, hint, cls, tip) {
     var id = 'f' + (++fid); input.id = input.id || id;
-    return h('div', { class: 'field ' + (cls || '') }, h('label', { for: input.id, text: label }), input, hint ? h('div', { class: 'hint', text: hint }) : null);
+    var lab = h('label', { for: input.id, text: label });
+    if (!tip) return h('div', { class: 'field ' + (cls || '') }, lab, input, hint ? h('div', { class: 'hint', text: hint }) : null);
+    var tipText = h('div', { class: 'hint tip-text', text: tip, hidden: true });
+    var btn = h('button', { type: 'button', class: 'tip-btn', 'aria-expanded': 'false', 'aria-label': 'What is ' + label + '?', text: '?', on: { click: function () { tipText.hidden = !tipText.hidden; btn.setAttribute('aria-expanded', String(!tipText.hidden)); } } });
+    return h('div', { class: 'field ' + (cls || '') }, h('div', { class: 'flab' }, lab, btn), input, hint ? h('div', { class: 'hint', text: hint }) : null, tipText);
   };
   ui.input = function (v, a) { a = a || {}; a.value = v == null ? '' : v; return h('input', Object.assign({ type: 'text', autocomplete: 'off' }, a)); };
   ui.area = function (v, a) { a = a || {}; a.value = v == null ? '' : v; return h('textarea', Object.assign({ rows: 3 }, a)); };

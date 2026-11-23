@@ -34,6 +34,10 @@
   function people() {
     var root = h('section', { class: 'card' }, h('h2', { text: 'Who can sign in' }));
     root.appendChild(h('p', { class: 'note', text: 'Demo only: this list does not control anything yet. On the real portal, signing in uses an emailed one-time code, and only addresses on this list get in.' }));
+    var roleTipText = h('div', { class: 'hint tip-text', hidden: true, text: 'Owner: everything, including the site and settings. Front desk: requests, calendar and clients. Artist: only their own chair, their clients and their portfolio.' });
+    var roleTipBtn = h('button', { type: 'button', class: 'tip-btn', 'aria-expanded': 'false', 'aria-label': 'What can each role do?', text: '?', on: { click: function () { roleTipText.hidden = !roleTipText.hidden; roleTipBtn.setAttribute('aria-expanded', String(!roleTipText.hidden)); } } });
+    root.appendChild(h('div', { class: 'flab' }, h('span', { class: 'note', text: 'What can each role do?' }), roleTipBtn));
+    root.appendChild(roleTipText);
     var owners = S.state.people.filter(function (p) { return p.role === 'owner'; }).length;
     var table = h('div', { class: 'ledger' });
     S.state.people.forEach(function (p) {
@@ -69,7 +73,7 @@
       h('p', { text: 'The shop server saves what people send through the website form and reads Cloudflare for traffic and speed. This portal asks it for both.' }));
     card.appendChild(h('div', { class: 'row' }, ui.chip(api.configured() ? 'Server set' : 'No server set', api.configured() ? 'ok' : 'quiet'), h('span', { class: 'note', text: api.configured() ? api.base() : 'The server address is set when the portal is deployed (the portal-api line in index.html). It is empty in this demo.' })));
     var tok = ui.input('', { type: 'password', autocomplete: 'off', spellcheck: 'false', 'aria-label': 'Access token', placeholder: api.hasToken() ? 'A token is saved for this tab' : 'Paste the access token' });
-    card.appendChild(ui.field('Access token', tok, 'Kept only while this tab is open. It is never saved on the computer or shown on the page. Ask whoever runs the server for it.'));
+    card.appendChild(ui.field('Access token', tok, 'Kept only while this tab is open. It is never saved on the computer or shown on the page. Ask whoever runs the server for it.', null, 'This connects the portal to the shop’s server, which is where bookings, requests and the analytics counts live. Without it, the portal can only edit the website draft.'));
     var row = h('div', { class: 'row' });
     row.appendChild(ui.btn('Save and test', function () {
       if (!api.configured()) { note(out, 'There is no server address to test. Nothing was saved.', true); return; }
