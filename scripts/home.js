@@ -549,7 +549,7 @@ const MODULES = {
     const st = { path: "quick", picked: new Set(), step: 0, lastPath: "quick", calOpen: false, view: null, errCheck: null, artist: null, artistNote: null,
       a: { whenMode: "flex", date: null, part: null, time: null, name: "", phone: "", note: "", fam: {} } };
     Object.keys(S.familySteps).forEach(f => { st.a.fam[f] = {}; });
-    try { const up = new URLSearchParams(location.search).get("artist"); if (up) { const hit = artistBySlug[up] || roster.find(a => a.pageVar === up); if (hit) st.artist = hit.slug; } } catch (e) {}
+    try { const up = new URLSearchParams(location.search).get("artist"); if (up) { const hit = roster.find(a => a.pageVar === up) || artistBySlug[up]; if (hit) st.artist = hit.slug; } } catch (e) {}
 
     const call = $("ask-call");
     call.append("Rather talk it through? Call ", T.el("a", { href: S.phoneHref, text: S.phoneDisplay }));
@@ -734,7 +734,9 @@ const MODULES = {
           const box = T.el("input", { type: "radio", name: "who-artist", class: "u-sr", value: val, "data-key": "who-" + (val || "none") });
           box.checked = (st.artist || "") === val;
           const kids = [box];
-          if (art) kids.push(T.el("img", { src: art.portrait, alt: "" }));
+          if (art && art.portrait && art.portrait.indexOf("idb:") === 0) kids.push(T.el("img", { "data-idb": art.portrait, alt: "" }));
+          else if (art && art.portrait) kids.push(T.el("img", { src: art.portrait, alt: "" }));
+          else if (art) kids.push(T.el("span", { class: "s-who__mono", text: (art.first || art.name || "?").charAt(0).toUpperCase(), "aria-hidden": "true" }));
           kids.push(T.el("span", { class: "s-who__meta" }, [
             T.el("span", { class: "s-who__name" }, [name, art && art.sample ? T.el("span", { class: "s-sample", text: "Sample" }) : null]),
             T.el("span", { class: "s-who__sub", text: sub })
@@ -757,6 +759,7 @@ const MODULES = {
           grid.append(mkTile(a.slug, a.name, a.role, a));
         });
         body.append(grid);
+        if (window.SiteContent && window.SiteContent.resolveIdbImgs) window.SiteContent.resolveIdbImgs(grid);
       },
       detail(body, s){
         const cfg = S.familySteps[s.family];

@@ -65,11 +65,13 @@
      record to its built-in photos. */
   OA.pageVar = function (a, taken) {
     var base = OA.slug(OA.first(a.name)) || 'artist', v = base, k = 2;
-    while ((taken && taken[v]) || v === 'piercing') v = base + '-' + (k++);
+    while ((taken && taken[v]) || v === 'piercing' || v === 'roster' || v === 'dynamic') v = base + '-' + (k++);
     return v;
   };
 
-  /* What the website needs to know about each artist. Photos are not here: they need the real publish path. */
+  /* What the website needs to know about each artist, photo references included. Uploaded
+     photos resolve in the owner's browser from the portal photo store until the server
+     publish path lands at shipment. */
   OA.artistsContent = function (site) {
     var taken = {};
     return (site.artists || []).map(function (a) {

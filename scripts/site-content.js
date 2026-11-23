@@ -75,6 +75,14 @@
     return /^[a-z0-9][a-z0-9._/-]*$/i.test(r) && r.indexOf('..') < 0;
   }
 
+  /* Photo refs saved before the folder restructure (by an older portal state) point at
+     the site root; rewrite them to the portfolio folders, as the draft-state fix does. */
+  function fixPublishedRef(r) {
+    if (typeof r !== 'string') return r;
+    var m = /^(?:\.\.\/)?([a-z0-9-]+)-((?:portrait|work-\d+)\.jpg)$/.exec(r);
+    return m ? 'portfolio/' + m[1] + '/images/' + m[1] + '-' + m[2] : r;
+  }
+
   function cleanArtists(c) {
     if (!c || !Array.isArray(c.artists)) return null;
     var by = {};
@@ -94,16 +102,17 @@
         if (u && hostOk(u, x.p) && str(x.label, MAX.label) && x.label.trim()) socials.push({ p: x.p, label: x.label.trim(), url: u.href });
         else warn(tag + ': a social link was skipped because it is not valid.');
       });
-      var photo = refOk(a.photo) ? a.photo : '';
+      var photo = refOk(a.photo) ? fixPublishedRef(a.photo) : '';
       var work = [];
       (Array.isArray(a.work) ? a.work : []).slice(0, 80).forEach(function (w) {
         if (!w || !refOk(w.src)) return;
-        var cap = str(w.cap == null ? '' : w.cap, 300) ? w.cap.trim() : '';
-        var item = { src: w.src, cap: cap, alt: cap, date: /^\d{4}-\d{2}-\d{2}$/.test(w.date || '') ? w.date : '' };
-        if (w.ba && refOk(w.ba.a) && refOk(w.ba.b)) item.ba = { a: w.ba.a, b: w.ba.b, acap: String(w.ba.acap || '').slice(0, 300), bcap: String(w.ba.bcap || '').slice(0, 300), title: String(w.ba.title || '').slice(0, 300), story: String(w.ba.story || '').slice(0, 1000) };
+        var rawCap = typeof w.cap === 'string' ? w.cap : '';
+        var cap = str(rawCap, 300) ? rawCap.trim() : '';
+        var item = { src: fixPublishedRef(w.src), cap: cap, alt: cap, date: /^\d{4}-\d{2}-\d{2}$/.test(w.date || '') ? w.date : '' };
+        if (w.ba && refOk(w.ba.a) && refOk(w.ba.b)) item.ba = { a: fixPublishedRef(w.ba.a), b: fixPublishedRef(w.ba.b), acap: String(w.ba.acap || '').slice(0, 300), bcap: String(w.ba.bcap || '').slice(0, 300), title: String(w.ba.title || '').slice(0, 300), story: String(w.ba.story || '').slice(0, 1000) };
         work.push(item);
       });
-      by[a.slug] = { slug: a.slug, key: key, name: a.name.trim(), nick: a.nick.trim(), role: (a.role || '').trim(), bio: (a.bio || '').trim(), visible: a.visible, socials: socials, photo: photo, work: work };
+      by[a.slug] = { slug: a.slug, key: key, name: a.name.trim(), nick: a.nick.trim(), role: (a.role || '').trim(), bio: (a.bio || '').trim(), visible: a.visible, socials: socials, photo: photo, work: work, hasPhoto: Object.prototype.hasOwnProperty.call(a, 'photo'), hasWork: Object.prototype.hasOwnProperty.call(a, 'work') };
     });
     return by;
   }
@@ -229,7 +238,11 @@
      entries are rewritten from it, so one edit in the portal reaches every copy. */
   function applyDepositLine() {
     var c = read(); if (!c) return;
-    var p = cleanPolicies(c); if (!p || !p.deposit) return;
+    var p = cleanPolicies(c); if (!p) return;
+    if (!p.deposit) {
+      Array.prototype.forEach.call(document.querySelectorAll('[data-deposit-line]'), function (e) { e.hidden = true; });
+      return;
+    }
     Array.prototype.forEach.call(document.querySelectorAll('[data-deposit-line]'), function (e) { e.textContent = p.deposit; });
   }
 
@@ -269,6 +282,10 @@
         a.bio = p.bio; a.about = paragraphs(p.bio); a.socials = p.socials;
         a.ig = ig ? ig.label.replace(/^@/, '') : '';
         a.portraitAlt = 'Portrait of ' + p.nick + ' at Instattoosionalized';
+        /* A payload that carries photo/work replaces the built-in ones, even when it
+           carries them empty (the owner cleared the portrait or hid every photo). */
+        if (p.hasPhoto) a.portrait = p.photo;
+        if (p.hasWork) a.work = p.work;
       }
       /* Artists the portal added since the site was built join the list, so their card and page
          link exist, carrying the photos the portal published for them. */
@@ -320,55 +337,6 @@
   function setText(node, text) { if (node) node.textContent = text; }
 
   /* Artist page: replaces the words the owner can edit. The rest of the page stays as built. */
-  function applyArtistPage(slug) {
-    try {
-      var c = read(), by = cleanArtists(c), p = by && by[slug];
-      previewBar(!!c); navNames(); applyDepositLine();
-      if (PREVIEW) {
-        Array.prototype.forEach.call(document.querySelectorAll('a[href]'), function (a) { var h = a.getAttribute('href'); var n = withPreview(h); if (n !== h) a.setAttribute('href', n); });
-      }
-      if (!p) return;
-      var main = document.querySelector('main');
-      if (!p.visible) {
-        document.title = 'Instattoosionalized Tattoos and Piercings';
-        if (main) {
-          while (main.firstChild) main.removeChild(main.firstChild);
-          var box = el('section', 'p-sec'); box.append(el('h1', 'p-name', 'This page is not available right now'));
-          var back = el('a', 'c-btn c-btn--solid', 'Back to the shop'); back.href = withPreview(HOME); box.append(el('p', null, 'The shop has taken this page down for now.'), back);
-          main.appendChild(box);
-        }
-        return;
-      }
-      document.title = p.name + ' | Instattoosionalized Tattoos and Piercings';
-      setText(document.querySelector('.p-name'), p.name);
-      var img = document.querySelector('.p-portrait'); if (img) img.alt = 'Portrait of ' + p.nick + ', tattoo artist at Instattoosionalized';
-      var links = document.querySelector('.p-links');
-      if (links) { while (links.firstChild) links.removeChild(links.firstChild); p.socials.forEach(function (s) { links.appendChild(chip(s)); }); links.hidden = !p.socials.length; }
-
-      var about = document.querySelector('.p-about');
-      if (about) {
-        var ps = paragraphs(p.bio);
-        Array.prototype.slice.call(about.querySelectorAll('p')).forEach(function (n) { n.remove(); });
-        setText(about.querySelector('h2'), 'In ' + p.nick + '’s words');
-        ps.forEach(function (t) { about.appendChild(el('p', null, t)); });
-        about.hidden = !ps.length;
-      }
-      var note = document.querySelector('.p-note');
-      if (note) {
-        setText(note.querySelector('h2'), 'Booking with ' + p.nick);
-        var first = note.querySelector('p'), ig = p.socials.filter(function (x) { return x.p === 'Instagram'; })[0];
-        if (first) first.textContent = 'Send the shop request form with ' + p.nick + ' picked' + (ig ? ', or message them on Instagram at ' + ig.label : '') + '. Tell them the idea, where it is going, and roughly how big.';
-      }
-      var req = document.querySelector('.p-req');
-      if (req) {
-        setText(req.querySelector('h2'), 'Want work by ' + p.nick + '?');
-        setText(req.querySelector('p'), 'Send a request and pick ' + p.nick + ' by name. The shop writes back to set it up.');
-        setText(req.querySelector('a.c-btn'), 'Request with ' + p.nick);
-      }
-    } catch (e) { warn('Could not show the published artist content: ' + e.message); }
-  }
-
-  /* Shop phone, hours, prices, services: validated into the exact shapes the homepage renders. */
   function cleanShop(c) {
     if (!c || !c.shop || typeof c.shop !== 'object') return null;
     if (!str(c.shop.phone, 30) || !c.shop.phone.trim()) return null;
@@ -497,7 +465,10 @@
         var db = rq.result;
         if (!db.objectStoreNames.contains('blobs')) return;
         imgs.forEach(function (img) {
-          var g = db.transaction('blobs', 'readonly').objectStore('blobs').get(img.getAttribute('data-idb'));
+          var id = img.getAttribute('data-idb');
+          if (!id) return;
+          img.removeAttribute('data-idb');
+          var g = db.transaction('blobs', 'readonly').objectStore('blobs').get(id);
           g.onsuccess = function () { if (g.result) img.src = URL.createObjectURL(g.result); };
         });
       };
@@ -505,7 +476,7 @@
   }
   window.addEventListener('load', function () { resolveIdbImgs(document); });
 
-  window.SiteContent = { navNames: navNames, homePolicies: homePolicies, cleanPolicies: cleanPolicies, withPreview: withPreview, PREVIEW: PREVIEW, KINDS: KINDS, read: read, shopToday: shopToday, active: active, cleanNews: cleanNews, cleanArtists: cleanArtists, mergeHome: mergeHome, mergeSite: mergeSite, cleanShop: cleanShop, cleanHours: cleanHours, cleanPrices: cleanPrices, cleanServices: cleanServices, applyArtistPage: applyArtistPage, applyDepositLine: applyDepositLine, applyReviews: applyReviews, previewBar: previewBar, stickyRequest: stickyRequest, el: el, warn: warn, resolveIdbImgs: resolveIdbImgs };
+  window.SiteContent = { navNames: navNames, homePolicies: homePolicies, cleanPolicies: cleanPolicies, withPreview: withPreview, PREVIEW: PREVIEW, KINDS: KINDS, read: read, shopToday: shopToday, active: active, cleanNews: cleanNews, cleanArtists: cleanArtists, mergeHome: mergeHome, mergeSite: mergeSite, cleanShop: cleanShop, cleanHours: cleanHours, cleanPrices: cleanPrices, cleanServices: cleanServices, applyDepositLine: applyDepositLine, applyReviews: applyReviews, previewBar: previewBar, stickyRequest: stickyRequest, el: el, warn: warn, resolveIdbImgs: resolveIdbImgs };
 
   var me = document.currentScript;
   function navPage() {
@@ -517,9 +488,5 @@
   }
   if (me && me.getAttribute('data-policies')) {
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', policiesPage); else policiesPage();
-  }
-  if (me && me.getAttribute('data-artist')) {
-    var slug = me.getAttribute('data-artist');
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { applyArtistPage(slug); stickyRequest(); }); else { applyArtistPage(slug); stickyRequest(); }
   }
 })();

@@ -402,7 +402,9 @@
       if (!r.visible) return;
       var b = ROSTER[r.key] || null;
       var card = document.createElement('a'); card.className = 'p-roster-card'; card.href = 'artist.html?artist=' + r.slug;
-      var pimg = (b && b.portrait) || r.photo || '';
+      var pimg;
+      if (r.hasPhoto) pimg = r.photo || '';
+      else pimg = (b && b.portrait) || r.photo || '';
       if (pimg) { var im = document.createElement('img'); if (pimg.indexOf('idb:') === 0) im.setAttribute('data-idb', pimg); else im.src = srcFor(pimg); im.alt = 'Portrait of ' + r.name; im.loading = 'lazy'; card.appendChild(im); }
       var nm = document.createElement('span'); nm.className = 'p-roster-name'; nm.textContent = r.name;
       card.appendChild(nm);
@@ -425,10 +427,13 @@
     var bioParas = rec ? paras(rec.bio) : baked.bioParas;
     var socials = rec ? rec.socials : baked.socials;
     var does = baked ? baked.does : (rec && rec.role ? [rec.role] : []);
-    var portrait = (rec && rec.photo) || (baked ? baked.portrait : '');
+    var portrait = baked ? baked.portrait : '';
+    if (rec && rec.photo) portrait = rec.photo;
+    if (rec && rec.hasPhoto) portrait = rec.photo || '';
     var work = baked ? baked.work.map(function (w) { return { src: w.src, cap: w.cap, alt: w.alt, date: w.date || '' }; }) : [];
-    /* An artist who exists only in the portal data brings the photos it published. */
-    if (!baked && rec && Array.isArray(rec.work) && rec.work.length) {
+    /* Published work replaces the built-in set whenever the payload carries it
+       (including empty: every photo hidden in the portal hides them here too). */
+    if (rec && rec.hasWork && Array.isArray(rec.work)) {
       work = rec.work.map(function (w) {
         if (w.ba) return { ba: { a: srcFor(w.ba.a), b: srcFor(w.ba.b), acap: w.ba.acap, bcap: w.ba.bcap, title: w.ba.title, story: w.ba.story }, cap: w.cap || '', date: w.date || '' };
         return { src: srcFor(w.src), cap: w.cap || '', alt: w.cap || '', date: w.date || '' };
@@ -553,10 +558,10 @@
     var by = SC ? SC.cleanArtists(SC.read()) : null;
     var rec = null;
     if (by && varName) {
-      if (by[varName]) rec = by[varName];
+      if (Object.prototype.hasOwnProperty.call(by, varName)) rec = by[varName];
       else Object.keys(by).forEach(function (k) { if (by[k].key === varName) rec = by[k]; });
     }
-    var bakedKey = rec ? rec.key : (ROSTER[varName] ? varName : null);
+    var bakedKey = rec ? rec.key : (Object.prototype.hasOwnProperty.call(ROSTER, varName) ? varName : null);
     if (!varName || (!rec && !bakedKey) || (rec && !rec.visible)) {
       fillRoster(by);
       showBlock('roster');

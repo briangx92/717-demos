@@ -125,3 +125,6 @@
     .p-menu{ display:flex; position:static; margin-left:auto; background:transparent; border:0; box-shadow:none; padding:0; min-width:0; animation:none; align-items:center; gap:.25rem; }
     .p-menu a{ display:inline-block; padding:.55rem .75rem; }
   }
+
+/* The hidden attribute wins over the img display rule above. */
+[hidden]{display:none!important}

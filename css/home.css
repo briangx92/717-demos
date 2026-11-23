@@ -469,3 +469,6 @@
 
 /* An artist with no photo yet gets their initial, never a broken image. */
 .s-rail__mono{display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:64px;font-weight:700;color:var(--paper-soft);background:var(--panel-2, #1c1c22)}
+
+/* The request form's artist tiles: same initial-letter placeholder as the rail. */
+.s-who__mono{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;background:var(--panel-2, #1c1c22);color:var(--paper-soft);flex:none}
