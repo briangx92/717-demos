@@ -155,6 +155,20 @@ table.hours tr.today th,table.hours tr.today td{color:var(--ink);font-weight:700
 .js .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.js .rv{transform:none;transition:opacity .3s}}
 .counter{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+
+/* video hero retrofit (2026-11-24): full-width stock video, headline overlaid */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:#201a15;min-height:88svh;display:flex;align-items:center;color:#fff}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(26,20,15,.60),rgba(26,20,15,.42));pointer-events:none}
+
+.hero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero>.wrap{position:relative}
+
+.hero>.wrap{flex:1 1 auto}
+.hero .chap{color:#d9e2c4}
+.hero .lede{color:#efe9db}
+.hero .facts{border-top-color:rgba(255,255,255,.45);color:#e9e3d3}
+.hero .facts b{color:#fff}
+.hero .btn:not(.btn-call){border-color:rgba(255,255,255,.7);color:#fff;background:rgba(20,14,10,.25)}
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -169,6 +183,7 @@ table.hours tr.today th,table.hours tr.today td{color:var(--ink);font-weight:700
 
 <main>
 <section class="hero" id="top" data-hero>
+  <video class="hero-vid" autoplay muted loop playsinline preload="auto" data-hi="https://assets.mixkit.co/videos/15806/15806-720.mp4" aria-label="Nail polish being painted on by hand, seen from above"><source src="https://assets.mixkit.co/videos/15806/15806-360.mp4" type="video/mp4"></video>
   <div class="wrap grid">
     <div>
       <p class="chap">Nail salon, Hagerstown</p>
@@ -509,6 +524,10 @@ table.hours tr.today th,table.hours tr.today td{color:var(--ink);font-weight:700
   ov.addEventListener('click', function (e) { if (e.target === ov) close(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
 })();
+</script>
+
+<script>
+(function(){var v=document.querySelector('.hero-vid');if(!v){return;}var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(window.matchMedia('(min-width: 900px)').matches&&v.dataset.hi){v.src=v.dataset.hi;v.load();}if(rm){v.removeAttribute('autoplay');v.pause();}else{var p=v.play();if(p&&p.catch){p.catch(function(){});}}})();
 </script>
 </body>
 </html>
