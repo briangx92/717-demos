@@ -440,18 +440,6 @@
       });
     }
 
-    /* The portal's draft portfolio in this browser overrides the built-in photos. */
-    try {
-      var st = JSON.parse(localStorage.getItem('oa-state-v3') || 'null');
-      var items = st && st.portfolio && st.portfolio[key];
-      if (items && items.length) {
-        work = items.map(function (w) {
-          if (w.ba) return { ba: { a: srcFor(w.ba.a), b: srcFor(w.ba.b), acap: w.ba.acap, bcap: w.ba.bcap, title: w.ba.title, story: w.ba.story }, cap: w.cap, date: w.date || '' };
-          return { src: srcFor(w.src), cap: w.cap || '', alt: w.cap || '', date: w.date || '' };
-        });
-      }
-    } catch (e) { /* built-in photos stay */ }
-
     work = work.map(function (w, i) { return [w, i]; }).sort(function (a, b) {
       var da = a[0].date || '', db = b[0].date || '';
       if (da && db && da !== db) return da < db ? 1 : -1;

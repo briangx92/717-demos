@@ -441,6 +441,14 @@
           pbox.append(grp);
         });
       }
+      /* The section chip is baked as "Sample prices"; once the shop has
+         confirmed real prices it must not keep saying that to customers. */
+      var chip = document.querySelector('.s-prices__label');
+      if (chip) {
+        var anySample = SITE.prices.some(function (g) { return g.sample; });
+        chip.textContent = 'Sample prices';
+        chip.style.display = anySample ? '' : 'none';
+      }
     }
   }
 

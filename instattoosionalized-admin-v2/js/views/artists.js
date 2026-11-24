@@ -196,10 +196,11 @@
       var aiBtn = (OA.api && OA.api.ready()) ? ui.btn('Describe with AI', function () {
         aiBtn.disabled = true; var old = aiBtn.textContent; aiBtn.textContent = 'Describing...';
         OA.api.describe(p).then(function (r) {
+          var prevCap = p.cap, prevFn = p.fileName;
           cap.value = r.description; p.cap = r.description;
           if (r.fileName) { p.fileName = r.fileName; fnIn.value = r.fileName; fnRow.style.display = ''; }
           S.commit(); counts_(); OA.updateChrome();
-          ui.toast('AI drafted the description. Read it over, it is yours to edit.');
+          ui.toast('AI drafted the description. Read it over, it is yours to edit.', prevCap ? { action: { label: 'Undo', run: function () { p.cap = prevCap; cap.value = prevCap; p.fileName = prevFn; fnIn.value = prevFn || ''; if (!prevFn) fnRow.style.display = 'none'; S.commit(); OA.updateChrome(); } } } : undefined);
         }).catch(function (e) { ui.fail(e.message); }).then(function () { aiBtn.disabled = false; aiBtn.textContent = old; });
       }, 'small') : null;
       var tools = h('div', { class: 'row tight wrap' },
@@ -214,7 +215,7 @@
       el.appendChild(h('div', { class: 'tile-body' }, h('label', { class: 'check' }, show, h('span', { text: 'Show on the site' })), cap, fnRow, sec, tools));
       return el;
     }
-    function counts_() { var n = counts(slug); info.textContent = OA.plural(n.on, 'photo') + ' on the site, ' + n.off + ' hidden. Drag tiles to reorder, or use Earlier and Later. Order here is the order on the site.'; }
+    function counts_() { var n = counts(slug); info.textContent = OA.plural(n.on, 'photo') + ' on the site, ' + n.off + ' hidden. Drag tiles to reorder, or use Earlier and Later. On the site, photos show newest first by date; this order decides photos that share a date.'; }
     function draw() {
       OA.clear(grid); counts_();
       var all = OA.items(slug).slice().sort(function (x, y) {

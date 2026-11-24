@@ -544,6 +544,15 @@ const MODULES = {
     const $ = id => document.getElementById(id);
     const all = S.pickGroups.flatMap(g => g.items.map(i => Object.assign({}, i, { family: g.family })));
     const byId = Object.fromEntries(all.map(i => [i.id, i]));
+    /* Published data can replace the services after this form was built (a
+       brand-new service added in the portal, for one). Resolve a picked id
+       against the CURRENT groups first, so a new service can never crash
+       the summary or the submit. */
+    function svcName(id){
+      for (const g of S.pickGroups) for (const i of g.items) if (i.id === id) return i.name;
+      return byId[id] ? byId[id].name : null;
+    }
+    function pickedNames(){ return [...st.picked].map(svcName).filter(Boolean); }
     const roster = artistDisplayList();
     const artistBySlug = Object.fromEntries(roster.map(a => [a.slug, a]));
     const st = { path: "quick", picked: new Set(), step: 0, lastPath: "quick", calOpen: false, view: null, errCheck: null, artist: null, artistNote: null,
@@ -611,7 +620,7 @@ const MODULES = {
     });
     ["quick-form", "request-form"].forEach(id => $(id).addEventListener("submit", e => e.preventDefault()));
 
-    function families(){ return S.pickGroups.map(g => g.family).filter(f => all.some(i => i.family === f && st.picked.has(i.id))); }
+    function families(){ return S.pickGroups.map(g => g.family).filter(f => S.pickGroups.some(g => g.family === f && g.items.some(i => st.picked.has(i.id)))); }
     function steps(){
       const list = [{ id: "service", name: "Service" }];
       if (roster.length) list.push({ id: "who", name: "Artist" });
@@ -658,7 +667,7 @@ const MODULES = {
     function renderSummary(){
       const a = st.a;
       const rows = [
-        ["Services", st.picked.size ? [...st.picked].map(id => byId[id].name).join(", ") : "none yet"],
+        ["Services", st.picked.size ? pickedNames().join(", ") : "none yet"],
         ...(roster.length ? [["Artist", st.artist ? artistBySlug[st.artist].name : "No preference"]] : []),
         ["When", a.whenMode === "date" && !a.date ? "picking a date" : whenText()],
         ["Name", a.name.trim() || "not yet"],
@@ -883,7 +892,7 @@ const MODULES = {
 
     function reviewRows(){
       const a = st.a, rows = [];
-      rows.push({ label: "Service", value: [...st.picked].map(id => byId[id].name).join(", "), step: "service" });
+      rows.push({ label: "Service", value: pickedNames().join(", "), step: "service" });
       if (roster.length) rows.push({ label: "Artist", value: st.artist ? artistBySlug[st.artist].name : "No preference", step: "who" });
       families().forEach(f => {
         const cfg = S.familySteps[f];
@@ -1042,7 +1051,7 @@ const MODULES = {
       const t = fam.tattoo || {}, pc = fam.piercing || {};
       const place = [t.place, pc.place ? (fams.includes("tattoo") ? "Piercing: " : "") + pc.place : ""].map(x => (x || "").trim()).filter(Boolean).join("; ");
       return { source: "guided", kind: fams.length === 1 ? fams[0] : "general", artist: st.artist || "",
-        services: [...st.picked].map(id => byId[id].name), size: (t.size || "").trim(), place, idea: (t.idea || "").trim(),
+        services: pickedNames(), size: (t.size || "").trim(), place, idea: (t.idea || "").trim(),
         when: whenText(), name: a.name.trim(), phone: a.phone, note: a.note.trim() };
     }
     function retryKey(payload){
@@ -1176,8 +1185,6 @@ const MODULES = {
   }
 };
 
-try { var __st = null; try { __st = JSON.parse(localStorage.getItem('oa-state-v3') || 'null'); } catch (e) {} if (__st) { var __fixImg = function(p){ if (typeof p !== 'string') return p; var m = /^(?:\.\.\/)?([a-z0-9-]+)-((?:portrait|work-\d+)\.jpg)$/.exec(p); return m ? 'portfolio/' + m[1] + '/images/' + m[1] + '-' + m[2] : p; }; if (Array.isArray(__st.artists) && __st.artists.length) { var orig = {}; (SITE.artists || []).forEach(function(a){ orig[a.slug] = a; }); var built = __st.artists.map(function(sa){ var base = orig[sa.slug] || null; var qn = /["\u201c]([^"\u201d]+)["\u201d]/.exec(sa.name || ''); var first = (qn ? qn[1].trim() : ((sa.name || sa.slug).replace(/["\u201c\u201d]/g, '').split(/\s+/)[0])) || sa.slug; first = first.charAt(0).toUpperCase() + first.slice(1); var igE = (sa.socials || []).filter(function(x){ return x.p === 'Instagram'; })[0]; var work = (__st.portfolio && __st.portfolio[sa.slug]) ? __st.portfolio[sa.slug].map(function(w){ return w.ba ? { src: __fixImg(w.src), alt: w.ba.title || w.cap || '', cap: w.ba.title || w.cap || '', date: w.date || '', ba: { a: __fixImg(w.ba.a), b: __fixImg(w.ba.b), acap: w.ba.acap, bcap: w.ba.bcap, title: w.ba.title, story: w.ba.story } } : { src: __fixImg(w.src), alt: w.cap || '', cap: w.cap || '', date: w.date || '' }; }) : (base ? base.work : []); var obj = base || { slug: sa.slug, families: ['tattoo'], does: [], quick: '', featuredCap: '', work: [], sample: false }; if (!base) { obj.__noPage = true; obj.first = first; obj.portraitAlt = 'Portrait of ' + first + ' at Instattoosionalized'; obj.families = /pierc/i.test(sa.what || '') ? ['piercing'] : ['tattoo']; obj.does = [sa.what || 'Tattoo']; obj.note = ['Send the shop request form with ' + first + ' picked. Tell them the idea, where it is going, and roughly how big.', "The shop's deposit is $40 and holds your spot."]; } obj.name = sa.name || obj.name; if (sa.name) { obj.first = first; obj.portraitAlt = 'Portrait of ' + first + ' at Instattoosionalized'; } obj.role = sa.what || obj.role || 'Tattoo'; if (sa.about) { obj.about = [sa.about]; obj.bio = sa.about; } if (sa.photo) obj.portrait = __fixImg(sa.photo); if (igE) obj.ig = (igE.h || '').replace(/^@/, ''); work = work.map(function (w, i) { return [w, i]; }).sort(function (a, b) { var da = a[0].date || '', db = b[0].date || ''; if (da && db && da !== db) return da < db ? 1 : -1; if (da && !db) return -1; if (!da && db) return 1; return a[1] - b[1]; }).map(function (x) { return x[0]; }); obj.work = work; obj.pageVar = first.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || sa.slug; return obj; }); SITE.artists.splice(0, SITE.artists.length, ...built); try { if (window.artistPageHref) { var oh = window.artistPageHref; window.artistPageHref = function(a){ return oh(a); }; } } catch (e) {} }
-   } } catch (e) {}
 try { if (window.SiteContent) SiteContent.mergeHome(SITE.artists); } catch (e) { console.error('[site-content] could not apply the published artists: ' + e.message); }
 (function boot(){
   try {

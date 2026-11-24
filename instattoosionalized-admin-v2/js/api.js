@@ -76,7 +76,7 @@
     describe: function (item) {
       function photoBlob() {
         if (!item || !item.src) return Promise.resolve(null);
-        if (String(item.src).indexOf('idb:') === 0) return OA.img.blob(item.src.slice(4));
+        if (String(item.src).indexOf('idb:') === 0) return OA.img.blob(item.src);
         return fetch(OA.img.src(item.src), { cache: 'no-store' }).then(function (r) { return r.ok ? r.blob() : null; }).catch(function () { return null; });
       }
       function toB64(blob) {

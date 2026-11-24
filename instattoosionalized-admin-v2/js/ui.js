@@ -123,19 +123,27 @@
       h('div', { class: 'hint', text: 'On a computer, scan the code to finish on your phone. On a phone, use Open in messages. Nothing is sent from this page.' })
     );
     recheck();
+    var acts = [
+      { label: 'Close', kind: 'quiet', value: null },
+      { label: 'Copy text', kind: '', run: function () { ui.copy(area.value); return false; } }
+    ];
+    /* Sending by QR scan or copy-paste never reaches "Open in messages", so give
+       those sends a way to be recorded, or Today keeps asking about them. */
+    if (o.onOpened) acts.push({ label: 'I sent it', kind: '', run: function () {
+      var left = recheck(); if (left.length) return { error: 'Replace ' + left.join(', ') + ' before marking it sent.' };
+      o.onOpened(area.value);
+      return 'sent';
+    } });
+    acts.push({ label: phone ? 'Open in messages' : 'No phone number', kind: 'primary', run: function () {
+      if (!phone || !OA.phoneOk(phone)) return { error: 'Add a phone number for this client first.' };
+      var left = recheck(); if (left.length) return { error: 'Replace ' + left.join(', ') + ' before opening the message.' };
+      window.location.href = OA.smsHref(phone, area.value);
+      if (o.onOpened) o.onOpened(area.value);
+      return 'opened';
+    } });
     return ui.dialog({
       title: o.title || OA.TEMPLATES[o.key].name, body: body, wide: true,
-      actions: [
-        { label: 'Close', kind: 'quiet', value: null },
-        { label: 'Copy text', kind: '', run: function () { ui.copy(area.value); return false; } },
-        { label: phone ? 'Open in messages' : 'No phone number', kind: 'primary', run: function () {
-          if (!phone || !OA.phoneOk(phone)) return { error: 'Add a phone number for this client first.' };
-          var left = recheck(); if (left.length) return { error: 'Replace ' + left.join(', ') + ' before opening the message.' };
-          window.location.href = OA.smsHref(phone, area.value);
-          if (o.onOpened) o.onOpened(area.value);
-          return 'opened';
-        } }
-      ]
+      actions: acts
     });
   };
 
