@@ -200,6 +200,7 @@
   };
   act.removeTimeoff = function (id) { st().timeoff = st().timeoff.filter(function (t) { return t.id !== id; }); S.commit(); };
   act.followUpSent = function (a) { if (a.followUp) return false; a.followUp = 'sent'; S.commit(); return true; };
+  act.reviewAsked = function (a) { if (a.reviewAsked) return false; a.reviewAsked = 'sent'; S.commit(); return true; };
 
   /* ---------- messages ---------- */
   OA.addressLine = function () { var s = st().site.shop; return s.street + ', ' + s.town + ', ' + s.region; };
@@ -233,6 +234,10 @@
   OA.followUpsDue = function () {
     var today = OA.todayISO();
     return st().appts.filter(function (a) { return a.status === 'done' && !a.followUp && OA.diffDays(today, a.date) >= 14; }).sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+  };
+  OA.reviewAsksDue = function () {
+    var today = OA.todayISO();
+    return st().appts.filter(function (a) { return a.status === 'done' && !a.reviewAsked && a.type !== 'consult' && OA.diffDays(today, a.date) >= 0 && OA.diffDays(today, a.date) <= 7; }).sort(function (a, b) { return a.date < b.date ? -1 : 1; });
   };
   OA.openRequests = function () { return st().requests.filter(function (r) { return r.status !== 'Closed' && r.status !== 'Booked'; }); };
 

@@ -119,6 +119,9 @@
     if (existing && existing.id) {
       var liveAppt = OA.appt(existing.id), owner = (liveAppt && liveAppt.requestId && OA.req(liveAppt.requestId)) || liveAppt;
       if (owner) body.appendChild(h('div', { class: 'span2' }, h('h3', { text: 'Reference art' }), h('p', { class: 'note', text: owner === liveAppt ? 'Photos for this appointment.' : 'Shared with the request this appointment came from.' }), OA.refLocker(owner)));
+      if (liveAppt && liveAppt.status === 'done' && !liveAppt.reviewAsked) {
+        body.appendChild(h('div', { class: 'span2' }, h('h3', { text: 'Review' }), h('p', { class: 'note', text: 'Ask ' + liveAppt.client + ' for a Google review while the session is fresh.' }), ui.btn('Text: ask for a review', function () { OA.sendReviewAsk(liveAppt); }, 'small')));
+      }
     }
     var actions = [{ label: 'Cancel', kind: 'quiet', value: null }];
     if (existing && existing.status !== 'cancelled') {
@@ -187,7 +190,7 @@
         after && after();
       }, 'small' + (status === 'noshow' ? ' danger-quiet' : status === 'done' ? ' primary' : '')));
     }
-    if (a.status === 'booked') { set('arrived', 'Arrived'); set('noshow', 'No-show'); }
+    if (a.status === 'booked') { if (a.date <= OA.todayISO()) { set('arrived', 'Arrived'); set('noshow', 'No-show'); } }
     else if (a.status === 'arrived') { set('done', 'Done'); set('booked', 'Not here yet'); }
     else if (a.status === 'noshow' || a.status === 'done') { row.appendChild(ui.btn('Undo status', function () { act.setApptStatus(a, 'booked'); after && after(); }, 'small quiet')); }
     return row;
@@ -200,6 +203,11 @@
   OA.sendFollowUp = function (a, after) {
     var c = OA.client(a.clientId);
     return ui.message({ key: 'aftercare', ctx: { name: a.client, artist: a.artist }, phone: c && c.phone, onOpened: function () { act.followUpSent(a); after && after(); } });
+  };
+
+  OA.sendReviewAsk = function (a, after) {
+    var c = OA.client(a.clientId);
+    return ui.message({ key: 'review', ctx: { name: a.client, artist: a.artist }, phone: c && c.phone, onOpened: function () { act.reviewAsked(a); after && after(); } });
   };
 
   /* A one-line description of an appointment for lists. */

@@ -21,6 +21,9 @@
     OA.scopeAppts(OA.followUpsDue()).forEach(function (a) {
       items.push({ pri: 4, kind: 'care', text: 'Check how ' + a.client + '’s ' + (a.piece || 'tattoo').toLowerCase() + ' healed', meta: 'Done ' + OA.diffDays(today, a.date) + ' days ago. A healed photo is good for the portfolio.', cta: 'Write check-in', run: function (done) { OA.sendFollowUp(a, done); } });
     });
+    OA.scopeAppts(OA.reviewAsksDue()).forEach(function (a) {
+      items.push({ pri: 4, kind: 'care', text: 'Ask ' + a.client + ' for a Google review', meta: 'Session finished ' + OA.fmtDow(a.date) + '. A review helps the shop get found.', cta: 'Write review ask', run: function (done) { OA.sendReviewAsk(a, done); } });
+    });
     OA.scopeAppts(OA.gcal.needsAttention()).forEach(function (a) {
       items.push({ pri: 2, kind: 'warn', text: a.client + '\u2019s appointment is not on Google Calendar', meta: OA.fmtDow(a.date) + ' at ' + OA.fmtTime(a.start) + ' with ' + OA.chairName(a.artist) + '. ' + ((a.sync && a.sync.error) || 'The last push failed.'), cta: 'Open', run: function (done) { OA.apptDialog(a).then(function () { done(); }); } });
     });
@@ -66,7 +69,8 @@
     title: function () { return 'Today'; },
     render: function (parts, q) {
       var today = OA.todayISO(), day = OA.validISO(q.d) ? q.d : today, notOpen = !OA.isOpenDay(day);
-      if (notOpen && day === today) { var nx = nextOpen(today, 1); if (nx) day = nx; }
+      var jumped = false;
+      if (notOpen && day === today) { var nx = nextOpen(today, 1); if (nx) { day = nx; notOpen = !OA.isOpenDay(day); jumped = true; } }
       var hr = OA.hoursFor(day), shown = day !== today;
       var prev = nextOpen(day, -1), next = nextOpen(day, 1);
       var m = OA.metrics(), items = queue(), rer = OA.rerender;
@@ -92,9 +96,9 @@
         prev ? ui.link('Earlier', '#/today' + OA.query({ d: prev }), 'btn small quiet') : null,
         h('h2', { text: shown ? OA.fmtLong(day) : 'Today’s chairs' }),
         next ? ui.link('Later', '#/today' + OA.query({ d: next }), 'btn small quiet') : null,
-        shown ? ui.link('Back to today', '#/today', 'btn small quiet') : null);
+        shown && !jumped ? ui.link('Back to today', '#/today', 'btn small quiet') : null);
       var sec = h('section', { class: 'sec' }, head);
-      if (notOpen && !shown) sec.appendChild(h('p', { class: 'note', text: 'The shop is closed today. Showing the next open day.' }));
+      if (jumped || (notOpen && !shown)) sec.appendChild(h('p', { class: 'note', text: 'The shop is closed today. Showing the next open day.' }));
       else if (notOpen) sec.appendChild(h('p', { class: 'note', text: 'The shop is closed on ' + OA.dayName(day) + 's by its usual hours.' }));
       else if (hr) sec.appendChild(h('p', { class: 'sub', text: 'Open ' + OA.fmtRange(hr.open, hr.close) }));
       sec.appendChild(board(day, rer));

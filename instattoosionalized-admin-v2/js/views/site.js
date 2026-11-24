@@ -169,12 +169,12 @@
     if (set.reviewLink) {
       var qrHolder = h('div', { class: 'qr-spot' }), qr = OA.qr(set.reviewLink, 'QR code for the shop’s Google review page');
       if (qr) qrHolder.appendChild(qr);
-      var askText = OA.compose('review', { name: 'Alex' });
+      var askText = OA.compose('review', { name: '{first}' });
       var ta = ui.area(askText, { rows: 3, readonly: true, 'aria-label': 'Example review request text' });
       ask.appendChild(h('div', { class: 'counter-head' }, h('strong', { text: site.shop.name || site.shop.short || 'The shop' }), h('span', { text: 'Loved your ink? Review us on Google' })));
       ask.appendChild(qrHolder);
       ask.appendChild(h('p', { class: 'counter-url', text: set.reviewLink }));
-      ask.appendChild(h('div', { class: 'no-print' }, h('p', { class: 'note', text: 'The text version, ready to send. The name fills in with the client’s when you send it from a request.' }), ta,
+      ask.appendChild(h('div', { class: 'no-print' }, h('p', { class: 'note', text: 'The text version, ready to send. The {first} blank fills in with the client’s name when you send it from a finished appointment.' }), ta,
         h('div', { class: 'row' }, ui.btn('Copy text', function () { ta.select(); if (navigator.clipboard) navigator.clipboard.writeText(ta.value).then(function () { ui.toast('Copied'); }, function () { document.execCommand('copy'); ui.toast('Copied'); }); else { document.execCommand('copy'); ui.toast('Copied'); } }, 'small'),
           ui.btn('Print counter card', function () { document.body.classList.add('pc-print'); var done = function () { document.body.classList.remove('pc-print'); window.removeEventListener('afterprint', done); }; window.addEventListener('afterprint', done); setTimeout(done, 1500); window.print(); }, 'small quiet'))));
     } else {
