@@ -561,7 +561,7 @@ footer nav a:hover{color:var(--ink)}
     steps.forEach(function(s){ s.classList.toggle("on", +s.dataset.step === n); });
     progs.forEach(function(p){ p.classList.toggle("done", +p.dataset.prog <= n); });
     if (n === 3) renderSummary();
-    document.getElementById("request").scrollIntoView({behavior: reduceMotion ? "auto" : "smooth", block: "start"});
+    var stp = stepEl(n); var sr = stp ? stp.getBoundingClientRect() : null; if (!sr || sr.top < 0 || sr.top > window.innerHeight * 0.6) { document.getElementById("request").scrollIntoView({behavior: reduceMotion ? "auto" : "smooth", block: "start"}); }
   }
   function err(stepEl, msg) {
     var e = stepEl.querySelector("[data-err]");

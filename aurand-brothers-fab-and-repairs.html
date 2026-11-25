@@ -520,9 +520,12 @@ footer.site a:hover{text-decoration:underline}
       document.getElementById('smsBtn').href='sms:+15708371840?&body='+encodeURIComponent(text);
     }
     if(state.started){
-      document.querySelector('.builder').scrollIntoView({behavior:'smooth',block:'start'});
       var q=document.querySelector('.bstep.on .q');
       if(q){q.setAttribute('tabindex','-1');q.focus({preventScroll:true})}
+      var r=q?q.getBoundingClientRect():null;
+      if(!r||r.top<0||r.top>window.innerHeight*0.6){
+        document.querySelector('.builder').scrollIntoView({behavior:'smooth',block:'start'});
+      }
     }
     state.started=true;
   }

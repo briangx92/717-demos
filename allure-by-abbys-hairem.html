@@ -386,7 +386,7 @@ table.hours tr.today th,table.hours tr.today td{color:var(--ink);font-weight:700
     steps.forEach(function (s) { s.classList.toggle('on', +s.dataset.step === n); });
     count.textContent = 'Step ' + n + ' of ' + total; bar.style.width = (n / total * 100) + '%';
     back.hidden = n === 1; next.hidden = n === total; submit.hidden = n !== total;
-    if (move) { var h = steps[n - 1].querySelector('h3'); h.focus({ preventScroll: true }); document.getElementById('request').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    if (move) { var h = steps[n - 1].querySelector('h3'); h.focus({ preventScroll: true }); var r = h.getBoundingClientRect(); if (r.top < 0 || r.top > window.innerHeight * 0.6) { document.getElementById('request').scrollIntoView({ behavior: 'smooth', block: 'start' }); } }
   }
   function valid(n) {
     if (n === 1 && !picked('services').length) return 'Pick at least one service.';

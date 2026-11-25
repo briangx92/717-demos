@@ -275,7 +275,7 @@ function picked(el){return [].map.call(el.querySelectorAll('.zt[aria-pressed=tru
 function show(i,focus){cur=i;steps.forEach(function(s,k){s.hidden=(k!==i);});var last=(i===N-1);
 prog.textContent='Step '+(i+1)+' of '+N;bar.style.transform='scaleX('+((i+1)/N)+')';
 bBack.hidden=(i===0);bNext.hidden=last;bSub.hidden=!last;err.textContent='';
-if(focus){steps[i].querySelector('h3').focus({preventScroll:true});f.scrollIntoView({behavior:'smooth',block:'start'});}}
+if(focus){var hd=steps[i].querySelector('h3');hd.focus({preventScroll:true});var rr=hd.getBoundingClientRect();if(rr.top<0||rr.top>window.innerHeight*0.6){f.scrollIntoView({behavior:'smooth',block:'start'});}}}
 function check(i){var s=steps[i];
 var groups=s.querySelectorAll('[data-multi],[data-single]');for(var k=0;k<groups.length;k++){if(!picked(groups[k]).length){return 'Pick at least one option for '+groups[k].dataset.key.toLowerCase()+'.';}}
 if(s.contains(ph)){var nm=f.querySelector('input[name=name]').value.trim();if(!nm)return 'Add your name.';if(ph.value.replace(/\D/g,'').length<7)return 'Add a phone number with at least 7 digits.';}

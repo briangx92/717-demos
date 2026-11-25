@@ -433,7 +433,7 @@ footer a{color:var(--acc);text-decoration:none}
     document.getElementById('backBtn').hidden=n===1;
     document.getElementById('nextBtn').hidden=n===3;
     if(n===3)renderSummary();
-    if(navStarted)document.getElementById('bookForm').scrollIntoView({behavior:'smooth',block:'start'});
+    if(navStarted){var st=document.getElementById('step'+n);var sr=st?st.getBoundingClientRect():null;if(!sr||sr.top<0||sr.top>window.innerHeight*0.6){document.getElementById('bookForm').scrollIntoView({behavior:'smooth',block:'start'});}}
     navStarted=true;
   }
   function renderSummary(){

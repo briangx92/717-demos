@@ -422,9 +422,12 @@ footer .fname{font-family:'Libre Franklin',sans-serif;font-weight:900;text-trans
       document.getElementById('smsBtn').href='sms:+17245885555?&body='+encodeURIComponent(text);
     }
     if(state.started){
-      document.querySelector('.builder').scrollIntoView({behavior:'smooth',block:'start'});
       var q=document.querySelector('.bstep.on .q');
       if(q){q.setAttribute('tabindex','-1');q.focus({preventScroll:true})}
+      var r=q?q.getBoundingClientRect():null;
+      if(!r||r.top<0||r.top>window.innerHeight*0.6){
+        document.querySelector('.builder').scrollIntoView({behavior:'smooth',block:'start'});
+      }
     }
     state.started=true;
   }

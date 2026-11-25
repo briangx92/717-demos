@@ -427,7 +427,7 @@ table.hours tr.today th,table.hours tr.today td{font-weight:800}
     document.getElementById('rq-name-step').textContent = steps[n - 1].dataset.title;
     ticks.forEach(function (t, i) { t.classList.toggle('on', i < n); });
     back.hidden = n === 1; next.hidden = n === total; submit.hidden = n !== total;
-    if (move) { steps[n - 1].querySelector('h3').focus({ preventScroll: true }); document.getElementById('request').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    if (move) { var h = steps[n - 1].querySelector('h3'); h.focus({ preventScroll: true }); var r = h.getBoundingClientRect(); if (r.top < 0 || r.top > window.innerHeight * 0.6) { document.getElementById('request').scrollIntoView({ behavior: 'smooth', block: 'start' }); } }
   }
   function valid(n) {
     if (n === 1 && !picked('services').length) return 'Pick at least one service.';
