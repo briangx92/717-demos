@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <!-- Scripts may only come from this folder. If you set portal-api below, add its origin to connect-src here too. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://portal.instattoosionalized.net; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'">
 <!-- Address of the shop server (for example https://portal.example.com). Empty means the portal runs on its own data only. -->
 <meta name="portal-api" content="">
+<!-- Address of the calendar Worker (portal hostname). Separate from portal-api on purpose: different backend, different auth (Access cookie, no token). -->
+<meta name="gcal-api" content="https://portal.instattoosionalized.net">
 <title>Owner portal | Instattoosionalized</title>
 <link rel="icon" href="../instattoosionalized-logo.jpg">
 <link rel="preload" href="fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
