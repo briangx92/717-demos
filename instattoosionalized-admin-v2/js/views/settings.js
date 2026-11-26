@@ -116,7 +116,7 @@
     var g = OA.gcalSettings(), st = OA.gcal.status(), root = h('div', {});
     root.appendChild(delivery());
     var head = h('section', { class: 'card narrow' }, h('h2', { text: 'Google Calendar (optional)' }), h('div', { class: 'row' }, ui.chip(st.text, 'quiet'), h('span', { class: 'note', text: 'Placeholder. Only for artists who choose it.' })),
-      h('p', { text: 'The plan is a one-way push: appointments added here show up as events in each artist\u2019s Google calendar, and changes or cancellations here update the same event. Nothing is read back from Google yet.' }),
+      h('p', { text: 'Appointments added here are placed on the shop\u2019s master booking calendar, and changes or cancellations here update the same event. The website\u2019s open times are read from that same master book.' }),
       h('p', { class: 'note', text: st.reason }));
     var btn = ui.btn('Connect Google Calendar', function () { OA.gcal.connect().catch(function (e) { ui.fail(e.message); }); }, 'primary', { 'aria-describedby': 'gc-why' });
     head.appendChild(h('div', { class: 'row' }, btn, h('span', { id: 'gc-why', class: 'note', text: 'Not available in the demo. Signing in to Google has to happen on a server.' })));

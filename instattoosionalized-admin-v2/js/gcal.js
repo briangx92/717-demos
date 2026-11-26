@@ -61,7 +61,7 @@
     connected: false,
     base: base,
     status: function () {
-      if (gcal.connected) return { connected: true, text: 'Connected', reason: 'Appointments are pushed to each artist\u2019s Google calendar. Changes and cancellations go through the same connection.' };
+      if (gcal.connected) return { connected: true, text: 'Connected', reason: 'Appointments are added to the shop’s master booking calendar. Changes and cancellations go through the same connection.' };
       return { connected: false, text: probe.done ? 'Not connected' : 'Not checked', reason: probe.reason };
     },
     /* Probe, not OAuth: sign-in is Cloudflare Access on the portal hostname and Google
