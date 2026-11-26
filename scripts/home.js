@@ -247,6 +247,8 @@ const MODULES = {
     if (!btn || !menu) return;
     SITE.artists.forEach(a => { const link = menu.querySelector('[data-nav-artist="' + a.slug + '"]'); if (link) { var nm = a.first || a.name || ""; link.textContent = nm.charAt(0).toUpperCase() + nm.slice(1); link.href = artistPageHref(a); } });
     SITE.artists.forEach(a => { if (menu.querySelector('[data-nav-artist="' + a.slug + '"]')) return; const link = document.createElement("a"); link.setAttribute("data-nav-artist", a.slug); var nm = a.first || a.name || ""; link.textContent = nm.charAt(0).toUpperCase() + nm.slice(1); link.href = artistPageHref(a); const all = menu.querySelector('a[href="#artists"]'); menu.insertBefore(link, all || null); });
+    const keep = new Set(SITE.artists.map(a => a.slug));
+    menu.querySelectorAll("[data-nav-artist]").forEach(link => { if (!keep.has(link.getAttribute("data-nav-artist"))) link.remove(); });
     const set = open => { menu.hidden = !open; btn.setAttribute("aria-expanded", String(open)); };
     btn.addEventListener("click", () => set(menu.hidden));
     menu.addEventListener("click", e => { if (e.target.closest("a")) set(false); });

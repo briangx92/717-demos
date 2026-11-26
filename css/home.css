@@ -146,7 +146,7 @@
   .s-nav__btn[aria-expanded="true"] svg{ transform:rotate(180deg); }
   .s-nav__menu{ position:absolute; right:0; top:calc(100% + 8px); min-width:200px; background:var(--surface); border:1px solid var(--line); border-radius:10px; box-shadow:0 14px 34px rgba(0,0,0,.45); padding:6px; display:grid; z-index:60; }
   .s-nav__menu[hidden]{ display:none; }
-  .s-nav__menu a{ padding:10px; border-radius:7px; text-decoration:none; color:var(--ink); font-weight:600; }
+  .s-nav__menu a{ padding:10px; border-radius:7px; text-decoration:none; color:var(--ink); font-weight:600; text-align:right; }
   .s-nav__menu a:hover{ background:rgba(255,255,255,.06); }
   @media (max-width:640px){ .s-nav{ gap:var(--sp-1); } .s-nav__btn{ padding:8px 2px; } .s-header .c-btn{ padding-inline:var(--sp-1); } }
   .s-header__name{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
