@@ -40,8 +40,6 @@
     });
     if (!arts.length) list.appendChild(ui.empty('No artists yet', 'Add the first artist to give them a page and a chair.'));
     root.appendChild(list);
-    var gone = S.state.site.artists.filter(function (a) { return a.removedAt && OA.role.kind === 'owner'; });
-    if (gone.length) root.appendChild(ui.section('Removed', gone.map(function (a) { return h('div', { class: 'row' }, h('span', { text: a.name }), ui.btn('Restore', function () { a.removedAt = null; S.commit(); ui.toast(OA.nick(a) + ' restored to the draft'); OA.rerender(); }, 'small')); })));
     return root;
   }
   function addArtist() {
