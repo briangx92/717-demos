@@ -138,7 +138,7 @@
   .s-header__name{ font-family:var(--font-display); font-size:var(--text-h3); text-transform:uppercase; letter-spacing:.04em; text-decoration:none; min-width:0; }
   .s-header__name span{ color:var(--accent-bright); }
   .s-header .c-btn{ font-size:var(--text-body); padding-inline:var(--sp-2); flex:none; }
-  .s-nav{ display:flex; align-items:center; gap:var(--sp-2); flex:none; }
+  .s-nav{ display:flex; align-items:center; gap:var(--sp-2); flex:none; margin-left:auto; }
   .s-nav__toggle{ display:none; }
   .s-nav__item{ position:relative; }
   .s-nav__btn{ display:inline-flex; align-items:center; gap:6px; background:none; border:0; font:inherit; font-weight:600; color:var(--ink); cursor:pointer; padding:8px 4px; }
