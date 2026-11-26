@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Limits where this page can load code from and send data to (Cloudflare Web Analytics is allowed). If you set request-api below, add its origin to connect-src here too. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://abacus.jasoncameron.dev; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://abacus.jasoncameron.dev; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src https://challenges.cloudflare.com">
 <!-- Origin of the request server, for example https://portal.example.com. Empty means the form cannot send; it only prepares a text message. -->
 <meta name="request-api" content="">
 <meta name="case-tag" content="instattoosionalized-tattoos-and-piercings·z62">
@@ -229,6 +229,11 @@
         </form>
       </div>
 
+      <div class="s-captcha" id="ts-box" hidden>
+        <div id="ts-widget"></div>
+        <p class="s-captcha__note" id="ts-note" role="alert" hidden></p>
+      </div>
+
       <div class="s-result" id="result" hidden>
         <h3 id="result-title" tabindex="-1">Your request is ready</h3>
         <div class="s-result__text" id="result-text"></div>
@@ -312,6 +317,7 @@
 </div>
 
 <script src="scripts/site-content.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
 <script src="scripts/home.js"></script>
 
 <script type="application/ld+json" id="schema-ld" data-module="schema"></script>

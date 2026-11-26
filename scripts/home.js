@@ -1,3 +1,4 @@
+const TURNSTILE_SITE_KEY = "0x4AAAAAAGUSsdQqWpUsmajE";
 const SITE = {
   slug: "instattoosionalized-tattoos-and-piercings",
   name: "Instattoosionalized Tattoos and Piercings",
@@ -567,12 +568,15 @@ const MODULES = {
     const panels = { quick: $("panel-quick"), guided: $("panel-guided") };
     const result = $("result");
     const pathsBox = $("paths");
+    const tsBox = $("ts-box"), tsNote = $("ts-note");
+    let tsToken = "", tsWidget = null, tsRendered = false;
 
     function selectPath(p, focusTab){
       st.path = p;
       tabs.forEach(t => { const on = t.dataset.path === p; t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1; });
       panels.quick.hidden = p !== "quick";
       panels.guided.hidden = p !== "guided";
+      if (tsRendered) tsBox.hidden = false;
       result.hidden = true;
       pathsBox.hidden = false;
       if (focusTab) tabs.find(t => t.dataset.path === p).focus();
@@ -991,6 +995,33 @@ const MODULES = {
       if (sel) sel.value = st.artist || "";
     }
 
+    function tsShowNote(msg){
+      tsBox.hidden = false;
+      tsNote.textContent = msg;
+      tsNote.hidden = false;
+    }
+    function tsRender(){
+      if (tsRendered || !window.turnstile) return;
+      tsRendered = true;
+      tsWidget = window.turnstile.render($("ts-widget"), {
+        sitekey: TURNSTILE_SITE_KEY,
+        theme: "dark",
+        callback: t => { tsToken = t; tsNote.hidden = true; },
+        "expired-callback": () => { tsToken = ""; },
+        "error-callback": () => { tsToken = ""; }
+      });
+      tsBox.hidden = false;
+    }
+    (function tsWait(n){
+      if (window.turnstile) { tsRender(); return; }
+      if (n > 60) return;
+      setTimeout(() => tsWait(n + 1), 250);
+    })(0);
+    function tsReset(){
+      tsToken = "";
+      if (tsWidget !== null && window.turnstile) { try { window.turnstile.reset(tsWidget); } catch (e) {} }
+    }
+
     const overlay = $("send-overlay");
     // ---- sending: nothing says "sent" unless the shop's server answered 201 with an id
     const API = (() => {
@@ -1060,7 +1091,7 @@ const MODULES = {
       return st.key;
     }
     async function postRequest(payload){
-      const body = Object.assign({}, payload, { client_key: retryKey(payload), hp: $("hp-check").value, captcha: await Captcha.take() });
+      const body = Object.assign({}, payload, { client_key: retryKey(payload), hp: $("hp-check").value, captcha: await Captcha.take(), turnstile_token: tsToken });
       let r;
       try { r = await fetch(API + "/api/requests", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), cache: "no-store" }); }
       catch (e) { throw new Error("Could not reach the shop's server. Check your connection and try again, or text the shop."); }
@@ -1070,6 +1101,7 @@ const MODULES = {
     }
 
     function showResult(kind, text, message){
+      tsBox.hidden = true;
       pathsBox.hidden = true; panels.quick.hidden = true; panels.guided.hidden = true;
       result.hidden = false;
       $("result-text").textContent = text;
@@ -1085,6 +1117,11 @@ const MODULES = {
 
     function finish(path, text){
       if (st.sending) return;
+      if (!tsToken) {
+        tsShowNote(tsRendered ? "Please finish the quick check above, then send again." : "The quick check could not load. Check your connection, then try again.");
+        tsBox.scrollIntoView({ block: "center", behavior: T.reduced() ? "auto" : "smooth" });
+        return;
+      }
       st.lastPath = path; st.lastText = text;
       const payload = API ? payloadFor(path) : null;
       overlay.hidden = false;
@@ -1095,6 +1132,7 @@ const MODULES = {
       const work = API ? (st.sending = true, postRequest(payload).then(id => ({ ok: true, id }), e => ({ ok: false, msg: e.message }))) : Promise.resolve({ ok: null });
       Promise.all([work, minShow]).then(([res]) => {
         st.sending = false;
+        tsReset();
         overlay.hidden = true;
         overlay.classList.remove("is-run");
         if (res.ok === true) showResult("sent", text, "The shop got your request. They will confirm your time by text, and once they do it goes on their calendar. Here is what you sent:");

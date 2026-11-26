@@ -301,6 +301,8 @@
   .s-paths__label{ font-family:var(--font-display); text-transform:uppercase; letter-spacing:.06em; font-size:var(--text-h3); line-height:1.1; }
   .s-paths__sub{ color:var(--ink-soft); font-size:var(--text-small); }
   .s-quick__fine{ margin-top:var(--sp-2); color:var(--ink-soft); }
+  .s-captcha{ margin-top:var(--sp-3); }
+  .s-captcha__note{ color:var(--error); font-weight:600; margin-top:var(--sp-2); }
   .s-quick .c-btn{ width:100%; margin-top:var(--sp-1); }
 
   .s-form__top{ display:grid; gap:var(--sp-1); margin-bottom:var(--sp-3); }
