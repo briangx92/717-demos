@@ -234,6 +234,15 @@ const T = {
 
 const MODULES = {
   header(root){
+    const navToggle = root.querySelector("#nav-toggle"), siteNav = root.querySelector("#site-nav");
+    if (navToggle && siteNav) {
+      const mq = window.matchMedia("(max-width: 640px)");
+      const applyMq = () => { siteNav.hidden = mq.matches; navToggle.setAttribute("aria-expanded", "false"); };
+      applyMq();
+      if (mq.addEventListener) mq.addEventListener("change", applyMq);
+      navToggle.addEventListener("click", () => { const open = siteNav.hidden; siteNav.hidden = !open; navToggle.setAttribute("aria-expanded", String(open)); });
+      siteNav.addEventListener("click", e => { if (e.target.closest("a") && mq.matches) { siteNav.hidden = true; navToggle.setAttribute("aria-expanded", "false"); } });
+    }
     const btn = root.querySelector("#artists-btn"), menu = root.querySelector("#artists-menu");
     if (!btn || !menu) return;
     SITE.artists.forEach(a => { const link = menu.querySelector('[data-nav-artist="' + a.slug + '"]'); if (link) { var nm = a.first || a.name || ""; link.textContent = nm.charAt(0).toUpperCase() + nm.slice(1); link.href = artistPageHref(a); } });
